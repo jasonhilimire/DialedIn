@@ -31,6 +31,11 @@ extension RearShock {
     @NSManaged public var rebound: Int16
     @NSManaged public var spring: Int16
     @NSManaged public var tokens: Int16
+    @NSManaged public var info: String?
     @NSManaged public var bike: Bike?
+    
+    public var wrappedRearInfo: String {
+        info ?? "Unknown Info"
+    }
 
 }

@@ -19,7 +19,15 @@ extension Notes {
 
     @NSManaged public var date: Date?
     @NSManaged public var note: String?
-    @NSManaged public var rating: String?
+    @NSManaged public var rating: Int16?
     @NSManaged public var bike: Bike?
+    
+    public var wrappedBike: String {
+        bike ?? "Unknown Bike"
+    }
+    
+    public var wrappedNote String {
+        note ?? "Unknown Note"
+    }
 
 }

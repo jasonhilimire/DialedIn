@@ -21,9 +21,30 @@ extension Bike {
     @NSManaged public var isDefault: Bool
     @NSManaged public var name: String?
     @NSManaged public var note: String?
+    @NSManaged public var info: String?
     @NSManaged public var frontSetup: Fork?
     @NSManaged public var rearSetup: RearShock?
     @NSManaged public var setupNotes: NSOrderedSet?
+    
+    public var wrappedBikeName: String {
+        name ?? "Unknown Name"
+    }
+    
+    public var wrappedBikeNote: String {
+        note ?? "Unknown Note"
+    }
+    
+    public var wrappedInfo: String {
+        info ?? "Unknown Info"
+    }
+    
+    //  Convert from an NSSet to Set, convert Set to an Array so that ForEach can read data, then Sort Array (do really need sort if use Ordered?
+    public var notesArray: [Notes] {
+        let set = setupNotes as? Set<Notes> ?? []
+        return set.sorted {
+            $0.wrappedNote < $1.wrappedNote
+        }
+    }
 
 }
 

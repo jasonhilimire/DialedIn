@@ -30,6 +30,11 @@ extension Fork {
     @NSManaged public var name: String?
     @NSManaged public var rebound: Int16
     @NSManaged public var tokens: Int16
+    @NSManaged public var info: String?
     @NSManaged public var bike: Bike?
+    
+    public var wrappedForkInfo: String {
+        info ?? "Unknown Info"
+    }
 
 }
