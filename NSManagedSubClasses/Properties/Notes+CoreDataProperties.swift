@@ -22,7 +22,7 @@ extension Notes {
     @NSManaged public var rating: Int16
     @NSManaged public var bike: Bike?
     
-    public var wrappedNote {
+    public var wrappedNote: String {
         note ?? "Unknown Note"
     }
 
