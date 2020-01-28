@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import CoreData
 
 
 
@@ -23,12 +24,13 @@ struct ContentView: View {
     @State private var showingAddScreen = false
     
     var body: some View {
+
         NavigationView {
             List {
                 ForEach(notes, id: \.self) { note in
                     NavigationLink(destination: DetailView(note: note)) {
-//                            EmojiRatingView(rating: book.rating)
-//                                .font(.largeTitle)
+    //                            EmojiRatingView(rating: note.rating)
+    //                                .font(.largeTitle)
                         
                         VStack(alignment: .leading) {
                             Text("Some fucking text")
@@ -36,7 +38,6 @@ struct ContentView: View {
                             Text(note.note ?? "Unknown Note")
                                 .font(.callout)
                                 .foregroundColor(.secondary)
-                                
                         }
                     }
                 }
@@ -46,7 +47,7 @@ struct ContentView: View {
             .navigationBarItems(leading: EditButton(), trailing:
                 Button(action: {self.showingAddScreen.toggle()
                 }) {
-                    Image(systemName: "plus")
+                    Image(systemName: "gauge.badge.plus")
             })
                 .sheet(isPresented: $showingAddScreen)  {
                     AddNoteView().environment(\.managedObjectContext, self.moc)

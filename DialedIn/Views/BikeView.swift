@@ -1,5 +1,5 @@
 //
-//  AddNoteView.swift
+//  BikeView.swift
 //  DialedIn
 //
 //  Created by Jason Hilimire on 1/27/20.
@@ -8,14 +8,14 @@
 
 import SwiftUI
 
-struct AddNoteView: View {
+struct BikeView: View {
     var body: some View {
-        Text("Add Note View")
+        Text("Bike view")
     }
 }
 
-struct AddNoteView_Previews: PreviewProvider {
+struct BikeView_Previews: PreviewProvider {
     static var previews: some View {
-        AddNoteView()
+        BikeView()
     }
 }
