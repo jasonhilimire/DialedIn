@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15702" systemVersion="19C57" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Bike" representedClassName="Bike" syncable="YES">
+        <attribute name="bikeNote" optional="YES" attributeType="String"/>
         <attribute name="hasRearShock" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="info" optional="YES" attributeType="String"/>
         <attribute name="isDefault" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="name" optional="YES" attributeType="String"/>
-        <attribute name="note" optional="YES" attributeType="String"/>
         <relationship name="frontSetup" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Fork" inverseName="bike" inverseEntity="Fork"/>
         <relationship name="rearSetup" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="RearShock" inverseName="bike" inverseEntity="RearShock"/>
-        <relationship name="setupNotes" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Notes" inverseName="bike" inverseEntity="Notes"/>
+        <relationship name="setupNotes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Notes" inverseName="bike" inverseEntity="Notes"/>
     </entity>
     <entity name="Fork" representedClassName="Fork" syncable="YES">
         <attribute name="airVolume" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>

@@ -6,6 +6,7 @@
 //  Copyright © 2020 Jason Hilimire. All rights reserved.
 //
 
+/*
 import XCTest
 @testable import DialedIn
 
@@ -32,3 +33,4 @@ class DialedInTests: XCTestCase {
     }
 
 }
+ */

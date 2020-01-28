@@ -2,7 +2,7 @@
 //  Bike+CoreDataClass.swift
 //  DialedIn
 //
-//  Created by Jason Hilimire on 1/26/20.
+//  Created by Jason Hilimire on 1/27/20.
 //  Copyright © 2020 Jason Hilimire. All rights reserved.
 //
 //
