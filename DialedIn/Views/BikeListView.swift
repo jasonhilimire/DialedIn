@@ -1,23 +1,20 @@
 //
-//  ContentView.swift
+//  BikeListView.swift
 //  DialedIn
 //
-//  Created by Jason Hilimire on 1/26/20.
+//  Created by Jason Hilimire on 1/29/20.
 //  Copyright © 2020 Jason Hilimire. All rights reserved.
 //
 
 import SwiftUI
-import CoreData
 
-
-
-struct ContentView: View {
-    
+struct BikeListView: View {
+        
        // Create the MOC
     @Environment(\.managedObjectContext) var moc
-    // create a Fetch request for Notes
-    @FetchRequest(entity: Notes.entity(), sortDescriptors: [
-        NSSortDescriptor(keyPath: \Notes.date, ascending: true)
+    // create a Fetch request for Bike
+    @FetchRequest(entity: Bike.entity(), sortDescriptors: [
+        NSSortDescriptor(keyPath: \Bike.name, ascending: true)
     ]) var notes: FetchedResults<Notes>
     
     
@@ -29,9 +26,6 @@ struct ContentView: View {
             List {
                 ForEach(notes, id: \.self) { note in
                     NavigationLink(destination: DetailView(note: note)) {
-    //                            EmojiRatingView(rating: note.rating)
-    //                                .font(.largeTitle)
-                        
                         VStack(alignment: .leading) {
                             Text("Some fucking text")
                                 .font(.headline)
@@ -41,22 +35,22 @@ struct ContentView: View {
                         }
                     }
                 }
-                .onDelete(perform: deleteNotes)
+                .onDelete(perform: deleteBike)
             }
-                .navigationBarTitle("DialedIn")
+                .navigationBarTitle("Bikes")
             .navigationBarItems(leading: EditButton(), trailing:
                 Button(action: {self.showingAddScreen.toggle()
                 }) {
-                    Image(systemName: "gauge.badge.plus")
+                    Image(systemName: "plus.circle")
             })
                 .sheet(isPresented: $showingAddScreen)  {
-                    AddNoteView().environment(\.managedObjectContext, self.moc)
+                    BikeView().environment(\.managedObjectContext, self.moc)
             }
             
         }
     }
     
-    func deleteNotes(at offsets: IndexSet) {
+    func deleteBike(at offsets: IndexSet) {
         for offset in offsets {
             // find this note in our fetch request
             let note = notes[offset]
@@ -68,8 +62,8 @@ struct ContentView: View {
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
+struct BikeListView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        BikeListView()
     }
 }

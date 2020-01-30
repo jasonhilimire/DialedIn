@@ -9,7 +9,10 @@
 import SwiftUI
 
 struct BikeView: View {
+    // Create the MOC
+    @Environment(\.managedObjectContext) var moc
     
+
     @State private var bikeName = ""
     @State private var bikeNote = ""
    
@@ -30,6 +33,7 @@ struct BikeView: View {
         
         VStack {
             Form {
+                
                 Section(header: Text("Bike Details")){
                     TextField("Bike Name", text: $bikeName )
                     TextField("Note", text: $bikeNote)
@@ -68,8 +72,17 @@ struct BikeView: View {
                         
                     }
                 }
+                Button("Save") {
+                    
+                    
+//                    try? self.moc.save()
+//                BikeListView()
+                    
+                }
             }
         }
+        
+        
     }
 }
 
