@@ -9,8 +9,67 @@
 import SwiftUI
 
 struct BikeView: View {
+    
+    @State private var bikeName = ""
+    @State private var bikeNote = ""
+   
+    @State private var forkDualReboundToggle = false
+    @State private var forkDualCompToggle = false
+    @State private var lastLowerServiceDate = Date()
+    @State private var lastFullForkServiceDate = Date()
+    
+    
+    @State private var hasRearToggle = true
+    @State private var isCoilToggle = false
+    @State private var rearDualReboundToggle = false
+    @State private var rearDualCompToggle = false
+    @State private var lastAirCanServiceDate = Date()
+    @State private var lastRearFullServiceDate = Date()
+    
     var body: some View {
-        Text("Bike view")
+        
+        VStack {
+            Form {
+                Section(header: Text("Bike Details")){
+                    TextField("Bike Name", text: $bikeName )
+                    TextField("Note", text: $bikeNote)
+                }
+                Section(header: Text("Fork Details")){
+                    Toggle(isOn: $forkDualReboundToggle.animation(), label: {Text("Dual Rebound?")})
+                    Toggle(isOn: $forkDualCompToggle.animation(), label: {Text("Dual Compression?")})
+                    
+                    DatePicker(selection: $lastLowerServiceDate, in: ...Date(), displayedComponents: .date) {
+                    Text("Last Lower Service")
+                    }
+                    
+                    DatePicker(selection: $lastLowerServiceDate, in: ...Date(), displayedComponents: .date) {
+                    Text("Last Full Service ")
+                    }
+                }
+                Section(header: Text("Shock Details")){
+                    Toggle(isOn: $hasRearToggle.animation(), label: {Text("Rear Shock?")})
+                    
+                    if hasRearToggle == true {
+                        Toggle(isOn: $isCoilToggle.animation(), label: {Text("Coil?")})
+
+                        Toggle(isOn: $rearDualReboundToggle.animation(), label: {Text("Dual Rebound?")})
+                        
+                        Toggle(isOn: $rearDualCompToggle.animation(), label: {Text("Dual Compression?")})
+                        
+                        if isCoilToggle == false {
+                            DatePicker(selection: $lastAirCanServiceDate, in: ...Date(), displayedComponents: .date) {
+                            Text("Last Air Can Service")
+                            }
+                        }
+                        
+                        DatePicker(selection: $lastRearFullServiceDate, in: ...Date(), displayedComponents: .date) {
+                        Text("Last Rear Full Service")
+                        }
+                        
+                    }
+                }
+            }
+        }
     }
 }
 
