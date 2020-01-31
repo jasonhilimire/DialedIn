@@ -30,8 +30,6 @@ struct BikeView: View {
     @State private var lastAirCanServiceDate = Date()
     @State private var lastRearFullServiceDate = Date()
     
-    // Dismiss a view: https://www.hackingwithswift.com/quick-start/swiftui/how-to-make-a-view-dismiss-itself
-    // https://stackoverflow.com/questions/56517400/swiftui-dismiss-modal
     
     var body: some View {
         
@@ -85,24 +83,16 @@ struct BikeView: View {
                 
             }
             Button(action: {
+                //dismisses the sheet
                  self.presentationMode.wrappedValue.dismiss()
-                                // set all the vars to Bike entity
-                //                    try? self.moc.save()
-            }) {
-                HStack {
-                    Image(systemName: "checkmark.circle")
-                    Text("Save")
-                }
-                .multilineTextAlignment(.center)
-                .padding().frame(maxWidth: 400)
-                .foregroundColor(Color.white)
-                .background(Color.green)
-                .cornerRadius(.infinity)
-            }
+                 // set all the vars to Bike entity
+                // try? self.moc.save()
+                }) {
+                    SaveButtonView()
+                    }
             
         }
-        
-        
+
     }
 }
 

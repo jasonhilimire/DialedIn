@@ -23,7 +23,23 @@ struct DetailView: View {
     
     let note: Notes
     var body: some View {
-        Text("Detail View")
+        VStack {
+            Button(action: {
+                //dismisses the sheet
+                self.presentationMode.wrappedValue.dismiss()
+            }) {
+                HStack {
+//                    Text("Button")
+                    Spacer()
+                    Image(systemName: "xmark.circle")
+                }
+                .padding(.horizontal)
+                .foregroundColor(Color.gray)
+            }
+            Spacer()
+            Text("Detail View")
+            Spacer()
+        }
     }
 }
 

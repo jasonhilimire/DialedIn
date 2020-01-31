@@ -9,8 +9,27 @@
 import SwiftUI
 
 struct AddNoteView: View {
+    
+    // Create the MOC
+    @Environment(\.managedObjectContext) var moc
+    @Environment(\.presentationMode) var presentationMode
+    
+    
     var body: some View {
-        Text("Add Note View")
+        VStack {
+            Text("Add Note View")
+            Button(action: {
+            //dismisses the sheet
+             self.presentationMode.wrappedValue.dismiss()
+                            // set all the vars to Bike entity
+            //                    try? self.moc.save()
+            }) {
+                SaveButtonView()
+                }
+        }
+        
+        
+
     }
 }
 
