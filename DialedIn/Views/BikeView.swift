@@ -11,6 +11,7 @@ import SwiftUI
 struct BikeView: View {
     // Create the MOC
     @Environment(\.managedObjectContext) var moc
+    @Environment(\.presentationMode) var presentationMode
     
 
     @State private var bikeName = ""
@@ -29,9 +30,18 @@ struct BikeView: View {
     @State private var lastAirCanServiceDate = Date()
     @State private var lastRearFullServiceDate = Date()
     
+    // Dismiss a view: https://www.hackingwithswift.com/quick-start/swiftui/how-to-make-a-view-dismiss-itself
+    // https://stackoverflow.com/questions/56517400/swiftui-dismiss-modal
+    
     var body: some View {
         
         VStack {
+            Text("Bike Info")
+                .font(.title)
+                .fontWeight(.thin)
+                .foregroundColor(Color.blue)
+                .multilineTextAlignment(.center)
+                .padding(.top)
             Form {
                 
                 Section(header: Text("Bike Details")){
@@ -72,14 +82,24 @@ struct BikeView: View {
                         
                     }
                 }
-                Button("Save") {
-                    
-                    
-//                    try? self.moc.save()
-//                BikeListView()
-                    
-                }
+                
             }
+            Button(action: {
+                 self.presentationMode.wrappedValue.dismiss()
+                                // set all the vars to Bike entity
+                //                    try? self.moc.save()
+            }) {
+                HStack {
+                    Image(systemName: "checkmark.circle")
+                    Text("Save")
+                }
+                .multilineTextAlignment(.center)
+                .padding().frame(maxWidth: 400)
+                .foregroundColor(Color.white)
+                .background(Color.green)
+                .cornerRadius(.infinity)
+            }
+            
         }
         
         

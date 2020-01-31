@@ -17,7 +17,7 @@ struct BikeListView: View {
         NSSortDescriptor(keyPath: \Bike.name, ascending: true)
     ]) var notes: FetchedResults<Notes>
     
-    
+    // bool to show the Sheet
     @State private var showingAddScreen = false
     
     var body: some View {
