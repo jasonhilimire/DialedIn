@@ -106,6 +106,34 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A3918AD123E3E764002A1D61 /* MainViews */ = {
+			isa = PBXGroup;
+			children = (
+				A3DDCC8023DFF96400CD1476 /* AppView.swift */,
+				A3C16E6E23DE9EC4005BFA14 /* ContentView.swift */,
+				A309B9D523E2898300A08F22 /* BikeListView.swift */,
+			);
+			path = MainViews;
+			sourceTree = "<group>";
+		};
+		A3918AD223E3E769002A1D61 /* Add-DetailViews */ = {
+			isa = PBXGroup;
+			children = (
+				A3DDCC7E23DFF2C900CD1476 /* AddNoteView.swift */,
+				A3DDCC8223DFF97900CD1476 /* BikeView.swift */,
+				A3DDCC7C23DFF21700CD1476 /* DetailView.swift */,
+			);
+			path = "Add-DetailViews";
+			sourceTree = "<group>";
+		};
+		A3918AD323E3E76C002A1D61 /* SingleViews */ = {
+			isa = PBXGroup;
+			children = (
+				A3918ACF23E3E446002A1D61 /* SaveButtonView.swift */,
+			);
+			path = SingleViews;
+			sourceTree = "<group>";
+		};
 		A3C16E5B23DE9EC4005BFA14 = {
 			isa = PBXGroup;
 			children = (
@@ -181,13 +209,9 @@
 		A3C16EAB23DEA454005BFA14 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				A3C16E6E23DE9EC4005BFA14 /* ContentView.swift */,
-				A309B9D523E2898300A08F22 /* BikeListView.swift */,
-				A3DDCC7C23DFF21700CD1476 /* DetailView.swift */,
-				A3DDCC7E23DFF2C900CD1476 /* AddNoteView.swift */,
-				A3DDCC8023DFF96400CD1476 /* AppView.swift */,
-				A3DDCC8223DFF97900CD1476 /* BikeView.swift */,
-				A3918ACF23E3E446002A1D61 /* SaveButtonView.swift */,
+				A3918AD323E3E76C002A1D61 /* SingleViews */,
+				A3918AD223E3E769002A1D61 /* Add-DetailViews */,
+				A3918AD123E3E764002A1D61 /* MainViews */,
 			);
 			path = Views;
 			sourceTree = "<group>";
