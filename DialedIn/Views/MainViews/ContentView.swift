@@ -26,46 +26,24 @@ struct ContentView: View {
     var body: some View {
 
         NavigationView {
-            List {
-                ForEach(notes, id: \.self) { note in
-                    NavigationLink(destination: DetailView(note: note)) {
-    //                            EmojiRatingView(rating: note.rating)
-    //                                .font(.largeTitle)
-                        
-                        VStack(alignment: .leading) {
-                            Text("Some fucking text")
-                                .font(.headline)
-                            Text(note.note ?? "Unknown Note")
-                                .font(.callout)
-                                .foregroundColor(.secondary)
-                        }
-                    }
+            VStack {
+//                RatingView()
+                NoteCellView()
+                    .navigationBarTitle("DialedIn")
+                .navigationBarItems(leading: EditButton(), trailing:
+                    Button(action: {self.showingAddScreen.toggle()
+                    }) {
+                        Image(systemName: "gauge.badge.plus")
+                })
+                    .sheet(isPresented: $showingAddScreen)  {
+                        AddNoteView().environment(\.managedObjectContext, self.moc)
                 }
-                .onDelete(perform: deleteNotes)
-            }
-                .navigationBarTitle("DialedIn")
-            .navigationBarItems(leading: EditButton(), trailing:
-                Button(action: {self.showingAddScreen.toggle()
-                }) {
-                    Image(systemName: "gauge.badge.plus")
-            })
-                .sheet(isPresented: $showingAddScreen)  {
-                    AddNoteView().environment(\.managedObjectContext, self.moc)
             }
             
         }
     }
     
-    func deleteNotes(at offsets: IndexSet) {
-        for offset in offsets {
-            // find this note in our fetch request
-            let note = notes[offset]
-            // delete it from the context
-            moc.delete(note)
-        }
-        // save the context
-        try? moc.save()
-    }
+    
 }
 
 struct ContentView_Previews: PreviewProvider {
