@@ -9,6 +9,11 @@
         <relationship name="frontSetup" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Fork" inverseName="bike" inverseEntity="Fork"/>
         <relationship name="rearSetup" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="RearShock" inverseName="bike" inverseEntity="RearShock"/>
         <relationship name="setupNotes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Notes" inverseName="bike" inverseEntity="Notes"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="name"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
     </entity>
     <entity name="Fork" representedClassName="Fork" syncable="YES">
         <attribute name="airVolume" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
