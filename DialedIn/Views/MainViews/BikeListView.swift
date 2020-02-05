@@ -29,7 +29,7 @@ struct BikeListView: View {
                         VStack(alignment: .leading) {
                             Text(bike.name ?? "Unknown Bike")
                                 .font(.headline)
-                            Text("Some Text goes here")
+                            Text(bike.bikeNote ?? "Some Text goes here")
                                 .font(.callout)
                                 .foregroundColor(.secondary)
                         }

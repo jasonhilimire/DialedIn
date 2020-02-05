@@ -9,7 +9,7 @@
 import SwiftUI
 import CoreData
 
-struct DetailView: View {
+struct NotesDetailView: View {
     
     @Environment(\.managedObjectContext) var moc
     @Environment(\.presentationMode) var presentationMode
@@ -51,7 +51,7 @@ struct DetailView_Previews: PreviewProvider {
         let note = Notes(context: moc)
 
         return NavigationView {
-            DetailView(note: note)
+            NotesDetailView(note: note)
         }
     }
 }

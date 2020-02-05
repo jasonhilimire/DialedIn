@@ -15,7 +15,7 @@ struct AppView: View {
             // https://www.hackingwithswift.com/quick-start/swiftui/how-to-add-horizontal-and-vertical-scrolling-using-scrollview
             // https://www.youtube.com/watch?v=EBbhIbI2Hg8
             //
-            ContentView()
+            NotesListView()
                 .tabItem {
                     Image(systemName: "list.dash")
                     Text("Notes")

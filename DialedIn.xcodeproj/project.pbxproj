@@ -13,7 +13,7 @@
 		A3C16E6823DE9EC4005BFA14 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C16E6723DE9EC4005BFA14 /* AppDelegate.swift */; };
 		A3C16E6A23DE9EC4005BFA14 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C16E6923DE9EC4005BFA14 /* SceneDelegate.swift */; };
 		A3C16E6D23DE9EC4005BFA14 /* DialedIn.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A3C16E6B23DE9EC4005BFA14 /* DialedIn.xcdatamodeld */; };
-		A3C16E6F23DE9EC4005BFA14 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C16E6E23DE9EC4005BFA14 /* ContentView.swift */; };
+		A3C16E6F23DE9EC4005BFA14 /* NotesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C16E6E23DE9EC4005BFA14 /* NotesListView.swift */; };
 		A3C16E7123DE9EC5005BFA14 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A3C16E7023DE9EC5005BFA14 /* Assets.xcassets */; };
 		A3C16E7423DE9EC5005BFA14 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A3C16E7323DE9EC5005BFA14 /* Preview Assets.xcassets */; };
 		A3C16E7723DE9EC5005BFA14 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A3C16E7523DE9EC5005BFA14 /* LaunchScreen.storyboard */; };
@@ -27,7 +27,7 @@
 		A3DDCC7723DFEEBF00CD1476 /* Notes+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DDCC7523DFEEBF00CD1476 /* Notes+CoreDataProperties.swift */; };
 		A3DDCC7A23DFEFEB00CD1476 /* Bike+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DDCC7823DFEFEB00CD1476 /* Bike+CoreDataClass.swift */; };
 		A3DDCC7B23DFEFEB00CD1476 /* Bike+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DDCC7923DFEFEB00CD1476 /* Bike+CoreDataProperties.swift */; };
-		A3DDCC7D23DFF21700CD1476 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DDCC7C23DFF21700CD1476 /* DetailView.swift */; };
+		A3DDCC7D23DFF21700CD1476 /* NotesDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DDCC7C23DFF21700CD1476 /* NotesDetailView.swift */; };
 		A3DDCC7F23DFF2C900CD1476 /* AddNoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DDCC7E23DFF2C900CD1476 /* AddNoteView.swift */; };
 		A3DDCC8123DFF96400CD1476 /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DDCC8023DFF96400CD1476 /* AppView.swift */; };
 		A3DDCC8323DFF97900CD1476 /* BikeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DDCC8223DFF97900CD1476 /* BikeView.swift */; };
@@ -61,7 +61,7 @@
 		A3C16E6723DE9EC4005BFA14 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A3C16E6923DE9EC4005BFA14 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		A3C16E6C23DE9EC4005BFA14 /* DialedIn.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DialedIn.xcdatamodel; sourceTree = "<group>"; };
-		A3C16E6E23DE9EC4005BFA14 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		A3C16E6E23DE9EC4005BFA14 /* NotesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesListView.swift; sourceTree = "<group>"; };
 		A3C16E7023DE9EC5005BFA14 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A3C16E7323DE9EC5005BFA14 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		A3C16E7623DE9EC5005BFA14 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -80,7 +80,7 @@
 		A3DDCC7523DFEEBF00CD1476 /* Notes+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notes+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		A3DDCC7823DFEFEB00CD1476 /* Bike+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bike+CoreDataClass.swift"; sourceTree = "<group>"; };
 		A3DDCC7923DFEFEB00CD1476 /* Bike+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bike+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		A3DDCC7C23DFF21700CD1476 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
+		A3DDCC7C23DFF21700CD1476 /* NotesDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesDetailView.swift; sourceTree = "<group>"; };
 		A3DDCC7E23DFF2C900CD1476 /* AddNoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNoteView.swift; sourceTree = "<group>"; };
 		A3DDCC8023DFF96400CD1476 /* AppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppView.swift; sourceTree = "<group>"; };
 		A3DDCC8223DFF97900CD1476 /* BikeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeView.swift; sourceTree = "<group>"; };
@@ -118,7 +118,7 @@
 			isa = PBXGroup;
 			children = (
 				A3DDCC8023DFF96400CD1476 /* AppView.swift */,
-				A3C16E6E23DE9EC4005BFA14 /* ContentView.swift */,
+				A3C16E6E23DE9EC4005BFA14 /* NotesListView.swift */,
 				A309B9D523E2898300A08F22 /* BikeListView.swift */,
 				A3EC241D23E68C22002954A9 /* BikeCardView.swift */,
 			);
@@ -130,7 +130,7 @@
 			children = (
 				A3DDCC7E23DFF2C900CD1476 /* AddNoteView.swift */,
 				A3DDCC8223DFF97900CD1476 /* BikeView.swift */,
-				A3DDCC7C23DFF21700CD1476 /* DetailView.swift */,
+				A3DDCC7C23DFF21700CD1476 /* NotesDetailView.swift */,
 				A399E43423EA700C0049B7B0 /* BikeDetailView.swift */,
 			);
 			path = "Add-DetailViews";
@@ -393,7 +393,7 @@
 				A3C16E6823DE9EC4005BFA14 /* AppDelegate.swift in Sources */,
 				A3C16E6D23DE9EC4005BFA14 /* DialedIn.xcdatamodeld in Sources */,
 				A3C16EB723DEA582005BFA14 /* RearShock+CoreDataClass.swift in Sources */,
-				A3C16E6F23DE9EC4005BFA14 /* ContentView.swift in Sources */,
+				A3C16E6F23DE9EC4005BFA14 /* NotesListView.swift in Sources */,
 				A3C16E6A23DE9EC4005BFA14 /* SceneDelegate.swift in Sources */,
 				A399E43523EA700C0049B7B0 /* BikeDetailView.swift in Sources */,
 				A3EC242023E68E21002954A9 /* RatingView.swift in Sources */,
@@ -402,7 +402,7 @@
 				A309B9D623E2898300A08F22 /* BikeListView.swift in Sources */,
 				A3C16EB823DEA582005BFA14 /* RearShock+CoreDataProperties.swift in Sources */,
 				A3DDCC8123DFF96400CD1476 /* AppView.swift in Sources */,
-				A3DDCC7D23DFF21700CD1476 /* DetailView.swift in Sources */,
+				A3DDCC7D23DFF21700CD1476 /* NotesDetailView.swift in Sources */,
 				A3DDCC7723DFEEBF00CD1476 /* Notes+CoreDataProperties.swift in Sources */,
 				A3DDCC7623DFEEBF00CD1476 /* Notes+CoreDataClass.swift in Sources */,
 				A3918AD023E3E446002A1D61 /* SaveButtonView.swift in Sources */,

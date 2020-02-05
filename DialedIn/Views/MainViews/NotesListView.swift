@@ -11,7 +11,7 @@ import CoreData
 
 
 
-struct ContentView: View {
+struct NotesListView: View {
     
        // Create the MOC
     @Environment(\.managedObjectContext) var moc
@@ -26,11 +26,11 @@ struct ContentView: View {
     var body: some View {
 
         NavigationView {
-            VStack {
+            List{
 //                RatingView()
                 NoteCellView()
                     .navigationBarTitle("DialedIn")
-                .navigationBarItems(leading: EditButton(), trailing:
+                    .navigationBarItems(leading: EditButton(), trailing:
                     Button(action: {self.showingAddScreen.toggle()
                     }) {
                         Image(systemName: "gauge.badge.plus")
@@ -48,6 +48,6 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        NotesListView()
     }
 }

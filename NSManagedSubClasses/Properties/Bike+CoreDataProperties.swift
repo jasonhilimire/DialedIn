@@ -20,12 +20,17 @@ extension Bike {
     @NSManaged public var hasRearShock: Bool
     @NSManaged public var isDefault: Bool
     @NSManaged public var name: String?
+    @NSManaged public var bikeNote: String?
     @NSManaged public var frontSetup: Fork?
     @NSManaged public var rearSetup: RearShock?
     @NSManaged public var setupNotes: NSSet?
     
     public var wrappedBikeName: String {
         name ?? "Unknown Name"
+    }
+    
+    public var wrappedBikeNote: String {
+        bikeNote ?? "Unknown Name"
     }
     
     

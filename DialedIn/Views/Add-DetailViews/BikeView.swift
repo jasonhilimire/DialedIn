@@ -88,6 +88,7 @@ struct BikeView: View {
                  
                 let newBike = Bike(context: self.moc)
                 newBike.name = self.bikeName
+                newBike.bikeNote = self.bikeNote
                 
                  try? self.moc.save()
                 }) {
