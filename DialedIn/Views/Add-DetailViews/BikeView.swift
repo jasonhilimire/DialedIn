@@ -85,8 +85,11 @@ struct BikeView: View {
             Button(action: {
                 //dismisses the sheet
                  self.presentationMode.wrappedValue.dismiss()
-                 // set all the vars to Bike entity
-                // try? self.moc.save()
+                 
+                let newBike = Bike(context: self.moc)
+                newBike.name = self.bikeName
+                
+                 try? self.moc.save()
                 }) {
                     SaveButtonView()
                     }

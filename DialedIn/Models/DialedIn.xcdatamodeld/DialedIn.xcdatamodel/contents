@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15702" systemVersion="19C57" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Bike" representedClassName="Bike" syncable="YES">
-        <attribute name="bikeNote" optional="YES" attributeType="String"/>
         <attribute name="hasRearShock" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
-        <attribute name="info" optional="YES" attributeType="String"/>
         <attribute name="isDefault" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <relationship name="frontSetup" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Fork" inverseName="bike" inverseEntity="Fork"/>
@@ -57,7 +55,7 @@
         <relationship name="bike" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Bike" inverseName="rearSetup" inverseEntity="Bike"/>
     </entity>
     <elements>
-        <element name="Bike" positionX="-54" positionY="-9" width="128" height="163"/>
+        <element name="Bike" positionX="-54" positionY="-9" width="128" height="133"/>
         <element name="Fork" positionX="-36" positionY="9" width="128" height="268"/>
         <element name="Notes" positionX="-63" positionY="-18" width="128" height="103"/>
         <element name="RearShock" positionX="-18" positionY="27" width="128" height="283"/>

@@ -14,15 +14,33 @@ struct AddNoteView: View {
     @Environment(\.managedObjectContext) var moc
     @Environment(\.presentationMode) var presentationMode
     
+    @FetchRequest(entity: Bike.entity(), sortDescriptors: [
+        NSSortDescriptor(keyPath: \Bike.name, ascending: true)
+    ]) var bikes: FetchedResults<Bike>
+    
+    @State private var bikeName = ""
+    @State private var note = ""
+    
     
     var body: some View {
-        VStack {
-            Text("Add Note View")
+        VStack{
+            VStack{
+                Picker(selection: $bikeName, label: Text("Choose Bike")) {
+                ForEach(bikes, id: \.self) { bike in Text(bike.wrappedBikeName).tag(bike.wrappedBikeName)}
+                        }
+                TextField("Note", text: $note )
+                }
+            
             Button(action: {
-            //dismisses the sheet
-             self.presentationMode.wrappedValue.dismiss()
-                            // set all the vars to Bike entity
-            //                    try? self.moc.save()
+                //dismisses the sheet
+                 self.presentationMode.wrappedValue.dismiss()
+                
+                let newNote = Notes(context: self.moc)
+                newNote.note = self.note
+                newNote.bike = Bike(context: self.moc)
+                newNote.bike?.name = self.bikeName
+                
+                try? self.moc.save()
             }) {
                 SaveButtonView()
                 }

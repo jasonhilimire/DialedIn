@@ -15,7 +15,7 @@ struct BikeListView: View {
     // create a Fetch request for Bike
     @FetchRequest(entity: Bike.entity(), sortDescriptors: [
         NSSortDescriptor(keyPath: \Bike.name, ascending: true)
-    ]) var notes: FetchedResults<Notes>
+    ]) var bikes: FetchedResults<Bike>
     
     // bool to show the Sheet
     @State private var showingAddScreen = false
@@ -24,12 +24,12 @@ struct BikeListView: View {
 
         NavigationView {
             List {
-                ForEach(notes, id: \.self) { note in
-                    NavigationLink(destination: DetailView(note: note)) {
+                ForEach(bikes, id: \.self) { bike in
+                    NavigationLink(destination: BikeDetailView()) {
                         VStack(alignment: .leading) {
-                            Text("Some fucking text")
+                            Text(bike.name ?? "Unknown Bike")
                                 .font(.headline)
-                            Text(note.note ?? "Unknown Note")
+                            Text("Some Text goes here")
                                 .font(.callout)
                                 .foregroundColor(.secondary)
                         }
@@ -53,9 +53,9 @@ struct BikeListView: View {
     func deleteBike(at offsets: IndexSet) {
         for offset in offsets {
             // find this note in our fetch request
-            let note = notes[offset]
+            let bike = bikes[offset]
             // delete it from the context
-            moc.delete(note)
+            moc.delete(bike)
         }
         // save the context
         try? moc.save()
