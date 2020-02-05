@@ -36,8 +36,9 @@ struct NoteCellView: View {
                     }
                 }
             }
+            .onDelete(perform: deleteNotes)
+            
     }
-    
     
     func deleteNotes(at offsets: IndexSet) {
         for offset in offsets {
@@ -49,6 +50,7 @@ struct NoteCellView: View {
         // save the context
         try? moc.save()
     }
+    
 }
 
 struct NoteCellView_Previews: PreviewProvider {

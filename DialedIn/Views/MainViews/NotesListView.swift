@@ -27,23 +27,20 @@ struct NotesListView: View {
 
         NavigationView {
             List{
-//                RatingView()
-                NoteCellView()
-                    .navigationBarTitle("DialedIn")
-                    .navigationBarItems(leading: EditButton(), trailing:
-                    Button(action: {self.showingAddScreen.toggle()
-                    }) {
-                        Image(systemName: "gauge.badge.plus")
-                })
-                    .sheet(isPresented: $showingAddScreen)  {
-                        AddNoteView().environment(\.managedObjectContext, self.moc)
-                }
+//          RatingView()
+            NoteCellView()                    
             }
-            
+            .navigationBarTitle("DialedIn")
+                .navigationBarItems(leading: EditButton(), trailing:
+                Button(action: {self.showingAddScreen.toggle()
+                }) {
+                    Image(systemName: "gauge.badge.plus")
+            })
+                .sheet(isPresented: $showingAddScreen)  {
+                    AddNoteView().environment(\.managedObjectContext, self.moc)
+            }
         }
     }
-    
-    
 }
 
 struct ContentView_Previews: PreviewProvider {

@@ -23,31 +23,32 @@ struct AddNoteView: View {
     
     
     var body: some View {
-        VStack{
+        NavigationView {
             VStack{
-                Picker(selection: $bikeName, label: Text("Choose Bike")) {
-                ForEach(bikes, id: \.self) { bike in Text(bike.wrappedBikeName).tag(bike.wrappedBikeName)}
-                        }
-                TextField("Note", text: $note )
-                }
-            
-            Button(action: {
-                //dismisses the sheet
-                 self.presentationMode.wrappedValue.dismiss()
+                Form{
+                    // Bug in picker view that cant reselect? after making a choice
+                    Picker(selection: $bikeName, label: Text("Choose Bike")) {
+                    ForEach(bikes, id: \.self) { bike in Text(bike.wrappedBikeName).tag(bike.wrappedBikeName)}
+                            }
+                    TextField("Note", text: $note )
+                    }
+                    .navigationBarTitle("DialedIn")
                 
-                let newNote = Notes(context: self.moc)
-                newNote.note = self.note
-                newNote.bike = Bike(context: self.moc)
-                newNote.bike?.name = self.bikeName
-                
-                try? self.moc.save()
-            }) {
-                SaveButtonView()
-                }
+                Button(action: {
+                    //dismisses the sheet
+                     self.presentationMode.wrappedValue.dismiss()
+                    
+                    let newNote = Notes(context: self.moc)
+                    newNote.note = self.note
+                    newNote.bike = Bike(context: self.moc)
+                    newNote.bike?.name = self.bikeName
+                    
+                    try? self.moc.save()
+                }) {
+                    SaveButtonView()
+                    }
+            }
         }
-        
-        
-
     }
 }
 
