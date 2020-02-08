@@ -34,7 +34,7 @@ struct AppView: View {
                     Text("Bike")
                 }
         }
-        .accentColor(.white)
+        .accentColor(.blue)
     }
 }
 

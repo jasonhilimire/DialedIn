@@ -22,6 +22,8 @@ struct BikeView: View {
     @State private var lastLowerServiceDate = Date()
     @State private var lastFullForkServiceDate = Date()
     
+    @State private var rearSetupIndex = 1
+    @State private var rearSetups = ["None", "Air", "Coil"]
     
     @State private var hasRearToggle = true
     @State private var isCoilToggle = false
@@ -58,26 +60,44 @@ struct BikeView: View {
                     Text("Last Full Service ")
                     }
                 }
+                
                 Section(header: Text("Shock Details")){
-                    Toggle(isOn: $hasRearToggle.animation(), label: {Text("Rear Shock?")})
+                    Picker("Rear Setup", selection: $rearSetupIndex) {
+                        ForEach(0..<rearSetups.count) { index in
+                            Text(self.rearSetups[index]).tag(index)
+                        }
+                    }.pickerStyle(SegmentedPickerStyle())
                     
-                    if hasRearToggle == true {
-                        Toggle(isOn: $isCoilToggle.animation(), label: {Text("Coil?")})
+                    
 
-                        Toggle(isOn: $rearDualReboundToggle.animation(), label: {Text("Dual Rebound?")})
+                    // Refactor as Enum?
+                    if rearSetupIndex == 0 {
+                        Text("No Rear Suspension")
+                        self.hasRearToggle = false
                         
-                        Toggle(isOn: $rearDualCompToggle.animation(), label: {Text("Dual Compression?")})
+                    } else if rearSetupIndex == 1 {
                         
-                        if isCoilToggle == false {
+                            Toggle(isOn: $rearDualReboundToggle.animation(), label: {Text("Dual Rebound?")})
+
+                            Toggle(isOn: $rearDualCompToggle.animation(), label: {Text("Dual Compression?")})
+
                             DatePicker(selection: $lastAirCanServiceDate, in: ...Date(), displayedComponents: .date) {
                             Text("Last Air Can Service")
                             }
-                        }
+                            
+                            DatePicker(selection: $lastRearFullServiceDate, in: ...Date(), displayedComponents: .date) {
+                            Text("Last Rear Full Service")
+                            }
                         
-                        DatePicker(selection: $lastRearFullServiceDate, in: ...Date(), displayedComponents: .date) {
-                        Text("Last Rear Full Service")
-                        }
-                        
+                    } else if rearSetupIndex == 2 {
+                        self.isCoilToggle = true
+                            Toggle(isOn: $rearDualReboundToggle.animation(), label: {Text("Dual Rebound?")})
+
+                            Toggle(isOn: $rearDualCompToggle.animation(), label: {Text("Dual Compression?")})
+
+                            DatePicker(selection: $lastRearFullServiceDate, in: ...Date(), displayedComponents: .date) {
+                            Text("Last Rear Full Service")
+                            }
                     }
                 }
                 
@@ -94,7 +114,7 @@ struct BikeView: View {
                 }) {
                     SaveButtonView()
                     }
-            
+            Spacer()
         }
 
     }
