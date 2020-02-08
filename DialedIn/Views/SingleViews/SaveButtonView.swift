@@ -18,7 +18,7 @@ struct SaveButtonView: View {
                .padding().frame(maxWidth: 400)
                .foregroundColor(Color.white)
                .background(Color.green)
-               .cornerRadius(.infinity)
+               .cornerRadius(8)
     }
 }
 

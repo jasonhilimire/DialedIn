@@ -35,6 +35,8 @@ struct BikeView: View {
     var body: some View {
         
         VStack {
+            Spacer()
+            GrabBarView()
             Text("Bike Info")
                 .font(.title)
                 .fontWeight(.thin)
@@ -95,6 +97,7 @@ struct BikeView: View {
                     }
                 }
             }
+
             Button(action: {
                 //dismisses the sheet
                  self.presentationMode.wrappedValue.dismiss()
