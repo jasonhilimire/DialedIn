@@ -9,12 +9,19 @@
 import SwiftUI
 
 struct AppView: View {
+    
+    init() {
+        UITabBar.appearance().barTintColor = UIColor.lightGray
+    }
+    
     var body: some View {
         TabView {
-            //TODO: Add Scrolling View for recent notes? and or TopRated Notes
+            //TODO: Add Scrolling/Main View for recent notes? and or TopRated Notes
             // https://www.hackingwithswift.com/quick-start/swiftui/how-to-add-horizontal-and-vertical-scrolling-using-scrollview
             // https://www.youtube.com/watch?v=EBbhIbI2Hg8
             //
+            
+            
             NotesListView()
                 .tabItem {
                     Image(systemName: "list.dash")
@@ -27,6 +34,7 @@ struct AppView: View {
                     Text("Bike")
                 }
         }
+        .accentColor(.white)
     }
 }
 
