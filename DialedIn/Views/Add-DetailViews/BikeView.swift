@@ -39,7 +39,7 @@ struct BikeView: View {
             GrabBarView()
             Text("Bike Info")
                 .font(.title)
-                .fontWeight(.thin)
+                .fontWeight(.light)
                 .foregroundColor(Color.blue)
                 .multilineTextAlignment(.center)
                 .padding(.top)
