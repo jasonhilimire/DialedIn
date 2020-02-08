@@ -2,33 +2,51 @@
 //  RatingView.swift
 //  DialedIn
 //
-//  Created by Jason Hilimire on 2/1/20.
+//  Created by Jason Hilimire on 2/8/20.
 //  Copyright © 2020 Jason Hilimire. All rights reserved.
 //
 
 import SwiftUI
 
 struct RatingView: View {
+    @Binding var rating: Int
     
-    let rating: Int16
+    var label = "Ride Rating:"
+    var maximumRating = 5
+    var offImage: Image?
+    var onImage = Image(systemName: "star.fill")
+    
+    var offColor = Color.gray
+    var onColor = Color.yellow
+
     var body: some View {
-        switch rating {
-        case 1:
-            return Text("💩")
-        case 2:
-            return Text("👎🏼")
-        case 3:
-            return Text("🤷🏻‍♂️")
-        case 4:
-            return Text("🤘🏻")
-        default:
-            return Text("🚀")
+        HStack {
+//            if label.isEmpty == false {
+//                Text(label)
+//            }
+            Text(label)
+            ForEach(1..<maximumRating + 1) {number in
+                self.image(for: number)
+                    .foregroundColor(number > self.rating ? self.offColor: self.onColor)
+                    .onTapGesture {
+                        self.rating = number
+                }
+            }
+            
+        }
+    }
+    
+    func image(for number: Int) -> Image {
+        if number > rating {
+            return offImage ?? onImage
+        } else {
+            return onImage
         }
     }
 }
 
 struct RatingView_Previews: PreviewProvider {
     static var previews: some View {
-        RatingView(rating: 3)
+        RatingView(rating: .constant(4))
     }
 }

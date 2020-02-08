@@ -14,12 +14,17 @@ struct AddNoteView: View {
     @Environment(\.managedObjectContext) var moc
     @Environment(\.presentationMode) var presentationMode
     
+    // Get All the bikes for the PickerView
     @FetchRequest(entity: Bike.entity(), sortDescriptors: [
         NSSortDescriptor(keyPath: \Bike.name, ascending: true)
     ]) var bikes: FetchedResults<Bike>
     
+    // Get Just the bike chosen from the Picker
+
+    
     @State private var bikeName = ""
     @State private var note = ""
+    @State private var date = Date()
     
     
     var body: some View {
@@ -29,10 +34,12 @@ struct AddNoteView: View {
                     // Bug in picker view that cant reselect? after making a choice
                     Picker(selection: $bikeName, label: Text("Choose Bike")) {
                     ForEach(bikes, id: \.self) { bike in Text(bike.wrappedBikeName).tag(bike.wrappedBikeName)}
-                            }
+                    }
                     TextField("Note", text: $note )
+                    
                     }
                     .navigationBarTitle("DialedIn")
+                
                 
                 Button(action: {
                     //dismisses the sheet
@@ -49,6 +56,10 @@ struct AddNoteView: View {
                     }
             }
         }
+    }
+    
+    func getBike() {
+        
     }
 }
 
