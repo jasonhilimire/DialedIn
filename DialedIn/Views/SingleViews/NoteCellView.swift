@@ -32,9 +32,9 @@ struct NoteCellView: View {
                     VStack(alignment: .leading) {
                         Text(note.bike?.name ?? "Unknown Bike")
                             .font(.headline)
-                        Text(note.note ?? "Some Text goes here")
-                            .font(.callout)
-                            .foregroundColor(.secondary)
+                        Text(note.date != nil ? "\(note.date!, formatter: self.dateFormatter)" : "")
+                        .font(.callout)
+                        .foregroundColor(.secondary)
                     }
                 }
             }
