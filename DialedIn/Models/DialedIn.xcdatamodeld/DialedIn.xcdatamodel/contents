@@ -33,6 +33,7 @@
     </entity>
     <entity name="Notes" representedClassName="Notes" syncable="YES">
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="isFavorite" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="note" optional="YES" attributeType="String"/>
         <attribute name="rating" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <relationship name="bike" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Bike" inverseName="setupNotes" inverseEntity="Bike"/>
@@ -58,7 +59,7 @@
     <elements>
         <element name="Bike" positionX="-54" positionY="-9" width="128" height="148"/>
         <element name="Fork" positionX="-36" positionY="9" width="128" height="268"/>
-        <element name="Notes" positionX="-63" positionY="-18" width="128" height="103"/>
+        <element name="Notes" positionX="-63" positionY="-18" width="128" height="118"/>
         <element name="RearShock" positionX="-18" positionY="27" width="128" height="283"/>
     </elements>
 </model>

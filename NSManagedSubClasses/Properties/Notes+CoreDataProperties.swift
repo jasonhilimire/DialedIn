@@ -21,6 +21,7 @@ extension Notes {
     @NSManaged public var note: String?
     @NSManaged public var rating: Int16
     @NSManaged public var bike: Bike?
+    @NSManaged public var isFavorite: Bool
     
     public var wrappedNote: String {
         note ?? "Unknown Note"
