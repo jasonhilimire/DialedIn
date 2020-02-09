@@ -55,9 +55,7 @@ struct NotesDetailView: View {
     
     func deleteNote() {
         moc.delete(note)
-
-        // uncomment this line if you want to make the deletion permanent
-         try? self.moc.save()
+        try? self.moc.save()
         presentationMode.wrappedValue.dismiss()
     }
 }

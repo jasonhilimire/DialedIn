@@ -18,6 +18,7 @@ struct BikeView: View {
     @State private var bikeNote = ""
     @State private var setDefault = false
    
+    @State private var forkInfo = ""
     @State private var forkDualReboundToggle = false
     @State private var forkDualCompToggle = false
     @State private var lastLowerServiceDate = Date()
@@ -25,8 +26,8 @@ struct BikeView: View {
     
     @State private var rearSetupIndex = 1
     @State private var rearSetups = ["None", "Air", "Coil"]
-    
     @State private var isCoilToggle = false
+    @State private var rearInfo = ""
     @State private var rearDualReboundToggle = false
     @State private var rearDualCompToggle = false
     @State private var lastAirCanServiceDate = Date()
@@ -47,12 +48,13 @@ struct BikeView: View {
             Form {
                 
                 Section(header: Text("Bike Details")){
-                    TextField("Bike Name", text: $bikeName )
+                    TextField("Bike Name", text: $bikeName)
                     TextField("Note", text: $bikeNote)
                     Toggle(isOn: $setDefault.animation(), label: {Text("Set as Default Bike?")})
                     
                 }
                 Section(header: Text("Fork Details")){
+                    TextField("Info", text: $forkInfo)
                     Toggle(isOn: $forkDualReboundToggle.animation(), label: {Text("Dual Rebound?")})
                     Toggle(isOn: $forkDualCompToggle.animation(), label: {Text("Dual Compression?")})
                     
@@ -77,7 +79,7 @@ struct BikeView: View {
                         Text("No Rear Suspension")
                         
                     } else if rearSetupIndex == 1 {
-                        
+                        TextField("Info", text: $rearInfo)
                         Toggle(isOn: $rearDualReboundToggle.animation(), label: {Text("Dual Rebound?")})
 
                         Toggle(isOn: $rearDualCompToggle.animation(), label: {Text("Dual Compression?")})
@@ -90,6 +92,7 @@ struct BikeView: View {
                         Text("Last Rear Full Service")
                         }
                     } else if rearSetupIndex == 2 {
+                        TextField("Info", text: $rearInfo)
                         Toggle(isOn: $rearDualReboundToggle.animation(), label: {Text("Dual Rebound?")})
 
                         Toggle(isOn: $rearDualCompToggle.animation(), label: {Text("Dual Compression?")})
@@ -114,8 +117,10 @@ struct BikeView: View {
                 newBike.frontSetup?.dualRebound = self.forkDualCompToggle
                 newBike.frontSetup?.lowerLastServiced = self.lastLowerServiceDate
                 newBike.frontSetup?.lasfFullService = self.lastFullForkServiceDate
+                newBike.frontSetup?.info = self.forkInfo
                 
                 if self.rearSetupIndex == 1 {
+                    newBike.rearSetup?.info = self.rearInfo
                     newBike.rearSetup?.dualCompression = self.rearDualCompToggle
                     newBike.rearSetup?.dualRebound = self.rearDualReboundToggle
                     newBike.rearSetup?.isCoil = self.isCoilToggle
@@ -123,6 +128,7 @@ struct BikeView: View {
                     newBike.rearSetup?.lastFullService = self.lastRearFullServiceDate
                 } else if self.rearSetupIndex == 2 {
                     self.isCoilToggle.toggle()
+                    newBike.rearSetup?.info = self.rearInfo
                     newBike.rearSetup?.dualCompression = self.rearDualCompToggle
                     newBike.rearSetup?.dualRebound = self.rearDualReboundToggle
                     newBike.rearSetup?.isCoil = self.isCoilToggle

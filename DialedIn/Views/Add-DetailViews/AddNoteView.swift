@@ -27,7 +27,7 @@ struct AddNoteView: View {
     @State private var date = Date()
     @State private var rating = 3
     
-    @State private var fPSI = 45
+    @State private var fAirVolume = 45
     @State private var fHSC = Int()
     @State private var fLSC = Int()
     @State private var fComp = Int()
@@ -38,7 +38,7 @@ struct AddNoteView: View {
     @State private var fReboundToggle = true
     @State private var fTokens = Int()
     
-    @State private var rPSI = 150
+    @State private var rAirSpring = 150
     @State private var rHSC = Int()
     @State private var rLSC = Int()
     @State private var rComp = Int()
@@ -48,7 +48,6 @@ struct AddNoteView: View {
     @State private var rReb = Int()
     @State private var rReboundToggle = true
     @State private var rTokens = Int()
-    
     
     
     //TODO: Fix
@@ -69,7 +68,7 @@ struct AddNoteView: View {
                         }
                     Section(header: Text("Front Suspension Details")){
                             // AirPressure
-                            Stepper(value: $fPSI, in: 45...120, label: {Text("PSI: \(self.fPSI)")})
+                            Stepper(value: $fAirVolume, in: 45...120, label: {Text("PSI: \(self.fAirVolume)")})
                             // Tokens
                             Stepper(value: $fTokens, in: 0...6, label: {Text("Tokens: \(self.fTokens)")})
                             
@@ -94,7 +93,7 @@ struct AddNoteView: View {
                        
                        Section(header: Text("Rear Suspension Details")){
                             // Air Pressure
-                            Stepper(value: $rPSI, in: 100...300, label: {Text("PSI: \(self.rPSI)")})
+                            Stepper(value: $rAirSpring, in: 100...300, label: {Text("PSI: \(self.rAirSpring)")})
                             // Tokens
                             Stepper(value: $rTokens, in: 0...6, label: {Text("Tokens: \(self.rTokens)")})
                             //Compression
@@ -122,14 +121,8 @@ struct AddNoteView: View {
                 
                 Button(action: {
                     //dismisses the sheet
-                     self.presentationMode.wrappedValue.dismiss()
-                    
-                    let newNote = Notes(context: self.moc)
-                    newNote.note = self.note
-                    newNote.bike = Bike(context: self.moc)
-                    newNote.bike?.name = self.bikeName
-                    newNote.rating = Int16(self.rating)
-                    
+                    self.presentationMode.wrappedValue.dismiss()
+                    self.saveNote()
                     try? self.moc.save()
                 }) {
                     SaveButtonView()
@@ -138,8 +131,40 @@ struct AddNoteView: View {
         }
     }
     
-    func getBike() {
+    func saveNote() {
+        let newNote = Notes(context: self.moc)
+        newNote.note = self.note
+        newNote.rating = Int16(self.rating)
         
+        newNote.bike = Bike(context: self.moc)
+        newNote.bike?.name = self.bikeName
+        saveFrontNote()
+        saveRearNote()
+        
+    }
+    
+    func saveFrontNote() {
+        let newNote = Notes(context: self.moc)
+        newNote.fAirVolume = Double(self.fAirVolume)
+        newNote.fCompression = Int16(self.fComp)
+        newNote.fHSC = Int16(self.fHSC)
+        newNote.fLSC = Int16(self.fLSC)
+        newNote.fRebound = Int16(self.fReb)
+        newNote.fHSR = Int16(self.fHSR)
+        newNote.fLSR = Int16(self.fLSR)
+        newNote.fTokens = Int16(self.fTokens)
+    }
+    
+    func saveRearNote() {
+        let newNote = Notes(context: self.moc)
+        newNote.rAirSpring = Double(self.rAirSpring)
+        newNote.rCompression = Int16(self.rComp)
+        newNote.rHSC = Int16(self.rHSC)
+        newNote.rLSC = Int16(self.rLSC)
+        newNote.rRebound = Int16(self.rReb)
+        newNote.rHSR = Int16(self.rHSR)
+        newNote.rLSR = Int16(self.rLSR)
+        newNote.rTokens = Int16(self.rTokens)
     }
 }
 
