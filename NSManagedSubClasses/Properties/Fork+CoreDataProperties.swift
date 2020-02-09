@@ -17,18 +17,11 @@ extension Fork {
         return NSFetchRequest<Fork>(entityName: "Fork")
     }
 
-    @NSManaged public var airVolume: Double
-    @NSManaged public var compression: Int16
     @NSManaged public var dualCompression: Bool
     @NSManaged public var dualRebound: Bool
-    @NSManaged public var highCompression: Int16
-    @NSManaged public var highRebound: Int16
     @NSManaged public var lasfFullService: Date?
     @NSManaged public var lowCompression: Int16
     @NSManaged public var lowerLastServiced: Date?
-    @NSManaged public var lowRebound: Int16
-    @NSManaged public var rebound: Int16
-    @NSManaged public var tokens: Int16
     @NSManaged public var info: String?
     @NSManaged public var bike: Bike?
     
