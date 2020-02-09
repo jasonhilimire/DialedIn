@@ -27,8 +27,7 @@ struct NotesListView: View {
 
         NavigationView {
             List{
-//          RatingView()
-            NoteCellView()                    
+                NoteCellView()
             }
             .navigationBarTitle("DialedIn")
                 .navigationBarItems(leading: EditButton(), trailing:

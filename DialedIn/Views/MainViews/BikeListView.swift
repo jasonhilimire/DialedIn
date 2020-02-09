@@ -21,7 +21,6 @@ struct BikeListView: View {
     @State private var showingAddScreen = false
     
     var body: some View {
-
         NavigationView {
             List {
                 ForEach(bikes, id: \.self) { bike in
@@ -37,7 +36,7 @@ struct BikeListView: View {
                 }
                 .onDelete(perform: deleteBike)
             }
-                .navigationBarTitle("Bikes")
+            .navigationBarTitle("Bikes")
             .navigationBarItems(leading: EditButton(), trailing:
                 Button(action: {self.showingAddScreen.toggle()
                 }) {
@@ -46,7 +45,6 @@ struct BikeListView: View {
                 .sheet(isPresented: $showingAddScreen)  {
                     BikeView().environment(\.managedObjectContext, self.moc)
             }
-            
         }
     }
     
@@ -64,6 +62,7 @@ struct BikeListView: View {
 
 struct BikeListView_Previews: PreviewProvider {
     static var previews: some View {
+        
         BikeListView()
     }
 }

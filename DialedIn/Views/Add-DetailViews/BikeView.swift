@@ -16,6 +16,7 @@ struct BikeView: View {
 
     @State private var bikeName = ""
     @State private var bikeNote = ""
+    @State private var setDefault = false
    
     @State private var forkDualReboundToggle = false
     @State private var forkDualCompToggle = false
@@ -31,7 +32,7 @@ struct BikeView: View {
     @State private var lastAirCanServiceDate = Date()
     @State private var lastRearFullServiceDate = Date()
     
-    
+    //TODO: figure out how to only allow 1 default bike
     var body: some View {
         
         VStack {
@@ -48,6 +49,8 @@ struct BikeView: View {
                 Section(header: Text("Bike Details")){
                     TextField("Bike Name", text: $bikeName )
                     TextField("Note", text: $bikeNote)
+                    Toggle(isOn: $setDefault.animation(), label: {Text("Set as Default Bike?")})
+                    
                 }
                 Section(header: Text("Fork Details")){
                     Toggle(isOn: $forkDualReboundToggle.animation(), label: {Text("Dual Rebound?")})
@@ -105,6 +108,7 @@ struct BikeView: View {
                 let newBike = Bike(context: self.moc)
                 newBike.name = self.bikeName
                 newBike.bikeNote = self.bikeNote
+                newBike.isDefault = self.setDefault
                 
                 newBike.frontSetup?.dualCompression = self.forkDualCompToggle
                 newBike.frontSetup?.dualRebound = self.forkDualCompToggle

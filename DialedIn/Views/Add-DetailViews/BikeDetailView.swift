@@ -9,6 +9,7 @@
 import SwiftUI
 
 struct BikeDetailView: View {
+    @State private var showingDeleteAlert = false
     var body: some View {
         Text("Bike Detail View")
     }

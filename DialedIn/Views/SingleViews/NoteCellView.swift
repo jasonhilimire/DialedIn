@@ -27,6 +27,8 @@ struct NoteCellView: View {
     var body: some View {
             ForEach(notes, id: \.self) { note in
                 NavigationLink(destination: NotesDetailView(note: note)) {
+                    EmojiRatingView(rating: note.rating)
+                        .font(.largeTitle)
                     VStack(alignment: .leading) {
                         Text(note.bike?.name ?? "Unknown Bike")
                             .font(.headline)

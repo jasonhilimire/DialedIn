@@ -55,12 +55,6 @@ struct AddNoteView: View {
     var body: some View {
         NavigationView {
             VStack{
-                Text("Add a Note")
-                    .font(.headline)
-                    .fontWeight(.light)
-                    .foregroundColor(Color.blue)
-                    .multilineTextAlignment(.leading)
-                    .padding([.top, .trailing])
                 Form{
                     Section(header: Text("Ride Details")){
                             // Bug in picker view that cant reselect? after making a choice
@@ -134,6 +128,7 @@ struct AddNoteView: View {
                     newNote.note = self.note
                     newNote.bike = Bike(context: self.moc)
                     newNote.bike?.name = self.bikeName
+                    newNote.rating = Int16(self.rating)
                     
                     try? self.moc.save()
                 }) {
