@@ -15,20 +15,11 @@
         </uniquenessConstraints>
     </entity>
     <entity name="Fork" representedClassName="Fork" syncable="YES">
-        <attribute name="airVolume" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
-        <attribute name="compression" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="dualCompression" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="dualRebound" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
-        <attribute name="highCompression" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="highRebound" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="info" optional="YES" attributeType="String"/>
         <attribute name="lasfFullService" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="lowCompression" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="lowerLastServiced" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="lowRebound" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="name" optional="YES" attributeType="String"/>
-        <attribute name="rebound" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="tokens" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <relationship name="bike" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Bike" inverseName="frontSetup" inverseEntity="Bike"/>
     </entity>
     <entity name="Notes" representedClassName="Notes" syncable="YES">
@@ -39,27 +30,18 @@
         <relationship name="bike" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Bike" inverseName="setupNotes" inverseEntity="Bike"/>
     </entity>
     <entity name="RearShock" representedClassName="RearShock" syncable="YES">
-        <attribute name="airVolume" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
-        <attribute name="compression" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="dualCompression" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="dualRebound" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
-        <attribute name="highCompression" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="highRebound" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="info" optional="YES" attributeType="String"/>
         <attribute name="isCoil" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="lastAirCanService" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="lastFullService" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="lowCompression" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="lowRebound" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="rebound" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="spring" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="tokens" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <relationship name="bike" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Bike" inverseName="rearSetup" inverseEntity="Bike"/>
     </entity>
     <elements>
         <element name="Bike" positionX="-54" positionY="-9" width="128" height="148"/>
-        <element name="Fork" positionX="-36" positionY="9" width="128" height="268"/>
+        <element name="Fork" positionX="-36" positionY="9" width="128" height="133"/>
         <element name="Notes" positionX="-63" positionY="-18" width="128" height="118"/>
-        <element name="RearShock" positionX="-18" positionY="27" width="128" height="283"/>
+        <element name="RearShock" positionX="-18" positionY="27" width="128" height="148"/>
     </elements>
 </model>

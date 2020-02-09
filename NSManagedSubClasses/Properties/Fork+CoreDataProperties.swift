@@ -27,7 +27,6 @@ extension Fork {
     @NSManaged public var lowCompression: Int16
     @NSManaged public var lowerLastServiced: Date?
     @NSManaged public var lowRebound: Int16
-    @NSManaged public var name: String?
     @NSManaged public var rebound: Int16
     @NSManaged public var tokens: Int16
     @NSManaged public var info: String?
