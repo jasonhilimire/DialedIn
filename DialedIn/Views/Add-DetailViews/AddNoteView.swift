@@ -22,6 +22,8 @@ struct AddNoteView: View {
     // Get Just the bike chosen from the Picker
 
     @State private var createdInitialBike = false
+    
+    //TODO: Bike name isnt binding to pickerView
     @State private var bikeName = ""
     @State private var note = ""
     @State private var date = Date()
@@ -67,9 +69,7 @@ struct AddNoteView: View {
                 Form{
                     Section(header: Text("Ride Details")){
                             // Bug in picker view that cant reselect? after making a choice
-                        Picker(selection: $bikeName, label: Text("Choose Bike")) {
-                        ForEach(bikes, id: \.self) { bike in Text(bike.wrappedBikeName).tag(bike.wrappedBikeName)}
-                        }
+                        BikePickerView()
                         TextField("Note", text: $note )
                         DatePicker(selection: $date, in: ...Date(), displayedComponents: .date) {
                             Text("Select a date")
@@ -143,8 +143,6 @@ struct AddNoteView: View {
         }
     }
     
-
-    
     func saveNote() {
         let newNote = Notes(context: self.moc)
         newNote.note = self.note
@@ -171,7 +169,7 @@ struct AddNoteView: View {
         newNote.rLSR = Int16(self.rLSR)
         newNote.rTokens = Int16(self.rTokens)
     }
-
+    
 }
 
 struct AddNoteView_Previews: PreviewProvider {
