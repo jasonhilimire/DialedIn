@@ -21,7 +21,7 @@ struct AddNoteView: View {
     
     // Get Just the bike chosen from the Picker
 
-    
+    @State private var createdInitialBike = false
     @State private var bikeName = ""
     @State private var note = ""
     @State private var date = Date()
@@ -50,10 +50,20 @@ struct AddNoteView: View {
     @State private var rTokens = Int()
     
     
+    
+    
     //TODO: Fix
     var body: some View {
         NavigationView {
             VStack{
+                // Display info and link if no default bike is found- TODO: replace with action sheet
+                if bikes.count == 0 {
+//                        self.createdInitialBike.toggle()
+                        Text("Please Create an intial bike")
+                        NavigationLink(destination: BikeView()) {
+                            Text("Add a Bike")
+                        }
+                    }
                 Form{
                     Section(header: Text("Ride Details")){
                             // Bug in picker view that cant reselect? after making a choice
@@ -123,13 +133,17 @@ struct AddNoteView: View {
                     //dismisses the sheet
                     self.presentationMode.wrappedValue.dismiss()
                     self.saveNote()
+                    
                     try? self.moc.save()
                 }) {
                     SaveButtonView()
-                    }
+                }
+//                .disabled(!createdInitialBike)
             }
         }
     }
+    
+
     
     func saveNote() {
         let newNote = Notes(context: self.moc)
@@ -138,13 +152,7 @@ struct AddNoteView: View {
         
         newNote.bike = Bike(context: self.moc)
         newNote.bike?.name = self.bikeName
-        saveFrontNote()
-        saveRearNote()
         
-    }
-    
-    func saveFrontNote() {
-        let newNote = Notes(context: self.moc)
         newNote.fAirVolume = Double(self.fAirVolume)
         newNote.fCompression = Int16(self.fComp)
         newNote.fHSC = Int16(self.fHSC)
@@ -153,10 +161,7 @@ struct AddNoteView: View {
         newNote.fHSR = Int16(self.fHSR)
         newNote.fLSR = Int16(self.fLSR)
         newNote.fTokens = Int16(self.fTokens)
-    }
-    
-    func saveRearNote() {
-        let newNote = Notes(context: self.moc)
+        
         newNote.rAirSpring = Double(self.rAirSpring)
         newNote.rCompression = Int16(self.rComp)
         newNote.rHSC = Int16(self.rHSC)
@@ -166,6 +171,7 @@ struct AddNoteView: View {
         newNote.rLSR = Int16(self.rLSR)
         newNote.rTokens = Int16(self.rTokens)
     }
+
 }
 
 struct AddNoteView_Previews: PreviewProvider {
