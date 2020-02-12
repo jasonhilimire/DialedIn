@@ -53,6 +53,8 @@ struct AddNoteView: View {
     @State private var rReboundToggle = true
     @State private var rTokens = Int()
     
+
+    
     
     
     
@@ -83,7 +85,7 @@ struct AddNoteView: View {
                         }
                         RatingView(rating: $rating)
                         }
-                    
+                    // Find the bike in bikes array == bikeName
                     Section(header: Text("Front Suspension Details")){
                             // AirPressure
                         Stepper(value: $model.lastFAirSetting, in: 45...120, label: {Text("PSI: \(model.lastFAirSetting)")})

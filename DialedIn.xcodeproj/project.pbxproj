@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A309B9D623E2898300A08F22 /* BikeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A309B9D523E2898300A08F22 /* BikeListView.swift */; };
+		A326FAC723F3BC6E002490E2 /* CoreData Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A326FAC623F3BC6E002490E2 /* CoreData Extensions.swift */; };
 		A3273B7223EF8F6F007A3792 /* NoteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3273B7123EF8F6F007A3792 /* NoteModel.swift */; };
 		A3273B7523EF998B007A3792 /* Notes+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3273B7323EF998B007A3792 /* Notes+CoreDataClass.swift */; };
 		A3273B7623EF998B007A3792 /* Notes+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3273B7423EF998B007A3792 /* Notes+CoreDataProperties.swift */; };
@@ -61,6 +62,7 @@
 
 /* Begin PBXFileReference section */
 		A309B9D523E2898300A08F22 /* BikeListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeListView.swift; sourceTree = "<group>"; };
+		A326FAC623F3BC6E002490E2 /* CoreData Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoreData Extensions.swift"; sourceTree = "<group>"; };
 		A3273B7123EF8F6F007A3792 /* NoteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteModel.swift; sourceTree = "<group>"; };
 		A3273B7323EF998B007A3792 /* Notes+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notes+CoreDataClass.swift"; sourceTree = "<group>"; };
 		A3273B7423EF998B007A3792 /* Notes+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notes+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -126,6 +128,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A326FAC823F3BC80002490E2 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				A3C16EAA23DEA41C005BFA14 /* NSManagedSubClasses */,
+				A3C16E6B23DE9EC4005BFA14 /* DialedIn.xcdatamodeld */,
+				A326FAC623F3BC6E002490E2 /* CoreData Extensions.swift */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
 		A3918AD123E3E764002A1D61 /* MainViews */ = {
 			isa = PBXGroup;
 			children = (
@@ -185,7 +197,7 @@
 		A3C16E6623DE9EC4005BFA14 /* DialedIn */ = {
 			isa = PBXGroup;
 			children = (
-				A3C16EAA23DEA41C005BFA14 /* NSManagedSubClasses */,
+				A326FAC823F3BC80002490E2 /* CoreData */,
 				A3C76CA023EF5DC70047BBCC /* Delegates */,
 				A3C16EAB23DEA454005BFA14 /* Views */,
 				A3C16E7023DE9EC5005BFA14 /* Assets.xcassets */,
@@ -229,8 +241,7 @@
 				A3C16EAE23DEA4F7005BFA14 /* Classes */,
 				A3C16EAD23DEA4ED005BFA14 /* Properties */,
 			);
-			name = NSManagedSubClasses;
-			path = ../NSManagedSubClasses;
+			path = NSManagedSubClasses;
 			sourceTree = "<group>";
 		};
 		A3C16EAB23DEA454005BFA14 /* Views */ = {
@@ -246,7 +257,6 @@
 		A3C16EAC23DEA461005BFA14 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				A3C16E6B23DE9EC4005BFA14 /* DialedIn.xcdatamodeld */,
 				A3273B7123EF8F6F007A3792 /* NoteModel.swift */,
 				A3B8B79423F0E66900CE1EF8 /* BikeModel.swift */,
 			);
@@ -432,6 +442,7 @@
 				A3C76C9F23EF5A850047BBCC /* GrabBarView.swift in Sources */,
 				A3B8B79323F0DF2300CE1EF8 /* FilteredBikeList.swift in Sources */,
 				A3C16EB823DEA582005BFA14 /* RearShock+CoreDataProperties.swift in Sources */,
+				A326FAC723F3BC6E002490E2 /* CoreData Extensions.swift in Sources */,
 				A3B8B79523F0E66900CE1EF8 /* BikeModel.swift in Sources */,
 				A3DDCC8123DFF96400CD1476 /* AppView.swift in Sources */,
 				A3DDCC7D23DFF21700CD1476 /* NotesDetailView.swift in Sources */,
