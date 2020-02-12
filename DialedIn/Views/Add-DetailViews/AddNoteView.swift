@@ -19,9 +19,11 @@ struct AddNoteView: View {
         NSSortDescriptor(keyPath: \Bike.name, ascending: true)
     ]) var bikes: FetchedResults<Bike>
     
+    @ObservedObject var model = NoteModel()
     // Get Just the bike chosen from the Picker
 
     @State private var createdInitialBike = false
+
     
     //TODO: Bike name isnt binding to pickerView
     @State private var bikeName = ""
@@ -69,16 +71,20 @@ struct AddNoteView: View {
                 Form{
                     Section(header: Text("Ride Details")){
                             // Bug in picker view that cant reselect? after making a choice
-                        BikePickerView()
+//                        BikePickerView()
+                        Picker(selection: $bikeName, label: Text("Choose Bike")) {
+                        ForEach(bikes, id: \.self) { bike in Text(bike.wrappedBikeName).tag(bike.wrappedBikeName)}
+                        }
                         TextField("Note", text: $note )
                         DatePicker(selection: $date, in: ...Date(), displayedComponents: .date) {
                             Text("Select a date")
                         }
                         RatingView(rating: $rating)
                         }
+                    
                     Section(header: Text("Front Suspension Details")){
                             // AirPressure
-                            Stepper(value: $fAirVolume, in: 45...120, label: {Text("PSI: \(self.fAirVolume)")})
+                        Stepper(value: $model.lastFAirSetting, in: 45...120, label: {Text("PSI: \(model.lastFAirSetting)")})
                             // Tokens
                             Stepper(value: $fTokens, in: 0...6, label: {Text("Tokens: \(self.fTokens)")})
                             
@@ -151,7 +157,7 @@ struct AddNoteView: View {
         newNote.bike = Bike(context: self.moc)
         newNote.bike?.name = self.bikeName
         
-        newNote.fAirVolume = Double(self.fAirVolume)
+        newNote.fAirVolume = Double(self.model.lastFAirSetting)
         newNote.fCompression = Int16(self.fComp)
         newNote.fHSC = Int16(self.fHSC)
         newNote.fLSC = Int16(self.fLSC)

@@ -15,10 +15,10 @@ class NoteModel: ObservableObject {
     let managedObjectContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     init() {
-        getLastAirSetting()
+        getLastfAirSetting()
     }
     
-    @Published var lastAirSetting: Int = 0 {
+    @Published var lastFAirSetting: Int = 0 {
         didSet {
             didChange.send(self)
         }
@@ -29,16 +29,17 @@ class NoteModel: ObservableObject {
     private var lastAir: Int  {
         let notes = try! managedObjectContext.fetch(Notes.fetchRequest()) as! [Notes]
         if let lastRecord = notes.last {
-            let lastRecordNote = lastRecord.value(forKey: "stageNum")
-                   return lastRecordNote as! Int
+            let lastfAirNote = lastRecord.value(forKey: "fAirVolume")
+            print("Last Air setting was \(String(describing: lastfAirNote))")
+                   return lastfAirNote as! Int
                } else {
                    print("didnt find last record")
                    return 55
                }
        }
     
-    func getLastAirSetting() {
-        lastAirSetting = lastAir
+    func getLastfAirSetting() {
+        lastFAirSetting = lastAir
     }
     
 }

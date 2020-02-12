@@ -19,7 +19,7 @@ class BikeModel: ObservableObject {
         getLastAirSetting()
     }
     
-    @Published var lastAirSetting: Int = 0 {
+    @Published var lastBikeAirSetting: Int = 0 {
         didSet {
             didChange.send(self)
         }
@@ -27,9 +27,9 @@ class BikeModel: ObservableObject {
     
     let didChange = PassthroughSubject<BikeModel, Never>()
 
-    private var lastAir: Int  {
-        let notes = try! managedObjectContext.fetch(Bike.fetchRequest()) as! [Bike]
-        if let lastRecord = notes.last {
+    private var lastBikeAir: Int  {
+        let bikes = try! managedObjectContext.fetch(Bike.fetchRequest()) as! [Bike]
+        if let lastRecord = bikes.last {
             let lastRecordNote = lastRecord.value(forKey: "name")
                    return lastRecordNote as! Int
                } else {
@@ -45,7 +45,7 @@ class BikeModel: ObservableObject {
     }
     
     func getLastAirSetting() {
-        lastAirSetting = lastAir
+        lastBikeAirSetting = lastBikeAir
     }
     
 }

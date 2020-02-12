@@ -11,12 +11,14 @@ import SwiftUI
 struct FilteredBikeList: View {
     
     var fetchRequest: FetchRequest<Bike>
+    @State private var bikeName = ""
        
        init(filter: String) {
            fetchRequest = FetchRequest<Bike>(entity: Bike.entity(), sortDescriptors: [], predicate: NSPredicate(format: "name CONTAINS %@", filter))
        }
 
     var body: some View {
+        
         List(fetchRequest.wrappedValue, id: \.self) { bike in
             Text("\(bike.wrappedBikeName)")
         }

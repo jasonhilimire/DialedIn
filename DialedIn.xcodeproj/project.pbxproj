@@ -151,6 +151,7 @@
 		A3918AD323E3E76C002A1D61 /* SingleViews */ = {
 			isa = PBXGroup;
 			children = (
+				A3B8B79223F0DF2300CE1EF8 /* FilteredBikeList.swift */,
 				A3EC241B23E68C00002954A9 /* NoteCellView.swift */,
 				A3EC241F23E68E21002954A9 /* EmojiRatingView.swift */,
 				A3C76CA323EF66450047BBCC /* RatingView.swift */,
@@ -248,7 +249,6 @@
 				A3C16E6B23DE9EC4005BFA14 /* DialedIn.xcdatamodeld */,
 				A3273B7123EF8F6F007A3792 /* NoteModel.swift */,
 				A3B8B79423F0E66900CE1EF8 /* BikeModel.swift */,
-				A3B8B79223F0DF2300CE1EF8 /* FilteredBikeList.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
