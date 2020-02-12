@@ -14,21 +14,17 @@ import CoreData
 extension Bike{
     
     /// FetchRequest for all bikes, sorted by name
-    static func bikesFetchRequest() -> NSFetchRequest<Bike> {
+    static func BikesFetchRequest() -> NSFetchRequest<Bike> {
         let request: NSFetchRequest<Bike> = Bike.fetchRequest()
         request.sortDescriptors = [NSSortDescriptor(keyPath: \Bike.name, ascending: true)]
         return request
     }
     
     /// FetchRequest for selected bike, sorted by name
-    static func selectedBikeFetchRequest(filter: String) -> NSFetchRequest<Person> {
-        let request: NSFetchRequest<Bike> = Bike.bikesFetchRequest()
+    static func SelectedBikeFetchRequest(filter: String) -> NSFetchRequest<Bike> {
+        let request: NSFetchRequest<Bike> = Bike.BikesFetchRequest()
         request.sortDescriptors = [NSSortDescriptor(keyPath: \Bike.name, ascending: true)]
-        request.predicate = NSPredicate(
-            format: "name CONTAINS == %@",
-            filter
-        )
-
+        request.predicate = NSPredicate(format: "name CONTAINS %@", filter)
         return request
     }
     

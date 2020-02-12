@@ -15,18 +15,22 @@ struct AddNoteView: View {
     @Environment(\.presentationMode) var presentationMode
     
     // Get All the bikes for the PickerView
-    @FetchRequest(entity: Bike.entity(), sortDescriptors: [
-        NSSortDescriptor(keyPath: \Bike.name, ascending: true)
-    ]) var bikes: FetchedResults<Bike>
+//    @FetchRequest(fetchRequest: Bike.BikesFetchRequest())
+//    var bikes: FetchedResults<Bike>
+    
+    
+    // Get Just the bike chosen from the Picker
+    
+    @FetchRequest(fetchRequest: Bike.SelectedBikeFetchRequest(filter: "X"))
+    var bikes: FetchedResults<Bike>
     
     @ObservedObject var model = NoteModel()
-    // Get Just the bike chosen from the Picker
 
     @State private var createdInitialBike = false
 
     
     //TODO: Bike name isnt binding to pickerView
-    @State private var bikeName = ""
+    @State var bikeName = ""
     @State private var note = ""
     @State private var date = Date()
     @State private var rating = 3
@@ -70,13 +74,17 @@ struct AddNoteView: View {
                             Text("Add a Bike")
                         }
                     }
+//                if self.bikes[0].name == "Q" {
+//                    Text("we found the bike named Q")
+//                }
                 Form{
                     Section(header: Text("Ride Details")){
                             // Bug in picker view that cant reselect? after making a choice
-//                        BikePickerView()
-                        Picker(selection: $bikeName, label: Text("Choose Bike")) {
-                        ForEach(bikes, id: \.self) { bike in Text(bike.wrappedBikeName).tag(bike.wrappedBikeName)}
-                        }
+                        BikePickerView()
+                        
+//                        Picker(selection: $bikeName, label: Text("Choose Bike")) {
+//                        ForEach(bikes, id: \.self) { bike in Text(bike.wrappedBikeName).tag(bike.wrappedBikeName)}
+//                        }
                         
                         
                         TextField("Note", text: $note )

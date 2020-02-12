@@ -14,15 +14,14 @@ struct BikePickerView: View {
        @Environment(\.managedObjectContext) var moc
        
        // Get All the bikes for the PickerView
-       @FetchRequest(entity: Bike.entity(), sortDescriptors: [
-           NSSortDescriptor(keyPath: \Bike.name, ascending: true)
-       ]) var bikes: FetchedResults<Bike>
+    @FetchRequest(fetchRequest: Bike.BikesFetchRequest()) var bikes: FetchedResults<Bike>
        
-    @State var bikeName = ""
+    @State private var bikeNameIndex = 0
     
     var body: some View {
-            Picker(selection: $bikeName, label: Text("Choose Bike")) {
-            ForEach(bikes, id: \.self) { bike in Text(bike.wrappedBikeName).tag(bike.wrappedBikeName)}
+// Picker Works correctly now when sent to AddNoteView, however the name is not binded to anything
+        Picker(selection: $bikeNameIndex, label: Text("Choose Bike")) {
+            ForEach(0..<bikes.count) { bike in Text("\(self.bikes[bike].name ?? "Unknown bike")")}
             }
     }
 }
