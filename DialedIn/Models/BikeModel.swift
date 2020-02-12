@@ -39,9 +39,9 @@ class BikeModel: ObservableObject {
        }
     
     func getBike(filter: String) {
-        let fetchRequest = FetchRequest<Bike>(entity: Bike.entity(), sortDescriptors: [], predicate: NSPredicate(format: "name CONTAINS %@", filter))
-        
-        
+//        let fetchRequest = FetchRequest<Bike>(entity: Bike.entity(), sortDescriptors: [], predicate: NSPredicate(format: "name CONTAINS %@", filter))
+//        
+//        
     }
     
     func getLastAirSetting() {
