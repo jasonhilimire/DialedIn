@@ -26,6 +26,7 @@ class NoteModel: ObservableObject {
     
     let didChange = PassthroughSubject<NoteModel, Never>()
 
+    //Should this be changed to reflect the Bike.Note
     private var lastAir: Int  {
         let notes = try! managedObjectContext.fetch(Notes.fetchRequest()) as! [Notes]
         if let lastRecord = notes.last {

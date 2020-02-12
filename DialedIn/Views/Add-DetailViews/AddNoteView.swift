@@ -42,7 +42,7 @@ struct AddNoteView: View {
     @State private var fReboundToggle = true
     @State private var fTokens = Int()
     
-    @State private var rAirSpring = 150
+    @State private var rAirSpring = 150.0
     @State private var rHSC = Int()
     @State private var rLSC = Int()
     @State private var rComp = Int()
@@ -75,6 +75,8 @@ struct AddNoteView: View {
                         Picker(selection: $bikeName, label: Text("Choose Bike")) {
                         ForEach(bikes, id: \.self) { bike in Text(bike.wrappedBikeName).tag(bike.wrappedBikeName)}
                         }
+                        
+                        
                         TextField("Note", text: $note )
                         DatePicker(selection: $date, in: ...Date(), displayedComponents: .date) {
                             Text("Select a date")
@@ -109,7 +111,12 @@ struct AddNoteView: View {
                        
                        Section(header: Text("Rear Suspension Details")){
                             // Air Pressure
-                            Stepper(value: $rAirSpring, in: 100...300, label: {Text("PSI: \(self.rAirSpring)")})
+// TODO: Refactor as SliderView
+                        HStack{
+                            Text("PSI: \(self.rAirSpring, specifier: "%.0f")")
+                        Slider(value: $rAirSpring, in: 100...350, step: 1.0)
+                        }
+//                            Stepper(value: $rAirSpring, in: 100...300, label: {Text("PSI: \(self.rAirSpring)")})
                             // Tokens
                             Stepper(value: $rTokens, in: 0...6, label: {Text("Tokens: \(self.rTokens)")})
                             //Compression
@@ -144,7 +151,7 @@ struct AddNoteView: View {
                 }) {
                     SaveButtonView()
                 }
-//                .disabled(!createdInitialBike)
+                .disabled(bikeName == "")
             }
         }
     }
