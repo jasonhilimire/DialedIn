@@ -18,7 +18,7 @@ class NoteModel: ObservableObject {
         getLastfAirSetting()
     }
     
-    @Published var lastFAirSetting: Int = 0 {
+    @Published var lastFAirSetting: Double = 0 {
         didSet {
             didChange.send(self)
         }
@@ -27,15 +27,15 @@ class NoteModel: ObservableObject {
     let didChange = PassthroughSubject<NoteModel, Never>()
 
     //Should this be changed to reflect the Bike.Note
-    private var lastAir: Int  {
+    private var lastAir: Double  {
         let notes = try! managedObjectContext.fetch(Notes.fetchRequest()) as! [Notes]
         if let lastRecord = notes.last {
             let lastfAirNote = lastRecord.value(forKey: "fAirVolume")
             print("Last Air setting was \(String(describing: lastfAirNote))")
-                   return lastfAirNote as! Int
+                   return lastfAirNote as! Double
                } else {
                    print("didnt find last record")
-                   return 55
+            return 55.0
                }
        }
     

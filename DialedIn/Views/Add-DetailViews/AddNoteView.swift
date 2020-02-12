@@ -35,7 +35,7 @@ struct AddNoteView: View {
     @State private var date = Date()
     @State private var rating = 3
     
-    @State private var fAirVolume = 45
+    @State private var fAirVolume = 45.0
     @State private var fHSC = Int()
     @State private var fLSC = Int()
     @State private var fComp = Int()
@@ -96,7 +96,10 @@ struct AddNoteView: View {
                     // Find the bike in bikes array == bikeName
                     Section(header: Text("Front Suspension Details")){
                             // AirPressure
-                        Stepper(value: $model.lastFAirSetting, in: 45...120, label: {Text("PSI: \(model.lastFAirSetting)")})
+                        HStack{
+                            Text("PSI: \(model.lastFAirSetting, specifier: "%.1f")")
+                            Slider(value: $model.lastFAirSetting, in: 45...120, step: 0.5)
+                        }
                             // Tokens
                             Stepper(value: $fTokens, in: 0...6, label: {Text("Tokens: \(self.fTokens)")})
                             
