@@ -18,11 +18,6 @@ struct AddNoteView: View {
     @FetchRequest(fetchRequest: Bike.BikesFetchRequest())
     var bikes: FetchedResults<Bike>
     
-    
-    // Get Just the bike chosen from the Picker
-    
-
-    
     @ObservedObject var model = NoteModel()
 
     @State private var createdInitialBike = false
@@ -39,7 +34,7 @@ struct AddNoteView: View {
     @State private var fHSC = Int()
     @State private var fLSC = Int()
     @State private var fComp = Int()
-    @State private var fCompressionToggle = true
+    @State private var fCompressionToggle = false
     @State private var fHSR = Int()
     @State private var fLSR = Int()
     @State private var fReb = Int()
@@ -77,6 +72,7 @@ struct AddNoteView: View {
                 Form{
                     Section(header: Text("Ride Details")){
                         BikePickerView(bikeNameIndex: $bikeNameIndex)
+                        .onAppear(perform: {self.setToggles()})
                         
                         TextField("Note", text: $note )
                         DatePicker(selection: $date, in: ...Date(), displayedComponents: .date) {
@@ -95,12 +91,13 @@ struct AddNoteView: View {
                             Stepper(value: $fTokens, in: 0...6, label: {Text("Tokens: \(self.fTokens)")})
                             
                             //Compression
+                        
 
                             if fCompressionToggle == true {
                                 Stepper(value: $fHSC, in: 0...25, label: {Text("High Sp Comp: \(self.fHSC)")})
                                 Stepper(value: $fLSC, in: 0...25, label: {Text("Low Sp Comp: \(self.fLSC)")})
                             } else {
-                                Stepper(value: $fComp, in: 0...20, label: {Text("Compression: \(self.fComp)")})
+                                Stepper(value: $fComp, in: 0...25, label: {Text("Compression: \(self.fComp)")})
                             }
                             
                             // Rebound
@@ -140,7 +137,8 @@ struct AddNoteView: View {
                                 Stepper(value: $rReb, in: 0...20, label: {Text("Rebound: \(self.rReb)")})
                             }
                        }
-                    }
+                    } // end form
+                    
                     .navigationBarTitle("DialedIn")
                 
                 
@@ -184,6 +182,10 @@ struct AddNoteView: View {
         newNote.rHSR = Int16(self.rHSR)
         newNote.rLSR = Int16(self.rLSR)
         newNote.rTokens = Int16(self.rTokens)
+    }
+    
+    func setToggles() {
+        print("\(self.bikes[0])")
     }
     
 }

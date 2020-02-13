@@ -46,6 +46,7 @@ struct BikeListView: View {
                     BikeView().environment(\.managedObjectContext, self.moc)
             }
         }
+        .onAppear(perform: {self.printBikes()})
     }
     
     func deleteBike(at offsets: IndexSet) {
@@ -57,6 +58,11 @@ struct BikeListView: View {
         }
         // save the context
         try? moc.save()
+    }
+    
+    func printBikes() {
+        print("\(self.bikes[0].name)")
+        print("\(self.bikes[0].frontSetup?.dualCompression)")
     }
 }
 

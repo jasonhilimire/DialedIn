@@ -113,12 +113,15 @@ struct BikeView: View {
                 newBike.bikeNote = self.bikeNote
                 newBike.isDefault = self.setDefault
                 
+                
+                newBike.frontSetup = Fork(context: self.moc)
                 newBike.frontSetup?.dualCompression = self.forkDualCompToggle
                 newBike.frontSetup?.dualRebound = self.forkDualCompToggle
                 newBike.frontSetup?.lowerLastServiced = self.lastLowerServiceDate
                 newBike.frontSetup?.lasfFullService = self.lastFullForkServiceDate
                 newBike.frontSetup?.info = self.forkInfo
-                
+                   
+                newBike.rearSetup = RearShock(context: self.moc)
                 if self.rearSetupIndex == 1 {
                     newBike.rearSetup?.info = self.rearInfo
                     newBike.rearSetup?.dualCompression = self.rearDualCompToggle
@@ -126,6 +129,7 @@ struct BikeView: View {
                     newBike.rearSetup?.isCoil = self.isCoilToggle
                     newBike.rearSetup?.lastAirCanService = self.lastAirCanServiceDate
                     newBike.rearSetup?.lastFullService = self.lastRearFullServiceDate
+                    newBike.hasRearShock = true
                 } else if self.rearSetupIndex == 2 {
                     self.isCoilToggle.toggle()
                     newBike.rearSetup?.info = self.rearInfo
@@ -134,9 +138,14 @@ struct BikeView: View {
                     newBike.rearSetup?.isCoil = self.isCoilToggle
                     newBike.rearSetup?.lastAirCanService = self.lastAirCanServiceDate
                     newBike.rearSetup?.lastFullService = self.lastRearFullServiceDate
+                    newBike.hasRearShock = true
                 }
                 
+                print(newBike)
+                print(newBike.frontSetup)
+                print(newBike.rearSetup)
                  try? self.moc.save()
+                
                 }) {
                     SaveButtonView()
                     }

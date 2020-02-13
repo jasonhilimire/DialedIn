@@ -19,15 +19,10 @@ struct BikePickerView: View {
     @Binding var bikeNameIndex: Int
     
     var body: some View {
-// Picker Works correctly now when sent to AddNoteView, however the name is not binded to anything
-//        Picker(selection: self.$bikeName, label: Text("Choose Bike")) {
-//            ForEach(0..<bikes.count) { bike in Text("\(self.bikes[bike].name ?? "Unknown bike")")}
-//            }
-        
-            Picker(selection: self.$bikeNameIndex, label: Text("Choose Bike")) {
-            ForEach(0..<bikes.count) { bike in Text("\(self.bikes[bike].name ?? "Unknown bike")")
-                }
+        Picker(selection: self.$bikeNameIndex, label: Text("Choose Bike")) {
+        ForEach(0..<bikes.count) { bike in Text("\(self.bikes[bike].name ?? "Unknown bike")")
             }
+        }
     }
 }
 
