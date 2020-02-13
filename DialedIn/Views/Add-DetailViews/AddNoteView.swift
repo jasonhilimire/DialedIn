@@ -15,14 +15,13 @@ struct AddNoteView: View {
     @Environment(\.presentationMode) var presentationMode
     
     // Get All the bikes for the PickerView
-//    @FetchRequest(fetchRequest: Bike.BikesFetchRequest())
-//    var bikes: FetchedResults<Bike>
+    @FetchRequest(fetchRequest: Bike.BikesFetchRequest())
+    var bikes: FetchedResults<Bike>
     
     
     // Get Just the bike chosen from the Picker
     
-    @FetchRequest(fetchRequest: Bike.SelectedBikeFetchRequest(filter: "X"))
-    var bikes: FetchedResults<Bike>
+
     
     @ObservedObject var model = NoteModel()
 
@@ -30,7 +29,8 @@ struct AddNoteView: View {
 
     
     //TODO: Bike name isnt binding to pickerView
-    @State var bikeName = ""
+    @State private var bikeNameIndex = 0
+    @State private var bikeName = ""
     @State private var note = ""
     @State private var date = Date()
     @State private var rating = 3
@@ -74,19 +74,17 @@ struct AddNoteView: View {
                             Text("Add a Bike")
                         }
                     }
-//                if self.bikes[0].name == "Q" {
-//                    Text("we found the bike named Q")
-//                }
+
                 Form{
                     Section(header: Text("Ride Details")){
                             // Bug in picker view that cant reselect? after making a choice
-                        BikePickerView()
+//                        BikePickerView(bikeName: $bikeName)
                         
-//                        Picker(selection: $bikeName, label: Text("Choose Bike")) {
-//                        ForEach(bikes, id: \.self) { bike in Text(bike.wrappedBikeName).tag(bike.wrappedBikeName)}
-//                        }
-                        
-                        
+                        Picker(selection: self.$bikeNameIndex, label: Text("Choose Bike")) {
+                            ForEach(0..<bikes.count) { bike in Text("\(self.bikes[bike].name ?? "Unknown bike")")
+                                }
+                            }
+
                         TextField("Note", text: $note )
                         DatePicker(selection: $date, in: ...Date(), displayedComponents: .date) {
                             Text("Select a date")
@@ -163,7 +161,7 @@ struct AddNoteView: View {
                 }) {
                     SaveButtonView()
                 }
-                .disabled(bikeName == "")
+//                .disabled(bikeName == "")
             }
         }
     }
@@ -174,8 +172,8 @@ struct AddNoteView: View {
         newNote.rating = Int16(self.rating)
         
         newNote.bike = Bike(context: self.moc)
-        newNote.bike?.name = self.bikeName
-        
+        // This needs to be changed to capture the correct bike
+        newNote.bike?.name = self.bikes[bikeNameIndex].name
         newNote.fAirVolume = Double(self.model.lastFAirSetting)
         newNote.fCompression = Int16(self.fComp)
         newNote.fHSC = Int16(self.fHSC)

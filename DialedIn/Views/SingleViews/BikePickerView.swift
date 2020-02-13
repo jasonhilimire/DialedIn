@@ -16,18 +16,22 @@ struct BikePickerView: View {
        // Get All the bikes for the PickerView
     @FetchRequest(fetchRequest: Bike.BikesFetchRequest()) var bikes: FetchedResults<Bike>
        
-    @State private var bikeNameIndex = 0
+    @Binding var bikeName: String
     
     var body: some View {
 // Picker Works correctly now when sent to AddNoteView, however the name is not binded to anything
-        Picker(selection: $bikeNameIndex, label: Text("Choose Bike")) {
-            ForEach(0..<bikes.count) { bike in Text("\(self.bikes[bike].name ?? "Unknown bike")")}
+//        Picker(selection: self.$bikeName, label: Text("Choose Bike")) {
+//            ForEach(0..<bikes.count) { bike in Text("\(self.bikes[bike].name ?? "Unknown bike")")}
+//            }
+        
+            Picker(selection: $bikeName, label: Text("Choose Bike")) {
+            ForEach(bikes, id: \.self) { bike in Text(bike.wrappedBikeName).tag(bike.wrappedBikeName)}
             }
     }
 }
 
-struct BikePickerView_Previews: PreviewProvider {
-    static var previews: some View {
-        BikePickerView()
-    }
-}
+//struct BikePickerView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        BikePickerView(bikeName: "the bike")
+//    }
+//}
