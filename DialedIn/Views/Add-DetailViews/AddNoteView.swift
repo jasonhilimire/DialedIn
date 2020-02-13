@@ -68,7 +68,6 @@ struct AddNoteView: View {
             VStack{
                 // Display info and link if no default bike is found- TODO: replace with action sheet
                 if bikes.count == 0 {
-//                        self.createdInitialBike.toggle()
                         Text("Please Create an intial bike")
                         NavigationLink(destination: BikeView()) {
                             Text("Add a Bike")
@@ -77,14 +76,8 @@ struct AddNoteView: View {
 
                 Form{
                     Section(header: Text("Ride Details")){
-                            // Bug in picker view that cant reselect? after making a choice
-//                        BikePickerView(bikeName: $bikeName)
+                        BikePickerView(bikeNameIndex: $bikeNameIndex)
                         
-                        Picker(selection: self.$bikeNameIndex, label: Text("Choose Bike")) {
-                            ForEach(0..<bikes.count) { bike in Text("\(self.bikes[bike].name ?? "Unknown bike")")
-                                }
-                            }
-
                         TextField("Note", text: $note )
                         DatePicker(selection: $date, in: ...Date(), displayedComponents: .date) {
                             Text("Select a date")
