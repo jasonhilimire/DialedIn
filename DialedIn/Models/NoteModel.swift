@@ -14,8 +14,10 @@ class NoteModel: ObservableObject {
     
     let managedObjectContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
+    
     init() {
         getLastfAirSetting()
+        getLastfHSC()
     }
     
     @Published var lastFAirSetting: Double = 0 {
@@ -24,12 +26,20 @@ class NoteModel: ObservableObject {
         }
     }
     
+    @Published var lastFHSCSetting: Int = 0 {
+        didSet {
+            didChange.send(self)
+        }
+    }
+    
+    
+    
     let didChange = PassthroughSubject<NoteModel, Never>()
 
     //Should this be changed to reflect the Bike.Note
     private var lastAir: Double  {
-        let notes = try! managedObjectContext.fetch(Notes.fetchRequest()) as! [Notes]
-        if let lastRecord = notes.last {
+//        let notes = try! managedObjectContext.fetch(Notes.fetchRequest()) as! [Notes]
+        if let lastRecord = getNotes().last {
             let lastfAirNote = lastRecord.value(forKey: "fAirVolume")
             print("Last Air setting was \(String(describing: lastfAirNote))")
                    return lastfAirNote as! Double
@@ -39,8 +49,30 @@ class NoteModel: ObservableObject {
                }
        }
     
+    
+    private var lastHSC: Int {
+        let notes = try! managedObjectContext.fetch(Notes.selectedNoteFetchRequest(filter: "Coil"))
+        if let lastRecord = notes.last {
+         let lastfHSC = lastRecord.value(forKey: "fHSC")
+            print("Last Air setting was \(String(describing: lastfHSC))")
+                   return lastfHSC as! Int
+               } else {
+                   print("didnt find last HSC record")
+            return 8
+               }
+    }
+    
+    func getNotes() -> [Notes] {
+        let notes = try! managedObjectContext.fetch(Notes.notesFetchRequest())
+        return notes
+    }
+    
     func getLastfAirSetting() {
         lastFAirSetting = lastAir
+    }
+    
+    func getLastfHSC() {
+        lastFHSCSetting = lastHSC
     }
     
 }

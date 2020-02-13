@@ -30,3 +30,19 @@ extension Bike{
     
 } //end Extension Bike
 
+extension Notes{
+    /// FetchRequest for all notes, sorted by date
+    static func notesFetchRequest() -> NSFetchRequest<Notes> {
+           let request: NSFetchRequest<Notes> = Notes.fetchRequest()
+        request.sortDescriptors = [NSSortDescriptor(keyPath: \Notes.date, ascending: true)]
+           return request
+       }
+    
+    ///Fetch request for Notes selected by bike
+    static func selectedNoteFetchRequest(filter: String) -> NSFetchRequest<Notes> {
+        let request: NSFetchRequest<Notes> = Notes.notesFetchRequest()
+        request.sortDescriptors = [NSSortDescriptor(keyPath: \Notes.date, ascending: true)]
+        request.predicate = NSPredicate(format: "name CONTAINS %@", filter)
+        return request
+    }
+}

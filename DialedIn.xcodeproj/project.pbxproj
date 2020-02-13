@@ -130,6 +130,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A311BEC623F50B0C003ECE3B /* DetailViews */ = {
+			isa = PBXGroup;
+			children = (
+				A3DDCC7C23DFF21700CD1476 /* NotesDetailView.swift */,
+				A399E43423EA700C0049B7B0 /* BikeDetailView.swift */,
+			);
+			path = DetailViews;
+			sourceTree = "<group>";
+		};
 		A326FAC823F3BC80002490E2 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
@@ -151,16 +160,14 @@
 			path = MainViews;
 			sourceTree = "<group>";
 		};
-		A3918AD223E3E769002A1D61 /* Add-DetailViews */ = {
+		A3918AD223E3E769002A1D61 /* Add Views */ = {
 			isa = PBXGroup;
 			children = (
 				A311BEC423F4F189003ECE3B /* AddFrontSetupView.swift */,
 				A3DDCC7E23DFF2C900CD1476 /* AddNoteView.swift */,
 				A3DDCC8223DFF97900CD1476 /* BikeView.swift */,
-				A3DDCC7C23DFF21700CD1476 /* NotesDetailView.swift */,
-				A399E43423EA700C0049B7B0 /* BikeDetailView.swift */,
 			);
-			path = "Add-DetailViews";
+			path = "Add Views";
 			sourceTree = "<group>";
 		};
 		A3918AD323E3E76C002A1D61 /* SingleViews */ = {
@@ -201,12 +208,12 @@
 			isa = PBXGroup;
 			children = (
 				A326FAC823F3BC80002490E2 /* CoreData */,
+				A3C16EAC23DEA461005BFA14 /* Models */,
 				A3C76CA023EF5DC70047BBCC /* Delegates */,
 				A3C16EAB23DEA454005BFA14 /* Views */,
 				A3C16E7023DE9EC5005BFA14 /* Assets.xcassets */,
 				A3C16E7523DE9EC5005BFA14 /* LaunchScreen.storyboard */,
 				A3C16E7823DE9EC5005BFA14 /* Info.plist */,
-				A3C16EAC23DEA461005BFA14 /* Models */,
 				A3C16E7223DE9EC5005BFA14 /* Preview Content */,
 			);
 			path = DialedIn;
@@ -250,8 +257,9 @@
 		A3C16EAB23DEA454005BFA14 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				A311BEC623F50B0C003ECE3B /* DetailViews */,
 				A3918AD323E3E76C002A1D61 /* SingleViews */,
-				A3918AD223E3E769002A1D61 /* Add-DetailViews */,
+				A3918AD223E3E769002A1D61 /* Add Views */,
 				A3918AD123E3E764002A1D61 /* MainViews */,
 			);
 			path = Views;
