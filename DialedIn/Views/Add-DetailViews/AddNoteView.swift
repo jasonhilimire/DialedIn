@@ -21,9 +21,6 @@ struct AddNoteView: View {
     @ObservedObject var model = NoteModel()
 
     @State private var createdInitialBike = false
-
-    
-    //TODO: Bike name isnt binding to pickerView
     @State private var bikeNameIndex = 0
     @State private var bikeName = ""
     @State private var note = ""
@@ -41,7 +38,7 @@ struct AddNoteView: View {
     @State private var fReboundToggle = true
     @State private var fTokens = Int()
     
-    @State private var rAirSpring = 150.0
+    @State private var rAirSpring = Double()
     @State private var rHSC = Int()
     @State private var rLSC = Int()
     @State private var rComp = Int()
@@ -51,13 +48,8 @@ struct AddNoteView: View {
     @State private var rReb = Int()
     @State private var rReboundToggle = true
     @State private var rTokens = Int()
+    @State private var isCoil = true
     
-
-    
-    
-    
-    
-    //TODO: Fix
     var body: some View {
         NavigationView {
             VStack{
@@ -79,8 +71,7 @@ struct AddNoteView: View {
                             Text("Select a date")
                         }
                         RatingView(rating: $rating)
-                        }
-                    // Find the bike in bikes array == bikeName
+                    }
                     Section(header: Text("Front Suspension Details")){
                             // AirPressure
                         HStack{
@@ -108,19 +99,26 @@ struct AddNoteView: View {
                             } else {
                                 Stepper(value: $fReb, in: 0...25, label: {Text("Rebound: \(self.fReb)")})
                             }
-                        }
+                    }
                        
+                   // MARK - Rear Setup
                        Section(header: Text("Rear Suspension Details")){
-                            // Air Pressure
-// TODO: Refactor as SliderView
-                        HStack{
-                            Text("PSI: \(self.rAirSpring, specifier: "%.0f")")
-                        Slider(value: $rAirSpring, in: 100...350, step: 1.0)
-                        }
+                            // Air - Coil
 
+                            if isCoil == false {
+                            HStack{
+                               Text("PSI: \(self.rAirSpring, specifier: "%.0f")")
+                               Slider(value: $rAirSpring, in: 100...350, step: 1.0)
+                               }
+                            } else {
+                                HStack{
+                                    Text("Spring: \(self.rAirSpring, specifier: "%.0f")")
+                                    Slider(value: $rAirSpring, in: 300...700, step: 25)
+                                }
+                            }
+                        
                             Stepper(value: $rTokens, in: 0...6, label: {Text("Tokens: \(self.rTokens)")})
-                            //Compression
-
+                        //Compression
                             if rCompressionToggle == true {
                                 Stepper(value: $rHSC, in: 0...25, label: {Text("High Sp Comp: \(self.rHSC)")})
                                 Stepper(value: $rLSC, in: 0...25, label: {Text("Low Sp Comp: \(self.rLSC)")})
@@ -128,8 +126,7 @@ struct AddNoteView: View {
                                 Stepper(value: $rComp, in: 0...25, label: {Text("Compression: \(self.rComp)")})
                             }
                             
-                            // Rebound
-
+                        // Rebound
                             if rReboundToggle == true {
                                 Stepper(value: $rHSR, in: 0...25, label: {Text("High Sp Rebound: \(self.rHSR)")})
                                 Stepper(value: $rLSR, in: 0...25, label: {Text("Low Sp Rebound: \(self.rLSR)")})
@@ -137,11 +134,9 @@ struct AddNoteView: View {
                                 Stepper(value: $rReb, in: 0...20, label: {Text("Rebound: \(self.rReb)")})
                             }
                        }
-                    } // end form
+                } // end form
                     
                     .navigationBarTitle("DialedIn")
-                
-                
                 
                 Button(action: {
                     //dismisses the sheet
@@ -186,7 +181,13 @@ struct AddNoteView: View {
     
     func setToggles() {
         self.fCompressionToggle = self.bikes[bikeNameIndex].frontSetup?.dualCompression ?? true
-        print("\(self.bikes[bikeNameIndex].frontSetup?.dualCompression )")
+        self.fReboundToggle = self.bikes[bikeNameIndex].frontSetup?.dualRebound ?? true
+        
+        self.rCompressionToggle = self.bikes[bikeNameIndex].rearSetup?.dualCompression ?? true
+        self.rReboundToggle = self.bikes[bikeNameIndex].rearSetup?.dualRebound ?? true
+        self.isCoil = self.bikes[bikeNameIndex].rearSetup?.isCoil ?? true
+        
+//        print("\(self.bikes[bikeNameIndex].frontSetup?.dualCompression )")
     }
     
 }
