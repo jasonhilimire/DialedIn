@@ -85,7 +85,7 @@ struct AddNoteView: View {
                         
 
                             if fCompressionToggle == true {
-                                Stepper(value: $fHSC, in: 0...25, label: {Text("High Sp Comp: \(self.fHSC)")})
+                                Stepper(value: $model.lastFHSCSetting, in: 0...25, label: {Text("High Sp Comp: \(self.model.lastFHSCSetting)")})
                                 Stepper(value: $fLSC, in: 0...25, label: {Text("Low Sp Comp: \(self.fLSC)")})
                             } else {
                                 Stepper(value: $fComp, in: 0...25, label: {Text("Compression: \(self.fComp)")})
@@ -162,7 +162,7 @@ struct AddNoteView: View {
         newNote.bike?.name = self.bikes[bikeNameIndex].name
         newNote.fAirVolume = Double(self.model.lastFAirSetting)
         newNote.fCompression = Int16(self.fComp)
-        newNote.fHSC = Int16(self.fHSC)
+        newNote.fHSC = Int16(self.model.lastFHSCSetting)
         newNote.fLSC = Int16(self.fLSC)
         newNote.fRebound = Int16(self.fReb)
         newNote.fHSR = Int16(self.fHSR)
