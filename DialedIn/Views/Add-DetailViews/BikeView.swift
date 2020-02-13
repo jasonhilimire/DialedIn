@@ -116,7 +116,7 @@ struct BikeView: View {
                 
                 newBike.frontSetup = Fork(context: self.moc)
                 newBike.frontSetup?.dualCompression = self.forkDualCompToggle
-                newBike.frontSetup?.dualRebound = self.forkDualCompToggle
+                newBike.frontSetup?.dualRebound = self.forkDualReboundToggle
                 newBike.frontSetup?.lowerLastServiced = self.lastLowerServiceDate
                 newBike.frontSetup?.lasfFullService = self.lastFullForkServiceDate
                 newBike.frontSetup?.info = self.forkInfo

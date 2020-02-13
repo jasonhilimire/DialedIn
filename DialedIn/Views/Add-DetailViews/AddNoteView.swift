@@ -185,7 +185,8 @@ struct AddNoteView: View {
     }
     
     func setToggles() {
-        print("\(self.bikes[0])")
+        self.fCompressionToggle = self.bikes[bikeNameIndex].frontSetup?.dualCompression ?? true
+        print("\(self.bikes[bikeNameIndex].frontSetup?.dualCompression )")
     }
     
 }

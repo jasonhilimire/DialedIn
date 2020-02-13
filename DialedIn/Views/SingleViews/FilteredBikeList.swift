@@ -29,43 +29,44 @@ struct FilteredBikeList: View {
        }
 
     var body: some View {
-        let bike = fetchRequest.wrappedValue[0]
-         return
-            Text("\(bike.name ?? "No bike found")")
-        
-        // Front Setup views
-        if bike.frontSetup?.dualCompression == true {
-            Stepper(value: $fHSC, in: 0...25, label: {Text("High Sp Comp: \(self.fHSC)")})
-            Stepper(value: $fLSC, in: 0...25, label: {Text("Low Sp Comp: \(self.fLSC)")})
-         } else {
-             Stepper(value: $fComp, in: 0...20, label: {Text("Compression: \(self.fComp)")})
-         }
-        
-        if bike.frontSetup?.dualRebound == true {
-            
-        } else {
-            
-        }
-        
-        // RearSetup
-        
-        if bike.rearSetup?.isCoil == true {
-            
-        } else {
-            
-        }
-        
-        if bike.rearSetup?.dualCompression == true {
-            
-        } else {
-            
-        }
-        
-        if bike.rearSetup?.dualRebound == true {
-            
-        } else {
-            Text("No Rear Suspension on this Rig")
-        }
+        Text("")
+//        let bike = fetchRequest.wrappedValue[0]
+//         return
+//            Text("\(bike.name ?? "No bike found")")
+//
+//        // Front Setup views
+//        if bike.frontSetup?.dualCompression == true {
+//            Stepper(value: $fHSC, in: 0...25, label: {Text("High Sp Comp: \(self.fHSC)")})
+//            Stepper(value: $fLSC, in: 0...25, label: {Text("Low Sp Comp: \(self.fLSC)")})
+//         } else {
+//             Stepper(value: $fComp, in: 0...20, label: {Text("Compression: \(self.fComp)")})
+//         }
+//
+//        if bike.frontSetup?.dualRebound == true {
+//
+//        } else {
+//
+//        }
+//
+//        // RearSetup
+//
+//        if bike.rearSetup?.isCoil == true {
+//
+//        } else {
+//
+//        }
+//
+//        if bike.rearSetup?.dualCompression == true {
+//
+//        } else {
+//
+//        }
+//
+//        if bike.rearSetup?.dualRebound == true {
+//
+//        } else {
+//            Text("No Rear Suspension on this Rig")
+//        }
     }
 }
 
