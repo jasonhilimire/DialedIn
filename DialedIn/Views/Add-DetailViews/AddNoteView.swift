@@ -18,7 +18,7 @@ struct AddNoteView: View {
     @FetchRequest(fetchRequest: Bike.bikesFetchRequest())
     var bikes: FetchedResults<Bike>
     
-    @ObservedObject var model = NoteModel()
+    @ObservedObject var frontSetup = NoteFrontSetupModel()
 
     @State private var createdInitialBike = false
     @State private var bikeNameIndex = 0
@@ -79,32 +79,32 @@ struct AddNoteView: View {
                     Section(header: Text("Front Suspension Details")){
                             // AirPressure
                         HStack{
-                            Text("PSI: \(model.lastFAirSetting, specifier: "%.1f")")
-                            Slider(value: $model.lastFAirSetting, in: 45...120, step: 0.5)
+                            Text("PSI: \(frontSetup.lastFAirSetting, specifier: "%.1f")")
+                            Slider(value: $frontSetup.lastFAirSetting, in: 45...120, step: 0.5)
                         }
                             // Tokens
-                        Stepper(value: $model.lastFTokenSetting, in: 0...6, label: {Text("Tokens: \(self.model.lastFTokenSetting)")})
+                        Stepper(value: $frontSetup.lastFTokenSetting, in: 0...6, label: {Text("Tokens: \(self.frontSetup.lastFTokenSetting)")})
                             
                             //Compression
                         
 
                             if fCompressionToggle == true {
-                                Stepper(value: $model.lastFHSCSetting, in: 0...25, label: {Text("High Sp Comp: \(self.model.lastFHSCSetting)")})
+                                Stepper(value: $frontSetup.lastFHSCSetting, in: 0...25, label: {Text("High Sp Comp: \(self.frontSetup.lastFHSCSetting)")})
 // TODO: Correctly showing the value based on the bike chosen when the Bike is selected, however the text is not updating correctly - probably should filter with a dynamic predicate rather than passing this value in each time
                                 
                                 
-                                Stepper(value: $model.lastFLSCSetting, in: 0...25, label: {Text("Low Sp Comp: \(self.model.lastFLSCSetting)")})
+                                Stepper(value: $frontSetup.lastFLSCSetting, in: 0...25, label: {Text("Low Sp Comp: \(self.frontSetup.lastFLSCSetting)")})
                             } else {
-                                Stepper(value: $model.lastFCompSetting, in: 0...25, label: {Text("Compression: \(self.model.lastFCompSetting)")})
+                                Stepper(value: $frontSetup.lastFCompSetting, in: 0...25, label: {Text("Compression: \(self.frontSetup.lastFCompSetting)")})
                             }
                             
                             // Rebound
 
                             if fReboundToggle == true {
-                                Stepper(value: $model.lastFHSRSetting, in: 0...25, label: {Text("High Sp Rebound: \(self.model.lastFHSRSetting)")})
-                                Stepper(value: $model.lastFLSRSetting, in: 0...25, label: {Text("Low Sp Reound: \(self.model.lastFLSRSetting)")})
+                                Stepper(value: $frontSetup.lastFHSRSetting, in: 0...25, label: {Text("High Sp Rebound: \(self.frontSetup.lastFHSRSetting)")})
+                                Stepper(value: $frontSetup.lastFLSRSetting, in: 0...25, label: {Text("Low Sp Reound: \(self.frontSetup.lastFLSRSetting)")})
                             } else {
-                                Stepper(value: $model.lastFReboundSetting, in: 0...25, label: {Text("Rebound: \(self.model.lastFReboundSetting)")})
+                                Stepper(value: $frontSetup.lastFReboundSetting, in: 0...25, label: {Text("Rebound: \(self.frontSetup.lastFReboundSetting)")})
                             }
                     }
                        
@@ -170,14 +170,14 @@ struct AddNoteView: View {
         // This needs to be changed to capture the correct bike
         newNote.bike?.name = self.bikes[bikeNameIndex].name
 
-        newNote.fAirVolume = Double(self.model.lastFAirSetting)
-        newNote.fCompression = self.model.lastFCompSetting
-        newNote.fHSC = Int16(self.model.lastFHSCSetting)
-        newNote.fLSC = Int16(self.model.lastFLSCSetting)
-        newNote.fRebound = self.model.lastFReboundSetting
-        newNote.fHSR = self.model.lastFHSRSetting
-        newNote.fLSR = self.model.lastFLSRSetting
-        newNote.fTokens = self.model.lastFTokenSetting
+        newNote.fAirVolume = Double(self.frontSetup.lastFAirSetting)
+        newNote.fCompression = self.frontSetup.lastFCompSetting
+        newNote.fHSC = Int16(self.frontSetup.lastFHSCSetting)
+        newNote.fLSC = Int16(self.frontSetup.lastFLSCSetting)
+        newNote.fRebound = self.frontSetup.lastFReboundSetting
+        newNote.fHSR = self.frontSetup.lastFHSRSetting
+        newNote.fLSR = self.frontSetup.lastFLSRSetting
+        newNote.fTokens = self.frontSetup.lastFTokenSetting
         
         newNote.rAirSpring = Double(self.rAirSpring)
         newNote.rCompression = Int16(self.rComp)

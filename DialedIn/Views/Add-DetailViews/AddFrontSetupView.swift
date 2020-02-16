@@ -18,7 +18,7 @@ struct AddFrontSetupView: View {
     @FetchRequest(fetchRequest: Bike.bikesFetchRequest())
     var bikes: FetchedResults<Bike>
     
-    @ObservedObject var model = NoteModel()
+    @ObservedObject var model = NoteFrontSetupModel()
     
     @State var bikeNameIndex = 0
     

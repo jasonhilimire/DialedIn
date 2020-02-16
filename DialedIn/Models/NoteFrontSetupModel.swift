@@ -10,7 +10,7 @@ import Foundation
 import SwiftUI
 import Combine
 
-class NoteModel: ObservableObject {
+class NoteFrontSetupModel: ObservableObject {
     
     let managedObjectContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     @State private var bikeNameIndex = 0
@@ -71,7 +71,7 @@ class NoteModel: ObservableObject {
     
     
     
-    let didChange = PassthroughSubject<NoteModel, Never>()
+    let didChange = PassthroughSubject<NoteFrontSetupModel, Never>()
     
     // MARK: - Functions
 
@@ -171,7 +171,6 @@ class NoteModel: ObservableObject {
     }
     
     enum FrontSettings {
-//        case airVolume
         case compression
         case hsc
         case lsc
@@ -182,8 +181,6 @@ class NoteModel: ObservableObject {
         
         func getSetting(note: [Notes]) -> Int16 {
           switch self {
-//          case .airVolume:
-//              return note.last?.fAirVolume ?? 55.0
           case .compression:
               return note.last?.fCompression ?? 0
           case .hsc:
