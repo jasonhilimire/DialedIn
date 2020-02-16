@@ -21,9 +21,19 @@ struct BikePickerView: View {
     // eventually change this to pick Default Bike and then change
     var body: some View {
         Picker(selection: self.$bikeNameIndex, label: Text("Choose Bike")) {
-        ForEach(0..<bikes.count) { bike in Text("\(self.bikes[bike].name ?? "Unknown bike")")
+            ForEach(0..<bikes.count, id: \.self) { bike in
+                Text("\(self.bikes[bike].wrappedBikeName)").tag(bike)
             }
         }
+        
+        /* Previous Picker same result as above
+         
+         Picker(selection: self.$bikeNameIndex, label: Text("Choose Bike")) {
+         ForEach(0..<bikes.count) { bike in Text("\(self.bikes[bike].name ?? "Unknown bike")")
+             }
+         }
+         */
+        
     }
 }
 

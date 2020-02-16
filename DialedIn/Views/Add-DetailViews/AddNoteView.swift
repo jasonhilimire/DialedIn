@@ -66,6 +66,10 @@ struct AddNoteView: View {
                         BikePickerView(bikeNameIndex: $bikeNameIndex)
                         .onAppear(perform: {self.setToggles()})
                         
+                        // bug in the picker where its not updating the text on the Picker Line
+                        Text("Selected Bike is: \(self.bikes[bikeNameIndex].name ?? "Unknown Bike")").foregroundColor(.red)
+                            
+                        
                         TextField("Note", text: $note )
                         DatePicker(selection: $date, in: ...Date(), displayedComponents: .date) {
                             Text("Select a date")
@@ -191,7 +195,7 @@ struct AddNoteView: View {
         self.rReboundToggle = self.bikes[bikeNameIndex].rearSetup?.dualRebound ?? true
         self.isCoil = self.bikes[bikeNameIndex].rearSetup?.isCoil ?? true
         
-//        print("\(self.bikes[bikeNameIndex].frontSetup?.dualCompression )")
+        print("\(self.bikes[bikeNameIndex].wrappedBikeName)")
     }
     
 }
