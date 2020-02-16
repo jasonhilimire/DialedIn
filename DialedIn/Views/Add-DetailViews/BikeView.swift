@@ -142,8 +142,8 @@ struct BikeView: View {
                 }
                 
                 print(newBike)
-                print(newBike.frontSetup)
-                print(newBike.rearSetup)
+                print(newBike.frontSetup!)
+                print(newBike.rearSetup!)
                  try? self.moc.save()
                 
                 }) {

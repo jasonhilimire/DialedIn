@@ -25,7 +25,14 @@ class NoteModel: ObservableObject {
             didChange.send(self)
         }
     }
+
+    @Published var lastFCompSetting: Int16 = 0 {
+        didSet {
+            didChange.send(self)
+        }
+    }
     
+//TODO: Update these to Int16
     @Published var lastFHSCSetting: Int = 0 {
         didSet {
             didChange.send(self)
@@ -33,6 +40,24 @@ class NoteModel: ObservableObject {
     }
     
     @Published var lastFLSCSetting: Int = 0 {
+        didSet {
+            didChange.send(self)
+        }
+    }
+    
+    @Published var lastFReboundSetting: Int16 = 0 {
+        didSet {
+            didChange.send(self)
+        }
+    }
+    
+    @Published var lastFHSRSetting: Int16 = 0 {
+        didSet {
+            didChange.send(self)
+        }
+    }
+    
+    @Published var lastFLSRSetting: Int16 = 0 {
         didSet {
             didChange.send(self)
         }
@@ -81,13 +106,35 @@ class NoteModel: ObservableObject {
         let bike = bikes[chosenBike].name
         if filterBikes(for: bike!).count > 0 {
             let lastRecord = filterBikes(for: bike!)
-            print(lastRecord.last)
+//            print(lastRecord.last)
+//            print(lastRecord.last?.bike?.name)
             let lsc = lastRecord.last?.fLSC
             print("Last LSC = \(String(describing: lsc))")
             return Int(lsc!)
         }
         return 8
     }
+    
+    func getLastComp() -> Int16 {
+        let lastRecord = FrontSettings.compression
+        return lastRecord.getSetting(note: getNotes())
+    }
+    
+    func getLastFHSR() -> Int16 {
+        let lastRecord = FrontSettings.hsr
+        return lastRecord.getSetting(note: getNotes())
+    }
+    
+    func getLastFLSR() -> Int16 {
+        let lastRecord = FrontSettings.lsr
+        return lastRecord.getSetting(note: getNotes())
+    }
+    
+    func getLastRebound() -> Int16 {
+        let lastRecord = FrontSettings.rebound
+        return lastRecord.getSetting(note: getNotes())
+    }
+    
     
     // uses enum below to correctly get and set FrontSettings  based on last record
     func getLastFTokens() -> Int16 {
@@ -109,6 +156,10 @@ class NoteModel: ObservableObject {
         lastFAirSetting = lastAir
         lastFHSCSetting = getLastFHSC()
         lastFLSCSetting = getLastFLSC(for: bikeIndex)
+        lastFCompSetting = getLastComp()
+        lastFHSRSetting = getLastFHSR()
+        lastFLSRSetting = getLastFLSR()
+        lastFReboundSetting = getLastRebound()
         lastFTokenSetting = getLastFTokens()
     }
     

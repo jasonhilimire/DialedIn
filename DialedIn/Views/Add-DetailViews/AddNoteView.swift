@@ -27,16 +27,10 @@ struct AddNoteView: View {
     @State private var date = Date()
     @State private var rating = 3
     
-    @State private var fAirVolume = 45.0
-    @State private var fHSC = Int()
-    @State private var fLSC = Int()
-    @State private var fComp = Int()
+
     @State private var fCompressionToggle = false
-    @State private var fHSR = Int()
-    @State private var fLSR = Int()
-    @State private var fReb = Int()
     @State private var fReboundToggle = true
-    @State private var fTokens = Int()
+
     
     @State private var rAirSpring = Double()
     @State private var rHSC = Int()
@@ -101,16 +95,16 @@ struct AddNoteView: View {
                                 
                                 Stepper(value: $model.lastFLSCSetting, in: 0...25, label: {Text("Low Sp Comp: \(self.model.lastFLSCSetting)")})
                             } else {
-                                Stepper(value: $fComp, in: 0...25, label: {Text("Compression: \(self.fComp)")})
+                                Stepper(value: $model.lastFCompSetting, in: 0...25, label: {Text("Compression: \(self.model.lastFCompSetting)")})
                             }
                             
                             // Rebound
 
                             if fReboundToggle == true {
-                                Stepper(value: $fHSR, in: 0...25, label: {Text("High Sp Rebound: \(self.fHSR)")})
-                                Stepper(value: $fLSR, in: 0...25, label: {Text("Low Sp Reound: \(self.fLSR)")})
+                                Stepper(value: $model.lastFHSRSetting, in: 0...25, label: {Text("High Sp Rebound: \(self.model.lastFHSRSetting)")})
+                                Stepper(value: $model.lastFLSRSetting, in: 0...25, label: {Text("Low Sp Reound: \(self.model.lastFLSRSetting)")})
                             } else {
-                                Stepper(value: $fReb, in: 0...25, label: {Text("Rebound: \(self.fReb)")})
+                                Stepper(value: $model.lastFReboundSetting, in: 0...25, label: {Text("Rebound: \(self.model.lastFReboundSetting)")})
                             }
                     }
                        
@@ -175,13 +169,14 @@ struct AddNoteView: View {
         newNote.bike = Bike(context: self.moc)
         // This needs to be changed to capture the correct bike
         newNote.bike?.name = self.bikes[bikeNameIndex].name
+
         newNote.fAirVolume = Double(self.model.lastFAirSetting)
-        newNote.fCompression = Int16(self.fComp)
+        newNote.fCompression = self.model.lastFCompSetting
         newNote.fHSC = Int16(self.model.lastFHSCSetting)
         newNote.fLSC = Int16(self.model.lastFLSCSetting)
-        newNote.fRebound = Int16(self.fReb)
-        newNote.fHSR = Int16(self.fHSR)
-        newNote.fLSR = Int16(self.fLSR)
+        newNote.fRebound = self.model.lastFReboundSetting
+        newNote.fHSR = self.model.lastFHSRSetting
+        newNote.fLSR = self.model.lastFLSRSetting
         newNote.fTokens = self.model.lastFTokenSetting
         
         newNote.rAirSpring = Double(self.rAirSpring)
