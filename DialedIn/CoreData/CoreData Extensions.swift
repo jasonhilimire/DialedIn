@@ -14,19 +14,28 @@ import CoreData
 extension Bike{
     
     /// FetchRequest for all bikes, sorted by name
-    static func BikesFetchRequest() -> NSFetchRequest<Bike> {
+    static func bikesFetchRequest() -> NSFetchRequest<Bike> {
         let request: NSFetchRequest<Bike> = Bike.fetchRequest()
         request.sortDescriptors = [NSSortDescriptor(keyPath: \Bike.name, ascending: true)]
         return request
     }
     
     /// FetchRequest for selected bike, sorted by name
-    static func SelectedBikeFetchRequest(filter: String) -> NSFetchRequest<Bike> {
-        let request: NSFetchRequest<Bike> = Bike.BikesFetchRequest()
+    static func selectedBikeFetchRequest(filter: String) -> NSFetchRequest<Bike> {
+        let request: NSFetchRequest<Bike> = Bike.bikesFetchRequest()
         request.sortDescriptors = [NSSortDescriptor(keyPath: \Bike.name, ascending: true)]
         request.predicate = NSPredicate(format: "name CONTAINS %@", filter)
         return request
     }
     
 } //end Extension Bike
+
+extension Notes{
+    static func notesFetchRequest() -> NSFetchRequest<Notes> {
+        let request: NSFetchRequest<Notes> = Notes.fetchRequest()
+        request.sortDescriptors = [NSSortDescriptor(keyPath: \Notes.date, ascending: true)]
+        return request
+    }
+    
+}
 

@@ -14,7 +14,7 @@ struct BikePickerView: View {
        @Environment(\.managedObjectContext) var moc
        
        // Get All the bikes for the PickerView
-    @FetchRequest(fetchRequest: Bike.BikesFetchRequest()) var bikes: FetchedResults<Bike>
+    @FetchRequest(fetchRequest: Bike.bikesFetchRequest()) var bikes: FetchedResults<Bike>
        
     @Binding var bikeNameIndex: Int
     

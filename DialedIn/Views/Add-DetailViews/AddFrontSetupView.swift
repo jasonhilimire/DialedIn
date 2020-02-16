@@ -15,7 +15,7 @@ struct AddFrontSetupView: View {
     @Environment(\.presentationMode) var presentationMode
     
     // Get All the bikes for the PickerView
-    @FetchRequest(fetchRequest: Bike.BikesFetchRequest())
+    @FetchRequest(fetchRequest: Bike.bikesFetchRequest())
     var bikes: FetchedResults<Bike>
     
     @ObservedObject var model = NoteModel()
