@@ -69,7 +69,17 @@ struct AddNoteView: View {
                             Text("Select a date")
                         }
                         RatingView(rating: $rating)
+// Filtered Bike view is updating correctly with the Filter
+                        FilteredBikeListView(filterKey: "name", filterValue: bikeName) { (bike: Bike) in
+                            Text("Filtered Bike = \(bike.wrappedBikeName)")
+                        }
+                        
+                       
                     }
+                    
+                    
+                    
+                    
                     
                     // MARK: - FRONT SETUP -
                     Section(header: Text("Front Suspension Details")){
@@ -192,7 +202,7 @@ struct AddNoteView: View {
         self.rReboundToggle = self.bikes[bikeNameIndex].rearSetup?.dualRebound ?? true
         self.isCoil = self.bikes[bikeNameIndex].rearSetup?.isCoil ?? true
         
-        let modelIndex = model.getLastFLSC(for: bikeNameIndex)
+        bikeName = bikes[bikeNameIndex].name ?? "Unknown"
     }
     
 }

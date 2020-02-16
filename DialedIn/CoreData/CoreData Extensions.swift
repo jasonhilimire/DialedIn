@@ -37,5 +37,13 @@ extension Notes{
         return request
     }
     
+    //TODO: Dont think this will work for fetching bikes as it would be a subquery
+    static func filteredNotesFetchRequest(filter: String) -> NSFetchRequest<Notes> {
+        let request: NSFetchRequest<Notes> = Notes.fetchRequest()
+        request.sortDescriptors = [NSSortDescriptor(keyPath: \Notes.date, ascending: true)]
+        request.predicate = NSPredicate(format: "", filter)
+        return request
+    }
+    
 }
 

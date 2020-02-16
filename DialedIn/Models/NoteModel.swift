@@ -64,6 +64,7 @@ class NoteModel: ObservableObject {
        }
     
     
+    // base model- works without isses
     func getLastFHSC() -> Int {
         if getNotes().count > 0 {
             let lastRecord = getNotes().last?.fHSC
@@ -88,10 +89,9 @@ class NoteModel: ObservableObject {
         return 8
     }
     
-    
+    // uses enum below to correctly get and set FrontSettings  based on last record
     func getLastFTokens() -> Int16 {
         let lastRecord = FrontSettings.tokens
-        print("Last Tokens = \(String(describing: lastRecord))")
         return lastRecord.getSetting(note: getNotes())
     }
         
