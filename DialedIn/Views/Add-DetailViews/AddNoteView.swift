@@ -72,6 +72,8 @@ struct AddNoteView: View {
                         }
                         RatingView(rating: $rating)
                     }
+                    
+                    // MARK: - FRONT SETUP -
                     Section(header: Text("Front Suspension Details")){
                             // AirPressure
                         HStack{
@@ -85,7 +87,7 @@ struct AddNoteView: View {
                         
 
                             if fCompressionToggle == true {
-                                Stepper(value: $fHSC, in: 0...25, label: {Text("High Sp Comp: \(self.fHSC)")})
+                                Stepper(value: $model.lastFHSCSetting, in: 0...25, label: {Text("High Sp Comp: \(self.model.lastFHSCSetting)")})
                                 Stepper(value: $fLSC, in: 0...25, label: {Text("Low Sp Comp: \(self.fLSC)")})
                             } else {
                                 Stepper(value: $fComp, in: 0...25, label: {Text("Compression: \(self.fComp)")})
@@ -101,7 +103,7 @@ struct AddNoteView: View {
                             }
                     }
                        
-                   // MARK - Rear Setup
+                   // MARK: - Rear Setup
                        Section(header: Text("Rear Suspension Details")){
                             // Air - Coil
 
@@ -152,6 +154,8 @@ struct AddNoteView: View {
         }
     }
     
+    // MARK: - FUNCTIONS
+    
     func saveNote() {
         let newNote = Notes(context: self.moc)
         newNote.note = self.note
@@ -162,7 +166,7 @@ struct AddNoteView: View {
         newNote.bike?.name = self.bikes[bikeNameIndex].name
         newNote.fAirVolume = Double(self.model.lastFAirSetting)
         newNote.fCompression = Int16(self.fComp)
-        newNote.fHSC = Int16(self.fHSC)
+        newNote.fHSC = Int16(self.model.lastFHSCSetting)
         newNote.fLSC = Int16(self.fLSC)
         newNote.fRebound = Int16(self.fReb)
         newNote.fHSR = Int16(self.fHSR)

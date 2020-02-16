@@ -15,10 +15,16 @@ class NoteModel: ObservableObject {
     let managedObjectContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     init() {
-        getLastfAirSetting()
+        getLastFSettings()
     }
     
     @Published var lastFAirSetting: Double = 0 {
+        didSet {
+            didChange.send(self)
+        }
+    }
+    
+    @Published var lastFHSCSetting: Int = 0 {
         didSet {
             didChange.send(self)
         }
@@ -39,8 +45,26 @@ class NoteModel: ObservableObject {
                }
        }
     
-    func getLastfAirSetting() {
+    
+        func getLastFHSC() -> Int {
+    //        getNotes()
+            if getNotes().count > 0 {
+                let lastRecord = getNotes().last?.fHSC
+                print("Last HSC = \(String(describing: lastRecord))")
+                return Int(lastRecord!)
+            }
+            return 8
+      
+        }
+        
+        func getNotes() -> [Notes] {
+            let notes = try! managedObjectContext.fetch(Notes.fetchRequest()) as! [Notes]
+            return notes
+        }
+    
+    func getLastFSettings() {
         lastFAirSetting = lastAir
+        lastFHSCSetting = getLastFHSC()
     }
     
 }
