@@ -13,9 +13,10 @@ import Combine
 class NoteModel: ObservableObject {
     
     let managedObjectContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    @State private var bikeNameIndex = 0
     
     init() {
-        getLastFSettings()
+        getLastFSettings(bikeIndex: 0)
     }
     
     // MARK: - Published Variables
@@ -66,9 +67,14 @@ class NoteModel: ObservableObject {
         return 8
     }
     
-    func getLastFLSC() -> Int {
-        if getNotes().count > 0 {
-            let lastRecord = filterBikes(for: "Aabc")
+    func getLastFLSC(for chosenBike: Int) -> Int {
+        // get ALL the bikes
+        let bikes = try! managedObjectContext.fetch(Bike.bikesFetchRequest())
+        // filter the records for the chosen bike
+        let bike = bikes[chosenBike].name
+        if filterBikes(for: bike!).count > 0 {
+            let lastRecord = filterBikes(for: bike!)
+            print(lastRecord.last)
             let lsc = lastRecord.last?.fLSC
             print("Last LSC = \(String(describing: lsc))")
             return Int(lsc!)
@@ -81,10 +87,10 @@ class NoteModel: ObservableObject {
         return notes
     }
     
-    func getLastFSettings() {
+    func getLastFSettings(bikeIndex: Int) {
         lastFAirSetting = lastAir
         lastFHSCSetting = getLastFHSC()
-        lastFLSCSetting = getLastFLSC()
+        lastFLSCSetting = getLastFLSC(for: bikeIndex)
     }
     
     func filterBikes(for name: String) -> [Notes] {
@@ -93,5 +99,7 @@ class NoteModel: ObservableObject {
         }
         return filteredBikes
     }
+    
+    // add enum for
     
 }

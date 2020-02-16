@@ -92,7 +92,8 @@ struct AddNoteView: View {
 
                             if fCompressionToggle == true {
                                 Stepper(value: $model.lastFHSCSetting, in: 0...25, label: {Text("High Sp Comp: \(self.model.lastFHSCSetting)")})
-                                Stepper(value: $model.lastFLSCSetting, in: 0...25, label: {Text("Low Sp Comp: \(self.model.lastFLSCSetting)")})
+// TODO: Correctly showing the value based on the bike chosen when the Bike is selected, however the text is not updating correctly
+                                Stepper(value: $model.lastFLSCSetting, in: 0...25, label: {Text("Low Sp Comp: \(self.model.getLastFLSC(for: bikeNameIndex))")})
                             } else {
                                 Stepper(value: $fComp, in: 0...25, label: {Text("Compression: \(self.fComp)")})
                             }
@@ -195,7 +196,7 @@ struct AddNoteView: View {
         self.rReboundToggle = self.bikes[bikeNameIndex].rearSetup?.dualRebound ?? true
         self.isCoil = self.bikes[bikeNameIndex].rearSetup?.isCoil ?? true
         
-        print("\(self.bikes[bikeNameIndex].wrappedBikeName)")
+        let modelIndex = model.getLastFLSC(for: bikeNameIndex)
     }
     
 }
