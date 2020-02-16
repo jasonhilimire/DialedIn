@@ -38,6 +38,12 @@ class NoteModel: ObservableObject {
         }
     }
     
+    @Published var lastFTokenSetting: Int16 = 0 {
+        didSet {
+            didChange.send(self)
+        }
+    }
+    
     
     
     let didChange = PassthroughSubject<NoteModel, Never>()
@@ -81,16 +87,29 @@ class NoteModel: ObservableObject {
         }
         return 8
     }
+    
+    
+    func getLastFTokens() -> Int16 {
+        let lastRecord = FrontSettings.tokens
+        print("Last Tokens = \(String(describing: lastRecord))")
+        return lastRecord.getSetting(note: getNotes())
+    }
         
     func getNotes() -> [Notes] {
         let notes = try! managedObjectContext.fetch(Notes.fetchRequest()) as! [Notes]
         return notes
     }
     
+    func getBikes() -> [Bike] {
+        let bikes = try! managedObjectContext.fetch(Bike.bikesFetchRequest())
+        return bikes
+    }
+    
     func getLastFSettings(bikeIndex: Int) {
         lastFAirSetting = lastAir
         lastFHSCSetting = getLastFHSC()
         lastFLSCSetting = getLastFLSC(for: bikeIndex)
+        lastFTokenSetting = getLastFTokens()
     }
     
     func filterBikes(for name: String) -> [Notes] {
@@ -100,6 +119,37 @@ class NoteModel: ObservableObject {
         return filteredBikes
     }
     
-    // add enum for
+    enum FrontSettings {
+//        case airVolume
+        case compression
+        case hsc
+        case lsc
+        case rebound
+        case hsr
+        case lsr
+        case tokens
+        
+        func getSetting(note: [Notes]) -> Int16 {
+          switch self {
+//          case .airVolume:
+//              return note.last?.fAirVolume ?? 55.0
+          case .compression:
+              return note.last?.fCompression ?? 0
+          case .hsc:
+              return note.last?.fHSC ?? 0
+          case .lsc:
+              return note.last?.fLSC ?? 0
+          case .rebound:
+              return note.last?.fRebound ?? 0
+          case .hsr:
+              return note.last?.fHSR ?? 0
+          case .lsr:
+              return note.last?.fLSR ?? 0
+          case .tokens:
+              return note.last?.fTokens ?? 0
+          }
+      }
+        
+    }
     
 }

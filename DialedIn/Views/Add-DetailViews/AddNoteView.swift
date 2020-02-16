@@ -54,12 +54,6 @@ struct AddNoteView: View {
         NavigationView {
             VStack{
                 // Display info and link if no default bike is found- TODO: replace with action sheet
-                if bikes.count == 0 {
-                        Text("Please Create an intial bike")
-                        NavigationLink(destination: BikeView()) {
-                            Text("Add a Bike")
-                        }
-                    }
 
                 Form{
                     Section(header: Text("Ride Details")){
@@ -85,15 +79,17 @@ struct AddNoteView: View {
                             Slider(value: $model.lastFAirSetting, in: 45...120, step: 0.5)
                         }
                             // Tokens
-                            Stepper(value: $fTokens, in: 0...6, label: {Text("Tokens: \(self.fTokens)")})
+                        Stepper(value: $model.lastFTokenSetting, in: 0...6, label: {Text("Tokens: \(self.model.lastFTokenSetting)")})
                             
                             //Compression
                         
 
                             if fCompressionToggle == true {
                                 Stepper(value: $model.lastFHSCSetting, in: 0...25, label: {Text("High Sp Comp: \(self.model.lastFHSCSetting)")})
-// TODO: Correctly showing the value based on the bike chosen when the Bike is selected, however the text is not updating correctly
-                                Stepper(value: $model.lastFLSCSetting, in: 0...25, label: {Text("Low Sp Comp: \(self.model.getLastFLSC(for: bikeNameIndex))")})
+// TODO: Correctly showing the value based on the bike chosen when the Bike is selected, however the text is not updating correctly - probably should filter with a dynamic predicate rather than passing this value in each time
+                                
+                                
+                                Stepper(value: $model.lastFLSCSetting, in: 0...25, label: {Text("Low Sp Comp: \(self.model.lastFLSCSetting)")})
                             } else {
                                 Stepper(value: $fComp, in: 0...25, label: {Text("Compression: \(self.fComp)")})
                             }
@@ -176,7 +172,7 @@ struct AddNoteView: View {
         newNote.fRebound = Int16(self.fReb)
         newNote.fHSR = Int16(self.fHSR)
         newNote.fLSR = Int16(self.fLSR)
-        newNote.fTokens = Int16(self.fTokens)
+        newNote.fTokens = self.model.lastFTokenSetting
         
         newNote.rAirSpring = Double(self.rAirSpring)
         newNote.rCompression = Int16(self.rComp)
