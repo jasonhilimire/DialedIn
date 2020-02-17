@@ -67,13 +67,10 @@ class NoteFrontSetupModel: ObservableObject {
         }
     }
     
-    
-    
     let didChange = PassthroughSubject<NoteFrontSetupModel, Never>()
     
     // MARK: - Functions
 
-    //Should this be changed to reflect the Bike.Note
     private var lastAir: Double  {
         let notes = try! managedObjectContext.fetch(Notes.fetchRequest()) as! [Notes]
         if let lastRecord = notes.last {
@@ -85,12 +82,11 @@ class NoteFrontSetupModel: ObservableObject {
             return 55.0
                }
        }
-    
-    
-    // base model- works without isses
+
+    // get Last Settings
     func getLastFHSC() -> Int16 {
         let lastRecord = FrontSettings.hsc
-        return lastRecord.getSetting(note: getNotes())
+        return lastRecord.getSetting(note: filterBikes(for: "XYZ"))
     }
     
     func getLastFLSC() -> Int16 {
@@ -118,8 +114,6 @@ class NoteFrontSetupModel: ObservableObject {
         return lastRecord.getSetting(note: getNotes())
     }
     
-    
-    // uses enum below to correctly get and set FrontSettings  based on last record
     func getLastFTokens() -> Int16 {
         let lastRecord = FrontSettings.tokens
         return lastRecord.getSetting(note: getNotes())
@@ -144,12 +138,16 @@ class NoteFrontSetupModel: ObservableObject {
         lastFLSRSetting = getLastFLSR()
         lastFReboundSetting = getLastRebound()
         lastFTokenSetting = getLastFTokens()
+        
+        filterBikes(for: "XYZ")
     }
     
+ // THIS WORKS Now need to figure out how to pass the selected bike into the Model from the pickerview
     func filterBikes(for name: String) -> [Notes] {
         let filteredBikes = getNotes().filter { bikes in
             bikes.bike?.name == name
         }
+        print("Filtered HSC \(String(describing: filteredBikes.last?.fHSC))")
         return filteredBikes
     }
     

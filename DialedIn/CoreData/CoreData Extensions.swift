@@ -24,7 +24,7 @@ extension Bike{
     static func selectedBikeFetchRequest(filter: String) -> NSFetchRequest<Bike> {
         let request: NSFetchRequest<Bike> = Bike.bikesFetchRequest()
         request.sortDescriptors = [NSSortDescriptor(keyPath: \Bike.name, ascending: true)]
-        request.predicate = NSPredicate(format: "name CONTAINS %@", filter)
+        request.predicate = NSPredicate(format: "name == %@", filter)
         return request
     }
     
