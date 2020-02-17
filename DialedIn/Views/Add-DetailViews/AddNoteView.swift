@@ -47,14 +47,14 @@ struct AddNoteView: View {
     var body: some View {
         NavigationView {
             VStack{
-                // Display info and link if no default bike is found- TODO: replace with action sheet
+// Display info and link if no default bike is found- TODO: replace with action sheet?
 
                 Form{
                     Section(header: Text("Ride Details")){
                         BikePickerView(bikeNameIndex: $bikeNameIndex)
                         .onAppear(perform: {self.setToggles()})
                         
-                        // bug in the picker where its not updating the text on the Picker Line
+//TODO: bug in the picker where its not updating the text on the Picker Line
                         Text("Selected Bike is: \(self.bikes[bikeNameIndex].name ?? "Unknown Bike")").foregroundColor(.red)
                             
                         
@@ -67,12 +67,7 @@ struct AddNoteView: View {
                         FilteredBikeListView(filterKey: "name", filterValue: bikeName) { (bike: Bike) in
                             Text("Filtered Bike = \(bike.wrappedBikeName)")
                         }
-                        
-                       
                     }
-                    
-                    
-                    
                     
                     
                     // MARK: - FRONT SETUP -
@@ -172,8 +167,8 @@ struct AddNoteView: View {
 
         newNote.fAirVolume = Double(self.frontSetup.lastFAirSetting)
         newNote.fCompression = self.frontSetup.lastFCompSetting
-        newNote.fHSC = Int16(self.frontSetup.lastFHSCSetting)
-        newNote.fLSC = Int16(self.frontSetup.lastFLSCSetting)
+        newNote.fHSC = self.frontSetup.lastFHSCSetting
+        newNote.fLSC = self.frontSetup.lastFLSCSetting
         newNote.fRebound = self.frontSetup.lastFReboundSetting
         newNote.fHSR = self.frontSetup.lastFHSRSetting
         newNote.fLSR = self.frontSetup.lastFLSRSetting

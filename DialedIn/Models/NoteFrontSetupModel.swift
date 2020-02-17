@@ -13,10 +13,9 @@ import Combine
 class NoteFrontSetupModel: ObservableObject {
     
     let managedObjectContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    @State private var bikeNameIndex = 0
     
     init() {
-        getLastFSettings(bikeIndex: 0)
+        getLastFSettings()
     }
     
     // MARK: - Published Variables
@@ -32,14 +31,13 @@ class NoteFrontSetupModel: ObservableObject {
         }
     }
     
-//TODO: Update these to Int16
-    @Published var lastFHSCSetting: Int = 0 {
+    @Published var lastFHSCSetting: Int16 = 0 {
         didSet {
             didChange.send(self)
         }
     }
     
-    @Published var lastFLSCSetting: Int = 0 {
+    @Published var lastFLSCSetting: Int16 = 0 {
         didSet {
             didChange.send(self)
         }
@@ -90,29 +88,14 @@ class NoteFrontSetupModel: ObservableObject {
     
     
     // base model- works without isses
-    func getLastFHSC() -> Int {
-        if getNotes().count > 0 {
-            let lastRecord = getNotes().last?.fHSC
-            print("Last HSC = \(String(describing: lastRecord))")
-            return Int(lastRecord!)
-        }
-        return 8
+    func getLastFHSC() -> Int16 {
+        let lastRecord = FrontSettings.hsc
+        return lastRecord.getSetting(note: getNotes())
     }
     
-    func getLastFLSC(for chosenBike: Int) -> Int {
-        // get ALL the bikes
-        let bikes = try! managedObjectContext.fetch(Bike.bikesFetchRequest())
-        // filter the records for the chosen bike
-        let bike = bikes[chosenBike].name
-        if filterBikes(for: bike!).count > 0 {
-            let lastRecord = filterBikes(for: bike!)
-//            print(lastRecord.last)
-//            print(lastRecord.last?.bike?.name)
-            let lsc = lastRecord.last?.fLSC
-            print("Last LSC = \(String(describing: lsc))")
-            return Int(lsc!)
-        }
-        return 8
+    func getLastFLSC() -> Int16 {
+       let lastRecord = FrontSettings.lsc
+       return lastRecord.getSetting(note: getNotes())
     }
     
     func getLastComp() -> Int16 {
@@ -152,10 +135,10 @@ class NoteFrontSetupModel: ObservableObject {
         return bikes
     }
     
-    func getLastFSettings(bikeIndex: Int) {
+    func getLastFSettings() {
         lastFAirSetting = lastAir
         lastFHSCSetting = getLastFHSC()
-        lastFLSCSetting = getLastFLSC(for: bikeIndex)
+        lastFLSCSetting = getLastFLSC()
         lastFCompSetting = getLastComp()
         lastFHSRSetting = getLastFHSR()
         lastFLSRSetting = getLastFLSR()
