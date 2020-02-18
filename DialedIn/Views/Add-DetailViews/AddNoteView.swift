@@ -199,7 +199,7 @@ struct AddNoteView: View {
         print("Bike Name: \(bikeName)")
         print("Front Setup: \(frontSetup.bikeName)")
 //        frontSetup.filterBikes(for: bikeName)
-        frontSetup.getLastFSettings()
+        frontSetup.getLastFrontSettings()
     }
     
 }

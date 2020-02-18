@@ -17,7 +17,7 @@ class NoteFrontSetupModel: ObservableObject {
     
     
     init() {
-        getLastFSettings()
+        getLastFrontSettings()
     }
     
     // MARK: - Published Variables
@@ -79,20 +79,14 @@ class NoteFrontSetupModel: ObservableObject {
     let didChange = PassthroughSubject<NoteFrontSetupModel, Never>()
     
     // MARK: - Functions
-
-    private var lastAir: Double  {
-        let notes = try! managedObjectContext.fetch(Notes.fetchRequest()) as! [Notes]
-        if let lastRecord = notes.last {
-            let lastfAirNote = lastRecord.value(forKey: "fAirVolume")
-            print("Last Air setting was \(String(describing: lastfAirNote))")
-                   return lastfAirNote as! Double
-               } else {
-                   print("didnt find last record")
-            return 55.0
-               }
-       }
-
     // get Last Settings
+    
+    func getLastAir() -> Double {
+        let lastRecord = filterBikes(for: bikeName)
+        let lastAirSetting = lastRecord.last?.fAirVolume
+        return lastAirSetting ?? 60.0
+    }
+    
     func getLastFHSC() -> Int16 {
         let lastRecord = FrontSettings.hsc
         return lastRecord.getSetting(note: filterBikes(for: bikeName))
@@ -100,32 +94,32 @@ class NoteFrontSetupModel: ObservableObject {
     
     func getLastFLSC() -> Int16 {
        let lastRecord = FrontSettings.lsc
-       return lastRecord.getSetting(note: getNotes())
+       return lastRecord.getSetting(note: filterBikes(for: bikeName))
     }
     
-    func getLastComp() -> Int16 {
+    func getLastFComp() -> Int16 {
         let lastRecord = FrontSettings.compression
-        return lastRecord.getSetting(note: getNotes())
+        return lastRecord.getSetting(note: filterBikes(for: bikeName))
     }
     
     func getLastFHSR() -> Int16 {
         let lastRecord = FrontSettings.hsr
-        return lastRecord.getSetting(note: getNotes())
+        return lastRecord.getSetting(note: filterBikes(for: bikeName))
     }
     
     func getLastFLSR() -> Int16 {
         let lastRecord = FrontSettings.lsr
-        return lastRecord.getSetting(note: getNotes())
+        return lastRecord.getSetting(note: filterBikes(for: bikeName))
     }
     
-    func getLastRebound() -> Int16 {
+    func getLastFRebound() -> Int16 {
         let lastRecord = FrontSettings.rebound
-        return lastRecord.getSetting(note: getNotes())
+        return lastRecord.getSetting(note: filterBikes(for: bikeName))
     }
     
     func getLastFTokens() -> Int16 {
         let lastRecord = FrontSettings.tokens
-        return lastRecord.getSetting(note: getNotes())
+        return lastRecord.getSetting(note: filterBikes(for: bikeName))
     }
         
     func getNotes() -> [Notes] {
@@ -138,21 +132,20 @@ class NoteFrontSetupModel: ObservableObject {
         return bikes
     }
     
-    func getLastFSettings() {
-        lastFAirSetting = lastAir
+    func getLastFrontSettings() {
+        // Get all the settings and assign
+        lastFAirSetting = getLastAir()
         lastFHSCSetting = getLastFHSC()
         lastFLSCSetting = getLastFLSC()
-        lastFCompSetting = getLastComp()
+        lastFCompSetting = getLastFComp()
         lastFHSRSetting = getLastFHSR()
         lastFLSRSetting = getLastFLSR()
-        lastFReboundSetting = getLastRebound()
+        lastFReboundSetting = getLastFRebound()
         lastFTokenSetting = getLastFTokens()
     }
     
  // THIS WORKS Now need to figure out how to pass the selected bike into the Model from the pickerview
     func filterBikes(for name: String) -> [Notes] {
-        // prevent nil - need to get that bikeName into all the getLasts
-        
         let filteredBikes = getNotes().filter { bikes in
             bikes.bike?.name == name
         }
@@ -169,6 +162,7 @@ class NoteFrontSetupModel: ObservableObject {
         case tokens
         
         func getSetting(note: [Notes]) -> Int16 {
+            // if no filteredBike is found sets all values to 0
           switch self {
           case .compression:
               return note.last?.fCompression ?? 0
