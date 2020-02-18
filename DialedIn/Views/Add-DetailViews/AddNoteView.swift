@@ -47,8 +47,6 @@ struct AddNoteView: View {
     var body: some View {
         NavigationView {
             VStack{
-// Display info and link if no default bike is found- TODO: replace with action sheet?
-
                 Form{
                     Section(header: Text("Ride Details")){
                         BikePickerView(bikeNameIndex: $bikeNameIndex)
@@ -63,10 +61,6 @@ struct AddNoteView: View {
                             Text("Select a date")
                         }
                         RatingView(rating: $rating)
-// Filtered Bike view is updating correctly with the Filter
-                        FilteredBikeListView(filterKey: "name", filterValue: bikeName) { (bike: Bike) in
-                            Text("Filtered Bike = \(bike.wrappedBikeName)")
-                        }
                     }
                     
                     
@@ -138,7 +132,7 @@ struct AddNoteView: View {
                        }
                 } // end form
                     
-                    .navigationBarTitle("DialedIn")
+                    .navigationBarTitle("DialedIn", displayMode: .inline)
                 
                 Button(action: {
                     //dismisses the sheet

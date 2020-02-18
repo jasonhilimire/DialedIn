@@ -11,7 +11,7 @@ import SwiftUI
 struct AppView: View {
     
     init() {
-        UITabBar.appearance().barTintColor = UIColor.lightGray
+//        UITabBar.appearance().barTintColor = UIColor.orange
     }
     
     var body: some View {
@@ -34,7 +34,7 @@ struct AppView: View {
                     Text("Bike")
                 }
         }
-        .accentColor(.blue)
+        .accentColor(.orange)
     }
 }
 
