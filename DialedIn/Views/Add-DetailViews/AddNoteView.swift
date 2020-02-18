@@ -19,6 +19,7 @@ struct AddNoteView: View {
     var bikes: FetchedResults<Bike>
     
     @ObservedObject var frontSetup = NoteFrontSetupModel()
+    @ObservedObject var rearSetup = NoteRearSetupModel()
 
     @State private var createdInitialBike = false
     @State private var bikeNameIndex = 0
@@ -75,13 +76,8 @@ struct AddNoteView: View {
                         Stepper(value: $frontSetup.lastFTokenSetting, in: 0...6, label: {Text("Tokens: \(self.frontSetup.lastFTokenSetting)")})
                             
                             //Compression
-                        
-
                             if fCompressionToggle == true {
                                 Stepper(value: $frontSetup.lastFHSCSetting, in: 0...25, label: {Text("High Sp Comp: \(self.frontSetup.lastFHSCSetting)")})
-// TODO: Correctly showing the value based on the bike chosen when the Bike is selected, however the text is not updating correctly - probably should filter with a dynamic predicate rather than passing this value in each time
-                                
-                                
                                 Stepper(value: $frontSetup.lastFLSCSetting, in: 0...25, label: {Text("Low Sp Comp: \(self.frontSetup.lastFLSCSetting)")})
                             } else {
                                 Stepper(value: $frontSetup.lastFCompSetting, in: 0...25, label: {Text("Compression: \(self.frontSetup.lastFCompSetting)")})
@@ -99,35 +95,34 @@ struct AddNoteView: View {
                        
                    // MARK: - Rear Setup
                        Section(header: Text("Rear Suspension Details")){
-                            // Air - Coil
-
+                        // Air - Coil
                             if isCoil == false {
                             HStack{
-                               Text("PSI: \(self.rAirSpring, specifier: "%.0f")")
-                               Slider(value: $rAirSpring, in: 100...350, step: 1.0)
+                                Text("PSI: \(self.rearSetup.lastRAirSpringSetting, specifier: "%.0f")")
+                                Slider(value: $rearSetup.lastRAirSpringSetting, in: 100...350, step: 1.0)
                                }
                             } else {
                                 HStack{
-                                    Text("Spring: \(self.rAirSpring, specifier: "%.0f")")
-                                    Slider(value: $rAirSpring, in: 300...700, step: 25)
+                                    Text("Spring: \(self.rearSetup.lastRAirSpringSetting, specifier: "%.0f")")
+                                    Slider(value: $rearSetup.lastRAirSpringSetting, in: 300...700, step: 25)
                                 }
                             }
-                        
-                            Stepper(value: $rTokens, in: 0...6, label: {Text("Tokens: \(self.rTokens)")})
+                        //Tokens
+                        Stepper(value: $rearSetup.lastRTokenSetting, in: 0...6, label: {Text("Tokens: \(self.rearSetup.lastRTokenSetting)")})
                         //Compression
                             if rCompressionToggle == true {
-                                Stepper(value: $rHSC, in: 0...25, label: {Text("High Sp Comp: \(self.rHSC)")})
-                                Stepper(value: $rLSC, in: 0...25, label: {Text("Low Sp Comp: \(self.rLSC)")})
+                                Stepper(value: $rearSetup.lastRHSCSetting, in: 0...25, label: {Text("High Sp Comp: \(self.rearSetup.lastRHSCSetting)")})
+                                Stepper(value: $rearSetup.lastRLSCSetting, in: 0...25, label: {Text("Low Sp Comp: \(self.rearSetup.lastRLSCSetting)")})
                             } else {
-                                Stepper(value: $rComp, in: 0...25, label: {Text("Compression: \(self.rComp)")})
+                                Stepper(value: $rearSetup.lastRCompSetting, in: 0...25, label: {Text("Compression: \(self.rearSetup.lastRCompSetting)")})
                             }
                             
                         // Rebound
                             if rReboundToggle == true {
-                                Stepper(value: $rHSR, in: 0...25, label: {Text("High Sp Rebound: \(self.rHSR)")})
-                                Stepper(value: $rLSR, in: 0...25, label: {Text("Low Sp Rebound: \(self.rLSR)")})
+                                Stepper(value: $rearSetup.lastRHSRSetting, in: 0...25, label: {Text("High Sp Rebound: \(self.rearSetup.lastRHSRSetting)")})
+                                Stepper(value: $rearSetup.lastRLSRSetting, in: 0...25, label: {Text("Low Sp Rebound: \(self.rearSetup.lastRLSRSetting)")})
                             } else {
-                                Stepper(value: $rReb, in: 0...20, label: {Text("Rebound: \(self.rReb)")})
+                                Stepper(value: $rearSetup.lastRReboundSetting, in: 0...20, label: {Text("Rebound: \(self.rearSetup.lastRReboundSetting)")})
                             }
                        }
                 } // end form
@@ -156,10 +151,7 @@ struct AddNoteView: View {
         newNote.rating = Int16(self.rating)
         
         newNote.bike = Bike(context: self.moc)
-        // This needs to be changed to capture the correct bike
         newNote.bike?.name = self.bikes[bikeNameIndex].name
-        
-
         newNote.fAirVolume = Double(self.frontSetup.lastFAirSetting)
         newNote.fCompression = self.frontSetup.lastFCompSetting
         newNote.fHSC = self.frontSetup.lastFHSCSetting
@@ -169,14 +161,14 @@ struct AddNoteView: View {
         newNote.fLSR = self.frontSetup.lastFLSRSetting
         newNote.fTokens = self.frontSetup.lastFTokenSetting
         
-        newNote.rAirSpring = Double(self.rAirSpring)
-        newNote.rCompression = Int16(self.rComp)
-        newNote.rHSC = Int16(self.rHSC)
-        newNote.rLSC = Int16(self.rLSC)
-        newNote.rRebound = Int16(self.rReb)
-        newNote.rHSR = Int16(self.rHSR)
-        newNote.rLSR = Int16(self.rLSR)
-        newNote.rTokens = Int16(self.rTokens)
+        newNote.rAirSpring = self.rearSetup.lastRAirSpringSetting
+        newNote.rCompression = self.rearSetup.lastRCompSetting
+        newNote.rHSC = self.rearSetup.lastRHSCSetting
+        newNote.rLSC = self.rearSetup.lastRLSCSetting
+        newNote.rRebound = self.rearSetup.lastRReboundSetting
+        newNote.rHSR = self.rearSetup.lastRHSRSetting
+        newNote.rLSR = self.rearSetup.lastRLSRSetting
+        newNote.rTokens = self.rearSetup.lastRTokenSetting
     }
     
     func setToggles() {
@@ -189,11 +181,11 @@ struct AddNoteView: View {
         
         // When returning from Picker View .onAppear Update the model
         bikeName = bikes[bikeNameIndex].name ?? "Unknown"
-        frontSetup.bikeName = bikeName  // MAKE THIS WORK?? AND THEN TAKE THIS VARIABLE AND PASS IT INTO THE MODEL ALL THE WAY DOWN!!
-        print("Bike Name: \(bikeName)")
-        print("Front Setup: \(frontSetup.bikeName)")
-//        frontSetup.filterBikes(for: bikeName)
+        frontSetup.bikeName = bikeName
         frontSetup.getLastFrontSettings()
+        
+        rearSetup.bikeName = bikeName
+        rearSetup.getLastRearSettings()
     }
     
 }
