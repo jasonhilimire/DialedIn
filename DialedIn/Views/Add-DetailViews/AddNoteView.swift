@@ -29,21 +29,21 @@ struct AddNoteView: View {
     @State private var rating = 3
     
 
-    @State private var fCompressionToggle = false
+    @State private var fCompressionToggle = true
     @State private var fReboundToggle = true
 
     
-    @State private var rAirSpring = Double()
-    @State private var rHSC = Int()
-    @State private var rLSC = Int()
-    @State private var rComp = Int()
+//    @State private var rAirSpring = 200.0
+//    @State private var rHSC = Int()
+//    @State private var rLSC = Int()
+//    @State private var rComp = Int()
     @State private var rCompressionToggle = true
-    @State private var rHSR = Int()
-    @State private var rLSR = Int()
-    @State private var rReb = Int()
+//    @State private var rHSR = Int()
+//    @State private var rLSR = Int()
+//    @State private var rReb = Int()
     @State private var rReboundToggle = true
-    @State private var rTokens = Int()
-    @State private var isCoil = true
+//    @State private var rTokens = Int()
+    @State private var isCoil = false
     
     var body: some View {
         NavigationView {
@@ -87,7 +87,7 @@ struct AddNoteView: View {
 
                             if fReboundToggle == true {
                                 Stepper(value: $frontSetup.lastFHSRSetting, in: 0...25, label: {Text("High Sp Rebound: \(self.frontSetup.lastFHSRSetting)")})
-                                Stepper(value: $frontSetup.lastFLSRSetting, in: 0...25, label: {Text("Low Sp Reound: \(self.frontSetup.lastFLSRSetting)")})
+                                Stepper(value: $frontSetup.lastFLSRSetting, in: 0...25, label: {Text("Low Sp Rebound: \(self.frontSetup.lastFLSRSetting)")})
                             } else {
                                 Stepper(value: $frontSetup.lastFReboundSetting, in: 0...25, label: {Text("Rebound: \(self.frontSetup.lastFReboundSetting)")})
                             }
@@ -177,7 +177,7 @@ struct AddNoteView: View {
         
         self.rCompressionToggle = self.bikes[bikeNameIndex].rearSetup?.dualCompression ?? true
         self.rReboundToggle = self.bikes[bikeNameIndex].rearSetup?.dualRebound ?? true
-        self.isCoil = self.bikes[bikeNameIndex].rearSetup?.isCoil ?? true
+        self.isCoil = self.bikes[bikeNameIndex].rearSetup?.isCoil ?? false
         
         // When returning from Picker View .onAppear Update the model
         bikeName = bikes[bikeNameIndex].name ?? "Unknown"

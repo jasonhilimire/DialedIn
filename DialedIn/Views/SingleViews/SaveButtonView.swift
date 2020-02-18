@@ -8,6 +8,7 @@
 
 import SwiftUI
 
+// TODO: Change this to a buttonstyle
 struct SaveButtonView: View {
     var body: some View {
          HStack {
@@ -15,7 +16,7 @@ struct SaveButtonView: View {
                Text("Save")
            }
                .multilineTextAlignment(.center)
-               .padding().frame(maxWidth: 400)
+               .padding().frame(maxWidth: 300)
                .foregroundColor(Color.white)
                .background(Color.green)
                .cornerRadius(8)

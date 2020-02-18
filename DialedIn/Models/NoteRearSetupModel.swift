@@ -80,7 +80,7 @@ class NoteRearSetupModel: ObservableObject {
        
        func getLastAir() -> Double {
            let lastRecord = filterBikes(for: bikeName)
-           let lastAirSetting = lastRecord.last?.fAirVolume
+        let lastAirSetting = lastRecord.last?.rAirSpring
            return lastAirSetting ?? 200.0
        }
        
