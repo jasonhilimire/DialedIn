@@ -33,6 +33,7 @@ struct NotesListView: View {
                 .navigationBarItems(leading: EditButton(), trailing:
                 Button(action: {self.showingAddScreen.toggle()
                 }) {
+                    //TODO: DISABLE BUTTON IF BIKE.COUNT IS EMPTY
                     Image(systemName: "gauge.badge.plus")
             })
                 .sheet(isPresented: $showingAddScreen)  {

@@ -164,6 +164,7 @@ struct AddNoteView: View {
         newNote.bike = Bike(context: self.moc)
         // This needs to be changed to capture the correct bike
         newNote.bike?.name = self.bikes[bikeNameIndex].name
+        
 
         newNote.fAirVolume = Double(self.frontSetup.lastFAirSetting)
         newNote.fCompression = self.frontSetup.lastFCompSetting
@@ -192,7 +193,13 @@ struct AddNoteView: View {
         self.rReboundToggle = self.bikes[bikeNameIndex].rearSetup?.dualRebound ?? true
         self.isCoil = self.bikes[bikeNameIndex].rearSetup?.isCoil ?? true
         
+        // When returning from Picker View .onAppear Update the model
         bikeName = bikes[bikeNameIndex].name ?? "Unknown"
+        frontSetup.bikeName = bikeName  // MAKE THIS WORK?? AND THEN TAKE THIS VARIABLE AND PASS IT INTO THE MODEL ALL THE WAY DOWN!!
+        print("Bike Name: \(bikeName)")
+        print("Front Setup: \(frontSetup.bikeName)")
+//        frontSetup.filterBikes(for: bikeName)
+        frontSetup.getLastFSettings()
     }
     
 }

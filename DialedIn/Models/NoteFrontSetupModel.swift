@@ -14,6 +14,8 @@ class NoteFrontSetupModel: ObservableObject {
     
     let managedObjectContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
+    
+    
     init() {
         getLastFSettings()
     }
@@ -67,6 +69,13 @@ class NoteFrontSetupModel: ObservableObject {
         }
     }
     
+    @Published var bikeName: String = "" {
+        didSet {
+            didChange.send(self)
+        }
+    }
+    
+    
     let didChange = PassthroughSubject<NoteFrontSetupModel, Never>()
     
     // MARK: - Functions
@@ -86,7 +95,7 @@ class NoteFrontSetupModel: ObservableObject {
     // get Last Settings
     func getLastFHSC() -> Int16 {
         let lastRecord = FrontSettings.hsc
-        return lastRecord.getSetting(note: filterBikes(for: "XYZ"))
+        return lastRecord.getSetting(note: filterBikes(for: bikeName))
     }
     
     func getLastFLSC() -> Int16 {
@@ -138,16 +147,15 @@ class NoteFrontSetupModel: ObservableObject {
         lastFLSRSetting = getLastFLSR()
         lastFReboundSetting = getLastRebound()
         lastFTokenSetting = getLastFTokens()
-        
-        filterBikes(for: "XYZ")
     }
     
  // THIS WORKS Now need to figure out how to pass the selected bike into the Model from the pickerview
     func filterBikes(for name: String) -> [Notes] {
+        // prevent nil - need to get that bikeName into all the getLasts
+        
         let filteredBikes = getNotes().filter { bikes in
             bikes.bike?.name == name
         }
-        print("Filtered HSC \(String(describing: filteredBikes.last?.fHSC))")
         return filteredBikes
     }
     
