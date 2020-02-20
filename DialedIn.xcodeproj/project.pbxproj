@@ -151,16 +151,14 @@
 			path = MainViews;
 			sourceTree = "<group>";
 		};
-		A3918AD223E3E769002A1D61 /* Add-DetailViews */ = {
+		A3918AD223E3E769002A1D61 /* AddViews */ = {
 			isa = PBXGroup;
 			children = (
 				A311BEC423F4F189003ECE3B /* AddFrontSetupView.swift */,
 				A3DDCC7E23DFF2C900CD1476 /* AddNoteView.swift */,
 				A3DDCC8223DFF97900CD1476 /* BikeView.swift */,
-				A3DDCC7C23DFF21700CD1476 /* NotesDetailView.swift */,
-				A399E43423EA700C0049B7B0 /* BikeDetailView.swift */,
 			);
-			path = "Add-DetailViews";
+			path = AddViews;
 			sourceTree = "<group>";
 		};
 		A3918AD323E3E76C002A1D61 /* SingleViews */ = {
@@ -249,8 +247,9 @@
 		A3C16EAB23DEA454005BFA14 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				A3D7265623FE2A8100AEE17A /* DetailViews */,
 				A3918AD323E3E76C002A1D61 /* SingleViews */,
-				A3918AD223E3E769002A1D61 /* Add-DetailViews */,
+				A3918AD223E3E769002A1D61 /* AddViews */,
 				A3918AD123E3E764002A1D61 /* MainViews */,
 			);
 			path = Views;
@@ -295,6 +294,15 @@
 				A3C16E6923DE9EC4005BFA14 /* SceneDelegate.swift */,
 			);
 			path = Delegates;
+			sourceTree = "<group>";
+		};
+		A3D7265623FE2A8100AEE17A /* DetailViews */ = {
+			isa = PBXGroup;
+			children = (
+				A3DDCC7C23DFF21700CD1476 /* NotesDetailView.swift */,
+				A399E43423EA700C0049B7B0 /* BikeDetailView.swift */,
+			);
+			path = DetailViews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
