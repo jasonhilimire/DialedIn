@@ -20,28 +20,29 @@ struct BikeDetailView: View {
     }
     
     let bike: Bike
-    
     var body: some View {
-        VStack {
-            Text(self.bike.name ?? "Unknown Bike")
-                .font(.largeTitle)
-            Text("Info: \(self.bike.bikeNote ?? "")" )
-                .font(.subheadline)
-            
-            Section(header: Text("Fork")) {
-                Text("Last Lowers Service:")
-                Text("Last Full Service:")
-            }
-            
-            Section(header: Text("Rear")) {
-                if self.bike.hasRearShock == false {
-                    Text("HardTail")
-                } else if self.bike.rearSetup?.isCoil == true{
-                    Text("Last Full Service: ")
-                } else {
-                    Text("Last AirCan Service:")
+        GeometryReader { geometry in
+            VStack {
+                Text(self.bike.name ?? "Unknown Bike")
+                    .font(.largeTitle)
+                Text("Info: \(self.bike.bikeNote ?? "")" )
+                    .font(.subheadline)
+                
+                Section(header: Text("Fork")) {
+                    Text("")
                     Text("Last Full Service:")
-                    
+                }
+                
+                Section(header: Text("Rear")) {
+                    if self.bike.hasRearShock == false {
+                        Text("HardTail")
+                    } else if self.bike.rearSetup?.isCoil == true{
+                        Text("Last Full Service: ")
+                    } else {
+                        Text("Last AirCan Service:")
+                        Text("Last Full Service:")
+                        
+                    }
                 }
             }
             

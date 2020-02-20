@@ -149,6 +149,7 @@ struct AddNoteView: View {
         let newNote = Notes(context: self.moc)
         newNote.note = self.note
         newNote.rating = Int16(self.rating)
+        newNote.date = self.date
         
         newNote.bike = Bike(context: self.moc)
         newNote.bike?.name = self.bikes[bikeNameIndex].name
