@@ -7,10 +7,13 @@
 //
 
 import SwiftUI
+import CoreData
+import Combine
 
 struct BikeDetailView: View {
     @Environment(\.managedObjectContext) var moc
     @Environment(\.presentationMode) var presentationMode
+    
     @State private var showingDeleteAlert = false
     
     var dateFormatter: DateFormatter {
@@ -21,31 +24,27 @@ struct BikeDetailView: View {
     
     let bike: Bike
     var body: some View {
-        GeometryReader { geometry in
-            VStack {
-                Text(self.bike.name ?? "Unknown Bike")
-                    .font(.largeTitle)
-                Text("Info: \(self.bike.bikeNote ?? "")" )
-                    .font(.subheadline)
-                
-                Section(header: Text("Fork")) {
-                    Text("")
-                    Text("Last Full Service:")
-                }
-                
-                Section(header: Text("Rear")) {
-                    if self.bike.hasRearShock == false {
-                        Text("HardTail")
-                    } else if self.bike.rearSetup?.isCoil == true{
-                        Text("Last Full Service: ")
-                    } else {
-                        Text("Last AirCan Service:")
-                        Text("Last Full Service:")
-                        
-                    }
-                }
+        VStack {
+            Text(self.bike.name ?? "Unknown Bike")
+                .font(.largeTitle)
+            Text("Info: \(self.bike.bikeNote ?? "")" )
+                .font(.subheadline)
+            
+            Section(header: Text("Fork")) {
+                ForkDetailView(fork: bike.frontSetup!)
             }
             
+            Section(header: Text("Rear")) {
+                if self.bike.hasRearShock == false {
+                    Text("HardTail")
+                } else if self.bike.rearSetup?.isCoil == true{
+                    Text("Last Full Service: ")
+                } else {
+                    Text("Last AirCan Service:")
+                    Text("Last Full Service:")
+                    
+                }
+            }
         }
     }
 }
