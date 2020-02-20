@@ -179,6 +179,8 @@ struct AddNoteView: View {
         self.rReboundToggle = self.bikes[bikeNameIndex].rearSetup?.dualRebound ?? true
         self.isCoil = self.bikes[bikeNameIndex].rearSetup?.isCoil ?? false
         
+        
+        // TODO: BUG HERE DURING SCROLLING WHERE showing the  picker again resets all the toggles because nothing has been actually saved
         // When returning from Picker View .onAppear Update the model
         bikeName = bikes[bikeNameIndex].name ?? "Unknown"
         frontSetup.bikeName = bikeName
