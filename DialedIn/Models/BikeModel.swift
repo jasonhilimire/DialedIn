@@ -11,41 +11,45 @@ import SwiftUI
 import Combine
 
 class BikeModel: ObservableObject {
-    
+ /*
     let managedObjectContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     
     init() {
-        getLastAirSetting()
+//        getBike()
     }
     
-    @Published var lastBikeAirSetting: Int = 0 {
+        @Published var hasRear: Bool = true {
         didSet {
             didChange.send(self)
         }
     }
     
+    @Published var isDefault: Bool = false {
+        didSet {
+            didChange.send(self)
+        }
+    }
+    
+    @Published var name: String = "" {
+        didSet {
+            didChange.send(self)
+        }
+    }
+    
+    @Published var bikeNote: String = "" {
+        didSet {
+            didChange.send(self)
+        }
+    }
+    
+    @Published var name: String = "" {
+        didSet {
+            didChange.send(self)
+        }
+    }
+     
     let didChange = PassthroughSubject<BikeModel, Never>()
 
-    private var lastBikeAir: Int  {
-        let bikes = try! managedObjectContext.fetch(Bike.fetchRequest()) as! [Bike]
-        if let lastRecord = bikes.last {
-            let lastRecordNote = lastRecord.value(forKey: "name")
-                   return lastRecordNote as! Int
-               } else {
-                   print("didnt find last record")
-                   return 55
-               }
-       }
-    
-    func getBike(filter: String) {
-//        let fetchRequest = FetchRequest<Bike>(entity: Bike.entity(), sortDescriptors: [], predicate: NSPredicate(format: "name CONTAINS %@", filter))
-//        
-//        
-    }
-    
-    func getLastAirSetting() {
-        lastBikeAirSetting = lastBikeAir
-    }
-    
+  */
 }
