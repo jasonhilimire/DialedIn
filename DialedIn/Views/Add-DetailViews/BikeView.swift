@@ -37,14 +37,6 @@ struct BikeView: View {
     var body: some View {
         NavigationView {
             VStack {
-//                Spacer()
-//                GrabBarView()
-//                Text("Bike Info")
-//                    .font(.title)
-//                    .fontWeight(.light)
-//                    .foregroundColor(Color.blue)
-//                    .multilineTextAlignment(.center)
-//                    .padding(.top)
                 Form {
                     
                     Section(header: Text("Bike Details")){

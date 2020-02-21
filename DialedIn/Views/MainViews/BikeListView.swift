@@ -24,7 +24,7 @@ struct BikeListView: View {
         NavigationView {
             List {
                 ForEach(bikes, id: \.self) { bike in
-                    NavigationLink(destination: BikeDetailView()) {
+                    NavigationLink(destination: BikeDetailView(bike: bike)) {
                         VStack(alignment: .leading) {
                             Text(bike.name ?? "Unknown Bike")
                                 .font(.headline)

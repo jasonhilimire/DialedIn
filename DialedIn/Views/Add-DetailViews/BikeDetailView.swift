@@ -7,16 +7,25 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct BikeDetailView: View {
+    @Environment(\.managedObjectContext) var moc
     @State private var showingDeleteAlert = false
+    
+    let bike: Bike
     var body: some View {
-        Text("Bike Detail View")
+        Text("\(bike.name ?? "Unknown Bike")")
     }
 }
 
 struct BikeDetailView_Previews: PreviewProvider {
+    static let moc = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
     static var previews: some View {
-        BikeDetailView()
+        let bike = Bike(context: moc)
+
+        return NavigationView {
+            BikeDetailView(bike: bike)
+        }
     }
 }
