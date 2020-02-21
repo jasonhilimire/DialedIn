@@ -13,7 +13,8 @@
 		A3273B7223EF8F6F007A3792 /* NoteFrontSetupModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3273B7123EF8F6F007A3792 /* NoteFrontSetupModel.swift */; };
 		A3273B7523EF998B007A3792 /* Notes+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3273B7323EF998B007A3792 /* Notes+CoreDataClass.swift */; };
 		A3273B7623EF998B007A3792 /* Notes+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3273B7423EF998B007A3792 /* Notes+CoreDataProperties.swift */; };
-		A385783523FE431900DF97FA /* ForkDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A385783423FE431900DF97FA /* ForkDetailView.swift */; };
+		A37EE5E223FF836F00D6D192 /* RearShockLastServicedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37EE5E123FF836F00D6D192 /* RearShockLastServicedView.swift */; };
+		A385783523FE431900DF97FA /* ForkLastServicedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A385783423FE431900DF97FA /* ForkLastServicedView.swift */; };
 		A3918AD023E3E446002A1D61 /* SaveButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3918ACF23E3E446002A1D61 /* SaveButtonView.swift */; };
 		A399E43523EA700C0049B7B0 /* BikeDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A399E43423EA700C0049B7B0 /* BikeDetailView.swift */; };
 		A3A1297023FB9AC50014EC8A /* NoteRearSetupModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3A1296F23FB9AC50014EC8A /* NoteRearSetupModel.swift */; };
@@ -69,7 +70,8 @@
 		A3273B7123EF8F6F007A3792 /* NoteFrontSetupModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteFrontSetupModel.swift; sourceTree = "<group>"; };
 		A3273B7323EF998B007A3792 /* Notes+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notes+CoreDataClass.swift"; sourceTree = "<group>"; };
 		A3273B7423EF998B007A3792 /* Notes+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notes+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		A385783423FE431900DF97FA /* ForkDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForkDetailView.swift; sourceTree = "<group>"; };
+		A37EE5E123FF836F00D6D192 /* RearShockLastServicedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RearShockLastServicedView.swift; sourceTree = "<group>"; };
+		A385783423FE431900DF97FA /* ForkLastServicedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForkLastServicedView.swift; sourceTree = "<group>"; };
 		A3918ACF23E3E446002A1D61 /* SaveButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveButtonView.swift; sourceTree = "<group>"; };
 		A399E43423EA700C0049B7B0 /* BikeDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeDetailView.swift; sourceTree = "<group>"; };
 		A3A1296F23FB9AC50014EC8A /* NoteRearSetupModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteRearSetupModel.swift; sourceTree = "<group>"; };
@@ -303,7 +305,8 @@
 			children = (
 				A3DDCC7C23DFF21700CD1476 /* NotesDetailView.swift */,
 				A399E43423EA700C0049B7B0 /* BikeDetailView.swift */,
-				A385783423FE431900DF97FA /* ForkDetailView.swift */,
+				A385783423FE431900DF97FA /* ForkLastServicedView.swift */,
+				A37EE5E123FF836F00D6D192 /* RearShockLastServicedView.swift */,
 			);
 			path = DetailViews;
 			sourceTree = "<group>";
@@ -439,13 +442,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A37EE5E223FF836F00D6D192 /* RearShockLastServicedView.swift in Sources */,
 				A3273B7223EF8F6F007A3792 /* NoteFrontSetupModel.swift in Sources */,
 				A3DDCC7A23DFEFEB00CD1476 /* Bike+CoreDataClass.swift in Sources */,
 				A311BEC523F4F189003ECE3B /* AddFrontSetupView.swift in Sources */,
 				A3C16E6823DE9EC4005BFA14 /* AppDelegate.swift in Sources */,
 				A3B8B79723F0E9EF00CE1EF8 /* BikePickerView.swift in Sources */,
 				A3C16E6D23DE9EC4005BFA14 /* DialedIn.xcdatamodeld in Sources */,
-				A385783523FE431900DF97FA /* ForkDetailView.swift in Sources */,
+				A385783523FE431900DF97FA /* ForkLastServicedView.swift in Sources */,
 				A3C76CA423EF66450047BBCC /* RatingView.swift in Sources */,
 				A3C16EB723DEA582005BFA14 /* RearShock+CoreDataClass.swift in Sources */,
 				A3C16E6F23DE9EC4005BFA14 /* NotesListView.swift in Sources */,

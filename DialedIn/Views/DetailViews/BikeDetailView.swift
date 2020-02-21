@@ -31,18 +31,14 @@ struct BikeDetailView: View {
                 .font(.subheadline)
             
             Section(header: Text("Fork")) {
-                ForkDetailView(fork: bike.frontSetup!)
+                ForkLastServicedView(fork: bike.frontSetup!)
             }
             
             Section(header: Text("Rear")) {
                 if self.bike.hasRearShock == false {
                     Text("HardTail")
-                } else if self.bike.rearSetup?.isCoil == true{
-                    Text("Last Full Service: ")
                 } else {
-                    Text("Last AirCan Service:")
-                    Text("Last Full Service:")
-                    
+                    RearShockLastServicedView(rear: bike.rearSetup!)
                 }
             }
         }

@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct ForkDetailView: View {
+struct ForkLastServicedView: View {
     
     @Environment(\.managedObjectContext) var moc
     
