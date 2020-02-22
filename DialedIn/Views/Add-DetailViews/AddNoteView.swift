@@ -43,6 +43,7 @@ struct AddNoteView: View {
                 Section(header: Text("Ride Details")){
 //                        BikePickerView(bikeNameIndex: $bikeNameIndex)
 //                        .onAppear(perform: {self.setToggles()})
+//
                     
 //TODO: bug in the picker where its not updating the text on the Picker Line
                     Text("Selected Bike is: \(bike.name ?? "Unknown Bike")").foregroundColor(.red)
@@ -54,6 +55,7 @@ struct AddNoteView: View {
                     }
                     RatingView(rating: $rating)
                 }
+                .onAppear(perform: {self.setToggles()})
                 
                 
                 // MARK: - FRONT SETUP -
@@ -163,16 +165,16 @@ struct AddNoteView: View {
     }
     
     func setToggles() {
-        self.fCompressionToggle = self.bikes[bikeNameIndex].frontSetup?.dualCompression ?? true
-        self.fReboundToggle = self.bikes[bikeNameIndex].frontSetup?.dualRebound ?? true
+        self.fCompressionToggle = self.bike.frontSetup?.dualCompression ?? true
+        self.fReboundToggle = self.bike.frontSetup?.dualRebound ?? true
         
-        self.rCompressionToggle = self.bikes[bikeNameIndex].rearSetup?.dualCompression ?? true
-        self.rReboundToggle = self.bikes[bikeNameIndex].rearSetup?.dualRebound ?? true
-        self.isCoil = self.bikes[bikeNameIndex].rearSetup?.isCoil ?? false
+        self.rCompressionToggle = self.bike.rearSetup?.dualCompression ?? true
+        self.rReboundToggle = self.bike.rearSetup?.dualRebound ?? true
+        self.isCoil = self.bike.rearSetup?.isCoil ?? false
         
         
         // TODO: BUG HERE DURING SCROLLING WHERE showing the  picker again resets all the toggles because nothing has been actually saved
-        // When returning from Picker View .onAppear Update the model
+        // When returning from Picker View .onAppear Update the model  // Change to on Receive?
         bikeName = bike.name ?? "Unknown"
         frontSetup.bikeName = bikeName
         frontSetup.getLastFrontSettings()
