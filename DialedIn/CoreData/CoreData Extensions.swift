@@ -27,7 +27,6 @@ extension Bike{
         request.predicate = NSPredicate(format: "name == %@", filter)
         return request
     }
-    
 } //end Extension Bike
 
 extension Notes{

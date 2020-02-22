@@ -13,15 +13,25 @@ import CoreData
 
 struct NotesListView: View {
     
-       // Create the MOC
+    // Create the MOC
     @Environment(\.managedObjectContext) var moc
-    // create a Fetch request for Notes
-    @FetchRequest(entity: Notes.entity(), sortDescriptors: [
-        NSSortDescriptor(keyPath: \Notes.date, ascending: true)
-    ]) var notes: FetchedResults<Notes>
+    
+    @FetchRequest(fetchRequest: Bike.bikesFetchRequest())
+    var bikes: FetchedResults<Bike>
+
+    @ObservedObject var bike = BikeModel()
     
     
-    @State private var showingAddScreen = false
+    @State private var showingActionSheet = false
+    var buttonsArray: NSMutableArray  = NSMutableArray()
+    var names = [String]()
+    
+    
+    init() {
+        names = getBikeNames()
+        loadArray()
+        
+    }
     
     var body: some View {
 
@@ -31,14 +41,36 @@ struct NotesListView: View {
             }
             .navigationBarTitle("DialedIn")
                 .navigationBarItems(leading: EditButton(), trailing:
-                Button(action: {self.showingAddScreen.toggle()
+                Button(action: { self.showingActionSheet.toggle()
                 }) {
                     //TODO: DISABLE BUTTON IF BIKE.COUNT IS EMPTY
                     Image(systemName: "gauge.badge.plus")
             })
-                .sheet(isPresented: $showingAddScreen)  {
-                    AddNoteView().environment(\.managedObjectContext, self.moc)
+                .actionSheet(isPresented: $showingActionSheet) {
+                    ActionSheet(title: Text("Bikes").bold()
+                        , message: Text("Choose a bike"), buttons: buttonsArray as! [ActionSheet.Button])
             }
+            
+            
+//                .sheet(isPresented: $showingAddScreen)  {
+//                    AddNoteView().environment(\.managedObjectContext, self.moc)
+//            }
+        }
+    }
+        
+    func getBikeNames() -> [String] {
+        return bike.allBikeNames()
+    }
+
+    
+    func loadArray() {
+        for bike in 0..<names.count {
+            let button: ActionSheet.Button =
+                .default(Text("\(self.names[bike])"), action: {
+                    print("\(self.names[bike])")
+//                    AddNoteView(bike: self.names)
+                })
+            self.buttonsArray[bike] = button
         }
     }
 }

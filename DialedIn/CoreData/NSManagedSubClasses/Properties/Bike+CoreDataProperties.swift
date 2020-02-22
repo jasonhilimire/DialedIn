@@ -41,7 +41,6 @@ extension Bike {
             $0.wrappedNote < $1.wrappedNote
         }
     }
-
 }
 
 // MARK: Generated accessors for setupNotes

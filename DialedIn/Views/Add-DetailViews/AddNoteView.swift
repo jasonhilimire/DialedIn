@@ -28,33 +28,24 @@ struct AddNoteView: View {
     @State private var date = Date()
     @State private var rating = 3
     
-
     @State private var fCompressionToggle = true
     @State private var fReboundToggle = true
-
-    
-//    @State private var rAirSpring = 200.0
-//    @State private var rHSC = Int()
-//    @State private var rLSC = Int()
-//    @State private var rComp = Int()
     @State private var rCompressionToggle = true
-//    @State private var rHSR = Int()
-//    @State private var rLSR = Int()
-//    @State private var rReb = Int()
     @State private var rReboundToggle = true
-//    @State private var rTokens = Int()
     @State private var isCoil = false
+    
+    var bike: Bike
     
     var body: some View {
         NavigationView {
             VStack{
                 Form{
                     Section(header: Text("Ride Details")){
-                        BikePickerView(bikeNameIndex: $bikeNameIndex)
-                        .onAppear(perform: {self.setToggles()})
+//                        BikePickerView(bikeNameIndex: $bikeNameIndex)
+//                        .onAppear(perform: {self.setToggles()})
                         
 //TODO: bug in the picker where its not updating the text on the Picker Line
-                        Text("Selected Bike is: \(self.bikes[bikeNameIndex].name ?? "Unknown Bike")").foregroundColor(.red)
+                        Text("Selected Bike is: \(bike.name ?? "Unknown Bike")").foregroundColor(.red)
                             
                         
                         TextField("Note", text: $note )
@@ -193,8 +184,8 @@ struct AddNoteView: View {
     
 }
 
-struct AddNoteView_Previews: PreviewProvider {
-    static var previews: some View {
-        AddNoteView()
-    }
-}
+//struct AddNoteView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        AddNoteView()
+//    }
+//}
