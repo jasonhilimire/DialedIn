@@ -23,25 +23,28 @@ struct NotesListView: View {
     
     
     @State private var showingActionSheet = false
-    var buttonsArray: NSMutableArray  = NSMutableArray()
-    var names = [String]()
+    @State var buttonsArray: NSMutableArray  = NSMutableArray()
+    @State private var names = [String]()
     
     
-    init() {
-        names = getBikeNames()
-        loadArray()
-        
-    }
+//    init() {
+//        names = getBikeNames()
+//        loadArray()
+//
+//    }
     
     var body: some View {
 
         NavigationView {
             List{
                 NoteCellView()
+                  
             }
+                .onAppear(perform: {self.reload()})
+                .onReceive(bike.didChange, perform: {_ in self.reload()})
             .navigationBarTitle("DialedIn")
                 .navigationBarItems(leading: EditButton(), trailing:
-                Button(action: { self.showingActionSheet.toggle()
+                    Button(action: { self.showingActionSheet.toggle()
                 }) {
                     //TODO: DISABLE BUTTON IF BIKE.COUNT IS EMPTY
                     Image(systemName: "gauge.badge.plus")
@@ -57,20 +60,34 @@ struct NotesListView: View {
 //            }
         }
     }
+    
+    func reload() {
+        getBikeNames()
+        self.names = getBikeNames()
+        loadArray()
+        print("Reload: \(names)")
+        
+
+    }
         
     func getBikeNames() -> [String] {
+        print("getBikeNames: \(bike.allBikeNames())")
         return bike.allBikeNames()
     }
 
     
     func loadArray() {
+// TODO: THIS works but removing a bike does not update the buttons array?
+        print("loadArray: \(names)")
         for bike in 0..<names.count {
             let button: ActionSheet.Button =
                 .default(Text("\(self.names[bike])"), action: {
                     print("\(self.names[bike])")
 //                    AddNoteView(bike: self.names)
                 })
+            print("bike in\(self.names[bike])")
             self.buttonsArray[bike] = button
+            print("Load array ran")
         }
     }
 }

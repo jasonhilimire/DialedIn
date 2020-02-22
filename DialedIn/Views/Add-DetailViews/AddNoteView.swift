@@ -60,7 +60,7 @@ struct AddNoteView: View {
                     Section(header: Text("Front Suspension Details")){
                             // AirPressure
                         HStack{
-                            Text("PSI: \(frontSetup.lastFAirSetting, specifier: "%.1f")")
+                            Text("PSI: \(self.frontSetup.lastFAirSetting, specifier: "%.1f")")
                             Slider(value: $frontSetup.lastFAirSetting, in: 45...120, step: 0.5)
                         }
                             // Tokens

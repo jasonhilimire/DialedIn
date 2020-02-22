@@ -36,7 +36,7 @@ class BikeModel: ObservableObject {
                 bikeNames.append(bikeName)
             }
         }
-        print(bikeNames)
+//        print(bikeNames)
         return bikeNames
        }
     
