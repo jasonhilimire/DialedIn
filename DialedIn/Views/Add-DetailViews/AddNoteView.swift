@@ -32,17 +32,8 @@ struct AddNoteView: View {
     @State private var fCompressionToggle = true
     @State private var fReboundToggle = true
 
-    
-//    @State private var rAirSpring = 200.0
-//    @State private var rHSC = Int()
-//    @State private var rLSC = Int()
-//    @State private var rComp = Int()
     @State private var rCompressionToggle = true
-//    @State private var rHSR = Int()
-//    @State private var rLSR = Int()
-//    @State private var rReb = Int()
     @State private var rReboundToggle = true
-//    @State private var rTokens = Int()
     @State private var isCoil = false
     
     var body: some View {
