@@ -16,36 +16,33 @@ class BikeModel: ObservableObject {
     
     
     init() {
-        getLastAirSetting()
+        getBikes()
     }
     
-    @Published var lastBikeAirSetting: Int = 0 {
+    @Published var bikeNames = [String]() {
         didSet {
             didChange.send(self)
         }
     }
     
+    
     let didChange = PassthroughSubject<BikeModel, Never>()
 
-    private var lastBikeAir: Int  {
+    func allBikeNames() -> [String]  {
+        var bikeNames = [String]()
         let bikes = try! managedObjectContext.fetch(Bike.fetchRequest()) as! [Bike]
-        if let lastRecord = bikes.last {
-            let lastRecordNote = lastRecord.value(forKey: "name")
-                   return lastRecordNote as! Int
-               } else {
-                   print("didnt find last record")
-                   return 55
-               }
+        for index in 0..<bikes.count {
+            if let bikeName = bikes[index].name {
+                bikeNames.append(bikeName)
+            }
+        }
+//        print(bikeNames)
+        return bikeNames
        }
     
-    func getBike(filter: String) {
-//        let fetchRequest = FetchRequest<Bike>(entity: Bike.entity(), sortDescriptors: [], predicate: NSPredicate(format: "name CONTAINS %@", filter))
-//        
-//        
-    }
     
-    func getLastAirSetting() {
-        lastBikeAirSetting = lastBikeAir
+    func getBikes() {
+        bikeNames = allBikeNames()
     }
     
 }

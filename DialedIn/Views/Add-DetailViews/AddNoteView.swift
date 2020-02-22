@@ -31,30 +31,22 @@ struct AddNoteView: View {
 
     @State private var fCompressionToggle = true
     @State private var fReboundToggle = true
-
-    
-//    @State private var rAirSpring = 200.0
-//    @State private var rHSC = Int()
-//    @State private var rLSC = Int()
-//    @State private var rComp = Int()
     @State private var rCompressionToggle = true
-//    @State private var rHSR = Int()
-//    @State private var rLSR = Int()
-//    @State private var rReb = Int()
     @State private var rReboundToggle = true
-//    @State private var rTokens = Int()
     @State private var isCoil = false
+    
+    let bike: Bike
     
     var body: some View {
         NavigationView {
             VStack{
                 Form{
                     Section(header: Text("Ride Details")){
-                        BikePickerView(bikeNameIndex: $bikeNameIndex)
-                        .onAppear(perform: {self.setToggles()})
+//                        BikePickerView(bikeNameIndex: $bikeNameIndex)
+//                        .onAppear(perform: {self.setToggles()})
                         
 //TODO: bug in the picker where its not updating the text on the Picker Line
-                        Text("Selected Bike is: \(self.bikes[bikeNameIndex].name ?? "Unknown Bike")").foregroundColor(.red)
+                        Text("Selected Bike is: \(bike.name ?? "Unknown Bike")").foregroundColor(.red)
                             
                         
                         TextField("Note", text: $note )
@@ -69,7 +61,7 @@ struct AddNoteView: View {
                     Section(header: Text("Front Suspension Details")){
                             // AirPressure
                         HStack{
-                            Text("PSI: \(frontSetup.lastFAirSetting, specifier: "%.1f")")
+                            Text("PSI: \(self.frontSetup.lastFAirSetting, specifier: "%.1f")")
                             Slider(value: $frontSetup.lastFAirSetting, in: 45...120, step: 0.5)
                         }
                             // Tokens
@@ -127,7 +119,7 @@ struct AddNoteView: View {
                        }
                 } // end form
                     
-                    .navigationBarTitle("DialedIn", displayMode: .inline)
+                    .navigationBarTitle("DialedIn")
                 
                 Button(action: {
                     //dismisses the sheet
@@ -152,7 +144,7 @@ struct AddNoteView: View {
         newNote.date = self.date
         
         newNote.bike = Bike(context: self.moc)
-        newNote.bike?.name = self.bikes[bikeNameIndex].name
+        newNote.bike?.name = bike.name
         newNote.fAirVolume = Double(self.frontSetup.lastFAirSetting)
         newNote.fCompression = self.frontSetup.lastFCompSetting
         newNote.fHSC = self.frontSetup.lastFHSCSetting
@@ -183,7 +175,7 @@ struct AddNoteView: View {
         
         // TODO: BUG HERE DURING SCROLLING WHERE showing the  picker again resets all the toggles because nothing has been actually saved
         // When returning from Picker View .onAppear Update the model
-        bikeName = bikes[bikeNameIndex].name ?? "Unknown"
+        bikeName = bike.name ?? "Unknown"
         frontSetup.bikeName = bikeName
         frontSetup.getLastFrontSettings()
         
@@ -193,8 +185,8 @@ struct AddNoteView: View {
     
 }
 
-struct AddNoteView_Previews: PreviewProvider {
-    static var previews: some View {
-        AddNoteView()
-    }
-}
+//struct AddNoteView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        AddNoteView()
+//    }
+//}

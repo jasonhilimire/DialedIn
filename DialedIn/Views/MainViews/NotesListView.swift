@@ -37,7 +37,7 @@ struct NotesListView: View {
                     Image(systemName: "gauge.badge.plus")
             })
                 .sheet(isPresented: $showingAddScreen)  {
-                    AddNoteView().environment(\.managedObjectContext, self.moc)
+                    BikeSelectionView().environment(\.managedObjectContext, self.moc)
             }
         }
     }
