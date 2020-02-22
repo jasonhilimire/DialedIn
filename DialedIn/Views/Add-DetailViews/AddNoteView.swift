@@ -162,17 +162,12 @@ struct AddNoteView: View {
         newNote.rHSR = self.rearSetup.lastRHSRSetting
         newNote.rLSR = self.rearSetup.lastRLSRSetting
         newNote.rTokens = self.rearSetup.lastRTokenSetting
+        
+        newNote.bike?.frontSetup = Fork(context: self.moc)
+        newNote.bike?.frontSetup?.dualCompression = self.fCompressionToggle
     }
     
     func setToggles() {
-        self.fCompressionToggle = self.bike.frontSetup?.dualCompression ?? true
-        self.fReboundToggle = self.bike.frontSetup?.dualRebound ?? true
-        
-        self.rCompressionToggle = self.bike.rearSetup?.dualCompression ?? true
-        self.rReboundToggle = self.bike.rearSetup?.dualRebound ?? true
-        self.isCoil = self.bike.rearSetup?.isCoil ?? false
-        
-        
         // TODO: BUG HERE DURING SCROLLING WHERE showing the  picker again resets all the toggles because nothing has been actually saved
         // When returning from Picker View .onAppear Update the model  // Change to on Receive?
         bikeName = bike.name ?? "Unknown"
@@ -181,6 +176,17 @@ struct AddNoteView: View {
         
         rearSetup.bikeName = bikeName
         rearSetup.getLastRearSettings()
+        
+        self.fCompressionToggle = self.bike.frontSetup?.dualCompression ?? true
+        print(self.bike.frontSetup?.dualCompression )
+        self.fReboundToggle = self.bike.frontSetup?.dualRebound ?? true
+        
+        self.rCompressionToggle = self.bike.rearSetup?.dualCompression ?? true
+        self.rReboundToggle = self.bike.rearSetup?.dualRebound ?? true
+        self.isCoil = self.bike.rearSetup?.isCoil ?? false
+        
+        
+        
     }
     
 }
