@@ -38,100 +38,98 @@ struct AddNoteView: View {
     let bike: Bike
     
     var body: some View {
-        NavigationView {
-            VStack{
-                Form{
-                    Section(header: Text("Ride Details")){
+        VStack{
+            Form{
+                Section(header: Text("Ride Details")){
 //                        BikePickerView(bikeNameIndex: $bikeNameIndex)
 //                        .onAppear(perform: {self.setToggles()})
-                        
+                    
 //TODO: bug in the picker where its not updating the text on the Picker Line
-                        Text("Selected Bike is: \(bike.name ?? "Unknown Bike")").foregroundColor(.red)
-                            
+                    Text("Selected Bike is: \(bike.name ?? "Unknown Bike")").foregroundColor(.red)
                         
-                        TextField("Note", text: $note )
-                        DatePicker(selection: $date, in: ...Date(), displayedComponents: .date) {
-                            Text("Select a date")
-                        }
-                        RatingView(rating: $rating)
+                    
+                    TextField("Note", text: $note )
+                    DatePicker(selection: $date, in: ...Date(), displayedComponents: .date) {
+                        Text("Select a date")
                     }
-                    
-                    
-                    // MARK: - FRONT SETUP -
-                    Section(header: Text("Front Suspension Details")){
-                            // AirPressure
-                        HStack{
-                            Text("PSI: \(self.frontSetup.lastFAirSetting, specifier: "%.1f")")
-                            Slider(value: $frontSetup.lastFAirSetting, in: 45...120, step: 0.5)
-                        }
-                            // Tokens
-                        Stepper(value: $frontSetup.lastFTokenSetting, in: 0...6, label: {Text("Tokens: \(self.frontSetup.lastFTokenSetting)")})
-                            
-                            //Compression
-                            if fCompressionToggle == true {
-                                Stepper(value: $frontSetup.lastFHSCSetting, in: 0...25, label: {Text("High Sp Comp: \(self.frontSetup.lastFHSCSetting)")})
-                                Stepper(value: $frontSetup.lastFLSCSetting, in: 0...25, label: {Text("Low Sp Comp: \(self.frontSetup.lastFLSCSetting)")})
-                            } else {
-                                Stepper(value: $frontSetup.lastFCompSetting, in: 0...25, label: {Text("Compression: \(self.frontSetup.lastFCompSetting)")})
-                            }
-                            
-                            // Rebound
-
-                            if fReboundToggle == true {
-                                Stepper(value: $frontSetup.lastFHSRSetting, in: 0...25, label: {Text("High Sp Rebound: \(self.frontSetup.lastFHSRSetting)")})
-                                Stepper(value: $frontSetup.lastFLSRSetting, in: 0...25, label: {Text("Low Sp Rebound: \(self.frontSetup.lastFLSRSetting)")})
-                            } else {
-                                Stepper(value: $frontSetup.lastFReboundSetting, in: 0...25, label: {Text("Rebound: \(self.frontSetup.lastFReboundSetting)")})
-                            }
-                    }
-                       
-                   // MARK: - Rear Setup
-                       Section(header: Text("Rear Suspension Details")){
-                        // Air - Coil
-                            if isCoil == false {
-                            HStack{
-                                Text("PSI: \(self.rearSetup.lastRAirSpringSetting, specifier: "%.0f")")
-                                Slider(value: $rearSetup.lastRAirSpringSetting, in: 100...350, step: 1.0)
-                               }
-                            } else {
-                                HStack{
-                                    Text("Spring: \(self.rearSetup.lastRAirSpringSetting, specifier: "%.0f")")
-                                    Slider(value: $rearSetup.lastRAirSpringSetting, in: 300...700, step: 25)
-                                }
-                            }
-                        //Tokens
-                        Stepper(value: $rearSetup.lastRTokenSetting, in: 0...6, label: {Text("Tokens: \(self.rearSetup.lastRTokenSetting)")})
-                        //Compression
-                            if rCompressionToggle == true {
-                                Stepper(value: $rearSetup.lastRHSCSetting, in: 0...25, label: {Text("High Sp Comp: \(self.rearSetup.lastRHSCSetting)")})
-                                Stepper(value: $rearSetup.lastRLSCSetting, in: 0...25, label: {Text("Low Sp Comp: \(self.rearSetup.lastRLSCSetting)")})
-                            } else {
-                                Stepper(value: $rearSetup.lastRCompSetting, in: 0...25, label: {Text("Compression: \(self.rearSetup.lastRCompSetting)")})
-                            }
-                            
-                        // Rebound
-                            if rReboundToggle == true {
-                                Stepper(value: $rearSetup.lastRHSRSetting, in: 0...25, label: {Text("High Sp Rebound: \(self.rearSetup.lastRHSRSetting)")})
-                                Stepper(value: $rearSetup.lastRLSRSetting, in: 0...25, label: {Text("Low Sp Rebound: \(self.rearSetup.lastRLSRSetting)")})
-                            } else {
-                                Stepper(value: $rearSetup.lastRReboundSetting, in: 0...20, label: {Text("Rebound: \(self.rearSetup.lastRReboundSetting)")})
-                            }
-                       }
-                } // end form
-                    
-                    .navigationBarTitle("DialedIn")
-                
-                Button(action: {
-                    //dismisses the sheet
-                    self.presentationMode.wrappedValue.dismiss()
-                    self.saveNote()
-                    
-                    try? self.moc.save()
-                }) {
-                    SaveButtonView()
+                    RatingView(rating: $rating)
                 }
-//                .disabled(bikeName == "")
+                
+                
+                // MARK: - FRONT SETUP -
+                Section(header: Text("Front Suspension Details")){
+                        // AirPressure
+                    HStack{
+                        Text("PSI: \(self.frontSetup.lastFAirSetting, specifier: "%.1f")")
+                        Slider(value: $frontSetup.lastFAirSetting, in: 45...120, step: 0.5)
+                    }
+                        // Tokens
+                    Stepper(value: $frontSetup.lastFTokenSetting, in: 0...6, label: {Text("Tokens: \(self.frontSetup.lastFTokenSetting)")})
+                        
+                        //Compression
+                        if fCompressionToggle == true {
+                            Stepper(value: $frontSetup.lastFHSCSetting, in: 0...25, label: {Text("High Sp Comp: \(self.frontSetup.lastFHSCSetting)")})
+                            Stepper(value: $frontSetup.lastFLSCSetting, in: 0...25, label: {Text("Low Sp Comp: \(self.frontSetup.lastFLSCSetting)")})
+                        } else {
+                            Stepper(value: $frontSetup.lastFCompSetting, in: 0...25, label: {Text("Compression: \(self.frontSetup.lastFCompSetting)")})
+                        }
+                        
+                        // Rebound
+
+                        if fReboundToggle == true {
+                            Stepper(value: $frontSetup.lastFHSRSetting, in: 0...25, label: {Text("High Sp Rebound: \(self.frontSetup.lastFHSRSetting)")})
+                            Stepper(value: $frontSetup.lastFLSRSetting, in: 0...25, label: {Text("Low Sp Rebound: \(self.frontSetup.lastFLSRSetting)")})
+                        } else {
+                            Stepper(value: $frontSetup.lastFReboundSetting, in: 0...25, label: {Text("Rebound: \(self.frontSetup.lastFReboundSetting)")})
+                        }
+                }
+                   
+               // MARK: - Rear Setup
+                   Section(header: Text("Rear Suspension Details")){
+                    // Air - Coil
+                        if isCoil == false {
+                        HStack{
+                            Text("PSI: \(self.rearSetup.lastRAirSpringSetting, specifier: "%.0f")")
+                            Slider(value: $rearSetup.lastRAirSpringSetting, in: 100...350, step: 1.0)
+                           }
+                        } else {
+                            HStack{
+                                Text("Spring: \(self.rearSetup.lastRAirSpringSetting, specifier: "%.0f")")
+                                Slider(value: $rearSetup.lastRAirSpringSetting, in: 300...700, step: 25)
+                            }
+                        }
+                    //Tokens
+                    Stepper(value: $rearSetup.lastRTokenSetting, in: 0...6, label: {Text("Tokens: \(self.rearSetup.lastRTokenSetting)")})
+                    //Compression
+                        if rCompressionToggle == true {
+                            Stepper(value: $rearSetup.lastRHSCSetting, in: 0...25, label: {Text("High Sp Comp: \(self.rearSetup.lastRHSCSetting)")})
+                            Stepper(value: $rearSetup.lastRLSCSetting, in: 0...25, label: {Text("Low Sp Comp: \(self.rearSetup.lastRLSCSetting)")})
+                        } else {
+                            Stepper(value: $rearSetup.lastRCompSetting, in: 0...25, label: {Text("Compression: \(self.rearSetup.lastRCompSetting)")})
+                        }
+                        
+                    // Rebound
+                        if rReboundToggle == true {
+                            Stepper(value: $rearSetup.lastRHSRSetting, in: 0...25, label: {Text("High Sp Rebound: \(self.rearSetup.lastRHSRSetting)")})
+                            Stepper(value: $rearSetup.lastRLSRSetting, in: 0...25, label: {Text("Low Sp Rebound: \(self.rearSetup.lastRLSRSetting)")})
+                        } else {
+                            Stepper(value: $rearSetup.lastRReboundSetting, in: 0...20, label: {Text("Rebound: \(self.rearSetup.lastRReboundSetting)")})
+                        }
+                   }
+            } // end form
+                
+                .navigationBarTitle("DialedIn")
+            
+            Button(action: {
+                //dismisses the sheet
+                self.presentationMode.wrappedValue.dismiss()
+                self.saveNote()
+                
+                try? self.moc.save()
+            }) {
+                SaveButtonView()
             }
+//                .disabled(bikeName == "")
         }
     }
     
