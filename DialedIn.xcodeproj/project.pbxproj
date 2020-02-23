@@ -13,7 +13,6 @@
 		A3273B7523EF998B007A3792 /* Notes+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3273B7323EF998B007A3792 /* Notes+CoreDataClass.swift */; };
 		A3273B7623EF998B007A3792 /* Notes+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3273B7423EF998B007A3792 /* Notes+CoreDataProperties.swift */; };
 		A3918AD023E3E446002A1D61 /* SaveButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3918ACF23E3E446002A1D61 /* SaveButtonView.swift */; };
-		A399E43523EA700C0049B7B0 /* BikeDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A399E43423EA700C0049B7B0 /* BikeDetailView.swift */; };
 		A3A1297023FB9AC50014EC8A /* NoteRearSetupModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3A1296F23FB9AC50014EC8A /* NoteRearSetupModel.swift */; };
 		A3B8B79523F0E66900CE1EF8 /* BikeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B8B79423F0E66900CE1EF8 /* BikeModel.swift */; };
 		A3B8B79723F0E9EF00CE1EF8 /* BikePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B8B79623F0E9EF00CE1EF8 /* BikePickerView.swift */; };
@@ -43,6 +42,9 @@
 		A3EC241E23E68C22002954A9 /* BikeCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3EC241D23E68C22002954A9 /* BikeCardView.swift */; };
 		A3EC242023E68E21002954A9 /* EmojiRatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3EC241F23E68E21002954A9 /* EmojiRatingView.swift */; };
 		A3FBA8B324024024001F3885 /* AddNoteRearSetupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3FBA8B224024024001F3885 /* AddNoteRearSetupView.swift */; };
+		A3FBA8BB240342E7001F3885 /* BikeDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3FBA8B8240342E6001F3885 /* BikeDetailView.swift */; };
+		A3FBA8BC240342E7001F3885 /* ForkLastServicedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3FBA8B9240342E6001F3885 /* ForkLastServicedView.swift */; };
+		A3FBA8BD240342E7001F3885 /* RearShockLastServicedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3FBA8BA240342E7001F3885 /* RearShockLastServicedView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,7 +71,6 @@
 		A3273B7323EF998B007A3792 /* Notes+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notes+CoreDataClass.swift"; sourceTree = "<group>"; };
 		A3273B7423EF998B007A3792 /* Notes+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notes+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		A3918ACF23E3E446002A1D61 /* SaveButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveButtonView.swift; sourceTree = "<group>"; };
-		A399E43423EA700C0049B7B0 /* BikeDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeDetailView.swift; sourceTree = "<group>"; };
 		A3A1296F23FB9AC50014EC8A /* NoteRearSetupModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteRearSetupModel.swift; sourceTree = "<group>"; };
 		A3B8B79423F0E66900CE1EF8 /* BikeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeModel.swift; sourceTree = "<group>"; };
 		A3B8B79623F0E9EF00CE1EF8 /* BikePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikePickerView.swift; sourceTree = "<group>"; };
@@ -105,6 +106,9 @@
 		A3EC241D23E68C22002954A9 /* BikeCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeCardView.swift; sourceTree = "<group>"; };
 		A3EC241F23E68E21002954A9 /* EmojiRatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiRatingView.swift; sourceTree = "<group>"; };
 		A3FBA8B224024024001F3885 /* AddNoteRearSetupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNoteRearSetupView.swift; sourceTree = "<group>"; };
+		A3FBA8B8240342E6001F3885 /* BikeDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BikeDetailView.swift; sourceTree = "<group>"; };
+		A3FBA8B9240342E6001F3885 /* ForkLastServicedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForkLastServicedView.swift; sourceTree = "<group>"; };
+		A3FBA8BA240342E7001F3885 /* RearShockLastServicedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RearShockLastServicedView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -300,8 +304,8 @@
 		A3C7A1D42401F81300A741A8 /* DetailViews */ = {
 			isa = PBXGroup;
 			children = (
+				A3FBA8BE24034623001F3885 /* BikeDetailViews */,
 				A3DDCC7C23DFF21700CD1476 /* NotesDetailView.swift */,
-				A399E43423EA700C0049B7B0 /* BikeDetailView.swift */,
 			);
 			path = DetailViews;
 			sourceTree = "<group>";
@@ -314,6 +318,16 @@
 				A3FBA8B224024024001F3885 /* AddNoteRearSetupView.swift */,
 			);
 			path = AddNoteViews;
+			sourceTree = "<group>";
+		};
+		A3FBA8BE24034623001F3885 /* BikeDetailViews */ = {
+			isa = PBXGroup;
+			children = (
+				A3FBA8B8240342E6001F3885 /* BikeDetailView.swift */,
+				A3FBA8B9240342E6001F3885 /* ForkLastServicedView.swift */,
+				A3FBA8BA240342E7001F3885 /* RearShockLastServicedView.swift */,
+			);
+			path = BikeDetailViews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -448,6 +462,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A3273B7223EF8F6F007A3792 /* NoteFrontSetupModel.swift in Sources */,
+				A3FBA8BB240342E7001F3885 /* BikeDetailView.swift in Sources */,
 				A3DDCC7A23DFEFEB00CD1476 /* Bike+CoreDataClass.swift in Sources */,
 				A3C16E6823DE9EC4005BFA14 /* AppDelegate.swift in Sources */,
 				A3B8B79723F0E9EF00CE1EF8 /* BikePickerView.swift in Sources */,
@@ -455,9 +470,10 @@
 				A3C76CA423EF66450047BBCC /* RatingView.swift in Sources */,
 				A3C16EB723DEA582005BFA14 /* RearShock+CoreDataClass.swift in Sources */,
 				A3C16E6F23DE9EC4005BFA14 /* NotesListView.swift in Sources */,
+				A3FBA8BD240342E7001F3885 /* RearShockLastServicedView.swift in Sources */,
 				A3C16E6A23DE9EC4005BFA14 /* SceneDelegate.swift in Sources */,
-				A399E43523EA700C0049B7B0 /* BikeDetailView.swift in Sources */,
 				A3EC242023E68E21002954A9 /* EmojiRatingView.swift in Sources */,
+				A3FBA8BC240342E7001F3885 /* ForkLastServicedView.swift in Sources */,
 				A3C7A1D72401F87D00A741A8 /* AddNoteFrontSetupView.swift in Sources */,
 				A3C16EBE23DEA582005BFA14 /* Fork+CoreDataProperties.swift in Sources */,
 				A3EC241C23E68C00002954A9 /* NoteCellView.swift in Sources */,
