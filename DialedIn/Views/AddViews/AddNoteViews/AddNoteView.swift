@@ -131,14 +131,14 @@ struct AddNoteView: View {
         rearSetup.bikeName = bikeName
         rearSetup.getLastRearSettings()
         
-        
         self.frontSetup.fComp = self.bikes[bikeNameIndex].frontSetup?.dualCompression ?? true
         self.frontSetup.fReb = self.bikes[bikeNameIndex].frontSetup?.dualRebound ?? true
         
         self.rearSetup.rComp = self.bikes[bikeNameIndex].rearSetup?.dualCompression ?? true
         self.rearSetup.rReb = self.bikes[bikeNameIndex].rearSetup?.dualRebound ?? true
         self.rearSetup.coil = self.bikes[bikeNameIndex].rearSetup?.isCoil ?? false
-        print(rearSetup.coil)
+        self.rearSetup.hasRear = self.bikes[bikeNameIndex].hasRearShock
+
     }
     
 }

@@ -14,7 +14,7 @@ struct AddNoteRearSetupView: View {
 //TODO, SET BOOLEANS
     var body: some View {
         VStack {
-            if rearSetup.hasRear == true {
+            if rearSetup.hasRear == false {
                 Text("Hardtail")
             } else {
                 // Air - Coil
