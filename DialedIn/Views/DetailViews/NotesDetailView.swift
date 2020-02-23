@@ -33,8 +33,33 @@ struct NotesDetailView: View {
                 RatingView(rating: .constant(Int(self.note.rating)))
                     .font(.subheadline)
                 Divider()
-                
-
+           //Front
+    //TODO: add if statements
+                Group {
+                    VStack {
+                        Text("Air Spring: \(self.note.fAirVolume, specifier: "%.1f")")
+                        Text("Compression: \(self.note.fCompression)")
+                        Text("High Speed Compression: \(self.note.fHSC)")
+                        Text("Low Speed Compression: \(self.note.fLSC)")
+                        Text("Rebound: \(self.note.fRebound)")
+                        Text("High Speed Rebound: \(self.note.fHSR)")
+                        Text("Low Speed Rebound: \(self.note.fLSR)")
+                    }
+                }
+                Divider()
+            //Rear
+                Group {
+                    VStack {
+                        Text("Air/Spring: \(self.note.rAirSpring, specifier: "%.0f")")
+                        Text("Compression: \(self.note.rCompression)")
+                        Text("High Speed Compression: \(self.note.rHSC)")
+                        Text("Low Speed Compression: \(self.note.rLSC)")
+                        Text("Rebound: \(self.note.rRebound)")
+                        Text("High Speed Rebound: \(self.note.rHSR)")
+                        Text("Low Speed Rebound: \(self.note.rLSR)")
+                    }
+                    
+                }
             }
         }
         .navigationBarTitle(Text(note.bike?.name ?? "Unknown Note"), displayMode: .inline)
@@ -52,7 +77,7 @@ struct NotesDetailView: View {
     }
     
     
-    
+// TODO: Delete is not working properly
     func deleteNote() {
         moc.delete(note)
         try? self.moc.save()
