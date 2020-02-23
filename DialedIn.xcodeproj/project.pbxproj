@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		A309B9D623E2898300A08F22 /* BikeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A309B9D523E2898300A08F22 /* BikeListView.swift */; };
-		A311BEC523F4F189003ECE3B /* AddFrontSetupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A311BEC423F4F189003ECE3B /* AddFrontSetupView.swift */; };
 		A326FAC723F3BC6E002490E2 /* CoreData Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A326FAC623F3BC6E002490E2 /* CoreData Extensions.swift */; };
 		A3273B7223EF8F6F007A3792 /* NoteFrontSetupModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3273B7123EF8F6F007A3792 /* NoteFrontSetupModel.swift */; };
 		A3273B7523EF998B007A3792 /* Notes+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3273B7323EF998B007A3792 /* Notes+CoreDataClass.swift */; };
@@ -33,6 +32,7 @@
 		A3C16EBE23DEA582005BFA14 /* Fork+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C16EB623DEA582005BFA14 /* Fork+CoreDataProperties.swift */; };
 		A3C76C9F23EF5A850047BBCC /* GrabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C76C9E23EF5A850047BBCC /* GrabBarView.swift */; };
 		A3C76CA423EF66450047BBCC /* RatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C76CA323EF66450047BBCC /* RatingView.swift */; };
+		A3C7A1D72401F87D00A741A8 /* AddNoteFrontSetupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C7A1D62401F87D00A741A8 /* AddNoteFrontSetupView.swift */; };
 		A3DDCC7A23DFEFEB00CD1476 /* Bike+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DDCC7823DFEFEB00CD1476 /* Bike+CoreDataClass.swift */; };
 		A3DDCC7B23DFEFEB00CD1476 /* Bike+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DDCC7923DFEFEB00CD1476 /* Bike+CoreDataProperties.swift */; };
 		A3DDCC7D23DFF21700CD1476 /* NotesDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DDCC7C23DFF21700CD1476 /* NotesDetailView.swift */; };
@@ -63,7 +63,6 @@
 
 /* Begin PBXFileReference section */
 		A309B9D523E2898300A08F22 /* BikeListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeListView.swift; sourceTree = "<group>"; };
-		A311BEC423F4F189003ECE3B /* AddFrontSetupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFrontSetupView.swift; sourceTree = "<group>"; };
 		A326FAC623F3BC6E002490E2 /* CoreData Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoreData Extensions.swift"; sourceTree = "<group>"; };
 		A3273B7123EF8F6F007A3792 /* NoteFrontSetupModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteFrontSetupModel.swift; sourceTree = "<group>"; };
 		A3273B7323EF998B007A3792 /* Notes+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notes+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -94,6 +93,7 @@
 		A3C16EB623DEA582005BFA14 /* Fork+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Fork+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		A3C76C9E23EF5A850047BBCC /* GrabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrabBarView.swift; sourceTree = "<group>"; };
 		A3C76CA323EF66450047BBCC /* RatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingView.swift; sourceTree = "<group>"; };
+		A3C7A1D62401F87D00A741A8 /* AddNoteFrontSetupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNoteFrontSetupView.swift; sourceTree = "<group>"; };
 		A3DDCC7823DFEFEB00CD1476 /* Bike+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bike+CoreDataClass.swift"; sourceTree = "<group>"; };
 		A3DDCC7923DFEFEB00CD1476 /* Bike+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bike+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		A3DDCC7C23DFF21700CD1476 /* NotesDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesDetailView.swift; sourceTree = "<group>"; };
@@ -151,16 +151,13 @@
 			path = MainViews;
 			sourceTree = "<group>";
 		};
-		A3918AD223E3E769002A1D61 /* Add-DetailViews */ = {
+		A3918AD223E3E769002A1D61 /* AddViews */ = {
 			isa = PBXGroup;
 			children = (
-				A311BEC423F4F189003ECE3B /* AddFrontSetupView.swift */,
-				A3DDCC7E23DFF2C900CD1476 /* AddNoteView.swift */,
+				A3C7A1D52401F85200A741A8 /* AddNoteViews */,
 				A3DDCC8223DFF97900CD1476 /* BikeView.swift */,
-				A3DDCC7C23DFF21700CD1476 /* NotesDetailView.swift */,
-				A399E43423EA700C0049B7B0 /* BikeDetailView.swift */,
 			);
-			path = "Add-DetailViews";
+			path = AddViews;
 			sourceTree = "<group>";
 		};
 		A3918AD323E3E76C002A1D61 /* SingleViews */ = {
@@ -249,8 +246,9 @@
 		A3C16EAB23DEA454005BFA14 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				A3C7A1D42401F81300A741A8 /* DetailViews */,
 				A3918AD323E3E76C002A1D61 /* SingleViews */,
-				A3918AD223E3E769002A1D61 /* Add-DetailViews */,
+				A3918AD223E3E769002A1D61 /* AddViews */,
 				A3918AD123E3E764002A1D61 /* MainViews */,
 			);
 			path = Views;
@@ -295,6 +293,24 @@
 				A3C16E6923DE9EC4005BFA14 /* SceneDelegate.swift */,
 			);
 			path = Delegates;
+			sourceTree = "<group>";
+		};
+		A3C7A1D42401F81300A741A8 /* DetailViews */ = {
+			isa = PBXGroup;
+			children = (
+				A3DDCC7C23DFF21700CD1476 /* NotesDetailView.swift */,
+				A399E43423EA700C0049B7B0 /* BikeDetailView.swift */,
+			);
+			path = DetailViews;
+			sourceTree = "<group>";
+		};
+		A3C7A1D52401F85200A741A8 /* AddNoteViews */ = {
+			isa = PBXGroup;
+			children = (
+				A3DDCC7E23DFF2C900CD1476 /* AddNoteView.swift */,
+				A3C7A1D62401F87D00A741A8 /* AddNoteFrontSetupView.swift */,
+			);
+			path = AddNoteViews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -430,7 +446,6 @@
 			files = (
 				A3273B7223EF8F6F007A3792 /* NoteFrontSetupModel.swift in Sources */,
 				A3DDCC7A23DFEFEB00CD1476 /* Bike+CoreDataClass.swift in Sources */,
-				A311BEC523F4F189003ECE3B /* AddFrontSetupView.swift in Sources */,
 				A3C16E6823DE9EC4005BFA14 /* AppDelegate.swift in Sources */,
 				A3B8B79723F0E9EF00CE1EF8 /* BikePickerView.swift in Sources */,
 				A3C16E6D23DE9EC4005BFA14 /* DialedIn.xcdatamodeld in Sources */,
@@ -440,6 +455,7 @@
 				A3C16E6A23DE9EC4005BFA14 /* SceneDelegate.swift in Sources */,
 				A399E43523EA700C0049B7B0 /* BikeDetailView.swift in Sources */,
 				A3EC242023E68E21002954A9 /* EmojiRatingView.swift in Sources */,
+				A3C7A1D72401F87D00A741A8 /* AddNoteFrontSetupView.swift in Sources */,
 				A3C16EBE23DEA582005BFA14 /* Fork+CoreDataProperties.swift in Sources */,
 				A3EC241C23E68C00002954A9 /* NoteCellView.swift in Sources */,
 				A309B9D623E2898300A08F22 /* BikeListView.swift in Sources */,

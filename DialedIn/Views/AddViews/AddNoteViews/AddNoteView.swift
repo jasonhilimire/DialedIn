@@ -23,7 +23,7 @@ struct AddNoteView: View {
 
     @State private var createdInitialBike = false
     @State private var bikeNameIndex = 0
-    @State private var bikeName = ""
+    @State var bikeName = ""
     @State private var note = ""
     @State private var date = Date()
     @State private var rating = 3
@@ -43,6 +43,7 @@ struct AddNoteView: View {
                     Section(header: Text("Ride Details")){
                         BikePickerView(bikeNameIndex: $bikeNameIndex)
                         .onAppear(perform: {self.setup()})
+                
                         
 //TODO: bug in the picker where its not updating the text on the Picker Line
                         Text("Selected Bike is: \(self.bikes[bikeNameIndex].name ?? "Unknown Bike")").foregroundColor(.red)
@@ -59,10 +60,12 @@ struct AddNoteView: View {
                     // MARK: - FRONT SETUP -
                     Section(header: Text("Front Suspension Details")){
                             // AirPressure
-                        HStack{
-                            Text("PSI: \(frontSetup.lastFAirSetting, specifier: "%.1f")")
-                            Slider(value: $frontSetup.lastFAirSetting, in: 45...120, step: 0.5)
-                        }
+                        AddNoteFrontSetupView(frontsetup: frontSetup)
+                        
+//                        HStack{
+//                            Text("PSI: \(frontSetup.lastFAirSetting, specifier: "%.1f")")
+//                            Slider(value: $frontSetup.lastFAirSetting, in: 45...120, step: 0.5)
+//                        }
                             // Tokens
                         Stepper(value: $frontSetup.lastFTokenSetting, in: 0...6, label: {Text("Tokens: \(self.frontSetup.lastFTokenSetting)")})
                             
@@ -195,8 +198,8 @@ struct AddNoteView: View {
     
 }
 
-struct AddNoteView_Previews: PreviewProvider {
-    static var previews: some View {
-        AddNoteView()
-    }
-}
+//struct AddNoteView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        AddNoteView()
+//    }
+//}
