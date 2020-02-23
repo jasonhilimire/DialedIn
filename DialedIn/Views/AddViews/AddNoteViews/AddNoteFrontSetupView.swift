@@ -9,18 +9,10 @@
 import SwiftUI
 
 struct AddNoteFrontSetupView: View {
-    
-    // Create the MOC
-    @Environment(\.managedObjectContext) var moc
-       
-    // Get All the bikes for the PickerView
-    @FetchRequest(fetchRequest: Bike.bikesFetchRequest()) var bikes: FetchedResults<Bike>
     @ObservedObject var frontsetup = NoteFrontSetupModel()
     
     @State private var fCompressionToggle = true
     @State private var fReboundToggle = true
-    @State private var bikeNameIndex = 0
-    
     
  //TODO: Configure Booleans
     var body: some View {

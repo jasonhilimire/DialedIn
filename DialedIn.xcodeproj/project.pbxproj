@@ -42,6 +42,7 @@
 		A3EC241C23E68C00002954A9 /* NoteCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3EC241B23E68C00002954A9 /* NoteCellView.swift */; };
 		A3EC241E23E68C22002954A9 /* BikeCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3EC241D23E68C22002954A9 /* BikeCardView.swift */; };
 		A3EC242023E68E21002954A9 /* EmojiRatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3EC241F23E68E21002954A9 /* EmojiRatingView.swift */; };
+		A3FBA8B324024024001F3885 /* AddNoteRearSetupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3FBA8B224024024001F3885 /* AddNoteRearSetupView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -103,6 +104,7 @@
 		A3EC241B23E68C00002954A9 /* NoteCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteCellView.swift; sourceTree = "<group>"; };
 		A3EC241D23E68C22002954A9 /* BikeCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeCardView.swift; sourceTree = "<group>"; };
 		A3EC241F23E68E21002954A9 /* EmojiRatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiRatingView.swift; sourceTree = "<group>"; };
+		A3FBA8B224024024001F3885 /* AddNoteRearSetupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNoteRearSetupView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -309,6 +311,7 @@
 			children = (
 				A3DDCC7E23DFF2C900CD1476 /* AddNoteView.swift */,
 				A3C7A1D62401F87D00A741A8 /* AddNoteFrontSetupView.swift */,
+				A3FBA8B224024024001F3885 /* AddNoteRearSetupView.swift */,
 			);
 			path = AddNoteViews;
 			sourceTree = "<group>";
@@ -470,6 +473,7 @@
 				A3918AD023E3E446002A1D61 /* SaveButtonView.swift in Sources */,
 				A3DDCC7B23DFEFEB00CD1476 /* Bike+CoreDataProperties.swift in Sources */,
 				A3DDCC7F23DFF2C900CD1476 /* AddNoteView.swift in Sources */,
+				A3FBA8B324024024001F3885 /* AddNoteRearSetupView.swift in Sources */,
 				A3EC241E23E68C22002954A9 /* BikeCardView.swift in Sources */,
 				A3C16EBD23DEA582005BFA14 /* Fork+CoreDataClass.swift in Sources */,
 				A3DDCC8323DFF97900CD1476 /* BikeView.swift in Sources */,
