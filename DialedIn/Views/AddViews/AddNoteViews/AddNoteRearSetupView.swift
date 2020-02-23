@@ -10,42 +10,44 @@ import SwiftUI
 
 struct AddNoteRearSetupView: View {
     @ObservedObject var rearSetup = NoteRearSetupModel()
-    
-    @State private var rCompressionToggle = true
-    @State private var rReboundToggle = true
-    @State private var isCoil = false
+
 //TODO, SET BOOLEANS
     var body: some View {
         VStack {
-            // Air - Coil
-                if isCoil == false {
-                HStack{
-                    Text("PSI: \(self.rearSetup.lastRAirSpringSetting, specifier: "%.0f")")
-                    Slider(value: $rearSetup.lastRAirSpringSetting, in: 100...350, step: 1.0)
-                   }
-                } else {
+            if rearSetup.hasRear == true {
+                Text("Hardtail")
+            } else {
+                // Air - Coil
+                if rearSetup.coil == false {
                     HStack{
-                        Text("Spring: \(self.rearSetup.lastRAirSpringSetting, specifier: "%.0f")")
-                        Slider(value: $rearSetup.lastRAirSpringSetting, in: 300...700, step: 25)
+                        Text("PSI: \(self.rearSetup.lastRAirSpringSetting, specifier: "%.0f")")
+                        Slider(value: $rearSetup.lastRAirSpringSetting, in: 100...350, step: 1.0)
+                       }
+                    } else {
+                        HStack{
+                            Text("Spring: \(self.rearSetup.lastRAirSpringSetting, specifier: "%.0f")")
+                            Slider(value: $rearSetup.lastRAirSpringSetting, in: 300...700, step: 25)
+                        }
                     }
-                }
-            //Tokens
-            Stepper(value: $rearSetup.lastRTokenSetting, in: 0...6, label: {Text("Tokens: \(self.rearSetup.lastRTokenSetting)")})
-            //Compression
-                if rCompressionToggle == true {
-                    Stepper(value: $rearSetup.lastRHSCSetting, in: 0...25, label: {Text("High Sp Comp: \(self.rearSetup.lastRHSCSetting)")})
-                    Stepper(value: $rearSetup.lastRLSCSetting, in: 0...25, label: {Text("Low Sp Comp: \(self.rearSetup.lastRLSCSetting)")})
-                } else {
-                    Stepper(value: $rearSetup.lastRCompSetting, in: 0...25, label: {Text("Compression: \(self.rearSetup.lastRCompSetting)")})
-                }
-                
-            // Rebound
-                if rReboundToggle == true {
-                    Stepper(value: $rearSetup.lastRHSRSetting, in: 0...25, label: {Text("High Sp Rebound: \(self.rearSetup.lastRHSRSetting)")})
-                    Stepper(value: $rearSetup.lastRLSRSetting, in: 0...25, label: {Text("Low Sp Rebound: \(self.rearSetup.lastRLSRSetting)")})
-                } else {
-                    Stepper(value: $rearSetup.lastRReboundSetting, in: 0...20, label: {Text("Rebound: \(self.rearSetup.lastRReboundSetting)")})
-                }
+                //Tokens
+                Stepper(value: $rearSetup.lastRTokenSetting, in: 0...6, label: {Text("Tokens: \(self.rearSetup.lastRTokenSetting)")})
+                //Compression
+                if rearSetup.rComp == true {
+                        Stepper(value: $rearSetup.lastRHSCSetting, in: 0...25, label: {Text("High Sp Comp: \(self.rearSetup.lastRHSCSetting)")})
+                        Stepper(value: $rearSetup.lastRLSCSetting, in: 0...25, label: {Text("Low Sp Comp: \(self.rearSetup.lastRLSCSetting)")})
+                    } else {
+                        Stepper(value: $rearSetup.lastRCompSetting, in: 0...25, label: {Text("Compression: \(self.rearSetup.lastRCompSetting)")})
+                    }
+                    
+                // Rebound
+                if rearSetup.rReb == true {
+                        Stepper(value: $rearSetup.lastRHSRSetting, in: 0...25, label: {Text("High Sp Rebound: \(self.rearSetup.lastRHSRSetting)")})
+                        Stepper(value: $rearSetup.lastRLSRSetting, in: 0...25, label: {Text("Low Sp Rebound: \(self.rearSetup.lastRLSRSetting)")})
+                    } else {
+                        Stepper(value: $rearSetup.lastRReboundSetting, in: 0...20, label: {Text("Rebound: \(self.rearSetup.lastRReboundSetting)")})
+                    }
+            }
+            
         }
     }
 }

@@ -130,6 +130,7 @@ struct AddNoteView: View {
         
         rearSetup.bikeName = bikeName
         rearSetup.getLastRearSettings()
+        print(rearSetup.coil)
         
         self.fCompressionToggle = self.bikes[bikeNameIndex].frontSetup?.dualCompression ?? true
         self.fReboundToggle = self.bikes[bikeNameIndex].frontSetup?.dualRebound ?? true

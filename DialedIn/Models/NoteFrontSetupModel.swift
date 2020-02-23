@@ -104,6 +104,7 @@ class NoteFrontSetupModel: ObservableObject {
         guard let comp = lastRecord.last?.bike?.frontSetup?.dualCompression else { return true }
         return comp
     }
+    
     func getfReb() -> Bool {
         let lastRecord = filterBikes(for: bikeName)
         guard let rebound = lastRecord.last?.bike?.frontSetup?.dualRebound else { return true }

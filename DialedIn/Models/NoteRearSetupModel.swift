@@ -71,50 +71,97 @@ class NoteRearSetupModel: ObservableObject {
                didChange.send(self)
            }
        }
-       
-       
+    
+        @Published var coil: Bool = true {
+            didSet {
+                didChange.send(self)
+            }
+        }
+    
+        @Published var rComp: Bool = true {
+            didSet {
+                didChange.send(self)
+            }
+        }
+    
+        @Published var rReb: Bool = true {
+            didSet {
+                didChange.send(self)
+            }
+        }
+    
+        @Published var hasRear: Bool = true {
+            didSet {
+                didChange.send(self)
+            }
+        }
+
        let didChange = PassthroughSubject<NoteRearSetupModel, Never>()
        
        // MARK: - Functions
        // get Last Settings
        
        func getLastAir() -> Double {
-           let lastRecord = filterBikes(for: bikeName)
-        let lastAirSetting = lastRecord.last?.rAirSpring
-           return lastAirSetting ?? 200.0
+            let lastRecord = filterBikes(for: bikeName)
+            let lastAirSetting = lastRecord.last?.rAirSpring
+            return lastAirSetting ?? 200.0
        }
+    
+        func getrComp() -> Bool {
+            let lastRecord = filterBikes(for: bikeName)
+            guard let comp = lastRecord.last?.bike?.rearSetup?.dualCompression else { return true }
+            return comp
+        }
+        
+        func getrReb() -> Bool {
+            let lastRecord = filterBikes(for: bikeName)
+            guard let rebound = lastRecord.last?.bike?.rearSetup?.dualRebound else { return true }
+            return rebound
+        }
+    
+        func getCoil() -> Bool {
+            let lastRecord = filterBikes(for: bikeName)
+            guard let coil = lastRecord.last?.bike?.rearSetup?.isCoil else { return false }
+            return coil
+        }
+    
+        func getRear() -> Bool {
+            let lastRecord = filterBikes(for: bikeName)
+            guard let rear = lastRecord.last?.bike?.hasRearShock else { return false }
+            return rear
+        }
        
-       func getLastFHSC() -> Int16 {
+       func getLastRHSC() -> Int16 {
            let lastRecord = RearSettings.hsc
            return lastRecord.getSetting(note: filterBikes(for: bikeName))
        }
        
-       func getLastFLSC() -> Int16 {
+       func getLastRLSC() -> Int16 {
           let lastRecord = RearSettings.lsc
           return lastRecord.getSetting(note: filterBikes(for: bikeName))
        }
        
-       func getLastFComp() -> Int16 {
+       func getLastRComp() -> Int16 {
            let lastRecord = RearSettings.compression
            return lastRecord.getSetting(note: filterBikes(for: bikeName))
        }
        
-       func getLastFHSR() -> Int16 {
+       func getLastRHSR() -> Int16 {
            let lastRecord = RearSettings.hsr
            return lastRecord.getSetting(note: filterBikes(for: bikeName))
        }
        
-       func getLastFLSR() -> Int16 {
+       func getLastRLSR() -> Int16 {
            let lastRecord = RearSettings.lsr
            return lastRecord.getSetting(note: filterBikes(for: bikeName))
        }
        
-       func getLastFRebound() -> Int16 {
+       func getLastRRebound() -> Int16 {
            let lastRecord = RearSettings.rebound
            return lastRecord.getSetting(note: filterBikes(for: bikeName))
        }
        
-       func getLastFTokens() -> Int16 {
+       func getLastRTokens() -> Int16 {
            let lastRecord = RearSettings.tokens
            return lastRecord.getSetting(note: filterBikes(for: bikeName))
        }
@@ -130,15 +177,19 @@ class NoteRearSetupModel: ObservableObject {
        }
        
        func getLastRearSettings() {
-           // Get all the settings and assign
-           lastRAirSpringSetting = getLastAir()
-           lastRHSCSetting = getLastFHSC()
-           lastRLSCSetting = getLastFLSC()
-           lastRCompSetting = getLastFComp()
-           lastRHSRSetting = getLastFHSR()
-           lastRLSRSetting = getLastFLSR()
-           lastRReboundSetting = getLastFRebound()
-           lastRTokenSetting = getLastFTokens()
+       // Get all the settings and assign
+            lastRAirSpringSetting = getLastAir()
+            lastRHSCSetting = getLastRHSC()
+            lastRLSCSetting = getLastRLSC()
+            lastRCompSetting = getLastRComp()
+            lastRHSRSetting = getLastRHSR()
+            lastRLSRSetting = getLastRLSR()
+            lastRReboundSetting = getLastRRebound()
+            lastRTokenSetting = getLastRTokens()
+            rReb = getrReb()
+            rComp = getrComp()
+            coil = getCoil()
+            hasRear = getRear()
        }
        
     // THIS WORKS Now need to figure out how to pass the selected bike into the Model from the pickerview
@@ -162,19 +213,19 @@ class NoteRearSetupModel: ObservableObject {
                // if no filteredBike is found sets all values to 0
              switch self {
              case .compression:
-                 return note.last?.fCompression ?? 0
+                 return note.last?.rCompression ?? 0
              case .hsc:
-                 return note.last?.fHSC ?? 0
+                 return note.last?.rHSC ?? 0
              case .lsc:
-                 return note.last?.fLSC ?? 0
+                 return note.last?.rLSC ?? 0
              case .rebound:
-                 return note.last?.fRebound ?? 0
+                 return note.last?.rRebound ?? 0
              case .hsr:
-                 return note.last?.fHSR ?? 0
+                 return note.last?.rHSR ?? 0
              case .lsr:
-                 return note.last?.fLSR ?? 0
+                 return note.last?.rLSR ?? 0
              case .tokens:
-                 return note.last?.fTokens ?? 0
+                 return note.last?.rTokens ?? 0
              }
          }
            

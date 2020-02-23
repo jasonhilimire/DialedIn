@@ -132,10 +132,10 @@ struct AddBikeView: View {
                     } else if self.rearSetupIndex == 0 {
                         newBike.hasRearShock = false
                     }
-//
-//                    print(newBike)
-//                    print(newBike.frontSetup!)
-//                    print(newBike.rearSetup!)
+
+                    print(newBike)
+                    print(newBike.frontSetup!)
+                    print(newBike.rearSetup!)
                      try? self.moc.save()
                     
                     }) {

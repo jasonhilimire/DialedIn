@@ -11,9 +11,6 @@ import SwiftUI
 struct AddNoteFrontSetupView: View {
     @ObservedObject var frontsetup = NoteFrontSetupModel()
     
-    @State private var fCompressionToggle = true
-    @State private var fReboundToggle = true
-    
  //TODO: Configure Booleans
     var body: some View {
         VStack{
