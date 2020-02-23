@@ -22,50 +22,42 @@ struct AddNoteFrontSetupView: View {
     @State private var bikeNameIndex = 0
     
     
+ //TODO: Configure Booleans
     var body: some View {
+        VStack{
               // AirPressure
         HStack{
             Text("PSI: \(frontsetup.lastFAirSetting, specifier: "%.1f")")
             Slider(value: $frontsetup.lastFAirSetting, in: 45...120, step: 0.5)
-        }
-
+            }
         
             // Tokens
-//        Stepper(value: $frontSetup.lastFTokenSetting    , in: 0...6, label: {Text("Tokens: \(self.frontSetup.lastFTokenSetting)")})
+        Stepper(value: $frontsetup.lastFTokenSetting   , in: 0...6, label: {Text("Tokens: \(self.frontsetup.lastFTokenSetting)")})
             
-//            //Compression
-//            if fCompressionToggle == true {
-//                Stepper(value: $frontSetup.lastFHSCSetting, in: 0...25, label: {Text("High Sp Comp: \(self.frontSetup.lastFHSCSetting)")})
-//                Stepper(value: $frontSetup.lastFLSCSetting, in: 0...25, label: {Text("Low Sp Comp: \(self.frontSetup.lastFLSCSetting)")})
-//            } else {
-//                Stepper(value: $frontSetup.lastFCompSetting, in: 0...25, label: {Text("Compression: \(self.frontSetup.lastFCompSetting)")})
-//            }
-//
-//            // Rebound
-//
-//            if fReboundToggle == true {
-//                Stepper(value: $frontSetup.lastFHSRSetting, in: 0...25, label: {Text("High Sp Rebound: \(self.frontSetup.lastFHSRSetting)")})
-//                Stepper(value: $frontSetup.lastFLSRSetting, in: 0...25, label: {Text("Low Sp Rebound: \(self.frontSetup.lastFLSRSetting)")})
-//            } else {
-//                Stepper(value: $frontSetup.lastFReboundSetting, in: 0...25, label: {Text("Rebound: \(self.frontSetup.lastFReboundSetting)")})
-//            }
-    }
-    
-    func setup() {
-        // TODO: BUG HERE DURING SCROLLING WHERE showing the  picker again resets all the toggles because nothing has been actually saved
-        // When returning from Picker View .onAppear Update the model
+            //Compression
+            if fCompressionToggle == true {
+                Stepper(value: $frontsetup.lastFHSCSetting, in: 0...25, label: {Text("High Sp Comp: \(self.frontsetup.lastFHSCSetting)")})
+                Stepper(value: $frontsetup.lastFHSCSetting, in: 0...25, label: {Text("Low Sp Comp: \(self.frontsetup.lastFHSCSetting)")})
+            } else {
+                Stepper(value: $frontsetup.lastFCompSetting, in: 0...25, label: {Text("Compression: \(self.frontsetup.lastFCompSetting)")})
+            }
 
+            // Rebound
 
-//        print(bikeName)
-        self.fCompressionToggle = self.bikes[bikeNameIndex].frontSetup?.dualCompression ?? true
-        self.fReboundToggle = self.bikes[bikeNameIndex].frontSetup?.dualRebound ?? true
-        
-        
+            if fReboundToggle == true {
+                Stepper(value: $frontsetup.lastFHSRSetting, in: 0...25, label: {Text("High Sp Rebound: \(self.frontsetup.lastFHSRSetting)")})
+                Stepper(value: $frontsetup.lastFLSRSetting, in: 0...25, label: {Text("Low Sp Rebound: \(self.frontsetup.lastFLSRSetting)")})
+            } else {
+                Stepper(value: $frontsetup.lastFHSRSetting, in: 0...25, label: {Text("Rebound: \(self.frontsetup.lastFCompSetting)")})
+            }
+        }
     }
 }
 
-//struct AddNoteFrontSetup_Previews: PreviewProvider {
-//    static var previews: some View {
-//        AddNoteFrontSetupView()
-//    }
-//}
+
+struct AddNoteFrontSetup_Previews: PreviewProvider {
+    static var previews: some View {
+        AddNoteFrontSetupView()
+    }
+}
+

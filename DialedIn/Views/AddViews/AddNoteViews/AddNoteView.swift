@@ -59,32 +59,7 @@ struct AddNoteView: View {
                     
                     // MARK: - FRONT SETUP -
                     Section(header: Text("Front Suspension Details")){
-                            // AirPressure
                         AddNoteFrontSetupView(frontsetup: frontSetup)
-                        
-//                        HStack{
-//                            Text("PSI: \(frontSetup.lastFAirSetting, specifier: "%.1f")")
-//                            Slider(value: $frontSetup.lastFAirSetting, in: 45...120, step: 0.5)
-//                        }
-                            // Tokens
-                        Stepper(value: $frontSetup.lastFTokenSetting, in: 0...6, label: {Text("Tokens: \(self.frontSetup.lastFTokenSetting)")})
-                            
-                            //Compression
-                            if fCompressionToggle == true {
-                                Stepper(value: $frontSetup.lastFHSCSetting, in: 0...25, label: {Text("High Sp Comp: \(self.frontSetup.lastFHSCSetting)")})
-                                Stepper(value: $frontSetup.lastFLSCSetting, in: 0...25, label: {Text("Low Sp Comp: \(self.frontSetup.lastFLSCSetting)")})
-                            } else {
-                                Stepper(value: $frontSetup.lastFCompSetting, in: 0...25, label: {Text("Compression: \(self.frontSetup.lastFCompSetting)")})
-                            }
-                            
-                            // Rebound
-
-                            if fReboundToggle == true {
-                                Stepper(value: $frontSetup.lastFHSRSetting, in: 0...25, label: {Text("High Sp Rebound: \(self.frontSetup.lastFHSRSetting)")})
-                                Stepper(value: $frontSetup.lastFLSRSetting, in: 0...25, label: {Text("Low Sp Rebound: \(self.frontSetup.lastFLSRSetting)")})
-                            } else {
-                                Stepper(value: $frontSetup.lastFReboundSetting, in: 0...25, label: {Text("Rebound: \(self.frontSetup.lastFReboundSetting)")})
-                            }
                     }
                        
                    // MARK: - Rear Setup
