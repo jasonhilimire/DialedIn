@@ -75,6 +75,18 @@ class NoteFrontSetupModel: ObservableObject {
         }
     }
     
+// TODO: refactor these fork settings into own Model
+    @Published var fComp: Bool = true {
+        didSet {
+            didChange.send(self)
+        }
+    }
+    
+    @Published var fReb: Bool = true {
+        didSet {
+            didChange.send(self)
+        }
+    }
     
     let didChange = PassthroughSubject<NoteFrontSetupModel, Never>()
     
@@ -85,6 +97,17 @@ class NoteFrontSetupModel: ObservableObject {
         let lastRecord = filterBikes(for: bikeName)
         let lastAirSetting = lastRecord.last?.fAirVolume
         return lastAirSetting ?? 60.0
+    }
+    
+    func getfComp() -> Bool {
+        let lastRecord = filterBikes(for: bikeName)
+        guard let comp = lastRecord.last?.bike?.frontSetup?.dualCompression else { return true }
+        return comp
+    }
+    func getfReb() -> Bool {
+        let lastRecord = filterBikes(for: bikeName)
+        guard let rebound = lastRecord.last?.bike?.frontSetup?.dualRebound else { return true }
+        return rebound
     }
     
     func getLastFHSC() -> Int16 {
@@ -142,6 +165,8 @@ class NoteFrontSetupModel: ObservableObject {
         lastFLSRSetting = getLastFLSR()
         lastFReboundSetting = getLastFRebound()
         lastFTokenSetting = getLastFTokens()
+        fComp = getfComp()
+        fReb = getfReb()
     }
     
  // THIS WORKS Now need to figure out how to pass the selected bike into the Model from the pickerview

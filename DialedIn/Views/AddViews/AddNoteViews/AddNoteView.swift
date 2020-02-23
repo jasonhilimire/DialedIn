@@ -42,13 +42,10 @@ struct AddNoteView: View {
                 Form{
                     Section(header: Text("Ride Details")){
                         BikePickerView(bikeNameIndex: $bikeNameIndex)
-                        .onAppear(perform: {self.setup()})
+                        .onAppear(perform: {self.setup()}) // change to onReceive??
                 
-                        
 //TODO: bug in the picker where its not updating the text on the Picker Line
-                        Text("Selected Bike is: \(self.bikes[bikeNameIndex].name ?? "Unknown Bike")").foregroundColor(.red)
-                            
-                        
+                        Text("Selected Bike is: \(self.bikes[bikeNameIndex].name ?? "Unknown Bike")").foregroundColor(.red).bold()
                         TextField("Note", text: $note )
                         DatePicker(selection: $date, in: ...Date(), displayedComponents: .date) {
                             Text("Select a date")

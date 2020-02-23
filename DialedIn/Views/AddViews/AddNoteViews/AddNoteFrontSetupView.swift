@@ -27,16 +27,16 @@ struct AddNoteFrontSetupView: View {
         Stepper(value: $frontsetup.lastFTokenSetting   , in: 0...6, label: {Text("Tokens: \(self.frontsetup.lastFTokenSetting)")})
             
             //Compression
-            if fCompressionToggle == true {
+            if frontsetup.fComp == true {
                 Stepper(value: $frontsetup.lastFHSCSetting, in: 0...25, label: {Text("High Sp Comp: \(self.frontsetup.lastFHSCSetting)")})
-                Stepper(value: $frontsetup.lastFHSCSetting, in: 0...25, label: {Text("Low Sp Comp: \(self.frontsetup.lastFHSCSetting)")})
+                Stepper(value: $frontsetup.lastFLSCSetting, in: 0...25, label: {Text("Low Sp Comp: \(self.frontsetup.lastFLSCSetting)")})
             } else {
                 Stepper(value: $frontsetup.lastFCompSetting, in: 0...25, label: {Text("Compression: \(self.frontsetup.lastFCompSetting)")})
             }
 
             // Rebound
 
-            if fReboundToggle == true {
+            if frontsetup.fReb == true {
                 Stepper(value: $frontsetup.lastFHSRSetting, in: 0...25, label: {Text("High Sp Rebound: \(self.frontsetup.lastFHSRSetting)")})
                 Stepper(value: $frontsetup.lastFLSRSetting, in: 0...25, label: {Text("Low Sp Rebound: \(self.frontsetup.lastFLSRSetting)")})
             } else {
