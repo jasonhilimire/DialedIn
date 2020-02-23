@@ -99,7 +99,7 @@ struct AddNoteView: View {
         newNote.fHSR = self.frontSetup.lastFHSRSetting
         newNote.fLSR = self.frontSetup.lastFLSRSetting
         newNote.fTokens = self.frontSetup.lastFTokenSetting
-//        newNote.bike?.hasRearShock = self.
+        newNote.bike?.hasRearShock = self.rearSetup.hasRear
         
         newNote.rAirSpring = self.rearSetup.lastRAirSpringSetting
         newNote.rCompression = self.rearSetup.lastRCompSetting
@@ -111,13 +111,13 @@ struct AddNoteView: View {
         newNote.rTokens = self.rearSetup.lastRTokenSetting
         
         newNote.bike?.frontSetup = Fork(context: self.moc)
-        newNote.bike?.frontSetup?.dualCompression = self.fCompressionToggle
-        newNote.bike?.frontSetup?.dualRebound = self.fReboundToggle
+        newNote.bike?.frontSetup?.dualCompression = self.frontSetup.fComp
+        newNote.bike?.frontSetup?.dualRebound = self.frontSetup.fReb
         
         newNote.bike?.rearSetup = RearShock(context: self.moc)
-        newNote.bike?.rearSetup?.dualCompression = self.fCompressionToggle
-        newNote.bike?.rearSetup?.dualRebound = self.rCompressionToggle
-        newNote.bike?.rearSetup?.isCoil = self.isCoil
+        newNote.bike?.rearSetup?.dualCompression = self.rearSetup.rComp
+        newNote.bike?.rearSetup?.dualRebound = self.rearSetup.rReb
+        newNote.bike?.rearSetup?.isCoil = self.rearSetup.coil
         
     }
     
@@ -130,15 +130,15 @@ struct AddNoteView: View {
         
         rearSetup.bikeName = bikeName
         rearSetup.getLastRearSettings()
+        
+        
+        self.frontSetup.fComp = self.bikes[bikeNameIndex].frontSetup?.dualCompression ?? true
+        self.frontSetup.fReb = self.bikes[bikeNameIndex].frontSetup?.dualRebound ?? true
+        
+        self.rearSetup.rComp = self.bikes[bikeNameIndex].rearSetup?.dualCompression ?? true
+        self.rearSetup.rReb = self.bikes[bikeNameIndex].rearSetup?.dualRebound ?? true
+        self.rearSetup.coil = self.bikes[bikeNameIndex].rearSetup?.isCoil ?? false
         print(rearSetup.coil)
-        
-        self.fCompressionToggle = self.bikes[bikeNameIndex].frontSetup?.dualCompression ?? true
-        self.fReboundToggle = self.bikes[bikeNameIndex].frontSetup?.dualRebound ?? true
-        
-        self.rCompressionToggle = self.bikes[bikeNameIndex].rearSetup?.dualCompression ?? true
-        self.rReboundToggle = self.bikes[bikeNameIndex].rearSetup?.dualRebound ?? true
-        self.isCoil = self.bikes[bikeNameIndex].rearSetup?.isCoil ?? false
-        
     }
     
 }
