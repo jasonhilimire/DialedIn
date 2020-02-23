@@ -8,12 +8,11 @@
 
 import SwiftUI
 
-struct BikeView: View {
+struct AddBikeView: View {
     // Create the MOC
     @Environment(\.managedObjectContext) var moc
     @Environment(\.presentationMode) var presentationMode
     
-
     @State private var bikeName = ""
     @State private var bikeNote = ""
     @State private var setDefault = false
@@ -33,26 +32,17 @@ struct BikeView: View {
     @State private var lastAirCanServiceDate = Date()
     @State private var lastRearFullServiceDate = Date()
     
-    //TODO: figure out how to only allow 1 default bike
+//TODO: figure out how to only allow 1 default bike
     var body: some View {
         NavigationView {
             VStack {
-//                Spacer()
-//                GrabBarView()
-//                Text("Bike Info")
-//                    .font(.title)
-//                    .fontWeight(.light)
-//                    .foregroundColor(Color.blue)
-//                    .multilineTextAlignment(.center)
-//                    .padding(.top)
                 Form {
-                    
                     Section(header: Text("Bike Details")){
                         TextField("Bike Name", text: $bikeName)
                         TextField("Note", text: $bikeNote)
                         Toggle(isOn: $setDefault.animation(), label: {Text("Set as Default Bike?")})
-                        
                     }
+                    
                     Section(header: Text("Fork Details")){
                         TextField("Info", text: $forkInfo)
                         Toggle(isOn: $forkDualReboundToggle.animation(), label: {Text("Dual Rebound?")})
@@ -139,11 +129,13 @@ struct BikeView: View {
                         newBike.rearSetup?.lastAirCanService = self.lastAirCanServiceDate
                         newBike.rearSetup?.lastFullService = self.lastRearFullServiceDate
                         newBike.hasRearShock = true
+                    } else if self.rearSetupIndex == 0 {
+                        newBike.hasRearShock = false
                     }
-                    
-                    print(newBike)
-                    print(newBike.frontSetup!)
-                    print(newBike.rearSetup!)
+//
+//                    print(newBike)
+//                    print(newBike.frontSetup!)
+//                    print(newBike.rearSetup!)
                      try? self.moc.save()
                     
                     }) {
@@ -159,6 +151,6 @@ struct BikeView: View {
 
 struct BikeView_Previews: PreviewProvider {
     static var previews: some View {
-        BikeView()
+        AddBikeView()
     }
 }

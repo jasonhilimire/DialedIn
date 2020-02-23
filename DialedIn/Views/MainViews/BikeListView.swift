@@ -43,7 +43,7 @@ struct BikeListView: View {
                     Image(systemName: "plus.circle")
             })
                 .sheet(isPresented: $showingAddScreen)  {
-                    BikeView().environment(\.managedObjectContext, self.moc)
+                    AddBikeView().environment(\.managedObjectContext, self.moc)
             }
         }
 //        .onAppear(perform: {self.printBikes()})
