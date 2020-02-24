@@ -37,6 +37,8 @@ extension Notes {
     @NSManaged public var rLSC: Int16
     @NSManaged public var rHSR: Int16
     @NSManaged public var rLSR: Int16
+    @NSManaged public var fSag: Int16
+    @NSManaged public var rSag: Int16
     @NSManaged public var bike: Bike?
 
     public var wrappedNote: String {

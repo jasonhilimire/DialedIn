@@ -28,55 +28,45 @@ struct AddNoteView: View {
     @State private var date = Date()
     @State private var rating = 3
     
-
-    @State private var fCompressionToggle = true
-    @State private var fReboundToggle = true
-
-    @State private var rCompressionToggle = true
-    @State private var rReboundToggle = true
-    @State private var isCoil = false
-    
     var body: some View {
         NavigationView {
-            VStack{
-                Form{
-                    Section(header: Text("Ride Details")){
-                        BikePickerView(bikeNameIndex: $bikeNameIndex)
-                        .onAppear(perform: {self.setup()}) // change to onReceive??
-                
+            Form{
+                Section(header: Text("Ride Details")){
+                    BikePickerView(bikeNameIndex: $bikeNameIndex)
+                    .onAppear(perform: {self.setup()}) // change to onReceive??
+            
 //TODO: bug in the picker where its not updating the text on the Picker Line
-                        Text("Selected Bike is: \(self.bikes[bikeNameIndex].name ?? "Unknown Bike")").foregroundColor(.red).bold()
-                        TextField("Note", text: $note )
-                        DatePicker(selection: $date, in: ...Date(), displayedComponents: .date) {
-                            Text("Select a date")
-                        }
-                        RatingView(rating: $rating)
-                    }
-                    
-                    
-                    // MARK: - FRONT SETUP -
-                    Section(header: Text("Front Suspension Details")){
-                        AddNoteFrontSetupView(frontsetup: frontSetup)
-                    }
-                       
-                   // MARK: - Rear Setup
-                       Section(header: Text("Rear Suspension Details")){
-                        AddNoteRearSetupView(rearSetup: rearSetup)
-                       }
-                } // end form
-                    
-                    .navigationBarTitle("DialedIn", displayMode: .inline)
                 
-                Button(action: {
-                    //dismisses the sheet
-                    self.presentationMode.wrappedValue.dismiss()
-                    self.saveNote()
-                    
-                    try? self.moc.save()
-                }) {
-                    SaveButtonView()
+                    Text("Selected Bike is: \(self.bikes[bikeNameIndex].name ?? "Unknown Bike")").foregroundColor(.red).bold()
+                    TextField("Note", text: $note )
+                    DatePicker(selection: $date, in: ...Date(), displayedComponents: .date) {
+                        Text("Select a date")
+                    }
+                    RatingView(rating: $rating)
                 }
-//                .disabled(bikeName == "")
+                
+                
+                // MARK: - FRONT SETUP -
+                Section(header: Text("Front Suspension Details")){
+                    AddNoteFrontSetupView(frontsetup: frontSetup)
+                }
+                   
+               // MARK: - Rear Setup
+                   Section(header: Text("Rear Suspension Details")){
+                    AddNoteRearSetupView(rearSetup: rearSetup)
+                   }
+            } // end form
+                
+                .navigationBarTitle("DialedIn", displayMode: .inline)
+            
+            Button(action: {
+                //dismisses the sheet
+                self.presentationMode.wrappedValue.dismiss()
+                self.saveNote()
+                
+                try? self.moc.save()
+            }) {
+                SaveButtonView()
             }
         }
     }
@@ -99,6 +89,7 @@ struct AddNoteView: View {
         newNote.fHSR = self.frontSetup.lastFHSRSetting
         newNote.fLSR = self.frontSetup.lastFLSRSetting
         newNote.fTokens = self.frontSetup.lastFTokenSetting
+        newNote.fSag = self.frontSetup.lastFSagSetting
         newNote.bike?.hasRearShock = self.rearSetup.hasRear
         
         newNote.rAirSpring = self.rearSetup.lastRAirSpringSetting
@@ -109,6 +100,7 @@ struct AddNoteView: View {
         newNote.rHSR = self.rearSetup.lastRHSRSetting
         newNote.rLSR = self.rearSetup.lastRLSRSetting
         newNote.rTokens = self.rearSetup.lastRTokenSetting
+        newNote.rSag = self.rearSetup.lastRSagSetting
         
         newNote.bike?.frontSetup = Fork(context: self.moc)
         newNote.bike?.frontSetup?.dualCompression = self.frontSetup.fComp

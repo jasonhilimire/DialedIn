@@ -29,6 +29,8 @@ struct AddNoteRearSetupView: View {
                             Slider(value: $rearSetup.lastRAirSpringSetting, in: 300...700, step: 25)
                         }
                     }
+                //Sag
+                Stepper(value: $rearSetup.lastRSagSetting   , in: 0...40, label: {Text("Sag: \(self.rearSetup.lastRSagSetting)")})
                 //Tokens
                 Stepper(value: $rearSetup.lastRTokenSetting, in: 0...6, label: {Text("Tokens: \(self.rearSetup.lastRTokenSetting)")})
                 //Compression

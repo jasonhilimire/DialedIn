@@ -39,8 +39,11 @@ struct NotesListView: View {
                 .sheet(isPresented: $showingAddScreen)  {
                     AddNoteView().environment(\.managedObjectContext, self.moc)
             }
+//            .disabled(disabled: bike.count == 0)
         }
     }
+    
+    
 }
 
 struct ContentView_Previews: PreviewProvider {

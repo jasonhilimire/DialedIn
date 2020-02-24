@@ -11,6 +11,8 @@ import SwiftUI
 struct AddNoteFrontSetupView: View {
     @ObservedObject var frontsetup = NoteFrontSetupModel()
     
+    @State private var sag = 20
+    
  //TODO: Configure Booleans
     var body: some View {
         VStack{
@@ -19,9 +21,11 @@ struct AddNoteFrontSetupView: View {
             Text("PSI: \(frontsetup.lastFAirSetting, specifier: "%.1f")")
             Slider(value: $frontsetup.lastFAirSetting, in: 45...120, step: 0.5)
             }
+            Stepper(value: $frontsetup.lastFSagSetting   , in: 0...40, label: {Text("Sag: \(self.frontsetup.lastFSagSetting)")})
         
             // Tokens
-        Stepper(value: $frontsetup.lastFTokenSetting   , in: 0...6, label: {Text("Tokens: \(self.frontsetup.lastFTokenSetting)")})
+            Stepper(value: $frontsetup.lastFTokenSetting   , in: 0...6, label: {Text("Tokens: \(self.frontsetup.lastFTokenSetting)")})
+
             
             //Compression
             if frontsetup.fComp == true {

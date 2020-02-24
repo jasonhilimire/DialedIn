@@ -65,6 +65,12 @@ class NoteRearSetupModel: ObservableObject {
                didChange.send(self)
            }
        }
+    
+    @Published var lastRSagSetting: Int16 = 0 {
+        didSet {
+            didChange.send(self)
+        }
+    }
        
        @Published var bikeName: String = "" {
            didSet {
@@ -165,6 +171,11 @@ class NoteRearSetupModel: ObservableObject {
            let lastRecord = RearSettings.tokens
            return lastRecord.getSetting(note: filterBikes(for: bikeName))
        }
+    
+    func getLastRSag() -> Int16 {
+        let lastRecord = RearSettings.sag
+        return lastRecord.getSetting(note: filterBikes(for: bikeName))
+    }
            
        func getNotes() -> [Notes] {
            let notes = try! managedObjectContext.fetch(Notes.fetchRequest()) as! [Notes]
@@ -186,10 +197,12 @@ class NoteRearSetupModel: ObservableObject {
             lastRLSRSetting = getLastRLSR()
             lastRReboundSetting = getLastRRebound()
             lastRTokenSetting = getLastRTokens()
+            lastRSagSetting = getLastRSag()
             rReb = getrReb()
             rComp = getrComp()
             coil = getCoil()
             hasRear = getRear()
+
        }
        
     // THIS WORKS Now need to figure out how to pass the selected bike into the Model from the pickerview
@@ -201,13 +214,14 @@ class NoteRearSetupModel: ObservableObject {
        }
        
        enum RearSettings {
-           case compression
-           case hsc
-           case lsc
-           case rebound
-           case hsr
-           case lsr
-           case tokens
+        case compression
+        case hsc
+        case lsc
+        case rebound
+        case hsr
+        case lsr
+        case tokens
+        case sag
            
            func getSetting(note: [Notes]) -> Int16 {
                // if no filteredBike is found sets all values to 0
@@ -226,6 +240,8 @@ class NoteRearSetupModel: ObservableObject {
                  return note.last?.rLSR ?? 0
              case .tokens:
                  return note.last?.rTokens ?? 0
+             case .sag:
+                return note.last?.rSag ?? 0
              }
          }
            

@@ -69,6 +69,12 @@ class NoteFrontSetupModel: ObservableObject {
         }
     }
     
+    @Published var lastFSagSetting: Int16 = 0 {
+        didSet {
+            didChange.send(self)
+        }
+    }
+    
     @Published var bikeName: String = "" {
         didSet {
             didChange.send(self)
@@ -145,6 +151,11 @@ class NoteFrontSetupModel: ObservableObject {
         let lastRecord = FrontSettings.tokens
         return lastRecord.getSetting(note: filterBikes(for: bikeName))
     }
+    
+    func getLastFSag() -> Int16 {
+        let lastRecord = FrontSettings.sag
+        return lastRecord.getSetting(note: filterBikes(for: bikeName))
+    }
         
     func getNotes() -> [Notes] {
         let notes = try! managedObjectContext.fetch(Notes.fetchRequest()) as! [Notes]
@@ -166,6 +177,7 @@ class NoteFrontSetupModel: ObservableObject {
         lastFLSRSetting = getLastFLSR()
         lastFReboundSetting = getLastFRebound()
         lastFTokenSetting = getLastFTokens()
+        lastFSagSetting = getLastFSag()
         fComp = getfComp()
         fReb = getfReb()
     }
@@ -186,6 +198,7 @@ class NoteFrontSetupModel: ObservableObject {
         case hsr
         case lsr
         case tokens
+        case sag
         
         func getSetting(note: [Notes]) -> Int16 {
             // if no filteredBike is found sets all values to 0
@@ -204,6 +217,9 @@ class NoteFrontSetupModel: ObservableObject {
               return note.last?.fLSR ?? 0
           case .tokens:
               return note.last?.fTokens ?? 0
+          case .sag:
+            return note.last?.fSag ?? 0
+            
           }
       }
         
