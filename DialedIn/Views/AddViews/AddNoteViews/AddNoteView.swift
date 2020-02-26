@@ -47,12 +47,29 @@ struct AddNoteView: View {
                 
                 
                 // MARK: - FRONT SETUP -
-                Section(header: Text("Front Suspension Details")){
+                Section(header:
+					HStack {
+						Image("bicycle-fork")
+						.resizable()
+						.frame(width: 50, height: 50)
+						.scaledToFit()
+						Text("Front Suspension Details")
+					}
+					
+				){
                     AddNoteFrontSetupView(frontsetup: frontSetup)
                 }
                    
                // MARK: - Rear Setup
-                   Section(header: Text("Rear Suspension Details")){
+                   Section(header:
+					HStack {
+						Image("shock-absorber")
+							.resizable()
+							.frame(width: 50, height: 50)
+							.scaledToFit()
+						Text("Rear Suspension Details")
+					}
+				){
                     AddNoteRearSetupView(rearSetup: rearSetup)
                    }
             } // end form
