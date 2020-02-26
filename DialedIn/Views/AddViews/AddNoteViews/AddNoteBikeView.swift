@@ -7,16 +7,13 @@
 //
 
 import SwiftUI
+import Combine
 
 struct AddNoteBikeView: View {
 	// Create the MOC
 	@Environment(\.managedObjectContext) var moc
 	@Environment(\.presentationMode) var presentationMode
-	
-	// Get All the bikes for the PickerView
-	@FetchRequest(fetchRequest: Bike.bikesFetchRequest())
-	var bikes: FetchedResults<Bike>
-	
+		
 	@ObservedObject var frontSetup = NoteFrontSetupModel()
 	@ObservedObject var rearSetup = NoteRearSetupModel()
 	
@@ -37,54 +34,57 @@ struct AddNoteBikeView: View {
 
 	var body: some View {
 		NavigationView {
-			Form{
-				Section(header: Text("Ride Details")){
-					Text("Selected Bike is: \(self.bike.name ?? "Unknown Bike")").foregroundColor(.red).bold()
-					TextField("Note", text: $note )
-					DatePicker(selection: $date, in: ...Date(), displayedComponents: .date) {
-						Text("Select a date")
-					}
-					RatingView(rating: $rating)
-				}
-				.onAppear(perform: {self.setup()})
-				// MARK: - FRONT SETUP -
-				Section(header:
-					HStack {
-						Image("bicycle-fork")
-							.resizable()
-							.frame(width: 50, height: 50)
-							.scaledToFit()
-						Text("Front Suspension Details")
+			VStack {
+				Form{
+					Section(header: Text("Ride Details")){
+						FilteredAddNoteView(filter: bikeName)
+						Text("Bike: \(self.bike.name ?? "Unknown Bike")").foregroundColor(.red).bold()
+						TextField("Note", text: $note )
+						DatePicker(selection: $date, in: ...Date(), displayedComponents: .date) {
+							Text("Select a date")
+						}
+						RatingView(rating: $rating)
 					}
 					
-				){
-					AddNoteFrontSetupView(frontsetup: frontSetup)
-				}
-				
-				// MARK: - Rear Setup
-				Section(header:
-					HStack {
-						Image("shock-absorber")
-							.resizable()
-							.frame(width: 50, height: 50)
-							.scaledToFit()
-						Text("Rear Suspension Details")
+					// MARK: - FRONT SETUP -
+					Section(header:
+						HStack {
+							Image("bicycle-fork")
+								.resizable()
+								.frame(width: 50, height: 50)
+								.scaledToFit()
+							Text("Front Suspension Details")
+						}
+						
+					){
+						AddNoteFrontSetupView(frontsetup: frontSetup)
 					}
-				){
-					AddNoteRearSetupView(rearSetup: rearSetup)
+					
+					// MARK: - Rear Setup
+					Section(header:
+						HStack {
+							Image("shock-absorber")
+								.resizable()
+								.frame(width: 50, height: 50)
+								.scaledToFit()
+							Text("Rear Suspension Details")
+						}
+					){
+						AddNoteRearSetupView(rearSetup: rearSetup)
+					}
+				} // end form
+					
+					.navigationBarTitle("DialedIn", displayMode: .inline)
+				
+				Button(action: {
+					//dismisses the sheet
+					self.presentationMode.wrappedValue.dismiss()
+					self.saveNote()
+					
+					try? self.moc.save()
+				}) {
+					SaveButtonView()
 				}
-			} // end form
-				
-				.navigationBarTitle("DialedIn", displayMode: .inline)
-			
-			Button(action: {
-				//dismisses the sheet
-				self.presentationMode.wrappedValue.dismiss()
-				self.saveNote()
-				
-				try? self.moc.save()
-			}) {
-				SaveButtonView()
 			}
 		}
 	}
@@ -98,7 +98,7 @@ struct AddNoteBikeView: View {
 		newNote.date = self.date
 		
 		newNote.bike = Bike(context: self.moc)
-		newNote.bike?.name = self.bikes[bikeNameIndex].name
+		newNote.bike?.name = self.bike.name
 		newNote.fAirVolume = Double(self.frontSetup.lastFAirSetting)
 		newNote.fCompression = self.frontSetup.lastFCompSetting
 		newNote.fHSC = self.frontSetup.lastFHSCSetting
@@ -143,13 +143,14 @@ struct AddNoteBikeView: View {
 		rearSetup.bikeName = bikeName
 		rearSetup.getLastRearSettings()
 		
-		self.frontSetup.fComp = self.bikes[bikeNameIndex].frontSetup?.dualCompression ?? true
-		self.frontSetup.fReb = self.bikes[bikeNameIndex].frontSetup?.dualRebound ?? true
+		self.frontSetup.fComp = self.bike.frontSetup?.dualCompression ?? true
+		self.frontSetup.fReb = self.bike.frontSetup?.dualRebound ?? true
 		
-		self.rearSetup.rComp = self.bikes[bikeNameIndex].rearSetup?.dualCompression ?? true
-		self.rearSetup.rReb = self.bikes[bikeNameIndex].rearSetup?.dualRebound ?? true
-		self.rearSetup.coil = self.bikes[bikeNameIndex].rearSetup?.isCoil ?? false
-		self.rearSetup.hasRear = self.bikes[bikeNameIndex].hasRearShock
+		self.rearSetup.rComp = self.bike.rearSetup?.dualCompression ?? true
+		self.rearSetup.rReb = self.bike.rearSetup?.dualRebound ?? true
+		self.rearSetup.coil = self.bike.rearSetup?.isCoil ?? false
+		self.rearSetup.hasRear = self.bike.hasRearShock
+		print(<#T##items: Any...##Any#>)
 		
 	}
 }
