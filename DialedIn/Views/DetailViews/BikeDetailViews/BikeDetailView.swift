@@ -15,6 +15,8 @@ struct BikeDetailView: View {
     @Environment(\.presentationMode) var presentationMode
     
     @State private var showingDeleteAlert = false
+	@State private var showingNotesView = false
+	@State private var bikeName = ""
     
     var dateFormatter: DateFormatter {
         let formatter = DateFormatter()
@@ -24,29 +26,52 @@ struct BikeDetailView: View {
     
     let bike: Bike
     var body: some View {
-        VStack {
+		VStack {
             Text(self.bike.name ?? "Unknown Bike")
                 .font(.largeTitle)
             Text("Info: \(self.bike.bikeNote ?? "")" )
                 .font(.subheadline)
-            
-            Section(header: Text("Fork")) {
-                ForkLastServicedView(fork: bike.frontSetup!)
-            }
-            
-            Section(header: Text("Rear")) {
-                if self.bike.hasRearShock == false {
-                    Text("HardTail")
-                } else {
-                    RearShockLastServicedView(rear: bike.rearSetup!)
-                }
-            }
+			VStack {
+				Section(header: Text("Fork")) {
+					ForkLastServicedView(fork: bike.frontSetup!)
+				}
+				
+				Section(header: Text("Rear")) {
+					if self.bike.hasRearShock == false {
+						Text("HardTail")
+					} else {
+						RearShockLastServicedView(rear: bike.rearSetup!)
+					}
+				}
+			}
+			.padding()
+			.foregroundColor(Color.white)
+			.background(RoundedRectangle(cornerRadius: 10))
+			.foregroundColor(.green)
+			.padding()
+		
+			HStack(alignment: .bottom) {
+				Button(action: {self.showingNotesView.toggle()}) {
+					Text("Add Note")
+				}
+				.sheet(isPresented: $showingNotesView)  {
+					AddNoteBikeView(bike: self.bike).environment(\.managedObjectContext, self.moc)
+				}
+//				Spacer()
+				Button(action: {print("Service pressed")}) {
+					Text("Service")
+				}
+			}
+		
         }
-		.padding(20)
-		.border(Color.green)
+		.padding(.horizontal, 25)
+		.background(RoundedRectangle(cornerRadius: 10)
+		.stroke(Color.green, lineWidth: 3))
+//		.shadow(radius: 20)
+
     }
 }
-//
+
 //struct BikeDetailView_Previews: PreviewProvider {
 //    static var previews: some View {
 //
