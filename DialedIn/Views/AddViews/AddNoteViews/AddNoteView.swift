@@ -30,45 +30,48 @@ struct AddNoteView: View {
     
     var body: some View {
         NavigationView {
-            Form{
-                Section(header: Text("Ride Details")){
-                    BikePickerView(bikeNameIndex: $bikeNameIndex)
-                    .onAppear(perform: {self.setup()}) // change to onReceive??
-            
-//TODO: bug in the picker where its not updating the text on the Picker Line
-                
-                    Text("Selected Bike is: \(self.bikes[bikeNameIndex].name ?? "Unknown Bike")").foregroundColor(.red).bold()
-                    TextField("Note", text: $note )
-                    DatePicker(selection: $date, in: ...Date(), displayedComponents: .date) {
-                        Text("Select a date")
-                    }
-                    RatingView(rating: $rating)
-                }
-                
-                
-                // MARK: - FRONT SETUP -
-                Section(header: Text("Front Suspension Details")){
-                    AddNoteFrontSetupView(frontsetup: frontSetup)
-                }
-                   
-               // MARK: - Rear Setup
-                   Section(header: Text("Rear Suspension Details")){
-                    AddNoteRearSetupView(rearSetup: rearSetup)
-                   }
-            } // end form
-                
-                .navigationBarTitle("DialedIn", displayMode: .inline)
-            
-            Button(action: {
-                //dismisses the sheet
-                self.presentationMode.wrappedValue.dismiss()
-                self.saveNote()
-                
-                try? self.moc.save()
-            }) {
-                SaveButtonView()
-            }
+			VStack{
+				Form{
+					Section(header: Text("Ride Details")){
+						BikePickerView(bikeNameIndex: $bikeNameIndex)
+						.onAppear(perform: {self.setup()}) // change to onReceive??
+				
+	//TODO: bug in the picker where its not updating the text on the Picker Line
+					
+						Text("Selected Bike is: \(self.bikes[bikeNameIndex].name ?? "Unknown Bike")").foregroundColor(.red).bold()
+						TextField("Note", text: $note )
+						DatePicker(selection: $date, in: ...Date(), displayedComponents: .date) {
+							Text("Select a date")
+						}
+						RatingView(rating: $rating)
+					}
+					
+					
+					// MARK: - FRONT SETUP -
+					Section(header: Text("Front Suspension Details")){
+						AddNoteFrontSetupView(frontsetup: frontSetup)
+					}
+					   
+				   // MARK: - Rear Setup
+					   Section(header: Text("Rear Suspension Details")){
+						AddNoteRearSetupView(rearSetup: rearSetup)
+					   }
+				} // end form
+					
+				.navigationBarTitle("DialedIn", displayMode: .inline)
+				
+				Button(action: {
+					//dismisses the sheet
+					self.presentationMode.wrappedValue.dismiss()
+					self.saveNote()
+					
+					try? self.moc.save()
+				}) {
+					SaveButtonView()
+				}
+			}
         }
+		
     }
     
     // MARK: - FUNCTIONS
