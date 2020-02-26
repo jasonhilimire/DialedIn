@@ -45,7 +45,6 @@ struct AddNoteView: View {
                     RatingView(rating: $rating)
                 }
                 
-                
                 // MARK: - FRONT SETUP -
                 Section(header:
 					HStack {

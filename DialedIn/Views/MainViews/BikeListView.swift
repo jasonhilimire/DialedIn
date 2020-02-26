@@ -21,6 +21,7 @@ struct BikeListView: View {
     @State private var showingAddScreen = false
     
     var body: some View {
+		/*
         NavigationView {
             List {
                 ForEach(bikes, id: \.self) { bike in
@@ -47,6 +48,16 @@ struct BikeListView: View {
             }
         }
 //        .onAppear(perform: {self.printBikes()})
+
+		*/
+		ScrollView {
+			VStack(spacing: 20) {
+				ForEach(bikes, id: \.self) { bike in
+					BikeDetailView(bike: bike)
+				}
+			}
+		}
+
     }
     
     func deleteBike(at offsets: IndexSet) {

@@ -42,6 +42,8 @@ struct BikeDetailView: View {
                 }
             }
         }
+		.padding(20)
+		.border(Color.green)
     }
 }
 //
