@@ -40,6 +40,7 @@
 		A3DDCC7F23DFF2C900CD1476 /* AddNoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DDCC7E23DFF2C900CD1476 /* AddNoteView.swift */; };
 		A3DDCC8123DFF96400CD1476 /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DDCC8023DFF96400CD1476 /* AppView.swift */; };
 		A3DDCC8323DFF97900CD1476 /* AddBikeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DDCC8223DFF97900CD1476 /* AddBikeView.swift */; };
+		A3E1A6AF2409B78100C4DFD5 /* FilteredBikeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E1A6AE2409B78100C4DFD5 /* FilteredBikeView.swift */; };
 		A3EC241C23E68C00002954A9 /* NoteCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3EC241B23E68C00002954A9 /* NoteCellView.swift */; };
 		A3EC242023E68E21002954A9 /* EmojiRatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3EC241F23E68E21002954A9 /* EmojiRatingView.swift */; };
 		A3FBA8B324024024001F3885 /* AddNoteRearSetupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3FBA8B224024024001F3885 /* AddNoteRearSetupView.swift */; };
@@ -105,6 +106,7 @@
 		A3DDCC7E23DFF2C900CD1476 /* AddNoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNoteView.swift; sourceTree = "<group>"; };
 		A3DDCC8023DFF96400CD1476 /* AppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppView.swift; sourceTree = "<group>"; };
 		A3DDCC8223DFF97900CD1476 /* AddBikeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBikeView.swift; sourceTree = "<group>"; };
+		A3E1A6AE2409B78100C4DFD5 /* FilteredBikeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilteredBikeView.swift; sourceTree = "<group>"; };
 		A3EC241B23E68C00002954A9 /* NoteCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteCellView.swift; sourceTree = "<group>"; };
 		A3EC241F23E68E21002954A9 /* EmojiRatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiRatingView.swift; sourceTree = "<group>"; };
 		A3FBA8B224024024001F3885 /* AddNoteRearSetupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNoteRearSetupView.swift; sourceTree = "<group>"; };
@@ -161,8 +163,8 @@
 		A3918AD223E3E769002A1D61 /* AddViews */ = {
 			isa = PBXGroup;
 			children = (
-				A3C7A1D52401F85200A741A8 /* AddNoteViews */,
 				A3DDCC8223DFF97900CD1476 /* AddBikeView.swift */,
+				A3C7A1D52401F85200A741A8 /* AddNoteViews */,
 			);
 			path = AddViews;
 			sourceTree = "<group>";
@@ -176,6 +178,7 @@
 				A3C76C9E23EF5A850047BBCC /* GrabBarView.swift */,
 				A3918ACF23E3E446002A1D61 /* SaveButtonView.swift */,
 				A3B8B79623F0E9EF00CE1EF8 /* BikePickerView.swift */,
+				A3E1A6AE2409B78100C4DFD5 /* FilteredBikeView.swift */,
 			);
 			path = SingleViews;
 			sourceTree = "<group>";
@@ -305,8 +308,8 @@
 		A3C7A1D42401F81300A741A8 /* DetailViews */ = {
 			isa = PBXGroup;
 			children = (
-				A3FBA8BE24034623001F3885 /* BikeDetailViews */,
 				A3DDCC7C23DFF21700CD1476 /* NotesDetailView.swift */,
+				A3FBA8BE24034623001F3885 /* BikeDetailViews */,
 			);
 			path = DetailViews;
 			sourceTree = "<group>";
@@ -469,6 +472,7 @@
 				A3DDCC7A23DFEFEB00CD1476 /* Bike+CoreDataClass.swift in Sources */,
 				A3C16E6823DE9EC4005BFA14 /* AppDelegate.swift in Sources */,
 				A3B8B79723F0E9EF00CE1EF8 /* BikePickerView.swift in Sources */,
+				A3E1A6AF2409B78100C4DFD5 /* FilteredBikeView.swift in Sources */,
 				A3C16E6D23DE9EC4005BFA14 /* DialedIn.xcdatamodeld in Sources */,
 				A3C76CA423EF66450047BBCC /* RatingView.swift in Sources */,
 				A3C16EB723DEA582005BFA14 /* RearShock+CoreDataClass.swift in Sources */,

@@ -73,9 +73,9 @@ struct BikeDetailView: View {
 	
 	func doStuff() {
 		self.showingNotesView.toggle()
-		print(bike)
-		print(bike.frontSetup)
-		print(bike.rearSetup)
+//		print(bike)
+//		print(bike.frontSetup)
+//		print(bike.rearSetup)
 	}
 }
 

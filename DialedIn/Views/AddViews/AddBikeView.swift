@@ -133,9 +133,9 @@ struct AddBikeView: View {
 						newBike.rearSetup?.isCoil = false
                     }
 
-                    print(newBike)
-                    print(newBike.frontSetup!)
-                    print(newBike.rearSetup!)
+//                    print(newBike)
+//                    print(newBike.frontSetup!)
+//                    print(newBike.rearSetup!)
                      try? self.moc.save()
                     
                     }) {

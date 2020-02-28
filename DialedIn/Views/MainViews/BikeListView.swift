@@ -31,7 +31,7 @@ struct BikeListView: View {
 				}
 			}
             .navigationBarTitle("Bikes")
-            .navigationBarItems(leading: EditButton(), trailing:
+            .navigationBarItems(trailing:
                 Button(action: {self.showingAddScreen.toggle()
                 }) {
                     Image(systemName: "plus.circle")

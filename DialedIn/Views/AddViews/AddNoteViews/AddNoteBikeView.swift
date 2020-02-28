@@ -13,6 +13,11 @@ struct AddNoteBikeView: View {
 	// Create the MOC
 	@Environment(\.managedObjectContext) var moc
 	@Environment(\.presentationMode) var presentationMode
+	
+	// Get All the bikes for the PickerView
+	@FetchRequest(fetchRequest: Bike.bikesFetchRequest())
+	var bikes: FetchedResults<Bike>
+
 		
 	@ObservedObject var frontSetup = NoteFrontSetupModel()
 	@ObservedObject var rearSetup = NoteRearSetupModel()
@@ -24,12 +29,15 @@ struct AddNoteBikeView: View {
 	@State private var date = Date()
 	@State private var rating = 3
 	
+
+	
 	let bike: Bike
 
 	var body: some View {
 		NavigationView {
 			VStack {
 				Form{
+					FilteredBikeView(filter: self.bike.name!)
 					Section(header: Text("Ride Details")){
 						Text("Bike: \(self.bike.name ?? "Unknown Bike")").foregroundColor(.red).bold()
 						TextField("Note", text: $note )
@@ -39,7 +47,7 @@ struct AddNoteBikeView: View {
 						RatingView(rating: $rating)
 					}
 					
-					// MARK: - FRONT SETUP -
+					// MARK: - FRONT SETUP
 					Section(header:
 						HStack {
 							Image("bicycle-fork")
@@ -82,7 +90,7 @@ struct AddNoteBikeView: View {
 		}
 	}
 	
-	// MARK: - FUNCTIONS
+	// MARK: - FUNCTIONS -
 	
 	func saveNote() {
 		let newNote = Notes(context: self.moc)
@@ -125,16 +133,27 @@ struct AddNoteBikeView: View {
 	}
 	
 	func setup() {
-		bikeName = bike.name ?? "Unknown"
 		print("Setup ran")
-		print(bikeName)
+		let filteredBikes = bikes.filter { biks in
+			biks.name == bike.name
+		}
+		
+		// Getting closer- retrieving front settings without issue, just not displaying correctly
+		print(filteredBikes)
+		bikeName = filteredBikes[0].name ?? "Unknown Bike"
 		
 		frontSetup.bikeName = bikeName
+		print(bikeName)
 		frontSetup.getLastFrontSettings()
+		
+		print("after getlastFrsettings")
 		
 		rearSetup.bikeName = bikeName
 		rearSetup.getLastRearSettings()
-		print(bike.rearSetup)
+//		print("Front: \(bike.frontSetup)")
+//		print("front setup: \(frontSetup)")
+//		print("Rear Setup: \(bike.rearSetup)" )
+
 //		self.frontSetup.fComp = self.bike.frontSetup?.dualCompression ?? true
 //		self.frontSetup.fReb = self.bike.frontSetup?.dualRebound ?? true
 //		

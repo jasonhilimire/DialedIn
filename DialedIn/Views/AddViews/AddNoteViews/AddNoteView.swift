@@ -36,7 +36,7 @@ struct AddNoteView: View {
 						BikePickerView(bikeNameIndex: $bikeNameIndex)
 							
 						
-						//TODO: bug in the picker where its not updating the text on the Picker Line
+						//TODO: bug in the picker where its not updating the text on the Picker Line in Beta only
 						
 						Text("Selected Bike is: \(self.bikes[bikeNameIndex].name ?? "Unknown Bike")").foregroundColor(.red).bold()
 						TextField("Note", text: $note )
@@ -89,7 +89,7 @@ struct AddNoteView: View {
         }
     }
     
-    // MARK: - FUNCTIONS
+    // MARK: - FUNCTIONS -
     
     func saveNote() {
         let newNote = Notes(context: self.moc)
@@ -138,6 +138,10 @@ struct AddNoteView: View {
         
         rearSetup.bikeName = bikeName
         rearSetup.getLastRearSettings()
+		
+//		print("Front setup: \(frontSetup)")
+//		print("Index Front setup: \(bikes[bikeNameIndex].frontSetup)")
+		
 		
         // these shoudl be setup via the model
         self.frontSetup.fComp = self.bikes[bikeNameIndex].frontSetup?.dualCompression ?? true

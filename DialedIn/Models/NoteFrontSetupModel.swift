@@ -13,10 +13,8 @@ import Combine
 class NoteFrontSetupModel: ObservableObject {
     
     let managedObjectContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    
-    
-    
-    init() {
+
+	init() {
         getLastFrontSettings()
     }
     
@@ -168,6 +166,7 @@ class NoteFrontSetupModel: ObservableObject {
     }
     
     func getLastFrontSettings() {
+		print("Get Last front setting ran")
         // Get all the settings and assign
         lastFAirSetting = getLastAir()
         lastFHSCSetting = getLastFHSC()
