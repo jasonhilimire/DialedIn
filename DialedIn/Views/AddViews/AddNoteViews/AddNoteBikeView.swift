@@ -25,19 +25,12 @@ struct AddNoteBikeView: View {
 	@State private var rating = 3
 	
 	let bike: Bike
-	
-//	@Binding var bikeName: String
-//	init(bike: Bike, bikeName: Binding<String>) {
-//		self.bike = bike
-//		self._bikeName = bikeName
-//	}
 
 	var body: some View {
 		NavigationView {
 			VStack {
 				Form{
 					Section(header: Text("Ride Details")){
-						FilteredAddNoteView(filter: bikeName)
 						Text("Bike: \(self.bike.name ?? "Unknown Bike")").foregroundColor(.red).bold()
 						TextField("Note", text: $note )
 						DatePicker(selection: $date, in: ...Date(), displayedComponents: .date) {
@@ -45,7 +38,6 @@ struct AddNoteBikeView: View {
 						}
 						RatingView(rating: $rating)
 					}
-					.onAppear(perform: {self.printStuff()})
 					
 					// MARK: - FRONT SETUP -
 					Section(header:
@@ -74,7 +66,7 @@ struct AddNoteBikeView: View {
 						AddNoteRearSetupView(rearSetup: rearSetup)
 					}
 				} // end form
-					
+					.onAppear(perform: {self.setup()})
 					.navigationBarTitle("DialedIn", displayMode: .inline)
 				
 				Button(action: {
@@ -91,12 +83,6 @@ struct AddNoteBikeView: View {
 	}
 	
 	// MARK: - FUNCTIONS
-	
-	func printStuff() {
-//		print(self.bike.name)
-//		print(self.bikeName)
-//		print("HAS REAR: \(self.bike.hasRearShock)")
-	}
 	
 	func saveNote() {
 		let newNote = Notes(context: self.moc)
@@ -139,24 +125,23 @@ struct AddNoteBikeView: View {
 	}
 	
 	func setup() {
-		// TODO: BUG HERE DURING SCROLLING WHERE showing the  picker again resets all the toggles because nothing has been actually saved
-		// When returning from Picker View .onAppear Update the model
 		bikeName = bike.name ?? "Unknown"
 		print("Setup ran")
 		print(bikeName)
+		
 		frontSetup.bikeName = bikeName
 		frontSetup.getLastFrontSettings()
 		
 		rearSetup.bikeName = bikeName
 		rearSetup.getLastRearSettings()
-		
-		self.frontSetup.fComp = self.bike.frontSetup?.dualCompression ?? true
-		self.frontSetup.fReb = self.bike.frontSetup?.dualRebound ?? true
-		
-		self.rearSetup.rComp = self.bike.rearSetup?.dualCompression ?? true
-		self.rearSetup.rReb = self.bike.rearSetup?.dualRebound ?? true
-		self.rearSetup.coil = self.bike.rearSetup?.isCoil ?? false
-		self.rearSetup.hasRear = self.bike.hasRearShock
+		print(bike.rearSetup)
+//		self.frontSetup.fComp = self.bike.frontSetup?.dualCompression ?? true
+//		self.frontSetup.fReb = self.bike.frontSetup?.dualRebound ?? true
+//		
+//		self.rearSetup.rComp = self.bike.rearSetup?.dualCompression ?? true
+//		self.rearSetup.rReb = self.bike.rearSetup?.dualRebound ?? true
+//		self.rearSetup.coil = self.bike.rearSetup?.isCoil ?? false
+//		self.rearSetup.hasRear = self.bike.hasRearShock
 		
 	}
 }

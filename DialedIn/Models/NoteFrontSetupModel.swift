@@ -189,6 +189,13 @@ class NoteFrontSetupModel: ObservableObject {
         }
         return filteredBikes
     }
+	
+	func filter(for name: String) -> [Bike] {
+		let filteredBikes = getBikes().filter { bikes in
+			bikes.name == name
+		}
+		return filteredBikes
+	}
     
     enum FrontSettings {
         case compression

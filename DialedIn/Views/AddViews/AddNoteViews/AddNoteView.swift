@@ -132,15 +132,14 @@ struct AddNoteView: View {
     }
     
     func setup() {
-        // TODO: BUG HERE DURING SCROLLING WHERE showing the  picker again resets all the toggles because nothing has been actually saved
-        // When returning from Picker View .onAppear Update the model
         bikeName = bikes[bikeNameIndex].name ?? "Unknown"
         frontSetup.bikeName = bikeName
         frontSetup.getLastFrontSettings()
         
         rearSetup.bikeName = bikeName
         rearSetup.getLastRearSettings()
-        
+		
+        // these shoudl be setup via the model
         self.frontSetup.fComp = self.bikes[bikeNameIndex].frontSetup?.dualCompression ?? true
         self.frontSetup.fReb = self.bikes[bikeNameIndex].frontSetup?.dualRebound ?? true
         

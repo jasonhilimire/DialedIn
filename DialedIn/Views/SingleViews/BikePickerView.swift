@@ -25,15 +25,6 @@ struct BikePickerView: View {
                 Text("\(self.bikes[bike].name!)").tag(bike)
             }
         }
-        
-        /* Previous Picker same result as above
-         
-         Picker(selection: self.$bikeNameIndex, label: Text("Choose Bike")) {
-         ForEach(0..<bikes.count) { bike in Text("\(self.bikes[bike].name ?? "Unknown bike")")
-             }
-         }
-         */
-        
     }
 }
 
