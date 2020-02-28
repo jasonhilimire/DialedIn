@@ -102,8 +102,7 @@ struct AddBikeView: View {
                     newBike.name = self.bikeName
                     newBike.bikeNote = self.bikeNote
                     newBike.isDefault = self.setDefault
-                    
-                    
+
                     newBike.frontSetup = Fork(context: self.moc)
                     newBike.frontSetup?.dualCompression = self.forkDualCompToggle
                     newBike.frontSetup?.dualRebound = self.forkDualReboundToggle
@@ -131,6 +130,7 @@ struct AddBikeView: View {
                         newBike.hasRearShock = true
                     } else if self.rearSetupIndex == 0 {
                         newBike.hasRearShock = false
+						newBike.rearSetup?.isCoil = false
                     }
 
                     print(newBike)

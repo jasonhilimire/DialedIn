@@ -45,6 +45,7 @@ struct AddNoteBikeView: View {
 						}
 						RatingView(rating: $rating)
 					}
+					.onAppear(perform: {self.printStuff()})
 					
 					// MARK: - FRONT SETUP -
 					Section(header:
@@ -90,6 +91,12 @@ struct AddNoteBikeView: View {
 	}
 	
 	// MARK: - FUNCTIONS
+	
+	func printStuff() {
+//		print(self.bike.name)
+//		print(self.bikeName)
+//		print("HAS REAR: \(self.bike.hasRearShock)")
+	}
 	
 	func saveNote() {
 		let newNote = Notes(context: self.moc)
@@ -150,7 +157,6 @@ struct AddNoteBikeView: View {
 		self.rearSetup.rReb = self.bike.rearSetup?.dualRebound ?? true
 		self.rearSetup.coil = self.bike.rearSetup?.isCoil ?? false
 		self.rearSetup.hasRear = self.bike.hasRearShock
-		print(<#T##items: Any...##Any#>)
 		
 	}
 }

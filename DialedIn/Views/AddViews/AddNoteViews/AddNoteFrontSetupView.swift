@@ -41,7 +41,7 @@ struct AddNoteFrontSetupView: View {
                 Stepper(value: $frontsetup.lastFHSRSetting, in: 0...25, label: {Text("High Sp Rebound: \(self.frontsetup.lastFHSRSetting)")})
                 Stepper(value: $frontsetup.lastFLSRSetting, in: 0...25, label: {Text("Low Sp Rebound: \(self.frontsetup.lastFLSRSetting)")})
             } else {
-                Stepper(value: $frontsetup.lastFHSRSetting, in: 0...25, label: {Text("Rebound: \(self.frontsetup.lastFCompSetting)")})
+                Stepper(value: $frontsetup.lastFReboundSetting, in: 0...25, label: {Text("Rebound: \(self.frontsetup.lastFReboundSetting)")})
             }
         }
     }

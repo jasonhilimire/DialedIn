@@ -51,7 +51,7 @@ struct BikeDetailView: View {
 			.padding()
 		
 			HStack(alignment: .bottom) {
-				Button(action: {self.showingNotesView.toggle()}) {
+				Button(action: {self.doStuff()}) {
 					Text("Add Note")
 				}
 				.sheet(isPresented: $showingNotesView)  {
@@ -70,6 +70,13 @@ struct BikeDetailView: View {
 //		.shadow(radius: 20)
 
     }
+	
+	func doStuff() {
+		self.showingNotesView.toggle()
+//		print(bike)
+//		print(bike.frontSetup)
+//		print(bike.rearSetup)
+	}
 }
 
 //struct BikeDetailView_Previews: PreviewProvider {

@@ -132,9 +132,10 @@ class NoteRearSetupModel: ObservableObject {
         }
     
         func getRear() -> Bool {
-            let lastRecord = filterBikes(for: bikeName)
-            guard let rear = lastRecord.last?.bike?.hasRearShock else { return false }
-            return rear
+//			let bike = Bike.selectedBikeFetchRequest(filter: bikeName)
+//			var bikeFetch = FetchedResults<Bike>
+//			bikeFetch.
+            return true
         }
        
        func getLastRHSC() -> Int16 {

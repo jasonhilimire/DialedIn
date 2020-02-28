@@ -34,7 +34,7 @@ struct AddNoteView: View {
 				Form{
 					Section(header: Text("Ride Details")){
 						BikePickerView(bikeNameIndex: $bikeNameIndex)
-							.onAppear(perform: {self.setup()}) // change to onReceive??
+							
 						
 						//TODO: bug in the picker where its not updating the text on the Picker Line
 						
@@ -73,7 +73,7 @@ struct AddNoteView: View {
 						AddNoteRearSetupView(rearSetup: rearSetup)
 					}
 				} // end form
-					
+					.onAppear(perform: {self.setup()}) // change to onReceive??
 					.navigationBarTitle("DialedIn", displayMode: .inline)
 				
 				Button(action: {
