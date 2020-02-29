@@ -132,18 +132,7 @@ struct AddNoteBikeView: View {
 	}
 	
 	func setup() {
-	/// TODO: this is now working to pull correct info into the view, however its not initializing properly when there is no .last Note to pull the data from, not working at all for hardtail though
-		print(self.bike.name)
-		print(self.front)
-	
-		
-		print("Setup ran")
-		let filteredBikes = bikes.filter { biks in
-			biks.name == bike.name
-		}
-		
 
-		print(filteredBikes)
 		bikeName = self.bike.name ?? "Unknown bike"
 		
 		front.bikeName = bikeName
@@ -153,17 +142,15 @@ struct AddNoteBikeView: View {
 		
 		rear.bikeName = bikeName
 		rear.getLastRearSettings()
-//		print("Front: \(bike.frontSetup)")
-//		print("front setup: \(frontSetup)")
-//		print("Rear Setup: \(bike.rearSetup)" )
 
-//		self.frontSetup.fComp = self.bike.frontSetup?.dualCompression ?? true
-//		self.frontSetup.fReb = self.bike.frontSetup?.dualRebound ?? true
-//		
-//		self.rearSetup.rComp = self.bike.rearSetup?.dualCompression ?? true
-//		self.rearSetup.rReb = self.bike.rearSetup?.dualRebound ?? true
-//		self.rearSetup.coil = self.bike.rearSetup?.isCoil ?? false
-//		self.rearSetup.hasRear = self.bike.hasRearShock
+		// Should be in model?
+		self.front.fComp = self.bike.frontSetup?.dualCompression ?? true
+		self.front.fReb = self.bike.frontSetup?.dualRebound ?? true
+		
+		self.rear.rComp = self.bike.rearSetup?.dualCompression ?? true
+		self.rear.rReb = self.bike.rearSetup?.dualRebound ?? true
+		self.rear.coil = self.bike.rearSetup?.isCoil ?? false
+		self.rear.hasRear = self.bike.hasRearShock
 		
 	}
 }
