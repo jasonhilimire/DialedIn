@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct AddNoteFrontSetupView: View {
-    @ObservedObject var frontsetup = NoteFrontSetupModel()
+    @ObservedObject var front = NoteFrontSetupModel()
     
     @State private var sag = 20
     
@@ -18,36 +18,36 @@ struct AddNoteFrontSetupView: View {
         VStack{
               // AirPressure
         HStack{
-            Text("PSI: \(frontsetup.lastFAirSetting, specifier: "%.1f")")
-            Slider(value: $frontsetup.lastFAirSetting, in: 45...120, step: 0.5)
+            Text("PSI: \(front.lastFAirSetting, specifier: "%.1f")")
+            Slider(value: $front.lastFAirSetting, in: 45...120, step: 0.5)
             }
-            Stepper(value: $frontsetup.lastFSagSetting   , in: 0...40, label: {Text("Sag: \(self.frontsetup.lastFSagSetting)")})
+            Stepper(value: $front.lastFSagSetting   , in: 0...40, label: {Text("Sag: \(self.front.lastFSagSetting)")})
         
             // Tokens
-            Stepper(value: $frontsetup.lastFTokenSetting   , in: 0...6, label: {Text("Tokens: \(self.frontsetup.lastFTokenSetting)")})
+            Stepper(value: $front.lastFTokenSetting   , in: 0...6, label: {Text("Tokens: \(self.front.lastFTokenSetting)")})
 
             
             //Compression
-            if frontsetup.fComp == true {
-                Stepper(value: $frontsetup.lastFHSCSetting, in: 0...25, label: {Text("High Sp Comp: \(self.frontsetup.lastFHSCSetting)")})
-                Stepper(value: $frontsetup.lastFLSCSetting, in: 0...25, label: {Text("Low Sp Comp: \(self.frontsetup.lastFLSCSetting)")})
+            if front.fComp == true {
+                Stepper(value: $front.lastFHSCSetting, in: 0...25, label: {Text("High Sp Comp: \(self.front.lastFHSCSetting)")})
+                Stepper(value: $front.lastFLSCSetting, in: 0...25, label: {Text("Low Sp Comp: \(self.front.lastFLSCSetting)")})
             } else {
-                Stepper(value: $frontsetup.lastFCompSetting, in: 0...25, label: {Text("Compression: \(self.frontsetup.lastFCompSetting)")})
+                Stepper(value: $front.lastFCompSetting, in: 0...25, label: {Text("Compression: \(self.front.lastFCompSetting)")})
             }
 
             // Rebound
 
-            if frontsetup.fReb == true {
-                Stepper(value: $frontsetup.lastFHSRSetting, in: 0...25, label: {Text("High Sp Rebound: \(self.frontsetup.lastFHSRSetting)")})
-                Stepper(value: $frontsetup.lastFLSRSetting, in: 0...25, label: {Text("Low Sp Rebound: \(self.frontsetup.lastFLSRSetting)")})
+            if front.fReb == true {
+                Stepper(value: $front.lastFHSRSetting, in: 0...25, label: {Text("High Sp Rebound: \(self.front.lastFHSRSetting)")})
+                Stepper(value: $front.lastFLSRSetting, in: 0...25, label: {Text("Low Sp Rebound: \(self.front.lastFLSRSetting)")})
             } else {
-                Stepper(value: $frontsetup.lastFReboundSetting, in: 0...25, label: {Text("Rebound: \(self.frontsetup.lastFReboundSetting)")})
+                Stepper(value: $front.lastFReboundSetting, in: 0...25, label: {Text("Rebound: \(self.front.lastFReboundSetting)")})
             }
 		}.onAppear(perform: {self.printStuff()})
     }
 	
 	func printStuff() {
-		print("PSI: \(frontsetup.lastFAirSetting)")
+		print("PSI: \(front.lastFAirSetting)")
 	}
 }
 

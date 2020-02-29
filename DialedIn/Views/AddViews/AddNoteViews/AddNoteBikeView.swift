@@ -19,8 +19,8 @@ struct AddNoteBikeView: View {
 	var bikes: FetchedResults<Bike>
 
 		
-	@ObservedObject var frontSetup = NoteFrontSetupModel()
-	@ObservedObject var rearSetup = NoteRearSetupModel()
+	@ObservedObject var front = NoteFrontSetupModel()
+	@ObservedObject var rear = NoteRearSetupModel()
 	
 	@State private var createdInitialBike = false
 	@State private var bikeNameIndex = 0
@@ -37,7 +37,6 @@ struct AddNoteBikeView: View {
 		NavigationView {
 			VStack {
 				Form{
-					FilteredBikeView(filter: self.bike.name!)
 					Section(header: Text("Ride Details")){
 						Text("Bike: \(self.bike.name ?? "Unknown Bike")").foregroundColor(.red).bold()
 						TextField("Note", text: $note )
@@ -58,7 +57,7 @@ struct AddNoteBikeView: View {
 						}
 						
 					){
-						AddNoteFrontSetupView(frontsetup: frontSetup)
+						AddNoteFrontSetupView(front: self.front)
 					}
 					
 					// MARK: - Rear Setup
@@ -71,7 +70,7 @@ struct AddNoteBikeView: View {
 							Text("Rear Suspension Details")
 						}
 					){
-						AddNoteRearSetupView(rearSetup: rearSetup)
+						AddNoteRearSetupView(rear: self.rear)
 					}
 				} // end form
 					.onAppear(perform: {self.setup()})
@@ -100,56 +99,60 @@ struct AddNoteBikeView: View {
 		
 		newNote.bike = Bike(context: self.moc)
 		newNote.bike?.name = self.bike.name
-		newNote.fAirVolume = Double(self.frontSetup.lastFAirSetting)
-		newNote.fCompression = self.frontSetup.lastFCompSetting
-		newNote.fHSC = self.frontSetup.lastFHSCSetting
-		newNote.fLSC = self.frontSetup.lastFLSCSetting
-		newNote.fRebound = self.frontSetup.lastFReboundSetting
-		newNote.fHSR = self.frontSetup.lastFHSRSetting
-		newNote.fLSR = self.frontSetup.lastFLSRSetting
-		newNote.fTokens = self.frontSetup.lastFTokenSetting
-		newNote.fSag = self.frontSetup.lastFSagSetting
-		newNote.bike?.hasRearShock = self.rearSetup.hasRear
+		newNote.fAirVolume = Double(self.front.lastFAirSetting)
+		newNote.fCompression = self.front.lastFCompSetting
+		newNote.fHSC = self.front.lastFHSCSetting
+		newNote.fLSC = self.front.lastFLSCSetting
+		newNote.fRebound = self.front.lastFReboundSetting
+		newNote.fHSR = self.front.lastFHSRSetting
+		newNote.fLSR = self.front.lastFLSRSetting
+		newNote.fTokens = self.front.lastFTokenSetting
+		newNote.fSag = self.front.lastFSagSetting
+		newNote.bike?.hasRearShock = self.rear.hasRear
 		
-		newNote.rAirSpring = self.rearSetup.lastRAirSpringSetting
-		newNote.rCompression = self.rearSetup.lastRCompSetting
-		newNote.rHSC = self.rearSetup.lastRHSCSetting
-		newNote.rLSC = self.rearSetup.lastRLSCSetting
-		newNote.rRebound = self.rearSetup.lastRReboundSetting
-		newNote.rHSR = self.rearSetup.lastRHSRSetting
-		newNote.rLSR = self.rearSetup.lastRLSRSetting
-		newNote.rTokens = self.rearSetup.lastRTokenSetting
-		newNote.rSag = self.rearSetup.lastRSagSetting
+		newNote.rAirSpring = self.rear.lastRAirSpringSetting
+		newNote.rCompression = self.rear.lastRCompSetting
+		newNote.rHSC = self.rear.lastRHSCSetting
+		newNote.rLSC = self.rear.lastRLSCSetting
+		newNote.rRebound = self.rear.lastRReboundSetting
+		newNote.rHSR = self.rear.lastRHSRSetting
+		newNote.rLSR = self.rear.lastRLSRSetting
+		newNote.rTokens = self.rear.lastRTokenSetting
+		newNote.rSag = self.rear.lastRSagSetting
 		
 		newNote.bike?.frontSetup = Fork(context: self.moc)
-		newNote.bike?.frontSetup?.dualCompression = self.frontSetup.fComp
-		newNote.bike?.frontSetup?.dualRebound = self.frontSetup.fReb
+		newNote.bike?.frontSetup?.dualCompression = self.front.fComp
+		newNote.bike?.frontSetup?.dualRebound = self.front.fReb
 		
 		newNote.bike?.rearSetup = RearShock(context: self.moc)
-		newNote.bike?.rearSetup?.dualCompression = self.rearSetup.rComp
-		newNote.bike?.rearSetup?.dualRebound = self.rearSetup.rReb
-		newNote.bike?.rearSetup?.isCoil = self.rearSetup.coil
+		newNote.bike?.rearSetup?.dualCompression = self.rear.rComp
+		newNote.bike?.rearSetup?.dualRebound = self.rear.rReb
+		newNote.bike?.rearSetup?.isCoil = self.rear.coil
 		
 	}
 	
 	func setup() {
+	/// TODO: this is now working to pull correct info into the view, however its not initializing properly when there is no .last Note to pull the data from, not working at all for hardtail though
+		print(self.bike.name)
+		print(self.front)
+	
+		
 		print("Setup ran")
 		let filteredBikes = bikes.filter { biks in
 			biks.name == bike.name
 		}
 		
-		// Getting closer- retrieving front settings without issue, just not displaying correctly
+
 		print(filteredBikes)
-		bikeName = filteredBikes[0].name ?? "Unknown Bike"
+		bikeName = self.bike.name ?? "Unknown bike"
 		
-		frontSetup.bikeName = bikeName
-		print(bikeName)
-		frontSetup.getLastFrontSettings()
+		front.bikeName = bikeName
+		front.getLastFrontSettings()
 		
 		print("after getlastFrsettings")
 		
-		rearSetup.bikeName = bikeName
-		rearSetup.getLastRearSettings()
+		rear.bikeName = bikeName
+		rear.getLastRearSettings()
 //		print("Front: \(bike.frontSetup)")
 //		print("front setup: \(frontSetup)")
 //		print("Rear Setup: \(bike.rearSetup)" )

@@ -57,7 +57,7 @@ struct AddNoteView: View {
 						}
 						
 					){
-						AddNoteFrontSetupView(frontsetup: frontSetup)
+						AddNoteFrontSetupView(front: frontSetup)
 					}
 					
 					// MARK: - Rear Setup
@@ -70,7 +70,7 @@ struct AddNoteView: View {
 							Text("Rear Suspension Details")
 						}
 					){
-						AddNoteRearSetupView(rearSetup: rearSetup)
+						AddNoteRearSetupView(rear: rearSetup)
 					}
 				} // end form
 					.onAppear(perform: {self.setup()}) // change to onReceive??

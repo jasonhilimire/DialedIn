@@ -13,6 +13,9 @@ import Combine
 struct BikeDetailView: View {
     @Environment(\.managedObjectContext) var moc
     @Environment(\.presentationMode) var presentationMode
+	
+	@ObservedObject var front = NoteFrontSetupModel()
+	@ObservedObject var rear = NoteRearSetupModel()
     
     @State private var showingDeleteAlert = false
 	@State private var showingNotesView = false
@@ -33,14 +36,14 @@ struct BikeDetailView: View {
                 .font(.subheadline)
 			VStack {
 				Section(header: Text("Fork")) {
-					ForkLastServicedView(fork: bike.frontSetup!)
+					ForkLastServicedView(fork: self.bike.frontSetup!)
 				}
 				
 				Section(header: Text("Rear")) {
 					if self.bike.hasRearShock == false {
 						Text("HardTail")
 					} else {
-						RearShockLastServicedView(rear: bike.rearSetup!)
+						RearShockLastServicedView(rear: self.bike.rearSetup!)
 					}
 				}
 			}
@@ -55,7 +58,7 @@ struct BikeDetailView: View {
 					Text("Add Note")
 				}
 				.sheet(isPresented: $showingNotesView)  {
-					AddNoteBikeView(bike: self.bike).environment(\.managedObjectContext, self.moc)
+					AddNoteBikeView(front: self.front, rear: self.rear, bike: self.bike).environment(\.managedObjectContext, self.moc)
 				}
 //				Spacer()
 				Button(action: {print("Service pressed")}) {
