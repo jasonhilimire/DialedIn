@@ -129,6 +129,7 @@ struct AddNoteBikeView: View {
 		newNote.bike?.rearSetup?.dualRebound = self.rear.rReb
 		newNote.bike?.rearSetup?.isCoil = self.rear.coil
 		
+		
 	}
 	
 	func setup() {

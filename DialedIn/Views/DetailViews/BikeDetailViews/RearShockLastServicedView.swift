@@ -25,7 +25,7 @@ struct RearShockLastServicedView: View {
                 Text(self.rear.lastFullService != nil ? "Last full service: \(self.rear.lastFullService!, formatter: self.dateFormatter)" : "Unknown")
             } else {
                 Text(self.rear.lastFullService != nil ? "Last full service: \(self.rear.lastFullService!, formatter: self.dateFormatter)" : "Unknown")
-            }
+			}
         }
         
     }

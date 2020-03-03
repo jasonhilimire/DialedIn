@@ -29,56 +29,78 @@ struct BikeDetailView: View {
     
     let bike: Bike
     var body: some View {
-		VStack {
-            Text(self.bike.name ?? "Unknown Bike")
-                .font(.largeTitle)
-            Text("Info: \(self.bike.bikeNote ?? "")" )
-                .font(.subheadline)
-			VStack {
-				Section(header: Text("Fork")) {
-					ForkLastServicedView(fork: self.bike.frontSetup!)
-				}
-				
-				Section(header: Text("Rear")) {
-					if self.bike.hasRearShock == false {
-						Text("HardTail")
-					} else {
-						RearShockLastServicedView(rear: self.bike.rearSetup!)
+		VStack{
+			GeometryReader { geometry in
+				VStack {
+					Text(self.bike.name ?? "Unknown Bike")
+						.font(.largeTitle)
+						.fontWeight(.bold)
+					Text("Info: \(self.bike.bikeNote ?? "")" )
+						.font(.subheadline)
+					VStack {
+						Section {
+							Text("Fork:")
+								.font(.headline)
+								.offset(x: -80)
+							ForkLastServicedView(fork: self.bike.frontSetup!)
+						}
+						Divider()
+						Section{
+							Text("Rear:")
+								.font(.headline)
+								.offset(x: -80)
+							if self.bike.hasRearShock == false {
+								Text("HardTail")
+							} else {
+								RearShockLastServicedView(rear: self.bike.rearSetup!)
+							}
+						}
 					}
+					.frame(width: 235, height: 170)
+					.foregroundColor(Color.white)
+					.background(RoundedRectangle(cornerRadius: 10))
+					.foregroundColor(Color.blue)
+						
+					
+					
+					HStack(alignment: .bottom) {
+						Button(action: {self.doStuff()}) {
+							HStack {
+								Image(systemName: "square.and.pencil")
+								Text("Add Note")
+							}
+						}
+						.sheet(isPresented: self.$showingNotesView)  {
+							AddNoteBikeView(front: self.front, rear: self.rear, bike: self.bike).environment(\.managedObjectContext, self.moc)
+						}
+						Spacer()
+						Button(action: {print("Service pressed")}) {
+							HStack {
+								Image(systemName:"wrench")
+								Text("Service")
+							}
+						}
+					}
+					
 				}
 			}
-			.padding()
-			.foregroundColor(Color.white)
-			.background(RoundedRectangle(cornerRadius: 10))
-			.foregroundColor(.green)
-			.padding()
+			Divider()
+		}
+		.frame(height: 280)
+		.padding(.horizontal, 15)
+		.padding(.top, 1)
+		.foregroundColor(Color.blue)
+		.background(RoundedRectangle(cornerRadius: 0))
+		.foregroundColor(Color.clear)
+//			.shadow(radius: 8)
+		//
 		
-			HStack(alignment: .bottom) {
-				Button(action: {self.doStuff()}) {
-					Text("Add Note")
-				}
-				.sheet(isPresented: $showingNotesView)  {
-					AddNoteBikeView(front: self.front, rear: self.rear, bike: self.bike).environment(\.managedObjectContext, self.moc)
-				}
-//				Spacer()
-				Button(action: {print("Service pressed")}) {
-					Text("Service")
-				}
-			}
 		
-        }
-		.padding(.horizontal, 25)
-		.background(RoundedRectangle(cornerRadius: 10)
-		.stroke(Color.green, lineWidth: 3))
-//		.shadow(radius: 20)
 
     }
 	
 	func doStuff() {
 		self.showingNotesView.toggle()
-//		print(bike)
-//		print(bike.frontSetup)
-//		print(bike.rearSetup)
 	}
 }
 
