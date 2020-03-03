@@ -203,10 +203,8 @@ class NoteRearSetupModel: ObservableObject {
             rComp = getrComp()
             coil = getCoil()
             hasRear = getRear()
-
        }
-       
-    // THIS WORKS Now need to figure out how to pass the selected bike into the Model from the pickerview
+	
        func filterBikes(for name: String) -> [Notes] {
            let filteredBikes = getNotes().filter { bikes in
                bikes.bike?.name == name
@@ -228,21 +226,21 @@ class NoteRearSetupModel: ObservableObject {
                // if no filteredBike is found sets all values to 0
              switch self {
              case .compression:
-                 return note.last?.rCompression ?? 0
+                 return note.last?.rCompression ?? 5
              case .hsc:
-                 return note.last?.rHSC ?? 0
+                 return note.last?.rHSC ?? 8
              case .lsc:
-                 return note.last?.rLSC ?? 0
+                 return note.last?.rLSC ?? 8
              case .rebound:
-                 return note.last?.rRebound ?? 0
+                 return note.last?.rRebound ?? 5
              case .hsr:
-                 return note.last?.rHSR ?? 0
+                 return note.last?.rHSR ?? 8
              case .lsr:
-                 return note.last?.rLSR ?? 0
+                 return note.last?.rLSR ?? 8
              case .tokens:
-                 return note.last?.rTokens ?? 0
+                 return note.last?.rTokens ?? 1
              case .sag:
-                return note.last?.rSag ?? 0
+                return note.last?.rSag ?? 25
              }
          }
            

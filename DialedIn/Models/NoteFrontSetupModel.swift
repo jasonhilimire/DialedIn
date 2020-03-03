@@ -100,7 +100,7 @@ class NoteFrontSetupModel: ObservableObject {
     func getLastAir() -> Double {
         let lastRecord = filterBikes(for: bikeName)
         let lastAirSetting = lastRecord.last?.fAirVolume
-        return lastAirSetting ?? 60.0
+        return lastAirSetting ?? 65.0
     }
     
     func getfComp() -> Bool {
@@ -210,21 +210,21 @@ class NoteFrontSetupModel: ObservableObject {
             // if no filteredBike is found sets all values to 0
           switch self {
           case .compression:
-              return note.last?.fCompression ?? 0
+              return note.last?.fCompression ?? 5
           case .hsc:
-              return note.last?.fHSC ?? 0
+              return note.last?.fHSC ?? 8
           case .lsc:
-              return note.last?.fLSC ?? 0
+              return note.last?.fLSC ?? 8
           case .rebound:
-              return note.last?.fRebound ?? 0
+              return note.last?.fRebound ?? 5
           case .hsr:
-              return note.last?.fHSR ?? 0
+              return note.last?.fHSR ?? 8
           case .lsr:
-              return note.last?.fLSR ?? 0
+              return note.last?.fLSR ?? 8
           case .tokens:
-              return note.last?.fTokens ?? 0
+              return note.last?.fTokens ?? 1
           case .sag:
-            return note.last?.fSag ?? 0
+            return note.last?.fSag ?? 25
             
           }
       }
