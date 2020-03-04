@@ -38,7 +38,7 @@ struct AddNoteBikeView: View {
 			VStack {
 				Form{
 					Section(header: Text("Ride Details")){
-						Text("Bike: \(self.bike.name ?? "Unknown Bike")").foregroundColor(.red).bold()
+						Text("Bike: \(self.bike.name ?? "Unknown Bike")").foregroundColor(.blue).bold()
 						TextField("Note", text: $note )
 						DatePicker(selection: $date, in: ...Date(), displayedComponents: .date) {
 							Text("Select a date")

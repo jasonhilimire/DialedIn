@@ -38,7 +38,7 @@ struct AddNoteView: View {
 						
 						//TODO: bug in the picker where its not updating the text on the Picker Line in Beta only
 						
-						Text("Selected Bike is: \(self.bikes[bikeNameIndex].name ?? "Unknown Bike")").foregroundColor(.red).bold()
+//						Text("Selected Bike is: \(self.bikes[bikeNameIndex].name ?? "Unknown Bike")").foregroundColor(.red).bold()
 						TextField("Note", text: $note )
 						DatePicker(selection: $date, in: ...Date(), displayedComponents: .date) {
 							Text("Select a date")
@@ -139,10 +139,6 @@ struct AddNoteView: View {
         
         rearSetup.bikeName = bikeName
         rearSetup.getLastRearSettings()
-		
-//		print("Front setup: \(frontSetup)")
-//		print("Index Front setup: \(bikes[bikeNameIndex].frontSetup)")
-		
 		
         // these shoudl be setup via the model
         self.frontSetup.fComp = self.bikes[bikeNameIndex].frontSetup?.dualCompression ?? true
