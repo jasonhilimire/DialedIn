@@ -41,7 +41,7 @@ struct NoteCellView: View {
             .onDelete(perform: deleteNotes)
             
     }
-    
+  
     func deleteNotes(at offsets: IndexSet) {
         for offset in offsets {
             // find this note in our fetch request
@@ -52,6 +52,28 @@ struct NoteCellView: View {
         // save the context
         try? moc.save()
     }
+	/*
+	change fetch request to Bikes and change body to below- it will properly show notes under sections, but deletion does not work
+			to delete need to find the specific note as FetchRequest and then delete it from the context properly
+	
+	
+	ForEach(bikes, id: \.self) { bike in
+		Section(header: Text(bike.wrappedBikeName)) {
+			ForEach(bike.notesArray, id: \.self) { note in
+			NavigationLink(destination: NotesDetailView(note: note)) {
+				EmojiRatingView(rating: note.rating)
+					.font(.largeTitle)
+				VStack(alignment: .leading) {
+					Text(note.date != nil ? "\(note.date!, formatter: self.dateFormatter)" : "")
+					Text(note.wrappedNote)
+						.font(.callout)
+						.foregroundColor(.secondary)
+					}
+				}
+			}
+		}
+	}
+	*/
     
 }
 

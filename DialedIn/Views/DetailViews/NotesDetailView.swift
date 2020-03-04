@@ -77,11 +77,8 @@ struct NotesDetailView: View {
     }
     
     
-// TODO: Delete is working properly but not refreshing the NotesList
     func deleteNote() {
-        // If only 1 note exists and is deleted will cause a crash, possible fetchResults and then delete and that should work?
         moc.delete(self.note)
-
         try? self.moc.save()
         presentationMode.wrappedValue.dismiss()
     }
