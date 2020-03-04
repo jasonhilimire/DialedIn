@@ -21,8 +21,8 @@ struct ForkLastServicedView: View {
     let fork: Fork
     var body: some View {
         VStack {
-        Text(self.fork.lowerLastServiced != nil ? "Lowers last serviced: \(self.fork.lowerLastServiced!, formatter: self.dateFormatter)" : "Unknown")
-        Text(self.fork.lasfFullService != nil ? "Last full service: \(self.fork.lasfFullService!, formatter: self.dateFormatter)" : "Unknown")
+			Text(self.fork.lowerLastServiced != nil ? "Lowers last serviced: \(self.fork.lowerLastServiced!, formatter: self.dateFormatter)" : "Unknown")
+			Text(self.fork.lasfFullService != nil ? "Last full service: \(self.fork.lasfFullService!, formatter: self.dateFormatter)" : "Unknown")
         }
         
     }

@@ -30,14 +30,14 @@ struct AddNoteView: View {
     
     var body: some View {
         NavigationView {
-			VStack{
+			VStack {
 				Form{
 					Section(header: Text("Ride Details")){
 						BikePickerView(bikeNameIndex: $bikeNameIndex)
-						.onAppear(perform: {self.setup()}) // change to onReceive??
-				
-	//TODO: bug in the picker where its not updating the text on the Picker Line
-					
+							
+						
+						//TODO: bug in the picker where its not updating the text on the Picker Line in Beta only
+						
 						Text("Selected Bike is: \(self.bikes[bikeNameIndex].name ?? "Unknown Bike")").foregroundColor(.red).bold()
 						TextField("Note", text: $note )
 						DatePicker(selection: $date, in: ...Date(), displayedComponents: .date) {
@@ -46,19 +46,35 @@ struct AddNoteView: View {
 						RatingView(rating: $rating)
 					}
 					
-					
 					// MARK: - FRONT SETUP -
-					Section(header: Text("Front Suspension Details")){
-						AddNoteFrontSetupView(frontsetup: frontSetup)
+					Section(header:
+						HStack {
+							Image("bicycle-fork")
+								.resizable()
+								.frame(width: 50, height: 50)
+								.scaledToFit()
+							Text("Front Suspension Details")
+						}
+						
+					){
+						AddNoteFrontSetupView(front: frontSetup)
 					}
-					   
-				   // MARK: - Rear Setup
-					   Section(header: Text("Rear Suspension Details")){
-						AddNoteRearSetupView(rearSetup: rearSetup)
-					   }
-				} // end form
 					
-				.navigationBarTitle("DialedIn", displayMode: .inline)
+					// MARK: - Rear Setup
+					Section(header:
+						HStack {
+							Image("shock-absorber")
+								.resizable()
+								.frame(width: 50, height: 50)
+								.scaledToFit()
+							Text("Rear Suspension Details")
+						}
+					){
+						AddNoteRearSetupView(rear: rearSetup)
+					}
+				} // end form
+					.onAppear(perform: {self.setup()}) // change to onReceive??
+					.navigationBarTitle("DialedIn", displayMode: .inline)
 				
 				Button(action: {
 					//dismisses the sheet
@@ -74,7 +90,7 @@ struct AddNoteView: View {
 		
     }
     
-    // MARK: - FUNCTIONS
+    // MARK: - FUNCTIONS -
     
     func saveNote() {
         let newNote = Notes(context: self.moc)
@@ -117,15 +133,18 @@ struct AddNoteView: View {
     }
     
     func setup() {
-        // TODO: BUG HERE DURING SCROLLING WHERE showing the  picker again resets all the toggles because nothing has been actually saved
-        // When returning from Picker View .onAppear Update the model
         bikeName = bikes[bikeNameIndex].name ?? "Unknown"
         frontSetup.bikeName = bikeName
         frontSetup.getLastFrontSettings()
         
         rearSetup.bikeName = bikeName
         rearSetup.getLastRearSettings()
-        
+		
+//		print("Front setup: \(frontSetup)")
+//		print("Index Front setup: \(bikes[bikeNameIndex].frontSetup)")
+		
+		
+        // these shoudl be setup via the model
         self.frontSetup.fComp = self.bikes[bikeNameIndex].frontSetup?.dualCompression ?? true
         self.frontSetup.fReb = self.bikes[bikeNameIndex].frontSetup?.dualRebound ?? true
         

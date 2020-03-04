@@ -9,44 +9,44 @@
 import SwiftUI
 
 struct AddNoteRearSetupView: View {
-    @ObservedObject var rearSetup = NoteRearSetupModel()
+    @ObservedObject var rear = NoteRearSetupModel()
 
 //TODO, SET BOOLEANS
     var body: some View {
         VStack {
-            if rearSetup.hasRear == false {
+            if rear.hasRear == false {
                 Text("Hardtail")
             } else {
                 // Air - Coil
-                if rearSetup.coil == false {
+                if rear.coil == false {
                     HStack{
-                        Text("PSI: \(self.rearSetup.lastRAirSpringSetting, specifier: "%.0f")")
-                        Slider(value: $rearSetup.lastRAirSpringSetting, in: 100...350, step: 1.0)
+                        Text("PSI: \(self.rear.lastRAirSpringSetting, specifier: "%.0f")")
+                        Slider(value: $rear.lastRAirSpringSetting, in: 100...350, step: 1.0)
                        }
                     } else {
                         HStack{
-                            Text("Spring: \(self.rearSetup.lastRAirSpringSetting, specifier: "%.0f")")
-                            Slider(value: $rearSetup.lastRAirSpringSetting, in: 300...700, step: 25)
+                            Text("Spring: \(self.rear.lastRAirSpringSetting, specifier: "%.0f")")
+                            Slider(value: $rear.lastRAirSpringSetting, in: 300...700, step: 25)
                         }
                     }
                 //Sag
-                Stepper(value: $rearSetup.lastRSagSetting   , in: 0...40, label: {Text("Sag: \(self.rearSetup.lastRSagSetting)")})
+                Stepper(value: $rear.lastRSagSetting   , in: 0...40, label: {Text("Sag: \(self.rear.lastRSagSetting)")})
                 //Tokens
-                Stepper(value: $rearSetup.lastRTokenSetting, in: 0...6, label: {Text("Tokens: \(self.rearSetup.lastRTokenSetting)")})
+                Stepper(value: $rear.lastRTokenSetting, in: 0...6, label: {Text("Tokens: \(self.rear.lastRTokenSetting)")})
                 //Compression
-                if rearSetup.rComp == true {
-                        Stepper(value: $rearSetup.lastRHSCSetting, in: 0...25, label: {Text("High Sp Comp: \(self.rearSetup.lastRHSCSetting)")})
-                        Stepper(value: $rearSetup.lastRLSCSetting, in: 0...25, label: {Text("Low Sp Comp: \(self.rearSetup.lastRLSCSetting)")})
+                if rear.rComp == true {
+                        Stepper(value: $rear.lastRHSCSetting, in: 0...25, label: {Text("High Sp Comp: \(self.rear.lastRHSCSetting)")})
+                        Stepper(value: $rear.lastRLSCSetting, in: 0...25, label: {Text("Low Sp Comp: \(self.rear.lastRLSCSetting)")})
                     } else {
-                        Stepper(value: $rearSetup.lastRCompSetting, in: 0...25, label: {Text("Compression: \(self.rearSetup.lastRCompSetting)")})
+                        Stepper(value: $rear.lastRCompSetting, in: 0...25, label: {Text("Compression: \(self.rear.lastRCompSetting)")})
                     }
                     
                 // Rebound
-                if rearSetup.rReb == true {
-                        Stepper(value: $rearSetup.lastRHSRSetting, in: 0...25, label: {Text("High Sp Rebound: \(self.rearSetup.lastRHSRSetting)")})
-                        Stepper(value: $rearSetup.lastRLSRSetting, in: 0...25, label: {Text("Low Sp Rebound: \(self.rearSetup.lastRLSRSetting)")})
+                if rear.rReb == true {
+                        Stepper(value: $rear.lastRHSRSetting, in: 0...25, label: {Text("High Sp Rebound: \(self.rear.lastRHSRSetting)")})
+                        Stepper(value: $rear.lastRLSRSetting, in: 0...25, label: {Text("Low Sp Rebound: \(self.rear.lastRLSRSetting)")})
                     } else {
-                        Stepper(value: $rearSetup.lastRReboundSetting, in: 0...20, label: {Text("Rebound: \(self.rearSetup.lastRReboundSetting)")})
+                        Stepper(value: $rear.lastRReboundSetting, in: 0...20, label: {Text("Rebound: \(self.rear.lastRReboundSetting)")})
                     }
             }
             

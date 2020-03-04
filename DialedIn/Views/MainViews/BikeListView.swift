@@ -21,23 +21,17 @@ struct BikeListView: View {
     @State private var showingAddScreen = false
     
     var body: some View {
+	
         NavigationView {
-            List {
-                ForEach(bikes, id: \.self) { bike in
-                    NavigationLink(destination: BikeDetailView(bike: bike)) {
-                        VStack(alignment: .leading) {
-                            Text(bike.name ?? "Unknown Bike")
-                                .font(.headline)
-                            Text(bike.bikeNote ?? "Some Text goes here")
-                                .font(.callout)
-                                .foregroundColor(.secondary)
-                        }
-                    }
-                }
-                .onDelete(perform: deleteBike)
-            }
+			ScrollView {
+				VStack(spacing: 20) {
+					ForEach(bikes, id: \.self) { bike in
+						BikeDetailView(bike: bike)
+					}
+				}
+			}
             .navigationBarTitle("Bikes")
-            .navigationBarItems(leading: EditButton(), trailing:
+            .navigationBarItems(trailing:
                 Button(action: {self.showingAddScreen.toggle()
                 }) {
                     Image(systemName: "plus.circle")
@@ -46,7 +40,6 @@ struct BikeListView: View {
                     AddBikeView().environment(\.managedObjectContext, self.moc)
             }
         }
-//        .onAppear(perform: {self.printBikes()})
     }
     
     func deleteBike(at offsets: IndexSet) {

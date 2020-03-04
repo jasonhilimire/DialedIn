@@ -16,9 +16,9 @@ struct NotesListView: View {
        // Create the MOC
     @Environment(\.managedObjectContext) var moc
     // create a Fetch request for Notes
-    @FetchRequest(entity: Notes.entity(), sortDescriptors: [
-        NSSortDescriptor(keyPath: \Notes.date, ascending: true)
-    ]) var notes: FetchedResults<Notes>
+    @FetchRequest(entity: Bike.entity(), sortDescriptors: [
+		NSSortDescriptor(keyPath: \Bike.name, ascending: true)
+    ]) var bikes: FetchedResults<Bike>
     
     
     @State private var showingAddScreen = false
@@ -27,7 +27,7 @@ struct NotesListView: View {
 
         NavigationView {
             List{
-                NoteCellView()
+				NoteCellView()
             }
             .navigationBarTitle("DialedIn")
                 .navigationBarItems(leading: EditButton(), trailing:
