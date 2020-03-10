@@ -100,6 +100,8 @@ struct AddNoteView: View {
         
         newNote.bike = Bike(context: self.moc)
         newNote.bike?.name = self.bikes[bikeNameIndex].name
+		newNote.bike?.hasRearShock = self.rearSetup.hasRear
+		
         newNote.fAirVolume = Double(self.frontSetup.lastFAirSetting)
         newNote.fCompression = self.frontSetup.lastFCompSetting
         newNote.fHSC = self.frontSetup.lastFHSCSetting
@@ -109,7 +111,7 @@ struct AddNoteView: View {
         newNote.fLSR = self.frontSetup.lastFLSRSetting
         newNote.fTokens = self.frontSetup.lastFTokenSetting
         newNote.fSag = self.frontSetup.lastFSagSetting
-        newNote.bike?.hasRearShock = self.rearSetup.hasRear
+        
         
         newNote.rAirSpring = self.rearSetup.lastRAirSpringSetting
         newNote.rCompression = self.rearSetup.lastRCompSetting
