@@ -79,6 +79,18 @@ class NoteFrontSetupModel: ObservableObject {
         }
     }
     
+	@Published var lastLowerService: Date = Date() {
+		didSet {
+			didChange.send(self)
+		}
+	}
+	
+	@Published var lastFullService: Date = Date() {
+		didSet {
+			didChange.send(self)
+		}
+	}
+	
 // TODO: refactor these fork settings into own Model
     @Published var fComp: Bool = true {
         didSet {
@@ -96,6 +108,18 @@ class NoteFrontSetupModel: ObservableObject {
     
     // MARK: - Functions
     // get Last Settings
+	
+	func getLastLowerService() -> Date {
+		let last = filter(for: bikeName)
+		let lastserv = last.last?.frontSetup?.lowerLastServiced
+		return lastserv ?? Date()
+	}
+	
+	func getLastFullService() -> Date {
+		let last = filter(for: bikeName)
+		let lastserv = last.last?.frontSetup?.lasfFullService
+		return lastserv ?? Date()
+	}
     
     func getLastAir() -> Double {
         let lastRecord = filterBikes(for: bikeName)
@@ -179,6 +203,8 @@ class NoteFrontSetupModel: ObservableObject {
         lastFSagSetting = getLastFSag()
         fComp = getfComp()
         fReb = getfReb()
+		lastLowerService = getLastLowerService()
+		lastFullService = getLastFullService()
     }
     
  // THIS WORKS Now need to figure out how to pass the selected bike into the Model from the pickerview
@@ -205,7 +231,7 @@ class NoteFrontSetupModel: ObservableObject {
         case lsr
         case tokens
         case sag
-        
+	
         func getSetting(note: [Notes]) -> Int16 {
             // if no filteredBike is found sets all values to 0
           switch self {
