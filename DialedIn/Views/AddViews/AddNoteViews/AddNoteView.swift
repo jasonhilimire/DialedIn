@@ -33,9 +33,12 @@ struct AddNoteView: View {
 			VStack {
 				Form{
 					Section(header: Text("Ride Details")){
-						BikePickerView(bikeNameIndex: $bikeNameIndex)
+						if bikes.count == 1 {
+							Text("\(self.bikes[bikeNameIndex].name!)")
+						} else {
+							BikePickerView(bikeNameIndex: $bikeNameIndex)
+						}
 							
-						
 						//TODO: bug in the picker where its not updating the text on the Picker Line in Beta only
 						
 //						Text("Selected Bike is: \(self.bikes[bikeNameIndex].name ?? "Unknown Bike")").foregroundColor(.red).bold()

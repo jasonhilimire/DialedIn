@@ -22,7 +22,7 @@ struct BikePickerView: View {
     var body: some View {
         Picker(selection: self.$bikeNameIndex, label: Text("Choose Bike")) {
             ForEach(0..<bikes.count, id: \.self) { bike in
-                Text("\(self.bikes[bike].name!)").tag(bike)
+				Text("\(self.bikes[bike].name!)").tag(bike)
             }
         }
     }
