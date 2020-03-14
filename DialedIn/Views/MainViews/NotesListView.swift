@@ -27,8 +27,10 @@ struct NotesListView: View {
 
         NavigationView {
             List{
-				NoteCellView()
+				NoteStyledCellView()
             }
+				// remove the separator
+			.onAppear { UITableView.appearance().separatorStyle = .none }
             .navigationBarTitle("DialedIn")
                 .navigationBarItems(leading: EditButton(), trailing:
                 Button(action: {self.showingAddScreen.toggle()
