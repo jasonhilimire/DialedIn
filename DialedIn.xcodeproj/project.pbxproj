@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A309B9D623E2898300A08F22 /* BikeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A309B9D523E2898300A08F22 /* BikeListView.swift */; };
+		A3177375241DD6C100E281BF /* BikeAddNoteButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3177374241DD6C100E281BF /* BikeAddNoteButtonView.swift */; };
 		A326FAC723F3BC6E002490E2 /* CoreData Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A326FAC623F3BC6E002490E2 /* CoreData Extensions.swift */; };
 		A3273B7223EF8F6F007A3792 /* NoteFrontSetupModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3273B7123EF8F6F007A3792 /* NoteFrontSetupModel.swift */; };
 		A3273B7523EF998B007A3792 /* Notes+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3273B7323EF998B007A3792 /* Notes+CoreDataClass.swift */; };
@@ -32,9 +33,9 @@
 		A3C16EB823DEA582005BFA14 /* RearShock+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C16EB023DEA582005BFA14 /* RearShock+CoreDataProperties.swift */; };
 		A3C16EBD23DEA582005BFA14 /* Fork+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C16EB523DEA582005BFA14 /* Fork+CoreDataClass.swift */; };
 		A3C16EBE23DEA582005BFA14 /* Fork+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C16EB623DEA582005BFA14 /* Fork+CoreDataProperties.swift */; };
-		A3C76C9F23EF5A850047BBCC /* GrabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C76C9E23EF5A850047BBCC /* GrabBarView.swift */; };
 		A3C76CA423EF66450047BBCC /* RatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C76CA323EF66450047BBCC /* RatingView.swift */; };
 		A3C7A1D72401F87D00A741A8 /* AddNoteFrontSetupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C7A1D62401F87D00A741A8 /* AddNoteFrontSetupView.swift */; };
+		A3D63B45241DCD3400852575 /* BikeStyledCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D63B44241DCD3400852575 /* BikeStyledCellView.swift */; };
 		A3DDCC7A23DFEFEB00CD1476 /* Bike+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DDCC7823DFEFEB00CD1476 /* Bike+CoreDataClass.swift */; };
 		A3DDCC7B23DFEFEB00CD1476 /* Bike+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DDCC7923DFEFEB00CD1476 /* Bike+CoreDataProperties.swift */; };
 		A3DDCC7D23DFF21700CD1476 /* NotesDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DDCC7C23DFF21700CD1476 /* NotesDetailView.swift */; };
@@ -69,6 +70,7 @@
 
 /* Begin PBXFileReference section */
 		A309B9D523E2898300A08F22 /* BikeListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeListView.swift; sourceTree = "<group>"; };
+		A3177374241DD6C100E281BF /* BikeAddNoteButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeAddNoteButtonView.swift; sourceTree = "<group>"; };
 		A326FAC623F3BC6E002490E2 /* CoreData Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoreData Extensions.swift"; sourceTree = "<group>"; };
 		A3273B7123EF8F6F007A3792 /* NoteFrontSetupModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteFrontSetupModel.swift; sourceTree = "<group>"; };
 		A3273B7323EF998B007A3792 /* Notes+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notes+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -99,9 +101,9 @@
 		A3C16EB023DEA582005BFA14 /* RearShock+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RearShock+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		A3C16EB523DEA582005BFA14 /* Fork+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Fork+CoreDataClass.swift"; sourceTree = "<group>"; };
 		A3C16EB623DEA582005BFA14 /* Fork+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Fork+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		A3C76C9E23EF5A850047BBCC /* GrabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrabBarView.swift; sourceTree = "<group>"; };
 		A3C76CA323EF66450047BBCC /* RatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingView.swift; sourceTree = "<group>"; };
 		A3C7A1D62401F87D00A741A8 /* AddNoteFrontSetupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNoteFrontSetupView.swift; sourceTree = "<group>"; };
+		A3D63B44241DCD3400852575 /* BikeStyledCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeStyledCellView.swift; sourceTree = "<group>"; };
 		A3DDCC7823DFEFEB00CD1476 /* Bike+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bike+CoreDataClass.swift"; sourceTree = "<group>"; };
 		A3DDCC7923DFEFEB00CD1476 /* Bike+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bike+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		A3DDCC7C23DFF21700CD1476 /* NotesDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesDetailView.swift; sourceTree = "<group>"; };
@@ -142,6 +144,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A3177373241DD61F00E281BF /* BikeListView */ = {
+			isa = PBXGroup;
+			children = (
+				A309B9D523E2898300A08F22 /* BikeListView.swift */,
+				A3FBA8BE24034623001F3885 /* BikeDetailViews */,
+			);
+			path = BikeListView;
+			sourceTree = "<group>";
+		};
 		A326FAC823F3BC80002490E2 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
@@ -155,9 +166,9 @@
 		A3918AD123E3E764002A1D61 /* MainViews */ = {
 			isa = PBXGroup;
 			children = (
+				A3B99236241DD9A4007E9B7B /* NotesListView */,
+				A3177373241DD61F00E281BF /* BikeListView */,
 				A3DDCC8023DFF96400CD1476 /* AppView.swift */,
-				A3C16E6E23DE9EC4005BFA14 /* NotesListView.swift */,
-				A309B9D523E2898300A08F22 /* BikeListView.swift */,
 			);
 			path = MainViews;
 			sourceTree = "<group>";
@@ -165,7 +176,6 @@
 		A3918AD223E3E769002A1D61 /* AddViews */ = {
 			isa = PBXGroup;
 			children = (
-				A3DDCC8223DFF97900CD1476 /* AddBikeView.swift */,
 				A3C7A1D52401F85200A741A8 /* AddNoteViews */,
 			);
 			path = AddViews;
@@ -174,15 +184,31 @@
 		A3918AD323E3E76C002A1D61 /* SingleViews */ = {
 			isa = PBXGroup;
 			children = (
-				A3EC241B23E68C00002954A9 /* NoteCellView.swift */,
-				A3EC241F23E68E21002954A9 /* EmojiRatingView.swift */,
-				A3C76CA323EF66450047BBCC /* RatingView.swift */,
-				A3C76C9E23EF5A850047BBCC /* GrabBarView.swift */,
+				A3B99237241DDAF9007E9B7B /* Unused */,
 				A3918ACF23E3E446002A1D61 /* SaveButtonView.swift */,
-				A3B8B79623F0E9EF00CE1EF8 /* BikePickerView.swift */,
-				A3E1A6AE2409B78100C4DFD5 /* FilteredBikeView.swift */,
 			);
 			path = SingleViews;
+			sourceTree = "<group>";
+		};
+		A3B99236241DD9A4007E9B7B /* NotesListView */ = {
+			isa = PBXGroup;
+			children = (
+				A3C7A1D42401F81300A741A8 /* DetailViews */,
+				A3C16E6E23DE9EC4005BFA14 /* NotesListView.swift */,
+			);
+			path = NotesListView;
+			sourceTree = "<group>";
+		};
+		A3B99237241DDAF9007E9B7B /* Unused */ = {
+			isa = PBXGroup;
+			children = (
+				A3DDCC8223DFF97900CD1476 /* AddBikeView.swift */,
+				A33F02B024062A89005A0A8F /* FilteredAddNoteView.swift */,
+				A3E1A6AE2409B78100C4DFD5 /* FilteredBikeView.swift */,
+				A3EC241F23E68E21002954A9 /* EmojiRatingView.swift */,
+				A3EC241B23E68C00002954A9 /* NoteCellView.swift */,
+			);
+			path = Unused;
 			sourceTree = "<group>";
 		};
 		A3C16E5B23DE9EC4005BFA14 = {
@@ -258,7 +284,6 @@
 		A3C16EAB23DEA454005BFA14 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				A3C7A1D42401F81300A741A8 /* DetailViews */,
 				A3918AD323E3E76C002A1D61 /* SingleViews */,
 				A3918AD223E3E769002A1D61 /* AddViews */,
 				A3918AD123E3E764002A1D61 /* MainViews */,
@@ -310,9 +335,9 @@
 		A3C7A1D42401F81300A741A8 /* DetailViews */ = {
 			isa = PBXGroup;
 			children = (
+				A3C76CA323EF66450047BBCC /* RatingView.swift */,
 				A3DDCC7C23DFF21700CD1476 /* NotesDetailView.swift */,
 				A383EFF8241D55900039A04C /* NoteStyledCellView.swift */,
-				A3FBA8BE24034623001F3885 /* BikeDetailViews */,
 			);
 			path = DetailViews;
 			sourceTree = "<group>";
@@ -320,11 +345,11 @@
 		A3C7A1D52401F85200A741A8 /* AddNoteViews */ = {
 			isa = PBXGroup;
 			children = (
+				A3B8B79623F0E9EF00CE1EF8 /* BikePickerView.swift */,
 				A3DDCC7E23DFF2C900CD1476 /* AddNoteView.swift */,
 				A33F02AE2406201D005A0A8F /* AddNoteBikeView.swift */,
 				A3C7A1D62401F87D00A741A8 /* AddNoteFrontSetupView.swift */,
 				A3FBA8B224024024001F3885 /* AddNoteRearSetupView.swift */,
-				A33F02B024062A89005A0A8F /* FilteredAddNoteView.swift */,
 			);
 			path = AddNoteViews;
 			sourceTree = "<group>";
@@ -332,9 +357,11 @@
 		A3FBA8BE24034623001F3885 /* BikeDetailViews */ = {
 			isa = PBXGroup;
 			children = (
+				A3D63B44241DCD3400852575 /* BikeStyledCellView.swift */,
 				A3FBA8B8240342E6001F3885 /* BikeDetailView.swift */,
 				A3FBA8B9240342E6001F3885 /* ForkLastServicedView.swift */,
 				A3FBA8BA240342E7001F3885 /* RearShockLastServicedView.swift */,
+				A3177374241DD6C100E281BF /* BikeAddNoteButtonView.swift */,
 			);
 			path = BikeDetailViews;
 			sourceTree = "<group>";
@@ -483,13 +510,13 @@
 				A3FBA8BD240342E7001F3885 /* RearShockLastServicedView.swift in Sources */,
 				A3C16E6A23DE9EC4005BFA14 /* SceneDelegate.swift in Sources */,
 				A3EC242023E68E21002954A9 /* EmojiRatingView.swift in Sources */,
+				A3177375241DD6C100E281BF /* BikeAddNoteButtonView.swift in Sources */,
 				A3FBA8BC240342E7001F3885 /* ForkLastServicedView.swift in Sources */,
 				A3C7A1D72401F87D00A741A8 /* AddNoteFrontSetupView.swift in Sources */,
 				A3C16EBE23DEA582005BFA14 /* Fork+CoreDataProperties.swift in Sources */,
 				A3EC241C23E68C00002954A9 /* NoteCellView.swift in Sources */,
 				A309B9D623E2898300A08F22 /* BikeListView.swift in Sources */,
 				A3A1297023FB9AC50014EC8A /* NoteRearSetupModel.swift in Sources */,
-				A3C76C9F23EF5A850047BBCC /* GrabBarView.swift in Sources */,
 				A33F02B124062A89005A0A8F /* FilteredAddNoteView.swift in Sources */,
 				A3C16EB823DEA582005BFA14 /* RearShock+CoreDataProperties.swift in Sources */,
 				A326FAC723F3BC6E002490E2 /* CoreData Extensions.swift in Sources */,
@@ -506,6 +533,7 @@
 				A3C16EBD23DEA582005BFA14 /* Fork+CoreDataClass.swift in Sources */,
 				A3DDCC8323DFF97900CD1476 /* AddBikeView.swift in Sources */,
 				A3273B7623EF998B007A3792 /* Notes+CoreDataProperties.swift in Sources */,
+				A3D63B45241DCD3400852575 /* BikeStyledCellView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

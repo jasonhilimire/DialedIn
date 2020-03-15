@@ -19,43 +19,12 @@ struct BikeListView: View {
     
     // bool to show the Sheet
     @State private var showingAddScreen = false
-  /*
-    var body: some View {
-	
-        NavigationView {
-			ScrollView {
-				VStack(spacing: 20) {
-					ForEach(bikes, id: \.self) { bike in
-						BikeDetailView(bike: bike)
-					}
-				}
-			}
-            .navigationBarTitle("Bikes")
-            .navigationBarItems(trailing:
-                Button(action: {self.showingAddScreen.toggle()
-                }) {
-                    Image(systemName: "plus.circle")
-            })
-                .sheet(isPresented: $showingAddScreen)  {
-                    AddBikeView().environment(\.managedObjectContext, self.moc)
-            }
-        }
-    }
-*/
-	
+
 	var body: some View {
 		NavigationView {
 			List {
 				ForEach(bikes, id: \.self) { bike in
-					NavigationLink(destination: BikeDetailView(bike: bike)) {
-						VStack(alignment: .leading) {
-							Text(bike.name ?? "Unknown Bike")
-								.font(.headline)
-							Text(bike.bikeNote ?? "Some Text goes here")
-								.font(.callout)
-								.foregroundColor(.secondary)
-						}
-					}
+					BikeStyledCellView(bike: bike)
 				}
 				.onDelete(perform: deleteBike)
 			}

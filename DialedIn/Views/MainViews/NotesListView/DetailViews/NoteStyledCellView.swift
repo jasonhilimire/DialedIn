@@ -7,6 +7,8 @@
 //
 
 import SwiftUI
+import CoreData
+import Combine
 
 struct NoteStyledCellView: View {
 	
@@ -36,7 +38,7 @@ struct NoteStyledCellView: View {
 				VStack(alignment: .leading) {
 					HStack {
 						VStack(alignment: .leading) {
-//							RatingView(rating: .constant(Int(note.rating)))
+							RatingView(rating: .constant(Int(note.rating)))
 							Text("rating...")
 								.font(.footnote)
 								.fontWeight(.light)
