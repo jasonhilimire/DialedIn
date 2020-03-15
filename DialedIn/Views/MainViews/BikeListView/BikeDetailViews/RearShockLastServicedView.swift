@@ -30,37 +30,40 @@ struct RearShockLastServicedView: View {
 		
 		
 		VStack { // Rear Section
-			HStack {
-				Text("Rear")
-					.fontWeight(.bold)
-				Spacer()
-			}
-			.padding([.top, .leading])
-			if rear.bike?.rearSetup?.isCoil == false {
-				HStack {
-					Text("Last Air Can Service:")
-					Spacer()
-					Text(self.rear.lastAirCanService != nil ? " \(self.rear.lastAirCanService!, formatter: self.dateFormatter)" : "Unknown")
-				}
-				.padding([.leading, .trailing])
-				.font(.footnote)
-				HStack {
-					Text("Last Full Service:")
-					Spacer()
-					Text(self.rear.lastFullService != nil ? " \(self.rear.lastFullService!, formatter: self.dateFormatter)" : "Unknown")
-				}
-				.padding(.horizontal)
-				.font(.footnote)
+			if rear.bike?.hasRearShock == false {
+				Text("")
 			} else {
 				HStack {
-					Text("Last Full Service:")
+					Text("Rear")
+						.fontWeight(.bold)
 					Spacer()
-					Text(self.rear.lastFullService != nil ?  "\(self.rear.lastFullService!, formatter: self.dateFormatter)" : "Unknown")
 				}
-				.padding(.horizontal)
-				.font(.footnote)
+				.padding([.top, .leading])
+				if rear.bike?.rearSetup?.isCoil == false {
+					HStack {
+						Text("Last Air Can Service:")
+						Spacer()
+						Text(self.rear.lastAirCanService != nil ? " \(self.rear.lastAirCanService!, formatter: self.dateFormatter)" : "Unknown")
+					}
+					.padding([.leading, .trailing])
+					.font(.footnote)
+					HStack {
+						Text("Last Full Service:")
+						Spacer()
+						Text(self.rear.lastFullService != nil ? " \(self.rear.lastFullService!, formatter: self.dateFormatter)" : "Unknown")
+					}
+					.padding(.horizontal)
+					.font(.footnote)
+				} else {
+					HStack {
+						Text("Last Full Service:")
+						Spacer()
+						Text(self.rear.lastFullService != nil ?  "\(self.rear.lastFullService!, formatter: self.dateFormatter)" : "Unknown")
+					}
+					.padding(.horizontal)
+					.font(.footnote)
+				}
 			}
-		
 		}
     }
 }

@@ -147,7 +147,6 @@
 		A3177373241DD61F00E281BF /* BikeListView */ = {
 			isa = PBXGroup;
 			children = (
-				A309B9D523E2898300A08F22 /* BikeListView.swift */,
 				A3FBA8BE24034623001F3885 /* BikeDetailViews */,
 			);
 			path = BikeListView;
@@ -194,7 +193,6 @@
 			isa = PBXGroup;
 			children = (
 				A3C7A1D42401F81300A741A8 /* DetailViews */,
-				A3C16E6E23DE9EC4005BFA14 /* NotesListView.swift */,
 			);
 			path = NotesListView;
 			sourceTree = "<group>";
@@ -202,6 +200,10 @@
 		A3B99237241DDAF9007E9B7B /* Unused */ = {
 			isa = PBXGroup;
 			children = (
+				A3C16E6E23DE9EC4005BFA14 /* NotesListView.swift */,
+				A3FBA8B8240342E6001F3885 /* BikeDetailView.swift */,
+				A309B9D523E2898300A08F22 /* BikeListView.swift */,
+				A3DDCC7C23DFF21700CD1476 /* NotesDetailView.swift */,
 				A3DDCC8223DFF97900CD1476 /* AddBikeView.swift */,
 				A33F02B024062A89005A0A8F /* FilteredAddNoteView.swift */,
 				A3E1A6AE2409B78100C4DFD5 /* FilteredBikeView.swift */,
@@ -336,7 +338,6 @@
 			isa = PBXGroup;
 			children = (
 				A3C76CA323EF66450047BBCC /* RatingView.swift */,
-				A3DDCC7C23DFF21700CD1476 /* NotesDetailView.swift */,
 				A383EFF8241D55900039A04C /* NoteStyledCellView.swift */,
 			);
 			path = DetailViews;
@@ -358,7 +359,6 @@
 			isa = PBXGroup;
 			children = (
 				A3D63B44241DCD3400852575 /* BikeStyledCellView.swift */,
-				A3FBA8B8240342E6001F3885 /* BikeDetailView.swift */,
 				A3FBA8B9240342E6001F3885 /* ForkLastServicedView.swift */,
 				A3FBA8BA240342E7001F3885 /* RearShockLastServicedView.swift */,
 				A3177374241DD6C100E281BF /* BikeAddNoteButtonView.swift */,

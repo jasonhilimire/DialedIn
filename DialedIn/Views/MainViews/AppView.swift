@@ -19,8 +19,6 @@ struct AppView: View {
 			.font : UIFont(name:"Helvetica Neue", size: 40)!]
 	}
         
-    
-    
     var body: some View {
         TabView {
             //TODO: Add Scrolling/Main View for recent notes? and or TopRated Notes

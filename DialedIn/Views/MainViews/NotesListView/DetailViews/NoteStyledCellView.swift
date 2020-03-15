@@ -51,50 +51,60 @@ struct NoteStyledCellView: View {
 				}
 				
 				HStack {
-					VStack(alignment: .leading) {
-						Text("F")
-						Text("R")
-					}.padding(.trailing) .font(.title)
-					Spacer()
 					
-					VStack(alignment: .trailing) {
-						Text("\(note.fAirVolume, specifier: "%.1f")")
-						Text("\(note.rAirSpring, specifier: "%.0f")")
-					}.padding([.top, .bottom, .trailing]) .font(.title)
+					VStack {
+						HStack {
+							Text("F")
+							Text("\(note.fAirVolume, specifier: "%.1f")")
+						} .padding([.top, .bottom, .trailing]) .font(.title)
+						
+						HStack {
+							Text("R")
+							Text("\(note.rAirSpring, specifier: "%.0f")")
+						} .padding([.top, .bottom, .trailing]) .font(.title)
+					}
 					
 					VStack(alignment: .leading) {
 						Text("HSR: \(note.fHSR)")
 						Text("LSR: \(note.fLSR)")
+						Text("Sag %: \(note.fSag)")
 						Divider()
 						Text("HSR: \(note.rHSR)")
 						Text("LSR: \(note.rLSR)")
+						Text("Sag %: \(note.rSag)")
 					}.font(.subheadline)
 					
 					
 					VStack(alignment: .leading) {
 						Text("HSC: \(note.fHSC)")
 						Text("LSC: \(note.fLSC)")
+						Text("Tokens: \(note.fTokens)")
+						
 						Divider()
 						Text("HSC: \(note.rHSC)")
 						Text("LSC: \(note.rLSC)")
-					}.font(.subheadline)
-					
-					VStack(alignment: .trailing) {
-						Text("Sag %: \(note.fSag)")
-						Text("Tokens: \(note.fTokens)")
-						Divider()
-						Text("Sag %: \(note.rSag)")
 						Text("Tokens: \(note.rTokens)")
 					}.font(.subheadline)
-					
 				}
 			}
+			
 			.padding()
 			.foregroundColor(Color.white)
 			.background(Color.blue)
 			.cornerRadius(/*@START_MENU_TOKEN@*/20.0/*@END_MENU_TOKEN@*/)
 			.shadow(color: Color("ShadowColor"), radius: 5, x: 12, y:15)
 		}
+			.onDelete(perform: deleteNotes)
+	}
+	func deleteNotes(at offsets: IndexSet) {
+		for offset in offsets {
+			// find this note in our fetch request
+			let note = notes[offset]
+			// delete it from the context
+			moc.delete(note)
+		}
+		// save the context
+		try? moc.save()
 	}
 }
 
