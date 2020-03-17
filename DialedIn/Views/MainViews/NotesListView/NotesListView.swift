@@ -28,23 +28,24 @@ struct NotesListView: View {
         NavigationView {
             List{
 				NoteStyledCellView()
+				.padding(.bottom, 10)
             }
 				// sets default height for the row
 //			.environment(\.defaultMinListRowHeight, 275)
 				// remove the separator
 			.onAppear { UITableView.appearance().separatorStyle = .none }
             .navigationBarTitle("DialedIn")
-                .navigationBarItems(leading: EditButton(), trailing:
+                .navigationBarItems(leading: EditButton().foregroundColor(Color.white), trailing:
                 Button(action: {self.showingAddScreen.toggle()
                 }) {
                     //TODO: DISABLE BUTTON IF BIKE.COUNT IS EMPTY
-                    Image(systemName: "gauge.badge.plus")
+                    Image(systemName: "gauge.badge.plus").foregroundColor(Color.white)
             })
                 .sheet(isPresented: $showingAddScreen)  {
                     AddNoteView().environment(\.managedObjectContext, self.moc)
             }
 //            .disabled(disabled: bike.count == 0)
-			.padding()
+//			.padding()
         }
     }
     

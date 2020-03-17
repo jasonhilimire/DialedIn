@@ -25,11 +25,12 @@ struct BikeListView: View {
 			List {
 				ForEach(bikes, id: \.self) { bike in
 					BikeStyledCellView(bike: bike)
+					.padding(.bottom, 10)
 				}
 				.onDelete(perform: deleteBike)
 			}
 			.navigationBarTitle("Bikes")
-			.navigationBarItems(leading: EditButton(), trailing:
+			.navigationBarItems(leading: EditButton().foregroundColor(Color.white), trailing:
 				Button(action: {self.showingAddScreen.toggle()
 				}) {
 					Image(systemName: "plus.circle")

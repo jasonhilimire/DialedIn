@@ -48,7 +48,8 @@ struct BikeStyledCellView: View {
 			
 			ForkLastServicedView(fork: self.bike.frontSetup!)
 			RearShockLastServicedView(rear: self.bike.rearSetup!)
-// TODO: FIX BUTTONS - not separated
+
+			// Buttons
 			HStack(alignment: .bottom) {
 				Button(action: {self.showingNotesView.toggle()}) {
 					HStack {
@@ -67,7 +68,8 @@ struct BikeStyledCellView: View {
 					}
 				}
 			}
-			.padding([.leading, .bottom, .trailing])
+			.padding([.leading, .trailing])
+			.padding(.bottom, 10)
 			
 		} // end Whole Card VStack
 			.foregroundColor(Color("TextColor"))
@@ -83,3 +85,4 @@ struct BikeStyledCellView: View {
 //		BikeStyledCellView(bike: bike)
 //    }
 //}
+
