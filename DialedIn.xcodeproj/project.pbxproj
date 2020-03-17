@@ -192,6 +192,7 @@
 		A3B99236241DD9A4007E9B7B /* NotesListView */ = {
 			isa = PBXGroup;
 			children = (
+				A3C16E6E23DE9EC4005BFA14 /* NotesListView.swift */,
 				A3C7A1D42401F81300A741A8 /* DetailViews */,
 			);
 			path = NotesListView;
@@ -200,7 +201,6 @@
 		A3B99237241DDAF9007E9B7B /* Unused */ = {
 			isa = PBXGroup;
 			children = (
-				A3C16E6E23DE9EC4005BFA14 /* NotesListView.swift */,
 				A3FBA8B8240342E6001F3885 /* BikeDetailView.swift */,
 				A309B9D523E2898300A08F22 /* BikeListView.swift */,
 				A3DDCC7C23DFF21700CD1476 /* NotesDetailView.swift */,

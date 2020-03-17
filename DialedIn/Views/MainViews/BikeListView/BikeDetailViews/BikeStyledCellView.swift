@@ -70,10 +70,11 @@ struct BikeStyledCellView: View {
 			.padding([.leading, .bottom, .trailing])
 			
 		} // end Whole Card VStack
-			.foregroundColor(Color.white)
-			.background(Color.blue)
+			.foregroundColor(Color("TextColor"))
+			.background(Color("BackgroundColor"))
 			.cornerRadius(/*@START_MENU_TOKEN@*/20.0/*@END_MENU_TOKEN@*/)
-			.shadow(color: Color("ShadowColor"), radius: 7, x: 12, y:15)
+			.shadow(color: Color("ShadowColor"), radius: 5, x: -5, y: 5)
+			.shadow(color: Color("ShadowColor"), radius: 5, x: 5, y: -5)
 	}
 }
 

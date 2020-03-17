@@ -29,6 +29,8 @@ struct NotesListView: View {
             List{
 				NoteStyledCellView()
             }
+				// sets default height for the row
+//			.environment(\.defaultMinListRowHeight, 275)
 				// remove the separator
 			.onAppear { UITableView.appearance().separatorStyle = .none }
             .navigationBarTitle("DialedIn")
@@ -42,6 +44,7 @@ struct NotesListView: View {
                     AddNoteView().environment(\.managedObjectContext, self.moc)
             }
 //            .disabled(disabled: bike.count == 0)
+			.padding()
         }
     }
     
