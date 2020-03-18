@@ -25,73 +25,75 @@ struct NoteStyledCellView: View {
 	
     var body: some View {
 		ForEach(notes, id: \.self) { note in
-			VStack {
-				HStack {
-					Text(note.bike?.name ?? "Unknown Bike")
-						.fontWeight(.thin)
-					Spacer()
-					Text(note.date != nil ? "\(note.date!, formatter: self.dateFormatter)" : "")
-						.fontWeight(.ultraLight)
-				}.font(.title)
-				
-				
-				VStack(alignment: .leading) {
+			NavigationLink(destination: NotesDetailView(note: note)){
+				VStack {
 					HStack {
-						VStack(alignment: .leading) {
-							RatingView(rating: .constant(Int(note.rating)))
-							Text(note.note ?? "")
-								.font(.footnote)
-								.fontWeight(.thin)
-						}
+						Text(note.bike?.name ?? "Unknown Bike")
+							.fontWeight(.thin)
 						Spacer()
+						Text(note.date != nil ? "\(note.date!, formatter: self.dateFormatter)" : "")
+							.fontWeight(.ultraLight)
+					}.font(.title)
+					
+					
+					VStack(alignment: .leading) {
+						HStack {
+							VStack(alignment: .leading) {
+								RatingView(rating: .constant(Int(note.rating)))
+								Text(note.note ?? "")
+									.font(.footnote)
+									.fontWeight(.thin)
+							}
+							Spacer()
+						}
+					}
+					
+					HStack {
+						
+						VStack {
+							HStack {
+								Text("F")
+								Text("\(note.fAirVolume, specifier: "%.1f")")
+							} .padding([.top, .bottom, .trailing]) .font(.title)
+							
+							HStack {
+								Text("R")
+								Text("\(note.rAirSpring, specifier: "%.0f")")
+							} .padding([.top, .bottom, .trailing]) .font(.title)
+						}
+						
+						VStack(alignment: .leading) {
+							Text("HSR: \(note.fHSR)")
+							Text("LSR: \(note.fLSR)")
+							Text("Sag %: \(note.fSag)")
+							Divider()
+							Text("HSR: \(note.rHSR)")
+							Text("LSR: \(note.rLSR)")
+							Text("Sag %: \(note.rSag)")
+						}.font(.subheadline)
+						
+						
+						VStack(alignment: .leading) {
+							Text("HSC: \(note.fHSC)")
+							Text("LSC: \(note.fLSC)")
+							Text("Tokens: \(note.fTokens)")
+							
+							Divider()
+							Text("HSC: \(note.rHSC)")
+							Text("LSC: \(note.rLSC)")
+							Text("Tokens: \(note.rTokens)")
+						}.font(.subheadline)
 					}
 				}
 				
-				HStack {
-					
-					VStack {
-						HStack {
-							Text("F")
-							Text("\(note.fAirVolume, specifier: "%.1f")")
-						} .padding([.top, .bottom, .trailing]) .font(.title)
-						
-						HStack {
-							Text("R")
-							Text("\(note.rAirSpring, specifier: "%.0f")")
-						} .padding([.top, .bottom, .trailing]) .font(.title)
-					}
-					
-					VStack(alignment: .leading) {
-						Text("HSR: \(note.fHSR)")
-						Text("LSR: \(note.fLSR)")
-						Text("Sag %: \(note.fSag)")
-						Divider()
-						Text("HSR: \(note.rHSR)")
-						Text("LSR: \(note.rLSR)")
-						Text("Sag %: \(note.rSag)")
-					}.font(.subheadline)
-					
-					
-					VStack(alignment: .leading) {
-						Text("HSC: \(note.fHSC)")
-						Text("LSC: \(note.fLSC)")
-						Text("Tokens: \(note.fTokens)")
-						
-						Divider()
-						Text("HSC: \(note.rHSC)")
-						Text("LSC: \(note.rLSC)")
-						Text("Tokens: \(note.rTokens)")
-					}.font(.subheadline)
-				}
+				.padding()
+				.foregroundColor(Color("TextColor"))
+				.background(Color("BackgroundColor"))
+				.cornerRadius(/*@START_MENU_TOKEN@*/20.0/*@END_MENU_TOKEN@*/)
+				.shadow(color: Color("ShadowColor"), radius: 5, x: -5, y: 5)
+				.shadow(color: Color("ShadowColor"), radius: 5, x: 5, y: -5)
 			}
-			
-			.padding()
-			.foregroundColor(Color("TextColor"))
-			.background(Color("BackgroundColor"))
-			.cornerRadius(/*@START_MENU_TOKEN@*/20.0/*@END_MENU_TOKEN@*/)
-			.shadow(color: Color("ShadowColor"), radius: 5, x: -5, y: 5)
-			.shadow(color: Color("ShadowColor"), radius: 5, x: 5, y: -5)
-		}
+	}
 			.onDelete(perform: deleteNotes)
 	}
 	func deleteNotes(at offsets: IndexSet) {

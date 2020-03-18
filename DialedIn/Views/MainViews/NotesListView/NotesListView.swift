@@ -15,12 +15,7 @@ struct NotesListView: View {
     
        // Create the MOC
     @Environment(\.managedObjectContext) var moc
-    // create a Fetch request for Notes
-    @FetchRequest(entity: Bike.entity(), sortDescriptors: [
-		NSSortDescriptor(keyPath: \Bike.name, ascending: true)
-    ]) var bikes: FetchedResults<Bike>
-    
-    
+
     @State private var showingAddScreen = false
     
     var body: some View {
@@ -28,7 +23,7 @@ struct NotesListView: View {
         NavigationView {
             List{
 				NoteStyledCellView()
-				.padding(.bottom, 10)
+					.padding([.bottom, .top], 10)
             }
 
 				// remove the separator

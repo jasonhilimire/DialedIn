@@ -33,7 +33,7 @@ struct BikeListView: View {
 			.navigationBarItems(leading: EditButton().foregroundColor(Color.white), trailing:
 				Button(action: {self.showingAddScreen.toggle()
 				}) {
-					Image(systemName: "plus.circle")
+					Image(systemName: "plus.circle").foregroundColor(Color.white)
 			})
 				.sheet(isPresented: $showingAddScreen)  {
 					AddBikeView().environment(\.managedObjectContext, self.moc)

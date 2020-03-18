@@ -19,16 +19,6 @@ struct RearShockLastServicedView: View {
     
     let rear: RearShock
     var body: some View {
-//        VStack {
-//            if rear.bike?.rearSetup?.isCoil == false {
-//                Text(self.rear.lastAirCanService != nil ? "Last Air Can service: \(self.rear.lastAirCanService!, formatter: self.dateFormatter)" : "Unknown")
-//                Text(self.rear.lastFullService != nil ? "Last full service: \(self.rear.lastFullService!, formatter: self.dateFormatter)" : "Unknown")
-//            } else {
-//                Text(self.rear.lastFullService != nil ? "Last full service: \(self.rear.lastFullService!, formatter: self.dateFormatter)" : "Unknown")
-//			}
-//        }
-		
-		
 		VStack { // Rear Section
 			if rear.bike?.hasRearShock == false {
 				Text("")
