@@ -14,7 +14,7 @@ struct NoteStyledCellView: View {
 	
 	@Environment(\.managedObjectContext) var moc
 	@FetchRequest(entity: Notes.entity(), sortDescriptors: [
-		NSSortDescriptor(keyPath: \Notes.date, ascending: true)
+		NSSortDescriptor(keyPath: \Notes.date, ascending: false)
 	]) var notes: FetchedResults<Notes>
 	
 	var dateFormatter: DateFormatter {
@@ -25,7 +25,7 @@ struct NoteStyledCellView: View {
 	
     var body: some View {
 		ForEach(notes, id: \.self) { note in
-//			NavigationLink(destination: NotesDetailView(note: note)){
+			NavigationLink(destination: NotesDetailView(note: note)){
 				VStack {
 					HStack {
 						Text(note.bike?.name ?? "Unknown Bike")
@@ -107,7 +107,7 @@ struct NoteStyledCellView: View {
 				.shadow(color: Color("ShadowColor"), radius: 5, x: -5, y: 5)
 				.shadow(color: Color("ShadowColor"), radius: 5, x: 5, y: -5)
 			}
-//		}
+		}
 			.onDelete(perform: deleteNotes)
 	}
 	func deleteNotes(at offsets: IndexSet) {
