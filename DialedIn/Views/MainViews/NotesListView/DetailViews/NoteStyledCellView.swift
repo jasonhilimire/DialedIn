@@ -25,7 +25,7 @@ struct NoteStyledCellView: View {
 	
     var body: some View {
 		ForEach(notes, id: \.self) { note in
-			NavigationLink(destination: NotesDetailView(note: note)){
+//			NavigationLink(destination: NotesDetailView(note: note)){
 				VStack {
 					HStack {
 						Text(note.bike?.name ?? "Unknown Bike")
@@ -63,24 +63,38 @@ struct NoteStyledCellView: View {
 						}
 						
 						VStack(alignment: .leading) {
-							Text("HSR: \(note.fHSR)")
-							Text("LSR: \(note.fLSR)")
+							if note.bike?.frontSetup?.dualRebound == true {
+								Text("F Reb: \(note.fRebound)")
+							} else {
+								Text("HSR: \(note.fHSR)")
+								Text("LSR: \(note.fLSR)")
+							}
 							Text("Sag %: \(note.fSag)")
 							Divider()
-							Text("HSR: \(note.rHSR)")
-							Text("LSR: \(note.rLSR)")
+							if note.bike?.rearSetup?.dualRebound == true {
+								Text("F Reb: \(note.rRebound)")
+							} else {
+								Text("HSR: \(note.rHSR)")
+								Text("LSR: \(note.rLSR)")
+							}
 							Text("Sag %: \(note.rSag)")
 						}.font(.subheadline)
 						
 						
 						VStack(alignment: .leading) {
-							Text("HSC: \(note.fHSC)")
-							Text("LSC: \(note.fLSC)")
+							if note.bike?.frontSetup?.dualCompression == true {
+								Text("F Comp: \(note.fCompression)")
+							} else {
+								Text("HSC: \(note.fHSC)")
+								Text("LSC: \(note.fLSC)")
+							}
 							Text("Tokens: \(note.fTokens)")
-							
 							Divider()
-							Text("HSC: \(note.rHSC)")
-							Text("LSC: \(note.rLSC)")
+							if note.bike?.rearSetup?.dualCompression == true {
+								Text("R Comp: \(note.rCompression)")
+							}
+								Text("HSC: \(note.rHSC)")
+								Text("LSC: \(note.rLSC)")
 							Text("Tokens: \(note.rTokens)")
 						}.font(.subheadline)
 					}
@@ -93,7 +107,7 @@ struct NoteStyledCellView: View {
 				.shadow(color: Color("ShadowColor"), radius: 5, x: -5, y: 5)
 				.shadow(color: Color("ShadowColor"), radius: 5, x: 5, y: -5)
 			}
-	}
+//		}
 			.onDelete(perform: deleteNotes)
 	}
 	func deleteNotes(at offsets: IndexSet) {
