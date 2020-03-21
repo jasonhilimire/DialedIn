@@ -20,6 +20,7 @@ struct BikeStyledCellView: View {
 	
 	@State private var showingDeleteAlert = false
 	@State private var showingNotesView = false
+	@State private var showingServiceView = false
 	@State private var bikeName = ""
 	
 	var dateFormatter: DateFormatter {
@@ -61,23 +62,27 @@ struct BikeStyledCellView: View {
 					AddNoteBikeView(front: self.front, rear: self.rear, bike: self.bike).environment(\.managedObjectContext, self.moc)
 				}
 				Spacer()
-				Button(action: {print("Service pressed")}) {
+
+				Button(action: {self.showingServiceView.toggle()}) {
 					HStack {
-						Image(systemName:"wrench")
-						Text("Service")
+						Image(systemName: "wrench")
+						Text("Add Service")
 					}
+				}
+				.sheet(isPresented: self.$showingServiceView)  {
+					ServiceView().environment(\.managedObjectContext, self.moc)
 				}
 			}
 			.padding([.leading, .trailing])
 			.padding(.bottom, 10)
 			
-		} // end Whole Card VStack
+		} // END Buttons
 			.foregroundColor(Color("TextColor"))
 			.background(Color("BackgroundColor"))
 			.cornerRadius(/*@START_MENU_TOKEN@*/20.0/*@END_MENU_TOKEN@*/)
 			.shadow(color: Color("ShadowColor"), radius: 5, x: -5, y: 5)
 			.shadow(color: Color("ShadowColor"), radius: 5, x: 5, y: -5)
-	}
+	} // END Whole Card VStack
 }
 
 //struct BikeStyledCellView_Previews: PreviewProvider {
