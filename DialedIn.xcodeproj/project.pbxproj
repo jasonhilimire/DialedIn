@@ -22,7 +22,6 @@
 		A3B8B79723F0E9EF00CE1EF8 /* BikePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B8B79623F0E9EF00CE1EF8 /* BikePickerView.swift */; };
 		A3C16E6823DE9EC4005BFA14 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C16E6723DE9EC4005BFA14 /* AppDelegate.swift */; };
 		A3C16E6A23DE9EC4005BFA14 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C16E6923DE9EC4005BFA14 /* SceneDelegate.swift */; };
-		A3C16E6D23DE9EC4005BFA14 /* DialedIn.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A3C16E6B23DE9EC4005BFA14 /* DialedIn.xcdatamodeld */; };
 		A3C16E6F23DE9EC4005BFA14 /* NotesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C16E6E23DE9EC4005BFA14 /* NotesListView.swift */; };
 		A3C16E7123DE9EC5005BFA14 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A3C16E7023DE9EC5005BFA14 /* Assets.xcassets */; };
 		A3C16E7423DE9EC5005BFA14 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A3C16E7323DE9EC5005BFA14 /* Preview Assets.xcassets */; };
@@ -40,6 +39,7 @@
 		A3D5181624268DB6007DEE9D /* RearService+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D5180E24268DB6007DEE9D /* RearService+CoreDataClass.swift */; };
 		A3D5181724268DB6007DEE9D /* RearService+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D5180F24268DB6007DEE9D /* RearService+CoreDataProperties.swift */; };
 		A3D5181B24268E55007DEE9D /* Fork+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D5181924268E55007DEE9D /* Fork+CoreDataProperties.swift */; };
+		A3D5181E242691F4007DEE9D /* DialedIn.xcdatamodeld in Resources */ = {isa = PBXBuildFile; fileRef = A3C16E6B23DE9EC4005BFA14 /* DialedIn.xcdatamodeld */; };
 		A3D63B45241DCD3400852575 /* BikeStyledCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D63B44241DCD3400852575 /* BikeStyledCellView.swift */; };
 		A3DDCC7A23DFEFEB00CD1476 /* Bike+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DDCC7823DFEFEB00CD1476 /* Bike+CoreDataClass.swift */; };
 		A3DDCC7B23DFEFEB00CD1476 /* Bike+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DDCC7923DFEFEB00CD1476 /* Bike+CoreDataProperties.swift */; };
@@ -113,6 +113,7 @@
 		A3D5180E24268DB6007DEE9D /* RearService+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RearService+CoreDataClass.swift"; sourceTree = "<group>"; };
 		A3D5180F24268DB6007DEE9D /* RearService+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RearService+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		A3D5181924268E55007DEE9D /* Fork+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Fork+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		A3D5181F2426925B007DEE9D /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		A3D63B44241DCD3400852575 /* BikeStyledCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeStyledCellView.swift; sourceTree = "<group>"; };
 		A3DDCC7823DFEFEB00CD1476 /* Bike+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bike+CoreDataClass.swift"; sourceTree = "<group>"; };
 		A3DDCC7923DFEFEB00CD1476 /* Bike+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bike+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -247,6 +248,7 @@
 		A3C16E6623DE9EC4005BFA14 /* DialedIn */ = {
 			isa = PBXGroup;
 			children = (
+				A3D5181F2426925B007DEE9D /* README.md */,
 				A326FAC823F3BC80002490E2 /* CoreData */,
 				A3C16EAC23DEA461005BFA14 /* Models */,
 				A3C76CA023EF5DC70047BBCC /* Delegates */,
@@ -485,6 +487,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A3D5181E242691F4007DEE9D /* DialedIn.xcdatamodeld in Resources */,
 				A3C16E7723DE9EC5005BFA14 /* LaunchScreen.storyboard in Resources */,
 				A3C16E7423DE9EC5005BFA14 /* Preview Assets.xcassets in Resources */,
 				A3C16E7123DE9EC5005BFA14 /* Assets.xcassets in Resources */,
@@ -522,7 +525,6 @@
 				A3D5181724268DB6007DEE9D /* RearService+CoreDataProperties.swift in Sources */,
 				A3E1A6AF2409B78100C4DFD5 /* FilteredBikeView.swift in Sources */,
 				A3D518072425BD63007DEE9D /* ServiceView.swift in Sources */,
-				A3C16E6D23DE9EC4005BFA14 /* DialedIn.xcdatamodeld in Sources */,
 				A3C76CA423EF66450047BBCC /* RatingView.swift in Sources */,
 				A3C16EB723DEA582005BFA14 /* RearShock+CoreDataClass.swift in Sources */,
 				A3D5181124268DB6007DEE9D /* RearShock+CoreDataProperties.swift in Sources */,
