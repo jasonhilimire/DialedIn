@@ -96,48 +96,9 @@ struct AddBikeView: View {
 
                 Button(action: {
                     //dismisses the sheet
-                     self.presentationMode.wrappedValue.dismiss()
-                     
-                    let newBike = Bike(context: self.moc)
-                    newBike.name = self.bikeName
-                    newBike.bikeNote = self.bikeNote
-                    newBike.isDefault = self.setDefault
-
-                    newBike.frontSetup = Fork(context: self.moc)
-                    newBike.frontSetup?.dualCompression = self.forkDualCompToggle
-                    newBike.frontSetup?.dualRebound = self.forkDualReboundToggle
-                    newBike.frontSetup?.lowerLastServiced = self.lastLowerServiceDate
-                    newBike.frontSetup?.lasfFullService = self.lastFullForkServiceDate
-                    newBike.frontSetup?.info = self.forkInfo
-                       
-                    newBike.rearSetup = RearShock(context: self.moc)
-                    if self.rearSetupIndex == 1 {
-                        newBike.rearSetup?.info = self.rearInfo
-                        newBike.rearSetup?.dualCompression = self.rearDualCompToggle
-                        newBike.rearSetup?.dualRebound = self.rearDualReboundToggle
-                        newBike.rearSetup?.isCoil = self.isCoilToggle
-                        newBike.rearSetup?.lastAirCanService = self.lastAirCanServiceDate
-                        newBike.rearSetup?.lastFullService = self.lastRearFullServiceDate
-                        newBike.hasRearShock = true
-                    } else if self.rearSetupIndex == 2 {
-                        self.isCoilToggle.toggle()
-                        newBike.rearSetup?.info = self.rearInfo
-                        newBike.rearSetup?.dualCompression = self.rearDualCompToggle
-                        newBike.rearSetup?.dualRebound = self.rearDualReboundToggle
-                        newBike.rearSetup?.isCoil = self.isCoilToggle
-                        newBike.rearSetup?.lastAirCanService = self.lastAirCanServiceDate
-                        newBike.rearSetup?.lastFullService = self.lastRearFullServiceDate
-                        newBike.hasRearShock = true
-                    } else if self.rearSetupIndex == 0 {
-                        newBike.hasRearShock = false
-						newBike.rearSetup?.isCoil = false
-                    }
-
-//                    print(newBike)
-//                    print(newBike.frontSetup!)
-//                    print(newBike.rearSetup!)
-                     try? self.moc.save()
-                    
+					self.presentationMode.wrappedValue.dismiss()
+					self.saveNewBike()
+					try? self.moc.save()
                     }) {
                         SaveButtonView()
                         }
@@ -145,6 +106,81 @@ struct AddBikeView: View {
             }
         }
     }
+	
+	func saveNewBike() {
+		// start at the child and work way backwords with creating Entities
+		let newService = RearService(context: self.moc)
+		newService.service = RearShock(context: self.moc)
+		let rearShock = newService.service
+		newService.service?.bike = Bike(context: self.moc)
+		let bike = newService.service?.bike
+		
+		
+		let newBike = Bike(context: self.moc)
+		bike?.name = self.bikeName
+		bike?.bikeNote = self.bikeNote
+		bike?.isDefault = self.setDefault
+		
+//		newBike.name = self.bikeName
+//		newBike.bikeNote = self.bikeNote
+//		newBike.isDefault = self.setDefault
+		
+		newBike.frontSetup = Fork(context: self.moc)
+		newBike.frontSetup?.dualCompression = self.forkDualCompToggle
+		newBike.frontSetup?.dualRebound = self.forkDualReboundToggle
+		newBike.frontSetup?.lowerLastServiced = self.lastLowerServiceDate
+		newBike.frontSetup?.lasfFullService = self.lastFullForkServiceDate
+		newBike.frontSetup?.info = self.forkInfo
+		
+		
+		newBike.rearSetup = RearShock(context: self.moc)
+		
+		
+
+		if self.rearSetupIndex == 1 {
+			bike?.hasRearShock = true
+			rearShock?.info = self.rearInfo
+			rearShock?.dualCompression = self.rearDualCompToggle
+			rearShock?.dualRebound = self.rearDualCompToggle
+			rearShock?.isCoil = self.isCoilToggle
+			newService.airCanService = self.lastAirCanServiceDate
+			newService.fullService = self.lastRearFullServiceDate
+			
+			
+//			newBike.rearSetup?.info = self.rearInfo
+//			newBike.rearSetup?.dualCompression = self.rearDualCompToggle
+//			newBike.rearSetup?.dualRebound = self.rearDualReboundToggle
+//			newBike.rearSetup?.isCoil = self.isCoilToggle
+//			newBike.rearSetup?.lastAirCanService = self.lastAirCanServiceDate
+//			newBike.rearSetup?.lastFullService = self.lastRearFullServiceDate
+//			newBike.hasRearShock = true
+		} else if self.rearSetupIndex == 2 {
+			self.isCoilToggle.toggle()
+			
+			bike?.hasRearShock = true
+			rearShock?.info = self.rearInfo
+			rearShock?.dualCompression = self.rearDualCompToggle
+			rearShock?.dualRebound = self.rearDualCompToggle
+			rearShock?.isCoil = self.isCoilToggle
+			newService.airCanService = self.lastAirCanServiceDate
+			newService.fullService = self.lastRearFullServiceDate
+			
+			
+//			newBike.rearSetup?.info = self.rearInfo
+//			newBike.rearSetup?.dualCompression = self.rearDualCompToggle
+//			newBike.rearSetup?.dualRebound = self.rearDualReboundToggle
+//			newBike.rearSetup?.isCoil = self.isCoilToggle
+//			newBike.rearSetup?.lastAirCanService = self.lastAirCanServiceDate
+//			newBike.rearSetup?.lastFullService = self.lastRearFullServiceDate
+//			newBike.hasRearShock = true
+		} else if self.rearSetupIndex == 0 {
+			bike?.hasRearShock = false
+			rearShock?.isCoil = false
+			
+//			newBike.hasRearShock = false
+//			newBike.rearSetup?.isCoil = false
+		}
+	}
     
     
 }

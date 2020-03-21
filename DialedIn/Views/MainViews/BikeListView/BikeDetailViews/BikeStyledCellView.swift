@@ -21,7 +21,7 @@ struct BikeStyledCellView: View {
 	@State private var showingDeleteAlert = false
 	@State private var showingNotesView = false
 	@State private var showingServiceView = false
-	@State private var bikeName = ""
+	
 	
 	var dateFormatter: DateFormatter {
 		let formatter = DateFormatter()

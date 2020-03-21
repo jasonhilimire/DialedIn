@@ -192,6 +192,7 @@
 		A3918AD223E3E769002A1D61 /* AddViews */ = {
 			isa = PBXGroup;
 			children = (
+				A3DDCC8223DFF97900CD1476 /* AddBikeView.swift */,
 				A3C7A1D52401F85200A741A8 /* AddNoteViews */,
 			);
 			path = AddViews;
@@ -220,7 +221,6 @@
 			isa = PBXGroup;
 			children = (
 				A3FBA8B8240342E6001F3885 /* BikeDetailView.swift */,
-				A3DDCC8223DFF97900CD1476 /* AddBikeView.swift */,
 				A33F02B024062A89005A0A8F /* FilteredAddNoteView.swift */,
 				A3E1A6AE2409B78100C4DFD5 /* FilteredBikeView.swift */,
 				A3EC241F23E68E21002954A9 /* EmojiRatingView.swift */,
