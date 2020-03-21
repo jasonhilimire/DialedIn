@@ -44,6 +44,15 @@ extension Notes{
         request.predicate = NSPredicate(format: "", filter)
         return request
     }
-    
+
+}
+
+extension RearService {
+	/// FetchRequest for all rear, sorted by name
+	static func rearFetchRequest() -> NSFetchRequest<RearService> {
+		let request: NSFetchRequest<RearService> = RearService.fetchRequest()
+		request.sortDescriptors = [NSSortDescriptor(keyPath: \RearService.service?.bike?.name, ascending: true)]
+		return request
+	}
 }
 

@@ -24,34 +24,17 @@ extension RearShock {
     @NSManaged public var lastAirCanService: Date?
     @NSManaged public var lastFullService: Date?
     @NSManaged public var bike: Bike?
-    @NSManaged public var rearService: NSOrderedSet?
+    @NSManaged public var rearService: NSSet?
 	
 	public var wrappedRearInfo: String {
 		info ?? "Unknown Info"
 	}
 
+
 }
 
 // MARK: Generated accessors for rearService
 extension RearShock {
-
-    @objc(insertObject:inRearServiceAtIndex:)
-    @NSManaged public func insertIntoRearService(_ value: RearService, at idx: Int)
-
-    @objc(removeObjectFromRearServiceAtIndex:)
-    @NSManaged public func removeFromRearService(at idx: Int)
-
-    @objc(insertRearService:atIndexes:)
-    @NSManaged public func insertIntoRearService(_ values: [RearService], at indexes: NSIndexSet)
-
-    @objc(removeRearServiceAtIndexes:)
-    @NSManaged public func removeFromRearService(at indexes: NSIndexSet)
-
-    @objc(replaceObjectInRearServiceAtIndex:withObject:)
-    @NSManaged public func replaceRearService(at idx: Int, with value: RearService)
-
-    @objc(replaceRearServiceAtIndexes:withRearService:)
-    @NSManaged public func replaceRearService(at indexes: NSIndexSet, with values: [RearService])
 
     @objc(addRearServiceObject:)
     @NSManaged public func addToRearService(_ value: RearService)
@@ -60,9 +43,9 @@ extension RearShock {
     @NSManaged public func removeFromRearService(_ value: RearService)
 
     @objc(addRearService:)
-    @NSManaged public func addToRearService(_ values: NSOrderedSet)
+    @NSManaged public func addToRearService(_ values: NSSet)
 
     @objc(removeRearService:)
-    @NSManaged public func removeFromRearService(_ values: NSOrderedSet)
+    @NSManaged public func removeFromRearService(_ values: NSSet)
 
 }
