@@ -2,7 +2,7 @@
 //  Fork+CoreDataProperties.swift
 //  DialedIn
 //
-//  Created by Jason Hilimire on 1/26/20.
+//  Created by Jason Hilimire on 3/21/20.
 //  Copyright © 2020 Jason Hilimire. All rights reserved.
 //
 //
@@ -19,13 +19,48 @@ extension Fork {
 
     @NSManaged public var dualCompression: Bool
     @NSManaged public var dualRebound: Bool
+    @NSManaged public var info: String?
     @NSManaged public var lasfFullService: Date?
     @NSManaged public var lowerLastServiced: Date?
-    @NSManaged public var info: String?
     @NSManaged public var bike: Bike?
-    
-    public var wrappedForkInfo: String {
-        info ?? "Unknown Info"
-    }
+    @NSManaged public var frontService: NSOrderedSet?
+
+	public var wrappedForkInfo: String {
+		info ?? "Unknown Info"
+	}
+}
+
+// MARK: Generated accessors for frontService
+extension Fork {
+
+    @objc(insertObject:inFrontServiceAtIndex:)
+    @NSManaged public func insertIntoFrontService(_ value: FrontService, at idx: Int)
+
+    @objc(removeObjectFromFrontServiceAtIndex:)
+    @NSManaged public func removeFromFrontService(at idx: Int)
+
+    @objc(insertFrontService:atIndexes:)
+    @NSManaged public func insertIntoFrontService(_ values: [FrontService], at indexes: NSIndexSet)
+
+    @objc(removeFrontServiceAtIndexes:)
+    @NSManaged public func removeFromFrontService(at indexes: NSIndexSet)
+
+    @objc(replaceObjectInFrontServiceAtIndex:withObject:)
+    @NSManaged public func replaceFrontService(at idx: Int, with value: FrontService)
+
+    @objc(replaceFrontServiceAtIndexes:withFrontService:)
+    @NSManaged public func replaceFrontService(at indexes: NSIndexSet, with values: [FrontService])
+
+    @objc(addFrontServiceObject:)
+    @NSManaged public func addToFrontService(_ value: FrontService)
+
+    @objc(removeFrontServiceObject:)
+    @NSManaged public func removeFromFrontService(_ value: FrontService)
+
+    @objc(addFrontService:)
+    @NSManaged public func addToFrontService(_ values: NSOrderedSet)
+
+    @objc(removeFrontService:)
+    @NSManaged public func removeFromFrontService(_ values: NSOrderedSet)
 
 }

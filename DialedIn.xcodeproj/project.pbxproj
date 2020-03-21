@@ -30,12 +30,16 @@
 		A3C16E8223DE9EC5005BFA14 /* DialedInTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C16E8123DE9EC5005BFA14 /* DialedInTests.swift */; };
 		A3C16E8D23DE9EC5005BFA14 /* DialedInUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C16E8C23DE9EC5005BFA14 /* DialedInUITests.swift */; };
 		A3C16EB723DEA582005BFA14 /* RearShock+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C16EAF23DEA582005BFA14 /* RearShock+CoreDataClass.swift */; };
-		A3C16EB823DEA582005BFA14 /* RearShock+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C16EB023DEA582005BFA14 /* RearShock+CoreDataProperties.swift */; };
 		A3C16EBD23DEA582005BFA14 /* Fork+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C16EB523DEA582005BFA14 /* Fork+CoreDataClass.swift */; };
-		A3C16EBE23DEA582005BFA14 /* Fork+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C16EB623DEA582005BFA14 /* Fork+CoreDataProperties.swift */; };
 		A3C76CA423EF66450047BBCC /* RatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C76CA323EF66450047BBCC /* RatingView.swift */; };
 		A3C7A1D72401F87D00A741A8 /* AddNoteFrontSetupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C7A1D62401F87D00A741A8 /* AddNoteFrontSetupView.swift */; };
 		A3D518072425BD63007DEE9D /* ServiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D518062425BD63007DEE9D /* ServiceView.swift */; };
+		A3D5181124268DB6007DEE9D /* RearShock+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D5180924268DB6007DEE9D /* RearShock+CoreDataProperties.swift */; };
+		A3D5181224268DB6007DEE9D /* FrontService+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D5180A24268DB6007DEE9D /* FrontService+CoreDataClass.swift */; };
+		A3D5181324268DB6007DEE9D /* FrontService+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D5180B24268DB6007DEE9D /* FrontService+CoreDataProperties.swift */; };
+		A3D5181624268DB6007DEE9D /* RearService+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D5180E24268DB6007DEE9D /* RearService+CoreDataClass.swift */; };
+		A3D5181724268DB6007DEE9D /* RearService+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D5180F24268DB6007DEE9D /* RearService+CoreDataProperties.swift */; };
+		A3D5181B24268E55007DEE9D /* Fork+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D5181924268E55007DEE9D /* Fork+CoreDataProperties.swift */; };
 		A3D63B45241DCD3400852575 /* BikeStyledCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D63B44241DCD3400852575 /* BikeStyledCellView.swift */; };
 		A3DDCC7A23DFEFEB00CD1476 /* Bike+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DDCC7823DFEFEB00CD1476 /* Bike+CoreDataClass.swift */; };
 		A3DDCC7B23DFEFEB00CD1476 /* Bike+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DDCC7923DFEFEB00CD1476 /* Bike+CoreDataProperties.swift */; };
@@ -99,12 +103,16 @@
 		A3C16E8C23DE9EC5005BFA14 /* DialedInUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialedInUITests.swift; sourceTree = "<group>"; };
 		A3C16E8E23DE9EC5005BFA14 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A3C16EAF23DEA582005BFA14 /* RearShock+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RearShock+CoreDataClass.swift"; sourceTree = "<group>"; };
-		A3C16EB023DEA582005BFA14 /* RearShock+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RearShock+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		A3C16EB523DEA582005BFA14 /* Fork+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Fork+CoreDataClass.swift"; sourceTree = "<group>"; };
-		A3C16EB623DEA582005BFA14 /* Fork+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Fork+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		A3C76CA323EF66450047BBCC /* RatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingView.swift; sourceTree = "<group>"; };
 		A3C7A1D62401F87D00A741A8 /* AddNoteFrontSetupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNoteFrontSetupView.swift; sourceTree = "<group>"; };
 		A3D518062425BD63007DEE9D /* ServiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceView.swift; sourceTree = "<group>"; };
+		A3D5180924268DB6007DEE9D /* RearShock+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RearShock+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		A3D5180A24268DB6007DEE9D /* FrontService+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FrontService+CoreDataClass.swift"; sourceTree = "<group>"; };
+		A3D5180B24268DB6007DEE9D /* FrontService+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FrontService+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		A3D5180E24268DB6007DEE9D /* RearService+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RearService+CoreDataClass.swift"; sourceTree = "<group>"; };
+		A3D5180F24268DB6007DEE9D /* RearService+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RearService+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		A3D5181924268E55007DEE9D /* Fork+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Fork+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		A3D63B44241DCD3400852575 /* BikeStyledCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeStyledCellView.swift; sourceTree = "<group>"; };
 		A3DDCC7823DFEFEB00CD1476 /* Bike+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bike+CoreDataClass.swift"; sourceTree = "<group>"; };
 		A3DDCC7923DFEFEB00CD1476 /* Bike+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bike+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -309,10 +317,12 @@
 		A3C16EAD23DEA4ED005BFA14 /* Properties */ = {
 			isa = PBXGroup;
 			children = (
+				A3D5180924268DB6007DEE9D /* RearShock+CoreDataProperties.swift */,
+				A3D5180B24268DB6007DEE9D /* FrontService+CoreDataProperties.swift */,
+				A3D5180F24268DB6007DEE9D /* RearService+CoreDataProperties.swift */,
 				A3273B7423EF998B007A3792 /* Notes+CoreDataProperties.swift */,
 				A3DDCC7923DFEFEB00CD1476 /* Bike+CoreDataProperties.swift */,
-				A3C16EB023DEA582005BFA14 /* RearShock+CoreDataProperties.swift */,
-				A3C16EB623DEA582005BFA14 /* Fork+CoreDataProperties.swift */,
+				A3D5181924268E55007DEE9D /* Fork+CoreDataProperties.swift */,
 			);
 			path = Properties;
 			sourceTree = "<group>";
@@ -320,10 +330,12 @@
 		A3C16EAE23DEA4F7005BFA14 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				A3D5180A24268DB6007DEE9D /* FrontService+CoreDataClass.swift */,
 				A3273B7323EF998B007A3792 /* Notes+CoreDataClass.swift */,
 				A3DDCC7823DFEFEB00CD1476 /* Bike+CoreDataClass.swift */,
 				A3C16EAF23DEA582005BFA14 /* RearShock+CoreDataClass.swift */,
 				A3C16EB523DEA582005BFA14 /* Fork+CoreDataClass.swift */,
+				A3D5180E24268DB6007DEE9D /* RearService+CoreDataClass.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -500,16 +512,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A3D5181224268DB6007DEE9D /* FrontService+CoreDataClass.swift in Sources */,
 				A3273B7223EF8F6F007A3792 /* NoteFrontSetupModel.swift in Sources */,
 				A3FBA8BB240342E7001F3885 /* BikeDetailView.swift in Sources */,
 				A3DDCC7A23DFEFEB00CD1476 /* Bike+CoreDataClass.swift in Sources */,
+				A3D5181624268DB6007DEE9D /* RearService+CoreDataClass.swift in Sources */,
 				A3C16E6823DE9EC4005BFA14 /* AppDelegate.swift in Sources */,
 				A3B8B79723F0E9EF00CE1EF8 /* BikePickerView.swift in Sources */,
+				A3D5181724268DB6007DEE9D /* RearService+CoreDataProperties.swift in Sources */,
 				A3E1A6AF2409B78100C4DFD5 /* FilteredBikeView.swift in Sources */,
 				A3D518072425BD63007DEE9D /* ServiceView.swift in Sources */,
 				A3C16E6D23DE9EC4005BFA14 /* DialedIn.xcdatamodeld in Sources */,
 				A3C76CA423EF66450047BBCC /* RatingView.swift in Sources */,
 				A3C16EB723DEA582005BFA14 /* RearShock+CoreDataClass.swift in Sources */,
+				A3D5181124268DB6007DEE9D /* RearShock+CoreDataProperties.swift in Sources */,
 				A3C16E6F23DE9EC4005BFA14 /* NotesListView.swift in Sources */,
 				A3FBA8BD240342E7001F3885 /* RearShockLastServicedView.swift in Sources */,
 				A3C16E6A23DE9EC4005BFA14 /* SceneDelegate.swift in Sources */,
@@ -517,12 +533,12 @@
 				A3177375241DD6C100E281BF /* BikeAddNoteButtonView.swift in Sources */,
 				A3FBA8BC240342E7001F3885 /* ForkLastServicedView.swift in Sources */,
 				A3C7A1D72401F87D00A741A8 /* AddNoteFrontSetupView.swift in Sources */,
-				A3C16EBE23DEA582005BFA14 /* Fork+CoreDataProperties.swift in Sources */,
+				A3D5181B24268E55007DEE9D /* Fork+CoreDataProperties.swift in Sources */,
 				A3EC241C23E68C00002954A9 /* NoteCellView.swift in Sources */,
 				A309B9D623E2898300A08F22 /* BikeListView.swift in Sources */,
+				A3D5181324268DB6007DEE9D /* FrontService+CoreDataProperties.swift in Sources */,
 				A3A1297023FB9AC50014EC8A /* NoteRearSetupModel.swift in Sources */,
 				A33F02B124062A89005A0A8F /* FilteredAddNoteView.swift in Sources */,
-				A3C16EB823DEA582005BFA14 /* RearShock+CoreDataProperties.swift in Sources */,
 				A326FAC723F3BC6E002490E2 /* CoreData Extensions.swift in Sources */,
 				A33F02AF2406201D005A0A8F /* AddNoteBikeView.swift in Sources */,
 				A3B8B79523F0E66900CE1EF8 /* BikeModel.swift in Sources */,

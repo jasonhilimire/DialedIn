@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="16114.2" systemVersion="19D76" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15702" systemVersion="19D76" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Bike" representedClassName="Bike" syncable="YES">
         <attribute name="bikeNote" optional="YES" attributeType="String"/>
         <attribute name="hasRearShock" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
@@ -21,6 +21,13 @@
         <attribute name="lasfFullService" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="lowerLastServiced" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <relationship name="bike" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Bike" inverseName="frontSetup" inverseEntity="Bike"/>
+        <relationship name="frontService" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="FrontService" inverseName="service" inverseEntity="FrontService"/>
+    </entity>
+    <entity name="FrontService" representedClassName="FrontService" syncable="YES" codeGenerationType="class">
+        <attribute name="fullService" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="lowersService" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="serviceNote" optional="YES" attributeType="String"/>
+        <relationship name="service" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Fork" inverseName="frontService" inverseEntity="Fork"/>
     </entity>
     <entity name="Notes" representedClassName="Notes" syncable="YES">
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
@@ -47,6 +54,12 @@
         <attribute name="rTokens" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <relationship name="bike" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Bike" inverseName="setupNotes" inverseEntity="Bike"/>
     </entity>
+    <entity name="RearService" representedClassName="RearService" syncable="YES" codeGenerationType="class">
+        <attribute name="airCanService" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="fullService" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="serviceNote" optional="YES" attributeType="String"/>
+        <relationship name="service" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="RearShock" inverseName="rearService" inverseEntity="RearShock"/>
+    </entity>
     <entity name="RearShock" representedClassName="RearShock" syncable="YES">
         <attribute name="dualCompression" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="dualRebound" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
@@ -55,11 +68,14 @@
         <attribute name="lastAirCanService" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="lastFullService" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <relationship name="bike" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Bike" inverseName="rearSetup" inverseEntity="Bike"/>
+        <relationship name="rearService" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="RearService" inverseName="service" inverseEntity="RearService"/>
     </entity>
     <elements>
-        <element name="Bike" positionX="-54" positionY="-9" width="128" height="148"/>
-        <element name="Fork" positionX="-36" positionY="9" width="128" height="133"/>
-        <element name="Notes" positionX="-63" positionY="-18" width="128" height="388"/>
-        <element name="RearShock" positionX="-18" positionY="27" width="128" height="148"/>
+        <element name="Bike" positionX="-927.3046875" positionY="-479.21484375" width="128" height="148"/>
+        <element name="Fork" positionX="-680.84765625" positionY="-601.16796875" width="128" height="148"/>
+        <element name="Notes" positionX="-908.890625" positionY="-180.9140625" width="117.93359375" height="388"/>
+        <element name="RearShock" positionX="-686.94921875" positionY="-388.828125" width="128" height="163"/>
+        <element name="RearService" positionX="-397.6875" positionY="-359.015625" width="128" height="103"/>
+        <element name="FrontService" positionX="-440.9609375" positionY="-596.84375" width="128" height="103"/>
     </elements>
 </model>
