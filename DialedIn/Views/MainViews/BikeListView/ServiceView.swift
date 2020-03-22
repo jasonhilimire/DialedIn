@@ -18,14 +18,16 @@ struct ServiceView: View {
 	
 	@State private var bikeName = ""
 	@State private var fullForkServiceToggle = false
+	@State private var fFullServicedDate = Date()
 	@State private var lowersForkServiceToggle = false
 	@State private var fLowersServicedDate = Date()
-	@State private var fFullServicedDate = Date()
+	
 	
 	@State private var fullRearServiceToggle = false
+	@State private var rFullServiceDate = Date()
 	@State private var airCanServiceToggle = false
 	@State private var rAirCanServiceDate = Date()
-	@State private var rFullServiceDate = Date()
+	
 	
 	
 	// if service not done need to call model and set to last service date silently
@@ -40,31 +42,64 @@ struct ServiceView: View {
 				}
 				
 				Section(header: Text("Front Service")){
-					Text("")
+					VStack {
+// Set toggle so that if full is open you cannot do lowers & includes text field telling user
+						Toggle(isOn: $fullForkServiceToggle.animation(), label: {Text("Full Service")})
+						if fullForkServiceToggle  {
+							VStack() {
+								DatePicker(selection: $fFullServicedDate, in: ...Date(), displayedComponents: .date) {
+									Text("Last Full Service")
+								}
+								Text("Full Service includes Lowers Service")
+							}
+						}
+						Toggle(isOn: $lowersForkServiceToggle.animation(), label: {Text("Lowers Serviced")})
+						if lowersForkServiceToggle  {
+							DatePicker(selection: $fLowersServicedDate, in: ...Date(), displayedComponents: .date) {
+								Text("Last Lowers Service ")
+							}
+						}
+						
+					}
 				}
 				
 				Section(header: Text("Rear Service")){
-					Toggle(isOn: $fullRearServiceToggle.animation(), label: {Text("Dual Rebound?")})
-					if fullForkServiceToggle == true {
-						DatePicker(selection: $rFullServiceDate, in: ...Date(), displayedComponents: .date) {
-							Text("Last Full Service ")
+					VStack {
+// TODO: Set toggle so that if full is open you cannot do airCan & includes text field telling user
+// Setup if statements for shock type
+						
+						Toggle(isOn: $fullRearServiceToggle.animation(), label: {Text("Full Service")})
+						if fullRearServiceToggle  {
+							VStack() {
+								DatePicker(selection: $rFullServiceDate, in: ...Date(), displayedComponents: .date) {
+									Text("Last FullService")
+								}
+								Text("Full Service includes AirCan Service")
+							}
 						}
+						Toggle(isOn: $airCanServiceToggle.animation(), label: {Text("Air Can Serviced")})
+						if airCanServiceToggle  {
+							DatePicker(selection: $rAirCanServiceDate, in: ...Date(), displayedComponents: .date) {
+								Text("Last AirCan Service ")
+							}
+						}
+						
 					}
+				}
+				
+				Button(action: {
+					//dismisses the sheet
+					self.presentationMode.wrappedValue.dismiss()
+					self.saveService()
+					
+					try? self.moc.save()
+				}) {
+					// if no toggles disable save button
+					SaveButtonView()
 				}
 			} // end form
 				.onAppear(perform: {self.setup()})
 				.navigationBarTitle("DialedIn", displayMode: .inline)
-			
-			Button(action: {
-				//dismisses the sheet
-				self.presentationMode.wrappedValue.dismiss()
-				self.saveService()
-				
-				try? self.moc.save()
-			}) {
-				SaveButtonView()
-			}
-			
 		}
         
     }
