@@ -39,29 +39,17 @@ class RearServiceModel: ObservableObject {
 	
 	let didChange = PassthroughSubject<RearServiceModel, Never>()
 
-// update with enum
+
+	
 	func getLastAirService() -> Date {
-		return getSetting(service: filterRear(for: bikeName))
+		let lastAir = ServiceDates.airCan
+		return lastAir.getLastServiceDates(rearservice: filterRear(for: bikeName))
 	}
 	
 
-//	func getLastFullService() -> Date {
-//		let last = filterBikes(for: bikeName)
-//		let lastserv = last.last?.rearSetup?.lastFullService
-//		return lastserv ?? Date()
-//	}
-	
-
-// Change to an enum
-	func getSetting(service: [RearService]) -> Date {
-		let lastAir = service.last?.airCanService
-		return lastAir ?? Date()
-	}
-	
-	
-	func getBikes() -> [Bike] {
-		let bikes = try! managedObjectContext.fetch(Bike.bikesFetchRequest())
-		return bikes
+	func getLastFullService() -> Date {
+		let lastFull = ServiceDates.airCan
+		return lastFull.getLastServiceDates(rearservice: filterRear(for: bikeName))
 	}
 	
 	func getRearShock() -> [RearService] {
@@ -69,13 +57,6 @@ class RearServiceModel: ObservableObject {
 		return rearShocks
 	}
 
-// wont be needed
-	func filterBikes(for name: String) -> [Bike] {
-		let filteredBikes = getBikes().filter { bikes in
-			bikes.name == name
-		}
-		return filteredBikes
-	}
 	
 	func filterRear(for name: String) -> [RearService] {
 		let filteredBikes = getRearShock().filter { bikes in
@@ -84,11 +65,24 @@ class RearServiceModel: ObservableObject {
 		return filteredBikes
 	}
 	
-
-	
 	func setup() {
 		lastAirServ = getLastAirService()
-//		lastFullServ = getLastFullService()
+		lastFullServ = getLastFullService()
+	}
+	
+	enum ServiceDates {
+		case airCan
+		case full
+		
+		func getLastServiceDates(rearservice: [RearService]) -> Date {
+			switch self {
+				case .airCan:
+					return rearservice.last?.airCanService ?? Date()
+				case .full:
+					return rearservice.last?.fullService ?? Date()
+				
+			}
+		}
 	}
 	
 }
