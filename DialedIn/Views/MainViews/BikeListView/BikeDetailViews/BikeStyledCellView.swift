@@ -35,7 +35,7 @@ struct BikeStyledCellView: View {
 		VStack { // Whole Card
 			HStack { // Name - note
 				VStack(alignment: .leading) {
-					Text(self.bike.name ?? "Unknown Bike")
+					Text(self.bike.name ?? "Unknown")
 						.font(.largeTitle)
 						.fontWeight(.ultraLight)
 					
@@ -47,7 +47,7 @@ struct BikeStyledCellView: View {
 				Spacer()
 			}
 			
-			ForkLastServicedView(fork: self.bike.frontSetup!)
+//			ForkLastServicedView(fork: self.bike.frontSetup!)
 			RearShockLastServicedView(rear: self.bike.rearSetup!)
 
 			// Buttons

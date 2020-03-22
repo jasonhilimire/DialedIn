@@ -45,14 +45,14 @@ class RearServiceModel: ObservableObject {
 	}
 	
 
-	func getLastFullService() -> Date {
-		let last = filterBikes(for: bikeName)
-		let lastserv = last.last?.rearSetup?.lastFullService
-		return lastserv ?? Date()
-	}
+//	func getLastFullService() -> Date {
+//		let last = filterBikes(for: bikeName)
+//		let lastserv = last.last?.rearSetup?.lastFullService
+//		return lastserv ?? Date()
+//	}
 	
 
-// Change to an enum?
+// Change to an enum
 	func getSetting(service: [RearService]) -> Date {
 		let lastAir = service.last?.airCanService
 		return lastAir ?? Date()
@@ -88,7 +88,7 @@ class RearServiceModel: ObservableObject {
 	
 	func setup() {
 		lastAirServ = getLastAirService()
-		lastFullServ = getLastFullService()
+//		lastFullServ = getLastFullService()
 	}
 	
 }

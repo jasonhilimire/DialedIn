@@ -21,8 +21,6 @@ extension RearShock {
     @NSManaged public var dualRebound: Bool
     @NSManaged public var info: String?
     @NSManaged public var isCoil: Bool
-    @NSManaged public var lastAirCanService: Date?
-    @NSManaged public var lastFullService: Date?
     @NSManaged public var bike: Bike?
     @NSManaged public var rearService: NSSet?
 	

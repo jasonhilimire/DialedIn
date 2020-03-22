@@ -130,8 +130,8 @@ struct AddNoteBikeView: View {
 		newNote.bike?.rearSetup?.dualCompression = self.rear.rComp
 		newNote.bike?.rearSetup?.dualRebound = self.rear.rReb
 		newNote.bike?.rearSetup?.isCoil = self.rear.coil
-		newNote.bike?.rearSetup?.lastAirCanService = self.rear.lastAirServ
-		newNote.bike?.rearSetup?.lastFullService = self.rear.lastFullServ
+//		newNote.bike?.rearSetup?.lastAirCanService = self.rear.lastAirServ
+//		newNote.bike?.rearSetup?.lastFullService = self.rear.lastFullServ
 		
 		
 	}

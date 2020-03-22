@@ -19,6 +19,8 @@ struct RearShockLastServicedView: View {
     }
     
     let rear: RearShock
+	@ObservedObject var rearService = RearServiceModel()
+	
     var body: some View {
 		VStack { // Rear Section
 			if rear.bike?.hasRearShock == false {
@@ -34,14 +36,14 @@ struct RearShockLastServicedView: View {
 					HStack {
 						Text("Last Air Can Service:")
 						Spacer()
-						Text(self.rear.lastAirCanService != nil ? " \(self.rear.lastAirCanService!, formatter: self.dateFormatter)" : "Unknown")
+						Text(self.rearService.lastAirServ != nil ? " \(self.rearService.lastAirServ, formatter: self.dateFormatter)" : "Unknown")
 					}
 					.padding([.leading, .trailing])
 					.font(.footnote)
 					HStack {
 						Text("Last Full Service:")
 						Spacer()
-						Text(self.rear.lastFullService != nil ? " \(self.rear.lastFullService!, formatter: self.dateFormatter)" : "Unknown")
+						Text(self.rearService.lastFullServ != nil ? " \(self.rearService.lastFullServ, formatter: self.dateFormatter)" : "Unknown")
 					}
 					.padding(.horizontal)
 					.font(.footnote)
@@ -49,7 +51,7 @@ struct RearShockLastServicedView: View {
 					HStack {
 						Text("Last Full Service:")
 						Spacer()
-						Text(self.rear.lastFullService != nil ?  "\(self.rear.lastFullService!, formatter: self.dateFormatter)" : "Unknown")
+						Text(self.rearService.lastFullServ != nil ?  "\(self.rearService.lastFullServ, formatter: self.dateFormatter)" : "Unknown")
 					}
 					.padding(.horizontal)
 					.font(.footnote)

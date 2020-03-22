@@ -21,20 +21,22 @@ struct BikeListView: View {
     @State private var showingAddScreen = false
 
 	var body: some View {
-		ScrollView {
-			ForEach(bikes, id: \.self) { bike in
-				BikeStyledCellView(bike: bike)
-				.padding(10)
+		NavigationView {
+			ScrollView {
+				ForEach(bikes, id: \.self) { bike in
+					BikeStyledCellView(bike: bike)
+					.padding(10)
+				}
 			}
-		}
-		.navigationBarTitle("Bikes")
-		.navigationBarItems(leading: EditButton().foregroundColor(Color.white), trailing:
-			Button(action: {self.showingAddScreen.toggle()
-			}) {
-				Image(systemName: "plus.circle").foregroundColor(Color.white)
-		})
-			.sheet(isPresented: $showingAddScreen)  {
-				AddBikeView().environment(\.managedObjectContext, self.moc)
+			.navigationBarTitle("Bikes")
+			.navigationBarItems(leading: EditButton().foregroundColor(Color.white), trailing:
+				Button(action: {self.showingAddScreen.toggle()
+				}) {
+					Image(systemName: "plus.circle").foregroundColor(Color.white)
+			})
+				.sheet(isPresented: $showingAddScreen)  {
+					AddBikeView().environment(\.managedObjectContext, self.moc)
+			}
 		}
 	}
 }

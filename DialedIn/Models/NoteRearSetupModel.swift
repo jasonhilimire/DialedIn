@@ -102,17 +102,6 @@ class NoteRearSetupModel: ObservableObject {
             }
         }
 	
-		@Published var lastAirServ: Date = Date() {
-			didSet {
-				didChange.send(self)
-			}
-		}
-	
-		@Published var lastFullServ: Date = Date() {
-			didSet {
-				didChange.send(self)
-			}
-		}
 
        let didChange = PassthroughSubject<NoteRearSetupModel, Never>()
        
@@ -189,17 +178,6 @@ class NoteRearSetupModel: ObservableObject {
 			return lastRecord.getSetting(note: filterBikes(for: bikeName))
 		}
 	
-		func getLastAirService() -> Date {
-			let last = filterBikes(for: bikeName)
-			let lastserv = last.last?.bike?.rearSetup?.lastAirCanService
-			return lastserv ?? Date()
-		}
-	
-		func getLastFullService() -> Date {
-			let last = filterBikes(for: bikeName)
-			let lastserv = last.last?.bike?.rearSetup?.lastFullService
-			return lastserv ?? Date()
-		}
            
        func getNotes() -> [Notes] {
            let notes = try! managedObjectContext.fetch(Notes.fetchRequest()) as! [Notes]
@@ -224,8 +202,6 @@ class NoteRearSetupModel: ObservableObject {
             lastRSagSetting = getLastRSag()
             rReb = getrReb()
             rComp = getrComp()
-			lastAirServ = getLastAirService()
-			lastFullServ = getLastFullService()
             coil = getCoil()
             hasRear = getRear()
 			
