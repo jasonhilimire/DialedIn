@@ -31,14 +31,14 @@ struct ForkLastServicedView: View {
 			HStack(alignment: .center) {
 				Text("Lowers Last Serviced:")
 				Spacer()
-				Text(self.frontService.lastLowerService != nil ? "\(self.frontService.lastLowerService , formatter: self.dateFormatter)" : "Unknown")
+				Text("\(self.frontService.lastLowerService , formatter: self.dateFormatter)")
 			}
 			.padding(.horizontal)
 			.font(.footnote)
 			HStack {
 				Text("Last Full Service:")
 				Spacer()
-				Text(self.frontService.lastFullService  != nil ? "\(self.frontService.lastFullService, formatter: self.dateFormatter)" : "Unknown")
+				Text("\(self.frontService.lastFullService, formatter: self.dateFormatter)")
 			}
 			.padding(.horizontal)
 			.font(.footnote)
@@ -47,8 +47,3 @@ struct ForkLastServicedView: View {
     }
 }
 
-//struct ForkDetailView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ForkDetailView()
-//    }
-//}

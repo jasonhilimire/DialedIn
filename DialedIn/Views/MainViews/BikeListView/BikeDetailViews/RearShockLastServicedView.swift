@@ -19,7 +19,9 @@ struct RearShockLastServicedView: View {
     }
     
     let rear: RearShock
+	let bike: Bike
 	@ObservedObject var rearService = RearServiceModel()
+	@State private var bikeName = ""
 	
     var body: some View {
 		VStack { // Rear Section
@@ -36,14 +38,14 @@ struct RearShockLastServicedView: View {
 					HStack {
 						Text("Last Air Can Service:")
 						Spacer()
-						Text(self.rearService.lastAirServ != nil ? " \(self.rearService.lastAirServ, formatter: self.dateFormatter)" : "Unknown")
+						Text("\(self.rearService.lastAirServ, formatter: self.dateFormatter)")
 					}
 					.padding([.leading, .trailing])
 					.font(.footnote)
 					HStack {
 						Text("Last Full Service:")
 						Spacer()
-						Text(self.rearService.lastFullServ != nil ? " \(self.rearService.lastFullServ, formatter: self.dateFormatter)" : "Unknown")
+						Text("\(self.rearService.lastFullServ, formatter: self.dateFormatter)")
 					}
 					.padding(.horizontal)
 					.font(.footnote)
@@ -51,18 +53,21 @@ struct RearShockLastServicedView: View {
 					HStack {
 						Text("Last Full Service:")
 						Spacer()
-						Text(self.rearService.lastFullServ != nil ?  "\(self.rearService.lastFullServ, formatter: self.dateFormatter)" : "Unknown")
+						Text("\(self.rearService.lastFullServ, formatter: self.dateFormatter)")
 					}
 					.padding(.horizontal)
 					.font(.footnote)
 				}
 			}
-		}
+		} .onAppear(perform: {self.setup()})
     }
+	
+	
+	func setup() {
+		bikeName = self.bike.name ?? "Unknown bike"
+		rearService.bikeName = bikeName
+		rearService.getLastServiceDates()
+		print("Full service \(self.rearService.lastFullServ)")
+	}
 }
 
-//struct RearShockLastServicedView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        RearShockLastServicedView()
-//    }
-//}

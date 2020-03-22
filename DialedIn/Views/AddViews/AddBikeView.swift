@@ -162,6 +162,8 @@ struct AddBikeView: View {
 			newRearShock?.isCoil = false
 		}
 		
+		print("Air Can service date: \(newRearService.airCanService)")
+		
 	}
 }
 

@@ -48,7 +48,7 @@ struct BikeStyledCellView: View {
 			}
 			
 			ForkLastServicedView(fork: self.bike.frontSetup!)
-			RearShockLastServicedView(rear: self.bike.rearSetup!)
+			RearShockLastServicedView(rear: self.bike.rearSetup!, bike: bike)
 
 			// Buttons
 			HStack(alignment: .bottom) {
@@ -84,10 +84,4 @@ struct BikeStyledCellView: View {
 			.shadow(color: Color("ShadowColor"), radius: 5, x: 5, y: -5)
 	} // END Whole Card VStack
 }
-
-//struct BikeStyledCellView_Previews: PreviewProvider {
-//    static var previews: some View {
-//		BikeStyledCellView(bike: bike)
-//    }
-//}
 

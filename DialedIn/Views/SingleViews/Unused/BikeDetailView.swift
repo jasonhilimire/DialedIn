@@ -52,7 +52,7 @@ struct BikeDetailView: View {
 							if self.bike.hasRearShock == false {
 								Text("HardTail")
 							} else {
-								RearShockLastServicedView(rear: self.bike.rearSetup!)
+								RearShockLastServicedView(rear: self.bike.rearSetup!, bike: self.bike)
 							}
 						}
 					}

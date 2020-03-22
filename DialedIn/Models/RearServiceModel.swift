@@ -16,7 +16,7 @@ class RearServiceModel: ObservableObject {
 	
 	
 	init() {
-		setup()
+		getLastServiceDates()
 	}
 	
 	@Published var bikeName: String = "" {
@@ -48,7 +48,7 @@ class RearServiceModel: ObservableObject {
 	
 
 	func getLastFullService() -> Date {
-		let lastFull = ServiceDates.airCan
+		let lastFull = ServiceDates.full
 		return lastFull.getLastServiceDates(rearservice: filterRear(for: bikeName))
 	}
 	
@@ -65,7 +65,7 @@ class RearServiceModel: ObservableObject {
 		return filteredBikes
 	}
 	
-	func setup() {
+	func getLastServiceDates() {
 		lastAirServ = getLastAirService()
 		lastFullServ = getLastFullService()
 	}
