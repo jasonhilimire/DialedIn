@@ -20,8 +20,6 @@ extension Fork {
     @NSManaged public var dualCompression: Bool
     @NSManaged public var dualRebound: Bool
     @NSManaged public var info: String?
-    @NSManaged public var lasfFullService: Date?
-    @NSManaged public var lowerLastServiced: Date?
     @NSManaged public var bike: Bike?
     @NSManaged public var frontService: NSOrderedSet?
 

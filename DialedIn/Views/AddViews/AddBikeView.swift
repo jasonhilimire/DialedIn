@@ -109,39 +109,57 @@ struct AddBikeView: View {
 	
 	func saveNewBike() {
 		// start at the child and work way up with creating Entities
-		let newService = RearService(context: self.moc)
-		newService.service = RearShock(context: self.moc)
-		let rearShock = newService.service
-		newService.service?.bike = Bike(context: self.moc)
-		let bike = newService.service?.bike
+		/// Setup
+		let newRearService = RearService(context: self.moc)
+		newRearService.service = RearShock(context: self.moc)
+		let newRearShock = newRearService.service
+		newRearService.service?.bike = Bike(context: self.moc)
+		let newFrontService = FrontService(context: self.moc)
+		newFrontService.service = Fork(context: self.moc)
+		let newFork = newFrontService.service
+		let newBike = newRearService.service?.bike
+		
+		// - Bike Creation
+		
+		newBike?.name = self.bikeName
+		newBike?.bikeNote = self.bikeNote
+		newBike?.isDefault = self.setDefault
+		
+		// - Front Creation
+		newFrontService.service?.bike = newBike
+		newFork?.dualCompression = self.forkDualCompToggle
+		newFork?.dualRebound = self.forkDualReboundToggle
+		newFork?.info = self.forkInfo
+		newFrontService.lowersService = self.lastLowerServiceDate
+		newFrontService.fullService = self.lastFullForkServiceDate
+		
 
-		bike?.name = self.bikeName
-		bike?.bikeNote = self.bikeNote
-		bike?.isDefault = self.setDefault
-
+		// - Rear Creation -
+		
+		
 		if self.rearSetupIndex == 1 {
-			bike?.hasRearShock = true
-			rearShock?.info = self.rearInfo
-			rearShock?.dualCompression = self.rearDualCompToggle
-			rearShock?.dualRebound = self.rearDualCompToggle
-			rearShock?.isCoil = self.isCoilToggle
-			newService.airCanService = self.lastAirCanServiceDate
-			newService.fullService = self.lastRearFullServiceDate
+			newBike?.hasRearShock = true
+			newRearShock?.info = self.rearInfo
+			newRearShock?.dualCompression = self.rearDualCompToggle
+			newRearShock?.dualRebound = self.rearDualCompToggle
+			newRearShock?.isCoil = self.isCoilToggle
+			newRearService.airCanService = self.lastAirCanServiceDate
+			newRearService.fullService = self.lastRearFullServiceDate
 
 		} else if self.rearSetupIndex == 2 {
 			self.isCoilToggle.toggle()
 			
-			bike?.hasRearShock = true
-			rearShock?.info = self.rearInfo
-			rearShock?.dualCompression = self.rearDualCompToggle
-			rearShock?.dualRebound = self.rearDualCompToggle
-			rearShock?.isCoil = self.isCoilToggle
-			newService.airCanService = self.lastAirCanServiceDate
-			newService.fullService = self.lastRearFullServiceDate
+			newBike?.hasRearShock = true
+			newRearShock?.info = self.rearInfo
+			newRearShock?.dualCompression = self.rearDualCompToggle
+			newRearShock?.dualRebound = self.rearDualCompToggle
+			newRearShock?.isCoil = self.isCoilToggle
+			newRearService.airCanService = self.lastAirCanServiceDate
+			newRearService.fullService = self.lastRearFullServiceDate
 
 		} else if self.rearSetupIndex == 0 {
-			bike?.hasRearShock = false
-			rearShock?.isCoil = false
+			newBike?.hasRearShock = false
+			newRearShock?.isCoil = false
 		}
 		
 	}

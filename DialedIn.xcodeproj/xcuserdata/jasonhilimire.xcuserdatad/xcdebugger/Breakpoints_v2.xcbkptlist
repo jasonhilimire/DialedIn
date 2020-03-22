@@ -14,8 +14,8 @@
             filePath = "DialedIn/Views/AddViews/AddNoteViews/AddNoteBikeView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "149"
-            endingLineNumber = "149"
+            startingLineNumber = "146"
+            endingLineNumber = "146"
             landmarkName = "setup()"
             landmarkType = "7">
          </BreakpointContent>
@@ -30,8 +30,8 @@
             filePath = "DialedIn/Models/NoteFrontSetupModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "168"
-            endingLineNumber = "168"
+            startingLineNumber = "146"
+            endingLineNumber = "146"
             landmarkName = "getLastFRebound()"
             landmarkType = "7">
          </BreakpointContent>
@@ -46,8 +46,8 @@
             filePath = "DialedIn/Views/AddViews/AddNoteViews/AddNoteBikeView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "150"
-            endingLineNumber = "150"
+            startingLineNumber = "147"
+            endingLineNumber = "147"
             landmarkName = "setup()"
             landmarkType = "7">
          </BreakpointContent>

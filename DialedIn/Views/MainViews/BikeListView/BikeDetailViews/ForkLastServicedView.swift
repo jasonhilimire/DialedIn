@@ -17,7 +17,8 @@ struct ForkLastServicedView: View {
         formatter.dateStyle = .short
         return formatter
     }
-    
+    @ObservedObject var frontService = FrontServiceModel()
+	
     let fork: Fork
     var body: some View {
 		VStack { // Fork Section
@@ -30,14 +31,14 @@ struct ForkLastServicedView: View {
 			HStack(alignment: .center) {
 				Text("Lowers Last Serviced:")
 				Spacer()
-				Text(self.fork.lowerLastServiced != nil ? "\(self.fork.lowerLastServiced!, formatter: self.dateFormatter)" : "Unknown")
+				Text(self.frontService.lastLowerService != nil ? "\(self.frontService.lastLowerService , formatter: self.dateFormatter)" : "Unknown")
 			}
 			.padding(.horizontal)
 			.font(.footnote)
 			HStack {
 				Text("Last Full Service:")
 				Spacer()
-				Text(self.fork.lasfFullService != nil ? "\(self.fork.lasfFullService!, formatter: self.dateFormatter)" : "Unknown")
+				Text(self.frontService.lastFullService  != nil ? "\(self.frontService.lastFullService, formatter: self.dateFormatter)" : "Unknown")
 			}
 			.padding(.horizontal)
 			.font(.footnote)

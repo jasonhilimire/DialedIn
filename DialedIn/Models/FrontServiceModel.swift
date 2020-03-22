@@ -38,17 +38,17 @@ class FrontServiceModel: ObservableObject {
 	
 	let didChange = PassthroughSubject<FrontServiceModel, Never>()
 	
-	func getLastLowerService() -> Date {
-		let last = filter(for: bikeName)
-		let lastserv = last.last?.frontSetup?.lowerLastServiced
-		return lastserv ?? Date()
-	}
-	
-	func getLastFullService() -> Date {
-		let last = filter(for: bikeName)
-		let lastserv = last.last?.frontSetup?.lasfFullService
-		return lastserv ?? Date()
-	}
+//	func getLastLowerService() -> Date {
+//		let last = filter(for: bikeName)
+//		let lastserv = last.last?.frontSetup?.lowerLastServiced
+//		return lastserv ?? Date()
+//	}
+//
+//	func getLastFullService() -> Date {
+//		let last = filter(for: bikeName)
+//		let lastserv = last.last?.frontSetup?.lasfFullService
+//		return lastserv ?? Date()
+//	}
 	
 	func getBikes() -> [Bike] {
 		let bikes = try! managedObjectContext.fetch(Bike.bikesFetchRequest())
@@ -63,8 +63,8 @@ class FrontServiceModel: ObservableObject {
 	}
 	
 	func setup() {
-		lastLowerService = getLastLowerService()
-		lastFullService = getLastFullService()
+//		lastLowerService = getLastLowerService()
+//		lastFullService = getLastFullService()
 	}
 	
 }

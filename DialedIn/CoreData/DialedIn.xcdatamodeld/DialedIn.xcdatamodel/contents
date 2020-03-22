@@ -18,8 +18,6 @@
         <attribute name="dualCompression" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="dualRebound" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="info" optional="YES" attributeType="String"/>
-        <attribute name="lasfFullService" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="lowerLastServiced" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <relationship name="bike" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Bike" inverseName="frontSetup" inverseEntity="Bike"/>
         <relationship name="frontService" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="FrontService" inverseName="service" inverseEntity="FrontService"/>
     </entity>
@@ -70,7 +68,7 @@
     </entity>
     <elements>
         <element name="Bike" positionX="-927.3046875" positionY="-479.21484375" width="128" height="148"/>
-        <element name="Fork" positionX="-680.84765625" positionY="-601.16796875" width="128" height="148"/>
+        <element name="Fork" positionX="-680.84765625" positionY="-601.16796875" width="128" height="118"/>
         <element name="FrontService" positionX="-440.9609375" positionY="-596.84375" width="128" height="103"/>
         <element name="Notes" positionX="-908.890625" positionY="-180.9140625" width="117.93359375" height="388"/>
         <element name="RearService" positionX="-397.6875" positionY="-359.015625" width="128" height="103"/>
