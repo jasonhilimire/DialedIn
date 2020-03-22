@@ -13,23 +13,14 @@ struct AddNoteBikeView: View {
 	// Create the MOC
 	@Environment(\.managedObjectContext) var moc
 	@Environment(\.presentationMode) var presentationMode
-	
-	// Get All the bikes for the PickerView
-	@FetchRequest(fetchRequest: Bike.bikesFetchRequest())
-	var bikes: FetchedResults<Bike>
-
 		
 	@ObservedObject var front = NoteFrontSetupModel()
 	@ObservedObject var rear = NoteRearSetupModel()
 	
-	@State private var createdInitialBike = false
-	@State private var bikeNameIndex = 0
 	@State private var bikeName = ""
 	@State private var note = ""
 	@State private var date = Date()
 	@State private var rating = 3
-	
-
 	
 	let bike: Bike
 
@@ -128,19 +119,13 @@ struct AddNoteBikeView: View {
 		newNote.bike?.rearSetup?.dualCompression = self.rear.rComp
 		newNote.bike?.rearSetup?.dualRebound = self.rear.rReb
 		newNote.bike?.rearSetup?.isCoil = self.rear.coil
-
-		
-		
 	}
 	
 	func setup() {
-
 		bikeName = self.bike.name ?? "Unknown bike"
 		
 		front.bikeName = bikeName
 		front.getLastFrontSettings()
-		
-		print("after getlastFrsettings")
 		
 		rear.bikeName = bikeName
 		rear.getLastRearSettings()

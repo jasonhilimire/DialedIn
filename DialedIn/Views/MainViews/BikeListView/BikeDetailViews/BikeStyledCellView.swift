@@ -70,7 +70,7 @@ struct BikeStyledCellView: View {
 					}
 				}
 				.sheet(isPresented: self.$showingServiceView)  {
-					ServiceView().environment(\.managedObjectContext, self.moc)
+					ServiceView(bike: self.bike).environment(\.managedObjectContext, self.moc)
 				}
 			}
 			.padding([.leading, .trailing])
