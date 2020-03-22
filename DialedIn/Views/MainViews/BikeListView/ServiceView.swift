@@ -17,16 +17,19 @@ struct ServiceView: View {
 	@ObservedObject var rearService = RearServiceModel()
 	
 	@State private var bikeName = ""
-	@State private var fullForkServiceToggle = false
 	@State private var fFullServicedDate = Date()
-	@State private var lowersForkServiceToggle = false
 	@State private var fLowersServicedDate = Date()
+	@State private var frontServiced = ["None", "Full", "Lower"]
+	@State private var frontServicedIndex = 0
+	@State private var frontServicedNote = ""
 	
 	
-	@State private var fullRearServiceToggle = false
-	@State private var rFullServiceDate = Date()
-	@State private var airCanServiceToggle = false
-	@State private var rAirCanServiceDate = Date()
+	@State private var rFullServicedDate = Date()
+	@State private var rAirCanServicedDate = Date()
+	@State private var rearServiced = ["None", "Full", "AirCan"]
+	@State private var rearServicedIndex = 0
+	@State private var rearServicedNote = ""
+	
 	
 	
 	
@@ -35,52 +38,68 @@ struct ServiceView: View {
 	let bike: Bike
 	
     var body: some View {
-		NavigationView {
+		
+		// Maybe swap this to a segmented picker
+		
+		 NavigationView {
 			Form{
 				Section {
 					Text("Bike: \(self.bike.name ?? "Unknown Bike")").bold()
 				}
 				
 				Section(header: Text("Front Service")){
-					VStack {
+					 VStack {
 // Set toggle so that if full is open you cannot do lowers & includes text field telling user
-						Toggle(isOn: $fullForkServiceToggle.animation(), label: {Text("Full Service")})
-						if fullForkServiceToggle  {
-							VStack() {
+						Picker("Service Type", selection: $frontServicedIndex) {
+							ForEach(0..<frontServiced.count) { index in
+								Text(self.frontServiced[index]).tag(index)
+							}
+						}.pickerStyle(SegmentedPickerStyle())
+						if frontServicedIndex == 1 {
+							VStack {
 								DatePicker(selection: $fFullServicedDate, in: ...Date(), displayedComponents: .date) {
-									Text("Last Full Service")
+									Text("Select a date")
 								}
-								Text("Full Service includes Lowers Service")
+								Text("Full Service Includes Lowers Service")
+								TextField("Service Note", text: $frontServicedNote)
+							}
+							
+						} else if frontServicedIndex == 2 {
+							VStack {
+								DatePicker(selection: $fLowersServicedDate, in: ...Date(), displayedComponents: .date) {
+									Text("Select a date")
+								}
+								Text("Lowers only Serviced")
+								TextField("Service Note", text: $frontServicedNote)
 							}
 						}
-						Toggle(isOn: $lowersForkServiceToggle.animation(), label: {Text("Lowers Serviced")})
-						if lowersForkServiceToggle  {
-							DatePicker(selection: $fLowersServicedDate, in: ...Date(), displayedComponents: .date) {
-								Text("Last Lowers Service ")
-							}
-						}
-						
 					}
 				}
 				
 				Section(header: Text("Rear Service")){
 					VStack {
-// TODO: Set toggle so that if full is open you cannot do airCan & includes text field telling user
-// Setup if statements for shock type
-						
-						Toggle(isOn: $fullRearServiceToggle.animation(), label: {Text("Full Service")})
-						if fullRearServiceToggle  {
-							VStack() {
-								DatePicker(selection: $rFullServiceDate, in: ...Date(), displayedComponents: .date) {
-									Text("Last FullService")
-								}
-								Text("Full Service includes AirCan Service")
+						Picker("Service Type", selection: $rearServicedIndex) {
+							ForEach(0..<rearServiced.count) { index in
+								Text(self.rearServiced[index]).tag(index)
 							}
-						}
-						Toggle(isOn: $airCanServiceToggle.animation(), label: {Text("Air Can Serviced")})
-						if airCanServiceToggle  {
-							DatePicker(selection: $rAirCanServiceDate, in: ...Date(), displayedComponents: .date) {
-								Text("Last AirCan Service ")
+						}.pickerStyle(SegmentedPickerStyle())
+						
+						if rearServicedIndex == 1 {
+							VStack {
+								DatePicker(selection: $rFullServicedDate, in: ...Date(), displayedComponents: .date) {
+									Text("Select a date")
+								}
+								Text("Full Service Includes Lowers Service")
+								TextField("Service Note", text: $rearServicedNote)
+							}
+							
+						} else if rearServicedIndex == 2 {
+							VStack {
+								DatePicker(selection: $rAirCanServicedDate, in: ...Date(), displayedComponents: .date) {
+									Text("Select a date")
+								}
+								Text("Air Can only Serviced")
+								TextField("Service Note", text: $rearServicedNote)
 							}
 						}
 						
@@ -112,8 +131,10 @@ struct ServiceView: View {
 	
 	func saveService() {
 		print("Save button pressed")
-		let newService = RearService(context: moc)
-		newService.fullService = self.rFullServiceDate
+		print("Front Index: \(frontServicedIndex)")
+		print("Rear Index: \(rearServicedIndex)")
+//		let newService = RearService(context: moc)
+//		newService.fullService = self.rFullServiceDate
 	}
 }
 
