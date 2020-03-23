@@ -147,8 +147,43 @@ struct ServiceView: View {
 		print("Save button pressed")
 		print("Front Index: \(frontServicedIndex)")
 		print("Rear Index: \(rearServicedIndex)")
-//		let newService = RearService(context: moc)
-//		newService.fullService = self.rFullServiceDate
+		bikeName = self.bike.name!
+		
+		
+		let newRearService = RearService(context: self.moc)
+		newRearService.service?.bike = Bike(context: self.moc)
+		let newBike = newRearService.service?.bike
+		let newFrontService = FrontService(context: self.moc)
+		newFrontService.service?.bike = Bike(context: self.moc)
+		let newBikeFr = newFrontService.service?.bike
+		
+		
+		// Setup Front Service
+		
+		if frontServicedIndex == 1 {
+			newBikeFr?.name = self.bikeName
+			newFrontService.fullService = self.fFullServicedDate
+			newFrontService.lowersService = self.fFullServicedDate // set lower service to same as Full Service
+			newFrontService.serviceNote = self.frontServicedNote
+		} else if frontServicedIndex == 2 {
+			newBikeFr?.name = self.bikeName
+			newFrontService.lowersService = self.fLowersServicedDate
+			newFrontService.serviceNote = self.frontServicedNote
+		}
+		
+		//Setup Rear Service
+		
+		if rearServicedIndex == 1 {
+			newBike?.name = self.bikeName
+			newRearService.fullService = self.rFullServicedDate
+			newRearService.airCanService = self.rFullServicedDate // set airCan Service to same date as Full Service
+			newRearService.serviceNote = self.rearServicedNote
+		} else if rearServicedIndex == 2 {
+			newBike?.name = self.bikeName
+			newRearService.airCanService = self.rAirCanServicedDate
+			newRearService.airCanService = rearService.getLastFullService() // set full Service to full service as it hasnt been done
+		}
+		
 	}
 }
 
