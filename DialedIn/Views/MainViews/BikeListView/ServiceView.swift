@@ -47,54 +47,70 @@ struct ServiceView: View {
 					Text("Bike: \(self.bike.name ?? "Unknown Bike")").bold()
 				}
 				
+//MARK:- Front
 				Section(header: Text("Front Service")){
-					 VStack {
-// Set toggle so that if full is open you cannot do lowers & includes text field telling user
+					 VStack(alignment: .leading, spacing: 5) {
 						Picker("Service Type", selection: $frontServicedIndex) {
 							ForEach(0..<frontServiced.count) { index in
 								Text(self.frontServiced[index]).tag(index)
 							}
 						}.pickerStyle(SegmentedPickerStyle())
 						if frontServicedIndex == 1 {
-							VStack {
-								DatePicker(selection: $fFullServicedDate, in: ...Date(), displayedComponents: .date) {
-									Text("Select a date")
-								}
-								Text("Full Service Includes Lowers Service")
-								TextField("Service Note", text: $frontServicedNote)
+							Text("Full Service Includes Lowers Service").italic()
+							DatePicker(selection: $fFullServicedDate, in: ...Date(), displayedComponents: .date) {
+								Text("Select a date")
 							}
+							TextField("Service Note", text: $frontServicedNote)
+//
 							
 						} else if frontServicedIndex == 2 {
-							VStack {
-								DatePicker(selection: $fLowersServicedDate, in: ...Date(), displayedComponents: .date) {
-									Text("Select a date")
-								}
-								Text("Lowers only Serviced")
-								TextField("Service Note", text: $frontServicedNote)
+							Text("Lowers only Serviced").italic()
+							DatePicker(selection: $fLowersServicedDate, in: ...Date(), displayedComponents: .date) {
+								Text("Select a date")
 							}
+							TextField("Service Note", text: $frontServicedNote)
+						
 						}
 					}
 				}
-				
+//MARK:- Rear
 				Section(header: Text("Rear Service")){
-					VStack {
-						Picker("Service Type", selection: $rearServicedIndex) {
-							ForEach(0..<rearServiced.count) { index in
-								Text(self.rearServiced[index]).tag(index)
-							}
-						}.pickerStyle(SegmentedPickerStyle())
-						
-						if rearServicedIndex == 1 {
-							VStack {
+					if bike.hasRearShock == false {
+						Text("Hardtail")
+					} else if bike.rearSetup?.isCoil == true {
+						VStack(alignment: .leading) {
+							Picker("Service Type", selection: $rearServicedIndex) {
+								ForEach(0..<(rearServiced.count - 1) ) { index in
+									Text(self.rearServiced[index]).tag(index)
+								}
+							}.pickerStyle(SegmentedPickerStyle())
+							
+							if rearServicedIndex == 1 {
+								
 								DatePicker(selection: $rFullServicedDate, in: ...Date(), displayedComponents: .date) {
 									Text("Select a date")
 								}
-								Text("Full Service Includes Lowers Service")
 								TextField("Service Note", text: $rearServicedNote)
+								
 							}
+						}
+						
+					} else {
+						VStack(alignment: .leading) {
+							Picker("Service Type", selection: $rearServicedIndex) {
+								ForEach(0..<rearServiced.count) { index in
+									Text(self.rearServiced[index]).tag(index)
+								}
+							}.pickerStyle(SegmentedPickerStyle())
 							
-						} else if rearServicedIndex == 2 {
-							VStack {
+							if rearServicedIndex == 1 {
+								DatePicker(selection: $rFullServicedDate, in: ...Date(), displayedComponents: .date) {
+									Text("Select a date")
+								}
+								Text("Full Service Includes Air Can Service")
+								TextField("Service Note", text: $rearServicedNote)
+								
+							} else if rearServicedIndex == 2 {
 								DatePicker(selection: $rAirCanServicedDate, in: ...Date(), displayedComponents: .date) {
 									Text("Select a date")
 								}
@@ -102,7 +118,6 @@ struct ServiceView: View {
 								TextField("Service Note", text: $rearServicedNote)
 							}
 						}
-						
 					}
 				}
 				
@@ -110,7 +125,6 @@ struct ServiceView: View {
 					//dismisses the sheet
 					self.presentationMode.wrappedValue.dismiss()
 					self.saveService()
-					
 					try? self.moc.save()
 				}) {
 					// if no toggles disable save button
@@ -122,7 +136,7 @@ struct ServiceView: View {
 		}
         
     }
-	
+//MARK:- Functions
 	func setup() {
 		bikeName = self.bike.name ?? "Unknown bike"
 		rearService.bikeName = bikeName
