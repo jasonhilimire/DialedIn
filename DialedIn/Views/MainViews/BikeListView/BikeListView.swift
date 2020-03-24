@@ -38,6 +38,7 @@ struct BikeListView: View {
 					AddBikeView().environment(\.managedObjectContext, self.moc)
 			}
 		}
+		
 	}
 }
 

@@ -62,16 +62,23 @@ struct BikeStyledCellView: View {
 					AddNoteBikeView(front: self.front, rear: self.rear, bike: self.bike).environment(\.managedObjectContext, self.moc)
 				}
 				Spacer()
-
-				Button(action: {self.showingServiceView.toggle()}) {
+				
+				NavigationLink(destination: ServiceView(bike: self.bike)) {
 					HStack {
 						Image(systemName: "wrench")
 						Text("Add Service")
 					}
 				}
-				.sheet(isPresented: self.$showingServiceView)  {
-					ServiceView(bike: self.bike).environment(\.managedObjectContext, self.moc)
-				}
+
+//				Button(action: {self.showingServiceView.toggle()}) {
+//					HStack {
+//						Image(systemName: "wrench")
+//						Text("Add Service")
+//					}
+//				}
+//				.sheet(isPresented: self.$showingServiceView)  {
+//					ServiceView(bike: self.bike).environment(\.managedObjectContext, self.moc)
+//				}
 			}
 			.padding([.leading, .trailing])
 			.padding(.bottom, 10)
