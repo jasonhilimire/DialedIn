@@ -49,9 +49,18 @@ extension Notes{
 
 extension RearService {
 	/// FetchRequest for all rear, sorted by name
-	static func rearFetchRequest() -> NSFetchRequest<RearService> {
+	static func rearServiceFetchRequest() -> NSFetchRequest<RearService> {
 		let request: NSFetchRequest<RearService> = RearService.fetchRequest()
 		request.sortDescriptors = [NSSortDescriptor(keyPath: \RearService.service?.bike?.name, ascending: true)]
+		return request
+	}
+}
+
+extension FrontService {
+	/// FetchRequest for all frontservice, sorted by name
+	static func frontServiceFetchRequest() -> NSFetchRequest<FrontService> {
+		let request: NSFetchRequest<FrontService> = FrontService.fetchRequest()
+		request.sortDescriptors = [NSSortDescriptor(keyPath: \FrontService.service?.bike?.name, ascending: true)]
 		return request
 	}
 }

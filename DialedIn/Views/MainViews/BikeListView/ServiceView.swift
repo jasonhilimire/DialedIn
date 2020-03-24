@@ -11,7 +11,6 @@ import SwiftUI
 struct ServiceView: View {
 	// Create the MOC
 	@Environment(\.managedObjectContext) var moc
-	@Environment(\.presentationMode) var presentationMode
 	
 	@ObservedObject var frontService = FrontServiceModel()
 	@ObservedObject var rearService = RearServiceModel()
@@ -114,10 +113,11 @@ struct ServiceView: View {
 			
 			Button(action: {
 ///TODO: - change to return to  BikeListview after saving
-				//dismisses the sheet
-				self.presentationMode.wrappedValue.dismiss()
+				
+				
 				self.saveService()
 				try? self.moc.save()
+				
 			}) {
 				// if no toggles disable save button
 				SaveButtonView()
@@ -132,6 +132,9 @@ struct ServiceView: View {
 		bikeName = self.bike.name ?? "Unknown bike"
 		rearService.bikeName = bikeName
 		rearService.getLastServiceDates()
+		
+		frontService.bikeName = bikeName
+		
 	}
 	
 	func saveService() {

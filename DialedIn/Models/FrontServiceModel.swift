@@ -15,7 +15,7 @@ class FrontServiceModel: ObservableObject {
 	let managedObjectContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
 	
 	init() {
-		setup()
+		getLastServicedDates()
 	}
 	
 	@Published var bikeName: String = "" {
@@ -38,33 +38,46 @@ class FrontServiceModel: ObservableObject {
 	
 	let didChange = PassthroughSubject<FrontServiceModel, Never>()
 	
-//	func getLastLowerService() -> Date {
-//		let last = filter(for: bikeName)
-//		let lastserv = last.last?.frontSetup?.lowerLastServiced
-//		return lastserv ?? Date()
-//	}
-//
-//	func getLastFullService() -> Date {
-//		let last = filter(for: bikeName)
-//		let lastserv = last.last?.frontSetup?.lasfFullService
-//		return lastserv ?? Date()
-//	}
-	
-	func getBikes() -> [Bike] {
-		let bikes = try! managedObjectContext.fetch(Bike.bikesFetchRequest())
-		return bikes
+	func getLastLowersService() -> Date {
+		let lastLower = ServiceDates.lowers
+		return lastLower.getLastServiceDates(frontService: filterRear(for: bikeName))
 	}
 	
-	func filter(for name: String) -> [Bike] {
-		let filteredBikes = getBikes().filter { bikes in
-			bikes.name == name
+	func getLastFullService() -> Date {
+		let lastFull = ServiceDates.full
+		return lastFull.getLastServiceDates(frontService: filterRear(for: bikeName))
+	}
+	
+	func getRearShock() -> [FrontService] {
+		let rearShocks = try! managedObjectContext.fetch(FrontService.frontServiceFetchRequest())
+		return rearShocks
+	}
+	
+	func filterRear(for name: String) -> [FrontService] {
+		let filteredBikes = getRearShock().filter { bikes in
+			bikes.service?.bike?.name == name
 		}
 		return filteredBikes
 	}
 	
-	func setup() {
-//		lastLowerService = getLastLowerService()
-//		lastFullService = getLastFullService()
+	func getLastServicedDates() {
+		lastLowerService = getLastLowersService()
+		lastFullService = getLastFullService()
+	}
+	
+	enum ServiceDates {
+		case lowers
+		case full
+		
+		func getLastServiceDates(frontService: [FrontService]) -> Date {
+			switch self {
+				case .lowers:
+					return frontService.last?.lowersService ?? Date()
+				case .full:
+					return frontService.last?.fullService ?? Date()
+				
+			}
+		}
 	}
 	
 }

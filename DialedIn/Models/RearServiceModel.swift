@@ -39,25 +39,21 @@ class RearServiceModel: ObservableObject {
 	
 	let didChange = PassthroughSubject<RearServiceModel, Never>()
 
-
-	
 	func getLastAirService() -> Date {
 		let lastAir = ServiceDates.airCan
 		return lastAir.getLastServiceDates(rearservice: filterRear(for: bikeName))
 	}
 	
-
 	func getLastFullService() -> Date {
 		let lastFull = ServiceDates.full
 		return lastFull.getLastServiceDates(rearservice: filterRear(for: bikeName))
 	}
 	
 	func getRearShock() -> [RearService] {
-		let rearShocks = try! managedObjectContext.fetch(RearService.rearFetchRequest())
+		let rearShocks = try! managedObjectContext.fetch(RearService.rearServiceFetchRequest())
 		return rearShocks
 	}
 
-	
 	func filterRear(for name: String) -> [RearService] {
 		let filteredBikes = getRearShock().filter { bikes in
 			bikes.service?.bike?.name == name
