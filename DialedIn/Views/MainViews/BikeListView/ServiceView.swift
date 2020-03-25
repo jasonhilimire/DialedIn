@@ -22,12 +22,13 @@ struct ServiceView: View {
 	@State private var frontServicedIndex = 0
 	@State private var frontServicedNote = ""
 	
-	
 	@State private var rFullServicedDate = Date()
 	@State private var rAirCanServicedDate = Date()
 	@State private var rearServiced = ["None", "Full", "AirCan"]
 	@State private var rearServicedIndex = 0
 	@State private var rearServicedNote = ""
+	
+	@State private var returnToBikeListToggle = false
 	
 	
 	let bike: Bike
@@ -52,7 +53,6 @@ struct ServiceView: View {
 							Text("Select a date")
 						}
 						TextField("Service Note", text: $frontServicedNote)
-	//
 						
 					} else if frontServicedIndex == 2 {
 						Text("Lowers only Serviced").italic()
@@ -122,6 +122,7 @@ struct ServiceView: View {
 				// if no toggles disable save button
 				SaveButtonView()
 			}
+			
 		} // end form
 			.onAppear(perform: {self.setup()})
 			.navigationBarTitle("DialedIn", displayMode: .inline)
@@ -131,10 +132,10 @@ struct ServiceView: View {
 	func setup() {
 		bikeName = self.bike.name ?? "Unknown bike"
 		rearService.bikeName = bikeName
-		rearService.getLastServiceDates()
+		rearService.getLastServicedDates()
 		
 		frontService.bikeName = bikeName
-		
+		frontService.getLastServicedDates()
 	}
 	
 	func saveService() {
@@ -143,14 +144,12 @@ struct ServiceView: View {
 		print("Rear Index: \(rearServicedIndex)")
 		bikeName = self.bike.name!
 		
-		
 		let newRearService = RearService(context: self.moc)
 		newRearService.service?.bike = Bike(context: self.moc)
 		let newBike = newRearService.service?.bike
 		let newFrontService = FrontService(context: self.moc)
 		newFrontService.service?.bike = Bike(context: self.moc)
 		let newBikeFr = newFrontService.service?.bike
-		
 		
 		// Setup Front Service
 		
