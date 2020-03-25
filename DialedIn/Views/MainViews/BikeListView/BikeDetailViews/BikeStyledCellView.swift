@@ -69,6 +69,7 @@ struct BikeStyledCellView: View {
 						Text("Add Service")
 					}
 				}
+			}
 
 //				Button(action: {self.showingServiceView.toggle()}) {
 //					HStack {
@@ -79,7 +80,7 @@ struct BikeStyledCellView: View {
 //				.sheet(isPresented: self.$showingServiceView)  {
 //					ServiceView(bike: self.bike).environment(\.managedObjectContext, self.moc)
 //				}
-			}
+//			}
 			.padding([.leading, .trailing])
 			.padding(.bottom, 10)
 			

@@ -41,72 +41,68 @@ struct ServiceView: View {
 			
 	//MARK:- Front
 			Section(header: Text("Front Service")){
-				 VStack(alignment: .leading, spacing: 5) {
-					Picker("Service Type", selection: $frontServicedIndex) {
-						ForEach(0..<frontServiced.count) { index in
-							Text(self.frontServiced[index]).tag(index)
-						}
-					}.pickerStyle(SegmentedPickerStyle())
-					if frontServicedIndex == 1 {
-						Text("Full Service Includes Lowers Service").italic()
-						DatePicker(selection: $fFullServicedDate, in: ...Date(), displayedComponents: .date) {
-							Text("Select a date")
-						}
-						TextField("Service Note", text: $frontServicedNote)
-						
-					} else if frontServicedIndex == 2 {
-						Text("Lowers only Serviced").italic()
-						DatePicker(selection: $fLowersServicedDate, in: ...Date(), displayedComponents: .date) {
-							Text("Select a date")
-						}
-						TextField("Service Note", text: $frontServicedNote)
+				 
+				Picker("Service Type", selection: $frontServicedIndex) {
+					ForEach(0..<frontServiced.count) { index in
+						Text(self.frontServiced[index]).tag(index)
 					}
+				}.pickerStyle(SegmentedPickerStyle())
+				if frontServicedIndex == 1 {
+					Text("Full Service Includes Lowers Service").italic()
+					DatePicker(selection: $fFullServicedDate, in: ...Date(), displayedComponents: .date) {
+						Text("Select a date")
+					}
+					TextField("Service Note", text: $frontServicedNote)
+					
+				} else if frontServicedIndex == 2 {
+					Text("Lowers only Serviced").italic()
+					DatePicker(selection: $fLowersServicedDate, in: ...Date(), displayedComponents: .date) {
+						Text("Select a date")
+					}
+					TextField("Service Note", text: $frontServicedNote)
 				}
+				
 			}
 	//MARK:- Rear
 			Section(header: Text("Rear Service")){
 				if bike.hasRearShock == false {
 					Text("Hardtail")
 				} else if bike.rearSetup?.isCoil == true {
-					VStack(alignment: .leading) {
-						Picker("Service Type", selection: $rearServicedIndex) {
-							ForEach(0..<(rearServiced.count - 1) ) { index in
-								Text(self.rearServiced[index]).tag(index)
-							}
-						}.pickerStyle(SegmentedPickerStyle())
-						
-						if rearServicedIndex == 1 {
-							
-							DatePicker(selection: $rFullServicedDate, in: ...Date(), displayedComponents: .date) {
-								Text("Select a date")
-							}
-							TextField("Service Note", text: $rearServicedNote)
-							
+					Picker("Service Type", selection: $rearServicedIndex) {
+						ForEach(0..<(rearServiced.count - 1) ) { index in
+							Text(self.rearServiced[index]).tag(index)
 						}
+					}.pickerStyle(SegmentedPickerStyle())
+					
+					if rearServicedIndex == 1 {
+						
+						DatePicker(selection: $rFullServicedDate, in: ...Date(), displayedComponents: .date) {
+							Text("Select a date")
+						}
+						TextField("Service Note", text: $rearServicedNote)
 					}
 					
+					
 				} else {
-					VStack(alignment: .leading) {
-						Picker("Service Type", selection: $rearServicedIndex) {
-							ForEach(0..<rearServiced.count) { index in
-								Text(self.rearServiced[index]).tag(index)
-							}
-						}.pickerStyle(SegmentedPickerStyle())
-						
-						if rearServicedIndex == 1 {
-							DatePicker(selection: $rFullServicedDate, in: ...Date(), displayedComponents: .date) {
-								Text("Select a date")
-							}
-							Text("Full Service Includes Air Can Service")
-							TextField("Service Note", text: $rearServicedNote)
-							
-						} else if rearServicedIndex == 2 {
-							DatePicker(selection: $rAirCanServicedDate, in: ...Date(), displayedComponents: .date) {
-								Text("Select a date")
-							}
-							Text("Air Can only Serviced")
-							TextField("Service Note", text: $rearServicedNote)
+					Picker("Service Type", selection: $rearServicedIndex) {
+						ForEach(0..<rearServiced.count) { index in
+							Text(self.rearServiced[index]).tag(index)
 						}
+					}.pickerStyle(SegmentedPickerStyle())
+					
+					if rearServicedIndex == 1 {
+						DatePicker(selection: $rFullServicedDate, in: ...Date(), displayedComponents: .date) {
+							Text("Select a date")
+						}
+						Text("Full Service Includes Air Can Service")
+						TextField("Service Note", text: $rearServicedNote)
+						
+					} else if rearServicedIndex == 2 {
+						DatePicker(selection: $rAirCanServicedDate, in: ...Date(), displayedComponents: .date) {
+							Text("Select a date")
+						}
+						Text("Air Can only Serviced")
+						TextField("Service Note", text: $rearServicedNote)
 					}
 				}
 			}
