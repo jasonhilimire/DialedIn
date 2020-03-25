@@ -47,7 +47,7 @@ struct BikeStyledCellView: View {
 				Spacer()
 			}
 			
-			ForkLastServicedView(fork: self.bike.frontSetup!)
+			ForkLastServicedView(fork: self.bike.frontSetup!, bike: bike)
 			RearShockLastServicedView(rear: self.bike.rearSetup!, bike: bike)
 
 			// Buttons

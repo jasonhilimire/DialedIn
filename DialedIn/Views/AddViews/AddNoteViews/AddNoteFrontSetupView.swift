@@ -47,12 +47,10 @@ struct AddNoteFrontSetupView: View {
             } else {
                 Stepper(value: $front.lastFReboundSetting, in: 0...25, label: {Text("Rebound: \(self.front.lastFReboundSetting)")})
             }
-		}.onAppear(perform: {self.printStuff()})
+		}
     }
 	
-	func printStuff() {
-		print("PSI: \(front.lastFAirSetting)")
-	}
+
 }
 
 

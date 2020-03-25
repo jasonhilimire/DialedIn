@@ -17,9 +17,13 @@ struct ForkLastServicedView: View {
         formatter.dateStyle = .short
         return formatter
     }
+	
     @ObservedObject var frontService = FrontServiceModel()
+	@State private var bikeName = ""
 	
     let fork: Fork
+	let bike: Bike
+	
     var body: some View {
 		VStack { // Fork Section
 			HStack {
@@ -42,8 +46,15 @@ struct ForkLastServicedView: View {
 			}
 			.padding(.horizontal)
 			.font(.footnote)
-		}
-        
+		}   .onAppear(perform: {self.setup()})
+			.onDisappear(perform: {self.setup()})
     }
+	
+	func setup() {
+		bikeName = self.bike.name ?? "Unknown bike"
+		frontService.bikeName = bikeName
+		frontService.getLastServicedDates()
+//		print("Full service \(self.frontService.lastFullService)")
+	}
 }
 

@@ -53,7 +53,7 @@ struct AddBikeView: View {
                         }
                         
                         DatePicker(selection: $lastFullForkServiceDate, in: ...Date(), displayedComponents: .date) {
-                        Text("Last Full Service ")
+                        Text("Last Full Service")
                         }
                     }
                     

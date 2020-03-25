@@ -140,8 +140,6 @@ struct ServiceView: View {
 	
 	func saveService() {
 		print("Save button pressed")
-		print("Front Index: \(frontServicedIndex)")
-		print("Rear Index: \(rearServicedIndex)")
 		bikeName = self.bike.name!
 		
 		let newRearService = RearService(context: self.moc)

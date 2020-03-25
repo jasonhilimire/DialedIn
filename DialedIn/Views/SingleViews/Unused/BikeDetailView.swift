@@ -42,7 +42,7 @@ struct BikeDetailView: View {
 							Text("Fork:")
 								.font(.headline)
 								.offset(x: -80)
-							ForkLastServicedView(fork: self.bike.frontSetup!)
+							ForkLastServicedView(fork: self.bike.frontSetup!, bike: self.bike)
 						}
 						Divider()
 						Section{

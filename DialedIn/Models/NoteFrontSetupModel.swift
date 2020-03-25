@@ -168,7 +168,6 @@ class NoteFrontSetupModel: ObservableObject {
     }
     
     func getLastFrontSettings() {
-		print("Get Last front setting ran")
         // Get all the settings and assign
         lastFAirSetting = getLastAir()
         lastFHSCSetting = getLastFHSC()
