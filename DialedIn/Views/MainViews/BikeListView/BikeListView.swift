@@ -22,10 +22,12 @@ struct BikeListView: View {
 
 	var body: some View {
 		NavigationView {
-			ScrollView {
+			List {
 				ForEach(bikes, id: \.self) { bike in
+					NavigationLink(destination: BikeDetailView(bike: bike)) {
 					BikeStyledCellView(bike: bike)
 					.padding(10)
+					}
 				}
 			}
 			.navigationBarTitle("Bikes")

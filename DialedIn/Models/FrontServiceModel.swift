@@ -40,12 +40,12 @@ class FrontServiceModel: ObservableObject {
 	
 	func getLastLowersService() -> Date {
 		let lastLower = ServiceDates.lowers
-		return lastLower.getLastServiceDates(frontService: filterRear(for: bikeName))
+		return lastLower.getLastServiceDates(frontService: filterFront(for: bikeName))
 	}
 	
 	func getLastFullService() -> Date {
 		let lastFull = ServiceDates.full
-		return lastFull.getLastServiceDates(frontService: filterRear(for: bikeName))
+		return lastFull.getLastServiceDates(frontService: filterFront(for: bikeName))
 	}
 	
 	func getRearShock() -> [FrontService] {
@@ -53,7 +53,7 @@ class FrontServiceModel: ObservableObject {
 		return rearShocks
 	}
 	
-	func filterRear(for name: String) -> [FrontService] {
+	func filterFront(for name: String) -> [FrontService] {
 		let filteredBikes = getRearShock().filter { bikes in
 			bikes.service?.bike?.name == name
 		}

@@ -19,16 +19,13 @@ struct NotesDetailView: View {
 	@State private var rating = 3
 	
 	
-	
 	/// TODO: List out all variables that need to be edited
 	/// - then use setup() to set the variables
 	/// - - Create the form and ability to setup all the details
 	/// - - - Save the form if there are any changes
 	/// - - - - Add a Save button
 	
-	
-	
-	
+
 
     var dateFormatter: DateFormatter {
          let formatter = DateFormatter()
@@ -37,6 +34,7 @@ struct NotesDetailView: View {
      }
     
     let note: Notes
+
     var body: some View {
         GeometryReader { geometry in
 			Form{
@@ -54,7 +52,7 @@ struct NotesDetailView: View {
 					Group {
 						VStack {
 							HStack{
-								Text("PSI: \(self.note.fAirVolume, specifier: "%.1f")")
+								Text("PSI: \(self.airVolume, specifier: "%.1f")")
 								Slider(value: self.$airVolume, in: 45...120, step: 0.5)
 							}
 //							Stepper(value: self.note.fSag   , in: 0...40, label: {Text("Sag: \(self.front.lastFSagSetting)")})
@@ -135,24 +133,10 @@ struct NotesDetailView: View {
 	
 	func setup() {
 		rating = Int(note.rating)
+		airVolume = self.note.fAirVolume
 	}
     
 
 }
 
-struct DetailView_Previews: PreviewProvider {
-    static let moc = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
 
-
-    static var previews: some View {
-        let note = Notes(context: moc)
-        note.date = Date()
-        note.bike?.name = "Test RideNote"
-        note.note = "Some Note Text"
-        note.rating = 4
-
-        return NavigationView {
-            NotesDetailView(note: note)
-        }
-    }
-}

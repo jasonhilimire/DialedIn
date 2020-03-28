@@ -26,21 +26,24 @@ struct RearShockLastServicedView: View {
     var body: some View {
 		VStack { // Rear Section
 			if rear.bike?.hasRearShock == false {
-				Text("")
+				HStack {
+					Text("")
+					Spacer()
+				}
 			} else {
 				HStack {
 					Text("Rear")
 						.fontWeight(.bold)
 					Spacer()
 				}
-				.padding([.top, .leading])
+				.padding(.horizontal)
 				if rear.bike?.rearSetup?.isCoil == false {
 					HStack {
 						Text("Last Air Can Service:")
 						Spacer()
 						Text("\(self.rearService.lastAirServ, formatter: self.dateFormatter)")
 					}
-					.padding([.leading, .trailing])
+					.padding(.horizontal)
 					.font(.footnote)
 					HStack {
 						Text("Last Full Service:")

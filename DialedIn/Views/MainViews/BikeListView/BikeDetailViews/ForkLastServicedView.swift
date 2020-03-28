@@ -47,14 +47,13 @@ struct ForkLastServicedView: View {
 			.padding(.horizontal)
 			.font(.footnote)
 		}   .onAppear(perform: {self.setup()})
-			.onDisappear(perform: {self.setup()})
+			
     }
 	
 	func setup() {
 		bikeName = self.bike.name ?? "Unknown bike"
 		frontService.bikeName = bikeName
 		frontService.getLastServicedDates()
-//		print("Full service \(self.frontService.lastFullService)")
 	}
 }
 

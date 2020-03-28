@@ -20,6 +20,7 @@ struct BikeDetailView: View {
     @State private var showingDeleteAlert = false
 	@State private var showingNotesView = false
 	@State private var bikeName = ""
+	
     
     var dateFormatter: DateFormatter {
         let formatter = DateFormatter()
@@ -28,9 +29,9 @@ struct BikeDetailView: View {
     }
     
     let bike: Bike
+	
     var body: some View {
 		VStack{
-			GeometryReader { geometry in
 				VStack {
 					Text(self.bike.name ?? "Unknown Bike")
 						.font(.largeTitle)
@@ -39,16 +40,12 @@ struct BikeDetailView: View {
 						.font(.subheadline)
 					VStack {
 						Section {
-							Text("Fork:")
-								.font(.headline)
-								.offset(x: -80)
+							
 							ForkLastServicedView(fork: self.bike.frontSetup!, bike: self.bike)
 						}
 						Divider()
 						Section{
-							Text("Rear:")
-								.font(.headline)
-								.offset(x: -80)
+							
 							if self.bike.hasRearShock == false {
 								Text("HardTail")
 							} else {
@@ -71,20 +68,22 @@ struct BikeDetailView: View {
 							}
 						}
 						.sheet(isPresented: self.$showingNotesView)  {
-							AddNoteBikeView(front: self.front, rear: self.rear, bike: self.bike).environment(\.managedObjectContext, self.moc)
+							AddNoteBikeView(front: self.front, rear: self.rear, bike: self.bike)
+								.environment(\.managedObjectContext, self.moc)
+								.transition(.slide)
 						}
 						Spacer()
-						Button(action: {print("Service pressed")}) {
+						NavigationLink(destination: ServiceView(bike: self.bike)) {
 							HStack {
-								Image(systemName:"wrench")
-								Text("Service")
+								Image(systemName: "wrench")
+								Text("Add Service")
 							}
 						}
+						
 					}
-					
+					Spacer()
 				}
-			}
-			Divider()
+
 		}
 		.frame(height: 280)
 		.padding(.horizontal, 15)
@@ -92,9 +91,7 @@ struct BikeDetailView: View {
 		.foregroundColor(Color.blue)
 		.background(RoundedRectangle(cornerRadius: 0))
 		.foregroundColor(Color.clear)
-//			.shadow(radius: 8)
-		//
-		
+
 		
 
     }

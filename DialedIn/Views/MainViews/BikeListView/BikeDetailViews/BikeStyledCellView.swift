@@ -43,13 +43,18 @@ struct BikeStyledCellView: View {
 						.font(.callout)
 						.fontWeight(.ultraLight)
 				}
+					
 				.padding([.top, .leading, .trailing])
 				Spacer()
 			}
 			
-			ForkLastServicedView(fork: self.bike.frontSetup!, bike: bike)
-			RearShockLastServicedView(rear: self.bike.rearSetup!, bike: bike)
-
+			
+				
+				ForkLastServicedView(fork: self.bike.frontSetup!, bike: bike)
+				Divider()
+				RearShockLastServicedView(rear: self.bike.rearSetup!, bike: bike)
+			
+/*
 			// Buttons
 			HStack(alignment: .bottom) {
 				Button(action: {self.showingNotesView.toggle()}) {
@@ -70,6 +75,7 @@ struct BikeStyledCellView: View {
 					}
 				}
 			}
+*/
 
 //				Button(action: {self.showingServiceView.toggle()}) {
 //					HStack {
@@ -81,7 +87,7 @@ struct BikeStyledCellView: View {
 //					ServiceView(bike: self.bike).environment(\.managedObjectContext, self.moc)
 //				}
 //			}
-			.padding([.leading, .trailing])
+//			.padding([.leading, .trailing])
 			.padding(.bottom, 10)
 			
 		} // END Buttons
