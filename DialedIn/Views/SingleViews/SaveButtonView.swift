@@ -18,7 +18,7 @@ struct SaveButtonView: View {
                .multilineTextAlignment(.center)
                .padding().frame(maxWidth: 300)
                .foregroundColor(Color.white)
-               .background(Color.blue)
+               .background(Color.green)
                .cornerRadius(8)
     }
 }
