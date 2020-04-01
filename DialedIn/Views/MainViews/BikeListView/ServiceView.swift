@@ -107,16 +107,19 @@ struct ServiceView: View {
 				}
 			}
 			
-			Button(action: {
-///TODO: - change to return to  BikeListview after saving
-				
-				
-				self.saveService()
-				try? self.moc.save()
-				
-			}) {
-				// if no toggles disable save button
-				SaveButtonView()
+			if frontServicedIndex == 0 && rearServicedIndex == 0 {
+				Text("Add a Service as needed")
+			} else {
+				Button(action: {
+					///TODO: - change to return to  BikeListview after saving
+					
+					self.saveService()
+					try? self.moc.save()
+					
+				}) {
+					// if no toggles disable save button
+					SaveButtonView()
+				}
 			}
 			
 		} // end form
@@ -138,22 +141,48 @@ struct ServiceView: View {
 		print("Save button pressed")
 		bikeName = self.bike.name!
 		
+		
+		
+		// start at the child and work way up with creating Entities
+		/// Setup
+		/*
+		if frontServicedIndex == 0 {
+			print("nothing saved for the front")
+		}
+		
+			
 		let newRearService = RearService(context: self.moc)
+		newRearService.service = RearShock(context: self.moc)
 		newRearService.service?.bike = Bike(context: self.moc)
-		let newBike = newRearService.service?.bike
 		let newFrontService = FrontService(context: self.moc)
-		newFrontService.service?.bike = Bike(context: self.moc)
-		let newBikeFr = newFrontService.service?.bike
+		newFrontService.service = Fork(context: self.moc)
+		
+		let newBike = newRearService.service?.bike
+			
+			*/
+		
+		
+		// - Bike Creation
+		
+//		newBike?.name = self.bikeName
 		
 		// Setup Front Service
 		
 		if frontServicedIndex == 1 {
-			newBikeFr?.name = self.bikeName
-			newFrontService.fullService = self.fFullServicedDate
-			newFrontService.lowersService = self.fFullServicedDate // set lower service to same as Full Service
-			newFrontService.serviceNote = self.frontServicedNote
-		} else if frontServicedIndex == 2 {
-			newBikeFr?.name = self.bikeName
+			let fork = Fork(context: self.moc)
+			let service = FrontService(context: self.moc)
+
+			service.fullService = self.fFullServicedDate
+			service.lowersService = self.fFullServicedDate // set lower service to same as Full Service
+			service.serviceNote = self.frontServicedNote
+			fork.bike?.name = self.bikeName
+			fork.addToFrontService(service)
+			print(service)
+			
+		}
+		/*
+		else if frontServicedIndex == 2 {
+			newFrontService.service?.bike = newBike
 			newFrontService.lowersService = self.fLowersServicedDate
 			newFrontService.serviceNote = self.frontServicedNote
 		}
@@ -161,16 +190,19 @@ struct ServiceView: View {
 		//Setup Rear Service
 		
 		if rearServicedIndex == 1 {
-			newBike?.name = self.bikeName
+			newRearService.service?.bike = newBike
+			newRearService.service?.bike?.hasRearShock = true
 			newRearService.fullService = self.rFullServicedDate
 			newRearService.airCanService = self.rFullServicedDate // set airCan Service to same date as Full Service
 			newRearService.serviceNote = self.rearServicedNote
 		} else if rearServicedIndex == 2 {
-			newBike?.name = self.bikeName
+			newRearService.service?.bike = newBike
+			newRearService.service?.bike?.hasRearShock = true
+			newRearService.service?.bike = newBike
 			newRearService.airCanService = self.rAirCanServicedDate
 			newRearService.airCanService = rearService.getLastFullService() // set full Service to full service as it hasnt been done
 		}
-		
+*/
 	}
 }
 
