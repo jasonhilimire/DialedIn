@@ -109,18 +109,24 @@ struct ServiceView: View {
 				.onAppear(perform: {self.setup()})
 	//			.navigationBarTitle("DialedIn", displayMode: .inline)
 			
-			Button(action: {
-				///TODO: - change to return to  BikeListview after saving
-				self.saveService()
-				try? self.moc.save()
-				
-			}) {
-				// if no toggles disable save button
-				SaveButtonView()
+			
+			
+			if frontServicedIndex == 0 && rearServicedIndex == 0 {
+				Text("Add a Service as needed")
+			} else {
+				Button(action: {
+					///TODO: - change to return to  BikeListview after saving
+					self.saveService()
+					try? self.moc.save()
+					
+				}) {
+					// if no toggles disable save button
+					SaveButtonView()
+				}
 			}
 		}
-		
     }
+	
 //MARK:- Functions
 	func setup() {
 		bikeName = self.bike.name ?? "Unknown bike"

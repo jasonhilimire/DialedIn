@@ -109,73 +109,73 @@ class NoteRearSetupModel: ObservableObject {
        // get Last Settings
        
        func getLastAir() -> Double {
-            let lastRecord = filterBikes(for: bikeName)
+            let lastRecord = filterNote(for: bikeName)
             let lastAirSetting = lastRecord.last?.rAirSpring
             return lastAirSetting ?? 200.0
        }
     
         func getrComp() -> Bool {
-            let lastRecord = filterBikes(for: bikeName)
+            let lastRecord = filterNote(for: bikeName)
             guard let comp = lastRecord.last?.bike?.rearSetup?.dualCompression else { return true }
             return comp
         }
         
         func getrReb() -> Bool {
-            let lastRecord = filterBikes(for: bikeName)
+            let lastRecord = filterNote(for: bikeName)
             guard let rebound = lastRecord.last?.bike?.rearSetup?.dualRebound else { return true }
             return rebound
         }
     
         func getCoil() -> Bool {
-            let lastRecord = filterBikes(for: bikeName)
+            let lastRecord = filterNote(for: bikeName)
             guard let coil = lastRecord.last?.bike?.rearSetup?.isCoil else { return false }
             return coil
         }
     
         func getRear() -> Bool {
-			let last = filterBikes(for: bikeName)
+			let last = filterNote(for: bikeName)
 			guard let rear = last.last?.bike?.hasRearShock else {return true}
 			return rear
         }
        
        func getLastRHSC() -> Int16 {
            let lastRecord = RearSettings.hsc
-           return lastRecord.getSetting(note: filterBikes(for: bikeName))
+           return lastRecord.getSetting(note: filterNote(for: bikeName))
        }
        
        func getLastRLSC() -> Int16 {
           let lastRecord = RearSettings.lsc
-          return lastRecord.getSetting(note: filterBikes(for: bikeName))
+          return lastRecord.getSetting(note: filterNote(for: bikeName))
        }
        
        func getLastRComp() -> Int16 {
            let lastRecord = RearSettings.compression
-           return lastRecord.getSetting(note: filterBikes(for: bikeName))
+           return lastRecord.getSetting(note: filterNote(for: bikeName))
        }
        
        func getLastRHSR() -> Int16 {
            let lastRecord = RearSettings.hsr
-           return lastRecord.getSetting(note: filterBikes(for: bikeName))
+           return lastRecord.getSetting(note: filterNote(for: bikeName))
        }
        
        func getLastRLSR() -> Int16 {
            let lastRecord = RearSettings.lsr
-           return lastRecord.getSetting(note: filterBikes(for: bikeName))
+           return lastRecord.getSetting(note: filterNote(for: bikeName))
        }
        
        func getLastRRebound() -> Int16 {
            let lastRecord = RearSettings.rebound
-           return lastRecord.getSetting(note: filterBikes(for: bikeName))
+           return lastRecord.getSetting(note: filterNote(for: bikeName))
        }
        
        func getLastRTokens() -> Int16 {
            let lastRecord = RearSettings.tokens
-           return lastRecord.getSetting(note: filterBikes(for: bikeName))
+           return lastRecord.getSetting(note: filterNote(for: bikeName))
        }
     
 		func getLastRSag() -> Int16 {
 			let lastRecord = RearSettings.sag
-			return lastRecord.getSetting(note: filterBikes(for: bikeName))
+			return lastRecord.getSetting(note: filterNote(for: bikeName))
 		}
 	
            
@@ -207,11 +207,11 @@ class NoteRearSetupModel: ObservableObject {
 			
        }
 	
-       func filterBikes(for name: String) -> [Notes] {
-           let filteredBikes = getNotes().filter { bikes in
+       func filterNote(for name: String) -> [Notes] {
+           let filteredNotes = getNotes().filter { bikes in
                bikes.bike?.name == name
            }
-           return filteredBikes
+           return filteredNotes
        }
        
        enum RearSettings {
