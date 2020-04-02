@@ -42,7 +42,7 @@ struct BikeDetailView: View {
 					VStack {
 						Section {
 							
-							ForkLastServicedView(fork: self.bike.frontSetup!, bike: self.bike)
+							ForkLastServicedView(bike: bike, fork: self.bike.frontSetup!, bikeName: $bikeName)
 						}
 						Divider()
 						Section{
@@ -108,14 +108,5 @@ struct BikeDetailView: View {
 	}
 }
 
-//struct BikeDetailView_Previews: PreviewProvider {
-//    static var previews: some View {
-//
-//        bike.name = "Test Bike"
-//
-//        return NavigationView {
-//            BikeDetailView(bike: bike)
-//        }
-//    }
-//}
+
 

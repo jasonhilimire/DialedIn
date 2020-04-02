@@ -116,7 +116,8 @@ struct ServiceView: View {
 			} else {
 				Button(action: {
 					///TODO: - change to return to  BikeListview after saving
-					self.saveService()
+//					self.saveService()
+					self.fetchAddService()
 					try? self.moc.save()
 					
 				}) {
@@ -137,51 +138,48 @@ struct ServiceView: View {
 		frontService.getLastServicedDates()
 	}
 	
-	func saveService() {
-		print("Save button pressed")
-		bikeName = self.bike.name!
+	
+	func fetchAddService() {
+		var bikes : [Bike] = []
+		let fetchRequest = Bike.selectedBikeFetchRequest(filter: bikeName)
 		
-		let newRearService = RearService(context: self.moc)
-		newRearService.service?.bike = Bike(context: self.moc)
-		let newBike = newRearService.service?.bike
+		do {
+			bikes = try moc.fetch(fetchRequest)
+		} catch let error as NSError {
+			print("Could not fetch. \(error), \(error.userInfo)")
+		}
+		
+		let fork = bikes[0].frontSetup
 		let newFrontService = FrontService(context: self.moc)
-		
-		newFrontService.service?.bike = Bike(context: self.moc)
-		let newBikeFr = newFrontService.service?.bike
-		newFrontService.service?.bike?.name = bikeName
-		print(newFrontService.service?.bike?.name)
-		
-		// Setup Front Service
-		
 		if frontServicedIndex == 1 {
-			print(bikeName)
-			print(self.bikeName)
-			newBikeFr?.name = bikeName
-			
-			
+			newFrontService.lowersService = self.fFullServicedDate
 			newFrontService.fullService = self.fFullServicedDate
-			newFrontService.lowersService = self.fFullServicedDate // set lower service to same as Full Service
 			newFrontService.serviceNote = self.frontServicedNote
+			
+			fork?.addToFrontService(newFrontService)
 		} else if frontServicedIndex == 2 {
-			newBikeFr?.name = self.bikeName
 			newFrontService.lowersService = self.fLowersServicedDate
+			newFrontService.fullService = frontService.getLastFullService()
 			newFrontService.serviceNote = self.frontServicedNote
+			fork?.addToFrontService(newFrontService)
 		}
 		
-		//Setup Rear Service
-		
+		let rear = bikes[0].rearSetup
+		let newRearService = RearService(context: self.moc)
 		if rearServicedIndex == 1 {
-			newBike?.name = self.bikeName
 			newRearService.fullService = self.rFullServicedDate
-			newRearService.airCanService = self.rFullServicedDate // set airCan Service to same date as Full Service
+			newRearService.airCanService = self.rFullServicedDate
 			newRearService.serviceNote = self.rearServicedNote
+			rear?.addToRearService(newRearService)
+			
 		} else if rearServicedIndex == 2 {
-			newBike?.name = self.bikeName
+			newRearService.fullService = rearService.getLastFullService()
 			newRearService.airCanService = self.rAirCanServicedDate
-			newRearService.airCanService = rearService.getLastFullService() // set full Service to full service as it hasnt been done
+			newRearService.serviceNote = self.rearServicedNote
+			rear?.addToRearService(newRearService)
 		}
-		
 	}
+	
 }
 
 

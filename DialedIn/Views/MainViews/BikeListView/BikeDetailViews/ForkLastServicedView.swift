@@ -19,10 +19,17 @@ struct ForkLastServicedView: View {
     }
 	
     @ObservedObject var frontService = FrontServiceModel()
-	@State private var bikeName = ""
+	@Binding var bikeName: String
 	
     let fork: Fork
 	let bike: Bike
+	
+	init(bike: Bike, fork: Fork, bikeName: Binding<String>) {
+		self.bike = bike
+		self.fork = fork
+		self._bikeName = bikeName
+
+	}
 	
     var body: some View {
 		VStack { // Fork Section
@@ -46,12 +53,14 @@ struct ForkLastServicedView: View {
 			}
 			.padding(.horizontal)
 			.font(.footnote)
-		}   .onAppear(perform: {self.setup()})
+		}
 			
     }
 	
 	func setup() {
-		bikeName = self.bike.name ?? "Unknown bike"
+		print("bikename: \(bikeName)")
+//		bikeName = self.bike.name ?? "Unknown bike"
+		print("bikename2: \(bikeName)")
 		frontService.bikeName = bikeName
 		frontService.getLastServicedDates()
 	}

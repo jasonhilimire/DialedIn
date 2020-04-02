@@ -21,6 +21,7 @@ struct BikeStyledCellView: View {
 	@State private var showingDeleteAlert = false
 	@State private var showingNotesView = false
 	@State private var showingServiceView = false
+	@State private var bikeName = ""
 	
 	
 	var dateFormatter: DateFormatter {
@@ -30,6 +31,11 @@ struct BikeStyledCellView: View {
 	}
 	
 	let bike: Bike
+	
+	init(bike: Bike) {
+		self.bike = bike
+		bikeName = self.bike.name!
+	}
 	
     var body: some View {
 		VStack { // Whole Card
@@ -42,6 +48,7 @@ struct BikeStyledCellView: View {
 					Text(self.bike.bikeNote ?? "")
 						.font(.callout)
 						.fontWeight(.ultraLight)
+					.onAppear(perform: {self.setup()})
 				}
 					
 				.padding([.top, .leading, .trailing])
@@ -50,44 +57,11 @@ struct BikeStyledCellView: View {
 			
 			
 				
-				ForkLastServicedView(fork: self.bike.frontSetup!, bike: bike)
+				ForkLastServicedView(bike: bike, fork: self.bike.frontSetup!, bikeName: $bikeName)
 				Divider()
 				RearShockLastServicedView(rear: self.bike.rearSetup!, bike: bike)
 			
-/*
-			// Buttons
-			HStack(alignment: .bottom) {
-				Button(action: {self.showingNotesView.toggle()}) {
-					HStack {
-						Image(systemName: "square.and.pencil")
-						Text("Add Note")
-					}
-				}
-				.sheet(isPresented: self.$showingNotesView)  {
-					AddNoteBikeView(front: self.front, rear: self.rear, bike: self.bike).environment(\.managedObjectContext, self.moc)
-				}
-				Spacer()
-				
-				NavigationLink(destination: ServiceView(bike: self.bike)) {
-					HStack {
-						Image(systemName: "wrench")
-						Text("Add Service")
-					}
-				}
-			}
-*/
 
-//				Button(action: {self.showingServiceView.toggle()}) {
-//					HStack {
-//						Image(systemName: "wrench")
-//						Text("Add Service")
-//					}
-//				}
-//				.sheet(isPresented: self.$showingServiceView)  {
-//					ServiceView(bike: self.bike).environment(\.managedObjectContext, self.moc)
-//				}
-//			}
-//			.padding([.leading, .trailing])
 			.padding(.bottom, 10)
 			
 		} // END Buttons
@@ -96,6 +70,15 @@ struct BikeStyledCellView: View {
 			.cornerRadius(/*@START_MENU_TOKEN@*/20.0/*@END_MENU_TOKEN@*/)
 			.shadow(color: Color("ShadowColor"), radius: 5, x: -5, y: 5)
 			.shadow(color: Color("ShadowColor"), radius: 5, x: 5, y: -5)
+			
 	} // END Whole Card VStack
+	
+	
+	
+	func setup() {
+		print("bike styled cell")
+		bikeName = self.bike.name!
+		print("Bikename: \(bikeName)")
+	}
 }
 
