@@ -29,6 +29,7 @@ struct BikeListView: View {
 					.padding(10)
 					}
 				}
+				.onDelete(perform: deleteBikes) // -- Causes error:  Fatal error: Unexpectedly found nil while unwrapping an Optional value:
 			}
 			.navigationBarTitle("Bikes")
 			.navigationBarItems(leading: EditButton().foregroundColor(Color.white), trailing:
@@ -41,6 +42,19 @@ struct BikeListView: View {
 			}
 		}
 		
+	}
+	
+	
+	
+	func deleteBikes(at offsets: IndexSet) {
+		for offset in offsets {
+			// find this note in our fetch request
+			let bike = bikes[offset]
+			// delete it from the context
+			moc.delete(bike)
+		}
+		// save the context
+		try? moc.save()
 	}
 }
 

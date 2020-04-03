@@ -48,17 +48,40 @@ class FrontServiceModel: ObservableObject {
 		return lastFull.getLastServiceDates(frontService: filterFront(for: bikeName))
 	}
 	
-	func getRearShock() -> [FrontService] {
-		let rearShocks = try! managedObjectContext.fetch(FrontService.frontServiceFetchRequest())
-		return rearShocks
+	func getFork() -> [FrontService] {
+		let fork = try! managedObjectContext.fetch(FrontService.frontServiceFetchRequest())
+		return fork
 	}
 	
 	func filterFront(for name: String) -> [FrontService] {
-		let filteredBikes = getRearShock().filter { bikes in
+		let filteredBikes = getFork().filter { bikes in
 			bikes.service?.bike?.name == name
 		}
 		return filteredBikes
 	}
+	
+	//// not working?
+	func getBike(filter: String) -> Bike {
+		var bikes : [Bike] = []
+		let fetchRequest = Bike.selectedBikeFetchRequest(filter: bikeName)
+		
+		do {
+			bikes = try managedObjectContext.fetch(fetchRequest)
+		} catch let error as NSError {
+			print("Could not fetch. \(error), \(error.userInfo)")
+		}
+		return bikes[0]
+	}
+	
+	func getlowers(bike: String) -> Date {
+		let filteredBike = getBike(filter: bike)
+		let last = filteredBike.frontSetup?.frontServiceArray.last
+		print(last?.lowersService)
+		return (last?.lowersService)!
+
+	}
+	////
+	
 	
 	func getLastServicedDates() {
 		lastLowerService = getLastLowersService()

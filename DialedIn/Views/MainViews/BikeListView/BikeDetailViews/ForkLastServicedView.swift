@@ -20,6 +20,7 @@ struct ForkLastServicedView: View {
 	
     @ObservedObject var frontService = FrontServiceModel()
 	@Binding var bikeName: String
+	@State var lowers = Date()
 	
     let fork: Fork
 	let bike: Bike
@@ -42,6 +43,7 @@ struct ForkLastServicedView: View {
 			HStack(alignment: .center) {
 				Text("Lowers Last Serviced:")
 				Spacer()
+//				Text("\(lowers , formatter: self.dateFormatter)")
 				Text("\(self.frontService.lastLowerService , formatter: self.dateFormatter)")
 			}
 			.padding(.horizontal)
@@ -59,10 +61,11 @@ struct ForkLastServicedView: View {
 	
 	func setup() {
 		print("bikename: \(bikeName)")
-//		bikeName = self.bike.name ?? "Unknown bike"
+		bikeName = self.bike.name ?? "Unknown bike"
 		print("bikename2: \(bikeName)")
 		frontService.bikeName = bikeName
 		frontService.getLastServicedDates()
+		lowers = frontService.getlowers(bike: bikeName)
 	}
 }
 

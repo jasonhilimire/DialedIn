@@ -56,10 +56,11 @@ struct BikeStyledCellView: View {
 			}
 			
 			
-				
-				ForkLastServicedView(bike: bike, fork: self.bike.frontSetup!, bikeName: $bikeName)
-				Divider()
-				RearShockLastServicedView(rear: self.bike.rearSetup!, bike: bike)
+//				
+//				ForkLastServicedView(bike: bike, fork: self.bike.frontSetup!, bikeName: $bikeName)
+//			
+//				Divider()
+//				RearShockLastServicedView(rear: self.bike.rearSetup!, bike: bike)
 			
 
 			.padding(.bottom, 10)
@@ -76,7 +77,6 @@ struct BikeStyledCellView: View {
 	
 	
 	func setup() {
-		print("bike styled cell")
 		bikeName = self.bike.name!
 		print("Bikename: \(bikeName)")
 	}

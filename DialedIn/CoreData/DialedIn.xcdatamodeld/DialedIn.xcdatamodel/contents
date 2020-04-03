@@ -5,9 +5,9 @@
         <attribute name="hasRearShock" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="isDefault" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="name" optional="YES" attributeType="String"/>
-        <relationship name="frontSetup" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Fork" inverseName="bike" inverseEntity="Fork"/>
-        <relationship name="rearSetup" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="RearShock" inverseName="bike" inverseEntity="RearShock"/>
-        <relationship name="setupNotes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Notes" inverseName="bike" inverseEntity="Notes"/>
+        <relationship name="frontSetup" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Fork" inverseName="bike" inverseEntity="Fork"/>
+        <relationship name="rearSetup" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="RearShock" inverseName="bike" inverseEntity="RearShock"/>
+        <relationship name="setupNotes" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Notes" inverseName="bike" inverseEntity="Notes"/>
         <uniquenessConstraints>
             <uniquenessConstraint>
                 <constraint value="name"/>
@@ -19,7 +19,7 @@
         <attribute name="dualRebound" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="info" optional="YES" attributeType="String"/>
         <relationship name="bike" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Bike" inverseName="frontSetup" inverseEntity="Bike"/>
-        <relationship name="frontService" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="FrontService" inverseName="service" inverseEntity="FrontService"/>
+        <relationship name="frontService" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="FrontService" inverseName="service" inverseEntity="FrontService"/>
     </entity>
     <entity name="FrontService" representedClassName="FrontService" syncable="YES" codeGenerationType="class">
         <attribute name="fullService" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
@@ -64,7 +64,7 @@
         <attribute name="info" optional="YES" attributeType="String"/>
         <attribute name="isCoil" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <relationship name="bike" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Bike" inverseName="rearSetup" inverseEntity="Bike"/>
-        <relationship name="rearService" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="RearService" inverseName="service" inverseEntity="RearService"/>
+        <relationship name="rearService" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="RearService" inverseName="service" inverseEntity="RearService"/>
     </entity>
     <elements>
         <element name="Bike" positionX="-927.3046875" positionY="-479.21484375" width="128" height="148"/>

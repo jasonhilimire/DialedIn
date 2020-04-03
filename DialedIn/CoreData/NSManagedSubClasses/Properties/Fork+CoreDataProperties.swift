@@ -21,10 +21,18 @@ extension Fork {
     @NSManaged public var dualRebound: Bool
     @NSManaged public var info: String?
     @NSManaged public var bike: Bike?
-    @NSManaged public var frontService: NSOrderedSet?
+    @NSManaged public var frontService: NSSet?
 
 	public var wrappedForkInfo: String {
 		info ?? "Unknown Info"
+	}
+	
+	//  Convert from an NSSet to Set, convert Set to an Array so that ForEach can read data, then Sort Array (do really need sort if use Ordered?
+	public var frontServiceArray: [FrontService] {
+		let set = frontService as? Set<FrontService> ?? []
+		return set.sorted {
+			$0.wrapped_forkServiceNote < $1.wrapped_forkServiceNote
+		}
 	}
 }
 

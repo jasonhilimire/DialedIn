@@ -63,5 +63,6 @@ extension FrontService {
 		request.sortDescriptors = [NSSortDescriptor(keyPath: \FrontService.service?.bike?.name, ascending: true)]
 		return request
 	}
+	
 }
 
