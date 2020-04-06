@@ -15,6 +15,7 @@
 		A3273B7623EF998B007A3792 /* Notes+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3273B7423EF998B007A3792 /* Notes+CoreDataProperties.swift */; };
 		A33F02AF2406201D005A0A8F /* AddNoteBikeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33F02AE2406201D005A0A8F /* AddNoteBikeView.swift */; };
 		A33F02B124062A89005A0A8F /* FilteredAddNoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33F02B024062A89005A0A8F /* FilteredAddNoteView.swift */; };
+		A36C24C12437FED000B43121 /* ServicesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36C24C02437FED000B43121 /* ServicesListView.swift */; };
 		A383EFF9241D55900039A04C /* NoteStyledCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A383EFF8241D55900039A04C /* NoteStyledCellView.swift */; };
 		A3918AD023E3E446002A1D61 /* SaveButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3918ACF23E3E446002A1D61 /* SaveButtonView.swift */; };
 		A3A1297023FB9AC50014EC8A /* NoteRearSetupModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3A1296F23FB9AC50014EC8A /* NoteRearSetupModel.swift */; };
@@ -85,6 +86,7 @@
 		A3273B7423EF998B007A3792 /* Notes+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notes+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		A33F02AE2406201D005A0A8F /* AddNoteBikeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNoteBikeView.swift; sourceTree = "<group>"; };
 		A33F02B024062A89005A0A8F /* FilteredAddNoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilteredAddNoteView.swift; sourceTree = "<group>"; };
+		A36C24C02437FED000B43121 /* ServicesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesListView.swift; sourceTree = "<group>"; };
 		A383EFF8241D55900039A04C /* NoteStyledCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteStyledCellView.swift; sourceTree = "<group>"; };
 		A3918ACF23E3E446002A1D61 /* SaveButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveButtonView.swift; sourceTree = "<group>"; };
 		A3A1296F23FB9AC50014EC8A /* NoteRearSetupModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteRearSetupModel.swift; sourceTree = "<group>"; };
@@ -166,6 +168,7 @@
 			children = (
 				A309B9D523E2898300A08F22 /* BikeListView.swift */,
 				A3D518062425BD63007DEE9D /* ServiceView.swift */,
+				A36C24C02437FED000B43121 /* ServicesListView.swift */,
 				A3FBA8BE24034623001F3885 /* BikeDetailViews */,
 			);
 			path = BikeListView;
@@ -222,7 +225,6 @@
 		A3B99237241DDAF9007E9B7B /* Unused */ = {
 			isa = PBXGroup;
 			children = (
-				A3FBA8B8240342E6001F3885 /* BikeDetailView.swift */,
 				A33F02B024062A89005A0A8F /* FilteredAddNoteView.swift */,
 				A3E1A6AE2409B78100C4DFD5 /* FilteredBikeView.swift */,
 				A3EC241F23E68E21002954A9 /* EmojiRatingView.swift */,
@@ -384,6 +386,7 @@
 		A3FBA8BE24034623001F3885 /* BikeDetailViews */ = {
 			isa = PBXGroup;
 			children = (
+				A3FBA8B8240342E6001F3885 /* BikeDetailView.swift */,
 				A3D63B44241DCD3400852575 /* BikeStyledCellView.swift */,
 				A3FBA8B9240342E6001F3885 /* ForkLastServicedView.swift */,
 				A3FBA8BA240342E7001F3885 /* RearShockLastServicedView.swift */,
@@ -564,6 +567,7 @@
 				A3DDCC7B23DFEFEB00CD1476 /* Bike+CoreDataProperties.swift in Sources */,
 				A3DDCC7F23DFF2C900CD1476 /* AddNoteView.swift in Sources */,
 				A3FBA8B324024024001F3885 /* AddNoteRearSetupView.swift in Sources */,
+				A36C24C12437FED000B43121 /* ServicesListView.swift in Sources */,
 				A3C16EBD23DEA582005BFA14 /* Fork+CoreDataClass.swift in Sources */,
 				A3DDCC8323DFF97900CD1476 /* AddBikeView.swift in Sources */,
 				A3273B7623EF998B007A3792 /* Notes+CoreDataProperties.swift in Sources */,

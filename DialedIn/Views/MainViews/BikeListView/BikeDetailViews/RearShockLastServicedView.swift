@@ -70,7 +70,7 @@ struct RearShockLastServicedView: View {
 		bikeName = self.bike.name ?? "Unknown bike"
 		rearService.bikeName = bikeName
 		rearService.getLastServicedDates()
-		print("Full service \(self.rearService.lastFullServ)")
+//		print("Full service \(self.rearService.lastFullServ)")
 	}
 }
 

@@ -17,6 +17,7 @@ struct BikeStyledCellView: View {
 	
 	@ObservedObject var front = NoteFrontSetupModel()
 	@ObservedObject var rear = NoteRearSetupModel()
+	@ObservedObject var frontShock = FrontServiceModel()
 	
 	@State private var showingDeleteAlert = false
 	@State private var showingNotesView = false
@@ -78,7 +79,8 @@ struct BikeStyledCellView: View {
 	
 	func setup() {
 		bikeName = self.bike.name!
-		print("Bikename: \(bikeName)")
+//		print("Bikename: \(bikeName)")
+		frontShock.filterFront(for: bikeName)
 	}
 }
 

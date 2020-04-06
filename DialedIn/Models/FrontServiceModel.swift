@@ -50,6 +50,11 @@ class FrontServiceModel: ObservableObject {
 	
 	func getFork() -> [FrontService] {
 		let fork = try! managedObjectContext.fetch(FrontService.frontServiceFetchRequest())
+//		print("getfork found: \(fork)")
+//		print("Service found: \(fork[0].service)")
+//		print("Bike found: \(fork.last?.service?.bike)")
+		print("Get fork ran")
+		
 		return fork
 	}
 	
@@ -57,6 +62,8 @@ class FrontServiceModel: ObservableObject {
 		let filteredBikes = getFork().filter { bikes in
 			bikes.service?.bike?.name == name
 		}
+		
+		print("FilteredBike: \(filteredBikes)")
 		return filteredBikes
 	}
 	
@@ -76,7 +83,7 @@ class FrontServiceModel: ObservableObject {
 	func getlowers(bike: String) -> Date {
 		let filteredBike = getBike(filter: bike)
 		let last = filteredBike.frontSetup?.frontServiceArray.last
-		print(last?.lowersService)
+		print("Last Lowers Service: \(last?.lowersService)")
 		return (last?.lowersService)!
 
 	}

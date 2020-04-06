@@ -15,17 +15,29 @@ class Helper: ObservableObject {
 	let managedObjectContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
 	
 	
+	// Create the MOC
+	@Environment(\.managedObjectContext) var moc
+	// create a Fetch request for Bike
+	@FetchRequest(fetchRequest: FrontService.frontServiceFetchRequest())
+	var frontServices: FetchedResults<FrontService>
 	init() {
 		//
 	}
 	
-	@Published var lastBikeAirSetting: Int = 0 {
+	@Published var lastlower: Date = Date() {
 		didSet {
 			didChange.send(self)
 		}
 	}
 	
 	let didChange = PassthroughSubject<Helper, Never>()
+	
+	func filter(name: String) -> [FrontService] {
+		let filtered = frontServices.filter { bikes in
+			bikes.service?.bike?.name == name
+		}
+		return filtered
+	}
 
 	
 /// Put model Helpers in here when ready to refactor

@@ -16,6 +16,7 @@ struct BikeDetailView: View {
 	
 	@ObservedObject var front = NoteFrontSetupModel()
 	@ObservedObject var rear = NoteRearSetupModel()
+	
     
     @State private var showingDeleteAlert = false
 	@State private var showingNotesView = false
@@ -54,6 +55,9 @@ struct BikeDetailView: View {
 							}
 						}
 					}
+					
+					
+					
 					
 					
 //					HStack(alignment: .bottom) {
@@ -97,6 +101,10 @@ struct BikeDetailView: View {
 //					}
 					Spacer()
 				}
+			Spacer()
+			ServicesListView(bike: bike, bikeName: $bikeName)
+			
+			
 
 		}
 		.padding()

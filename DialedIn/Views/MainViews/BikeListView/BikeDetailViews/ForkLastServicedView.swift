@@ -20,7 +20,6 @@ struct ForkLastServicedView: View {
 	
     @ObservedObject var frontService = FrontServiceModel()
 	@Binding var bikeName: String
-	@State var lowers = Date()
 	
     let fork: Fork
 	let bike: Bike
@@ -65,7 +64,6 @@ struct ForkLastServicedView: View {
 		print("bikename2: \(bikeName)")
 		frontService.bikeName = bikeName
 		frontService.getLastServicedDates()
-		lowers = frontService.getlowers(bike: bikeName)
 	}
 }
 
