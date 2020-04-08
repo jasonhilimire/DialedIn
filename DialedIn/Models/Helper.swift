@@ -10,9 +10,17 @@ import Foundation
 import SwiftUI
 import Combine
 
+var dateFormatter: DateFormatter {
+	let formatter = DateFormatter()
+	formatter.dateStyle = .short
+	return formatter
+}
+
 class Helper: ObservableObject {
 	
 	let managedObjectContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+	
+
 	
 	
 	// Create the MOC
@@ -43,3 +51,5 @@ class Helper: ObservableObject {
 /// Put model Helpers in here when ready to refactor
 	
 }
+
+

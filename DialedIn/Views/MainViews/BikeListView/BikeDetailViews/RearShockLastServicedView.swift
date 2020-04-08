@@ -12,16 +12,10 @@ struct RearShockLastServicedView: View {
 	
     @Environment(\.managedObjectContext) var moc
     
-    var dateFormatter: DateFormatter {
-        let formatter = DateFormatter()
-        formatter.dateStyle = .short
-        return formatter
-    }
-    
     let rear: RearShock
 	let bike: Bike
 	@ObservedObject var rearService = RearServiceModel()
-	@State private var bikeName = ""
+	@Binding var bikeName: String
 	
     var body: some View {
 		VStack { // Rear Section
@@ -41,14 +35,14 @@ struct RearShockLastServicedView: View {
 					HStack {
 						Text("Last Air Can Service:")
 						Spacer()
-						Text("\(self.rearService.lastAirServ, formatter: self.dateFormatter)")
+						Text("\(self.rearService.lastAirServ, formatter: dateFormatter)")
 					}
 					.padding(.horizontal)
 					.font(.footnote)
 					HStack {
 						Text("Last Full Service:")
 						Spacer()
-						Text("\(self.rearService.lastFullServ, formatter: self.dateFormatter)")
+						Text("\(self.rearService.lastFullServ, formatter: dateFormatter)")
 					}
 					.padding(.horizontal)
 					.font(.footnote)
@@ -56,7 +50,7 @@ struct RearShockLastServicedView: View {
 					HStack {
 						Text("Last Full Service:")
 						Spacer()
-						Text("\(self.rearService.lastFullServ, formatter: self.dateFormatter)")
+						Text("\(self.rearService.lastFullServ, formatter: dateFormatter)")
 					}
 					.padding(.horizontal)
 					.font(.footnote)

@@ -12,12 +12,6 @@ struct ForkLastServicedView: View {
     
     @Environment(\.managedObjectContext) var moc
     
-    var dateFormatter: DateFormatter {
-        let formatter = DateFormatter()
-        formatter.dateStyle = .short
-        return formatter
-    }
-	
     @ObservedObject var frontService = FrontServiceModel()
 	@Binding var bikeName: String
 	
@@ -43,14 +37,14 @@ struct ForkLastServicedView: View {
 				Text("Lowers Last Serviced:")
 				Spacer()
 //				Text("\(lowers , formatter: self.dateFormatter)")
-				Text("\(self.frontService.lastLowerService , formatter: self.dateFormatter)")
+				Text("\(self.frontService.lastLowerService , formatter: dateFormatter)")
 			}
 			.padding(.horizontal)
 			.font(.footnote)
 			HStack {
 				Text("Last Full Service:")
 				Spacer()
-				Text("\(self.frontService.lastFullService, formatter: self.dateFormatter)")
+				Text("\(self.frontService.lastFullService, formatter: dateFormatter)")
 			}
 			.padding(.horizontal)
 			.font(.footnote)
