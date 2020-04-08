@@ -32,7 +32,7 @@ struct NotesListView: View {
                 .navigationBarItems(leading: EditButton().foregroundColor(Color.white), trailing:
                 Button(action: {self.showingAddScreen.toggle()
                 }) {
-                    //TODO: DISABLE BUTTON IF BIKE.COUNT IS EMPTY
+//TODO: DISABLE BUTTON IF BIKE.COUNT IS EMPTY
                     Image(systemName: "gauge.badge.plus").foregroundColor(Color.white)
             })
                 .sheet(isPresented: $showingAddScreen)  {

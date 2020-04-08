@@ -18,12 +18,6 @@ struct NoteCellView: View {
         NSSortDescriptor(keyPath: \Notes.date, ascending: true)
     ]) var notes: FetchedResults<Notes>
     
-     var dateFormatter: DateFormatter {
-         let formatter = DateFormatter()
-         formatter.dateStyle = .short
-         return formatter
-     }
-    
     var body: some View {
             ForEach(notes, id: \.self) { note in
                 NavigationLink(destination: NotesDetailView(note: note)) {
@@ -32,7 +26,7 @@ struct NoteCellView: View {
                     VStack(alignment: .leading) {
                         Text(note.bike?.name ?? "Unknown Bike")
                             .font(.headline)
-                        Text(note.date != nil ? "\(note.date!, formatter: self.dateFormatter)" : "")
+                        Text(note.date != nil ? "\(note.date!, formatter: dateFormatter)" : "")
                         .font(.callout)
                         .foregroundColor(.secondary)
                     }

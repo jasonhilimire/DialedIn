@@ -26,20 +26,13 @@ struct NotesDetailView: View {
 	/// - - - - Add a Save button
 	
 
-
-    var dateFormatter: DateFormatter {
-         let formatter = DateFormatter()
-         formatter.dateStyle = .short
-         return formatter
-     }
-    
     let note: Notes
 
     var body: some View {
         GeometryReader { geometry in
 			Form{
 				VStack {
-					Text(self.note.date != nil ? "\(self.note.date!, formatter: self.dateFormatter)" : "")
+					Text(self.note.date != nil ? "\(self.note.date!, formatter: dateFormatter)" : "")
 					Text(self.note.bike?.name ?? "Unknown bike")
 						.font(.title)
 					Text(self.note.note ?? "No note")

@@ -24,13 +24,6 @@ struct ServicesListView: View {
 	
 	let bike: Bike
 	
-	var dateFormatter: DateFormatter {
-		let formatter = DateFormatter()
-		formatter.dateStyle = .short
-		return formatter
-	}
-	
-	
 	init(bike: Bike, bikeName: Binding<String>) {
 		self.bike = bike
 		self._bikeName = bikeName
@@ -44,7 +37,7 @@ struct ServicesListView: View {
 				HStack{
 					Text("\(service.service?.bike?.name ?? "Unknown")")
 
-					Text(service.lowersService != nil ? "\(service.lowersService!, formatter: self.dateFormatter)" : "")
+					Text(service.lowersService != nil ? "\(service.lowersService!, formatter: dateFormatter)" : "")
 					
 				}
 				
