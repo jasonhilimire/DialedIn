@@ -15,7 +15,6 @@ struct ServicesListView: View {
 	@FetchRequest(fetchRequest: FrontService.frontServiceFetchRequest())
 	 var frontServices: FetchedResults<FrontService>
 	
-
 	
 	@ObservedObject var frontServiceModel = FrontServiceModel()
 	@ObservedObject var bikeModel = BikeModel()
@@ -27,8 +26,6 @@ struct ServicesListView: View {
 	init(bike: Bike, bikeName: Binding<String>) {
 		self.bike = bike
 		self._bikeName = bikeName
-		
-
 	}
 	
 	var body: some View {
@@ -38,15 +35,9 @@ struct ServicesListView: View {
 					Text("\(service.service?.bike?.name ?? "Unknown")")
 
 					Text(service.lowersService != nil ? "\(service.lowersService!, formatter: dateFormatter)" : "")
-					
 				}
-				
 			}
 		}
-			
-
-    }
-	
-
+	}
 }
 

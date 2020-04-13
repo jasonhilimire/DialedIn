@@ -63,7 +63,7 @@ class FrontServiceModel: ObservableObject {
 			bikes.service?.bike?.name == name
 		}
 		
-		print("FilteredBike: \(filteredBikes)")
+		print("FilteredBike: \(filteredBikes)") /// returning an empty array?
 		return filteredBikes
 	}
 	

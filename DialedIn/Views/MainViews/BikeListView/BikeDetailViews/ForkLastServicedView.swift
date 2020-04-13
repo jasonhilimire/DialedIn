@@ -36,7 +36,6 @@ struct ForkLastServicedView: View {
 			HStack(alignment: .center) {
 				Text("Lowers Last Serviced:")
 				Spacer()
-//				Text("\(lowers , formatter: self.dateFormatter)")
 				Text("\(self.frontService.lastLowerService , formatter: dateFormatter)")
 			}
 			.padding(.horizontal)

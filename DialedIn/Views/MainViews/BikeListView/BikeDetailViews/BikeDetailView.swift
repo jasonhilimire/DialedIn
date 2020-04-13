@@ -22,14 +22,7 @@ struct BikeDetailView: View {
 	@State private var showingNotesView = false
 	@State private var bikeName = ""
 	@State var showService = false
-	
-    
-    var dateFormatter: DateFormatter {
-        let formatter = DateFormatter()
-        formatter.dateStyle = .short
-        return formatter
-    }
-    
+
     let bike: Bike
 	
     var body: some View {
@@ -102,7 +95,8 @@ struct BikeDetailView: View {
 					Spacer()
 				}
 			Spacer()
-			ServicesListView(bike: bike, bikeName: $bikeName)
+				ServicesListView(bike: self.bike, bikeName: $bikeName)
+			
 			
 			
 
