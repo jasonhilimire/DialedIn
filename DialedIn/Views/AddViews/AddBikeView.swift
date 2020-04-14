@@ -119,6 +119,7 @@ struct AddBikeView: View {
 		let newFork = newFrontService.service
 		let newBike = newRearService.service?.bike
 		
+		
 		// - Bike Creation
 		
 		newBike?.name = self.bikeName

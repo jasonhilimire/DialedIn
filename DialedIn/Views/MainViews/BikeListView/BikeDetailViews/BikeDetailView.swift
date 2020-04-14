@@ -35,8 +35,7 @@ struct BikeDetailView: View {
 						.font(.subheadline)
 					VStack {
 						Section {
-							
-							ForkLastServicedView(bike: bike, fork: self.bike.frontSetup!, bikeName: $bikeName)
+							ForkLastServicedView(bikeName: $bikeName, fork: self.bike.frontSetup!, bike: self.bike)
 						}
 						Divider()
 						Section{
@@ -49,23 +48,6 @@ struct BikeDetailView: View {
 						}
 					}
 					
-					
-					
-					
-					
-//					HStack(alignment: .bottom) {
-//						Button(action: {self.doStuff()}) {
-//							HStack {
-//								Image(systemName: "square.and.pencil")
-//								Text("Add Note")
-//							}
-//						}
-//						.sheet(isPresented: self.$showingNotesView)  {
-//							AddNoteBikeView(front: self.front, rear: self.rear, bike: self.bike)
-//								.environment(\.managedObjectContext, self.moc)
-//								.transition(.slide)
-//						}
-//						Spacer()
 						Button(action: {
 							withAnimation {
 								self.showService.toggle()
@@ -79,8 +61,7 @@ struct BikeDetailView: View {
 								.scaleEffect(showService ? 1.5 : 1)
 								.padding()
 								Text("Add Service")
-									
-							
+				
 						}
 					}
 					
@@ -90,16 +71,13 @@ struct BikeDetailView: View {
 					}
 						
 
-						
-//					}
 					Spacer()
 				}
 			Spacer()
-				ServicesListView(bike: self.bike, bikeName: $bikeName)
+//				ServicesListView(bike: self.bike, bikeName: $bikeName)
+//			BikeNotesListView(bike: self.bike)
+			FilteredBikeView(filter: self.bikeName)
 			
-			
-			
-
 		}
 		.padding()
 

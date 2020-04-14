@@ -50,9 +50,6 @@ class FrontServiceModel: ObservableObject {
 	
 	func getFork() -> [FrontService] {
 		let fork = try! managedObjectContext.fetch(FrontService.frontServiceFetchRequest())
-//		print("getfork found: \(fork)")
-//		print("Service found: \(fork[0].service)")
-//		print("Bike found: \(fork.last?.service?.bike)")
 		print("Get fork ran")
 		
 		return fork

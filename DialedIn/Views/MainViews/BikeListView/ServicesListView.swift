@@ -18,7 +18,6 @@ struct ServicesListView: View {
 	
 	@ObservedObject var frontServiceModel = FrontServiceModel()
 	@ObservedObject var bikeModel = BikeModel()
-	@ObservedObject var helper = Helper()
 	@Binding var bikeName: String
 	
 	let bike: Bike
@@ -34,7 +33,8 @@ struct ServicesListView: View {
 				HStack{
 					Text("\(service.service?.bike?.name ?? "Unknown")")
 
-					Text(service.lowersService != nil ? "\(service.lowersService!, formatter: dateFormatter)" : "")
+					Text(service.lowersService != nil ? "Fork Lowers: \(service.lowersService!, formatter: dateFormatter)" : "")
+					
 				}
 			}
 		}

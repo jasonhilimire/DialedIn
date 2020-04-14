@@ -24,13 +24,7 @@ struct BikeStyledCellView: View {
 	@State private var showingServiceView = false
 	@State private var bikeName = ""
 	
-	
-	var dateFormatter: DateFormatter {
-		let formatter = DateFormatter()
-		formatter.dateStyle = .short
-		return formatter
-	}
-	
+
 	let bike: Bike
 	
 	init(bike: Bike) {
@@ -82,8 +76,6 @@ struct BikeStyledCellView: View {
 	
 	func setup() {
 		bikeName = self.bike.name!
-//		print("Bikename: \(bikeName)")
-		frontShock.filterFront(for: bikeName)
 	}
 }
 

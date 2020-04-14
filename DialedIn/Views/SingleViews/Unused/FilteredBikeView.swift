@@ -10,16 +10,22 @@ import SwiftUI
 
 struct FilteredBikeView: View {
 	@Environment(\.managedObjectContext) var moc
-	@State private var bikeName = ""
 	
-	var fetchRequest: FetchRequest<Bike>
+	var fetchRequest: FetchRequest<Notes>
 	
 	init(filter: String) {
-		fetchRequest = FetchRequest<Bike>(entity: Bike.entity(), sortDescriptors: [], predicate: NSPredicate(format: "name == %@", filter))
+		// Fetch through notes using bike.name provided 
+		let predicateQuery = NSPredicate(format: "%K = %@", "bike.name", filter)
+		fetchRequest = FetchRequest<Notes>(entity: Notes.entity(), sortDescriptors: [], predicate: predicateQuery)
 	}
     var body: some View {
-		ForEach(fetchRequest.wrappedValue, id: \.self) { bike in
-			Text("\(bike.wrappedBikeName)")
+		ForEach(fetchRequest.wrappedValue, id: \.self) { note in
+			VStack{
+				Text("\(note.wrappedNote)")
+				Text("\(note.date!, formatter: dateFormatter)")
+//				Text("stuff: \(bike.notesArray.)")
+			}
+			
 		}
     }
 }
