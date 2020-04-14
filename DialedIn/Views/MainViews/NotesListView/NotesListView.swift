@@ -33,7 +33,9 @@ struct NotesListView: View {
                 Button(action: {self.showingAddScreen.toggle()
                 }) {
                     //TODO: DISABLE BUTTON IF BIKE.COUNT IS EMPTY
-                    Image(systemName: "gauge.badge.plus").foregroundColor(Color.white)
+                    Image(systemName: "gauge.badge.plus")
+						.foregroundColor(Color.white)
+						.font(.title)
             })
                 .sheet(isPresented: $showingAddScreen)  {
                     AddNoteView().environment(\.managedObjectContext, self.moc)
