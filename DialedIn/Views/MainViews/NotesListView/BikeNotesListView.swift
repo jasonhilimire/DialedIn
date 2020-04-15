@@ -30,7 +30,6 @@ struct BikeNotesListView: View {
 								Text(note.wrappedNote)
 									.font(.callout)
 									.foregroundColor(.secondary)
-								Text("\(note.fHSC)")
 							}
 						}
 					}

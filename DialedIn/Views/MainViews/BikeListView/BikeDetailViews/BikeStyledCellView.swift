@@ -44,20 +44,36 @@ struct BikeStyledCellView: View {
 						.font(.callout)
 						.fontWeight(.ultraLight)
 					.onAppear(perform: {self.setup()})
+					
+	/// IF SHOW SERVICES HERE WHEN DELETE IT WILL CRASH :( 
+
+//					VStack {
+//						Section {
+//							ForkLastServicedView(bikeName: $bikeName, fork: self.bike.frontSetup!, bike: self.bike)
+//						}
+//						Divider()
+//						Section{
+//
+//							if self.bike.hasRearShock == false {
+//								Text("HardTail")
+//							} else {
+//								RearShockLastServicedView(rear: self.bike.rearSetup!, bike: self.bike, bikeName: $bikeName)
+//							}
+//						}
+//					}
+					
+					Spacer()
 				}
+					
+					
+					
+					
+					
+					
 					
 				.padding([.top, .leading, .trailing])
 				Spacer()
 			}
-			
-			
-//				
-//				ForkLastServicedView(bike: bike, fork: self.bike.frontSetup!, bikeName: $bikeName)
-//			
-//				Divider()
-//				RearShockLastServicedView(rear: self.bike.rearSetup!, bike: bike)
-			
-
 			.padding(.bottom, 10)
 			
 		} // END Buttons

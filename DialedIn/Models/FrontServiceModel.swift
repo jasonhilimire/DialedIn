@@ -9,6 +9,7 @@
 import Foundation
 import SwiftUI
 import Combine
+import CoreData
 
 class FrontServiceModel: ObservableObject {
 	
@@ -50,8 +51,6 @@ class FrontServiceModel: ObservableObject {
 	
 	func getFork() -> [FrontService] {
 		let fork = try! managedObjectContext.fetch(FrontService.frontServiceFetchRequest())
-		print("Get fork ran")
-		
 		return fork
 	}
 	
@@ -60,35 +59,41 @@ class FrontServiceModel: ObservableObject {
 			bikes.service?.bike?.name == name
 		}
 		
-		print("FilteredBike: \(filteredBikes)") /// returning an empty array?
+//		print("FilteredBike: \(filteredBikes)") /// returning an empty array?
 		return filteredBikes
 	}
 	
-	//// not working?
-	func getBike(filter: String) -> Bike {
-		var bikes : [Bike] = []
-		let fetchRequest = Bike.selectedBikeFetchRequest(filter: bikeName)
+	//// now working!!
+	func getLowers(filter: String) -> [FrontService] {
+		var bikes : [FrontService] = []
+		let fetchRequest = FrontService.frontServiceLowersFetchRequest(filter: bikeName)
+//		fetchRequest.fetchLimit = 1
 		
 		do {
 			bikes = try managedObjectContext.fetch(fetchRequest)
 		} catch let error as NSError {
 			print("Could not fetch. \(error), \(error.userInfo)")
 		}
-		return bikes[0]
+		return bikes
 	}
 	
-	func getlowers(bike: String) -> Date {
-		let filteredBike = getBike(filter: bike)
-		let last = filteredBike.frontSetup?.frontServiceArray.last
-		print("Last Lowers Service: \(last?.lowersService)")
-		return (last?.lowersService)!
+	func getlowersDate(bike: String) -> Date {
+		let filteredService = getLowers(filter: bike).filter { bikes in
+			bikes.service?.bike?.name == bike
+		}
+		print("Last Lowers Service: \(filteredService.last?.lowersService)")
+
+		return filteredService.last?.lowersService ?? Date()
 
 	}
+
+	
 	////
 	
 	
 	func getLastServicedDates() {
-		lastLowerService = getLastLowersService()
+//		lastLowerService = getLastLowersService()
+		lastLowerService = getlowersDate(bike: bikeName)
 		lastFullService = getLastFullService()
 	}
 	

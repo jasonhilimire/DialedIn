@@ -39,7 +39,6 @@ struct BikeDetailView: View {
 						}
 						Divider()
 						Section{
-							
 							if self.bike.hasRearShock == false {
 								Text("HardTail")
 							} else {
@@ -74,6 +73,7 @@ struct BikeDetailView: View {
 					Spacer()
 				}
 			Spacer()
+
 //				ServicesListView(bike: self.bike, bikeName: $bikeName)
 //			BikeNotesListView(bike: self.bike)
 			FilteredBikeView(filter: self.bikeName)

@@ -16,16 +16,21 @@ struct FilteredBikeView: View {
 	init(filter: String) {
 		// Fetch through notes using bike.name provided 
 		let predicateQuery = NSPredicate(format: "%K = %@", "bike.name", filter)
-		fetchRequest = FetchRequest<Notes>(entity: Notes.entity(), sortDescriptors: [], predicate: predicateQuery)
+		fetchRequest = FetchRequest<Notes>(entity: Notes.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \Notes.date, ascending: false)], predicate: predicateQuery)
 	}
     var body: some View {
-		ForEach(fetchRequest.wrappedValue, id: \.self) { note in
-			VStack{
-				Text("\(note.wrappedNote)")
-				Text("\(note.date!, formatter: dateFormatter)")
-//				Text("stuff: \(bike.notesArray.)")
+		VStack(alignment: .leading){
+			Text("Notes")
+				.font(.title)
+			ForEach(fetchRequest.wrappedValue, id: \.self) { note in
+				VStack(alignment: .leading){
+					Text("\(note.date!, formatter: dateFormatter)")
+					Text("\(note.wrappedNote)")
+					
+				}
+				
 			}
-			
+			Spacer()
 		}
     }
 }

@@ -36,7 +36,8 @@ struct ForkLastServicedView: View {
 			HStack(alignment: .center) {
 				Text("Lowers Last Serviced:")
 				Spacer()
-				Text("\(self.frontService.lastLowerService , formatter: dateFormatter)")
+				Text(self.frontService.getlowersDate(bike: bikeName) != nil ? "\(self.frontService.getlowersDate(bike: bikeName), formatter: dateFormatter)" : "")
+				
 			}
 			.padding(.horizontal)
 			.font(.footnote)
