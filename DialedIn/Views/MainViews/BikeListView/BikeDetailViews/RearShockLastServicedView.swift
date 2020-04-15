@@ -35,14 +35,14 @@ struct RearShockLastServicedView: View {
 					HStack {
 						Text("Last Air Can Service:")
 						Spacer()
-						Text("\(self.rearService.lastAirServ, formatter: dateFormatter)")
+						Text("\(self.rearService.getAirCanDate(bike: bikeName), formatter: dateFormatter)")
 					}
 					.padding(.horizontal)
 					.font(.footnote)
 					HStack {
 						Text("Last Full Service:")
 						Spacer()
-						Text("\(self.rearService.lastFullServ, formatter: dateFormatter)")
+						Text("\(self.rearService.getFullDate(bike: bikeName), formatter: dateFormatter)")
 					}
 					.padding(.horizontal)
 					.font(.footnote)
@@ -50,22 +50,15 @@ struct RearShockLastServicedView: View {
 					HStack {
 						Text("Last Full Service:")
 						Spacer()
-						Text("\(self.rearService.lastFullServ, formatter: dateFormatter)")
+						Text("\(self.rearService.getFullDate(bike: bikeName), formatter: dateFormatter)")
 					}
 					.padding(.horizontal)
 					.font(.footnote)
 				}
 			}
-		} .onAppear(perform: {self.setup()})
+		}
     }
 	
-	
-	func setup() {
-		bikeName = self.bike.name ?? "Unknown bike"
-		rearService.bikeName = bikeName
-		rearService.getLastServicedDates()
-		
-		print("Full service \(self.rearService.lastFullServ)")
-	}
+
 }
 

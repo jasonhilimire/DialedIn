@@ -47,27 +47,27 @@ struct BikeDetailView: View {
 						}
 					}
 					
-						Button(action: {
-							withAnimation {
-								self.showService.toggle()
-							}
-						}) {
-							HStack {
-								
-							Image(systemName: "wrench")
-								.imageScale(.large)
-								.rotationEffect(.degrees(showService ? 90 : 0))
-								.scaleEffect(showService ? 1.5 : 1)
-								.padding()
-								Text("Add Service")
-				
-						}
-					}
-					
-					if showService {
-						ServiceView(bike: self.bike)
-							.transition(.move(edge: .bottom))
-					}
+//						Button(action: {
+//							withAnimation {
+//								self.showService.toggle()
+//							}
+//						}) {
+//							HStack {
+//								
+//							Image(systemName: "wrench")
+//								.imageScale(.large)
+//								.rotationEffect(.degrees(showService ? 90 : 0))
+//								.scaleEffect(showService ? 1.5 : 1)
+//								.padding()
+//								Text("Add Service")
+//				
+//						}
+//					}
+//					
+//					if showService {
+//						ServiceView(bike: self.bike)
+//							.transition(.move(edge: .bottom))
+//					}
 						
 
 					Spacer()
@@ -76,7 +76,7 @@ struct BikeDetailView: View {
 
 //				ServicesListView(bike: self.bike, bikeName: $bikeName)
 //			BikeNotesListView(bike: self.bike)
-			FilteredBikeView(filter: self.bikeName)
+			BikeNotesListView(filter: self.bikeName)
 			
 		}
 		.padding()

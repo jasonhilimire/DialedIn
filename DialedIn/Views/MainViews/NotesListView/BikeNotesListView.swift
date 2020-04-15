@@ -1,41 +1,42 @@
 //
-//  BikeNotesListView.swift
+//  FilteredBikeView.swift
 //  DialedIn
 //
-//  Created by Jason Hilimire on 4/13/20.
+//  Created by Jason Hilimire on 2/28/20.
 //  Copyright © 2020 Jason Hilimire. All rights reserved.
 //
 
 import SwiftUI
 
 struct BikeNotesListView: View {
-	// Create the MOC
 	@Environment(\.managedObjectContext) var moc
-	// create a Fetch request for Bike
-	@FetchRequest(entity: Bike.entity(), sortDescriptors: [
-		NSSortDescriptor(keyPath: \Bike.name, ascending: true)
-	]) var bikes: FetchedResults<Bike>
 	
+	var fetchRequest: FetchRequest<Notes>
 	
-	let bike: Bike
-	
+	init(filter: String) {
+		// Fetch through notes using bike.name provided 
+		let predicateQuery = NSPredicate(format: "%K = %@", "bike.name", filter)
+		fetchRequest = FetchRequest<Notes>(entity: Notes.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \Notes.date, ascending: false)], predicate: predicateQuery)
+	}
     var body: some View {
-		List{
-			ForEach(bikes, id: \.self) { bike in
-				Section(header: Text(bike.wrappedBikeName)) {
-					ForEach(bike.notesArray, id: \.self) { note in
-						NavigationLink(destination: NotesDetailView(note: note)) {
-							VStack(alignment: .leading) {
-								Text(note.date != nil ? "\(note.date!, formatter: dateFormatter)" : "")
-								Text(note.wrappedNote)
-									.font(.callout)
-									.foregroundColor(.secondary)
-							}
-						}
-					}
+		VStack(alignment: .leading){
+			Text("Notes")
+				.font(.title)
+			ForEach(fetchRequest.wrappedValue, id: \.self) { note in
+				VStack(alignment: .leading){
+					Text("\(note.date!, formatter: dateFormatter)")
+					Text("\(note.wrappedNote)")
+					
 				}
+				
 			}
+			Spacer()
 		}
     }
 }
 
+struct FilteredBikeView_Previews: PreviewProvider {
+    static var previews: some View {
+        BikeNotesListView(filter: "filter")
+    }
+}

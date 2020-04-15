@@ -15,6 +15,47 @@ class RearServiceModel: ObservableObject {
 	let managedObjectContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
 	
 	
+	//// now working!! might only need this and delete rest?
+	func getRearServices(filter: String) -> [RearService] {
+		var bikes : [RearService] = []
+		// maybe need specific fetch  if multiple service issue due to sorting by full service only
+		let fetchRequest = RearService.rearServiceFetchRequest()
+		
+		do {
+			bikes = try managedObjectContext.fetch(fetchRequest)
+		} catch let error as NSError {
+			print("Could not fetch. \(error), \(error.userInfo)")
+		}
+		return bikes
+	}
+	
+	func getAirCanDate(bike: String) -> Date {
+		let filteredService = getRearServices(filter: bike).filter { bikes in
+			bikes.service?.bike?.name == bike
+		}
+		return filteredService.last?.airCanService ?? Date()
+	}
+	
+	func getFullDate(bike: String) -> Date {
+		let filteredService = getRearServices(filter: bike).filter { bikes in
+			bikes.service?.bike?.name == bike
+		}
+		return filteredService.last?.fullService ?? Date()
+	}
+	
+	
+	////
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	init() {
 		getLastServicedDates()
 	}
