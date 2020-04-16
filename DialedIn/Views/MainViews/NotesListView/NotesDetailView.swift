@@ -18,29 +18,24 @@ struct NotesDetailView: View {
 	@State private var airVolume: Double = 0
 	@State private var rating = 3
 	@State private var noteText = ""
+	@State var textHeight: CGFloat = 150
 	
-	
-	/// TODO: List out all variables that need to be edited
-	/// - then use setup() to set the variables
-	/// - - Create the form and ability to setup all the details
-	/// - - - Save the form if there are any changes
-	/// - - - - Add a Save button
-	
-
     let note: Notes
+	
 
-	
-	
     var body: some View {
-		Form{
+		VStack{
 			VStack {
 				Text(self.note.date != nil ? "\(self.note.date!, formatter: dateFormatter)" : "")
+					.font(.largeTitle)
 				Text(self.note.bike?.name ?? "Unknown bike")
 					.font(.title)
-				TextField(self.note.note ?? "No note", text: self.$noteText)
+				TextView(text: self.$noteText)
+					.frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
+//				TextField(self.note.note ?? "No note", text: self.$noteText)
 
-					.padding()
-					.border(Color.orange, width: 1.0)
+//					.padding()
+//					.border(Color.orange, width: 1.0)
 				RatingView(rating: self.$rating)
 					.font(.subheadline)
 				Divider()
@@ -48,10 +43,9 @@ struct NotesDetailView: View {
 		   //Front
 				Group {
 					VStack {
-						HStack{
-							Text("PSI: \(self.airVolume, specifier: "%.1f")")
-						}
-						Text("Air Spring: \(self.note.fAirVolume, specifier: "%.1f")")
+						Text("Fork")
+							.font(.headline)
+						Text("Fork PSI: \(self.note.fAirVolume, specifier: "%.1f")")
 						if self.note.bike?.frontSetup?.dualCompression == true {
 							Text("High Speed Compression: \(self.note.fHSC)")
 							Text("Low Speed Compression: \(self.note.fLSC)")
@@ -71,6 +65,8 @@ struct NotesDetailView: View {
 			//Rear
 				Group {
 					VStack {
+						Text("Rear Shock")
+							.font(.headline)
 						if self.note.bike?.hasRearShock == false {
 							Text("Hardtail")
 						} else {
@@ -94,16 +90,20 @@ struct NotesDetailView: View {
 					}
 					
 				}
+				
 			}
+			.padding()
+			Spacer()
 			Button(action: {
 				//dismisses the sheet
-				self.presentationMode.wrappedValue.dismiss()
+//				self.presentationMode.wrappedValue.dismiss()
 				self.updateNote(note: self.note)
 				
 				try? self.moc.save()
 			}) {
 				SaveButtonView()
 			}
+			.padding()
 			
 		} // end form
 			
@@ -122,9 +122,6 @@ struct NotesDetailView: View {
         }) {
             Image(systemName: "trash")
         })
-		
-		
-		
     }
 	
 
@@ -143,12 +140,11 @@ struct NotesDetailView: View {
 			note.rating = Int16(updatedRating)
 			try? self.moc.save()
 		}
-		// https://www.youtube.com/watch?v=Y8bgTSYsDvg
+		print("Updated note: \(updatedNote)")
 	}
 	
 	func setup() {
 		rating = Int(note.rating)
-		airVolume = self.note.fAirVolume
 		noteText = note.note ?? ""
 	}
     

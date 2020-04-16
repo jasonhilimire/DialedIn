@@ -24,7 +24,7 @@ struct AddNoteView: View {
     @State private var createdInitialBike = false
     @State private var bikeNameIndex = 0
     @State var bikeName = ""
-    @State private var note = ""
+    @State private var note = "Enter Note"
     @State private var date = Date()
     @State private var rating = 3
     
@@ -38,8 +38,8 @@ struct AddNoteView: View {
 						} else {
 							BikePickerView(bikeNameIndex: $bikeNameIndex)
 						}
-						
-						TextField("Note", text: $note )
+						TextView(text: $note)
+//						TextField("Note", text: $note )
 						DatePicker(selection: $date, in: ...Date(), displayedComponents: .date) {
 							Text("Select a date")
 						}
