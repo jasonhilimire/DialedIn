@@ -33,6 +33,7 @@ struct NoteStyledCellView: View {
 					VStack(alignment: .leading) {
 						HStack {
 							VStack(alignment: .leading) {
+								
 								RatingView(rating: .constant(Int(note.rating)))
 								Text(note.note ?? "")
 									.font(.footnote)
