@@ -9,6 +9,7 @@
 import Foundation
 import SwiftUI
 import Combine
+import UIKit
 
 var dateFormatter: DateFormatter {
 	let formatter = DateFormatter()
@@ -16,40 +17,52 @@ var dateFormatter: DateFormatter {
 	return formatter
 }
 
-class Helper: ObservableObject {
-	
-	let managedObjectContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-	
 
+// Creates a UIKit TextView for editing notes much easier
+struct TextView: UIViewRepresentable {
+	@Binding var text: String
 	
-	
-	// Create the MOC
-	@Environment(\.managedObjectContext) var moc
-	// create a Fetch request for Bike
-	@FetchRequest(fetchRequest: FrontService.frontServiceFetchRequest())
-	var frontServices: FetchedResults<FrontService>
-	init() {
-		//
+	func makeCoordinator() -> Coordinator {
+		Coordinator(self)
 	}
 	
-	@Published var lastlower: Date = Date() {
-		didSet {
-			didChange.send(self)
+	func makeUIView(context: Context) -> UITextView {
+		
+		let myTextView = UITextView()
+		myTextView.delegate = context.coordinator
+		
+		myTextView.font = UIFont(name: "HelveticaNeue", size: 15)
+		myTextView.isScrollEnabled = true
+		myTextView.isEditable = true
+		myTextView.isUserInteractionEnabled = true
+		myTextView.backgroundColor = UIColor(white: 0.0, alpha: 0.05)
+		
+		return myTextView
+	}
+	
+	func updateUIView(_ uiView: UITextView, context: Context) {
+		uiView.text = text
+	}
+	
+	class Coordinator : NSObject, UITextViewDelegate {
+		
+		var parent: TextView
+		
+		init(_ uiTextView: TextView) {
+			self.parent = uiTextView
+		}
+		
+		func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+			return true
+		}
+		
+		func textViewDidChange(_ textView: UITextView) {
+			print("text now: \(String(describing: textView.text!))")
+			self.parent.text = textView.text
 		}
 	}
-	
-	let didChange = PassthroughSubject<Helper, Never>()
-	
-	func filter(name: String) -> [FrontService] {
-		let filtered = frontServices.filter { bikes in
-			bikes.service?.bike?.name == name
-		}
-		return filtered
-	}
-
-	
-/// Put model Helpers in here when ready to refactor
-	
 }
+
+
 
 
