@@ -15,6 +15,44 @@ class FrontServiceModel: ObservableObject {
 	
 	let managedObjectContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
 	
+	
+	//// now working!! might only need this and delete rest?
+	func getFrontServices(filter: String) -> [FrontService] {
+		var bikes : [FrontService] = []
+		//		let fetchRequest = FrontService.frontServiceLowersFetchRequest(filter: bikeName) /// maybe need this if multiple service issue due to sorting by full service only
+		let fetchRequest = FrontService.frontServiceFetchRequest()
+		
+		do {
+			bikes = try managedObjectContext.fetch(fetchRequest)
+		} catch let error as NSError {
+			print("Could not fetch. \(error), \(error.userInfo)")
+		}
+		return bikes
+	}
+	
+	func getlowersDate(bike: String) -> Date {
+		let filteredService = getFrontServices(filter: bike).filter { bikes in
+			bikes.service?.bike?.name == bike
+		}
+		return filteredService.last?.lowersService ?? Date()
+	}
+	
+	func getFullDate(bike: String) -> Date {
+		let filteredService = getFrontServices(filter: bike).filter { bikes in
+			bikes.service?.bike?.name == bike
+		}
+		return filteredService.last?.fullService ?? Date()
+	}
+	
+	
+	////
+	
+	
+	
+	
+	
+	
+	
 	init() {
 		getLastServicedDates()
 	}
@@ -63,32 +101,7 @@ class FrontServiceModel: ObservableObject {
 		return filteredBikes
 	}
 	
-	//// now working!!
-	func getLowers(filter: String) -> [FrontService] {
-		var bikes : [FrontService] = []
-		let fetchRequest = FrontService.frontServiceLowersFetchRequest(filter: bikeName)
-//		fetchRequest.fetchLimit = 1
-		
-		do {
-			bikes = try managedObjectContext.fetch(fetchRequest)
-		} catch let error as NSError {
-			print("Could not fetch. \(error), \(error.userInfo)")
-		}
-		return bikes
-	}
-	
-	func getlowersDate(bike: String) -> Date {
-		let filteredService = getLowers(filter: bike).filter { bikes in
-			bikes.service?.bike?.name == bike
-		}
-		print("Last Lowers Service: \(filteredService.last?.lowersService)")
 
-		return filteredService.last?.lowersService ?? Date()
-
-	}
-
-	
-	////
 	
 	
 	func getLastServicedDates() {
