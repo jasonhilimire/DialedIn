@@ -12,15 +12,15 @@ struct FavoritesView: View {
 	@Binding var favorite: Bool
 	
 	var label = "Favorite Note:"
-	var offImage = Image(systemName: "heart")
-	var onImage = Image(systemName: "heart.fill")
+	var offImage = Image(systemName: "bookmark")
+	var onImage = Image(systemName: "bookmark.fill")
 	
 	var offColor = Color.gray
-	var onColor = Color.red
+	var onColor = Color.orange
 	
 	var body: some View {
 		HStack {
-			Text(label)
+//			Text(label)
 				self.image()
 					.foregroundColor(self.favorite ? self.onColor: self.offColor)
 					.onTapGesture {

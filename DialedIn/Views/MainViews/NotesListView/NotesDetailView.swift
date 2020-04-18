@@ -30,8 +30,10 @@ struct NotesDetailView: View {
 					.font(.largeTitle)
 //				Text(self.note.bike?.name ?? "Unknown bike")
 //					.font(.title)
-				
-				FavoritesView(favorite: self.$isFavorite)
+				HStack {
+					Text("Favorite Note:")
+					FavoritesView(favorite: self.$isFavorite)
+				}
 				
 				
 				TextView(text: self.$noteText)

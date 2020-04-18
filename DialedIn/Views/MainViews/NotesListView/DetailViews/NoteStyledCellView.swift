@@ -28,6 +28,7 @@ struct NoteStyledCellView: View {
 						Spacer()
 						Text(note.date != nil ? "\(note.date!, formatter: dateFormatter)" : "")
 							.fontWeight(.ultraLight)
+						FavoritesView(favorite: .constant(note.isFavorite))
 					}.font(.title)
 					
 					VStack(alignment: .leading) {
