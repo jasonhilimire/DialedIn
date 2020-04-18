@@ -38,7 +38,7 @@ struct BikeStyledCellView: View {
 				VStack(alignment: .leading) {
 					Text(self.bike.name ?? "Unknown")
 						.font(.largeTitle)
-						.fontWeight(.light)
+						.fontWeight(.ultraLight)
 					
 					Text(self.bike.bikeNote ?? "")
 						.font(.callout)
@@ -73,7 +73,7 @@ struct BikeStyledCellView: View {
 		} // END Buttons
 			.foregroundColor(Color("TextColor"))
 			.background(Color("BackgroundColor"))
-			.cornerRadius(2.0)
+			.cornerRadius(4.0)
 			// Shadow for left & bottom
 			.shadow(color: Color("ShadowColor"), radius: 5, x: -5, y: 5)
 			// Shadow for right & top

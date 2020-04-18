@@ -98,7 +98,7 @@ struct NoteStyledCellView: View {
 				.padding()
 				.foregroundColor(Color("TextColor"))
 				.background(Color("BackgroundColor"))
-				.cornerRadius(2.0)
+				.cornerRadius(4.0)
 				// Shadow for left & Bottom
 				.shadow(color: Color("ShadowColor"), radius: 5, x: -5, y: 5)
 				//shadow for right & top

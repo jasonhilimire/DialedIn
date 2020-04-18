@@ -19,18 +19,34 @@ struct FilteredBikeView: View {
 		fetchRequest = FetchRequest<Notes>(entity: Notes.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \Notes.date, ascending: false)], predicate: predicateQuery)
 	}
     var body: some View {
-		VStack(alignment: .leading){
-			Text("Notes")
-				.font(.title)
-			ForEach(fetchRequest.wrappedValue, id: \.self) { note in
-				NavigationLink(destination: NotesDetailView(note: note)){
-					VStack(alignment: .leading){
-						Text("\(note.date!, formatter: dateFormatter)")
-						Text("\(note.wrappedNote)")
+		GeometryReader { geometry in
+			ScrollView{
+				VStack{
+					Text("Notes")
+						.font(.title)
+					
+					ForEach(self.fetchRequest.wrappedValue, id: \.self) { note in
+						NavigationLink(destination: NotesDetailView(note: note)){
+							HStack{
+								VStack(alignment: .leading){
+									Text("\(note.date!, formatter: dateFormatter)")
+									Text("\(note.wrappedNote)")
+										.lineLimit(1)
+									Divider()
+								}
+								.font(.caption)
+								.foregroundColor(Color("TextColor"))
+							}
+							Spacer()
+							Image(systemName: "chevron.right")
+							.foregroundColor(Color("ImageColor"))
+							
+						}
 					}
+					Spacer()
 				}
+				.frame(width: geometry.size.width, height: geometry.size.height, alignment: .topLeading)
 			}
-			Spacer()
 		}
     }
 }

@@ -47,6 +47,8 @@ struct BikeDetailView: View {
 						}
 					}
 					
+				///Service view with animation
+/*
 						Button(action: {
 							withAnimation {
 								self.showService.toggle()
@@ -71,6 +73,8 @@ struct BikeDetailView: View {
 						
 
 					Spacer()
+
+*/
 				}
 			Spacer()
 
