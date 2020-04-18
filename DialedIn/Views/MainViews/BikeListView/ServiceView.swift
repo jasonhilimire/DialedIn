@@ -31,10 +31,10 @@ struct ServiceView: View {
 	
 	let bike: Bike
 	
-    var body: some View {
+	var body: some View {
 		VStack {
 			Form{
-		//MARK:- Front
+				//MARK:- Front
 				VStack(alignment: .leading){
 					Text("Front Service").font(.caption).bold()
 					Picker("Service Type", selection: $frontServicedIndex) {
@@ -58,7 +58,7 @@ struct ServiceView: View {
 					}
 					
 				}
-		//MARK:- Rear
+				//MARK:- Rear
 				VStack(alignment: .leading){
 					Text("Rear Service").font(.caption).bold()
 					if bike.hasRearShock == false {
@@ -105,7 +105,7 @@ struct ServiceView: View {
 				
 			} // end form
 				.onAppear(perform: {self.setup()})
-//				.navigationBarTitle("Service", displayMode: .inline)
+			//				.navigationBarTitle("Service", displayMode: .inline)
 			
 			
 			
@@ -113,13 +113,13 @@ struct ServiceView: View {
 				Text("Add a Service as needed")
 			} else {
 				Button(action: {
-///TODO: - change to return to  BikeListview after saving
-
+					///TODO: - change to return to  BikeListview after saving
+					
 					self.fetchAddService()
 					try? self.moc.save()
 					//dismisses the sheet
 					self.presentationMode.wrappedValue.dismiss()
-
+					
 					
 				}) {
 					// if no toggles disable save button
@@ -127,9 +127,9 @@ struct ServiceView: View {
 				}
 			}
 		}
-    }
+	}
 	
-//MARK:- Functions
+	//MARK:- Functions
 	func setup() {
 		bikeName = self.bike.name ?? "Unknown bike"
 		rearService.bikeName = bikeName
@@ -152,19 +152,6 @@ struct ServiceView: View {
 		
 		let fork = bikes[0].frontSetup
 		let newFrontService = FrontService(context: self.moc)
-		newFrontService.service = Fork(context: self.moc)
-		
-		let newBike = newRearService.service?.bike
-			
-			*/
-		
-		
-		// - Bike Creation
-		
-//		newBike?.name = self.bikeName
-		
-		// Setup Front Service
-		
 		if frontServicedIndex == 1 {
 			newFrontService.fullService = self.fFullServicedDate
 			newFrontService.lowersService = self.fFullServicedDate
@@ -183,8 +170,6 @@ struct ServiceView: View {
 		let rear = bikes[0].rearSetup
 		let newRearService = RearService(context: self.moc)
 		if rearServicedIndex == 1 {
-			newRearService.service?.bike = newBike
-			newRearService.service?.bike?.hasRearShock = true
 			newRearService.fullService = self.rFullServicedDate
 			newRearService.airCanService = self.rFullServicedDate
 			newRearService.serviceNote = self.rearServicedNote
@@ -197,9 +182,9 @@ struct ServiceView: View {
 			newRearService.serviceNote = self.rearServicedNote
 			rear?.addToRearService(newRearService)
 		}
-*/
 	}
 	
 }
+
 
 
