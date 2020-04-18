@@ -11,6 +11,7 @@ import SwiftUI
 struct ServiceView: View {
 	// Create the MOC
 	@Environment(\.managedObjectContext) var moc
+	@Environment(\.presentationMode) var presentationMode
 	
 	@ObservedObject var frontService = FrontServiceModel()
 	@ObservedObject var rearService = RearServiceModel()
@@ -107,7 +108,7 @@ struct ServiceView: View {
 				
 			} // end form
 				.onAppear(perform: {self.setup()})
-	//			.navigationBarTitle("DialedIn", displayMode: .inline)
+//				.navigationBarTitle("Service", displayMode: .inline)
 			
 			
 			
@@ -116,9 +117,12 @@ struct ServiceView: View {
 			} else {
 				Button(action: {
 ///TODO: - change to return to  BikeListview after saving
-//					self.saveService()
+
 					self.fetchAddService()
 					try? self.moc.save()
+					//dismisses the sheet
+					self.presentationMode.wrappedValue.dismiss()
+
 					
 				}) {
 					// if no toggles disable save button
@@ -155,11 +159,11 @@ struct ServiceView: View {
 			newFrontService.lowersService = self.fFullServicedDate
 			newFrontService.fullService = self.fFullServicedDate
 			newFrontService.serviceNote = self.frontServicedNote
-			
 			fork?.addToFrontService(newFrontService)
 		} else if frontServicedIndex == 2 {
+			// -- lowers only sets full service back to last full service --
+			newFrontService.fullService = frontService.getFullDate(bike: bikeName)
 			newFrontService.lowersService = self.fLowersServicedDate
-			newFrontService.fullService = frontService.getLastFullService()
 			newFrontService.serviceNote = self.frontServicedNote
 			fork?.addToFrontService(newFrontService)
 		}
@@ -173,7 +177,8 @@ struct ServiceView: View {
 			rear?.addToRearService(newRearService)
 			
 		} else if rearServicedIndex == 2 {
-			newRearService.fullService = rearService.getLastFullService()
+			// -- lowers only sets full service back to last full service --
+			newRearService.fullService = rearService.getFullDate(bike: bikeName)
 			newRearService.airCanService = self.rAirCanServicedDate
 			newRearService.serviceNote = self.rearServicedNote
 			rear?.addToRearService(newRearService)

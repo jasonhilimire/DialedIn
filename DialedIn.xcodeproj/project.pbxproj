@@ -51,7 +51,7 @@
 		A3DDCC7F23DFF2C900CD1476 /* AddNoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DDCC7E23DFF2C900CD1476 /* AddNoteView.swift */; };
 		A3DDCC8123DFF96400CD1476 /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DDCC8023DFF96400CD1476 /* AppView.swift */; };
 		A3DDCC8323DFF97900CD1476 /* AddBikeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DDCC8223DFF97900CD1476 /* AddBikeView.swift */; };
-		A3E1A6AF2409B78100C4DFD5 /* FilteredBikeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E1A6AE2409B78100C4DFD5 /* FilteredBikeView.swift */; };
+		A3E1A6AF2409B78100C4DFD5 /* FilteredBikeNotesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E1A6AE2409B78100C4DFD5 /* FilteredBikeNotesView.swift */; };
 		A3EC241C23E68C00002954A9 /* NoteCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3EC241B23E68C00002954A9 /* NoteCellView.swift */; };
 		A3EC242023E68E21002954A9 /* EmojiRatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3EC241F23E68E21002954A9 /* EmojiRatingView.swift */; };
 		A3F567A224343B1100C769A4 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F567A124343B1100C769A4 /* Helper.swift */; };
@@ -130,7 +130,7 @@
 		A3DDCC7E23DFF2C900CD1476 /* AddNoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNoteView.swift; sourceTree = "<group>"; };
 		A3DDCC8023DFF96400CD1476 /* AppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppView.swift; sourceTree = "<group>"; };
 		A3DDCC8223DFF97900CD1476 /* AddBikeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBikeView.swift; sourceTree = "<group>"; };
-		A3E1A6AE2409B78100C4DFD5 /* FilteredBikeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilteredBikeView.swift; sourceTree = "<group>"; };
+		A3E1A6AE2409B78100C4DFD5 /* FilteredBikeNotesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilteredBikeNotesView.swift; sourceTree = "<group>"; };
 		A3EC241B23E68C00002954A9 /* NoteCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteCellView.swift; sourceTree = "<group>"; };
 		A3EC241F23E68E21002954A9 /* EmojiRatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiRatingView.swift; sourceTree = "<group>"; };
 		A3F567A124343B1100C769A4 /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
@@ -217,7 +217,7 @@
 		A3B99236241DD9A4007E9B7B /* NotesListView */ = {
 			isa = PBXGroup;
 			children = (
-				A3E1A6AE2409B78100C4DFD5 /* FilteredBikeView.swift */,
+				A3E1A6AE2409B78100C4DFD5 /* FilteredBikeNotesView.swift */,
 				A3C16E6E23DE9EC4005BFA14 /* NotesListView.swift */,
 				A3DDCC7C23DFF21700CD1476 /* NotesDetailView.swift */,
 				A3C7A1D42401F81300A741A8 /* DetailViews */,
@@ -538,7 +538,7 @@
 				A3C16E6823DE9EC4005BFA14 /* AppDelegate.swift in Sources */,
 				A3B8B79723F0E9EF00CE1EF8 /* BikePickerView.swift in Sources */,
 				A3D5181724268DB6007DEE9D /* RearService+CoreDataProperties.swift in Sources */,
-				A3E1A6AF2409B78100C4DFD5 /* FilteredBikeView.swift in Sources */,
+				A3E1A6AF2409B78100C4DFD5 /* FilteredBikeNotesView.swift in Sources */,
 				A3D518072425BD63007DEE9D /* ServiceView.swift in Sources */,
 				A3C76CA423EF66450047BBCC /* RatingView.swift in Sources */,
 				A3F567A224343B1100C769A4 /* Helper.swift in Sources */,

@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct FilteredBikeView: View {
+struct FilteredBikeNotesView: View {
 	@Environment(\.managedObjectContext) var moc
 	
 	var fetchRequest: FetchRequest<Notes>
@@ -20,8 +20,8 @@ struct FilteredBikeView: View {
 	}
     var body: some View {
 		GeometryReader { geometry in
-			ScrollView{
-				VStack{
+			ScrollView {
+				VStack {
 					Text("Notes")
 						.font(.title)
 					
@@ -30,11 +30,12 @@ struct FilteredBikeView: View {
 							HStack{
 								VStack(alignment: .leading){
 									Text("\(note.date!, formatter: dateFormatter)")
+									.font(.callout)
 									Text("\(note.wrappedNote)")
 										.lineLimit(1)
+										.font(.caption)
 									Divider()
 								}
-								.font(.caption)
 								.foregroundColor(Color("TextColor"))
 							}
 							Spacer()
@@ -53,6 +54,6 @@ struct FilteredBikeView: View {
 
 struct FilteredBikeView_Previews: PreviewProvider {
     static var previews: some View {
-        FilteredBikeView(filter: "filter")
+        FilteredBikeNotesView(filter: "filter")
     }
 }

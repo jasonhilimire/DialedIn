@@ -21,7 +21,7 @@ struct BikeDetailView: View {
     @State private var showingDeleteAlert = false
 	@State private var showingNotesView = false
 	@State private var bikeName = ""
-	@State var showService = false
+	@State var showServiceScreen = false
 
     let bike: Bike
 	
@@ -80,11 +80,18 @@ struct BikeDetailView: View {
 
 //				ServicesListView(bike: self.bike, bikeName: $bikeName)
 //			BikeNotesListView(bike: self.bike)
-			FilteredBikeView(filter: self.bikeName)
+			FilteredBikeNotesView(filter: self.bikeName)
 			
 		}
 		.padding()
-
+		.navigationBarTitle(self.bike.name ?? "Unknown Bike")
+		.navigationBarItems(trailing: Button(action: {self.showServiceScreen.toggle()
+			}) {
+				Image(systemName: "wrench").foregroundColor(Color.white)
+		})
+			.sheet(isPresented: $showServiceScreen)  {
+				ServiceView(bike: self.bike).environment(\.managedObjectContext, self.moc)
+		}
     }
 	
 	func doStuff() {
