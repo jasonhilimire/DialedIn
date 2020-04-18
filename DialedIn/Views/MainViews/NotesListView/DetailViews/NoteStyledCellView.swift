@@ -98,9 +98,11 @@ struct NoteStyledCellView: View {
 				.padding()
 				.foregroundColor(Color("TextColor"))
 				.background(Color("BackgroundColor"))
-				.cornerRadius(/*@START_MENU_TOKEN@*/20.0/*@END_MENU_TOKEN@*/)
+				.cornerRadius(2.0)
+				// Shadow for left & Bottom
 				.shadow(color: Color("ShadowColor"), radius: 5, x: -5, y: 5)
-				.shadow(color: Color("ShadowColor"), radius: 5, x: 5, y: -5)
+				//shadow for right & top
+//				.shadow(color: Color("ShadowColor"), radius: 5, x: 5, y: -5)
 			}
 		}
 			.onDelete(perform: deleteNotes)

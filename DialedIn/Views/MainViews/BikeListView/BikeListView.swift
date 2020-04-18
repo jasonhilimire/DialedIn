@@ -26,10 +26,10 @@ struct BikeListView: View {
 				ForEach(bikes, id: \.self) { bike in
 					NavigationLink(destination: BikeDetailView(bike: bike)) {
 					BikeStyledCellView(bike: bike)
-					.padding(10)
+					.padding(5)
 					}
 				}
-				.onDelete(perform: deleteBikes) // -- Causes error:  Fatal error: Unexpectedly found nil while unwrapping an Optional value:
+				.onDelete(perform: deleteBikes) // -- Causes error:  Fatal error: Unexpectedly found nil while unwrapping an Optional value: if ServiceViews are shown
 			}
 			.navigationBarTitle("Bikes")
 			.navigationBarItems(leading: EditButton().foregroundColor(Color.white), trailing:

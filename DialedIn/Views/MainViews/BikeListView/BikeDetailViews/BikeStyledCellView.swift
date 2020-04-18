@@ -38,7 +38,7 @@ struct BikeStyledCellView: View {
 				VStack(alignment: .leading) {
 					Text(self.bike.name ?? "Unknown")
 						.font(.largeTitle)
-						.fontWeight(.ultraLight)
+						.fontWeight(.light)
 					
 					Text(self.bike.bikeNote ?? "")
 						.font(.callout)
@@ -64,26 +64,21 @@ struct BikeStyledCellView: View {
 					
 					Spacer()
 				}
-					
-					
-					
-					
-					
-					
-					
+
 				.padding([.top, .leading, .trailing])
 				Spacer()
 			}
-			.padding(.bottom, 10)
+//			.padding(.bottom, 5)
 			
 		} // END Buttons
 			.foregroundColor(Color("TextColor"))
 			.background(Color("BackgroundColor"))
-			.cornerRadius(/*@START_MENU_TOKEN@*/20.0/*@END_MENU_TOKEN@*/)
+			.cornerRadius(2.0)
+			// Shadow for left & bottom
 			.shadow(color: Color("ShadowColor"), radius: 5, x: -5, y: 5)
-//			.shadow(color: Color.white, radius: 5, x: -5, y: 5)
-			.shadow(color: Color.white, radius: 5, x: 5, y: -5)
-//		.shadow(color: Color("ShadowColor"), radius: 5, x: 5, y: -5)
+			// Shadow for right & top
+//			.shadow(color: Color("BackgroundColor"), radius: 5, x: 5, y: -5)
+
 
 			
 	} // END Whole Card VStack
