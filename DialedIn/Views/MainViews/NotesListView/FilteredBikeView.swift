@@ -23,12 +23,12 @@ struct FilteredBikeView: View {
 			Text("Notes")
 				.font(.title)
 			ForEach(fetchRequest.wrappedValue, id: \.self) { note in
-				VStack(alignment: .leading){
-					Text("\(note.date!, formatter: dateFormatter)")
-					Text("\(note.wrappedNote)")
-					
+				NavigationLink(destination: NotesDetailView(note: note)){
+					VStack(alignment: .leading){
+						Text("\(note.date!, formatter: dateFormatter)")
+						Text("\(note.wrappedNote)")
+					}
 				}
-				
 			}
 			Spacer()
 		}

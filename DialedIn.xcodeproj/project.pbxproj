@@ -220,7 +220,6 @@
 				A3E1A6AE2409B78100C4DFD5 /* FilteredBikeView.swift */,
 				A3C16E6E23DE9EC4005BFA14 /* NotesListView.swift */,
 				A3DDCC7C23DFF21700CD1476 /* NotesDetailView.swift */,
-				A37468C224455C2900EC867E /* BikeNotesListView.swift */,
 				A3C7A1D42401F81300A741A8 /* DetailViews */,
 			);
 			path = NotesListView;
@@ -229,6 +228,7 @@
 		A3B99237241DDAF9007E9B7B /* Unused */ = {
 			isa = PBXGroup;
 			children = (
+				A37468C224455C2900EC867E /* BikeNotesListView.swift */,
 				A33F02B024062A89005A0A8F /* FilteredAddNoteView.swift */,
 				A3EC241F23E68E21002954A9 /* EmojiRatingView.swift */,
 				A3EC241B23E68C00002954A9 /* NoteCellView.swift */,

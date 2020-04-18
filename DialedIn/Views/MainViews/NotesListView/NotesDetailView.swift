@@ -24,6 +24,7 @@ struct NotesDetailView: View {
 	
 
     var body: some View {
+		
 		VStack{
 			VStack {
 				Text(self.note.date != nil ? "\(self.note.date!, formatter: dateFormatter)" : "")
@@ -107,9 +108,12 @@ struct NotesDetailView: View {
 			
 		} // end form
 			
-		
+	
 			
 		.onAppear(perform: {self.setup()})
+		.onTapGesture {
+			UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to:nil, from:nil, for:nil)
+		}
         .navigationBarTitle(Text(note.bike?.name ?? "Unknown Note"), displayMode: .inline)
         .alert(isPresented: $showingDeleteAlert) {
             Alert(title: Text("Delete Note"), message: Text("Are you sure?"), primaryButton: .destructive(Text("Delete")) {
