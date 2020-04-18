@@ -11,6 +11,7 @@ import SwiftUI
 struct ServiceView: View {
 	// Create the MOC
 	@Environment(\.managedObjectContext) var moc
+	@Environment(\.presentationMode) var presentationMode
 	
 	@ObservedObject var frontService = FrontServiceModel()
 	@ObservedObject var rearService = RearServiceModel()
@@ -28,105 +29,106 @@ struct ServiceView: View {
 	@State private var rearServicedIndex = 0
 	@State private var rearServicedNote = ""
 	
-	@State private var returnToBikeListToggle = false
-	
-	
 	let bike: Bike
 	
     var body: some View {
-		Form{
-			Section {
-				Text("Bike: \(self.bike.name ?? "Unknown Bike")").bold()
-			}
-			
-	//MARK:- Front
-			Section(header: Text("Front Service")){
-				 
-				Picker("Service Type", selection: $frontServicedIndex) {
-					ForEach(0..<frontServiced.count) { index in
-						Text(self.frontServiced[index]).tag(index)
+		VStack {
+			Form{
+		//MARK:- Front
+				VStack(alignment: .leading){
+					Text("Front Service").font(.caption).bold()
+					Picker("Service Type", selection: $frontServicedIndex) {
+						ForEach(0..<frontServiced.count) { index in
+							Text(self.frontServiced[index]).tag(index)
+						}
+					}.pickerStyle(SegmentedPickerStyle())
+					if frontServicedIndex == 1 {
+						Text("Full Service Includes Lowers Service").italic()
+						DatePicker(selection: $fFullServicedDate, in: ...Date(), displayedComponents: .date) {
+							Text("Date:")
+						}
+						TextField("Service Note", text: $frontServicedNote)
+						
+					} else if frontServicedIndex == 2 {
+						Text("Lowers only Serviced").italic()
+						DatePicker(selection: $fLowersServicedDate, in: ...Date(), displayedComponents: .date) {
+							Text("Date:")
+						}
+						TextField("Service Note", text: $frontServicedNote)
 					}
-				}.pickerStyle(SegmentedPickerStyle())
-				if frontServicedIndex == 1 {
-					Text("Full Service Includes Lowers Service").italic()
-					DatePicker(selection: $fFullServicedDate, in: ...Date(), displayedComponents: .date) {
-						Text("Select a date")
-					}
-					TextField("Service Note", text: $frontServicedNote)
 					
-				} else if frontServicedIndex == 2 {
-					Text("Lowers only Serviced").italic()
-					DatePicker(selection: $fLowersServicedDate, in: ...Date(), displayedComponents: .date) {
-						Text("Select a date")
+				}
+		//MARK:- Rear
+				VStack(alignment: .leading){
+					Text("Rear Service").font(.caption).bold()
+					if bike.hasRearShock == false {
+						Text("Hardtail")
+					} else if bike.rearSetup?.isCoil == true {
+						Picker("Service Type", selection: $rearServicedIndex) {
+							ForEach(0..<(rearServiced.count - 1) ) { index in
+								Text(self.rearServiced[index]).tag(index)
+							}
+						}.pickerStyle(SegmentedPickerStyle())
+						
+						if rearServicedIndex == 1 {
+							
+							DatePicker(selection: $rFullServicedDate, in: ...Date(), displayedComponents: .date) {
+								Text("Date")
+							}
+							TextField("Service Note", text: $rearServicedNote)
+						}
+						
+						
+					} else {
+						Picker("Service Type", selection: $rearServicedIndex) {
+							ForEach(0..<rearServiced.count) { index in
+								Text(self.rearServiced[index]).tag(index)
+							}
+						}.pickerStyle(SegmentedPickerStyle())
+						
+						if rearServicedIndex == 1 {
+							DatePicker(selection: $rFullServicedDate, in: ...Date(), displayedComponents: .date) {
+								Text("Date")
+							}
+							Text("Full Service Includes Air Can Service")
+							TextField("Service Note", text: $rearServicedNote)
+							
+						} else if rearServicedIndex == 2 {
+							DatePicker(selection: $rAirCanServicedDate, in: ...Date(), displayedComponents: .date) {
+								Text("Date")
+							}
+							Text("Air Can only Serviced")
+							TextField("Service Note", text: $rearServicedNote)
+						}
 					}
-					TextField("Service Note", text: $frontServicedNote)
 				}
 				
-			}
-	//MARK:- Rear
-			Section(header: Text("Rear Service")){
-				if bike.hasRearShock == false {
-					Text("Hardtail")
-				} else if bike.rearSetup?.isCoil == true {
-					Picker("Service Type", selection: $rearServicedIndex) {
-						ForEach(0..<(rearServiced.count - 1) ) { index in
-							Text(self.rearServiced[index]).tag(index)
-						}
-					}.pickerStyle(SegmentedPickerStyle())
-					
-					if rearServicedIndex == 1 {
-						
-						DatePicker(selection: $rFullServicedDate, in: ...Date(), displayedComponents: .date) {
-							Text("Select a date")
-						}
-						TextField("Service Note", text: $rearServicedNote)
-					}
-					
-					
-				} else {
-					Picker("Service Type", selection: $rearServicedIndex) {
-						ForEach(0..<rearServiced.count) { index in
-							Text(self.rearServiced[index]).tag(index)
-						}
-					}.pickerStyle(SegmentedPickerStyle())
-					
-					if rearServicedIndex == 1 {
-						DatePicker(selection: $rFullServicedDate, in: ...Date(), displayedComponents: .date) {
-							Text("Select a date")
-						}
-						Text("Full Service Includes Air Can Service")
-						TextField("Service Note", text: $rearServicedNote)
-						
-					} else if rearServicedIndex == 2 {
-						DatePicker(selection: $rAirCanServicedDate, in: ...Date(), displayedComponents: .date) {
-							Text("Select a date")
-						}
-						Text("Air Can only Serviced")
-						TextField("Service Note", text: $rearServicedNote)
-					}
-				}
-			}
+			} // end form
+				.onAppear(perform: {self.setup()})
+//				.navigationBarTitle("Service", displayMode: .inline)
+			
+			
 			
 			if frontServicedIndex == 0 && rearServicedIndex == 0 {
 				Text("Add a Service as needed")
 			} else {
 				Button(action: {
-					///TODO: - change to return to  BikeListview after saving
-					
-					self.saveService()
+///TODO: - change to return to  BikeListview after saving
+
+					self.fetchAddService()
 					try? self.moc.save()
+					//dismisses the sheet
+					self.presentationMode.wrappedValue.dismiss()
+
 					
 				}) {
 					// if no toggles disable save button
 					SaveButtonView()
 				}
 			}
-			
-		} // end form
-			.onAppear(perform: {self.setup()})
-			.navigationBarTitle("DialedIn", displayMode: .inline)
-		
+		}
     }
+	
 //MARK:- Functions
 	func setup() {
 		bikeName = self.bike.name ?? "Unknown bike"
@@ -137,23 +139,18 @@ struct ServiceView: View {
 		frontService.getLastServicedDates()
 	}
 	
-	func saveService() {
-		print("Save button pressed")
-		bikeName = self.bike.name!
+	
+	func fetchAddService() {
+		var bikes : [Bike] = []
+		let fetchRequest = Bike.selectedBikeFetchRequest(filter: bikeName)
 		
-		
-		
-		// start at the child and work way up with creating Entities
-		/// Setup
-		/*
-		if frontServicedIndex == 0 {
-			print("nothing saved for the front")
+		do {
+			bikes = try moc.fetch(fetchRequest)
+		} catch let error as NSError {
+			print("Could not fetch. \(error), \(error.userInfo)")
 		}
 		
-			
-		let newRearService = RearService(context: self.moc)
-		newRearService.service = RearShock(context: self.moc)
-		newRearService.service?.bike = Bike(context: self.moc)
+		let fork = bikes[0].frontSetup
 		let newFrontService = FrontService(context: self.moc)
 		newFrontService.service = Fork(context: self.moc)
 		
@@ -169,41 +166,40 @@ struct ServiceView: View {
 		// Setup Front Service
 		
 		if frontServicedIndex == 1 {
-			let fork = Fork(context: self.moc)
-			let service = FrontService(context: self.moc)
-
-			service.fullService = self.fFullServicedDate
-			service.lowersService = self.fFullServicedDate // set lower service to same as Full Service
-			service.serviceNote = self.frontServicedNote
-			fork.bike?.name = self.bikeName
-			fork.addToFrontService(service)
-			print(service)
+			newFrontService.fullService = self.fFullServicedDate
+			newFrontService.lowersService = self.fFullServicedDate
+			newFrontService.serviceNote = self.frontServicedNote
+			print("full service: \(self.fFullServicedDate)")
+			fork?.addToFrontService(newFrontService)
 			
-		}
-		/*
-		else if frontServicedIndex == 2 {
-			newFrontService.service?.bike = newBike
+		} else if frontServicedIndex == 2 {
+			// -- lowers only sets full service back to last full service --
+			newFrontService.fullService = frontService.getFullDate(bike: bikeName)
 			newFrontService.lowersService = self.fLowersServicedDate
 			newFrontService.serviceNote = self.frontServicedNote
+			fork?.addToFrontService(newFrontService)
 		}
 		
-		//Setup Rear Service
-		
+		let rear = bikes[0].rearSetup
+		let newRearService = RearService(context: self.moc)
 		if rearServicedIndex == 1 {
 			newRearService.service?.bike = newBike
 			newRearService.service?.bike?.hasRearShock = true
 			newRearService.fullService = self.rFullServicedDate
-			newRearService.airCanService = self.rFullServicedDate // set airCan Service to same date as Full Service
+			newRearService.airCanService = self.rFullServicedDate
 			newRearService.serviceNote = self.rearServicedNote
+			rear?.addToRearService(newRearService)
+			
 		} else if rearServicedIndex == 2 {
-			newRearService.service?.bike = newBike
-			newRearService.service?.bike?.hasRearShock = true
-			newRearService.service?.bike = newBike
+			// -- lowers only sets full service back to last full service --
+			newRearService.fullService = rearService.getFullDate(bike: bikeName)
 			newRearService.airCanService = self.rAirCanServicedDate
-			newRearService.airCanService = rearService.getLastFullService() // set full Service to full service as it hasnt been done
+			newRearService.serviceNote = self.rearServicedNote
+			rear?.addToRearService(newRearService)
 		}
 */
 	}
+	
 }
 
 

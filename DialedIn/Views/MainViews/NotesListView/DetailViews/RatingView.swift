@@ -21,9 +21,6 @@ struct RatingView: View {
 
     var body: some View {
         HStack {
-//            if label.isEmpty == false {
-//                Text(label)
-//            }
             Text(label)
             ForEach(1..<maximumRating + 1) {number in
                 self.image(for: number)

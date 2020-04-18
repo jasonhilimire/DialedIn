@@ -17,27 +17,24 @@ struct NoteStyledCellView: View {
 		NSSortDescriptor(keyPath: \Notes.date, ascending: false)
 	]) var notes: FetchedResults<Notes>
 	
-	var dateFormatter: DateFormatter {
-		let formatter = DateFormatter()
-		formatter.dateStyle = .short
-		return formatter
-	}
-	
     var body: some View {
 		ForEach(notes, id: \.self) { note in
 			NavigationLink(destination: NotesDetailView(note: note)){
 				VStack {
 					HStack {
 						Text(note.bike?.name ?? "Unknown Bike")
+							
 							.fontWeight(.thin)
 						Spacer()
-						Text(note.date != nil ? "\(note.date!, formatter: self.dateFormatter)" : "")
+						Text(note.date != nil ? "\(note.date!, formatter: dateFormatter)" : "")
 							.fontWeight(.ultraLight)
+						FavoritesView(favorite: .constant(note.isFavorite))
 					}.font(.title)
 					
 					VStack(alignment: .leading) {
 						HStack {
 							VStack(alignment: .leading) {
+								
 								RatingView(rating: .constant(Int(note.rating)))
 								Text(note.note ?? "")
 									.font(.footnote)
@@ -102,9 +99,11 @@ struct NoteStyledCellView: View {
 				.padding()
 				.foregroundColor(Color("TextColor"))
 				.background(Color("BackgroundColor"))
-				.cornerRadius(/*@START_MENU_TOKEN@*/20.0/*@END_MENU_TOKEN@*/)
+				.cornerRadius(4.0)
+				// Shadow for left & Bottom
 				.shadow(color: Color("ShadowColor"), radius: 5, x: -5, y: 5)
-				.shadow(color: Color("ShadowColor"), radius: 5, x: 5, y: -5)
+				//shadow for right & top
+//				.shadow(color: Color("ShadowColor"), radius: 5, x: 5, y: -5)
 			}
 		}
 			.onDelete(perform: deleteNotes)

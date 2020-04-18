@@ -9,10 +9,51 @@
 import Foundation
 import SwiftUI
 import Combine
+import CoreData
 
 class FrontServiceModel: ObservableObject {
 	
 	let managedObjectContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+	
+	
+	//// now working!! might only need this and delete rest?
+	func getFrontServices(filter: String) -> [FrontService] {
+		var bikes : [FrontService] = []
+		//		let fetchRequest = FrontService.frontServiceLowersFetchRequest(filter: bikeName) /// maybe need this if multiple service issue due to sorting by full service only
+		let fetchRequest = FrontService.frontServiceFetchRequest()
+		
+		do {
+			bikes = try managedObjectContext.fetch(fetchRequest)
+		} catch let error as NSError {
+			print("Could not fetch. \(error), \(error.userInfo)")
+		}
+		return bikes
+	}
+	
+	func getlowersDate(bike: String) -> Date {
+		let filteredService = getFrontServices(filter: bike).filter { bikes in
+			bikes.service?.bike?.name == bike
+		}
+		print("Get Lowers Date: \(filteredService.last?.lowersService)")
+		return filteredService.last?.lowersService ?? Date()
+	}
+	
+	func getFullDate(bike: String) -> Date {
+		let filteredService = getFrontServices(filter: bike).filter { bikes in
+			bikes.service?.bike?.name == bike
+		}
+		print("Get Full Date: \(filteredService.last?.fullService)")
+		return filteredService.last?.fullService ?? Date()
+	}
+	
+	
+	////
+	
+	
+	
+	
+	
+	
 	
 	init() {
 		getLastServicedDates()
@@ -40,28 +81,34 @@ class FrontServiceModel: ObservableObject {
 	
 	func getLastLowersService() -> Date {
 		let lastLower = ServiceDates.lowers
-		return lastLower.getLastServiceDates(frontService: filterRear(for: bikeName))
+		return lastLower.getLastServiceDates(frontService: filterFront(for: bikeName))
 	}
 	
 	func getLastFullService() -> Date {
 		let lastFull = ServiceDates.full
-		return lastFull.getLastServiceDates(frontService: filterRear(for: bikeName))
+		return lastFull.getLastServiceDates(frontService: filterFront(for: bikeName))
 	}
 	
-	func getRearShock() -> [FrontService] {
-		let rearShocks = try! managedObjectContext.fetch(FrontService.frontServiceFetchRequest())
-		return rearShocks
+	func getFork() -> [FrontService] {
+		let fork = try! managedObjectContext.fetch(FrontService.frontServiceFetchRequest())
+		return fork
 	}
 	
-	func filterRear(for name: String) -> [FrontService] {
-		let filteredBikes = getRearShock().filter { bikes in
+	func filterFront(for name: String) -> [FrontService] {
+		let filteredBikes = getFork().filter { bikes in
 			bikes.service?.bike?.name == name
 		}
+		
+//		print("FilteredBike: \(filteredBikes)") /// returning an empty array?
 		return filteredBikes
 	}
 	
+
+	
+	
 	func getLastServicedDates() {
-		lastLowerService = getLastLowersService()
+//		lastLowerService = getLastLowersService()
+		lastLowerService = getlowersDate(bike: bikeName)
 		lastFullService = getLastFullService()
 	}
 	

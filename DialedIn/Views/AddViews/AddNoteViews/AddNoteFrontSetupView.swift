@@ -21,7 +21,8 @@ struct AddNoteFrontSetupView: View {
             Text("PSI: \(front.lastFAirSetting, specifier: "%.1f")")
             Slider(value: $front.lastFAirSetting, in: 45...120, step: 0.5)
 			
-			/// Remove the show the PSI setting as 'last PSI' & then determine how to dismiss keyboard
+			/// TODO: Remove the show the PSI setting as 'last PSI' & then determine how to dismiss keyboard
+//			Text("PSI")
 //			TextField("", value: $front.lastFAirSetting, formatter: NumberFormatter()).keyboardType(.decimalPad)
             }
 			
@@ -48,9 +49,11 @@ struct AddNoteFrontSetupView: View {
                 Stepper(value: $front.lastFReboundSetting, in: 0...25, label: {Text("Rebound: \(self.front.lastFReboundSetting)")})
             }
 		}
+		.onTapGesture {
+			UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to:nil, from:nil, for:nil)
+		}
     }
 	
-
 }
 
 

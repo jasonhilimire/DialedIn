@@ -63,5 +63,13 @@ extension FrontService {
 		request.sortDescriptors = [NSSortDescriptor(keyPath: \FrontService.service?.bike?.name, ascending: true)]
 		return request
 	}
+	
+	static func frontServiceLowersFetchRequest(filter: String) -> NSFetchRequest<FrontService> {
+		let request: NSFetchRequest<FrontService> = FrontService.fetchRequest()
+		request.sortDescriptors = [NSSortDescriptor(keyPath: \FrontService.lowersService, ascending: true)]
+		return request
+	}
 }
+
+
 

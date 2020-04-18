@@ -16,36 +16,72 @@ class BikeModel: ObservableObject {
     
     
     init() {
-        getLastAirSetting()
+        getLastBike()
     }
     
-    @Published var lastBikeAirSetting: Int = 0 {
-        didSet {
-            didChange.send(self)
-        }
-    }
+	@Published var bikeName: String = "" {
+		didSet {
+			didChange.send(self)
+		}
+	}
+	
+	@Published var bikeNote: String = "" {
+		didSet {
+			didChange.send(self)
+		}
+	}
+	
+	@Published var isDefault: Bool = false {
+		didSet {
+			didChange.send(self)
+		}
+	}
+	
+	@Published var hasRearShock: Bool = true {
+		didSet {
+			didChange.send(self)
+		}
+	}
+	
     
     let didChange = PassthroughSubject<BikeModel, Never>()
 
-    private var lastBikeAir: Int  {
-        let bikes = try! managedObjectContext.fetch(Bike.fetchRequest()) as! [Bike]
-        if let lastRecord = bikes.last {
-            let lastRecordNote = lastRecord.value(forKey: "name")
-                   return lastRecordNote as! Int
-               } else {
-                   print("didnt find last record")
-                   return 55
-               }
-       }
-    
-    func getBike(filter: String) {
-//        let fetchRequest = FetchRequest<Bike>(entity: Bike.entity(), sortDescriptors: [], predicate: NSPredicate(format: "name CONTAINS %@", filter))
-//        
-//        
+	func getBikes() -> [Bike] {
+		let bikes = try! managedObjectContext.fetch(Bike.bikesFetchRequest())
+		return bikes
+	}
+	
+	func filterBikes(for name: String) -> [Bike] {
+		let filteredBike = getBikes().filter { bikes in
+			bikes.name == name
+		}
+		return filteredBike
+	}
+	
+	
+	func getRear() -> Bool {
+		let last = filterBikes(for: bikeName)
+		guard let rear = last.last?.hasRearShock else {return true}
+		return rear
+	}
+	
+	func getDefault() -> Bool {
+		let last = filterBikes(for: bikeName)
+		guard let rear = last.last?.isDefault else {return false}
+		return rear
+	}
+	
+	
+	func getNote() -> String {
+		let last = filterBikes(for: bikeName)
+		guard let rear = last.last?.bikeNote else {return ""}
+		return rear
+	}
+	
+    func getLastBike() {
+        bikeNote = getNote()
+		hasRearShock = getRear()
+		isDefault = getDefault()
     }
-    
-    func getLastAirSetting() {
-        lastBikeAirSetting = lastBikeAir
-    }
-    
+
 }

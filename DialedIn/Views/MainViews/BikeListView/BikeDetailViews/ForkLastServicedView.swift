@@ -12,17 +12,12 @@ struct ForkLastServicedView: View {
     
     @Environment(\.managedObjectContext) var moc
     
-    var dateFormatter: DateFormatter {
-        let formatter = DateFormatter()
-        formatter.dateStyle = .short
-        return formatter
-    }
-	
     @ObservedObject var frontService = FrontServiceModel()
-	@State private var bikeName = ""
+	@Binding var bikeName: String
 	
     let fork: Fork
 	let bike: Bike
+	
 	
     var body: some View {
 		VStack { // Fork Section
@@ -35,26 +30,25 @@ struct ForkLastServicedView: View {
 			HStack(alignment: .center) {
 				Text("Lowers Last Serviced:")
 				Spacer()
-				Text("\(self.frontService.lastLowerService , formatter: self.dateFormatter)")
+				Text( "\(self.frontService.getlowersDate(bike: self.bikeName), formatter: dateFormatter)")
+				
 			}
 			.padding(.horizontal)
 			.font(.footnote)
 			HStack {
 				Text("Last Full Service:")
 				Spacer()
-				Text("\(self.frontService.lastFullService, formatter: self.dateFormatter)")
+				Text("\(self.frontService.getFullDate(bike: self.bikeName), formatter: dateFormatter)")
 			}
 			.padding(.horizontal)
 			.font(.footnote)
-		}   .onAppear(perform: {self.setup()})
-			.onDisappear(perform: {self.setup()})
+		} .onAppear(perform: {self.setup()})
     }
 	
 	func setup() {
 		bikeName = self.bike.name ?? "Unknown bike"
 		frontService.bikeName = bikeName
 		frontService.getLastServicedDates()
-//		print("Full service \(self.frontService.lastFullService)")
 	}
 }
 

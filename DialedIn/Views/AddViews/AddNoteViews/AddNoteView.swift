@@ -38,13 +38,17 @@ struct AddNoteView: View {
 						} else {
 							BikePickerView(bikeNameIndex: $bikeNameIndex)
 						}
-							
-						//TODO: bug in the picker where its not updating the text on the Picker Line in Beta only
 						
-//						Text("Selected Bike is: \(self.bikes[bikeNameIndex].name ?? "Unknown Bike")").foregroundColor(.red).bold()
-						TextField("Note", text: $note )
+						// Not sure happy with how this works- no placeholder text so using HSTACK to show Note:, but also return key is actual return and doesnt dismiss keyboard
+//						HStack {
+//							Text("Note:")
+//							TextView(text: $note)
+//						}
+					
+						TextField("Enter Note", text: $note )
 						DatePicker(selection: $date, in: ...Date(), displayedComponents: .date) {
-							Text("Select a date")
+							Text("Select a date:")
+						
 						}
 						RatingView(rating: $rating)
 					}
@@ -88,6 +92,9 @@ struct AddNoteView: View {
 				}) {
 					SaveButtonView()
 				}
+			}
+			.onTapGesture {
+				UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to:nil, from:nil, for:nil)
 			}
         }
 		

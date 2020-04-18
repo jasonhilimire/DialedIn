@@ -38,6 +38,7 @@ struct AppView: View {
                     Image(systemName: "gear")
                     Text("Bike")
                 }
+			
         }
         .accentColor(.black)
     }

@@ -17,101 +17,103 @@ struct NotesDetailView: View {
 	
 	@State private var airVolume: Double = 0
 	@State private var rating = 3
+	@State private var noteText = ""
+	@State private var isFavorite = false
 	
-	
-	
-	/// TODO: List out all variables that need to be edited
-	/// - then use setup() to set the variables
-	/// - - Create the form and ability to setup all the details
-	/// - - - Save the form if there are any changes
-	/// - - - - Add a Save button
-	
-	
-	
-	
-
-    var dateFormatter: DateFormatter {
-         let formatter = DateFormatter()
-         formatter.dateStyle = .short
-         return formatter
-     }
-    
     let note: Notes
+	
     var body: some View {
-        GeometryReader { geometry in
-			Form{
-				VStack {
-					Text(self.note.date != nil ? "\(self.note.date!, formatter: self.dateFormatter)" : "")
-					Text(self.note.bike?.name ?? "Unknown bike")
-						.font(.title)
-					Text(self.note.note ?? "No note")
-						.foregroundColor(.secondary)
-					RatingView(rating: self.$rating)
-						.font(.subheadline)
-					Divider()
-					
-			   //Front
-					Group {
-						VStack {
-							HStack{
-								Text("PSI: \(self.note.fAirVolume, specifier: "%.1f")")
-								Slider(value: self.$airVolume, in: 45...120, step: 0.5)
-							}
-//							Stepper(value: self.note.fSag   , in: 0...40, label: {Text("Sag: \(self.front.lastFSagSetting)")})
-//							
-//							// Tokens
-//							Stepper(value: self.note.fSag  , in: 0...6, label: {Text("Tokens: \(self.front.lastFTokenSetting)")})
-//
-//							
-							
-							
-							Text("Air Spring: \(self.note.fAirVolume, specifier: "%.1f")")
-							if self.note.bike?.frontSetup?.dualCompression == true {
-								Text("High Speed Compression: \(self.note.fHSC)")
-								Text("Low Speed Compression: \(self.note.fLSC)")
-							} else {
-								Text("Compression: \(self.note.fCompression)")
-							}
-							
-							if self.note.bike?.frontSetup?.dualCompression == true {
-								Text("High Speed Rebound: \(self.note.fHSR)")
-								Text("Low Speed Rebound: \(self.note.fLSR)")
-							} else {
-								Text("Rebound: \(self.note.fRebound)")
-							}
+		
+		VStack{
+			VStack {
+				Text(self.note.date != nil ? "\(self.note.date!, formatter: dateFormatter)" : "")
+					.font(.largeTitle)
+//				Text(self.note.bike?.name ?? "Unknown bike")
+//					.font(.title)
+				HStack {
+					Text("Favorite Note:")
+					FavoritesView(favorite: self.$isFavorite)
+				}
+				
+				
+				TextView(text: self.$noteText)
+					.frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
+				RatingView(rating: self.$rating)
+					.font(.title)
+				Divider()
+				
+		   //Front
+				Group {
+					VStack {
+						Text("Fork")
+							.font(.headline)
+						Text("Fork PSI: \(self.note.fAirVolume, specifier: "%.1f")")
+						if self.note.bike?.frontSetup?.dualCompression == true {
+							Text("High Speed Compression: \(self.note.fHSC)")
+							Text("Low Speed Compression: \(self.note.fLSC)")
+						} else {
+							Text("Compression: \(self.note.fCompression)")
+						}
+						
+						if self.note.bike?.frontSetup?.dualCompression == true {
+							Text("High Speed Rebound: \(self.note.fHSR)")
+							Text("Low Speed Rebound: \(self.note.fLSR)")
+						} else {
+							Text("Rebound: \(self.note.fRebound)")
 						}
 					}
-					Divider()
-				//Rear
-					Group {
-						VStack {
-							if self.note.bike?.hasRearShock == false {
-								Text("Hardtail")
+				}
+				Divider()
+			//Rear
+				Group {
+					VStack {
+						Text("Rear Shock")
+							.font(.headline)
+						if self.note.bike?.hasRearShock == false {
+							Text("Hardtail")
+						} else {
+							Text("Air/Spring: \(self.note.rAirSpring, specifier: "%.0f")")
+							
+							if self.note.bike?.rearSetup?.dualCompression == true {
+								Text("High Speed Compression: \(self.note.rHSC)")
+								Text("Low Speed Compression: \(self.note.rLSC)")
 							} else {
-								Text("Air/Spring: \(self.note.rAirSpring, specifier: "%.0f")")
-								
-								if self.note.bike?.rearSetup?.dualCompression == true {
-									Text("High Speed Compression: \(self.note.rHSC)")
-									Text("Low Speed Compression: \(self.note.rLSC)")
-								} else {
-									Text("Compression: \(self.note.rCompression)")
-								}
-								
-								if self.note.bike?.rearSetup?.dualRebound == true {
-									Text("High Speed Rebound: \(self.note.rHSR)")
-									Text("Low Speed Rebound: \(self.note.rLSR)")
-								} else {
-									Text("Rebound: \(self.note.rRebound)")
-								}
+								Text("Compression: \(self.note.rCompression)")
 							}
 							
+							if self.note.bike?.rearSetup?.dualRebound == true {
+								Text("High Speed Rebound: \(self.note.rHSR)")
+								Text("Low Speed Rebound: \(self.note.rLSR)")
+							} else {
+								Text("Rebound: \(self.note.rRebound)")
+							}
 						}
 						
 					}
+					
 				}
+				
 			}
+			.padding()
+			Spacer()
+			Button(action: {
+				self.updateNote(note: self.note)
+				print("Favorite: \(self.isFavorite)")
+				
+				try? self.moc.save()
+			}) {
+				SaveButtonView()
+			}
+			.padding()
+			
 		} // end form
+			
+	
+			
 		.onAppear(perform: {self.setup()})
+		.onTapGesture {
+			UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to:nil, from:nil, for:nil)
+		}
         .navigationBarTitle(Text(note.bike?.name ?? "Unknown Note"), displayMode: .inline)
         .alert(isPresented: $showingDeleteAlert) {
             Alert(title: Text("Delete Note"), message: Text("Are you sure?"), primaryButton: .destructive(Text("Delete")) {
@@ -125,7 +127,8 @@ struct NotesDetailView: View {
             Image(systemName: "trash")
         })
     }
-    
+	
+
     
     func deleteNote() {
         moc.delete(self.note)
@@ -133,26 +136,26 @@ struct NotesDetailView: View {
         presentationMode.wrappedValue.dismiss()
     }
 	
+	func updateNote(note: Notes) {
+		let updatedNote = self.noteText
+		let updatedRating = self.rating
+		let updatedFavorite = self.isFavorite
+		moc.performAndWait {
+			note.note = updatedNote
+			note.rating = Int16(updatedRating)
+			note.isFavorite = updatedFavorite
+			try? self.moc.save()
+		}
+		print("Updated note: \(updatedNote)")
+	}
+	
 	func setup() {
 		rating = Int(note.rating)
+		noteText = note.note ?? ""
+		isFavorite = note.isFavorite
 	}
     
 
 }
 
-struct DetailView_Previews: PreviewProvider {
-    static let moc = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
 
-
-    static var previews: some View {
-        let note = Notes(context: moc)
-        note.date = Date()
-        note.bike?.name = "Test RideNote"
-        note.note = "Some Note Text"
-        note.rating = 4
-
-        return NavigationView {
-            NotesDetailView(note: note)
-        }
-    }
-}
