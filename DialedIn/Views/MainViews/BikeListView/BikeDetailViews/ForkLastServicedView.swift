@@ -18,12 +18,6 @@ struct ForkLastServicedView: View {
     let fork: Fork
 	let bike: Bike
 	
-//	init(bike: Bike, fork: Fork, bikeName: Binding<String>) {
-//		self.bike = bike
-//		self.fork = fork
-//		self._bikeName = bikeName
-//
-//	}
 	
     var body: some View {
 		VStack { // Fork Section

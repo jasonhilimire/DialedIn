@@ -21,30 +21,24 @@ struct FilteredBikeNotesView: View {
     var body: some View {
 		GeometryReader { geometry in
 			ScrollView {
-				VStack {
-					Text("Notes")
-						.font(.title)
-					
-					ForEach(self.fetchRequest.wrappedValue, id: \.self) { note in
-						NavigationLink(destination: NotesDetailView(note: note)){
-							HStack{
-								VStack(alignment: .leading){
-									Text("\(note.date!, formatter: dateFormatter)")
-									.font(.callout)
-									Text("\(note.wrappedNote)")
-										.lineLimit(1)
-										.font(.caption)
-									Divider()
-								}
-								.foregroundColor(Color("TextColor"))
+				ForEach(self.fetchRequest.wrappedValue, id: \.self) { note in
+					NavigationLink(destination: NotesDetailView(note: note)){
+						HStack{
+							VStack(alignment: .leading){
+								Text("\(note.date!, formatter: dateFormatter)")
+								.font(.callout)
+								Text("\(note.wrappedNote)")
+									.lineLimit(1)
+									.font(.caption)
+								Divider()
 							}
-							Spacer()
-							Image(systemName: "chevron.right")
-							.foregroundColor(Color("ImageColor"))
-							
+							.foregroundColor(Color("TextColor"))
 						}
+						Spacer()
+						Image(systemName: "chevron.right")
+						.foregroundColor(Color("ImageColor"))
+						
 					}
-					Spacer()
 				}
 				.frame(width: geometry.size.width, height: geometry.size.height, alignment: .topLeading)
 			}

@@ -34,6 +34,7 @@ class FrontServiceModel: ObservableObject {
 		let filteredService = getFrontServices(filter: bike).filter { bikes in
 			bikes.service?.bike?.name == bike
 		}
+		print("Get Lowers Date: \(filteredService.last?.lowersService)")
 		return filteredService.last?.lowersService ?? Date()
 	}
 	
@@ -41,6 +42,7 @@ class FrontServiceModel: ObservableObject {
 		let filteredService = getFrontServices(filter: bike).filter { bikes in
 			bikes.service?.bike?.name == bike
 		}
+		print("Get Full Date: \(filteredService.last?.fullService)")
 		return filteredService.last?.fullService ?? Date()
 	}
 	

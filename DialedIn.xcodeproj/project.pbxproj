@@ -170,7 +170,6 @@
 			children = (
 				A309B9D523E2898300A08F22 /* BikeListView.swift */,
 				A3D518062425BD63007DEE9D /* ServiceView.swift */,
-				A36C24C02437FED000B43121 /* ServicesListView.swift */,
 				A3FBA8BE24034623001F3885 /* BikeDetailViews */,
 			);
 			path = BikeListView;
@@ -228,6 +227,7 @@
 		A3B99237241DDAF9007E9B7B /* Unused */ = {
 			isa = PBXGroup;
 			children = (
+				A36C24C02437FED000B43121 /* ServicesListView.swift */,
 				A37468C224455C2900EC867E /* BikeNotesListView.swift */,
 				A33F02B024062A89005A0A8F /* FilteredAddNoteView.swift */,
 				A3EC241F23E68E21002954A9 /* EmojiRatingView.swift */,

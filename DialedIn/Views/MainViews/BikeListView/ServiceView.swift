@@ -29,9 +29,6 @@ struct ServiceView: View {
 	@State private var rearServicedIndex = 0
 	@State private var rearServicedNote = ""
 	
-	@State private var returnToBikeListToggle = false
-	
-	
 	let bike: Bike
 	
     var body: some View {
@@ -156,10 +153,12 @@ struct ServiceView: View {
 		let fork = bikes[0].frontSetup
 		let newFrontService = FrontService(context: self.moc)
 		if frontServicedIndex == 1 {
-			newFrontService.lowersService = self.fFullServicedDate
 			newFrontService.fullService = self.fFullServicedDate
+			newFrontService.lowersService = self.fFullServicedDate
 			newFrontService.serviceNote = self.frontServicedNote
+			print("full service: \(self.fFullServicedDate)")
 			fork?.addToFrontService(newFrontService)
+			
 		} else if frontServicedIndex == 2 {
 			// -- lowers only sets full service back to last full service --
 			newFrontService.fullService = frontService.getFullDate(bike: bikeName)

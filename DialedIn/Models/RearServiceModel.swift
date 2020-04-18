@@ -33,6 +33,7 @@ class RearServiceModel: ObservableObject {
 		let filteredService = getRearServices(filter: bike).filter { bikes in
 			bikes.service?.bike?.name == bike
 		}
+		print("Get Rear air Date: \(filteredService.last?.airCanService)")
 		return filteredService.last?.airCanService ?? Date()
 	}
 	
@@ -40,6 +41,7 @@ class RearServiceModel: ObservableObject {
 		let filteredService = getRearServices(filter: bike).filter { bikes in
 			bikes.service?.bike?.name == bike
 		}
+		print("Get Rear Full Date: \(filteredService.last?.fullService)")
 		return filteredService.last?.fullService ?? Date()
 	}
 	

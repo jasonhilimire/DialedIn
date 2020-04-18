@@ -28,9 +28,9 @@ struct BikeDetailView: View {
     var body: some View {
 		VStack{
 				VStack {
-					Text(self.bike.name ?? "Unknown Bike")
-						.font(.largeTitle)
-						.fontWeight(.bold)
+//					Text(self.bike.name ?? "Unknown Bike")
+//						.font(.largeTitle)
+//						.fontWeight(.bold)
 					Text("Info: \(self.bike.bikeNote ?? "")" )
 						.font(.subheadline)
 					VStack {
@@ -77,17 +77,23 @@ struct BikeDetailView: View {
 */
 				}
 			Spacer()
-
-//				ServicesListView(bike: self.bike, bikeName: $bikeName)
-//			BikeNotesListView(bike: self.bike)
+			Text("Notes")
+				.font(.largeTitle)
 			FilteredBikeNotesView(filter: self.bikeName)
 			
 		}
 		.padding()
 		.navigationBarTitle(self.bike.name ?? "Unknown Bike")
-		.navigationBarItems(trailing: Button(action: {self.showServiceScreen.toggle()
-			}) {
+		.navigationBarItems(trailing: Button(action: {
+			withAnimation {
+				self.showServiceScreen.toggle()
+			}
+		}) {
 				Image(systemName: "wrench").foregroundColor(Color.white)
+					.imageScale(.large)
+					.rotationEffect(.degrees(showServiceScreen ? 90 : 0))
+					.scaleEffect(showServiceScreen ? 1.5 : 1)
+					.padding()
 		})
 			.sheet(isPresented: $showServiceScreen)  {
 				ServiceView(bike: self.bike).environment(\.managedObjectContext, self.moc)

@@ -19,7 +19,7 @@
         <attribute name="dualRebound" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="info" optional="YES" attributeType="String"/>
         <relationship name="bike" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Bike" inverseName="frontSetup" inverseEntity="Bike"/>
-        <relationship name="frontService" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="FrontService" inverseName="service" inverseEntity="FrontService"/>
+        <relationship name="frontService" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="FrontService" inverseName="service" inverseEntity="FrontService"/>
     </entity>
     <entity name="FrontService" representedClassName="FrontService" syncable="YES" codeGenerationType="class">
         <attribute name="fullService" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
