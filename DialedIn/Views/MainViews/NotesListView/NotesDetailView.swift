@@ -18,27 +18,26 @@ struct NotesDetailView: View {
 	@State private var airVolume: Double = 0
 	@State private var rating = 3
 	@State private var noteText = ""
-	@State var textHeight: CGFloat = 150
+	@State private var isFavorite = false
 	
     let note: Notes
 	
-
     var body: some View {
 		
 		VStack{
 			VStack {
 				Text(self.note.date != nil ? "\(self.note.date!, formatter: dateFormatter)" : "")
 					.font(.largeTitle)
-				Text(self.note.bike?.name ?? "Unknown bike")
-					.font(.title)
+//				Text(self.note.bike?.name ?? "Unknown bike")
+//					.font(.title)
+				
+				FavoritesView(favorite: self.$isFavorite)
+				
+				
 				TextView(text: self.$noteText)
 					.frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
-//				TextField(self.note.note ?? "No note", text: self.$noteText)
-
-//					.padding()
-//					.border(Color.orange, width: 1.0)
 				RatingView(rating: self.$rating)
-					.font(.subheadline)
+					.font(.title)
 				Divider()
 				
 		   //Front
@@ -96,9 +95,8 @@ struct NotesDetailView: View {
 			.padding()
 			Spacer()
 			Button(action: {
-				//dismisses the sheet
-//				self.presentationMode.wrappedValue.dismiss()
 				self.updateNote(note: self.note)
+				print("Favorite: \(self.isFavorite)")
 				
 				try? self.moc.save()
 			}) {
@@ -139,9 +137,11 @@ struct NotesDetailView: View {
 	func updateNote(note: Notes) {
 		let updatedNote = self.noteText
 		let updatedRating = self.rating
+		let updatedFavorite = self.isFavorite
 		moc.performAndWait {
 			note.note = updatedNote
 			note.rating = Int16(updatedRating)
+			note.isFavorite = updatedFavorite
 			try? self.moc.save()
 		}
 		print("Updated note: \(updatedNote)")
@@ -150,6 +150,7 @@ struct NotesDetailView: View {
 	func setup() {
 		rating = Int(note.rating)
 		noteText = note.note ?? ""
+		isFavorite = note.isFavorite
 	}
     
 

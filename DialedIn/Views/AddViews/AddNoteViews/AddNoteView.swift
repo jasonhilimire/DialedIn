@@ -48,6 +48,7 @@ struct AddNoteView: View {
 						TextField("Enter Note", text: $note )
 						DatePicker(selection: $date, in: ...Date(), displayedComponents: .date) {
 							Text("Select a date:")
+						
 						}
 						RatingView(rating: $rating)
 					}
@@ -91,6 +92,9 @@ struct AddNoteView: View {
 				}) {
 					SaveButtonView()
 				}
+			}
+			.onTapGesture {
+				UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to:nil, from:nil, for:nil)
 			}
         }
 		
