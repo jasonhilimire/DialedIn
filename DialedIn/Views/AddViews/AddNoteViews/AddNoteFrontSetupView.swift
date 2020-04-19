@@ -12,6 +12,7 @@ struct AddNoteFrontSetupView: View {
     @ObservedObject var front = NoteFrontSetupModel()
     
     @State private var sag = 20
+	let impactLight = UIImpactFeedbackGenerator(style: .light)
     
  //TODO: Configure Booleans
     var body: some View {

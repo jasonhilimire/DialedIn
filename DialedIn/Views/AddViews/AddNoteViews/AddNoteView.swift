@@ -27,6 +27,7 @@ struct AddNoteView: View {
     @State private var note = ""
     @State private var date = Date()
     @State private var rating = 3
+	
     
     var body: some View {
         NavigationView {

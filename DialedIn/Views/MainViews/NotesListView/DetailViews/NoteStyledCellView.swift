@@ -17,13 +17,25 @@ struct NoteStyledCellView: View {
 		NSSortDescriptor(keyPath: \Notes.date, ascending: false)
 	]) var notes: FetchedResults<Notes>
 	
+	@FetchRequest(fetchRequest: Notes.favoritedNotesFetchRequest())
+	var favoriteNotes: FetchedResults<Notes>
+	
+	@Binding var showFavorites: Bool
+	
+//	var fetchRequest: FetchRequest<Notes>
+//	init(filter: Bool, showFavorites: Binding<Bool>) {
+//		fetchRequest = FetchRequest<Notes>(entity: Notes.entity(), sortDescriptors: [], predicate: NSPredicate(format: "isFavorite = %d", filter))
+//		self._showFavorites = showFavorites
+//	}
+	
+//	https://www.hackingwithswift.com/books/ios-swiftui/dynamically-filtering-fetchrequest-with-swiftui
+	
     var body: some View {
-		ForEach(notes, id: \.self) { note in
+		ForEach(notes, id: \.self)	{ note in
 			NavigationLink(destination: NotesDetailView(note: note)){
 				VStack {
 					HStack {
 						Text(note.bike?.name ?? "Unknown Bike")
-							
 							.fontWeight(.thin)
 						Spacer()
 						Text(note.date != nil ? "\(note.date!, formatter: dateFormatter)" : "")
@@ -108,6 +120,7 @@ struct NoteStyledCellView: View {
 		}
 			.onDelete(perform: deleteNotes)
 	}
+	
 	func deleteNotes(at offsets: IndexSet) {
 		for offset in offsets {
 			// find this note in our fetch request
@@ -118,12 +131,14 @@ struct NoteStyledCellView: View {
 		// save the context
 		try? moc.save()
 	}
+	
+
 }
 
 
 
-struct NoteStyledCellView_Previews: PreviewProvider {
-    static var previews: some View {
-        NoteStyledCellView()
-    }
-}
+//struct NoteStyledCellView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        NoteStyledCellView()
+//    }
+//}

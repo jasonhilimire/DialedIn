@@ -44,6 +44,14 @@ extension Notes{
         request.predicate = NSPredicate(format: "", filter)
         return request
     }
+	
+	//
+	static func favoritedNotesFetchRequest() -> NSFetchRequest<Notes> {
+		let request: NSFetchRequest<Notes> = Notes.fetchRequest()
+		request.sortDescriptors = [NSSortDescriptor(keyPath: \Notes.date, ascending: false)]
+		request.predicate = NSPredicate(format: "isFavorite == TRUE")
+		return request
+	}
 
 }
 
