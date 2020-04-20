@@ -40,7 +40,7 @@ struct AppView: View {
                 }
 			
         }
-        .accentColor(.black)
+        .accentColor(Color("TextColor"))
     }
 }
 

@@ -89,7 +89,7 @@ struct BikeDetailView: View {
 				self.showServiceScreen.toggle()
 			}
 		}) {
-				Image(systemName: "wrench").foregroundColor(Color.white)
+				Image(systemName: "wrench").foregroundColor(Color("TextColor"))
 					.imageScale(.large)
 					.rotationEffect(.degrees(showServiceScreen ? 90 : 0))
 					.scaleEffect(showServiceScreen ? 1.5 : 1)

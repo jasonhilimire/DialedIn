@@ -32,10 +32,11 @@ struct BikeListView: View {
 				.onDelete(perform: deleteBikes) // -- Causes error:  Fatal error: Unexpectedly found nil while unwrapping an Optional value: if ServiceViews are shown
 			}
 			.navigationBarTitle("Bikes")
-			.navigationBarItems(leading: EditButton().foregroundColor(Color.white), trailing:
+			.navigationBarItems(leading: EditButton().foregroundColor(Color("TextColor")), trailing:
 				Button(action: {self.showingAddScreen.toggle()
 				}) {
-					Image(systemName: "plus.circle").foregroundColor(Color.white)
+					Image(systemName: "plus.circle").foregroundColor(Color("TextColor"))
+						.font(.title)
 			})
 				.sheet(isPresented: $showingAddScreen)  {
 					AddBikeView().environment(\.managedObjectContext, self.moc)

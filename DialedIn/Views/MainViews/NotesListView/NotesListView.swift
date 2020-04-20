@@ -29,12 +29,12 @@ struct NotesListView: View {
 	// remove the separator
 			.onAppear { UITableView.appearance().separatorStyle = .none }
             .navigationBarTitle("DialedIn")
-                .navigationBarItems(leading: EditButton().foregroundColor(Color.white), trailing:
+                .navigationBarItems(leading: EditButton().foregroundColor(Color("TextColor")), trailing:
                 Button(action: {self.showingAddScreen.toggle()
                 }) {
                     //TODO: DISABLE BUTTON IF BIKE.COUNT IS EMPTY
                     Image(systemName: "gauge.badge.plus")
-						.foregroundColor(Color.white)
+						.foregroundColor(Color("TextColor"))
 						.font(.title)
             })
                 .sheet(isPresented: $showingAddScreen)  {
