@@ -48,16 +48,23 @@ struct NoteStyledCellView: View {
 						VStack {
 							HStack {
 								Text("F")
+								.fontWeight(.thin)
 								Text("\(note.fAirVolume, specifier: "%.1f")")
-							} .padding([.top, .bottom, .trailing]) .font(.title)
+								.fontWeight(.thin)
+							}
+							.padding([.top, .bottom, .trailing]) .font(.title)
 							
 							
 							HStack {
 								Text("R")
+								.fontWeight(.thin)
 								Text("\(note.rAirSpring, specifier: "%.0f")")
-							} .padding([.top, .bottom, .trailing]) .font(.title)
+								.fontWeight(.thin)
+							} .padding([.top, .bottom, .trailing])
+								.font(.title)
 						} 
 						
+						Spacer()
 						VStack(alignment: .leading) {
 							if note.bike?.frontSetup?.dualRebound == true {
 								Text("HSR: \(note.fHSR)")
@@ -77,7 +84,7 @@ struct NoteStyledCellView: View {
 								Text("Sag %: \(note.rSag)")
 						}.font(.subheadline)
 						
-						
+						Spacer()
 						VStack(alignment: .leading) {
 							if note.bike?.frontSetup?.dualCompression == true {
 								Text("HSC: \(note.fHSC)")
@@ -95,7 +102,7 @@ struct NoteStyledCellView: View {
 							}
 								Text("Tokens: \(note.rTokens)")
 						}.font(.subheadline)
-					}
+					} // end HSTack Settings
 				}
 				.padding()
 				.foregroundColor(Color("TextColor"))

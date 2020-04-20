@@ -22,6 +22,7 @@ struct RatingView: View {
     var body: some View {
         HStack {
             Text(label)
+				.fontWeight(.thin)
             ForEach(1..<maximumRating + 1) {number in
                 self.image(for: number)
                     .foregroundColor(number > self.rating ? self.offColor: self.onColor)
