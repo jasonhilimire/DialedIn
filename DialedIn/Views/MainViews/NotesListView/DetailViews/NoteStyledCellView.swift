@@ -51,18 +51,19 @@ struct NoteStyledCellView: View {
 								Text("\(note.fAirVolume, specifier: "%.1f")")
 							} .padding([.top, .bottom, .trailing]) .font(.title)
 							
+							
 							HStack {
 								Text("R")
 								Text("\(note.rAirSpring, specifier: "%.0f")")
 							} .padding([.top, .bottom, .trailing]) .font(.title)
-						}
+						} 
 						
 						VStack(alignment: .leading) {
 							if note.bike?.frontSetup?.dualRebound == true {
 								Text("HSR: \(note.fHSR)")
 								Text("LSR: \(note.fLSR)")
 							} else {
-								Text("F Reb: \(note.fRebound)")
+								Text("Reb: \(note.fRebound)")
 								
 							}
 							Text("Sag %: \(note.fSag)")
@@ -71,7 +72,7 @@ struct NoteStyledCellView: View {
 								Text("HSR: \(note.rHSR)")
 								Text("LSR: \(note.rLSR)")
 							} else {
-								Text("F Reb: \(note.rRebound)")
+								Text("Reb: \(note.rRebound)")
 							}
 								Text("Sag %: \(note.rSag)")
 						}.font(.subheadline)
@@ -82,7 +83,7 @@ struct NoteStyledCellView: View {
 								Text("HSC: \(note.fHSC)")
 								Text("LSC: \(note.fLSC)")
 							} else {
-								Text("F Comp: \(note.fCompression)")
+								Text("Comp: \(note.fCompression)")
 							}
 							Text("Tokens: \(note.fTokens)")
 							Divider()
@@ -90,7 +91,7 @@ struct NoteStyledCellView: View {
 								Text("HSC: \(note.rHSC)")
 								Text("LSC: \(note.rLSC)")
 							} else {
-								Text("R Comp: \(note.rCompression)")
+								Text("Comp: \(note.rCompression)")
 							}
 								Text("Tokens: \(note.rTokens)")
 						}.font(.subheadline)
