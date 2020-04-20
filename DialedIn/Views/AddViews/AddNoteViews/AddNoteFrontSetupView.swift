@@ -49,9 +49,6 @@ struct AddNoteFrontSetupView: View {
                 Stepper(value: $front.lastFReboundSetting, in: 0...25, label: {Text("Rebound: \(self.front.lastFReboundSetting)")})
             }
 		}
-		.onTapGesture {
-			UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to:nil, from:nil, for:nil)
-		}
     }
 	
 }

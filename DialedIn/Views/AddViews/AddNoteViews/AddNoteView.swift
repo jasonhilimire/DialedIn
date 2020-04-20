@@ -94,21 +94,32 @@ struct AddNoteView: View {
 				}
 			}
         }
-			// dismisses keyboard with the slightest scroll- so far best answer to dismissing and easy to implement-- but breaks the sliders :( 
-			.gesture(DragGesture().onChanged{_ in UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)})
+			// dismisses keyboard with the slightest scroll- so far best answer to dismissing and easy to implement-- but breaks the sliders :(
+//			.gesture(DragGesture().onChanged{_ in UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)})
 		
     }
     
     // MARK: - FUNCTIONS -
     
     func saveNote() {
+		var bikes : [Bike] = []
+		let fetchRequest = Bike.selectedBikeFetchRequest(filter: bikeName)
+		
+		do {
+			bikes = try moc.fetch(fetchRequest)
+		} catch let error as NSError {
+			print("Could not fetch. \(error), \(error.userInfo)")
+		}
+		
+		let bike = bikes[0]
+		
+		
+		
         let newNote = Notes(context: self.moc)
         newNote.note = self.note
         newNote.rating = Int16(self.rating)
         newNote.date = self.date
-        
-        newNote.bike = Bike(context: self.moc)
-        newNote.bike?.name = self.bikes[bikeNameIndex].name
+
         newNote.fAirVolume = Double(self.frontSetup.lastFAirSetting)
         newNote.fCompression = self.frontSetup.lastFCompSetting
         newNote.fHSC = self.frontSetup.lastFHSCSetting
@@ -129,17 +140,9 @@ struct AddNoteView: View {
         newNote.rLSR = self.rearSetup.lastRLSRSetting
         newNote.rTokens = self.rearSetup.lastRTokenSetting
         newNote.rSag = self.rearSetup.lastRSagSetting
-        
-        newNote.bike?.frontSetup = Fork(context: self.moc)
-        newNote.bike?.frontSetup?.dualCompression = self.frontSetup.fComp
-        newNote.bike?.frontSetup?.dualRebound = self.frontSetup.fReb
-        
-        newNote.bike?.rearSetup = RearShock(context: self.moc)
-        newNote.bike?.rearSetup?.dualCompression = self.rearSetup.rComp
-        newNote.bike?.rearSetup?.dualRebound = self.rearSetup.rReb
-        newNote.bike?.rearSetup?.isCoil = self.rearSetup.coil
-
-        
+		
+		bike.addToSetupNotes(newNote)
+  
     }
     
     func setup() {
@@ -149,22 +152,7 @@ struct AddNoteView: View {
         
         rearSetup.bikeName = bikeName
         rearSetup.getLastRearSettings()
-		
-        // these shoudl be setup via the model
-        self.frontSetup.fComp = self.bikes[bikeNameIndex].frontSetup?.dualCompression ?? true
-        self.frontSetup.fReb = self.bikes[bikeNameIndex].frontSetup?.dualRebound ?? true
-        
-        self.rearSetup.rComp = self.bikes[bikeNameIndex].rearSetup?.dualCompression ?? true
-        self.rearSetup.rReb = self.bikes[bikeNameIndex].rearSetup?.dualRebound ?? true
-        self.rearSetup.coil = self.bikes[bikeNameIndex].rearSetup?.isCoil ?? false
-        self.rearSetup.hasRear = self.bikes[bikeNameIndex].hasRearShock
 
     }
     
 }
-
-//struct AddNoteView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        AddNoteView()
-//    }
-//}
