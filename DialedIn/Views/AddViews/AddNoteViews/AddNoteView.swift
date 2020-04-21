@@ -91,7 +91,7 @@ struct AddNoteView: View {
 					try? self.moc.save()
 				}) {
 					SaveButtonView()
-				}
+				}.buttonStyle(OrangeButtonStyle())
 			}
         }
 			// dismisses keyboard with the slightest scroll- so far best answer to dismissing and easy to implement-- but breaks the sliders :(

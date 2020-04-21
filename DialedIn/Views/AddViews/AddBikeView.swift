@@ -101,7 +101,7 @@ struct AddBikeView: View {
 					try? self.moc.save()
                     }) {
                         SaveButtonView()
-                        }
+                        }.buttonStyle(OrangeButtonStyle())
                     Spacer()
             }
         }

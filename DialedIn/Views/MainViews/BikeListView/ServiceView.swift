@@ -124,7 +124,7 @@ struct ServiceView: View {
 				}) {
 					// if no toggles disable save button
 					SaveButtonView()
-				}
+				}.buttonStyle(OrangeButtonStyle())
 			}
 		}
 	}

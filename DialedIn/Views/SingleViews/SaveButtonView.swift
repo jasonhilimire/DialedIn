@@ -15,11 +15,7 @@ struct SaveButtonView: View {
                Image(systemName: "checkmark.circle")
                Text("Save")
            }
-               .multilineTextAlignment(.center)
-               .padding().frame(maxWidth: 300)
-               .foregroundColor(Color("TextColor"))
-               .background(Color.green)
-               .cornerRadius(8)
+
     }
 }
 
@@ -27,4 +23,17 @@ struct SaveButtonView_Previews: PreviewProvider {
     static var previews: some View {
         SaveButtonView()
     }
+}
+
+struct OrangeButtonStyle: ButtonStyle {
+	func makeBody(configuration: Self.Configuration) -> some View {
+		configuration.label
+			.multilineTextAlignment(.center)
+			.foregroundColor(Color("TextColor"))
+			.padding().frame(maxWidth: 400)
+			.background(Color.orange)
+//			.background(LinearGradient(gradient: Gradient(colors: [Color.red, Color.orange]), startPoint: .leading, endPoint: .trailing))
+			.cornerRadius(8)
+			.scaleEffect(configuration.isPressed ? 1.0 : 0.9)
+	}
 }

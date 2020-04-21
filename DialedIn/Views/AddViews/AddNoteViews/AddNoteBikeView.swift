@@ -75,7 +75,7 @@ struct AddNoteBikeView: View {
 					try? self.moc.save()
 				}) {
 					SaveButtonView()
-				}
+				}.buttonStyle(OrangeButtonStyle())
 			}
 		}
 	}

@@ -103,7 +103,7 @@ struct NotesDetailView: View {
 				try? self.moc.save()
 			}) {
 				SaveButtonView()
-			}
+			}.buttonStyle(OrangeButtonStyle())
 			.padding()
 			
 		} // end form
