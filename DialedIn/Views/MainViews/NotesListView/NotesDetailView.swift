@@ -120,11 +120,8 @@ struct NotesDetailView: View {
 								}
 							}
 						}
-						
 					}
-					
 				}
-				
 			}
 			.padding()
 			Spacer()
@@ -137,8 +134,6 @@ struct NotesDetailView: View {
 			.padding()
 			
 		} // end form
-			
-	
 			
 		.onAppear(perform: {self.setup()})
 		.onTapGesture {
@@ -177,6 +172,7 @@ struct NotesDetailView: View {
 			try? self.moc.save()
 		}
 		print("Updated note: \(updatedNote)")
+		presentationMode.wrappedValue.dismiss()
 	}
 	
 	func setup() {

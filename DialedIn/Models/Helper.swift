@@ -32,6 +32,7 @@ struct TextView: UIViewRepresentable {
 		myTextView.delegate = context.coordinator
 		
 		myTextView.font = UIFont(name: "HelveticaNeue", size: 15)
+		myTextView.font = UIFont.systemFont(ofSize: 15, weight: UIFont.Weight.thin)
 		myTextView.isScrollEnabled = true
 		myTextView.isEditable = true
 		myTextView.isUserInteractionEnabled = true

@@ -29,6 +29,7 @@ struct BikeListView: View {
 					.padding(5)
 					}
 				}
+
 				.onDelete(perform: deleteBikes) // -- Causes error:  Fatal error: Unexpectedly found nil while unwrapping an Optional value: if ServiceViews are shown
 			}
 			.navigationBarTitle("Bikes")
@@ -46,7 +47,7 @@ struct BikeListView: View {
 	}
 	
 	
-	
+
 	func deleteBikes(at offsets: IndexSet) {
 		for offset in offsets {
 			// find this note in our fetch request
@@ -54,8 +55,8 @@ struct BikeListView: View {
 			// delete it from the context
 			moc.delete(bike)
 		}
-		// save the context
-		try? moc.save()
+			// save the context
+			try? moc.save()
 	}
 }
 
