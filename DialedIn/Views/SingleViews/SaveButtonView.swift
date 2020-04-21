@@ -14,7 +14,8 @@ struct SaveButtonView: View {
          HStack {
                Image(systemName: "checkmark.circle")
                Text("Save")
-           }
+				.fontWeight(.thin)
+			}
 
     }
 }

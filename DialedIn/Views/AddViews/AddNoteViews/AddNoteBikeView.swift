@@ -65,7 +65,7 @@ struct AddNoteBikeView: View {
 					}
 				} // end form
 					.onAppear(perform: {self.setup()})
-					.navigationBarTitle("DialedIn", displayMode: .inline)
+					.navigationBarTitle("Dialed In", displayMode: .inline)
 				
 				Button(action: {
 					//dismisses the sheet

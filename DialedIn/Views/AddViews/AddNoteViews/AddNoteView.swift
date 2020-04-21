@@ -81,7 +81,7 @@ struct AddNoteView: View {
 					}
 				} // end form
 					.onAppear(perform: {self.setup()}) // change to onReceive??
-					.navigationBarTitle("DialedIn", displayMode: .inline)
+					.navigationBarTitle("Dialed In", displayMode: .inline)
 				
 				Button(action: {
 					//dismisses the sheet

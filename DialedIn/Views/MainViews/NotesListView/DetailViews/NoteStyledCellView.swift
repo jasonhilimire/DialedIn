@@ -23,11 +23,10 @@ struct NoteStyledCellView: View {
 				VStack {
 					HStack {
 						Text(note.bike?.name ?? "Unknown Bike")
-							
 							.fontWeight(.thin)
 						Spacer()
 						Text(note.date != nil ? "\(note.date!, formatter: dateFormatter)" : "")
-							.fontWeight(.ultraLight)
+							.fontWeight(.thin)
 						FavoritesView(favorite: .constant(note.isFavorite))
 					}.font(.title)
 					

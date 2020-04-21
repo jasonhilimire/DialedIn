@@ -95,7 +95,7 @@
 		A3A1296F23FB9AC50014EC8A /* NoteRearSetupModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteRearSetupModel.swift; sourceTree = "<group>"; };
 		A3B8B79423F0E66900CE1EF8 /* BikeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeModel.swift; sourceTree = "<group>"; };
 		A3B8B79623F0E9EF00CE1EF8 /* BikePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikePickerView.swift; sourceTree = "<group>"; };
-		A3C16E6423DE9EC4005BFA14 /* DialedIn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DialedIn.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A3C16E6423DE9EC4005BFA14 /* Dialed In.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Dialed In.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3C16E6723DE9EC4005BFA14 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A3C16E6923DE9EC4005BFA14 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		A3C16E6C23DE9EC4005BFA14 /* DialedIn.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DialedIn.xcdatamodel; sourceTree = "<group>"; };
@@ -251,7 +251,7 @@
 		A3C16E6523DE9EC4005BFA14 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				A3C16E6423DE9EC4005BFA14 /* DialedIn.app */,
+				A3C16E6423DE9EC4005BFA14 /* Dialed In.app */,
 				A3C16E7D23DE9EC5005BFA14 /* DialedInTests.xctest */,
 				A3C16E8823DE9EC5005BFA14 /* DialedInUITests.xctest */,
 			);
@@ -380,9 +380,9 @@
 		A3C7A1D52401F85200A741A8 /* AddNoteViews */ = {
 			isa = PBXGroup;
 			children = (
-				A3B8B79623F0E9EF00CE1EF8 /* BikePickerView.swift */,
 				A3DDCC7E23DFF2C900CD1476 /* AddNoteView.swift */,
 				A33F02AE2406201D005A0A8F /* AddNoteBikeView.swift */,
+				A3B8B79623F0E9EF00CE1EF8 /* BikePickerView.swift */,
 				A3C7A1D62401F87D00A741A8 /* AddNoteFrontSetupView.swift */,
 				A3FBA8B224024024001F3885 /* AddNoteRearSetupView.swift */,
 			);
@@ -418,7 +418,7 @@
 			);
 			name = DialedIn;
 			productName = DialedIn;
-			productReference = A3C16E6423DE9EC4005BFA14 /* DialedIn.app */;
+			productReference = A3C16E6423DE9EC4005BFA14 /* Dialed In.app */;
 			productType = "com.apple.product-type.application";
 		};
 		A3C16E7C23DE9EC5005BFA14 /* DialedInTests */ = {
@@ -754,7 +754,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.peanutApps.Dialed;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Dialed In";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -774,7 +774,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.peanutApps.Dialed;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Dialed In";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

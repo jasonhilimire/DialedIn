@@ -28,38 +28,53 @@ struct NotesDetailView: View {
 			VStack {
 				Text(self.note.date != nil ? "\(self.note.date!, formatter: dateFormatter)" : "")
 					.font(.largeTitle)
-//				Text(self.note.bike?.name ?? "Unknown bike")
-//					.font(.title)
+					.fontWeight(.thin)
 				HStack {
 					Text("Favorite Note:")
+						.fontWeight(.thin)
 					FavoritesView(favorite: self.$isFavorite)
 				}
-				
-				
+					.font(.title)
+					
 				TextView(text: self.$noteText)
 					.frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
 				RatingView(rating: self.$rating)
-					.font(.title)
+					.font(.headline)
 				Divider()
 				
 		   //Front
 				Group {
 					VStack {
-						Text("Fork")
-							.font(.headline)
-						Text("Fork PSI: \(self.note.fAirVolume, specifier: "%.1f")")
-						if self.note.bike?.frontSetup?.dualCompression == true {
-							Text("High Speed Compression: \(self.note.fHSC)")
-							Text("Low Speed Compression: \(self.note.fLSC)")
-						} else {
-							Text("Compression: \(self.note.fCompression)")
+						VStack {
+							Text("-- Fork --")
+								.font(.title)
+								.fontWeight(.thin)
 						}
+						Spacer()
 						
-						if self.note.bike?.frontSetup?.dualCompression == true {
-							Text("High Speed Rebound: \(self.note.fHSR)")
-							Text("Low Speed Rebound: \(self.note.fLSR)")
-						} else {
-							Text("Rebound: \(self.note.fRebound)")
+						VStack {
+							Text("Fork PSI: \(self.note.fAirVolume, specifier: "%.1f")").fontWeight(.thin)
+							
+						}
+						Spacer()
+						
+						VStack{
+							if self.note.bike?.frontSetup?.dualCompression == true {
+								Text("High Speed Compression: \(self.note.fHSC)").fontWeight(.thin)
+								Text("Low Speed Compression: \(self.note.fLSC)").fontWeight(.thin)
+							} else {
+								Text("Compression: \(self.note.fCompression)").fontWeight(.thin)
+							}
+						}
+						Spacer()
+						
+						VStack {
+							if self.note.bike?.frontSetup?.dualCompression == true {
+								Text("High Speed Rebound: \(self.note.fHSR)").fontWeight(.thin)
+								Text("Low Speed Rebound: \(self.note.fLSR)").fontWeight(.thin)
+							} else {
+								Text("Rebound: \(self.note.fRebound)").fontWeight(.thin)
+							}
 						}
 					}
 				}
@@ -67,25 +82,42 @@ struct NotesDetailView: View {
 			//Rear
 				Group {
 					VStack {
-						Text("Rear Shock")
-							.font(.headline)
-						if self.note.bike?.hasRearShock == false {
-							Text("Hardtail")
-						} else {
-							Text("Air/Spring: \(self.note.rAirSpring, specifier: "%.0f")")
-							
-							if self.note.bike?.rearSetup?.dualCompression == true {
-								Text("High Speed Compression: \(self.note.rHSC)")
-								Text("Low Speed Compression: \(self.note.rLSC)")
+						VStack {
+							Text("-- Rear Shock --")
+								.font(.title)
+								.fontWeight(.thin)
+						}
+						Spacer()
+						
+						VStack {
+							if self.note.bike?.hasRearShock == false {
+								Text("Hardtail")
+									.font(.title)
+									.fontWeight(.thin)
 							} else {
-								Text("Compression: \(self.note.rCompression)")
-							}
-							
-							if self.note.bike?.rearSetup?.dualRebound == true {
-								Text("High Speed Rebound: \(self.note.rHSR)")
-								Text("Low Speed Rebound: \(self.note.rLSR)")
-							} else {
-								Text("Rebound: \(self.note.rRebound)")
+								VStack{
+									Text("Spring: \(self.note.rAirSpring, specifier: "%.0f")").fontWeight(.thin)
+								}
+								Spacer()
+								
+								VStack{
+									if self.note.bike?.rearSetup?.dualCompression == true {
+										Text("High Speed Compression: \(self.note.rHSC)").fontWeight(.thin)
+										Text("Low Speed Compression: \(self.note.rLSC)").fontWeight(.thin)
+									} else {
+										Text("Compression: \(self.note.rCompression)").fontWeight(.thin)
+									}
+								}
+								Spacer()
+								
+								VStack {
+									if self.note.bike?.rearSetup?.dualRebound == true {
+										Text("High Speed Rebound: \(self.note.rHSR)").fontWeight(.thin)
+										Text("Low Speed Rebound: \(self.note.rLSR)").fontWeight(.thin)
+									} else {
+										Text("Rebound: \(self.note.rRebound)").fontWeight(.thin)
+									}
+								}
 							}
 						}
 						
@@ -98,8 +130,6 @@ struct NotesDetailView: View {
 			Spacer()
 			Button(action: {
 				self.updateNote(note: self.note)
-				print("Favorite: \(self.isFavorite)")
-				
 				try? self.moc.save()
 			}) {
 				SaveButtonView()
