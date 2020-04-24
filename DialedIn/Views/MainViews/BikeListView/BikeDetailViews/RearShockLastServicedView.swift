@@ -27,30 +27,37 @@ struct RearShockLastServicedView: View {
 			} else {
 				HStack {
 					Text("Rear")
-						.fontWeight(.bold)
+						.font(.headline)
+						.fontWeight(.light)
 					Spacer()
 				}
 				.padding(.horizontal)
 				if rear.bike?.rearSetup?.isCoil == false {
 					HStack {
 						Text("Last Air Can Service:")
+						.fontWeight(.thin)
 						Spacer()
 						Text("\(self.rearService.getAirCanDate(bike: self.bikeName), formatter: dateFormatter)")
+						.fontWeight(.thin)
 					}
 					.padding(.horizontal)
 					.font(.footnote)
 					HStack {
 						Text("Last Full Service:")
+						.fontWeight(.thin)
 						Spacer()
 						Text("\(self.rearService.getFullDate(bike: self.bikeName), formatter: dateFormatter)")
+						.fontWeight(.thin)
 					}
 					.padding(.horizontal)
 					.font(.footnote)
 				} else {
 					HStack {
 						Text("Last Full Service:")
+						.fontWeight(.thin)
 						Spacer()
 						Text("\(self.rearService.getFullDate(bike: self.bikeName), formatter: dateFormatter)")
+						.fontWeight(.thin)
 					}
 					.padding(.horizontal)
 					.font(.footnote)

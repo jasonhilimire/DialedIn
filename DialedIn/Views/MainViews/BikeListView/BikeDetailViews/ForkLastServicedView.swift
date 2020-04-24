@@ -23,22 +23,27 @@ struct ForkLastServicedView: View {
 		VStack { // Fork Section
 			HStack {
 				Text("Fork")
-					.fontWeight(.bold)
+					.font(.headline)
+					.fontWeight(.light)
 				Spacer()
 			}
 			.padding([.top, .leading])
 			HStack(alignment: .center) {
 				Text("Lowers Last Serviced:")
+					.fontWeight(.thin)
 				Spacer()
 				Text( "\(self.frontService.getlowersDate(bike: self.bikeName), formatter: dateFormatter)")
+					.fontWeight(.thin)
 				
 			}
 			.padding(.horizontal)
 			.font(.footnote)
 			HStack {
 				Text("Last Full Service:")
+					.fontWeight(.thin)
 				Spacer()
 				Text("\(self.frontService.getFullDate(bike: self.bikeName), formatter: dateFormatter)")
+					.fontWeight(.thin)
 			}
 			.padding(.horizontal)
 			.font(.footnote)

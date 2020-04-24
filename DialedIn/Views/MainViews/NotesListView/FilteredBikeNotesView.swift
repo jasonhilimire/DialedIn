@@ -26,10 +26,13 @@ struct FilteredBikeNotesView: View {
 						HStack{
 							VStack(alignment: .leading){
 								Text("\(note.date!, formatter: dateFormatter)")
-								.font(.callout)
+									.font(.callout)
+									.fontWeight(.light)
+								
 								Text("\(note.wrappedNote)")
-									.lineLimit(1)
 									.font(.caption)
+									.fontWeight(.light)
+									.lineLimit(1)
 								Divider()
 							}
 							.foregroundColor(Color("TextColor"))

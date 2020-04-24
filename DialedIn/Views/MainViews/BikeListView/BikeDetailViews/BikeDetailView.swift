@@ -28,11 +28,10 @@ struct BikeDetailView: View {
     var body: some View {
 		VStack{
 				VStack {
-//					Text(self.bike.name ?? "Unknown Bike")
-//						.font(.largeTitle)
-//						.fontWeight(.bold)
+
 					Text("Info: \(self.bike.bikeNote ?? "")" )
 						.font(.subheadline)
+						.fontWeight(.thin)
 					VStack {
 						Section {
 							ForkLastServicedView(bikeName: $bikeName, fork: self.bike.frontSetup!, bike: self.bike)
@@ -79,6 +78,7 @@ struct BikeDetailView: View {
 			Spacer()
 			Text("Notes")
 				.font(.largeTitle)
+				.fontWeight(.thin)
 			FilteredBikeNotesView(filter: self.bikeName)
 			
 		}

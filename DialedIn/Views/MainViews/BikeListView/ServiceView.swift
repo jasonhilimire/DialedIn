@@ -49,12 +49,6 @@ struct ServiceView: View {
 						}
 						TextField("Service Note", text: $frontServicedNote)
 						
-					} else if frontServicedIndex == 2 {
-						Text("Lowers only Serviced").italic()
-						DatePicker(selection: $fLowersServicedDate, in: ...Date(), displayedComponents: .date) {
-							Text("Date:")
-						}
-						TextField("Service Note", text: $frontServicedNote)
 					}
 					
 				}
@@ -91,6 +85,8 @@ struct ServiceView: View {
 								Text("Date")
 							}
 							Text("Full Service Includes Air Can Service")
+								.font(.callout)
+								.fontWeight(.thin)
 							TextField("Service Note", text: $rearServicedNote)
 							
 						} else if rearServicedIndex == 2 {

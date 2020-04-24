@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "A3C16E6323DE9EC4005BFA14"
-               BuildableName = "DialedIn.app"
+               BuildableName = "Dialed In.app"
                BlueprintName = "DialedIn"
                ReferencedContainer = "container:DialedIn.xcodeproj">
             </BuildableReference>
@@ -65,7 +65,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "A3C16E6323DE9EC4005BFA14"
-            BuildableName = "DialedIn.app"
+            BuildableName = "Dialed In.app"
             BlueprintName = "DialedIn"
             ReferencedContainer = "container:DialedIn.xcodeproj">
          </BuildableReference>
@@ -92,7 +92,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "A3C16E6323DE9EC4005BFA14"
-            BuildableName = "DialedIn.app"
+            BuildableName = "Dialed In.app"
             BlueprintName = "DialedIn"
             ReferencedContainer = "container:DialedIn.xcodeproj">
          </BuildableReference>
