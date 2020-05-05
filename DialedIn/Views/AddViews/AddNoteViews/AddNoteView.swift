@@ -39,13 +39,6 @@ struct AddNoteView: View {
 						} else {
 							BikePickerView(bikeNameIndex: $bikeNameIndex)
 						}
-						
-						// Not sure happy with how this works- no placeholder text so using HSTACK to show Note:, but also return key is actual return and doesnt dismiss keyboard
-//						HStack {
-//							Text("Note:")
-//							TextView(text: $note)
-//						}
-					
 						TextField("Enter Note", text: $note )
 						DatePicker(selection: $date, in: ...Date(), displayedComponents: .date) {
 							Text("Select a date:")

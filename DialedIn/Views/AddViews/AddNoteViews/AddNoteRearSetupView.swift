@@ -22,13 +22,13 @@ struct AddNoteRearSetupView: View {
                     HStack{
                         Text("PSI: \(self.rear.lastRAirSpringSetting, specifier: "%.0f")")
                         Slider(value: $rear.lastRAirSpringSetting, in: 150...350, step: 1.0)
-						/// TODO: Remove the show the PSI setting as 'last PSI' & then determine how to dismiss keyboard
-						//			TextField("", value: $rear.lastRAirSpringSetting, formatter: NumberFormatter()).keyboardType(.numberPad)
+						Stepper(value: $rear.lastRAirSpringSetting   , in: 150...350, step: 1.0, label: {Text("Sag: \(self.rear.lastRAirSpringSetting)")}).labelsHidden()
                        }
                     } else {
                         HStack{
                             Text("Spring: \(self.rear.lastRAirSpringSetting, specifier: "%.0f")")
                             Slider(value: $rear.lastRAirSpringSetting, in: 300...700, step: 25)
+							Stepper(value: $rear.lastRAirSpringSetting   , in: 300...700, step: 25, label: {Text("Sag: \(self.rear.lastRAirSpringSetting)")}).labelsHidden()
                         }
                     }
                 //Sag

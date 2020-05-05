@@ -21,10 +21,8 @@ struct AddNoteFrontSetupView: View {
         HStack{
             Text("PSI: \(front.lastFAirSetting, specifier: "%.1f")")
             Slider(value: $front.lastFAirSetting, in: 45...120, step: 0.5)
-			
-			/// TODO: Remove the show the PSI setting as 'last PSI' & then determine how to dismiss keyboard
-//			Text("PSI")
-//			TextField("", value: $front.lastFAirSetting, formatter: NumberFormatter()).keyboardType(.decimalPad)
+			Stepper(value: $front.lastFAirSetting, in: 45...120, step: 0.5, label: {Text("PSI: \(self.front.lastFAirSetting)")}).labelsHidden()
+
             }
 			
             Stepper(value: $front.lastFSagSetting   , in: 0...40, label: {Text("Sag: \(self.front.lastFSagSetting)")})
