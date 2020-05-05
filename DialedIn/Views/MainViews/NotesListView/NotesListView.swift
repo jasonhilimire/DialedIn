@@ -17,15 +17,25 @@ struct NotesListView: View {
     @Environment(\.managedObjectContext) var moc
 
     @State private var showingAddScreen = false
+	@State private var showFavorites = false
+	
+	
+	/// Create a fetchrequest for ALL notes sorted by date
+	/// Use toggle to enable/disable showing favorites
+	/// pass only favorite notes (sorted by date) into the list
     
     var body: some View {
-
         NavigationView {
-            List{
-				NoteStyledCellView()
-					.padding([.bottom, .top], 10)
-            }
-
+			VStack {
+				Toggle(isOn: $showFavorites) {
+					Text("Show Only Favorites")
+				}.padding()
+				List{
+//					NoteStyledCellView(showFavorites: $showFavorites)
+//						.padding([.bottom, .top], 10)
+					FilteredNoteView(filter: showFavorites)
+				}
+			}
 	// remove the separator
 			.onAppear { UITableView.appearance().separatorStyle = .none }
             .navigationBarTitle("Dialed In")
