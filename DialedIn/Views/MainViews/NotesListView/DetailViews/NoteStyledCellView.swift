@@ -17,18 +17,8 @@ struct NoteStyledCellView: View {
 		NSSortDescriptor(keyPath: \Notes.date, ascending: false)
 	]) var notes: FetchedResults<Notes>
 	
-	@FetchRequest(fetchRequest: Notes.favoritedNotesFetchRequest())
-	var favoriteNotes: FetchedResults<Notes>
-	
-	@Binding var showFavorites: Bool
-	
-//	var fetchRequest: FetchRequest<Notes>
-//	init(filter: Bool, showFavorites: Binding<Bool>) {
-//		fetchRequest = FetchRequest<Notes>(entity: Notes.entity(), sortDescriptors: [], predicate: NSPredicate(format: "isFavorite = %d", filter))
-//		self._showFavorites = showFavorites
-//	}
-	
-//	https://www.hackingwithswift.com/books/ios-swiftui/dynamically-filtering-fetchrequest-with-swiftui
+//	@FetchRequest(fetchRequest: Notes.favoritedNotesFetchRequest())
+//	var favoriteNotes: FetchedResults<Notes>
 	
     var body: some View {
 		ForEach(notes, id: \.self)	{ note in
