@@ -33,10 +33,83 @@ struct ServiceView: View {
 	
 	var body: some View {
 		VStack {
+//			Form{
+//				//MARK:- Front
+//				VStack(alignment: .leading){
+//					Text("Front Service").font(.caption).bold()
+//					Picker("Service Type", selection: $frontServicedIndex) {
+//						ForEach(0..<frontServiced.count) { index in
+//							Text(self.frontServiced[index]).tag(index)
+//						}
+//					}.pickerStyle(SegmentedPickerStyle())
+//					if frontServicedIndex == 1 {
+//						Text("Full Service Includes Lowers Service").italic()
+//						DatePicker(selection: $fFullServicedDate, in: ...Date(), displayedComponents: .date) {
+//							Text("Date:")
+//						}
+//						TextField("Service Note", text: $frontServicedNote)
+//
+//					}
+//
+//				}
+//				//MARK:- Rear
+//				VStack(alignment: .leading){
+//					Text("Rear Service").font(.caption).bold()
+//					if bike.hasRearShock == false {
+//						Text("Hardtail")
+//					} else if bike.rearSetup?.isCoil == true {
+//						Picker("Service Type", selection: $rearServicedIndex) {
+//							ForEach(0..<(rearServiced.count - 1) ) { index in
+//								Text(self.rearServiced[index]).tag(index)
+//							}
+//						}.pickerStyle(SegmentedPickerStyle())
+//
+//						if rearServicedIndex == 1 {
+//
+//							DatePicker(selection: $rFullServicedDate, in: ...Date(), displayedComponents: .date) {
+//								Text("Date")
+//							}
+//							TextField("Service Note", text: $rearServicedNote)
+//						}
+//
+//
+//					} else {
+//						Picker("Service Type", selection: $rearServicedIndex) {
+//							ForEach(0..<rearServiced.count) { index in
+//								Text(self.rearServiced[index]).tag(index)
+//							}
+//						}.pickerStyle(SegmentedPickerStyle())
+//
+//						if rearServicedIndex == 1 {
+//							DatePicker(selection: $rFullServicedDate, in: ...Date(), displayedComponents: .date) {
+//								Text("Date")
+//							}
+//							Text("Full Service Includes Air Can Service")
+//								.font(.callout)
+//								.fontWeight(.thin)
+//							TextField("Service Note", text: $rearServicedNote)
+//
+//						} else if rearServicedIndex == 2 {
+//							DatePicker(selection: $rAirCanServicedDate, in: ...Date(), displayedComponents: .date) {
+//								Text("Date")
+//							}
+//							Text("Air Can only Serviced")
+//							TextField("Service Note", text: $rearServicedNote)
+//						}
+//					}
+//				}
+//
+//			} // end form
+			
+			
 			Form{
+				Section {
+					Text("Shock Service").bold()
+				}
+				
 				//MARK:- Front
-				VStack(alignment: .leading){
-					Text("Front Service").font(.caption).bold()
+				Section(header: Text("Front Service")){
+					
 					Picker("Service Type", selection: $frontServicedIndex) {
 						ForEach(0..<frontServiced.count) { index in
 							Text(self.frontServiced[index]).tag(index)
@@ -45,16 +118,21 @@ struct ServiceView: View {
 					if frontServicedIndex == 1 {
 						Text("Full Service Includes Lowers Service").italic()
 						DatePicker(selection: $fFullServicedDate, in: ...Date(), displayedComponents: .date) {
-							Text("Date:")
+							Text("Select a date")
 						}
 						TextField("Service Note", text: $frontServicedNote)
 						
+					} else if frontServicedIndex == 2 {
+						Text("Lowers only Serviced").italic()
+						DatePicker(selection: $fLowersServicedDate, in: ...Date(), displayedComponents: .date) {
+							Text("Select a date")
+						}
+						TextField("Service Note", text: $frontServicedNote)
 					}
 					
 				}
 				//MARK:- Rear
-				VStack(alignment: .leading){
-					Text("Rear Service").font(.caption).bold()
+				Section(header: Text("Rear Service")){
 					if bike.hasRearShock == false {
 						Text("Hardtail")
 					} else if bike.rearSetup?.isCoil == true {
@@ -67,7 +145,7 @@ struct ServiceView: View {
 						if rearServicedIndex == 1 {
 							
 							DatePicker(selection: $rFullServicedDate, in: ...Date(), displayedComponents: .date) {
-								Text("Date")
+								Text("Select a date")
 							}
 							TextField("Service Note", text: $rearServicedNote)
 						}
@@ -82,29 +160,24 @@ struct ServiceView: View {
 						
 						if rearServicedIndex == 1 {
 							DatePicker(selection: $rFullServicedDate, in: ...Date(), displayedComponents: .date) {
-								Text("Date")
+								Text("Select a date")
 							}
 							Text("Full Service Includes Air Can Service")
-								.font(.callout)
-								.fontWeight(.thin)
 							TextField("Service Note", text: $rearServicedNote)
 							
 						} else if rearServicedIndex == 2 {
 							DatePicker(selection: $rAirCanServicedDate, in: ...Date(), displayedComponents: .date) {
-								Text("Date")
+								Text("Select a date")
 							}
 							Text("Air Can only Serviced")
 							TextField("Service Note", text: $rearServicedNote)
 						}
 					}
 				}
-				
 			} // end form
 				.onAppear(perform: {self.setup()})
-			//				.navigationBarTitle("Service", displayMode: .inline)
 			
-			
-			
+			// if no service toggles disable save button
 			if frontServicedIndex == 0 && rearServicedIndex == 0 {
 				Text("Add a Service as needed")
 			} else {
@@ -115,10 +188,7 @@ struct ServiceView: View {
 					try? self.moc.save()
 					//dismisses the sheet
 					self.presentationMode.wrappedValue.dismiss()
-					
-					
 				}) {
-					// if no toggles disable save button
 					SaveButtonView()
 				}.buttonStyle(OrangeButtonStyle())
 			}
