@@ -18,21 +18,30 @@ struct NotesListView: View {
 
     @State private var showingAddScreen = false
 	@State private var showFavorites = false
+	@State private var pickerChoice = ["All", "Favorites"]
+	@State private var pickerChoiceIndex = 0
+	
 	
     var body: some View {
-        NavigationView {
+		NavigationView {
 			VStack {
-				Toggle(isOn: $showFavorites) {
-					Text("Show Only Favorites")
-					.fontWeight(.thin)
-				}
-					.padding([.leading, .trailing])
-					.padding(.top, 5)
-				
+				Picker("Service Type", selection: $pickerChoiceIndex) {
+					ForEach(0..<pickerChoice.count) { index in
+						Text(self.pickerChoice[index]).tag(index)
+						}
+					}.pickerStyle(SegmentedPickerStyle())
+						.padding([.leading, .trailing])
+						.padding(.top, 5)
+					
 				List{
-					FilteredNoteView(filter: showFavorites)
+					if pickerChoiceIndex == 0 {
+						FilteredNoteView(filter: false)
+					} else if pickerChoiceIndex == 1 {
+						FilteredNoteView(filter: true)
+					}
 				}
 			}
+				
 	// remove the separator
 			.onAppear { UITableView.appearance().separatorStyle = .none }
             .navigationBarTitle("Dialed In")
@@ -50,8 +59,6 @@ struct NotesListView: View {
             }
         }
     }
-    
-    
 }
 
 struct ContentView_Previews: PreviewProvider {
