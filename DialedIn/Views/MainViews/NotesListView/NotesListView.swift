@@ -39,6 +39,11 @@ struct NotesListView: View {
 						.padding([.leading, .trailing])
 						.padding(.top, 5)
 					
+				if initialBikeCreated == false {
+					Text("Please Create a Bike!")
+						.font(.largeTitle)
+						.fontWeight(.thin)
+				}
 				List{
 					if pickerChoiceIndex == 0 {
 						FilteredNoteView(filter: false)
