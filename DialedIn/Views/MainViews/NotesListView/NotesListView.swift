@@ -24,9 +24,7 @@ struct NotesListView: View {
     @State private var showingAddScreen = false
 	@State private var showFavorites = false
 	@State private var pickerChoice = ["All", "Favorites"]
-	@State private var pickerChoiceIndex = 0
-	@State private var initialBikeCreated = false
-	
+	@State private var pickerChoiceIndex = 0	
 	
     var body: some View {
 		NavigationView {
@@ -39,7 +37,7 @@ struct NotesListView: View {
 						.padding([.leading, .trailing])
 						.padding(.top, 5)
 					
-				if initialBikeCreated == false {
+				if bikes.count == 0 {
 					Text("Please Create a Bike!")
 						.font(.largeTitle)
 						.fontWeight(.thin)
@@ -55,28 +53,24 @@ struct NotesListView: View {
 				
 	// remove the separator
 			.onAppear { UITableView.appearance().separatorStyle = .none }
-			.onAppear(perform: {self.setBikeCreated()})
             .navigationBarTitle("Dialed In")
-                .navigationBarItems(trailing:
+                .navigationBarItems(
+					trailing:
                 Button(action: {self.showingAddScreen.toggle()
 					// leading: EditButton().foregroundColor(Color("TextColor")),  this is for when can figure out onDelete in FiltereNoteView
                 }) {
-                    //TODO: DISABLE BUTTON IF BIKE.COUNT IS EMPTY
+					// only show button if we have a bike
+					if bikes.count >= 1 {
                     Image(systemName: "gauge.badge.plus")
 						.foregroundColor(Color("TextColor"))
 						.font(.title)
+					}
             })
                 .sheet(isPresented: $showingAddScreen)  {
                     AddNoteView().environment(\.managedObjectContext, self.moc)
-			}.disabled(!initialBikeCreated)
+			}
         }
     }
-	
-	func setBikeCreated(){
-		if bikes.count > 0 {
-			initialBikeCreated = true
-		}
-	}
 }
 
 
