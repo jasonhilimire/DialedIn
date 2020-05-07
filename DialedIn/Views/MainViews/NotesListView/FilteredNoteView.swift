@@ -52,7 +52,9 @@ struct FilteredNoteView: View {
 									Text("\(note.fAirVolume, specifier: "%.1f")")
 										.fontWeight(.thin)
 								}
-								.padding([.top, .bottom, .trailing]) .font(.title)
+								.lineLimit(1)
+								.padding([.top, .bottom, .trailing])
+								.font(.title)
 								
 								
 								HStack {
@@ -60,9 +62,13 @@ struct FilteredNoteView: View {
 										.fontWeight(.thin)
 									Text("\(note.rAirSpring, specifier: "%.0f")")
 										.fontWeight(.thin)
-								} .padding([.top, .bottom, .trailing])
+								}
+								.lineLimit(1)
+								.padding([.top, .bottom, .trailing])
 									.font(.title)
 							}
+								// TODO: the width shouldnt be fixed, but if you have 5 characters its being truncated
+							.frame(width: 110, alignment: .leading)
 							
 							Spacer()
 							VStack(alignment: .leading) {

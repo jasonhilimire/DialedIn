@@ -49,9 +49,15 @@ struct NotesDetailView: View {
 				Group {
 					VStack {
 						VStack {
-							Text("-- Fork --")
-								.font(.title)
-								.fontWeight(.thin)
+							HStack {
+								Image("bicycle-fork")
+									.resizable()
+									.frame(width: 50, height: 50)
+									.scaledToFit()
+								Text("Fork Details")
+									.font(.title)
+									.fontWeight(.thin)
+							}
 						}
 						Spacer()
 						
@@ -86,9 +92,15 @@ struct NotesDetailView: View {
 				Group {
 					VStack {
 						VStack {
-							Text("-- Rear Shock --")
-								.font(.title)
-								.fontWeight(.thin)
+							HStack {
+								Image("shock-absorber")
+									.resizable()
+									.frame(width: 50, height: 50)
+									.scaledToFit()
+								Text("Rear Shock Details")
+									.font(.title)
+									.fontWeight(.thin)
+							}
 						}
 						Spacer()
 						
