@@ -20,14 +20,16 @@ struct ForkLastServicedView: View {
 	
 	
     var body: some View {
-		VStack { // Fork Section
+		VStack(alignment: .leading) { // Fork Section
 			HStack {
 				Text("Fork")
 					.font(.headline)
 					.fontWeight(.light)
 				Spacer()
+				Text("\(self.fork.info ?? "")")
 			}
-			.padding([.top, .leading])
+			.padding([.top, .leading, .trailing])
+			
 			HStack(alignment: .center) {
 				Text("Lowers Last Serviced:")
 					.fontWeight(.thin)
@@ -38,12 +40,20 @@ struct ForkLastServicedView: View {
 			}
 			.padding(.horizontal)
 			.font(.footnote)
+			
 			HStack {
 				Text("Last Full Service:")
 					.fontWeight(.thin)
 				Spacer()
 				Text("\(self.frontService.getFullDate(bike: self.bikeName), formatter: dateFormatter)")
 					.fontWeight(.thin)
+			}
+			.padding(.horizontal)
+			.font(.footnote)
+			
+			HStack {
+				Text("\(self.frontService.getFrontServiceNote(bike: self.bikeName))")
+				.fontWeight(.thin)
 			}
 			.padding(.horizontal)
 			.font(.footnote)

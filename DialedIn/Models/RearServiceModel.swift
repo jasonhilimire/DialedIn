@@ -43,6 +43,12 @@ class RearServiceModel: ObservableObject {
 		return filteredService.last?.fullService ?? Date()
 	}
 	
+	func getRearServiceNote(bike: String) -> String {
+		let filteredService = getRearServices(filter: bike).filter { bikes in
+			bikes.service?.bike?.name == bike
+		}
+		return filteredService.last?.serviceNote ?? ""
+	}
 	
 	////
 	

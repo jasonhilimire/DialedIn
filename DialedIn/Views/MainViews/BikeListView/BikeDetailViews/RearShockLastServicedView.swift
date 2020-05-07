@@ -18,7 +18,7 @@ struct RearShockLastServicedView: View {
 	@Binding var bikeName: String
 	
     var body: some View {
-		VStack { // Rear Section
+		VStack (alignment: .leading) { // Rear Section
 			if rear.bike?.hasRearShock == false {
 				HStack {
 					Text("")
@@ -30,6 +30,7 @@ struct RearShockLastServicedView: View {
 						.font(.headline)
 						.fontWeight(.light)
 					Spacer()
+					Text("\(self.rear.info ?? "")")
 				}
 				.padding(.horizontal)
 				if rear.bike?.rearSetup?.isCoil == false {
@@ -42,6 +43,7 @@ struct RearShockLastServicedView: View {
 					}
 					.padding(.horizontal)
 					.font(.footnote)
+					
 					HStack {
 						Text("Last Full Service:")
 						.fontWeight(.thin)
@@ -51,6 +53,14 @@ struct RearShockLastServicedView: View {
 					}
 					.padding(.horizontal)
 					.font(.footnote)
+					
+					HStack {
+						Text("\(self.rearService.getRearServiceNote(bike: self.bikeName))")
+						.fontWeight(.thin)
+					}
+					.padding(.horizontal)
+					.font(.footnote)
+					
 				} else {
 					HStack {
 						Text("Last Full Service:")
@@ -58,6 +68,13 @@ struct RearShockLastServicedView: View {
 						Spacer()
 						Text("\(self.rearService.getFullDate(bike: self.bikeName), formatter: dateFormatter)")
 						.fontWeight(.thin)
+					}
+					.padding(.horizontal)
+					.font(.footnote)
+					
+					HStack {
+						Text("\(self.rearService.getRearServiceNote(bike: self.bikeName))")
+							.fontWeight(.thin)
 					}
 					.padding(.horizontal)
 					.font(.footnote)

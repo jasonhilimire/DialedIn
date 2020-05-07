@@ -44,6 +44,12 @@ class FrontServiceModel: ObservableObject {
 		return filteredService.last?.fullService ?? Date()
 	}
 	
+	func getFrontServiceNote(bike: String) -> String {
+		let filteredService = getFrontServices(filter: bike).filter { bikes in
+			bikes.service?.bike?.name == bike
+		}
+		return filteredService.last?.serviceNote ?? ""
+	}
 	
 	////
 	
