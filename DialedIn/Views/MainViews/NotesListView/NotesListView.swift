@@ -15,11 +15,17 @@ struct NotesListView: View {
     
        // Create the MOC
     @Environment(\.managedObjectContext) var moc
+	
+	// create a Fetch request for Bike
+	@FetchRequest(entity: Bike.entity(), sortDescriptors: [
+		NSSortDescriptor(keyPath: \Bike.name, ascending: true)
+	]) var bikes: FetchedResults<Bike>
 
     @State private var showingAddScreen = false
 	@State private var showFavorites = false
 	@State private var pickerChoice = ["All", "Favorites"]
 	@State private var pickerChoiceIndex = 0
+	@State private var initialBikeCreated = false
 	
 	
     var body: some View {
@@ -44,6 +50,7 @@ struct NotesListView: View {
 				
 	// remove the separator
 			.onAppear { UITableView.appearance().separatorStyle = .none }
+			.onAppear(perform: {self.setBikeCreated()})
             .navigationBarTitle("Dialed In")
                 .navigationBarItems(trailing:
                 Button(action: {self.showingAddScreen.toggle()
@@ -56,10 +63,18 @@ struct NotesListView: View {
             })
                 .sheet(isPresented: $showingAddScreen)  {
                     AddNoteView().environment(\.managedObjectContext, self.moc)
-            }
+			}.disabled(!initialBikeCreated)
         }
     }
+	
+	func setBikeCreated(){
+		if bikes.count > 0 {
+			initialBikeCreated = true
+		}
+	}
 }
+
+
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {

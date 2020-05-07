@@ -40,7 +40,7 @@ struct AddBikeView: View {
                     Section(header: Text("Bike Details")){
                         TextField("Bike Name", text: $bikeName)
                         TextField("Note", text: $bikeNote)
-                        Toggle(isOn: $setDefault.animation(), label: {Text("Set as Default Bike?")})
+//                        Toggle(isOn: $setDefault.animation(), label: {Text("Set as Default Bike?")})
                     }
                     
                     Section(header: Text("Fork Details")){
