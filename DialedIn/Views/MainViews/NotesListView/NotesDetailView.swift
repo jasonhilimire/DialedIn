@@ -26,16 +26,19 @@ struct NotesDetailView: View {
 		
 		VStack{
 			VStack {
-				Text(self.note.date != nil ? "\(self.note.date!, formatter: dateFormatter)" : "")
-					.font(.largeTitle)
-					.fontWeight(.thin)
 				HStack {
-					Text("Favorite Note:")
-						.fontWeight(.thin)
-					FavoritesView(favorite: self.$isFavorite)
-				}
+				Text(self.note.date != nil ? "\(self.note.date!, formatter: dateFormatter)" : "")
 					.font(.title)
-					
+					.fontWeight(.thin)
+					Spacer()
+				HStack {
+//					Text("Favorite:")
+//						.fontWeight(.thin)
+					FavoritesView(favorite: self.$isFavorite)
+					}
+					.font(.title)
+				}
+				
 				TextView(text: self.$noteText)
 					.frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
 				RatingView(rating: self.$rating)
@@ -136,6 +139,7 @@ struct NotesDetailView: View {
 		} // end form
 			
 		.onAppear(perform: {self.setup()})
+		.onDisappear(perform: {self.updateNote(note: self.note)})
 		.onTapGesture {
 			UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to:nil, from:nil, for:nil)
 		}
