@@ -95,13 +95,34 @@ struct BikeDetailView: View {
 					.scaleEffect(showServiceScreen ? 1.5 : 1)
 					.padding()
 		})
-			.sheet(isPresented: $showServiceScreen)  {
-				ServiceView(bike: self.bike).environment(\.managedObjectContext, self.moc)
-		}
+			
+//			.alert(isPresented: $showingDeleteAlert) {
+//				Alert(title: Text("Delete Bike"), message: Text("""
+//Are you sure!!!?
+//This will delete ALL notes related to this bike
+//"""), primaryButton: .destructive(Text("Delete")) {
+//					self.deleteBike()
+//					}, secondaryButton: .cancel()
+//				)
+//		}
+//		.navigationBarItems(trailing: Button(action: {
+//			self.showingDeleteAlert = true
+//		}) {
+//			Image(systemName: "trash")
+//		})
+//			.sheet(isPresented: $showServiceScreen)  {
+//				ServiceView(bike: self.bike).environment(\.managedObjectContext, self.moc)
+//		}
     }
 	
 	func doStuff() {
 		self.showingNotesView.toggle()
+	}
+	
+	func deleteBike(){
+		moc.delete(self.bike)
+		try? self.moc.save()
+		presentationMode.wrappedValue.dismiss()
 	}
 }
 

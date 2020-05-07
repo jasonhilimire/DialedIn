@@ -124,7 +124,9 @@ struct ServiceView: View {
 				}.buttonStyle(OrangeButtonStyle())
 			}
 		}
+
 	}
+
 	
 	//MARK:- Functions
 	func setup() {

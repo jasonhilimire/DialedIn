@@ -152,7 +152,7 @@ struct NotesDetailView: View {
 			
 		.onAppear(perform: {self.setup()})
 		.onDisappear(perform: {self.updateNote(note: self.note)})
-		.onTapGesture {
+		.onTapGesture { // dismiss keyboard
 			UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to:nil, from:nil, for:nil)
 		}
         .navigationBarTitle(Text(note.bike?.name ?? "Unknown Note"), displayMode: .inline)

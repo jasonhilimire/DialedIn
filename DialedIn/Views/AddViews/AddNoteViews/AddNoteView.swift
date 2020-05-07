@@ -31,6 +31,7 @@ struct AddNoteView: View {
     
     var body: some View {
         NavigationView {
+			
 			VStack {
 				Form{
 					Section(header: Text("Ride Details")){
@@ -90,7 +91,7 @@ struct AddNoteView: View {
         }
 			// dismisses keyboard with the slightest scroll- so far best answer to dismissing and easy to implement-- but breaks the sliders :(
 //			.gesture(DragGesture().onChanged{_ in UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)})
-		
+
     }
     
     // MARK: - FUNCTIONS -
