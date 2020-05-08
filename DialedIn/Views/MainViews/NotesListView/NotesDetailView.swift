@@ -13,12 +13,15 @@ struct NotesDetailView: View {
     
     @Environment(\.managedObjectContext) var moc
     @Environment(\.presentationMode) var presentationMode
+	@ObservedObject var keyboard = KeyboardObserver()
+	
     @State private var showingDeleteAlert = false
 	
 	@State private var airVolume: Double = 0
 	@State private var rating = 3
 	@State private var noteText = ""
 	@State private var isFavorite = false
+	
 	
     let note: Notes
 	
@@ -161,9 +164,8 @@ struct NotesDetailView: View {
 			
 		.onAppear(perform: {self.setup()})
 		.onDisappear(perform: {self.updateNote(note: self.note)})
-		.onTapGesture { // dismiss keyboard
-			UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to:nil, from:nil, for:nil)
-		}
+			// Dismisses the keyboard
+		.gesture(tap, including: keyboard.keyBoardShown ? .all : .none)
         .navigationBarTitle(Text(note.bike?.name ?? "Unknown Note"), displayMode: .inline)
         .alert(isPresented: $showingDeleteAlert) {
             Alert(title: Text("Delete Note"), message: Text("Are you sure?"), primaryButton: .destructive(Text("Delete")) {

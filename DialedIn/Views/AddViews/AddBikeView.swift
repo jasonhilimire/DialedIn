@@ -12,6 +12,8 @@ struct AddBikeView: View {
     // Create the MOC
     @Environment(\.managedObjectContext) var moc
     @Environment(\.presentationMode) var presentationMode
+	
+	@ObservedObject var keyboard = KeyboardObserver()
     
     @State private var bikeName = ""
     @State private var bikeNote = ""
@@ -38,22 +40,31 @@ struct AddBikeView: View {
             VStack {
                 Form {
                     Section(header: Text("Bike Details")){
-                        TextField("Bike Name", text: $bikeName)
-                        TextField("Note", text: $bikeNote)
+						HStack {
+							Text("Bike Name:").fontWeight(.thin)
+							TextView(text: $bikeName).cornerRadius(8)
+						}
+						HStack {
+							Text("Note:").fontWeight(.thin)
+							TextView(text: $bikeNote).cornerRadius(8)
+						}
 //                        Toggle(isOn: $setDefault.animation(), label: {Text("Set as Default Bike?")})
                     }
                     
                     Section(header: Text("Fork Details")){
-                        TextField("Info", text: $forkInfo)
-                        Toggle(isOn: $forkDualReboundToggle.animation(), label: {Text("Dual Rebound?")})
-                        Toggle(isOn: $forkDualCompToggle.animation(), label: {Text("Dual Compression?")})
+						HStack{
+							Text("Fork Info:").fontWeight(.thin)
+							TextView(text: $forkInfo).cornerRadius(8)
+						}
+                        Toggle(isOn: $forkDualReboundToggle.animation(), label: {Text("Dual Rebound?").fontWeight(.thin)})
+                        Toggle(isOn: $forkDualCompToggle.animation(), label: {Text("Dual Compression?").fontWeight(.thin)})
                         
                         DatePicker(selection: $lastLowerServiceDate, in: ...Date(), displayedComponents: .date) {
-                        Text("Last Lower Service")
+                        Text("Last Lower Service").fontWeight(.thin)
                         }
                         
                         DatePicker(selection: $lastFullForkServiceDate, in: ...Date(), displayedComponents: .date) {
-                        Text("Last Full Service")
+                        Text("Last Full Service").fontWeight(.thin)
                         }
                     }
                     
@@ -66,29 +77,36 @@ struct AddBikeView: View {
                         
                         // Display Form based on rear setup from Picker
                         if rearSetupIndex == 0 {
-                            Text("No Rear Suspension")
+                            Text("No Rear Suspension").fontWeight(.thin)
                             
                         } else if rearSetupIndex == 1 {
-                            TextField("Info", text: $rearInfo)
-                            Toggle(isOn: $rearDualReboundToggle.animation(), label: {Text("Dual Rebound?")})
+							HStack {
+								Text("Rear Info:").fontWeight(.thin)
+								TextView(text: $rearInfo).cornerRadius(8)
+							}
+							
+                            Toggle(isOn: $rearDualReboundToggle.animation(), label: {Text("Dual Rebound?").fontWeight(.thin)})
 
-                            Toggle(isOn: $rearDualCompToggle.animation(), label: {Text("Dual Compression?")})
+                            Toggle(isOn: $rearDualCompToggle.animation(), label: {Text("Dual Compression?").fontWeight(.thin)})
 
                             DatePicker(selection: $lastAirCanServiceDate, in: ...Date(), displayedComponents: .date) {
-                            Text("Last Air Can Service")
+								Text("Last Air Can Service").fontWeight(.thin)
                             }
                             
                             DatePicker(selection: $lastRearFullServiceDate, in: ...Date(), displayedComponents: .date) {
-                            Text("Last Rear Full Service")
+                            Text("Last Rear Full Service").fontWeight(.thin)
                             }
                         } else if rearSetupIndex == 2 {
-                            TextField("Info", text: $rearInfo)
-                            Toggle(isOn: $rearDualReboundToggle.animation(), label: {Text("Dual Rebound?")})
+							HStack {
+								Text("Rear Info:").fontWeight(.thin)
+								TextView(text: $rearInfo).cornerRadius(8)
+							}
+                            Toggle(isOn: $rearDualReboundToggle.animation(), label: {Text("Dual Rebound?").fontWeight(.thin)})
 
-                            Toggle(isOn: $rearDualCompToggle.animation(), label: {Text("Dual Compression?")})
+                            Toggle(isOn: $rearDualCompToggle.animation(), label: {Text("Dual Compression?").fontWeight(.thin)})
 
                             DatePicker(selection: $lastRearFullServiceDate, in: ...Date(), displayedComponents: .date) {
-                            Text("Last Rear Full Service")
+                            Text("Last Rear Full Service").fontWeight(.thin)
                             }
                         }
                     }
@@ -106,7 +124,8 @@ struct AddBikeView: View {
             }
         }
 ////			// dismisses keyboard
-		
+			// Dismisses the keyboard
+			.gesture(tap, including: keyboard.keyBoardShown ? .all : .none)
     }
 	
 	func saveNewBike() {

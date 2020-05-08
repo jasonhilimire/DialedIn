@@ -20,6 +20,7 @@ struct AddNoteView: View {
     
     @ObservedObject var frontSetup = NoteFrontSetupModel()
     @ObservedObject var rearSetup = NoteRearSetupModel()
+	@ObservedObject var keyboard = KeyboardObserver()
 
     @State private var createdInitialBike = false
     @State private var bikeNameIndex = 0
@@ -101,8 +102,8 @@ struct AddNoteView: View {
 				}.buttonStyle(OrangeButtonStyle())
 			}
         }
-			// dismisses keyboard with the slightest scroll- so far best answer to dismissing and easy to implement-- but breaks the sliders :(
-//			.gesture(DragGesture().onChanged{_ in UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)})
+			// Dismisses the keyboard
+		.gesture(tap, including: keyboard.keyBoardShown ? .all : .none)
 
     }
     

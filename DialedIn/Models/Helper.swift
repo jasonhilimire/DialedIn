@@ -64,6 +64,12 @@ struct TextView: UIViewRepresentable {
 	}
 }
 
+// tapGesture that dismisses the keyboard
+var tap: some Gesture {
+	TapGesture(count: 1)
+		.onEnded { _ in UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to:nil, from:nil, for:nil) }
+}
+
 
 
 

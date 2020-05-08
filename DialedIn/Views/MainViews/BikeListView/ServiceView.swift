@@ -15,6 +15,7 @@ struct ServiceView: View {
 	
 	@ObservedObject var frontService = FrontServiceModel()
 	@ObservedObject var rearService = RearServiceModel()
+	@ObservedObject var keyboard = KeyboardObserver()
 	
 	@State private var bikeName = ""
 	@State private var fFullServicedDate = Date()
@@ -137,6 +138,8 @@ struct ServiceView: View {
 				}.buttonStyle(OrangeButtonStyle())
 			}
 		}.padding(.top)
+			// Dismisses the keyboard
+			.gesture(tap, including: keyboard.keyBoardShown ? .all : .none)
 
 	}
 
