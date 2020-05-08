@@ -26,8 +26,9 @@ struct AddNoteView: View {
     @State var bikeName = ""
     @State private var note = ""
     @State private var date = Date()
-    @State private var rating = 3
-	
+    @State private var rating = 0
+	@State private var isFavorite = false
+	@State private var toggleNoteDetail = false
     
     var body: some View {
         NavigationView {
@@ -40,12 +41,21 @@ struct AddNoteView: View {
 						} else {
 							BikePickerView(bikeNameIndex: $bikeNameIndex)
 						}
-						TextField("Enter Note", text: $note )
 						DatePicker(selection: $date, in: ...Date(), displayedComponents: .date) {
 							Text("Select a date:")
-						
 						}
-						RatingView(rating: $rating)
+						Toggle(isOn: $toggleNoteDetail.animation(), label: {Text("Enter Note Details")})
+						if toggleNoteDetail == true {
+//							TextField("Enter Note", text: $note )
+							TextView(text: self.$note)
+								.frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
+							HStack {
+								RatingView(rating: $rating)
+								Spacer()
+								Text("Favorite:")
+								FavoritesView(favorite: self.$isFavorite)
+							}
+						}
 					}
 					
 					// MARK: - FRONT SETUP -
@@ -114,6 +124,7 @@ struct AddNoteView: View {
         newNote.note = self.note
         newNote.rating = Int16(self.rating)
         newNote.date = self.date
+		newNote.isFavorite = self.isFavorite
 
         newNote.fAirVolume = Double(self.frontSetup.lastFAirSetting)
         newNote.fCompression = self.frontSetup.lastFCompSetting
