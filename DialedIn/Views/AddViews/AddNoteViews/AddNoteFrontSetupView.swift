@@ -19,33 +19,33 @@ struct AddNoteFrontSetupView: View {
         VStack{
               // AirPressure
         HStack{
-            Text("PSI: \(front.lastFAirSetting, specifier: "%.1f")")
+            Text("PSI: \(front.lastFAirSetting, specifier: "%.1f")").fontWeight(.thin)
             Slider(value: $front.lastFAirSetting, in: 45...120, step: 0.5)
-			Stepper(value: $front.lastFAirSetting, in: 45...120, step: 0.5, label: {Text("PSI: \(self.front.lastFAirSetting)")}).labelsHidden()
+			Stepper(value: $front.lastFAirSetting, in: 45...120, step: 0.5, label: {Text("PSI: \(self.front.lastFAirSetting)").fontWeight(.thin)}).labelsHidden()
 
             }
 			
-            Stepper(value: $front.lastFSagSetting   , in: 0...40, label: {Text("Sag: \(self.front.lastFSagSetting)")})
+            Stepper(value: $front.lastFSagSetting   , in: 0...40, label: {Text("Sag %/mm: \(self.front.lastFSagSetting)").fontWeight(.thin)})
         
             // Tokens
-            Stepper(value: $front.lastFTokenSetting   , in: 0...6, label: {Text("Tokens: \(self.front.lastFTokenSetting)")})
+            Stepper(value: $front.lastFTokenSetting   , in: 0...6, label: {Text("Tokens: \(self.front.lastFTokenSetting)").fontWeight(.thin)})
 
             
             //Compression
             if front.fComp == true {
-                Stepper(value: $front.lastFHSCSetting, in: 0...25, label: {Text("High Sp Comp: \(self.front.lastFHSCSetting)")})
-                Stepper(value: $front.lastFLSCSetting, in: 0...25, label: {Text("Low Sp Comp: \(self.front.lastFLSCSetting)")})
+                Stepper(value: $front.lastFHSCSetting, in: 0...25, label: {Text("High Sp Comp: \(self.front.lastFHSCSetting)").fontWeight(.thin)})
+                Stepper(value: $front.lastFLSCSetting, in: 0...25, label: {Text("Low Sp Comp: \(self.front.lastFLSCSetting)").fontWeight(.thin)})
             } else {
-                Stepper(value: $front.lastFCompSetting, in: 0...25, label: {Text("Compression: \(self.front.lastFCompSetting)")})
+                Stepper(value: $front.lastFCompSetting, in: 0...25, label: {Text("Compression: \(self.front.lastFCompSetting)").fontWeight(.thin)})
             }
 
             // Rebound
 
             if front.fReb == true {
-                Stepper(value: $front.lastFHSRSetting, in: 0...25, label: {Text("High Sp Rebound: \(self.front.lastFHSRSetting)")})
-                Stepper(value: $front.lastFLSRSetting, in: 0...25, label: {Text("Low Sp Rebound: \(self.front.lastFLSRSetting)")})
+                Stepper(value: $front.lastFHSRSetting, in: 0...25, label: {Text("High Sp Rebound: \(self.front.lastFHSRSetting)").fontWeight(.thin)})
+                Stepper(value: $front.lastFLSRSetting, in: 0...25, label: {Text("Low Sp Rebound: \(self.front.lastFLSRSetting)").fontWeight(.thin)})
             } else {
-                Stepper(value: $front.lastFReboundSetting, in: 0...25, label: {Text("Rebound: \(self.front.lastFReboundSetting)")})
+                Stepper(value: $front.lastFReboundSetting, in: 0...25, label: {Text("Rebound: \(self.front.lastFReboundSetting)").fontWeight(.thin)})
             }
 		}
     }

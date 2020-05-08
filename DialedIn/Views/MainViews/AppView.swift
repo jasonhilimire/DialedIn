@@ -36,7 +36,7 @@ struct AppView: View {
             BikeListView()
                 .tabItem {
                     Image(systemName: "gear")
-                    Text("Bike")
+                    Text("Bikes")
                 }
 			
         }

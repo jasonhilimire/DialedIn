@@ -79,7 +79,7 @@ struct FilteredNoteView: View {
 									Text("Reb: \(note.fRebound)")
 									
 								}
-								Text("Sag %: \(note.fSag)")
+								Text("Sag: \(note.fSag)")
 								Divider()
 								if note.bike?.rearSetup?.dualRebound == true {
 									Text("HSR: \(note.rHSR)")
@@ -87,7 +87,7 @@ struct FilteredNoteView: View {
 								} else {
 									Text("Reb: \(note.rRebound)")
 								}
-								Text("Sag %: \(note.rSag)")
+								Text("Sag: \(note.rSag)")
 							}.font(.subheadline)
 							
 							Spacer()

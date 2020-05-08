@@ -95,6 +95,9 @@ struct BikeDetailView: View {
 					.scaleEffect(showServiceScreen ? 1.5 : 1)
 					.padding()
 		})
+			.sheet(isPresented: $showServiceScreen)  {
+				ServiceView(bike: self.bike).environment(\.managedObjectContext, self.moc)
+		}
 			
 //			.alert(isPresented: $showingDeleteAlert) {
 //				Alert(title: Text("Delete Bike"), message: Text("""
@@ -110,9 +113,7 @@ struct BikeDetailView: View {
 //		}) {
 //			Image(systemName: "trash")
 //		})
-//			.sheet(isPresented: $showServiceScreen)  {
-//				ServiceView(bike: self.bike).environment(\.managedObjectContext, self.moc)
-//		}
+			
     }
 	
 	func doStuff() {

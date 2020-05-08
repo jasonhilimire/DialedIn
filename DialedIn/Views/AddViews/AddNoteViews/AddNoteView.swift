@@ -38,21 +38,23 @@ struct AddNoteView: View {
 					Section(header: Text("Ride Details")){
 						if bikes.count == 1 {
 							Text("\(self.bikes[bikeNameIndex].name!)")
+							.fontWeight(.thin)
 						} else {
 							BikePickerView(bikeNameIndex: $bikeNameIndex)
 						}
 						DatePicker(selection: $date, in: ...Date(), displayedComponents: .date) {
 							Text("Select a date:")
+							.fontWeight(.thin)
 						}
-						Toggle(isOn: $toggleNoteDetail.animation(), label: {Text("Enter Note Details")})
+						Toggle(isOn: $toggleNoteDetail.animation(), label: {Text("Enter Note Details").fontWeight(.thin)})
 						if toggleNoteDetail == true {
-//							TextField("Enter Note", text: $note )
 							TextView(text: self.$note)
 								.frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
+								.cornerRadius(8)
 							HStack {
 								RatingView(rating: $rating)
 								Spacer()
-								Text("Favorite:")
+								Text("Favorite:").fontWeight(.thin)
 								FavoritesView(favorite: self.$isFavorite)
 							}
 						}

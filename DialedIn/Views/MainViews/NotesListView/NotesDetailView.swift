@@ -41,6 +41,7 @@ struct NotesDetailView: View {
 				
 				TextView(text: self.$noteText)
 					.frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
+					.cornerRadius(8)
 				RatingView(rating: self.$rating)
 					.font(.headline)
 				Divider()
@@ -62,7 +63,11 @@ struct NotesDetailView: View {
 						Spacer()
 						
 						VStack {
-							Text("Fork PSI: \(self.note.fAirVolume, specifier: "%.1f")").fontWeight(.thin)
+							HStack {
+								Text("Fork PSI: \(self.note.fAirVolume, specifier: "%.1f")").fontWeight(.thin)
+								Text("Tokens: \(self.note.fTokens)").fontWeight(.thin)
+								Text("Sag: \(self.note.fSag)").fontWeight(.thin)
+							}
 							
 						}
 						Spacer()
@@ -111,7 +116,11 @@ struct NotesDetailView: View {
 									.fontWeight(.thin)
 							} else {
 								VStack{
-									Text("Spring: \(self.note.rAirSpring, specifier: "%.0f")").fontWeight(.thin)
+									HStack{
+										Text("Spring: \(self.note.rAirSpring, specifier: "%.0f")").fontWeight(.thin)
+										Text("Tokens: \(self.note.rTokens)").fontWeight(.thin)
+										Text("Sag: \(self.note.rSag)").fontWeight(.thin)
+									}
 								}
 								Spacer()
 								
@@ -135,7 +144,7 @@ struct NotesDetailView: View {
 								}
 							}
 						}
-					}
+					} 
 				}
 			}
 			.padding()

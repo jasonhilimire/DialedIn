@@ -33,13 +33,18 @@ struct ServiceView: View {
 	
 	var body: some View {
 		VStack {
-			Form{
-				Section {
-					Text("Shock Service").bold()
-				}
-				
+			Text("Shock Service").font(.largeTitle).fontWeight(.thin)
+			Form{				
 				//MARK:- Front
-				Section(header: Text("Front Service")){
+				Section(header:
+					HStack {
+						Image("bicycle-fork")
+							.resizable()
+							.frame(width: 50, height: 50)
+							.scaledToFit()
+						Text("Front Service")
+						}
+					){
 					
 					Picker("Service Type", selection: $frontServicedIndex) {
 						ForEach(0..<frontServiced.count) { index in
@@ -47,25 +52,33 @@ struct ServiceView: View {
 						}
 					}.pickerStyle(SegmentedPickerStyle())
 					if frontServicedIndex == 1 {
-						Text("Full Service Includes Lowers Service").italic()
+						Text("Full Service Includes Lowers Service").fontWeight(.thin).italic()
 						DatePicker(selection: $fFullServicedDate, in: ...Date(), displayedComponents: .date) {
-							Text("Select a date")
+							Text("Date Serviced").fontWeight(.thin)
 						}
-						TextField("Service Note", text: $frontServicedNote)
+						TextView(text: $frontServicedNote).cornerRadius(8)
 						
 					} else if frontServicedIndex == 2 {
-						Text("Lowers only Serviced").italic()
+						Text("Lowers only Serviced").fontWeight(.thin).italic()
 						DatePicker(selection: $fLowersServicedDate, in: ...Date(), displayedComponents: .date) {
-							Text("Select a date")
+							Text("Date Serviced").fontWeight(.thin)
 						}
-						TextField("Service Note", text: $frontServicedNote)
+						TextView(text: $frontServicedNote).cornerRadius(8)
 					}
 					
 				}
 				//MARK:- Rear
-				Section(header: Text("Rear Service")){
+				Section(header:
+					HStack {
+						Image("shock-absorber")
+							.resizable()
+							.frame(width: 50, height: 50)
+							.scaledToFit()
+						Text("Rear Service")
+					}
+				){
 					if bike.hasRearShock == false {
-						Text("Hardtail")
+						Text("Hardtail").fontWeight(.thin)
 					} else if bike.rearSetup?.isCoil == true {
 						Picker("Service Type", selection: $rearServicedIndex) {
 							ForEach(0..<(rearServiced.count - 1) ) { index in
@@ -76,9 +89,9 @@ struct ServiceView: View {
 						if rearServicedIndex == 1 {
 							
 							DatePicker(selection: $rFullServicedDate, in: ...Date(), displayedComponents: .date) {
-								Text("Select a date")
+								Text("Date Serviced").fontWeight(.thin)
 							}
-							TextField("Service Note", text: $rearServicedNote)
+							TextView(text: $rearServicedNote).cornerRadius(8)
 						}
 						
 						
@@ -91,17 +104,17 @@ struct ServiceView: View {
 						
 						if rearServicedIndex == 1 {
 							DatePicker(selection: $rFullServicedDate, in: ...Date(), displayedComponents: .date) {
-								Text("Select a date")
+								Text("Date Serviced").fontWeight(.thin)
 							}
-							Text("Full Service Includes Air Can Service")
-							TextField("Service Note", text: $rearServicedNote)
+							Text("Full Service Includes Air Can Service").fontWeight(.thin).italic()
+							TextView(text: $rearServicedNote).cornerRadius(8)
 							
 						} else if rearServicedIndex == 2 {
 							DatePicker(selection: $rAirCanServicedDate, in: ...Date(), displayedComponents: .date) {
-								Text("Select a date")
+								Text("Date Serviced").fontWeight(.thin)
 							}
-							Text("Air Can only Serviced")
-							TextField("Service Note", text: $rearServicedNote)
+							Text("Air Can only Serviced").fontWeight(.thin).italic()
+							TextView(text: $rearServicedNote).cornerRadius(8)
 						}
 					}
 				}
@@ -110,7 +123,7 @@ struct ServiceView: View {
 			
 			// if no service toggles disable save button
 			if frontServicedIndex == 0 && rearServicedIndex == 0 {
-				Text("Add a Service as needed")
+				Text("Add a Service as needed").foregroundColor(.orange)
 			} else {
 				Button(action: {
 					///TODO: - change to return to  BikeListview after saving
@@ -123,7 +136,7 @@ struct ServiceView: View {
 					SaveButtonView()
 				}.buttonStyle(OrangeButtonStyle())
 			}
-		}
+		}.padding(.top)
 
 	}
 
