@@ -121,6 +121,8 @@ struct ServiceView: View {
 				}
 			} // end form
 				.onAppear(perform: {self.setup()})
+				// Dismisses the keyboard
+				.gesture(tap, including: keyboard.keyBoardShown ? .all : .none)
 			
 			// if no service toggles disable save button
 			if frontServicedIndex == 0 && rearServicedIndex == 0 {
@@ -128,7 +130,7 @@ struct ServiceView: View {
 			} else {
 				Button(action: {
 					///TODO: - change to return to  BikeListview after saving
-					
+					print("Save pressed")
 					self.fetchAddService()
 					try? self.moc.save()
 					//dismisses the sheet
@@ -138,8 +140,7 @@ struct ServiceView: View {
 				}.buttonStyle(OrangeButtonStyle())
 			}
 		}.padding(.top)
-			// Dismisses the keyboard
-			.gesture(tap, including: keyboard.keyBoardShown ? .all : .none)
+			
 
 	}
 
