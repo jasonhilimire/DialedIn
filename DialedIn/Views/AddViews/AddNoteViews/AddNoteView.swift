@@ -47,11 +47,14 @@ struct AddNoteView: View {
 							Text("Select a date:")
 							.fontWeight(.thin)
 						}
-						Toggle(isOn: $toggleNoteDetail.animation(), label: {Text("Enter Note Details").fontWeight(.thin)})
+						Toggle(isOn: $toggleNoteDetail.animation(), label: {Text("Add Note Details").fontWeight(.thin)})
 						if toggleNoteDetail == true {
-							TextView(text: self.$note)
-								.frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
-								.cornerRadius(8)
+							HStack {
+								Text("Note:").fontWeight(.thin)
+								TextView(text: self.$note)
+									.frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
+									.cornerRadius(8)
+							}
 							HStack {
 								RatingView(rating: $rating)
 								Spacer()

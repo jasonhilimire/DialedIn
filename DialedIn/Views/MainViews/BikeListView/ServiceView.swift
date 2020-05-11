@@ -35,7 +35,7 @@ struct ServiceView: View {
 	var body: some View {
 		VStack {
 			Text("Shock Service").font(.largeTitle).fontWeight(.thin)
-			Form{				
+			Form {
 				//MARK:- Front
 				Section(header:
 					HStack {
@@ -94,8 +94,6 @@ struct ServiceView: View {
 							}
 							TextView(text: $rearServicedNote).cornerRadius(8)
 						}
-						
-						
 					} else {
 						Picker("Service Type", selection: $rearServicedIndex) {
 							ForEach(0..<rearServiced.count) { index in

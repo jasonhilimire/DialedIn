@@ -37,11 +37,11 @@ struct BikeStyledCellView: View {
 			HStack { // Name - note
 				VStack(alignment: .leading) {
 					Text(self.bike.name ?? "Unknown")
-						.font(.largeTitle)
-						.fontWeight(.ultraLight)
+						.font(.headline)
+						.fontWeight(.thin)
 					
 					Text(self.bike.bikeNote ?? "")
-						.font(.callout)
+						.font(.footnote)
 						.fontWeight(.ultraLight)
 					.onAppear(perform: {self.setup()})
 					

@@ -31,7 +31,7 @@ struct NotesDetailView: View {
 			VStack {
 				HStack {
 				Text(self.note.date != nil ? "\(self.note.date!, formatter: dateFormatter)" : "")
-					.font(.title)
+					.font(.headline)
 					.fontWeight(.thin)
 					Spacer()
 				HStack {
@@ -39,7 +39,7 @@ struct NotesDetailView: View {
 //						.fontWeight(.thin)
 					FavoritesView(favorite: self.$isFavorite)
 					}
-					.font(.title)
+					.font(.headline)
 				}
 				
 				TextView(text: self.$noteText)
@@ -59,7 +59,7 @@ struct NotesDetailView: View {
 									.frame(width: 50, height: 50)
 									.scaledToFit()
 								Text("Fork Details")
-									.font(.title)
+									.font(.headline)
 									.fontWeight(.thin)
 							}
 						}
@@ -94,6 +94,7 @@ struct NotesDetailView: View {
 							}
 						}
 					}
+					.font(.subheadline)
 				}
 				Divider()
 			//Rear
@@ -106,7 +107,7 @@ struct NotesDetailView: View {
 									.frame(width: 50, height: 50)
 									.scaledToFit()
 								Text("Rear Shock Details")
-									.font(.title)
+									.font(.headline)
 									.fontWeight(.thin)
 							}
 						}
@@ -147,7 +148,8 @@ struct NotesDetailView: View {
 								}
 							}
 						}
-					} 
+					}
+					.font(.subheadline)
 				}
 			}
 			.padding()

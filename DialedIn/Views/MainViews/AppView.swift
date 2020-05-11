@@ -13,7 +13,7 @@ struct AppView: View {
 	init() {
 		UINavigationBar.appearance().backgroundColor = .systemOrange
 //		UITabBar.appearance().barTintColor = UIColor.orange
-		
+
 		UINavigationBar.appearance().largeTitleTextAttributes = [
 			.foregroundColor: UIColor.white,
 			.font : UIFont(name:"Helvetica Neue", size: 40)!]
@@ -40,6 +40,7 @@ struct AppView: View {
                 }
 			
         }
+			.animation(.default)
         .accentColor(Color("TextColor"))
     }
 }

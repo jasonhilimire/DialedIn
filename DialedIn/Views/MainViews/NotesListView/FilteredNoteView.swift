@@ -29,7 +29,7 @@ struct FilteredNoteView: View {
 							Text(note.date != nil ? "\(note.date!, formatter: dateFormatter)" : "")
 								.fontWeight(.thin)
 							FavoritesView(favorite: .constant(note.isFavorite))
-						}.font(.title)
+						}
 						
 						VStack(alignment: .leading) {
 							HStack {
@@ -37,12 +37,15 @@ struct FilteredNoteView: View {
 									
 									RatingView(rating: .constant(Int(note.rating)))
 									Text(note.note ?? "")
-										.font(.footnote)
+										
 										.fontWeight(.thin)
 								}
+								.font(.footnote)
 								Spacer()
 							}
 						}
+						
+						Divider()
 						
 						HStack {
 							VStack {
@@ -54,7 +57,7 @@ struct FilteredNoteView: View {
 								}
 								.lineLimit(1)
 								.padding([.top, .bottom, .trailing])
-								.font(.title)
+								.font(.body)
 								
 								
 								HStack {
@@ -65,7 +68,7 @@ struct FilteredNoteView: View {
 								}
 								.lineLimit(1)
 								.padding([.top, .bottom, .trailing])
-									.font(.title)
+								.font(.body)
 							}
 								// TODO: the width shouldnt be fixed, but if you have 5 characters its being truncated
 							.frame(width: 110, alignment: .leading)
@@ -73,41 +76,41 @@ struct FilteredNoteView: View {
 							Spacer()
 							VStack(alignment: .leading) {
 								if note.bike?.frontSetup?.dualRebound == true {
-									Text("HSR: \(note.fHSR)")
-									Text("LSR: \(note.fLSR)")
+									Text("HSR: \(note.fHSR)").fontWeight(.thin)
+									Text("LSR: \(note.fLSR)").fontWeight(.thin)
 								} else {
-									Text("Reb: \(note.fRebound)")
+									Text("Reb: \(note.fRebound)").fontWeight(.thin)
 									
 								}
-								Text("Sag: \(note.fSag)")
+								Text("Sag: \(note.fSag)").fontWeight(.thin)
 								Divider()
 								if note.bike?.rearSetup?.dualRebound == true {
-									Text("HSR: \(note.rHSR)")
-									Text("LSR: \(note.rLSR)")
+									Text("HSR: \(note.rHSR)").fontWeight(.thin)
+									Text("LSR: \(note.rLSR)").fontWeight(.thin)
 								} else {
-									Text("Reb: \(note.rRebound)")
+									Text("Reb: \(note.rRebound)").fontWeight(.thin)
 								}
-								Text("Sag: \(note.rSag)")
-							}.font(.subheadline)
+								Text("Sag: \(note.rSag)").fontWeight(.thin)
+							}.font(.caption)
 							
 							Spacer()
 							VStack(alignment: .leading) {
 								if note.bike?.frontSetup?.dualCompression == true {
-									Text("HSC: \(note.fHSC)")
-									Text("LSC: \(note.fLSC)")
+									Text("HSC: \(note.fHSC)").fontWeight(.thin)
+									Text("LSC: \(note.fLSC)").fontWeight(.thin)
 								} else {
-									Text("Comp: \(note.fCompression)")
+									Text("Comp: \(note.fCompression)").fontWeight(.thin)
 								}
-								Text("Tokens: \(note.fTokens)")
+								Text("Tokens: \(note.fTokens)").fontWeight(.thin)
 								Divider()
 								if note.bike?.rearSetup?.dualCompression == true {
-									Text("HSC: \(note.rHSC)")
-									Text("LSC: \(note.rLSC)")
+									Text("HSC: \(note.rHSC)").fontWeight(.thin)
+									Text("LSC: \(note.rLSC)").fontWeight(.thin)
 								} else {
-									Text("Comp: \(note.rCompression)")
+									Text("Comp: \(note.rCompression)").fontWeight(.thin)
 								}
-								Text("Tokens: \(note.rTokens)")
-							}.font(.subheadline)
+								Text("Tokens: \(note.rTokens)").fontWeight(.thin)
+							}.font(.caption)
 						} // end HSTack Settings
 					}
 					.padding()

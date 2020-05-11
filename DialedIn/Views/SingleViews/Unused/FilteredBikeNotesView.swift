@@ -27,11 +27,11 @@ struct FilteredBikeNotesView: View {
 							VStack(alignment: .leading){
 								Text("\(note.date!, formatter: dateFormatter)")
 									.font(.callout)
-									.fontWeight(.light)
+									.fontWeight(.thin)
 								
 								Text("\(note.wrappedNote)")
 									.font(.caption)
-									.fontWeight(.light)
+									.fontWeight(.thin)
 									.lineLimit(1)
 								Divider()
 							}

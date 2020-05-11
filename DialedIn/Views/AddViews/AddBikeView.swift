@@ -123,7 +123,6 @@ struct AddBikeView: View {
                     Spacer()
             }
         }
-////			// dismisses keyboard
 			// Dismisses the keyboard
 			.gesture(tap, including: keyboard.keyBoardShown ? .all : .none)
     }
