@@ -57,14 +57,19 @@ struct ServiceView: View {
 						DatePicker(selection: $fFullServicedDate, in: ...Date(), displayedComponents: .date) {
 							Text("Date Serviced").fontWeight(.thin)
 						}
-						TextView(text: $frontServicedNote).cornerRadius(8)
-						
+						HStack {
+							Text("Note:").fontWeight(.thin)
+							TextView(text: $frontServicedNote).cornerRadius(8)
+						}
 					} else if frontServicedIndex == 2 {
 						Text("Lowers only Serviced").fontWeight(.thin).italic()
 						DatePicker(selection: $fLowersServicedDate, in: ...Date(), displayedComponents: .date) {
 							Text("Date Serviced").fontWeight(.thin)
 						}
-						TextView(text: $frontServicedNote).cornerRadius(8)
+						HStack {
+							Text("Note:").fontWeight(.thin)
+							TextView(text: $frontServicedNote).cornerRadius(8)
+						}
 					}
 					
 				}
@@ -92,7 +97,10 @@ struct ServiceView: View {
 							DatePicker(selection: $rFullServicedDate, in: ...Date(), displayedComponents: .date) {
 								Text("Date Serviced").fontWeight(.thin)
 							}
-							TextView(text: $rearServicedNote).cornerRadius(8)
+							HStack {
+								Text("Note:").fontWeight(.thin)
+								TextView(text: $rearServicedNote).cornerRadius(8)
+							}
 						}
 					} else {
 						Picker("Service Type", selection: $rearServicedIndex) {
@@ -106,14 +114,20 @@ struct ServiceView: View {
 								Text("Date Serviced").fontWeight(.thin)
 							}
 							Text("Full Service Includes Air Can Service").fontWeight(.thin).italic()
-							TextView(text: $rearServicedNote).cornerRadius(8)
+							HStack {
+								Text("Note:").fontWeight(.thin)
+								TextView(text: $rearServicedNote).cornerRadius(8)
+							}
 							
 						} else if rearServicedIndex == 2 {
 							DatePicker(selection: $rAirCanServicedDate, in: ...Date(), displayedComponents: .date) {
 								Text("Date Serviced").fontWeight(.thin)
 							}
 							Text("Air Can only Serviced").fontWeight(.thin).italic()
-							TextView(text: $rearServicedNote).cornerRadius(8)
+							HStack {
+								Text("Note:").fontWeight(.thin)
+								TextView(text: $rearServicedNote).cornerRadius(8)
+							}
 						}
 					}
 				}

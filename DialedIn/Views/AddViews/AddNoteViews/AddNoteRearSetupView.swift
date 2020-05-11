@@ -32,7 +32,7 @@ struct AddNoteRearSetupView: View {
                         }
                     }
                 //Sag
-                Stepper(value: $rear.lastRSagSetting   , in: 0...40, label: {Text("Sag%/mm: \(self.rear.lastRSagSetting)").fontWeight(.thin)})
+                Stepper(value: $rear.lastRSagSetting   , in: 0...40, label: {Text("Sag: \(self.rear.lastRSagSetting)").fontWeight(.thin)})
                 //Tokens
                 Stepper(value: $rear.lastRTokenSetting, in: 0...6, label: {Text("Tokens: \(self.rear.lastRTokenSetting)").fontWeight(.thin)})
                 //Compression

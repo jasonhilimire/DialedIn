@@ -25,7 +25,7 @@ struct AddNoteFrontSetupView: View {
 
             }
 			
-            Stepper(value: $front.lastFSagSetting   , in: 0...40, label: {Text("Sag %/mm: \(self.front.lastFSagSetting)").fontWeight(.thin)})
+            Stepper(value: $front.lastFSagSetting   , in: 0...40, label: {Text("Sag: \(self.front.lastFSagSetting)").fontWeight(.thin)})
         
             // Tokens
             Stepper(value: $front.lastFTokenSetting   , in: 0...6, label: {Text("Tokens: \(self.front.lastFTokenSetting)").fontWeight(.thin)})

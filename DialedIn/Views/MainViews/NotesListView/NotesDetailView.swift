@@ -31,16 +31,11 @@ struct NotesDetailView: View {
 			VStack {
 				HStack {
 				Text(self.note.date != nil ? "\(self.note.date!, formatter: dateFormatter)" : "")
-					.font(.headline)
 					.fontWeight(.thin)
 					Spacer()
-				HStack {
-//					Text("Favorite:")
-//						.fontWeight(.thin)
 					FavoritesView(favorite: self.$isFavorite)
-					}
-					.font(.headline)
-				}
+					
+				}.font(.headline)
 				
 				TextView(text: self.$noteText)
 					.frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
@@ -167,7 +162,7 @@ struct NotesDetailView: View {
 		.onAppear(perform: {self.setup()})
 		.onDisappear(perform: {self.updateNote(note: self.note)})
 			// Dismisses the keyboard
-		.gesture(tap, including: keyboard.keyBoardShown ? .all : .none)
+		.onTapGesture { UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to:nil, from:nil, for:nil) }
         .navigationBarTitle(Text(note.bike?.name ?? "Unknown Note"), displayMode: .inline)
         .alert(isPresented: $showingDeleteAlert) {
             Alert(title: Text("Delete Note"), message: Text("Are you sure?"), primaryButton: .destructive(Text("Delete")) {
