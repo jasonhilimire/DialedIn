@@ -13,6 +13,33 @@ import Combine
 class NoteFrontSetupModel: ObservableObject {
     
     let managedObjectContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+	
+
+	func getFrontSettings(filter: String) -> [Fork] {
+		var bikes : [Fork] = []
+		//		let fetchRequest = FrontService.frontServiceLowersFetchRequest(filter: bikeName) /// maybe need this if multiple service issue due to sorting by full service only
+		let fetchRequest = Fork.forkFetchRequest()
+
+		do {
+			bikes = try managedObjectContext.fetch(fetchRequest)
+		} catch let error as NSError {
+			print("Could not fetch. \(error), \(error.userInfo)")
+		}
+		return bikes
+	}
+
+
+	func getDualComp(bike: String) -> Bool {
+		let filteredBike = getFrontSettings(filter: bike).filter { bikes in
+			bikes.bike?.frontSetup?.bike?.name == bike
+		}
+		return filteredBike.last?.dualCompression ?? true
+	}
+	
+	
+	
+	
+	
 
 	init() {
         getLastFrontSettings()
@@ -107,7 +134,7 @@ class NoteFrontSetupModel: ObservableObject {
     
     func getfComp() -> Bool {
         let lastRecord = filterBikes(for: bikeName)
-        guard let comp = lastRecord.last?.bike?.frontSetup?.dualCompression else { return true }
+		guard let comp = lastRecord.last?.bike?.frontSetup?.dualCompression else { return true }
         return comp
     }
     
@@ -178,7 +205,7 @@ class NoteFrontSetupModel: ObservableObject {
         lastFReboundSetting = getLastFRebound()
         lastFTokenSetting = getLastFTokens()
         lastFSagSetting = getLastFSag()
-        fComp = getfComp()
+        fComp = getDualComp(bike: bikeName)
         fReb = getfReb()
 
     }

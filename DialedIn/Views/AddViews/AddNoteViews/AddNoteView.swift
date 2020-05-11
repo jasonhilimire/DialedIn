@@ -168,3 +168,6 @@ struct AddNoteView: View {
     }
     
 }
+
+
+

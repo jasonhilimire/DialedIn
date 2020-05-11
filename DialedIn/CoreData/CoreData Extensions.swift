@@ -79,5 +79,15 @@ extension FrontService {
 	}
 }
 
+extension Fork {
+	/// FetchRequest for all forks, sorted by bike name
+	static func forkFetchRequest() -> NSFetchRequest<Fork> {
+		let request: NSFetchRequest<Fork> = Fork.fetchRequest()
+		request.sortDescriptors = [NSSortDescriptor(keyPath: \Fork.bike?.name, ascending: true)]
+		return request
+	}
+}
+
+
 
 

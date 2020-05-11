@@ -116,6 +116,8 @@ struct AddBikeView: View {
                     //dismisses the sheet
 					self.presentationMode.wrappedValue.dismiss()
 					self.saveNewBike()
+					print("Dual Comp: \(self.$forkDualCompToggle)")
+					print("Dual Reb: \(self.$forkDualReboundToggle)")
 					try? self.moc.save()
                     }) {
                         SaveButtonView()
