@@ -10,7 +10,7 @@ import Foundation
 import CoreData
 
 
-//MARK: Extension Bike
+//MARK: Extension Fetch Requests
 extension Bike{
     
     /// FetchRequest for all bikes, sorted by name
@@ -28,7 +28,7 @@ extension Bike{
         return request
     }
     
-} //end Extension Bike
+}
 
 extension Notes{
     static func notesFetchRequest() -> NSFetchRequest<Notes> {
@@ -84,6 +84,15 @@ extension Fork {
 	static func forkFetchRequest() -> NSFetchRequest<Fork> {
 		let request: NSFetchRequest<Fork> = Fork.fetchRequest()
 		request.sortDescriptors = [NSSortDescriptor(keyPath: \Fork.bike?.name, ascending: true)]
+		return request
+	}
+}
+
+extension RearShock {
+	/// FetchRequest for all rear, sorted by bike name
+	static func rearFetchRequest() -> NSFetchRequest<RearShock> {
+		let request: NSFetchRequest<RearShock> = RearShock.fetchRequest()
+		request.sortDescriptors = [NSSortDescriptor(keyPath: \RearShock.bike?.name, ascending: true)]
 		return request
 	}
 }

@@ -14,10 +14,9 @@ class NoteFrontSetupModel: ObservableObject {
     
     let managedObjectContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
 	
-
+// This gets the dual Reb/ Comp settings for setup when creating a note
 	func getFrontSettings(filter: String) -> [Fork] {
 		var bikes : [Fork] = []
-		//		let fetchRequest = FrontService.frontServiceLowersFetchRequest(filter: bikeName) /// maybe need this if multiple service issue due to sorting by full service only
 		let fetchRequest = Fork.forkFetchRequest()
 
 		do {
@@ -34,6 +33,13 @@ class NoteFrontSetupModel: ObservableObject {
 			bikes.bike?.frontSetup?.bike?.name == bike
 		}
 		return filteredBike.last?.dualCompression ?? true
+	}
+	
+	func getDualReb(bike: String) -> Bool {
+		let filteredBike = getFrontSettings(filter: bike).filter { bikes in
+			bikes.bike?.frontSetup?.bike?.name == bike
+		}
+		return filteredBike.last?.dualRebound ?? true
 	}
 	
 	
@@ -132,17 +138,6 @@ class NoteFrontSetupModel: ObservableObject {
         return lastAirSetting ?? 65.0
     }
     
-    func getfComp() -> Bool {
-        let lastRecord = filterBikes(for: bikeName)
-		guard let comp = lastRecord.last?.bike?.frontSetup?.dualCompression else { return true }
-        return comp
-    }
-    
-    func getfReb() -> Bool {
-        let lastRecord = filterBikes(for: bikeName)
-        guard let rebound = lastRecord.last?.bike?.frontSetup?.dualRebound else { return true }
-        return rebound
-    }
     
     func getLastFHSC() -> Int16 {
         let lastRecord = FrontSettings.hsc
@@ -206,7 +201,7 @@ class NoteFrontSetupModel: ObservableObject {
         lastFTokenSetting = getLastFTokens()
         lastFSagSetting = getLastFSag()
         fComp = getDualComp(bike: bikeName)
-        fReb = getfReb()
+        fReb = getDualReb(bike: bikeName)
 
     }
     
