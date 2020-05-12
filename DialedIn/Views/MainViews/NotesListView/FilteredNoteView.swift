@@ -28,7 +28,11 @@ struct FilteredNoteView: View {
 							Spacer()
 							Text(note.date != nil ? "\(note.date!, formatter: dateFormatter)" : "")
 								.fontWeight(.thin)
-							FavoritesView(favorite: .constant(note.isFavorite))
+							if note.isFavorite == true {
+								FavoritesView(favorite: .constant(note.isFavorite))
+							} else {
+								Text("   ")
+							}
 						}
 						
 						VStack(alignment: .leading) {
