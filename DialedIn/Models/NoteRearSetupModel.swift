@@ -12,7 +12,63 @@ import Combine
 
 class NoteRearSetupModel: ObservableObject {
     let managedObjectContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-       
+	
+	func getRearSettings(filter: String) -> [RearShock] {
+		var bikes : [RearShock] = []
+		let fetchRequest = RearShock.rearFetchRequest()
+		
+		do {
+			bikes = try managedObjectContext.fetch(fetchRequest)
+		} catch let error as NSError {
+			print("Could not fetch. \(error), \(error.userInfo)")
+		}
+		return bikes
+	}
+	
+	
+	func getDualComp(bike: String) -> Bool {
+		let filteredBike = getRearSettings(filter: bike).filter { bikes in
+			bikes.bike?.rearSetup?.bike?.name == bike
+		}
+		return filteredBike.last?.dualCompression ?? true
+	}
+	
+	func getDualReb(bike: String) -> Bool {
+		let filteredBike = getRearSettings(filter: bike).filter { bikes in
+			bikes.bike?.rearSetup?.bike?.name == bike
+		}
+		return filteredBike.last?.dualRebound ?? true
+	}
+	
+	func getCoil(bike: String) -> Bool {
+		let filteredBike = getRearSettings(filter: bike).filter { bikes in
+			bikes.bike?.rearSetup?.bike?.name == bike
+		}
+		return filteredBike.last?.isCoil ?? false
+	}
+	
+	
+	func getBike(filter: String) -> [Bike] {
+		var bikes : [Bike] = []
+		let fetchRequest = Bike.bikesFetchRequest()
+		
+		do {
+			bikes = try managedObjectContext.fetch(fetchRequest)
+		} catch let error as NSError {
+			print("Could not fetch. \(error), \(error.userInfo)")
+		}
+		return bikes
+	}
+	
+	func getHasRear(bike: String) -> Bool {
+		let filteredBike = getBike(filter: bike).filter { bikes in
+			bikes.name == bike
+		}
+		return filteredBike.last?.hasRearShock ?? true
+	}
+
+	
+   
        init() {
            getLastRearSettings()
        }
@@ -114,17 +170,6 @@ class NoteRearSetupModel: ObservableObject {
             return lastAirSetting ?? 200.0
        }
     
-        func getrComp() -> Bool {
-            let lastRecord = filterNote(for: bikeName)
-            guard let comp = lastRecord.last?.bike?.rearSetup?.dualCompression else { return true }
-            return comp
-        }
-        
-        func getrReb() -> Bool {
-            let lastRecord = filterNote(for: bikeName)
-            guard let rebound = lastRecord.last?.bike?.rearSetup?.dualRebound else { return true }
-            return rebound
-        }
     
         func getCoil() -> Bool {
             let lastRecord = filterNote(for: bikeName)
@@ -200,10 +245,10 @@ class NoteRearSetupModel: ObservableObject {
             lastRReboundSetting = getLastRRebound()
             lastRTokenSetting = getLastRTokens()
             lastRSagSetting = getLastRSag()
-            rReb = getrReb()
-            rComp = getrComp()
-            coil = getCoil()
-            hasRear = getRear()
+            rReb = getDualReb(bike: bikeName)
+            rComp = getDualComp(bike: bikeName)
+            coil = getCoil(bike: bikeName)
+            hasRear = getHasRear(bike: bikeName)
 			
        }
 	

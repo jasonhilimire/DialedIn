@@ -47,15 +47,18 @@ struct AddNoteFrontSetupView: View {
             } else {
                 Stepper(value: $front.lastFReboundSetting, in: 0...25, label: {Text("Rebound: \(self.front.lastFReboundSetting)").fontWeight(.thin)})
             }
-		}
-    }
+		}.onAppear(perform: {self.setup()})
+	}
+	
+	func setup() {
+
+//		print("\(bikeName)")
+//		fComp = front.getDualComp(bike: bikeName) 
+		print("Comp \(front.fComp)")
+		print("Reb \(front.fReb)")
+	}
 	
 }
 
 
-struct AddNoteFrontSetup_Previews: PreviewProvider {
-    static var previews: some View {
-        AddNoteFrontSetupView()
-    }
-}
 
