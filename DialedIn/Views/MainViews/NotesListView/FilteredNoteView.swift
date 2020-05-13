@@ -34,14 +34,15 @@ struct FilteredNoteView: View {
 								Text("   ")
 							}
 						}
+						Spacer()
 						
 						VStack(alignment: .leading) {
 							HStack {
 								VStack(alignment: .leading) {
-									
-									RatingView(rating: .constant(Int(note.rating)))
+									if note.rating > 0 {
+										RatingView(rating: .constant(Int(note.rating)))
+									}
 									Text(note.note ?? "")
-										
 										.fontWeight(.thin)
 								}
 								.font(.footnote)
