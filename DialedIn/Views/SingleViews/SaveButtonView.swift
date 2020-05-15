@@ -35,6 +35,6 @@ struct OrangeButtonStyle: ButtonStyle {
 			.background(Color.orange)
 //			.background(LinearGradient(gradient: Gradient(colors: [Color.red, Color.orange]), startPoint: .leading, endPoint: .trailing))
 			.cornerRadius(8)
-			.scaleEffect(configuration.isPressed ? 1.0 : 0.9)
+			.scaleEffect(configuration.isPressed ? 0.9 : 1.0)
 	}
 }
