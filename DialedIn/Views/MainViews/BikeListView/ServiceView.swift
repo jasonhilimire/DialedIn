@@ -30,11 +30,13 @@ struct ServiceView: View {
 	@State private var rearServicedIndex = 0
 	@State private var rearServicedNote = ""
 	
+	@State private var slideScreen = false
+	
 	let bike: Bike
 	
 	var body: some View {
+		NavigationView {
 		VStack {
-			Text("Shock Service").font(.largeTitle).fontWeight(.thin)
 			Form {
 				//MARK:- Front
 				Section(header:
@@ -60,6 +62,9 @@ struct ServiceView: View {
 						HStack {
 							Text("Note:").fontWeight(.thin)
 							TextView(text: $frontServicedNote).cornerRadius(8)
+								.onTapGesture {
+									self.slideScreen = false
+							}
 						}
 					} else if frontServicedIndex == 2 {
 						Text("Lowers only Serviced").fontWeight(.thin).italic()
@@ -69,6 +74,9 @@ struct ServiceView: View {
 						HStack {
 							Text("Note:").fontWeight(.thin)
 							TextView(text: $frontServicedNote).cornerRadius(8)
+								.onTapGesture {
+									self.slideScreen = false
+							}
 						}
 					}
 					
@@ -100,6 +108,9 @@ struct ServiceView: View {
 							HStack {
 								Text("Note:").fontWeight(.thin)
 								TextView(text: $rearServicedNote).cornerRadius(8)
+									.onTapGesture {
+										self.slideScreen = true
+								}
 							}
 						}
 					} else {
@@ -117,6 +128,9 @@ struct ServiceView: View {
 							HStack {
 								Text("Note:").fontWeight(.thin)
 								TextView(text: $rearServicedNote).cornerRadius(8)
+									.onTapGesture {
+										self.slideScreen = true
+								}
 							}
 							
 						} else if rearServicedIndex == 2 {
@@ -127,6 +141,9 @@ struct ServiceView: View {
 							HStack {
 								Text("Note:").fontWeight(.thin)
 								TextView(text: $rearServicedNote).cornerRadius(8)
+									.onTapGesture {
+										self.slideScreen = true
+								}
 							}
 						}
 					}
@@ -152,6 +169,11 @@ struct ServiceView: View {
 				}.buttonStyle(OrangeButtonStyle())
 			}
 		}.padding(.top)
+		}
+		.navigationBarTitle("Shock Service", displayMode: .inline)
+			
+		.offset(y: slideScreen ?  -keyboard.height  :  0)
+		.animation(.spring())
 			
 
 	}
