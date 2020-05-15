@@ -33,6 +33,8 @@ struct AddBikeView: View {
     @State private var rearDualCompToggle = false
     @State private var lastAirCanServiceDate = Date()
     @State private var lastRearFullServiceDate = Date()
+	
+	@State private var slideScreen = false
     
 //TODO: figure out how to only allow 1 default bike
     var body: some View {
@@ -43,18 +45,26 @@ struct AddBikeView: View {
 						HStack {
 							Text("Bike Name:").fontWeight(.thin)
 							TextView(text: $bikeName).cornerRadius(8)
+								
 						}
 						HStack {
 							Text("Note:").fontWeight(.thin)
 							TextView(text: $bikeNote).cornerRadius(8)
+								
 						}
 //                        Toggle(isOn: $setDefault.animation(), label: {Text("Set as Default Bike?")})
-                    }
+					}
+						.onTapGesture {
+							self.slideScreen = false
+						}
                     
                     Section(header: Text("Fork Details")){
 						HStack{
 							Text("Fork Info:").fontWeight(.thin)
 							TextView(text: $forkInfo).cornerRadius(8)
+								.onTapGesture {
+									self.slideScreen = false
+							}
 						}
                         Toggle(isOn: $forkDualReboundToggle.animation(), label: {Text("Dual Rebound?").fontWeight(.thin)})
                         Toggle(isOn: $forkDualCompToggle.animation(), label: {Text("Dual Compression?").fontWeight(.thin)})
@@ -83,6 +93,9 @@ struct AddBikeView: View {
 							HStack {
 								Text("Rear Info:").fontWeight(.thin)
 								TextView(text: $rearInfo).cornerRadius(8)
+									.onTapGesture {
+										self.slideScreen = true
+								}
 							}
 							
                             Toggle(isOn: $rearDualReboundToggle.animation(), label: {Text("Dual Rebound?").fontWeight(.thin)})
@@ -100,6 +113,9 @@ struct AddBikeView: View {
 							HStack {
 								Text("Rear Info:").fontWeight(.thin)
 								TextView(text: $rearInfo).cornerRadius(8)
+									.onTapGesture {
+										self.slideScreen = true
+								}
 							}
                             Toggle(isOn: $rearDualReboundToggle.animation(), label: {Text("Dual Rebound?").fontWeight(.thin)})
 
@@ -110,7 +126,12 @@ struct AddBikeView: View {
                             }
                         }
                     }
+
                 } .navigationBarTitle("Bike Info", displayMode: .inline)
+			
+					.offset(y: slideScreen ?  -keyboard.height  :  0)
+					.animation(.spring())
+	
 
                 Button(action: {
                     //dismisses the sheet
@@ -124,6 +145,7 @@ struct AddBikeView: View {
                         }.buttonStyle(OrangeButtonStyle())
                     Spacer()
             }
+			.animation(.default)
         }
 			// Dismisses the keyboard
 			.gesture(tap, including: keyboard.keyBoardShown ? .all : .none)
