@@ -24,6 +24,7 @@ struct AddBikeView: View {
     @State private var forkDualCompToggle = false
     @State private var lastLowerServiceDate = Date()
     @State private var lastFullForkServiceDate = Date()
+	@State private var forkTravel = 150.0
     
     @State private var rearSetupIndex = 1
     @State private var rearSetups = ["None", "Air", "Coil"]
@@ -33,6 +34,7 @@ struct AddBikeView: View {
     @State private var rearDualCompToggle = false
     @State private var lastAirCanServiceDate = Date()
     @State private var lastRearFullServiceDate = Date()
+	@State private var strokeLength = 40.0
 	
 	@State private var slideScreen = false
     
@@ -66,6 +68,10 @@ struct AddBikeView: View {
 									self.slideScreen = false
 							}
 						}
+						HStack {
+							Text("Travel: \(self.forkTravel, specifier: "%.0f")").fontWeight(.thin)
+							Slider(value: $forkTravel, in: 80...200, step: 5)
+						}
                         Toggle(isOn: $forkDualReboundToggle.animation(), label: {Text("Dual Rebound?").fontWeight(.thin)})
                         Toggle(isOn: $forkDualCompToggle.animation(), label: {Text("Dual Compression?").fontWeight(.thin)})
                         
@@ -96,6 +102,10 @@ struct AddBikeView: View {
 									.onTapGesture {
 										self.slideScreen = true
 								}
+							}
+							HStack {
+								Text("Shock Stroke: \(self.strokeLength, specifier: "%.1f")").fontWeight(.thin)
+								Slider(value: $strokeLength, in: 25...90, step: 0.5)
 							}
 							
                             Toggle(isOn: $rearDualReboundToggle.animation(), label: {Text("Dual Rebound?").fontWeight(.thin)})
@@ -174,6 +184,7 @@ struct AddBikeView: View {
 		
 		// - Front Creation
 		newFrontService.service?.bike = newBike
+		newFork?.travel = self.forkTravel
 		newFork?.dualCompression = self.forkDualCompToggle
 		newFork?.dualRebound = self.forkDualReboundToggle
 		newFork?.info = self.forkInfo
@@ -188,6 +199,7 @@ struct AddBikeView: View {
 		if self.rearSetupIndex == 1 {
 			newBike?.hasRearShock = true
 			newRearShock?.info = self.rearInfo
+			newRearShock?.strokeLength = self.strokeLength
 			newRearShock?.dualCompression = self.rearDualCompToggle
 			newRearShock?.dualRebound = self.rearDualCompToggle
 			newRearShock?.isCoil = self.isCoilToggle
@@ -201,6 +213,7 @@ struct AddBikeView: View {
 			
 			newBike?.hasRearShock = true
 			newRearShock?.info = self.rearInfo
+			newRearShock?.strokeLength = self.strokeLength
 			newRearShock?.dualCompression = self.rearDualCompToggle
 			newRearShock?.dualRebound = self.rearDualCompToggle
 			newRearShock?.isCoil = self.isCoilToggle
