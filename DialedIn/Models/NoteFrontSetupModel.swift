@@ -111,6 +111,12 @@ class NoteFrontSetupModel: ObservableObject {
             didChange.send(self)
         }
     }
+	
+	@Published var lastFTirePressure: Double = 0 {
+		didSet {
+			didChange.send(self)
+		}
+	}
 
 	
 // TODO: refactor these fork settings into own Model
@@ -178,6 +184,12 @@ class NoteFrontSetupModel: ObservableObject {
         let lastRecord = FrontSettings.sag
         return lastRecord.getSetting(note: filterBikes(for: bikeName))
     }
+	
+	func getLastTirePSI() -> Double {
+		let lastRecord = filterBikes(for: bikeName)
+		let last = lastRecord.last?.fTirePressure
+		return last ?? 0.0
+	}
         
     func getNotes() -> [Notes] {
         let notes = try! managedObjectContext.fetch(Notes.fetchRequest()) as! [Notes]
@@ -200,6 +212,7 @@ class NoteFrontSetupModel: ObservableObject {
         lastFReboundSetting = getLastFRebound()
         lastFTokenSetting = getLastFTokens()
         lastFSagSetting = getLastFSag()
+		lastFTirePressure = getLastTirePSI()
         fComp = getDualComp(bike: bikeName)
         fReb = getDualReb(bike: bikeName)
 

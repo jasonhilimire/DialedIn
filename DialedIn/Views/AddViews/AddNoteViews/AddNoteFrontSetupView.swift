@@ -12,6 +12,7 @@ struct AddNoteFrontSetupView: View {
     @ObservedObject var front = NoteFrontSetupModel()
     
     @State private var sag = 20
+	@State private var showTirePressure = false
 	let impactLight = UIImpactFeedbackGenerator(style: .light)
     
  //TODO: Configure Booleans
@@ -20,7 +21,7 @@ struct AddNoteFrontSetupView: View {
               // AirPressure
         HStack{
             Text("PSI: \(front.lastFAirSetting, specifier: "%.1f")").fontWeight(.thin)
-            Slider(value: $front.lastFAirSetting, in: 45...120, step: 0.5)
+			Slider(value: $front.lastFAirSetting, in: 45...120, step: 1.0)
 			Stepper(value: $front.lastFAirSetting, in: 45...120, step: 0.5, label: {Text("PSI: \(self.front.lastFAirSetting)").fontWeight(.thin)}).labelsHidden()
 
             }
@@ -47,13 +48,20 @@ struct AddNoteFrontSetupView: View {
             } else {
                 Stepper(value: $front.lastFReboundSetting, in: 0...25, label: {Text("Rebound: \(self.front.lastFReboundSetting)").fontWeight(.thin)})
             }
+			
+			// Tire Pressure
+			Toggle(isOn: $showTirePressure.animation(), label: {Text("Tire Pressure").fontWeight(.thin)})
+			if showTirePressure == true {
+				HStack {
+					Text("PSI: \(front.lastFTirePressure, specifier: "%.1f")").fontWeight(.thin)
+					Slider(value: $front.lastFTirePressure, in: 0...40, step: 0.5)
+					Stepper(value: $front.lastFTirePressure, in: 0...40, step: 0.1, label: {Text("PSI: \(self.front.lastFAirSetting)").fontWeight(.thin)}).labelsHidden()
+				}
+			}
 		}.onAppear(perform: {self.setup()})
 	}
 	
 	func setup() {
-
-//		print("\(bikeName)")
-//		fComp = front.getDualComp(bike: bikeName) 
 		print("Comp \(front.fComp)")
 		print("Reb \(front.fReb)")
 	}

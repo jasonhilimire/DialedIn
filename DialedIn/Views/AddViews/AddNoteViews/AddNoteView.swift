@@ -141,7 +141,10 @@ struct AddNoteView: View {
         newNote.fLSR = self.frontSetup.lastFLSRSetting
         newNote.fTokens = self.frontSetup.lastFTokenSetting
         newNote.fSag = self.frontSetup.lastFSagSetting
+		newNote.fTirePressure = self.frontSetup.lastFTirePressure
         newNote.bike?.hasRearShock = self.rearSetup.hasRear
+		
+		
         
         newNote.rAirSpring = self.rearSetup.lastRAirSpringSetting
         newNote.rCompression = self.rearSetup.lastRCompSetting
@@ -152,6 +155,7 @@ struct AddNoteView: View {
         newNote.rLSR = self.rearSetup.lastRLSRSetting
         newNote.rTokens = self.rearSetup.lastRTokenSetting
         newNote.rSag = self.rearSetup.lastRSagSetting
+//		newNote.rTirePressure = self.rearSetup
 		
 		bike.addToSetupNotes(newNote)
   
