@@ -158,6 +158,12 @@ class NoteRearSetupModel: ObservableObject {
             }
         }
 	
+	@Published var lastRTirePressure: Double = 0.0 {
+		didSet {
+			didChange.send(self)
+		}
+	}
+	
 
        let didChange = PassthroughSubject<NoteRearSetupModel, Never>()
        
@@ -169,6 +175,12 @@ class NoteRearSetupModel: ObservableObject {
             let lastAirSetting = lastRecord.last?.rAirSpring
             return lastAirSetting ?? 200.0
        }
+	
+	func getLastTirePSI() -> Double {
+		let lastRecord = filterNote(for: bikeName)
+		let lastPSI = lastRecord.last?.rTirePressure
+		return lastPSI ?? 0.0
+	}
     
     
         func getCoil() -> Bool {
@@ -245,6 +257,7 @@ class NoteRearSetupModel: ObservableObject {
             lastRReboundSetting = getLastRRebound()
             lastRTokenSetting = getLastRTokens()
             lastRSagSetting = getLastRSag()
+			lastRTirePressure = getLastTirePSI()
             rReb = getDualReb(bike: bikeName)
             rComp = getDualComp(bike: bikeName)
             coil = getCoil(bike: bikeName)

@@ -12,8 +12,6 @@ struct AddNoteFrontSetupView: View {
     @ObservedObject var front = NoteFrontSetupModel()
     
     @State private var sag = 20
-	@State private var showTirePressure = false
-	let impactLight = UIImpactFeedbackGenerator(style: .light)
     
  //TODO: Configure Booleans
     var body: some View {
@@ -50,13 +48,10 @@ struct AddNoteFrontSetupView: View {
             }
 			
 			// Tire Pressure
-			Toggle(isOn: $showTirePressure.animation(), label: {Text("Tire Pressure").fontWeight(.thin)})
-			if showTirePressure == true {
-				HStack {
-					Text("PSI: \(front.lastFTirePressure, specifier: "%.1f")").fontWeight(.thin)
-					Slider(value: $front.lastFTirePressure, in: 0...40, step: 0.5)
-					Stepper(value: $front.lastFTirePressure, in: 0...40, step: 0.1, label: {Text("PSI: \(self.front.lastFAirSetting)").fontWeight(.thin)}).labelsHidden()
-				}
+			HStack {
+				Text("PSI: \(front.lastFTirePressure, specifier: "%.1f")").fontWeight(.thin)
+				Slider(value: $front.lastFTirePressure, in: 0...40, step: 0.5)
+				Stepper(value: $front.lastFTirePressure, in: 0...40, step: 0.1, label: {Text("PSI: \(self.front.lastFTirePressure)").fontWeight(.thin)}).labelsHidden()
 			}
 		}.onAppear(perform: {self.setup()})
 	}
