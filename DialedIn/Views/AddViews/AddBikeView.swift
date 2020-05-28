@@ -24,7 +24,7 @@ struct AddBikeView: View {
     @State private var forkDualCompToggle = false
     @State private var lastLowerServiceDate = Date()
     @State private var lastFullForkServiceDate = Date()
-	@State private var forkTravel = 150.0
+	@State private var forkTravel = ""
     
     @State private var rearSetupIndex = 1
     @State private var rearSetups = ["None", "Air", "Coil"]
@@ -69,8 +69,8 @@ struct AddBikeView: View {
 							}
 						}
 						HStack {
-							Text("Travel: \(self.forkTravel, specifier: "%.0f")").fontWeight(.thin)
-							Slider(value: $forkTravel, in: 80...200, step: 5)
+							Text("Travel (mm):").fontWeight(.thin)
+							TextNumberView(text: $forkTravel, placeholder: "0.0 total travel in mm").cornerRadius(8)
 						}
                         Toggle(isOn: $forkDualReboundToggle.animation(), label: {Text("Dual Rebound?").fontWeight(.thin)})
                         Toggle(isOn: $forkDualCompToggle.animation(), label: {Text("Dual Compression?").fontWeight(.thin)})
@@ -104,7 +104,7 @@ struct AddBikeView: View {
 								}
 							}
 							HStack {
-								Text("Shock Stroke: \(self.strokeLength, specifier: "%.1f")").fontWeight(.thin)
+								Text("Shock Stroke (mm): \(self.strokeLength, specifier: "%.1f")").fontWeight(.thin)
 								Slider(value: $strokeLength, in: 25...90, step: 0.5)
 							}
 							
@@ -126,6 +126,10 @@ struct AddBikeView: View {
 									.onTapGesture {
 										self.slideScreen = true
 								}
+							}
+							HStack {
+								Text("Shock Stroke (mm): \(self.strokeLength, specifier: "%.1f")").fontWeight(.thin)
+								Slider(value: $strokeLength, in: 25...90, step: 0.5)
 							}
                             Toggle(isOn: $rearDualReboundToggle.animation(), label: {Text("Dual Rebound?").fontWeight(.thin)})
 
@@ -184,7 +188,7 @@ struct AddBikeView: View {
 		
 		// - Front Creation
 		newFrontService.service?.bike = newBike
-		newFork?.travel = self.forkTravel
+		newFork?.travel = Double(self.forkTravel) ?? 0.0
 		newFork?.dualCompression = self.forkDualCompToggle
 		newFork?.dualRebound = self.forkDualReboundToggle
 		newFork?.info = self.forkInfo
