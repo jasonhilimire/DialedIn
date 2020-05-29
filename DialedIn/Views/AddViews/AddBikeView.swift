@@ -34,7 +34,7 @@ struct AddBikeView: View {
     @State private var rearDualCompToggle = false
     @State private var lastAirCanServiceDate = Date()
     @State private var lastRearFullServiceDate = Date()
-	@State private var strokeLength = 40.0
+	@State private var strokeLength = ""
 	
 	@State private var slideScreen = false
     
@@ -68,10 +68,10 @@ struct AddBikeView: View {
 									self.slideScreen = false
 							}
 						}
+						
 						HStack {
 							Text("Travel (mm):").fontWeight(.thin)
 							CustomUIKitTextField(text: $forkTravel, placeholder: "Enter Fork length in mm")
-//							TextNumberView(text: $forkTravel, placeholder: "0.0 total travel in mm").cornerRadius(8)
 						}
 						
                         Toggle(isOn: $forkDualReboundToggle.animation(), label: {Text("Dual Rebound?").fontWeight(.thin)})
@@ -105,10 +105,12 @@ struct AddBikeView: View {
 										self.slideScreen = true
 								}
 							}
+							
 							HStack {
-								Text("Shock Stroke (mm): \(self.strokeLength, specifier: "%.1f")").fontWeight(.thin)
-								Slider(value: $strokeLength, in: 25...90, step: 0.5)
+								Text("Travel (mm):").fontWeight(.thin)
+								CustomUIKitTextField(text: $strokeLength, placeholder: "Enter Shock Stroke in mm")
 							}
+							
 							
                             Toggle(isOn: $rearDualReboundToggle.animation(), label: {Text("Dual Rebound?").fontWeight(.thin)})
 
@@ -129,10 +131,15 @@ struct AddBikeView: View {
 										self.slideScreen = true
 								}
 							}
+							
 							HStack {
-								Text("Shock Stroke (mm): \(self.strokeLength, specifier: "%.1f")").fontWeight(.thin)
-								Slider(value: $strokeLength, in: 25...90, step: 0.5)
+								Text("Travel (mm):").fontWeight(.thin)
+								CustomUIKitTextField(text: $strokeLength, placeholder: "Enter Shock Stroke in mm")
+									.onTapGesture {
+										self.slideScreen = true
+								}
 							}
+							
                             Toggle(isOn: $rearDualReboundToggle.animation(), label: {Text("Dual Rebound?").fontWeight(.thin)})
 
                             Toggle(isOn: $rearDualCompToggle.animation(), label: {Text("Dual Compression?").fontWeight(.thin)})
@@ -205,7 +212,7 @@ struct AddBikeView: View {
 		if self.rearSetupIndex == 1 {
 			newBike?.hasRearShock = true
 			newRearShock?.info = self.rearInfo
-			newRearShock?.strokeLength = self.strokeLength
+			newRearShock?.strokeLength = Double(self.strokeLength) ?? 0.0
 			newRearShock?.dualCompression = self.rearDualCompToggle
 			newRearShock?.dualRebound = self.rearDualCompToggle
 			newRearShock?.isCoil = self.isCoilToggle
@@ -219,7 +226,7 @@ struct AddBikeView: View {
 			
 			newBike?.hasRearShock = true
 			newRearShock?.info = self.rearInfo
-			newRearShock?.strokeLength = self.strokeLength
+			newRearShock?.strokeLength = Double(self.strokeLength) ?? 0.0
 			newRearShock?.dualCompression = self.rearDualCompToggle
 			newRearShock?.dualRebound = self.rearDualCompToggle
 			newRearShock?.isCoil = self.isCoilToggle

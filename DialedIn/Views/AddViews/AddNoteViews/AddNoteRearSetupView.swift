@@ -32,7 +32,9 @@ struct AddNoteRearSetupView: View {
                         }
                     }
                 //Sag
-                Stepper(value: $rear.lastRSagSetting   , in: 0...40, label: {Text("Sag: \(self.rear.lastRSagSetting)").fontWeight(.thin)})
+				Stepper(value: $rear.lastRSagSetting  , in: 0...50, label: {Text("Sag (mm): \(self.rear.lastRSagSetting) -- Sag %: \(calcSag(sag: Double(self.rear.lastRSagSetting), travel: rear.travel), specifier: "%.1f")").fontWeight(.thin)})
+				
+                
                 //Tokens
                 Stepper(value: $rear.lastRTokenSetting, in: 0...6, label: {Text("Tokens: \(self.rear.lastRTokenSetting)").fontWeight(.thin)})
                 //Compression
@@ -62,6 +64,13 @@ struct AddNoteRearSetupView: View {
             
         }
     }
+	
+	
+	func calcSag(sag: Double, travel: Double) -> Double {
+		let calculatedTravel = (sag / travel) * 100.0
+		
+		return calculatedTravel
+	}
 }
 
 struct AddNoteRearSetupView_Previews: PreviewProvider {

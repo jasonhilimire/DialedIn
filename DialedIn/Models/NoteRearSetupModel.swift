@@ -47,6 +47,8 @@ class NoteRearSetupModel: ObservableObject {
 		return filteredBike.last?.isCoil ?? false
 	}
 	
+
+	
 	
 	func getBike(filter: String) -> [Bike] {
 		var bikes : [Bike] = []
@@ -66,6 +68,14 @@ class NoteRearSetupModel: ObservableObject {
 		}
 		return filteredBike.last?.hasRearShock ?? true
 	}
+	
+	func getTravel(bike: String) -> Double {
+		let filteredBike = getBike(filter: bike).filter { bikes in
+			bikes.name == bike
+		}
+		return filteredBike.last?.rearSetup?.strokeLength ?? 0.0
+	}
+	
 
 	
    
@@ -158,11 +168,17 @@ class NoteRearSetupModel: ObservableObject {
             }
         }
 	
-	@Published var lastRTirePressure: Double = 0.0 {
-		didSet {
-			didChange.send(self)
+		@Published var travel : Double = 0 {
+			didSet {
+				didChange.send(self)
+			}
 		}
-	}
+	
+		@Published var lastRTirePressure: Double = 0.0 {
+			didSet {
+				didChange.send(self)
+			}
+		}
 	
 
        let didChange = PassthroughSubject<NoteRearSetupModel, Never>()
@@ -176,11 +192,11 @@ class NoteRearSetupModel: ObservableObject {
             return lastAirSetting ?? 200.0
        }
 	
-	func getLastTirePSI() -> Double {
-		let lastRecord = filterNote(for: bikeName)
-		let lastPSI = lastRecord.last?.rTirePressure
-		return lastPSI ?? 0.0
-	}
+		func getLastTirePSI() -> Double {
+			let lastRecord = filterNote(for: bikeName)
+			let lastPSI = lastRecord.last?.rTirePressure
+			return lastPSI ?? 0.0
+		}
     
     
         func getCoil() -> Bool {
@@ -262,6 +278,7 @@ class NoteRearSetupModel: ObservableObject {
             rComp = getDualComp(bike: bikeName)
             coil = getCoil(bike: bikeName)
             hasRear = getHasRear(bike: bikeName)
+			travel = getTravel(bike: bikeName)
 			
        }
 	
