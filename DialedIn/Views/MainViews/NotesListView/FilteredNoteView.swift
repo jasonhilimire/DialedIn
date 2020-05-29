@@ -87,7 +87,8 @@ struct FilteredNoteView: View {
 									Text("Reb: \(note.fRebound)").fontWeight(.thin)
 									
 								}
-								Text("Sag: \(note.fSag)").fontWeight(.thin)
+//								Text("Sag: \(note.fSag)").fontWeight(.thin)
+								Text("Sag %: \(calcSag(sag: Double(note.fSag), travel: note.bike?.frontSetup?.travel ?? 0.0), specifier: "%.1f")").fontWeight(.thin)
 								Divider()
 								if note.bike?.rearSetup?.dualRebound == true {
 									Text("HSR: \(note.rHSR)").fontWeight(.thin)
@@ -95,7 +96,8 @@ struct FilteredNoteView: View {
 								} else {
 									Text("Reb: \(note.rRebound)").fontWeight(.thin)
 								}
-								Text("Sag: \(note.rSag)").fontWeight(.thin)
+//								Text("Sag: \(note.rSag)").fontWeight(.thin)
+								Text("Sag %: \(calcSag(sag: Double(note.rSag), travel: note.bike?.rearSetup?.strokeLength ?? 0.0), specifier: "%.1f")").fontWeight(.thin)
 							}.font(.caption)
 							
 							Spacer()
