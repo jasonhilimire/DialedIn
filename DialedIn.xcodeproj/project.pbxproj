@@ -234,6 +234,7 @@
 		A3B99237241DDAF9007E9B7B /* Unused */ = {
 			isa = PBXGroup;
 			children = (
+				A33F02AE2406201D005A0A8F /* AddNoteBikeView.swift */,
 				A383EFF8241D55900039A04C /* NoteStyledCellView.swift */,
 				A3E1A6AE2409B78100C4DFD5 /* FilteredBikeNotesView.swift */,
 				A36C24C02437FED000B43121 /* ServicesListView.swift */,
@@ -387,7 +388,6 @@
 			isa = PBXGroup;
 			children = (
 				A3DDCC7E23DFF2C900CD1476 /* AddNoteView.swift */,
-				A33F02AE2406201D005A0A8F /* AddNoteBikeView.swift */,
 				A3B8B79623F0E9EF00CE1EF8 /* BikePickerView.swift */,
 				A3C7A1D62401F87D00A741A8 /* AddNoteFrontSetupView.swift */,
 				A3FBA8B224024024001F3885 /* AddNoteRearSetupView.swift */,

@@ -62,12 +62,6 @@ struct AddNoteFrontSetupView: View {
 		print("Reb \(front.fReb)")
 	}
 	
-	func calcSag(sag: Double, travel: Double) -> Double {
-		let calculatedTravel = (sag / travel) * 100.0
-
-		return calculatedTravel
-	}
-	
 }
 
 

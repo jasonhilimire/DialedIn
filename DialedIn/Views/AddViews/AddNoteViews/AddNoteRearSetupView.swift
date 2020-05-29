@@ -64,13 +64,6 @@ struct AddNoteRearSetupView: View {
             
         }
     }
-	
-	
-	func calcSag(sag: Double, travel: Double) -> Double {
-		let calculatedTravel = (sag / travel) * 100.0
-		
-		return calculatedTravel
-	}
 }
 
 struct AddNoteRearSetupView_Previews: PreviewProvider {

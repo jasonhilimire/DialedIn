@@ -75,7 +75,7 @@ struct NotesDetailView: View {
 							Spacer()
 							VStack{
 								HStack{
-									Text("Sag: \(self.note.fSag)").fontWeight(.thin)
+									Text("Sag %: \(calcSag(sag: Double(self.note.fSag), travel: self.note.bike?.frontSetup?.travel ?? 0.0), specifier: "%.1f")").fontWeight(.thin)
 									Text("Tire PSI: \(self.note.fTirePressure, specifier: "%.1f")").fontWeight(.thin)
 								}
 							}
@@ -140,7 +140,7 @@ struct NotesDetailView: View {
 									
 									VStack{
 										HStack {
-											Text("Sag: \(self.note.rSag)").fontWeight(.thin)
+											Text("Sag %: \(calcSag(sag: Double(self.note.rSag), travel: self.note.bike?.rearSetup?.strokeLength ?? 0.0), specifier: "%.1f")").fontWeight(.thin)
 											Text("Tire PSI: \(self.note.rTirePressure, specifier: "%.1f")").fontWeight(.thin)
 										}
 									}
@@ -196,7 +196,6 @@ struct NotesDetailView: View {
 		}
 		
 		.onAppear(perform: {self.setup()})
-//		.onDisappear(perform: {self.updateNote(note: self.note)})
 			// Dismisses the keyboard
 		.onTapGesture { UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to:nil, from:nil, for:nil) }
         .navigationBarTitle(Text(note.bike?.name ?? "Unknown Note"), displayMode: .inline)

@@ -175,6 +175,14 @@ var tap: some Gesture {
 		.onEnded { _ in UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to:nil, from:nil, for:nil) }
 }
 
+// calculate sag
+
+func calcSag(sag: Double, travel: Double) -> Double {
+	let calculatedTravel = (sag / travel) * 100.0
+	
+	return calculatedTravel
+}
+
 
 
 
