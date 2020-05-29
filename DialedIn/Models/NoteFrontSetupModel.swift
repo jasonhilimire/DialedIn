@@ -42,6 +42,13 @@ class NoteFrontSetupModel: ObservableObject {
 		return filteredBike.last?.dualRebound ?? true
 	}
 	
+	func getTravel(bike: String) -> Double {
+		let filteredBike = getFrontSettings(filter: bike).filter { bikes in
+			bikes.bike?.frontSetup?.bike?.name == bike
+		}
+		return filteredBike.last?.travel ?? 0.0
+	}
+	
 	
 	
 	
@@ -131,6 +138,13 @@ class NoteFrontSetupModel: ObservableObject {
             didChange.send(self)
         }
     }
+	
+	@Published var fTravel: Double = 0 {
+		didSet {
+			didChange.send(self)
+		}
+	}
+	
     
     let didChange = PassthroughSubject<NoteFrontSetupModel, Never>()
     
@@ -143,7 +157,7 @@ class NoteFrontSetupModel: ObservableObject {
         let lastAirSetting = lastRecord.last?.fAirVolume
         return lastAirSetting ?? 65.0
     }
-    
+	
     
     func getLastFHSC() -> Int16 {
         let lastRecord = FrontSettings.hsc
@@ -159,6 +173,8 @@ class NoteFrontSetupModel: ObservableObject {
         let lastRecord = FrontSettings.compression
         return lastRecord.getSetting(note: filterBikes(for: bikeName))
     }
+	
+	
     
     func getLastFHSR() -> Int16 {
         let lastRecord = FrontSettings.hsr
@@ -174,6 +190,8 @@ class NoteFrontSetupModel: ObservableObject {
         let lastRecord = FrontSettings.rebound
         return lastRecord.getSetting(note: filterBikes(for: bikeName))
     }
+	
+	
     
     func getLastFTokens() -> Int16 {
         let lastRecord = FrontSettings.tokens
@@ -215,6 +233,7 @@ class NoteFrontSetupModel: ObservableObject {
 		lastFTirePressure = getLastTirePSI()
         fComp = getDualComp(bike: bikeName)
         fReb = getDualReb(bike: bikeName)
+		fTravel = getTravel(bike: bikeName)
 
     }
     

@@ -120,13 +120,20 @@ struct TextNumberView: UIViewRepresentable {
 
 
 struct CustomUIKitTextField: UIViewRepresentable {
-	
+	@Environment(\.colorScheme) var colorScheme
 	@Binding var text: String
 	var placeholder: String
 	
 	func makeUIView(context: UIViewRepresentableContext<CustomUIKitTextField>) -> UITextField {
 		let textField = UITextField(frame: .zero)
 		textField.delegate = context.coordinator
+		textField.font = UIFont(name: "HelveticaNeue", size: 15)
+		textField.font = UIFont.systemFont(ofSize: 15, weight: UIFont.Weight.thin)
+		textField.borderStyle = .roundedRect // needs to be in place otherwise textfield is small?
+//		textField.isScrollEnabled = true
+//		textField.isEditable = true
+		textField.isUserInteractionEnabled = true
+		textField.backgroundColor = UIColor(named: "TextEditBackgroundColor")
 		textField.placeholder = placeholder
 		textField.keyboardType = .decimalPad
 		return textField
@@ -151,6 +158,11 @@ struct CustomUIKitTextField: UIViewRepresentable {
 		
 		func textFieldDidChangeSelection(_ textField: UITextField) {
 			parent.text = textField.text ?? ""
+		}
+		
+		func textViewDidChange(_ textView: UITextView) {
+			print("text now: \(String(describing: textView.text!))")
+			self.parent.text = textView.text ?? ""
 		}
 		
 	}

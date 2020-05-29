@@ -70,9 +70,10 @@ struct AddBikeView: View {
 						}
 						HStack {
 							Text("Travel (mm):").fontWeight(.thin)
-							CustomUIKitTextField(text: $forkTravel, placeholder: "0.0 total travel in mm")
+							CustomUIKitTextField(text: $forkTravel, placeholder: "Enter Fork length in mm")
 //							TextNumberView(text: $forkTravel, placeholder: "0.0 total travel in mm").cornerRadius(8)
 						}
+						
                         Toggle(isOn: $forkDualReboundToggle.animation(), label: {Text("Dual Rebound?").fontWeight(.thin)})
                         Toggle(isOn: $forkDualCompToggle.animation(), label: {Text("Dual Compression?").fontWeight(.thin)})
                         

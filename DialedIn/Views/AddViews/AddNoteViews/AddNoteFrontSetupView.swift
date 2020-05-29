@@ -24,7 +24,8 @@ struct AddNoteFrontSetupView: View {
 
             }
 			
-            Stepper(value: $front.lastFSagSetting   , in: 0...40, label: {Text("Sag: \(self.front.lastFSagSetting)").fontWeight(.thin)})
+			//Sag
+			Stepper(value: $front.lastFSagSetting   , in: 0...70, label: {Text("Sag (mm): \(self.front.lastFSagSetting) -- Sag %: \(calcSag(sag: Double(self.front.lastFSagSetting), travel: front.fTravel), specifier: "%.1f")").fontWeight(.thin)})
         
             // Tokens
             Stepper(value: $front.lastFTokenSetting   , in: 0...6, label: {Text("Tokens: \(self.front.lastFTokenSetting)").fontWeight(.thin)})
@@ -59,6 +60,12 @@ struct AddNoteFrontSetupView: View {
 	func setup() {
 		print("Comp \(front.fComp)")
 		print("Reb \(front.fReb)")
+	}
+	
+	func calcSag(sag: Double, travel: Double) -> Double {
+		let calculatedTravel = (sag / travel) * 100.0
+
+		return calculatedTravel
 	}
 	
 }
