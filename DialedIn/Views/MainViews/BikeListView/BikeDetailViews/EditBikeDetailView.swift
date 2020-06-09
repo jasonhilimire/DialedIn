@@ -204,31 +204,22 @@ struct EditBikeDetailView: View {
 	}
 	
 	func setup(){
-		//TODO: Notes & info are working but not travel and toggles
 		bikeName = self.bike.wrappedBikeName
 		bikeNote = self.bike.bikeNote ?? ""
 		
 		forkInfo = bike.frontSetup?.self.wrappedForkInfo ?? ""
-		forkDualReboundToggle = self.front.fReb
-		forkDualCompToggle = self.front.fComp
-		forkTravel = "\(front.fTravel)"
+		forkTravel = "\(self.bike.frontSetup?.travel ?? 0)"
 		
 		rearInfo = bike.rearSetup?.wrappedRearInfo ?? ""
-		rearDualReboundToggle = self.rear.rReb
-		rearDualCompToggle = self.rear.rComp
-		strokeLength = "\(self.rear.travel)"
-		
+	
+		setToggles()
 		setIndex()
-		print("Index is \(self.rearSetupIndex)")
-		
 	}
 	
 	func setIndex(){
 		let hasRear = self.bike.hasRearShock
 		let isCoil = self.bike.rearSetup?.isCoil
-		
-		print("Coil: \(isCoil)")
-		print("HT: \(hasRear)")
+
 		if hasRear == false {
 			rearSetupIndex = 0
 		} else if isCoil == true {
@@ -236,5 +227,13 @@ struct EditBikeDetailView: View {
 		} else {
 			rearSetupIndex = 1
 		}
+	}
+	
+	func setToggles() {
+		forkDualReboundToggle = self.bike.frontSetup!.dualRebound ? true : false
+		forkDualCompToggle = self.bike.frontSetup!.dualCompression ? true : false
+		rearDualReboundToggle = self.bike.rearSetup!.dualRebound ? true : false
+		rearDualCompToggle = self.bike.rearSetup!.dualCompression ? true: false
+	
 	}
 }
