@@ -47,25 +47,25 @@ struct BikeDetailView: View {
 					}
 					
 				///Service view with animation
-/*
+
 						Button(action: {
 							withAnimation {
-								self.showService.toggle()
+								self.showServiceScreen.toggle()
 							}
 						}) {
 							HStack {
 								
 							Image(systemName: "wrench")
 								.imageScale(.large)
-								.rotationEffect(.degrees(showService ? 90 : 0))
-								.scaleEffect(showService ? 1.5 : 1)
+								.rotationEffect(.degrees(showServiceScreen ? 90 : 0))
+								.scaleEffect(showServiceScreen ? 1.5 : 1)
 								.padding()
 								Text("Add Service")
 				
 						}
 					}
 					
-					if showService {
+					if showServiceScreen {
 						ServiceView(bike: self.bike)
 							.transition(.move(edge: .bottom))
 					}
@@ -73,7 +73,7 @@ struct BikeDetailView: View {
 
 					Spacer()
 
-*/
+
 				}
 			Spacer()
 			Text("Notes")

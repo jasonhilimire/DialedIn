@@ -152,7 +152,7 @@ struct ServiceView: View {
 				.onAppear(perform: {self.setup()})
 				// Dismisses the keyboard
 				.gesture(tap, including: keyboard.keyBoardShown ? .all : .none)
-			
+				.navigationBarTitle("Shock Service", displayMode: .inline)
 			// if no service toggles disable save button
 			if frontServicedIndex == 0 && rearServicedIndex == 0 {
 				Text("Add a Service as needed").foregroundColor(.orange)
@@ -170,7 +170,7 @@ struct ServiceView: View {
 			}
 		}.padding(.top)
 		}
-		.navigationBarTitle("Shock Service", displayMode: .inline)
+		
 			
 		.offset(y: slideScreen ?  -keyboard.height  :  0)
 		.animation(.spring())
