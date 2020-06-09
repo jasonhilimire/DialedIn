@@ -50,7 +50,7 @@ struct AddNoteFrontSetupView: View {
 			
 			// Tire Pressure
 			HStack {
-				Text("PSI: \(front.lastFTirePressure, specifier: "%.1f")").fontWeight(.thin)
+				Text("Tire PSI: \(front.lastFTirePressure, specifier: "%.1f")").fontWeight(.thin)
 				Slider(value: $front.lastFTirePressure, in: 0...40, step: 0.5)
 				Stepper(value: $front.lastFTirePressure, in: 0...40, step: 0.1, label: {Text("PSI: \(self.front.lastFTirePressure)").fontWeight(.thin)}).labelsHidden()
 			}

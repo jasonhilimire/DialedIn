@@ -55,7 +55,7 @@ struct AddNoteRearSetupView: View {
 				
 				//Tire Pressure
 				HStack {
-					Text("PSI: \(rear.lastRTirePressure, specifier: "%.1f")").fontWeight(.thin)
+					Text("Tire PSI: \(rear.lastRTirePressure, specifier: "%.1f")").fontWeight(.thin)
 					Slider(value: $rear.lastRTirePressure, in: 0...40, step: 0.5)
 					Stepper(value: $rear.lastRTirePressure, in: 0...40, step: 0.1, label: {Text("PSI: \(self.rear.lastRTirePressure)").fontWeight(.thin)}).labelsHidden()
 				}
