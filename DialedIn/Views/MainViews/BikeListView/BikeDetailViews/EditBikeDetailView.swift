@@ -15,6 +15,8 @@ struct EditBikeDetailView: View {
 	@Environment(\.presentationMode) var presentationMode
 	
 	@ObservedObject var keyboard = KeyboardObserver()
+	@ObservedObject var front = NoteFrontSetupModel()
+	@ObservedObject var rear = NoteRearSetupModel()
 	
 	@State private var bikeName = ""
 	@State private var bikeNote = ""
@@ -23,18 +25,14 @@ struct EditBikeDetailView: View {
 	@State private var forkInfo = ""
 	@State private var forkDualReboundToggle = false
 	@State private var forkDualCompToggle = false
-	@State private var lastLowerServiceDate = Date()
-	@State private var lastFullForkServiceDate = Date()
 	@State private var forkTravel = ""
 	
-	@State private var rearSetupIndex = 1
+	@State private var rearSetupIndex = 0
 	@State private var rearSetups = ["None", "Air", "Coil"]
 	@State private var isCoilToggle = false
 	@State private var rearInfo = ""
 	@State private var rearDualReboundToggle = false
 	@State private var rearDualCompToggle = false
-	@State private var lastAirCanServiceDate = Date()
-	@State private var lastRearFullServiceDate = Date()
 	@State private var strokeLength = ""
 	
 	@State private var slideScreen = false
@@ -48,7 +46,7 @@ struct EditBikeDetailView: View {
 				Form {
 					Section(header: Text("Bike Details")){
 						HStack {
-							Text("Bike Name:").fontWeight(.thin)
+							Text("Bike Name: \(self.bike.wrappedBikeName)").fontWeight(.thin)
 							TextView(text: $bikeName).cornerRadius(8)
 							
 						}
@@ -80,13 +78,6 @@ struct EditBikeDetailView: View {
 						Toggle(isOn: $forkDualReboundToggle.animation(), label: {Text("Dual Rebound?").fontWeight(.thin)})
 						Toggle(isOn: $forkDualCompToggle.animation(), label: {Text("Dual Compression?").fontWeight(.thin)})
 						
-						DatePicker(selection: $lastLowerServiceDate, in: ...Date(), displayedComponents: .date) {
-							Text("Last Lower Service").fontWeight(.thin)
-						}
-						
-						DatePicker(selection: $lastFullForkServiceDate, in: ...Date(), displayedComponents: .date) {
-							Text("Last Full Service").fontWeight(.thin)
-						}
 					}
 					
 					Section(header: Text("Shock Details")){
@@ -119,13 +110,6 @@ struct EditBikeDetailView: View {
 							
 							Toggle(isOn: $rearDualCompToggle.animation(), label: {Text("Dual Compression?").fontWeight(.thin)})
 							
-							DatePicker(selection: $lastAirCanServiceDate, in: ...Date(), displayedComponents: .date) {
-								Text("Last Air Can Service").fontWeight(.thin)
-							}
-							
-							DatePicker(selection: $lastRearFullServiceDate, in: ...Date(), displayedComponents: .date) {
-								Text("Last Rear Full Service").fontWeight(.thin)
-							}
 						} else if rearSetupIndex == 2 {
 							HStack {
 								Text("Rear Info:").fontWeight(.thin)
@@ -147,13 +131,10 @@ struct EditBikeDetailView: View {
 							
 							Toggle(isOn: $rearDualCompToggle.animation(), label: {Text("Dual Compression?").fontWeight(.thin)})
 							
-							DatePicker(selection: $lastRearFullServiceDate, in: ...Date(), displayedComponents: .date) {
-								Text("Last Rear Full Service").fontWeight(.thin)
-							}
 						}
 					}
 					
-				} .navigationBarTitle("Bike Info", displayMode: .inline)
+				} .navigationBarTitle("Edit Bike Info", displayMode: .inline)
 					
 					.offset(y: slideScreen ?  -keyboard.height  :  0)
 					.animation(.spring())
@@ -175,71 +156,85 @@ struct EditBikeDetailView: View {
 		}
 			// Dismisses the keyboard
 			.gesture(tap, including: keyboard.keyBoardShown ? .all : .none)
+			.onAppear(perform: {self.setup()})
 	}
 	
 	func saveNewBike() {
-		// start at the child and work way up with creating Entities
-		/// Setup
-		let newRearService = RearService(context: self.moc)
-		newRearService.service = RearShock(context: self.moc)
-		let newRearShock = newRearService.service
-		newRearService.service?.bike = Bike(context: self.moc)
-		let newFrontService = FrontService(context: self.moc)
-		newFrontService.service = Fork(context: self.moc)
-		let newFork = newFrontService.service
-		let newBike = newRearService.service?.bike
+		// - Bike Edit
 		
-		let dateString = dateFormatter.string(from: Date())
-		
-		
-		// - Bike Creation
-		
-		newBike?.name = self.bikeName
-		newBike?.bikeNote = self.bikeNote
-		newBike?.isDefault = self.setDefault
+		bike.name = self.bikeName
+		bike.bikeNote = self.bikeNote
+		bike.isDefault = self.setDefault
 		
 		// - Front Creation
-		newFrontService.service?.bike = newBike
-		newFork?.travel = Double(self.forkTravel) ?? 0.0
-		newFork?.dualCompression = self.forkDualCompToggle
-		newFork?.dualRebound = self.forkDualReboundToggle
-		newFork?.info = self.forkInfo
-		newFrontService.lowersService = self.lastLowerServiceDate
-		newFrontService.fullService = self.lastFullForkServiceDate
-		newFrontService.serviceNote = "Bike Created: \(dateString), no services done yet"
+		bike.frontSetup?.travel = Double(self.forkTravel) ?? 0.0
+		bike.frontSetup?.dualCompression = self.forkDualCompToggle
+		bike.frontSetup?.dualRebound = self.forkDualReboundToggle
+		bike.frontSetup?.info = self.forkInfo
+
 		
 		
 		// - Rear Creation -
 		
 		
 		if self.rearSetupIndex == 1 {
-			newBike?.hasRearShock = true
-			newRearShock?.info = self.rearInfo
-			newRearShock?.strokeLength = Double(self.strokeLength) ?? 0.0
-			newRearShock?.dualCompression = self.rearDualCompToggle
-			newRearShock?.dualRebound = self.rearDualCompToggle
-			newRearShock?.isCoil = self.isCoilToggle
-			newRearService.airCanService = self.lastAirCanServiceDate
-			newRearService.fullService = self.lastRearFullServiceDate
-			
-			newRearService.serviceNote = "Bike Created: \(dateString), no services done yet"
+			bike.hasRearShock = true
+			bike.rearSetup?.info = self.rearInfo
+			bike.rearSetup?.strokeLength = Double(self.strokeLength) ?? 0.0
+			bike.rearSetup?.dualCompression = self.rearDualCompToggle
+			bike.rearSetup?.dualRebound = self.rearDualCompToggle
+			bike.rearSetup?.isCoil = self.isCoilToggle
+
 			
 		} else if self.rearSetupIndex == 2 {
 			self.isCoilToggle.toggle()
 			
-			newBike?.hasRearShock = true
-			newRearShock?.info = self.rearInfo
-			newRearShock?.strokeLength = Double(self.strokeLength) ?? 0.0
-			newRearShock?.dualCompression = self.rearDualCompToggle
-			newRearShock?.dualRebound = self.rearDualCompToggle
-			newRearShock?.isCoil = self.isCoilToggle
-			newRearService.airCanService = self.lastAirCanServiceDate
-			newRearService.fullService = self.lastRearFullServiceDate
-			newRearService.serviceNote = "Bike Created: \(dateString), no services done yet"
+			bike.hasRearShock = true
+			bike.rearSetup?.info = self.rearInfo
+			bike.rearSetup?.strokeLength = Double(self.strokeLength) ?? 0.0
+			bike.rearSetup?.dualCompression = self.rearDualCompToggle
+			bike.rearSetup?.dualRebound = self.rearDualCompToggle
+			bike.rearSetup?.isCoil = self.isCoilToggle
+
 			
 		} else if self.rearSetupIndex == 0 {
-			newBike?.hasRearShock = false
-			newRearShock?.isCoil = false
+			bike.hasRearShock = false
+			bike.rearSetup?.isCoil = false
+		}
+	}
+	
+	func setup(){
+		//TODO: Notes & info are working but not travel and toggles
+		bikeName = self.bike.wrappedBikeName
+		bikeNote = self.bike.bikeNote ?? ""
+		
+		forkInfo = bike.frontSetup?.self.wrappedForkInfo ?? ""
+		forkDualReboundToggle = self.front.fReb
+		forkDualCompToggle = self.front.fComp
+		forkTravel = "\(front.fTravel)"
+		
+		rearInfo = bike.rearSetup?.wrappedRearInfo ?? ""
+		rearDualReboundToggle = self.rear.rReb
+		rearDualCompToggle = self.rear.rComp
+		strokeLength = "\(self.rear.travel)"
+		
+		setIndex()
+		print("Index is \(self.rearSetupIndex)")
+		
+	}
+	
+	func setIndex(){
+		let hasRear = self.bike.hasRearShock
+		let isCoil = self.bike.rearSetup?.isCoil
+		
+		print("Coil: \(isCoil)")
+		print("HT: \(hasRear)")
+		if hasRear == false {
+			rearSetupIndex = 0
+		} else if isCoil == true {
+			rearSetupIndex = 2
+		} else {
+			rearSetupIndex = 1
 		}
 	}
 }
