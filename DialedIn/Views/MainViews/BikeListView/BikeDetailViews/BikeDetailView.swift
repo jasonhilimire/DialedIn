@@ -18,10 +18,9 @@ struct BikeDetailView: View {
 	@ObservedObject var rear = NoteRearSetupModel()
 	
     
-    @State private var showingDeleteAlert = false
-	@State private var showingNotesView = false
 	@State private var bikeName = ""
 	@State var showServiceScreen = false
+	@State var showEditScreen = false
 
     let bike: Bike
 	
@@ -69,11 +68,8 @@ struct BikeDetailView: View {
 						ServiceView(bike: self.bike)
 							.transition(.move(edge: .bottom))
 					}
-						
-
+	
 					Spacer()
-
-
 				}
 			Spacer()
 			Text("Notes")
@@ -86,45 +82,18 @@ struct BikeDetailView: View {
 		.navigationBarTitle(self.bike.name ?? "Unknown Bike")
 		.navigationBarItems(trailing: Button(action: {
 			withAnimation {
-				self.showServiceScreen.toggle()
+				self.showEditScreen.toggle()
 			}
 		}) {
-				Image(systemName: "wrench").foregroundColor(Color("TextColor"))
-					.imageScale(.large)
-					.rotationEffect(.degrees(showServiceScreen ? 90 : 0))
-					.scaleEffect(showServiceScreen ? 1.5 : 1)
+				Image(systemName: "pencil.circle").foregroundColor(Color("TextColor"))
+					.font(.title)
+					.scaleEffect(showEditScreen ? 1.5 : 1)
 					.padding()
 		})
-			.sheet(isPresented: $showServiceScreen)  {
-				ServiceView(bike: self.bike).environment(\.managedObjectContext, self.moc)
+			.sheet(isPresented: $showEditScreen)  {
+				EditBikeDetailView(bike: self.bike).environment(\.managedObjectContext, self.moc)
 		}
-			
-//			.alert(isPresented: $showingDeleteAlert) {
-//				Alert(title: Text("Delete Bike"), message: Text("""
-//Are you sure!!!?
-//This will delete ALL notes related to this bike
-//"""), primaryButton: .destructive(Text("Delete")) {
-//					self.deleteBike()
-//					}, secondaryButton: .cancel()
-//				)
-//		}
-//		.navigationBarItems(trailing: Button(action: {
-//			self.showingDeleteAlert = true
-//		}) {
-//			Image(systemName: "trash")
-//		})
-			
     }
-	
-	func doStuff() {
-		self.showingNotesView.toggle()
-	}
-	
-	func deleteBike(){
-		moc.delete(self.bike)
-		try? self.moc.save()
-		presentationMode.wrappedValue.dismiss()
-	}
 }
 
 
