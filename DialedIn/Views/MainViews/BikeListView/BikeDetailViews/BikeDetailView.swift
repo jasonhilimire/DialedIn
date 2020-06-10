@@ -45,31 +45,31 @@ struct BikeDetailView: View {
 						}
 					}
 					
-				///Service view with animation
-
-						Button(action: {
-							withAnimation {
-								self.showServiceScreen.toggle()
-							}
-						}) {
-							HStack {
-								
-							Image(systemName: "wrench")
-								.imageScale(.large)
-								.rotationEffect(.degrees(showServiceScreen ? 90 : 0))
-								.scaleEffect(showServiceScreen ? 1.5 : 1)
-								.padding()
-								Text("Add Service")
-				
-						}
-					}
-					
-					if showServiceScreen {
-						ServiceView(bike: self.bike)
-							.transition(.move(edge: .bottom))
-					}
-	
-					Spacer()
+//				///Service view with animation
+//
+//						Button(action: {
+//							withAnimation {
+//								self.showServiceScreen.toggle()
+//							}
+//						}) {
+//							HStack {
+//
+//							Image(systemName: "wrench")
+//								.imageScale(.large)
+//								.rotationEffect(.degrees(showServiceScreen ? 90 : 0))
+//								.scaleEffect(showServiceScreen ? 1.5 : 1)
+//								.padding()
+//								Text("Add Service")
+//
+//						}
+//					}
+//
+//					if showServiceScreen {
+//						ServiceView(bike: self.bike)
+//							.transition(.move(edge: .bottom))
+//					}
+//
+//					Spacer()
 				}
 			Spacer()
 			Text("Notes")

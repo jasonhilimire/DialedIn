@@ -38,6 +38,11 @@ struct AppView: View {
                     Image(systemName: "gear")
                     Text("Bikes")
                 }
+			ServiceView()
+				.tabItem {
+					Image(systemName: "wrench")
+					Text("Service")
+			}
 			
         }
 			.animation(.default)

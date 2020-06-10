@@ -13,10 +13,16 @@ struct ServiceView: View {
 	@Environment(\.managedObjectContext) var moc
 	@Environment(\.presentationMode) var presentationMode
 	
+	
+	// Get All the bikes for the PickerView
+	@FetchRequest(fetchRequest: Bike.bikesFetchRequest())
+	var bikes: FetchedResults<Bike>
+	
 	@ObservedObject var frontService = FrontServiceModel()
 	@ObservedObject var rearService = RearServiceModel()
 	@ObservedObject var keyboard = KeyboardObserver()
 	
+	@State private var bikeNameIndex = 0
 	@State private var bikeName = ""
 	@State private var fFullServicedDate = Date()
 	@State private var fLowersServicedDate = Date()
@@ -32,144 +38,151 @@ struct ServiceView: View {
 	
 	@State private var slideScreen = false
 	
-	let bike: Bike
+//	let bike: Bike
 	
+
 	var body: some View {
 		NavigationView {
-		VStack {
-			Form {
-				//MARK:- Front
-				Section(header:
-					HStack {
-						Image("bicycle-fork")
-							.resizable()
-							.frame(width: 50, height: 50)
-							.scaledToFit()
-						Text("Front Service")
+			VStack {
+				Form {
+					if bikes.count == 1 {
+						Text("\(self.bikes[bikeNameIndex].name!)")
+							.fontWeight(.thin)
+					} else {
+						BikePickerView(bikeNameIndex: $bikeNameIndex)
+					}
+					//MARK:- Front
+					Section(header:
+						HStack {
+							Image("bicycle-fork")
+								.resizable()
+								.frame(width: 50, height: 50)
+								.scaledToFit()
+							Text("Front Service")
+							}
+						){
+						
+						Picker("Service Type", selection: $frontServicedIndex) {
+							ForEach(0..<frontServiced.count) { index in
+								Text(self.frontServiced[index]).tag(index)
+							}
+						}.pickerStyle(SegmentedPickerStyle())
+						if frontServicedIndex == 1 {
+							Text("Full Service Includes Lowers Service").fontWeight(.thin).italic()
+							DatePicker(selection: $fFullServicedDate, in: ...Date(), displayedComponents: .date) {
+								Text("Date Serviced").fontWeight(.thin)
+							}
+							HStack {
+								Text("Note:").fontWeight(.thin)
+								TextView(text: $frontServicedNote).cornerRadius(8)
+									.onTapGesture {
+										self.slideScreen = false
+								}
+							}
+						} else if frontServicedIndex == 2 {
+							Text("Lowers only Serviced").fontWeight(.thin).italic()
+							DatePicker(selection: $fLowersServicedDate, in: ...Date(), displayedComponents: .date) {
+								Text("Date Serviced").fontWeight(.thin)
+							}
+							HStack {
+								Text("Note:").fontWeight(.thin)
+								TextView(text: $frontServicedNote).cornerRadius(8)
+									.onTapGesture {
+										self.slideScreen = false
+								}
+							}
+						}
+						
+					}
+					//MARK:- Rear
+					Section(header:
+						HStack {
+							Image("shock-absorber")
+								.resizable()
+								.frame(width: 50, height: 50)
+								.scaledToFit()
+							Text("Rear Service")
 						}
 					){
-					
-					Picker("Service Type", selection: $frontServicedIndex) {
-						ForEach(0..<frontServiced.count) { index in
-							Text(self.frontServiced[index]).tag(index)
-						}
-					}.pickerStyle(SegmentedPickerStyle())
-					if frontServicedIndex == 1 {
-						Text("Full Service Includes Lowers Service").fontWeight(.thin).italic()
-						DatePicker(selection: $fFullServicedDate, in: ...Date(), displayedComponents: .date) {
-							Text("Date Serviced").fontWeight(.thin)
-						}
-						HStack {
-							Text("Note:").fontWeight(.thin)
-							TextView(text: $frontServicedNote).cornerRadius(8)
-								.onTapGesture {
-									self.slideScreen = false
-							}
-						}
-					} else if frontServicedIndex == 2 {
-						Text("Lowers only Serviced").fontWeight(.thin).italic()
-						DatePicker(selection: $fLowersServicedDate, in: ...Date(), displayedComponents: .date) {
-							Text("Date Serviced").fontWeight(.thin)
-						}
-						HStack {
-							Text("Note:").fontWeight(.thin)
-							TextView(text: $frontServicedNote).cornerRadius(8)
-								.onTapGesture {
-									self.slideScreen = false
-							}
-						}
-					}
-					
-				}
-				//MARK:- Rear
-				Section(header:
-					HStack {
-						Image("shock-absorber")
-							.resizable()
-							.frame(width: 50, height: 50)
-							.scaledToFit()
-						Text("Rear Service")
-					}
-				){
-					if bike.hasRearShock == false {
-						Text("Hardtail").fontWeight(.thin)
-					} else if bike.rearSetup?.isCoil == true {
-						Picker("Service Type", selection: $rearServicedIndex) {
-							ForEach(0..<(rearServiced.count - 1) ) { index in
-								Text(self.rearServiced[index]).tag(index)
-							}
-						}.pickerStyle(SegmentedPickerStyle())
-						
-						if rearServicedIndex == 1 {
+						if self.bikes[bikeNameIndex].hasRearShock == false {
+							Text("Hardtail").fontWeight(.thin)
+						} else if self.bikes[bikeNameIndex].rearSetup?.isCoil == true {
+							Picker("Service Type", selection: $rearServicedIndex) {
+								ForEach(0..<(rearServiced.count - 1) ) { index in
+									Text(self.rearServiced[index]).tag(index)
+								}
+							}.pickerStyle(SegmentedPickerStyle())
 							
-							DatePicker(selection: $rFullServicedDate, in: ...Date(), displayedComponents: .date) {
-								Text("Date Serviced").fontWeight(.thin)
-							}
-							HStack {
-								Text("Note:").fontWeight(.thin)
-								TextView(text: $rearServicedNote).cornerRadius(8)
-									.onTapGesture {
-										self.slideScreen = true
+							if rearServicedIndex == 1 {
+								
+								DatePicker(selection: $rFullServicedDate, in: ...Date(), displayedComponents: .date) {
+									Text("Date Serviced").fontWeight(.thin)
+								}
+								HStack {
+									Text("Note:").fontWeight(.thin)
+									TextView(text: $rearServicedNote).cornerRadius(8)
+										.onTapGesture {
+											self.slideScreen = true
+									}
 								}
 							}
-						}
-					} else {
-						Picker("Service Type", selection: $rearServicedIndex) {
-							ForEach(0..<rearServiced.count) { index in
-								Text(self.rearServiced[index]).tag(index)
-							}
-						}.pickerStyle(SegmentedPickerStyle())
-						
-						if rearServicedIndex == 1 {
-							DatePicker(selection: $rFullServicedDate, in: ...Date(), displayedComponents: .date) {
-								Text("Date Serviced").fontWeight(.thin)
-							}
-							Text("Full Service Includes Air Can Service").fontWeight(.thin).italic()
-							HStack {
-								Text("Note:").fontWeight(.thin)
-								TextView(text: $rearServicedNote).cornerRadius(8)
-									.onTapGesture {
-										self.slideScreen = true
+						} else {
+							Picker("Service Type", selection: $rearServicedIndex) {
+								ForEach(0..<rearServiced.count) { index in
+									Text(self.rearServiced[index]).tag(index)
 								}
-							}
+							}.pickerStyle(SegmentedPickerStyle())
 							
-						} else if rearServicedIndex == 2 {
-							DatePicker(selection: $rAirCanServicedDate, in: ...Date(), displayedComponents: .date) {
-								Text("Date Serviced").fontWeight(.thin)
-							}
-							Text("Air Can only Serviced").fontWeight(.thin).italic()
-							HStack {
-								Text("Note:").fontWeight(.thin)
-								TextView(text: $rearServicedNote).cornerRadius(8)
-									.onTapGesture {
-										self.slideScreen = true
+							if rearServicedIndex == 1 {
+								DatePicker(selection: $rFullServicedDate, in: ...Date(), displayedComponents: .date) {
+									Text("Date Serviced").fontWeight(.thin)
+								}
+								Text("Full Service Includes Air Can Service").fontWeight(.thin).italic()
+								HStack {
+									Text("Note:").fontWeight(.thin)
+									TextView(text: $rearServicedNote).cornerRadius(8)
+										.onTapGesture {
+											self.slideScreen = true
+									}
+								}
+								
+							} else if rearServicedIndex == 2 {
+								DatePicker(selection: $rAirCanServicedDate, in: ...Date(), displayedComponents: .date) {
+									Text("Date Serviced").fontWeight(.thin)
+								}
+								Text("Air Can only Serviced").fontWeight(.thin).italic()
+								HStack {
+									Text("Note:").fontWeight(.thin)
+									TextView(text: $rearServicedNote).cornerRadius(8)
+										.onTapGesture {
+											self.slideScreen = true
+									}
 								}
 							}
 						}
 					}
+				} // end form
+					.onAppear(perform: {self.setup()})
+					// Dismisses the keyboard
+					.gesture(tap, including: keyboard.keyBoardShown ? .all : .none)
+					.navigationBarTitle("Shock Service", displayMode: .inline)
+				// if no service toggles disable save button
+				if frontServicedIndex == 0 && rearServicedIndex == 0 {
+					Text("Add a Service as needed").foregroundColor(.orange)
+				} else {
+					Button(action: {
+						///TODO: - change to return to  BikeListview after saving
+						print("Save pressed")
+						self.fetchAddService()
+						try? self.moc.save()
+						//dismisses the sheet
+						self.presentationMode.wrappedValue.dismiss()
+					}) {
+						SaveButtonView()
+					}.buttonStyle(OrangeButtonStyle())
 				}
-			} // end form
-				.onAppear(perform: {self.setup()})
-				// Dismisses the keyboard
-				.gesture(tap, including: keyboard.keyBoardShown ? .all : .none)
-				.navigationBarTitle("Shock Service", displayMode: .inline)
-			// if no service toggles disable save button
-			if frontServicedIndex == 0 && rearServicedIndex == 0 {
-				Text("Add a Service as needed").foregroundColor(.orange)
-			} else {
-				Button(action: {
-					///TODO: - change to return to  BikeListview after saving
-					print("Save pressed")
-					self.fetchAddService()
-					try? self.moc.save()
-					//dismisses the sheet
-					self.presentationMode.wrappedValue.dismiss()
-				}) {
-					SaveButtonView()
-				}.buttonStyle(OrangeButtonStyle())
+			}.padding(.top)
 			}
-		}.padding(.top)
-		}
 		
 			
 		.offset(y: slideScreen ?  -keyboard.height  :  0)
@@ -181,12 +194,15 @@ struct ServiceView: View {
 	
 	//MARK:- Functions
 	func setup() {
-		bikeName = self.bike.name ?? "Unknown bike"
+		bikeName = bikes[bikeNameIndex].name ?? "Unknown"
 		rearService.bikeName = bikeName
 		rearService.getLastServicedDates()
 		
 		frontService.bikeName = bikeName
 		frontService.getLastServicedDates()
+		
+		frontServicedIndex = 0
+		rearServicedIndex = 0
 	}
 	
 	
