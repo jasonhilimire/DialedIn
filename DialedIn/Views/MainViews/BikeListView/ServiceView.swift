@@ -181,8 +181,9 @@ struct ServiceView: View {
 						SaveButtonView()
 					}.buttonStyle(OrangeButtonStyle())
 				}
-			}.padding(.top)
 			}
+			.padding()
+		}
 		
 			
 		.offset(y: slideScreen ?  -keyboard.height  :  0)

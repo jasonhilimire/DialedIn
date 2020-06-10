@@ -44,32 +44,6 @@ struct BikeDetailView: View {
 							}
 						}
 					}
-					
-//				///Service view with animation
-//
-//						Button(action: {
-//							withAnimation {
-//								self.showServiceScreen.toggle()
-//							}
-//						}) {
-//							HStack {
-//
-//							Image(systemName: "wrench")
-//								.imageScale(.large)
-//								.rotationEffect(.degrees(showServiceScreen ? 90 : 0))
-//								.scaleEffect(showServiceScreen ? 1.5 : 1)
-//								.padding()
-//								Text("Add Service")
-//
-//						}
-//					}
-//
-//					if showServiceScreen {
-//						ServiceView(bike: self.bike)
-//							.transition(.move(edge: .bottom))
-//					}
-//
-//					Spacer()
 				}
 			Spacer()
 			Text("Notes")
@@ -85,9 +59,8 @@ struct BikeDetailView: View {
 				self.showEditScreen.toggle()
 			}
 		}) {
-				Image(systemName: "pencil.circle").foregroundColor(Color("TextColor"))
+				Image(systemName: "square.and.pencil").foregroundColor(Color("TextColor"))
 					.font(.title)
-					.scaleEffect(showEditScreen ? 1.5 : 1)
 					.padding()
 		})
 			.sheet(isPresented: $showEditScreen)  {
