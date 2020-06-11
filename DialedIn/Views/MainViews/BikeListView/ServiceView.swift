@@ -37,6 +37,8 @@ struct ServiceView: View {
 	@State private var rearServicedNote = ""
 	
 	@State private var slideScreen = false
+	@State private var savePressed = false
+	
 	
 //	let bike: Bike
 	
@@ -161,22 +163,32 @@ struct ServiceView: View {
 							}
 						}
 					}
+					
+					
 				} // end form
+					
 					.onAppear(perform: {self.setup()})
 					// Dismisses the keyboard
 					.gesture(tap, including: keyboard.keyBoardShown ? .all : .none)
 					.navigationBarTitle("Service")
+				
+				
+				if savePressed == true {
+					SaveToastView()
+						.transition(.opacity)
+				}
+				
 				// if no service toggles disable save button
 				if frontServicedIndex == 0 && rearServicedIndex == 0 {
 					Text("Add a Service as needed").foregroundColor(.orange)
 				} else {
 					Button(action: {
-						///TODO: - change to return to  BikeListview after saving
+						withAnimation(.easeInOut(duration: 0.4)) {
+							self.savePressed.toggle()
+						}
 						print("Save pressed")
 						self.fetchAddService()
 						try? self.moc.save()
-						//dismisses the sheet
-						self.presentationMode.wrappedValue.dismiss()
 					}) {
 						SaveButtonView()
 					}.buttonStyle(OrangeButtonStyle())

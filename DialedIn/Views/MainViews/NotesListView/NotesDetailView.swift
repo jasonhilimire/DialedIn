@@ -181,8 +181,6 @@ struct NotesDetailView: View {
 				withAnimation(.easeInOut(duration: 0.4)) {
 					self.savePressed.toggle()
 				}
-				
-				
 				self.updateNote(note: self.note)
 				try? self.moc.save()
 			}) {
