@@ -75,7 +75,7 @@ struct FilteredNoteView: View {
 								.padding([.top, .bottom, .trailing])
 								.font(.body)
 							}
-								// TODO: the width shouldnt be fixed, but if you have 5 characters its being truncated
+// TODO: the width shouldnt be fixed, but if you have 5 characters its being truncated
 							.frame(width: 110, alignment: .leading)
 							
 							Spacer()

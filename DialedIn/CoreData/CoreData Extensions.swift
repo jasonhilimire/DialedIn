@@ -45,11 +45,19 @@ extension Notes{
         return request
     }
 	
-	//
+	/// Fetch only favorite notes
 	static func favoritedNotesFetchRequest() -> NSFetchRequest<Notes> {
 		let request: NSFetchRequest<Notes> = Notes.fetchRequest()
 		request.sortDescriptors = [NSSortDescriptor(keyPath: \Notes.date, ascending: false)]
 		request.predicate = NSPredicate(format: "isFavorite == TRUE")
+		return request
+	}
+	
+	/// Fetch only last 5 notes
+	static func last5notesFetchRequest() -> NSFetchRequest<Notes> {
+		let request: NSFetchRequest<Notes> = Notes.fetchRequest()
+		request.sortDescriptors = [NSSortDescriptor(keyPath: \Notes.date, ascending: true)]
+		request.fetchLimit = 5
 		return request
 	}
 

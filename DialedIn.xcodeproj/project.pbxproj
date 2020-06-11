@@ -228,7 +228,6 @@
 			isa = PBXGroup;
 			children = (
 				A33F02B024062A89005A0A8F /* FilteredNoteView.swift */,
-				A3C16E6E23DE9EC4005BFA14 /* NotesListView.swift */,
 				A3DDCC7C23DFF21700CD1476 /* NotesDetailView.swift */,
 				A3250095246E2D7F00F5A96E /* SaveToastView.swift */,
 				A3C7A1D42401F81300A741A8 /* DetailViews */,
@@ -239,6 +238,7 @@
 		A3B99237241DDAF9007E9B7B /* Unused */ = {
 			isa = PBXGroup;
 			children = (
+				A3C16E6E23DE9EC4005BFA14 /* NotesListView.swift */,
 				A33F02AE2406201D005A0A8F /* AddNoteBikeView.swift */,
 				A383EFF8241D55900039A04C /* NoteStyledCellView.swift */,
 				A3E1A6AE2409B78100C4DFD5 /* FilteredBikeNotesView.swift */,
