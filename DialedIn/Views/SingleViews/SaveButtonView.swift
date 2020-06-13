@@ -14,7 +14,6 @@ struct SaveButtonView: View {
    
 	
 	var body: some View {
-		
          HStack {
                Image(systemName: "checkmark.circle")
                Text("\(saveText)")
@@ -37,8 +36,8 @@ struct OrangeButtonStyle: ButtonStyle {
 			.foregroundColor(Color("TextColor"))
 			.padding().frame(maxWidth: 400)
 			.background(Color.orange)
-//			.background(LinearGradient(gradient: Gradient(colors: [Color.red, Color.orange]), startPoint: .leading, endPoint: .trailing))
 			.cornerRadius(8)
-			.scaleEffect(configuration.isPressed ? 0.9 : 1.0)
+			.scaleEffect(configuration.isPressed ? 0.6 : 1.0)
+			.animation(.spring())
 	}
 }

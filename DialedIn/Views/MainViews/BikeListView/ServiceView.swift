@@ -194,10 +194,10 @@ struct ServiceView: View {
 						self.savePressed.toggle()
 						
 						withAnimation(.linear(duration: 0.05), {
-							//
+							self.saveText = "     SAVED!!     "  // no idea why, but have to add spaces here other wise it builds the word slowly with SA...., annoying as all hell
 						})
-						// no idead why, but have to add spaces here other wise it builds the word slowly with SA...., annoying as all hell
-						self.saveText = "     SAVED!!     "
+						
+						
 						
 						DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
 							self.setup()

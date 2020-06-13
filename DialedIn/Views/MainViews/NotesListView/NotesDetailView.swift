@@ -46,10 +46,10 @@ struct NotesDetailView: View {
 						.font(.headline)
 					Divider()
 					
-					if savePressed == true {
-						SaveToastView()
-							.transition(.opacity)
-					}
+//					if savePressed == true {
+//						SaveToastView()
+//							.transition(.opacity)
+//					}
 					
 			   //Front
 					Group {
@@ -182,9 +182,10 @@ struct NotesDetailView: View {
 			.padding()
 			Spacer()
 			Button(action: {
-				withAnimation(.easeInOut(duration: 0.4)) {
-					self.savePressed.toggle()
-				}
+				self.savePressed.toggle()
+				withAnimation(.linear(duration: 0.05), {
+					self.saveText = "     SAVED!!     "  // no idea why, but have to add spaces here other wise it builds the word slowly with SA...., annoying as all hell
+				})
 				
 				
 				self.updateNote(note: self.note)
@@ -209,7 +210,7 @@ struct NotesDetailView: View {
                 }, secondaryButton: .cancel()
             )
         }
-		.animation(.default) // this moves the view when Save toast appears
+//		.animation(.default) // this moves the view when Save toast appears
         .navigationBarItems(trailing: Button(action: {
             self.showingDeleteAlert = true
         }) {
