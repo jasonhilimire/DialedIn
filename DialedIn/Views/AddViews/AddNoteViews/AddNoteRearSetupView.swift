@@ -35,8 +35,10 @@ struct AddNoteRearSetupView: View {
 				Stepper(value: $rear.lastRSagSetting  , in: 0...50, label: {Text("Sag (mm): \(self.rear.lastRSagSetting) -- Sag %: \(calcSag(sag: Double(self.rear.lastRSagSetting), travel: rear.travel), specifier: "%.1f")").fontWeight(.thin)})
 				
                 
-                //Tokens
-                Stepper(value: $rear.lastRTokenSetting, in: 0...6, label: {Text("Tokens: \(self.rear.lastRTokenSetting)").fontWeight(.thin)})
+                //Tokens- only if a coil
+				if rear.coil == false {
+					Stepper(value: $rear.lastRTokenSetting, in: 0...6, label: {Text("Tokens: \(self.rear.lastRTokenSetting)").fontWeight(.thin)})
+				}
                 //Compression
                 if rear.rComp == true {
                         Stepper(value: $rear.lastRHSCSetting, in: 0...25, label: {Text("High Sp Comp: \(self.rear.lastRHSCSetting)").fontWeight(.thin)})

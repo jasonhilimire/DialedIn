@@ -21,6 +21,7 @@ struct AddNoteBikeView: View {
 	@State private var note = ""
 	@State private var date = Date()
 	@State private var rating = 3
+	@State private var saveText = "Save"
 	
 	let bike: Bike
 
@@ -68,13 +69,17 @@ struct AddNoteBikeView: View {
 					.navigationBarTitle("Dialed In", displayMode: .inline)
 				
 				Button(action: {
-					//dismisses the sheet
-					self.presentationMode.wrappedValue.dismiss()
 					self.saveNote()
-					
+					withAnimation(.linear(duration: 0.05), {
+						self.saveText = "     SAVED!!     "  // no idea why, but have to add spaces here other wise it builds the word slowly with SA...., annoying as all hell
+					})
 					try? self.moc.save()
+					
+					DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
+						self.presentationMode.wrappedValue.dismiss()
+					}
 				}) {
-					SaveButtonView()
+					SaveButtonView(saveText: $saveText)
 				}.buttonStyle(OrangeButtonStyle())
 			}
 		}

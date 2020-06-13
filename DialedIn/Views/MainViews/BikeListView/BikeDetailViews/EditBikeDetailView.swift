@@ -36,6 +36,7 @@ struct EditBikeDetailView: View {
 	@State private var strokeLength = ""
 	
 	@State private var slideScreen = false
+	@State private var saveText = "Save"
 	
 	let bike: Bike
 	
@@ -103,6 +104,9 @@ struct EditBikeDetailView: View {
 							HStack {
 								Text("Travel (mm):").fontWeight(.thin)
 								CustomUIKitTextField(text: $strokeLength, placeholder: "Enter Shock Stroke in mm")
+									.onTapGesture {
+										self.slideScreen = true
+								}
 							}
 							
 							
@@ -142,13 +146,22 @@ struct EditBikeDetailView: View {
 				
 				Button(action: {
 					//dismisses the sheet
-					self.presentationMode.wrappedValue.dismiss()
+					
 					self.saveNewBike()
 					print("Dual Comp: \(self.$forkDualCompToggle)")
 					print("Dual Reb: \(self.$forkDualReboundToggle)")
+					
+					withAnimation(.linear(duration: 0.05), {
+						self.saveText = "     SAVED!!     "  // no idea why, but have to add spaces here other wise it builds the word slowly with SA...., annoying as all hell
+					})
+					
 					try? self.moc.save()
+					
+					DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
+						self.presentationMode.wrappedValue.dismiss()
+					}
 				}) {
-					SaveButtonView()
+					SaveButtonView(saveText: $saveText)
 				}.buttonStyle(OrangeButtonStyle())
 				Spacer()
 			}
@@ -211,6 +224,7 @@ struct EditBikeDetailView: View {
 		forkTravel = "\(self.bike.frontSetup?.travel ?? 0)"
 		
 		rearInfo = bike.rearSetup?.wrappedRearInfo ?? ""
+		strokeLength = "\(bike.rearSetup?.strokeLength ?? 0)" 
 	
 		setToggles()
 		setIndex()

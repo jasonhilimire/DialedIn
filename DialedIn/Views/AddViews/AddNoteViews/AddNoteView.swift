@@ -30,6 +30,7 @@ struct AddNoteView: View {
     @State private var rating = 0
 	@State private var isFavorite = false
 	@State private var toggleNoteDetail = false
+	@State private var saveText = "Save"
     
     var body: some View {
         NavigationView {
@@ -95,13 +96,19 @@ struct AddNoteView: View {
 					.navigationBarTitle("Dialed In", displayMode: .inline)
 				
 				Button(action: {
-					//dismisses the sheet
-					self.presentationMode.wrappedValue.dismiss()
 					self.saveNote()
 					
+					withAnimation(.linear(duration: 0.05), {
+						self.saveText = "     SAVED!!     "  // no idea why, but have to add spaces here other wise it builds the word slowly with SA...., annoying as all hell
+					})
+					
 					try? self.moc.save()
+					
+					DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
+						self.presentationMode.wrappedValue.dismiss()
+					}
 				}) {
-					SaveButtonView()
+					SaveButtonView(saveText: $saveText)
 				}.buttonStyle(OrangeButtonStyle())
 			}
         }
@@ -154,6 +161,7 @@ struct AddNoteView: View {
         newNote.rRebound = self.rearSetup.lastRReboundSetting
         newNote.rHSR = self.rearSetup.lastRHSRSetting
         newNote.rLSR = self.rearSetup.lastRLSRSetting
+// TODO: something here for a coil???
         newNote.rTokens = self.rearSetup.lastRTokenSetting
         newNote.rSag = self.rearSetup.lastRSagSetting
 		newNote.rTirePressure = self.rearSetup.lastRTirePressure

@@ -10,21 +10,24 @@ import SwiftUI
 
 // TODO: Change this to a buttonstyle
 struct SaveButtonView: View {
-    var body: some View {
+	@Binding var saveText: String
+   
+	
+	var body: some View {
          HStack {
                Image(systemName: "checkmark.circle")
-               Text("Save")
+               Text("\(saveText)")
 				.fontWeight(.thin)
 			}
-
+			
     }
 }
 
-struct SaveButtonView_Previews: PreviewProvider {
-    static var previews: some View {
-        SaveButtonView()
-    }
-}
+//struct SaveButtonView_Previews: PreviewProvider {
+//    static var previews: some View {
+//		SaveButtonView(saveText: "Save")
+//    }
+//}
 
 struct OrangeButtonStyle: ButtonStyle {
 	func makeBody(configuration: Self.Configuration) -> some View {
@@ -33,8 +36,8 @@ struct OrangeButtonStyle: ButtonStyle {
 			.foregroundColor(Color("TextColor"))
 			.padding().frame(maxWidth: 400)
 			.background(Color.orange)
-//			.background(LinearGradient(gradient: Gradient(colors: [Color.red, Color.orange]), startPoint: .leading, endPoint: .trailing))
 			.cornerRadius(8)
-			.scaleEffect(configuration.isPressed ? 0.9 : 1.0)
+			.scaleEffect(configuration.isPressed ? 0.6 : 1.0)
+			.animation(.spring())
 	}
 }

@@ -39,8 +39,12 @@ struct ServiceView: View {
 	@State private var slideScreen = false
 	@State private var savePressed = false
 	
+	@State private var saveText = "Save"
+	@State private var opacity: Double = 1
 	
 //	let bike: Bike
+	
+
 	
 
 	var body: some View {
@@ -70,10 +74,20 @@ struct ServiceView: View {
 							}
 						}.pickerStyle(SegmentedPickerStyle())
 						if frontServicedIndex == 1 {
+							HStack {
+								Text("Note:").fontWeight(.thin)
+								TextView(text: $frontServicedNote).cornerRadius(8)
+									.onTapGesture {
+										self.slideScreen = false
+								}
+							}
 							Text("Full Service Includes Lowers Service").fontWeight(.thin).italic()
 							DatePicker(selection: $fFullServicedDate, in: ...Date(), displayedComponents: .date) {
 								Text("Date Serviced").fontWeight(.thin)
 							}
+							
+						} else if frontServicedIndex == 2 {
+							Text("Lowers only Serviced").fontWeight(.thin).italic()
 							HStack {
 								Text("Note:").fontWeight(.thin)
 								TextView(text: $frontServicedNote).cornerRadius(8)
@@ -81,21 +95,13 @@ struct ServiceView: View {
 										self.slideScreen = false
 								}
 							}
-						} else if frontServicedIndex == 2 {
-							Text("Lowers only Serviced").fontWeight(.thin).italic()
 							DatePicker(selection: $fLowersServicedDate, in: ...Date(), displayedComponents: .date) {
 								Text("Date Serviced").fontWeight(.thin)
 							}
-							HStack {
-								Text("Note:").fontWeight(.thin)
-								TextView(text: $frontServicedNote).cornerRadius(8)
-									.onTapGesture {
-										self.slideScreen = false
-								}
-							}
+							
 						}
-						
 					}
+					
 					//MARK:- Rear
 					Section(header:
 						HStack {
@@ -116,10 +122,6 @@ struct ServiceView: View {
 							}.pickerStyle(SegmentedPickerStyle())
 							
 							if rearServicedIndex == 1 {
-								
-								DatePicker(selection: $rFullServicedDate, in: ...Date(), displayedComponents: .date) {
-									Text("Date Serviced").fontWeight(.thin)
-								}
 								HStack {
 									Text("Note:").fontWeight(.thin)
 									TextView(text: $rearServicedNote).cornerRadius(8)
@@ -127,6 +129,10 @@ struct ServiceView: View {
 											self.slideScreen = true
 									}
 								}
+								DatePicker(selection: $rFullServicedDate, in: ...Date(), displayedComponents: .date) {
+									Text("Date Serviced").fontWeight(.thin)
+								}
+								
 							}
 						} else {
 							Picker("Service Type", selection: $rearServicedIndex) {
@@ -136,9 +142,6 @@ struct ServiceView: View {
 							}.pickerStyle(SegmentedPickerStyle())
 							
 							if rearServicedIndex == 1 {
-								DatePicker(selection: $rFullServicedDate, in: ...Date(), displayedComponents: .date) {
-									Text("Date Serviced").fontWeight(.thin)
-								}
 								Text("Full Service Includes Air Can Service").fontWeight(.thin).italic()
 								HStack {
 									Text("Note:").fontWeight(.thin)
@@ -147,11 +150,12 @@ struct ServiceView: View {
 											self.slideScreen = true
 									}
 								}
-								
-							} else if rearServicedIndex == 2 {
-								DatePicker(selection: $rAirCanServicedDate, in: ...Date(), displayedComponents: .date) {
+								DatePicker(selection: $rFullServicedDate, in: ...Date(), displayedComponents: .date) {
 									Text("Date Serviced").fontWeight(.thin)
 								}
+								
+								
+							} else if rearServicedIndex == 2 {
 								Text("Air Can only Serviced").fontWeight(.thin).italic()
 								HStack {
 									Text("Note:").fontWeight(.thin)
@@ -160,10 +164,16 @@ struct ServiceView: View {
 											self.slideScreen = true
 									}
 								}
+								DatePicker(selection: $rAirCanServicedDate, in: ...Date(), displayedComponents: .date) {
+									Text("Date Serviced").fontWeight(.thin)
+								}
+								
+								
 							}
 						}
 					}
 					
+					// if no service toggles disable save button
 					
 				} // end form
 					
@@ -172,16 +182,11 @@ struct ServiceView: View {
 					.gesture(tap, including: keyboard.keyBoardShown ? .all : .none)
 					.navigationBarTitle("Service")
 				
-				
-				if savePressed == true {
-					SaveToastView()
-						.transition(.opacity)
-				}
-				
-				// if no service toggles disable save button
+			// MARK: - SAVE BUTTON
 				if frontServicedIndex == 0 && rearServicedIndex == 0 {
 					Text("Add a Service as needed").foregroundColor(.orange)
 				} else {
+					/// TODO: Encapsulate the save in a function and reset the screen & dismiss the toast
 					Button(action: {
 						withAnimation(.easeInOut(duration: 0.4)) {
 							self.savePressed.toggle()
@@ -189,10 +194,22 @@ struct ServiceView: View {
 						print("Save pressed")
 						self.fetchAddService()
 						try? self.moc.save()
+						self.savePressed.toggle()
+						
+						withAnimation(.linear(duration: 0.05), {
+							self.saveText = "     SAVED!!     "  // no idea why, but have to add spaces here other wise it builds the word slowly with SA...., annoying as all hell
+						})
+						
+						
+						
+						DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
+							self.setup()
+						}
 					}) {
-						SaveButtonView()
+						SaveButtonView(saveText: $saveText)
 					}.buttonStyle(OrangeButtonStyle())
 				}
+				
 			}
 			.padding()
 		}
@@ -216,6 +233,8 @@ struct ServiceView: View {
 		
 		frontServicedIndex = 0
 		rearServicedIndex = 0
+		savePressed = false
+		saveText = "Save"
 	}
 	
 	

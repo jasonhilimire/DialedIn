@@ -23,6 +23,7 @@ struct NotesDetailView: View {
 	@State private var isFavorite = false
 	
 	@State private var savePressed = false
+	@State private var saveText = "Save"
 	
     let note: Notes
 	
@@ -45,10 +46,10 @@ struct NotesDetailView: View {
 						.font(.headline)
 					Divider()
 					
-					if savePressed == true {
-						SaveToastView()
-							.transition(.opacity)
-					}
+//					if savePressed == true {
+//						SaveToastView()
+//							.transition(.opacity)
+//					}
 					
 			   //Front
 					Group {
@@ -133,7 +134,10 @@ struct NotesDetailView: View {
 									VStack{
 										HStack{
 											Text("Spring: \(self.note.rAirSpring, specifier: "%.0f")").fontWeight(.thin)
-											Text("Tokens: \(self.note.rTokens)").fontWeight(.thin)
+											
+											if self.note.bike?.rearSetup?.isCoil == false {
+												Text("Tokens: \(self.note.rTokens)").fontWeight(.thin)
+											}
 										}
 									}
 									Spacer()
@@ -178,13 +182,16 @@ struct NotesDetailView: View {
 			.padding()
 			Spacer()
 			Button(action: {
-				withAnimation(.easeInOut(duration: 0.4)) {
-					self.savePressed.toggle()
-				}
+				self.savePressed.toggle()
+				withAnimation(.linear(duration: 0.05), {
+					self.saveText = "     SAVED!!     "  // no idea why, but have to add spaces here other wise it builds the word slowly with SA...., annoying as all hell
+				})
+				
+				
 				self.updateNote(note: self.note)
 				try? self.moc.save()
 			}) {
-				SaveButtonView()
+				SaveButtonView(saveText: $saveText)
 			}.buttonStyle(OrangeButtonStyle())
 			.padding()
 			
@@ -203,7 +210,7 @@ struct NotesDetailView: View {
                 }, secondaryButton: .cancel()
             )
         }
-		.animation(.default) // this moves the view when Save toast appears
+//		.animation(.default) // this moves the view when Save toast appears
         .navigationBarItems(trailing: Button(action: {
             self.showingDeleteAlert = true
         }) {
