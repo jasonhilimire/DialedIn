@@ -103,6 +103,9 @@ struct EditBikeDetailView: View {
 							HStack {
 								Text("Travel (mm):").fontWeight(.thin)
 								CustomUIKitTextField(text: $strokeLength, placeholder: "Enter Shock Stroke in mm")
+									.onTapGesture {
+										self.slideScreen = true
+								}
 							}
 							
 							
@@ -211,6 +214,7 @@ struct EditBikeDetailView: View {
 		forkTravel = "\(self.bike.frontSetup?.travel ?? 0)"
 		
 		rearInfo = bike.rearSetup?.wrappedRearInfo ?? ""
+		strokeLength = "\(bike.rearSetup?.strokeLength ?? 0)" 
 	
 		setToggles()
 		setIndex()
