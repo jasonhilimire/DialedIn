@@ -23,6 +23,7 @@ struct NotesDetailView: View {
 	@State private var isFavorite = false
 	
 	@State private var savePressed = false
+	@State private var saveText = "Save"
 	
     let note: Notes
 	
@@ -189,7 +190,7 @@ struct NotesDetailView: View {
 				self.updateNote(note: self.note)
 				try? self.moc.save()
 			}) {
-				SaveButtonView()
+				SaveButtonView(saveText: $saveText)
 			}.buttonStyle(OrangeButtonStyle())
 			.padding()
 			

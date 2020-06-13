@@ -36,6 +36,7 @@ struct EditBikeDetailView: View {
 	@State private var strokeLength = ""
 	
 	@State private var slideScreen = false
+	@State private var saveText = "Save"
 	
 	let bike: Bike
 	
@@ -151,7 +152,7 @@ struct EditBikeDetailView: View {
 					print("Dual Reb: \(self.$forkDualReboundToggle)")
 					try? self.moc.save()
 				}) {
-					SaveButtonView()
+					SaveButtonView(saveText: $saveText)
 				}.buttonStyle(OrangeButtonStyle())
 				Spacer()
 			}

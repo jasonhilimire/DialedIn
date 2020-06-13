@@ -39,7 +39,12 @@ struct ServiceView: View {
 	@State private var slideScreen = false
 	@State private var savePressed = false
 	
+	@State private var saveText = "Save"
+	@State private var opacity: Double = 1
+	
 //	let bike: Bike
+	
+
 	
 
 	var body: some View {
@@ -168,11 +173,6 @@ struct ServiceView: View {
 						}
 					}
 					
-					if savePressed == true {
-						SaveToastView()
-							.transition(.opacity)
-					}
-					
 					// if no service toggles disable save button
 					
 				} // end form
@@ -192,13 +192,18 @@ struct ServiceView: View {
 						self.fetchAddService()
 						try? self.moc.save()
 						self.savePressed.toggle()
+						
+						withAnimation(.linear(duration: 0.05), {
+							//
+						})
+						// no idead why, but have to add spaces here other wise it builds the word slowly with SA...., annoying as all hell
+						self.saveText = "     SAVED!!     "
+						
 						DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
 							self.setup()
 						}
-						
-						
 					}) {
-						SaveButtonView()
+						SaveButtonView(saveText: $saveText)
 					}.buttonStyle(OrangeButtonStyle())
 				}
 				
@@ -226,6 +231,7 @@ struct ServiceView: View {
 		frontServicedIndex = 0
 		rearServicedIndex = 0
 		savePressed = false
+		saveText = "Save"
 	}
 	
 	

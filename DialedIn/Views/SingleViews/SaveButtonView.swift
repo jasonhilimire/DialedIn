@@ -10,21 +10,25 @@ import SwiftUI
 
 // TODO: Change this to a buttonstyle
 struct SaveButtonView: View {
-    var body: some View {
+	@Binding var saveText: String
+   
+	
+	var body: some View {
+		
          HStack {
                Image(systemName: "checkmark.circle")
-               Text("Save")
+               Text("\(saveText)")
 				.fontWeight(.thin)
 			}
-
+			
     }
 }
 
-struct SaveButtonView_Previews: PreviewProvider {
-    static var previews: some View {
-        SaveButtonView()
-    }
-}
+//struct SaveButtonView_Previews: PreviewProvider {
+//    static var previews: some View {
+//		SaveButtonView(saveText: "Save")
+//    }
+//}
 
 struct OrangeButtonStyle: ButtonStyle {
 	func makeBody(configuration: Self.Configuration) -> some View {

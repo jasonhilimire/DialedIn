@@ -21,6 +21,7 @@ struct AddNoteBikeView: View {
 	@State private var note = ""
 	@State private var date = Date()
 	@State private var rating = 3
+	@State private var saveText = "Save"
 	
 	let bike: Bike
 
@@ -74,7 +75,7 @@ struct AddNoteBikeView: View {
 					
 					try? self.moc.save()
 				}) {
-					SaveButtonView()
+					SaveButtonView(saveText: $saveText)
 				}.buttonStyle(OrangeButtonStyle())
 			}
 		}

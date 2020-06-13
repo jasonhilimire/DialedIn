@@ -30,6 +30,7 @@ struct AddNoteView: View {
     @State private var rating = 0
 	@State private var isFavorite = false
 	@State private var toggleNoteDetail = false
+	@State private var saveText = "Save"
     
     var body: some View {
         NavigationView {
@@ -101,7 +102,7 @@ struct AddNoteView: View {
 					
 					try? self.moc.save()
 				}) {
-					SaveButtonView()
+					SaveButtonView(saveText: $saveText)
 				}.buttonStyle(OrangeButtonStyle())
 			}
         }

@@ -37,6 +37,7 @@ struct AddBikeView: View {
 	@State private var strokeLength = ""
 	
 	@State private var slideScreen = false
+	@State private var saveText = "Save"
     
 //TODO: figure out how to only allow 1 default bike
     var body: some View {
@@ -164,7 +165,7 @@ struct AddBikeView: View {
 					print("Dual Reb: \(self.$forkDualReboundToggle)")
 					try? self.moc.save()
                     }) {
-                        SaveButtonView()
+						SaveButtonView(saveText: $saveText)
                         }.buttonStyle(OrangeButtonStyle())
                     Spacer()
             }
