@@ -154,6 +154,7 @@ struct AddNoteView: View {
         newNote.rRebound = self.rearSetup.lastRReboundSetting
         newNote.rHSR = self.rearSetup.lastRHSRSetting
         newNote.rLSR = self.rearSetup.lastRLSRSetting
+// TODO: something here for a coil???
         newNote.rTokens = self.rearSetup.lastRTokenSetting
         newNote.rSag = self.rearSetup.lastRSagSetting
 		newNote.rTirePressure = self.rearSetup.lastRTirePressure

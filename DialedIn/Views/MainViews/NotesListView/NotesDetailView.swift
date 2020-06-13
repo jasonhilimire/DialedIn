@@ -133,7 +133,10 @@ struct NotesDetailView: View {
 									VStack{
 										HStack{
 											Text("Spring: \(self.note.rAirSpring, specifier: "%.0f")").fontWeight(.thin)
-											Text("Tokens: \(self.note.rTokens)").fontWeight(.thin)
+											
+											if self.note.bike?.rearSetup?.isCoil == false {
+												Text("Tokens: \(self.note.rTokens)").fontWeight(.thin)
+											}
 										}
 									}
 									Spacer()

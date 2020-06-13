@@ -170,6 +170,7 @@ struct ServiceView: View {
 				if frontServicedIndex == 0 && rearServicedIndex == 0 {
 					Text("Add a Service as needed").foregroundColor(.orange)
 				} else {
+/// TODO: Encapsulate the save in a function and reset the screen & dismiss the toast
 					Button(action: {
 						///TODO: - change to return to  BikeListview after saving
 						print("Save pressed")

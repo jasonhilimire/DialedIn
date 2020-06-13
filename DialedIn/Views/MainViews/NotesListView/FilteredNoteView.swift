@@ -114,7 +114,11 @@ struct FilteredNoteView: View {
 								} else {
 									Text("Comp: \(note.rCompression)").fontWeight(.thin)
 								}
-								Text("Tokens: \(note.rTokens)").fontWeight(.thin)
+								if note.bike?.rearSetup?.isCoil == false {
+									Text("Tokens: \(note.rTokens)").fontWeight(.thin)
+								} else {
+									Text("").fontWeight(.thin)
+								}
 							}.font(.caption)
 						} // end HSTack Settings
 					}
