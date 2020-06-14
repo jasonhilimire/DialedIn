@@ -42,6 +42,7 @@ struct NotesListView: View {
 						.font(.largeTitle)
 						.fontWeight(.thin)
 				}
+				
 				List{
 					if pickerChoiceIndex == 0 {
 						FilteredNoteView(filter: false)
@@ -54,29 +55,33 @@ struct NotesListView: View {
 	// remove the separator
 			.onAppear { UITableView.appearance().separatorStyle = .none }
             .navigationBarTitle("Dialed In")
-                .navigationBarItems(
-					trailing:
-                Button(action: {self.showingAddScreen.toggle()
+			.navigationBarItems(
+				trailing:
+                Button(action: {self.checkBikesExist()
 					// leading: EditButton().foregroundColor(Color("TextColor")),  this is for when can figure out onDelete in FiltereNoteView
                 }) {
 					// only show button if we have a bike
 					if bikes.count >= 1 {
-                    Image(systemName: "gauge.badge.plus")
-						.foregroundColor(Color("TextColor"))
-						.font(.title)
+						Image(systemName: "gauge.badge.plus")
+							.foregroundColor(Color("TextColor"))
+							.font(.title)
 					}
+					
             })
                 .sheet(isPresented: $showingAddScreen)  {
                     AddNoteView().environment(\.managedObjectContext, self.moc)
 			}
         }
     }
+	
+	func checkBikesExist() {
+		if bikes.count >= 1 {
+			self.showingAddScreen.toggle()
+		} else {
+			showingAddScreen = false
+		}
+	}
 }
 
 
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        NotesListView()
-    }
-}
