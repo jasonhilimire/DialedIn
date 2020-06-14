@@ -183,6 +183,10 @@ func calcSag(sag: Double, travel: Double) -> Double {
 	return calculatedTravel
 }
 
+func hapticSucces() {
+	let generator = UINotificationFeedbackGenerator()
+	generator.notificationOccurred(.success)
+}
 
 
 

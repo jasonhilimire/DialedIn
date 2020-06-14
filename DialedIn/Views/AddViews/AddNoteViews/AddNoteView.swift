@@ -103,7 +103,7 @@ struct AddNoteView: View {
 					})
 					
 					try? self.moc.save()
-					
+					hapticSucces()
 					DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
 						self.presentationMode.wrappedValue.dismiss()
 					}
@@ -118,6 +118,8 @@ struct AddNoteView: View {
     }
     
     // MARK: - FUNCTIONS -
+	
+	
     
     func saveNote() {
 		var bikes : [Bike] = []
