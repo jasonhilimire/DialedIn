@@ -196,9 +196,7 @@ struct ServiceView: View {
 						withAnimation(.linear(duration: 0.05), {
 							self.saveText = "     SAVED!!     "  // no idea why, but have to add spaces here other wise it builds the word slowly with SA...., annoying as all hell
 						})
-						
-						
-						
+						hapticSucces()
 						DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
 							self.setup()
 						}

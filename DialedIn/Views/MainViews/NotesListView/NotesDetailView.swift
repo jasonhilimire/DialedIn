@@ -242,6 +242,7 @@ struct NotesDetailView: View {
 			try? self.moc.save()
 		}
 		print("Updated note: \(updatedNote)")
+		hapticSucces()
 		// this pauses the view transition
 		DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
 			self.presentationMode.wrappedValue.dismiss()
@@ -254,6 +255,8 @@ struct NotesDetailView: View {
 		noteText = note.note ?? ""
 		isFavorite = note.isFavorite
 	}
+	
+	
     
 
 }
