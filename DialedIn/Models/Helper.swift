@@ -183,10 +183,27 @@ func calcSag(sag: Double, travel: Double) -> Double {
 	return calculatedTravel
 }
 
+// haptic vibration for Save button
 func hapticSucces() {
 	let generator = UINotificationFeedbackGenerator()
 	generator.notificationOccurred(.success)
 }
 
+// CustomNotes Text Modifier & extension to utilize
+struct CustNotesText: ViewModifier {
+	// system font, size 16 and thin
+	let font = Font.system(size: 16).weight(.thin)
+	
+	func body(content: Content) -> some View {
+		content
+			.foregroundColor(Color.black)
+			.font(font)
+			.fixedSize()
+	}
+}
 
-
+extension View {
+	func customNotesText() -> some View {
+		return self.modifier(CustNotesText())
+	}
+}

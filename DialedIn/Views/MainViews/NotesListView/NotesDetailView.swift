@@ -70,26 +70,26 @@ struct NotesDetailView: View {
 							
 							VStack {
 								HStack {
-									Text("Fork PSI: \(self.note.fAirVolume, specifier: "%.1f")").fontWeight(.thin).fixedSize()
-									Text("Tokens: \(self.note.fTokens)").fontWeight(.thin).fixedSize()
+									Text("Fork PSI: \(self.note.fAirVolume, specifier: "%.1f")").customNotesText()
+									Text("Tokens: \(self.note.fTokens)").customNotesText()
 								}
 							}
 							Spacer()
 							VStack{
 								HStack{
-									Text("Sag %: \(calcSag(sag: Double(self.note.fSag), travel: self.note.bike?.frontSetup?.travel ?? 0.0), specifier: "%.1f")").fontWeight(.thin).fixedSize()
-									Text("Tire PSI: \(self.note.fTirePressure, specifier: "%.1f")").fontWeight(.thin).fixedSize()
+									Text("Sag %: \(calcSag(sag: Double(self.note.fSag), travel: self.note.bike?.frontSetup?.travel ?? 0.0), specifier: "%.1f")").customNotesText()
+									Text("Tire PSI: \(self.note.fTirePressure, specifier: "%.1f")").customNotesText()
 								}
 							}
 							Spacer()
 							VStack{
 								if self.note.bike?.frontSetup?.dualCompression == true {
 									HStack {
-										Text("HSC: \(self.note.fHSC)").fontWeight(.thin).fixedSize()
-										Text("LSC: \(self.note.fLSC)").fontWeight(.thin).fixedSize()
+										Text("HSC: \(self.note.fHSC)").customNotesText()
+										Text("LSC: \(self.note.fLSC)").customNotesText()
 									}
 								} else {
-									Text("Compression: \(self.note.fCompression)").fontWeight(.thin).fixedSize()
+									Text("Compression: \(self.note.fCompression)").customNotesText()
 								}
 							}
 							Spacer()
@@ -97,11 +97,11 @@ struct NotesDetailView: View {
 							VStack {
 								if self.note.bike?.frontSetup?.dualCompression == true {
 									HStack{
-										Text("HSR: \(self.note.fHSR)").fontWeight(.thin).fixedSize()
-										Text("LSR \(self.note.fLSR)").fontWeight(.thin).fixedSize()
+										Text("HSR: \(self.note.fHSR)").customNotesText()
+										Text("LSR \(self.note.fLSR)").customNotesText()
 									}
 								} else {
-									Text("Rebound: \(self.note.fRebound)").fontWeight(.thin).fixedSize()
+									Text("Rebound: \(self.note.fRebound)").customNotesText()
 								}
 							}
 						}
@@ -137,10 +137,10 @@ struct NotesDetailView: View {
 								} else {
 									VStack{
 										HStack{
-											Text("Spring: \(self.note.rAirSpring, specifier: "%.0f")").fontWeight(.thin).fixedSize()
+											Text("Spring: \(self.note.rAirSpring, specifier: "%.0f")").customNotesText()
 											
 											if self.note.bike?.rearSetup?.isCoil == false {
-												Text("Tokens: \(self.note.rTokens)").fontWeight(.thin).fixedSize()
+												Text("Tokens: \(self.note.rTokens)").customNotesText()
 											}
 										}
 									}
@@ -148,8 +148,8 @@ struct NotesDetailView: View {
 									
 									VStack{
 										HStack {
-											Text("Sag %: \(calcSag(sag: Double(self.note.rSag), travel: self.note.bike?.rearSetup?.strokeLength ?? 0.0), specifier: "%.1f")").fontWeight(.thin).fixedSize()
-											Text("Tire PSI: \(self.note.rTirePressure, specifier: "%.1f")").fontWeight(.thin).fixedSize()
+											Text("Sag %: \(calcSag(sag: Double(self.note.rSag), travel: self.note.bike?.rearSetup?.strokeLength ?? 0.0), specifier: "%.1f")").customNotesText()
+											Text("Tire PSI: \(self.note.rTirePressure, specifier: "%.1f")").customNotesText()
 										}
 									}
 									Spacer()
@@ -157,11 +157,11 @@ struct NotesDetailView: View {
 									VStack{
 										if self.note.bike?.rearSetup?.dualCompression == true {
 											HStack {
-												Text("HSC: \(self.note.rHSC)").fontWeight(.thin).fixedSize()
-												Text("LSC: \(self.note.rLSC)").fontWeight(.thin).fixedSize()
+												Text("HSC: \(self.note.rHSC)").customNotesText()
+												Text("LSC: \(self.note.rLSC)").customNotesText()
 											}
 										} else {
-											Text("Compression: \(self.note.rCompression)").fontWeight(.thin).fixedSize()
+											Text("Compression: \(self.note.rCompression)").customNotesText()
 										}
 									}
 									Spacer()
@@ -169,11 +169,11 @@ struct NotesDetailView: View {
 									VStack {
 										if self.note.bike?.rearSetup?.dualRebound == true {
 											HStack{
-												Text("HSR: \(self.note.rHSR)").fontWeight(.thin).fixedSize()
-												Text("LSR: \(self.note.rLSR)").fontWeight(.thin).fixedSize()
+												Text("HSR: \(self.note.rHSR)").customNotesText()
+												Text("LSR: \(self.note.rLSR)").customNotesText()
 											}
 										} else {
-											Text("Rebound: \(self.note.rRebound)").fontWeight(.thin).fixedSize()
+											Text("Rebound: \(self.note.rRebound)").customNotesText()
 										}
 									}
 								}
@@ -201,7 +201,6 @@ struct NotesDetailView: View {
 			.padding()
 			
 			} // end form
-			
 			
 		}
 		
