@@ -241,7 +241,7 @@ struct NotesDetailView: View {
 			try? self.moc.save()
 		}
 		print("Updated note: \(updatedNote)")
-		hapticSucces()
+		hapticSuccess()
 		// this pauses the view transition
 		DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
 			self.presentationMode.wrappedValue.dismiss()

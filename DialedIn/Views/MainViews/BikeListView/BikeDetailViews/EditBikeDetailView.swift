@@ -155,7 +155,7 @@ struct EditBikeDetailView: View {
 					})
 					
 					try? self.moc.save()
-					hapticSucces()
+					hapticSuccess()
 					DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
 						self.presentationMode.wrappedValue.dismiss()
 					}

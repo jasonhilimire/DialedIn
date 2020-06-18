@@ -184,10 +184,11 @@ func calcSag(sag: Double, travel: Double) -> Double {
 }
 
 // haptic vibration for Save button
-func hapticSucces() {
+func hapticSuccess() {
 	let generator = UINotificationFeedbackGenerator()
 	generator.notificationOccurred(.success)
 }
+
 
 // CustomNotes Text Modifier & extension to utilize
 struct CustNotesText: ViewModifier {
