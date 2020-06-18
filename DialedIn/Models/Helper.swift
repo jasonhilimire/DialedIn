@@ -197,7 +197,7 @@ struct CustNotesText: ViewModifier {
 	
 	func body(content: Content) -> some View {
 		content
-			.foregroundColor(Color.black)
+			.foregroundColor(Color("TextColor"))
 			.font(font)
 			.fixedSize()
 	}
