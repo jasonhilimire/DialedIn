@@ -10,7 +10,7 @@ import SwiftUI
 
 struct AddNoteRearSetupView: View {
     @ObservedObject var rear = NoteRearSetupModel()
-	var haptic = UIImpactFeedbackGenerator(style: .medium)
+	var haptic = UIImpactFeedbackGenerator(style: .light)
 
 //TODO, SET BOOLEANS
     var body: some View {
