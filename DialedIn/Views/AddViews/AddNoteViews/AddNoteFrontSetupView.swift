@@ -55,13 +55,10 @@ struct AddNoteFrontSetupView: View {
 				Slider(value: $front.lastFTirePressure, in: 0...40, step: 0.5)
 				Stepper(value: $front.lastFTirePressure, in: 0...40, step: 0.1, onEditingChanged: {_ in DispatchQueue.main.async {self.haptic.impactOccurred()}}, label: {Text("PSI: \(self.front.lastFTirePressure)").fontWeight(.thin)}).labelsHidden()
 			}
-		}.onAppear(perform: {self.setup()})
+		}
+//		.onAppear(perform: {self.setup()})
 	}
 	
-	func setup() {
-		print("Comp \(front.fComp)")
-		print("Reb \(front.fReb)")
-	}
 	
 }
 

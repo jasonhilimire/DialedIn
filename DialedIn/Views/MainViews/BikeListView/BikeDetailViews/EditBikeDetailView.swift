@@ -47,7 +47,7 @@ struct EditBikeDetailView: View {
 				Form {
 					Section(header: Text("Bike Details")){
 						HStack {
-							Text("Bike Name: \(self.bike.wrappedBikeName)").fontWeight(.thin)
+							Text("Bike Name: ").fontWeight(.thin)
 							TextView(text: $bikeName).cornerRadius(8)
 							
 						}
@@ -156,7 +156,7 @@ struct EditBikeDetailView: View {
 					
 					try? self.moc.save()
 					hapticSuccess()
-					DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
+					DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
 						self.presentationMode.wrappedValue.dismiss()
 					}
 				}) {
