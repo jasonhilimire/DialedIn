@@ -71,7 +71,7 @@
         <relationship name="rearService" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="RearService" inverseName="service" inverseEntity="RearService"/>
     </entity>
     <elements>
-        <element name="Bike" positionX="-927.3046875" positionY="-479.21484375" width="128" height="148"/>
+        <element name="Bike" positionX="-1295.51171875" positionY="-477.16015625" width="128" height="148"/>
         <element name="Fork" positionX="-680.84765625" positionY="-601.16796875" width="128" height="133"/>
         <element name="FrontService" positionX="-440.9609375" positionY="-596.84375" width="128" height="103"/>
         <element name="Notes" positionX="-908.890625" positionY="-180.9140625" width="117.93359375" height="418"/>

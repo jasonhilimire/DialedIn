@@ -41,7 +41,8 @@ extension Notes{
     static func filteredNotesFetchRequest(filter: String) -> NSFetchRequest<Notes> {
         let request: NSFetchRequest<Notes> = Notes.fetchRequest()
         request.sortDescriptors = [NSSortDescriptor(keyPath: \Notes.date, ascending: true)]
-        request.predicate = NSPredicate(format: "", filter)
+        request.predicate = NSPredicate(format: "%K = %@", "bike.name", filter)
+		request.fetchLimit = 5
         return request
     }
 	

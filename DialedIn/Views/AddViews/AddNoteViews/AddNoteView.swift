@@ -79,7 +79,7 @@ struct AddNoteView: View {
 						AddNoteFrontSetupView(front: frontSetup)
 					}
 					
-					// MARK: - Rear Setup
+			// MARK: - Rear Setup
 					Section(header:
 						HStack {
 							Image("shock-absorber")
@@ -103,7 +103,7 @@ struct AddNoteView: View {
 					})
 					
 					try? self.moc.save()
-					hapticSucces()
+					hapticSuccess()
 					DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
 						self.presentationMode.wrappedValue.dismiss()
 					}
@@ -124,7 +124,6 @@ struct AddNoteView: View {
     func saveNote() {
 		var bikes : [Bike] = []
 		let fetchRequest = Bike.selectedBikeFetchRequest(filter: bikeName)
-		
 		do {
 			bikes = try moc.fetch(fetchRequest)
 		} catch let error as NSError {
