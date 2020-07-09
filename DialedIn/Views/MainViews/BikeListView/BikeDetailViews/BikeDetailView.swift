@@ -45,8 +45,9 @@ struct BikeDetailView: View {
 						}
 					}
 				}
-			Spacer()
-			Text("Notes")
+			Spacer(minLength: 20)
+
+			Text("Last 5 Notes")
 				.font(.largeTitle)
 				.fontWeight(.thin)
 			FilteredBikeNotesView(filter: self.bikeName)
