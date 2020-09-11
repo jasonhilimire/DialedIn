@@ -86,7 +86,7 @@ struct BikeStyledCellView: View {
 	
 	
 	func setup() {
-		bikeName = self.bike.name!
+		bikeName = self.bike.name ?? ""
 	}
 }
 
