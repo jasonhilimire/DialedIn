@@ -50,166 +50,175 @@ struct ServiceView: View {
 	var body: some View {
 		NavigationView {
 			VStack {
-				Form {
-					if bikes.count == 1 {
-						Text("\(self.bikes[bikeNameIndex].name!)")
-							.fontWeight(.thin)
-					} else {
-						BikePickerView(bikeNameIndex: $bikeNameIndex)
-					}
-					//MARK:- Front
-					Section(header:
-						HStack {
-							Image("bicycle-fork")
-								.resizable()
-								.frame(width: 50, height: 50)
-								.scaledToFit()
-							Text("Front Service")
+				if bikes.count == 0 {
+					Text("Please Create a Bike")
+						.font(.largeTitle)
+						.fontWeight(.thin)
+
+					
+				} else {
+					Form {
+						if bikes.count == 1 {
+							Text("\(self.bikes[bikeNameIndex].name!)")
+								.fontWeight(.thin)
+						} else {
+							BikePickerView(bikeNameIndex: $bikeNameIndex)
+						}
+						//MARK:- Front
+						Section(header:
+							HStack {
+								Image("bicycle-fork")
+									.resizable()
+									.frame(width: 50, height: 50)
+									.scaledToFit()
+								Text("Front Service")
+								}
+							){
+							
+							Picker("Service Type", selection: $frontServicedIndex) {
+								ForEach(0..<frontServiced.count) { index in
+									Text(self.frontServiced[index]).tag(index)
+								}
+							}.pickerStyle(SegmentedPickerStyle())
+							if frontServicedIndex == 1 {
+								HStack {
+									Text("Note:").fontWeight(.thin)
+									TextView(text: $frontServicedNote).cornerRadius(8)
+										.onTapGesture {
+											self.slideScreen = false
+									}
+								}
+								Text("Full Service Includes Lowers Service").fontWeight(.thin).italic()
+								DatePicker(selection: $fFullServicedDate, in: ...Date(), displayedComponents: .date) {
+									Text("Date Serviced").fontWeight(.thin)
+								}
+								
+							} else if frontServicedIndex == 2 {
+								Text("Lowers only Serviced").fontWeight(.thin).italic()
+								HStack {
+									Text("Note:").fontWeight(.thin)
+									TextView(text: $frontServicedNote).cornerRadius(8)
+										.onTapGesture {
+											self.slideScreen = false
+									}
+								}
+								DatePicker(selection: $fLowersServicedDate, in: ...Date(), displayedComponents: .date) {
+									Text("Date Serviced").fontWeight(.thin)
+								}
+								
+							}
+						}
+						
+						//MARK:- Rear
+						Section(header:
+							HStack {
+								Image("shock-absorber")
+									.resizable()
+									.frame(width: 50, height: 50)
+									.scaledToFit()
+								Text("Rear Service")
 							}
 						){
+							if self.bikes[bikeNameIndex].hasRearShock == false {
+								Text("Hardtail").fontWeight(.thin)
+							} else if self.bikes[bikeNameIndex].rearSetup?.isCoil == true {
+								Picker("Service Type", selection: $rearServicedIndex) {
+									ForEach(0..<(rearServiced.count - 1) ) { index in
+										Text(self.rearServiced[index]).tag(index)
+									}
+								}.pickerStyle(SegmentedPickerStyle())
+								
+								if rearServicedIndex == 1 {
+									HStack {
+										Text("Note:").fontWeight(.thin)
+										TextView(text: $rearServicedNote).cornerRadius(8)
+											.onTapGesture {
+												self.slideScreen = true
+										}
+									}
+									DatePicker(selection: $rFullServicedDate, in: ...Date(), displayedComponents: .date) {
+										Text("Date Serviced").fontWeight(.thin)
+									}
+									
+								}
+							} else {
+								Picker("Service Type", selection: $rearServicedIndex) {
+									ForEach(0..<rearServiced.count) { index in
+										Text(self.rearServiced[index]).tag(index)
+									}
+								}.pickerStyle(SegmentedPickerStyle())
+								
+								if rearServicedIndex == 1 {
+									Text("Full Service Includes Air Can Service").fontWeight(.thin).italic()
+									HStack {
+										Text("Note:").fontWeight(.thin)
+										TextView(text: $rearServicedNote).cornerRadius(8)
+											.onTapGesture {
+												self.slideScreen = true
+										}
+									}
+									DatePicker(selection: $rFullServicedDate, in: ...Date(), displayedComponents: .date) {
+										Text("Date Serviced").fontWeight(.thin)
+									}
+									
+									
+								} else if rearServicedIndex == 2 {
+									Text("Air Can only Serviced").fontWeight(.thin).italic()
+									HStack {
+										Text("Note:").fontWeight(.thin)
+										TextView(text: $rearServicedNote).cornerRadius(8)
+											.onTapGesture {
+												self.slideScreen = true
+										}
+									}
+									DatePicker(selection: $rAirCanServicedDate, in: ...Date(), displayedComponents: .date) {
+										Text("Date Serviced").fontWeight(.thin)
+									}
+									
+									
+								}
+							}
+						}
 						
-						Picker("Service Type", selection: $frontServicedIndex) {
-							ForEach(0..<frontServiced.count) { index in
-								Text(self.frontServiced[index]).tag(index)
-							}
-						}.pickerStyle(SegmentedPickerStyle())
-						if frontServicedIndex == 1 {
-							HStack {
-								Text("Note:").fontWeight(.thin)
-								TextView(text: $frontServicedNote).cornerRadius(8)
-									.onTapGesture {
-										self.slideScreen = false
-								}
-							}
-							Text("Full Service Includes Lowers Service").fontWeight(.thin).italic()
-							DatePicker(selection: $fFullServicedDate, in: ...Date(), displayedComponents: .date) {
-								Text("Date Serviced").fontWeight(.thin)
-							}
-							
-						} else if frontServicedIndex == 2 {
-							Text("Lowers only Serviced").fontWeight(.thin).italic()
-							HStack {
-								Text("Note:").fontWeight(.thin)
-								TextView(text: $frontServicedNote).cornerRadius(8)
-									.onTapGesture {
-										self.slideScreen = false
-								}
-							}
-							DatePicker(selection: $fLowersServicedDate, in: ...Date(), displayedComponents: .date) {
-								Text("Date Serviced").fontWeight(.thin)
-							}
-							
-						}
-					}
+						
+						// if no service toggles disable save button
+						
+					} // end form
+						
+						.onAppear(perform: {self.setup()})
+						// Dismisses the keyboard
+						.gesture(tap, including: keyboard.keyBoardShown ? .all : .none)
+						.navigationBarTitle("Service")
 					
-					//MARK:- Rear
-					Section(header:
-						HStack {
-							Image("shock-absorber")
-								.resizable()
-								.frame(width: 50, height: 50)
-								.scaledToFit()
-							Text("Rear Service")
-						}
-					){
-						if self.bikes[bikeNameIndex].hasRearShock == false {
-							Text("Hardtail").fontWeight(.thin)
-						} else if self.bikes[bikeNameIndex].rearSetup?.isCoil == true {
-							Picker("Service Type", selection: $rearServicedIndex) {
-								ForEach(0..<(rearServiced.count - 1) ) { index in
-									Text(self.rearServiced[index]).tag(index)
-								}
-							}.pickerStyle(SegmentedPickerStyle())
-							
-							if rearServicedIndex == 1 {
-								HStack {
-									Text("Note:").fontWeight(.thin)
-									TextView(text: $rearServicedNote).cornerRadius(8)
-										.onTapGesture {
-											self.slideScreen = true
-									}
-								}
-								DatePicker(selection: $rFullServicedDate, in: ...Date(), displayedComponents: .date) {
-									Text("Date Serviced").fontWeight(.thin)
-								}
-								
+				// MARK: - SAVE BUTTON
+					if frontServicedIndex == 0 && rearServicedIndex == 0 {
+						Text("Add a Service as needed").foregroundColor(.orange)
+					} else {
+						/// TODO: Encapsulate the save in a function and reset the screen & dismiss the toast
+						Button(action: {
+							withAnimation(.easeInOut(duration: 0.4)) {
+								self.savePressed.toggle()
 							}
-						} else {
-							Picker("Service Type", selection: $rearServicedIndex) {
-								ForEach(0..<rearServiced.count) { index in
-									Text(self.rearServiced[index]).tag(index)
-								}
-							}.pickerStyle(SegmentedPickerStyle())
-							
-							if rearServicedIndex == 1 {
-								Text("Full Service Includes Air Can Service").fontWeight(.thin).italic()
-								HStack {
-									Text("Note:").fontWeight(.thin)
-									TextView(text: $rearServicedNote).cornerRadius(8)
-										.onTapGesture {
-											self.slideScreen = true
-									}
-								}
-								DatePicker(selection: $rFullServicedDate, in: ...Date(), displayedComponents: .date) {
-									Text("Date Serviced").fontWeight(.thin)
-								}
-								
-								
-							} else if rearServicedIndex == 2 {
-								Text("Air Can only Serviced").fontWeight(.thin).italic()
-								HStack {
-									Text("Note:").fontWeight(.thin)
-									TextView(text: $rearServicedNote).cornerRadius(8)
-										.onTapGesture {
-											self.slideScreen = true
-									}
-								}
-								DatePicker(selection: $rAirCanServicedDate, in: ...Date(), displayedComponents: .date) {
-									Text("Date Serviced").fontWeight(.thin)
-								}
-								
-								
-							}
-						}
-					}
-					
-					// if no service toggles disable save button
-					
-				} // end form
-					
-					.onAppear(perform: {self.setup()})
-					// Dismisses the keyboard
-					.gesture(tap, including: keyboard.keyBoardShown ? .all : .none)
-					.navigationBarTitle("Service")
-				
-			// MARK: - SAVE BUTTON
-				if frontServicedIndex == 0 && rearServicedIndex == 0 {
-					Text("Add a Service as needed").foregroundColor(.orange)
-				} else {
-					/// TODO: Encapsulate the save in a function and reset the screen & dismiss the toast
-					Button(action: {
-						withAnimation(.easeInOut(duration: 0.4)) {
+							print("Save pressed")
+							self.fetchAddService()
+							try? self.moc.save()
 							self.savePressed.toggle()
-						}
-						print("Save pressed")
-						self.fetchAddService()
-						try? self.moc.save()
-						self.savePressed.toggle()
-						
-						withAnimation(.linear(duration: 0.05), {
-							self.saveText = "     SAVED!!     "  // no idea why, but have to add spaces here other wise it builds the word slowly with SA...., annoying as all hell
-						})
-						hapticSuccess()
-						DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
-							self.setup()
-						}
-					}) {
-						SaveButtonView(saveText: $saveText)
-					}.buttonStyle(OrangeButtonStyle())
+							
+							withAnimation(.linear(duration: 0.05), {
+								self.saveText = "     SAVED!!     "  // no idea why, but have to add spaces here other wise it builds the word slowly with SA...., annoying as all hell
+							})
+							hapticSuccess()
+							DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
+								self.setup()
+							}
+						}) {
+							SaveButtonView(saveText: $saveText)
+						}.buttonStyle(OrangeButtonStyle())
+					}
 				}
-				
 			}
 			.padding()
+				
 		}
 		
 			
