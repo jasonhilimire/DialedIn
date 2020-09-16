@@ -79,7 +79,7 @@ struct AddNoteView: View {
 						AddNoteFrontSetupView(front: frontSetup)
 					}
 					
-			// MARK: - Rear Setup
+			// MARK: - Rear Setup -
 					Section(header:
 						HStack {
 							Image("shock-absorber")

@@ -51,11 +51,7 @@ struct ServiceView: View {
 		NavigationView {
 			VStack {
 				if bikes.count == 0 {
-					Text("Please Create a Bike")
-						.font(.largeTitle)
-						.fontWeight(.thin)
-
-					
+					CreateBikeView()
 				} else {
 					Form {
 						if bikes.count == 1 {
