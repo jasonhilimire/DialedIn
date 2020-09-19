@@ -97,7 +97,7 @@ struct EditBikeDetailView: View {
 								Text("Rear Info:").fontWeight(.thin)
 								TextView(text: $rearInfo).cornerRadius(8)
 									.onTapGesture {
-										self.slideScreen = true
+										self.slideScreen = false
 								}
 							}
 							
@@ -105,7 +105,7 @@ struct EditBikeDetailView: View {
 								Text("Travel (mm):").fontWeight(.thin)
 								CustomUIKitTextField(text: $strokeLength, placeholder: "Enter Shock Stroke in mm")
 									.onTapGesture {
-										self.slideScreen = true
+										self.slideScreen = false
 								}
 							}
 							
@@ -119,7 +119,7 @@ struct EditBikeDetailView: View {
 								Text("Rear Info:").fontWeight(.thin)
 								TextView(text: $rearInfo).cornerRadius(8)
 									.onTapGesture {
-										self.slideScreen = true
+										self.slideScreen = false
 								}
 							}
 							
@@ -127,7 +127,7 @@ struct EditBikeDetailView: View {
 								Text("Travel (mm):").fontWeight(.thin)
 								CustomUIKitTextField(text: $strokeLength, placeholder: "Enter Shock Stroke in mm")
 									.onTapGesture {
-										self.slideScreen = true
+										self.slideScreen = false
 								}
 							}
 							
@@ -140,6 +140,7 @@ struct EditBikeDetailView: View {
 					
 				} .navigationBarTitle("Edit Bike Info", displayMode: .inline)
 					
+				// This slides the screen up the height of the keyboard
 					.offset(y: slideScreen ?  -keyboard.height  :  0)
 					.animation(.spring())
 				
