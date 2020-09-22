@@ -199,9 +199,11 @@ struct ServiceView: View {
 		bikeName = bikes[bikeNameIndex].name ?? "Unknown"
 		rearService.bikeName = bikeName
 		rearService.getLastServicedDates()
+		rearServicedNote = ""
 		
 		frontService.bikeName = bikeName
 		frontService.getLastServicedDates()
+		frontServicedNote = ""
 		
 		frontServicedIndex = 0
 		rearServicedIndex = 0
