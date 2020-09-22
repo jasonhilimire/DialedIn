@@ -36,17 +36,11 @@ struct ServiceView: View {
 	@State private var rearServicedIndex = 0
 	@State private var rearServicedNote = ""
 	
-	@State private var slideScreen = false
 	@State private var savePressed = false
 	
 	@State private var saveText = "Save"
 	@State private var opacity: Double = 1
 	
-//	let bike: Bike
-	
-
-	
-
 	var body: some View {
 		NavigationView {
 			VStack {
@@ -60,7 +54,7 @@ struct ServiceView: View {
 						} else {
 							BikePickerView(bikeNameIndex: $bikeNameIndex)
 						}
-						//MARK:- Front
+						//MARK:- Front -
 						Section(header:
 							HStack {
 								Image("bicycle-fork")
@@ -79,10 +73,7 @@ struct ServiceView: View {
 							if frontServicedIndex == 1 {
 								HStack {
 									Text("Note:").fontWeight(.thin)
-									TextView(text: $frontServicedNote).cornerRadius(8)
-										.onTapGesture {
-											self.slideScreen = false
-									}
+									CustomTextField(text: $frontServicedNote , placeholder: "")
 								}
 								Text("Full Service Includes Lowers Service").fontWeight(.thin).italic()
 								DatePicker(selection: $fFullServicedDate, in: ...Date(), displayedComponents: .date) {
@@ -93,10 +84,7 @@ struct ServiceView: View {
 								Text("Lowers only Serviced").fontWeight(.thin).italic()
 								HStack {
 									Text("Note:").fontWeight(.thin)
-									TextView(text: $frontServicedNote).cornerRadius(8)
-										.onTapGesture {
-											self.slideScreen = false
-									}
+									CustomTextField(text: $frontServicedNote, placeholder: "")
 								}
 								DatePicker(selection: $fLowersServicedDate, in: ...Date(), displayedComponents: .date) {
 									Text("Date Serviced").fontWeight(.thin)
@@ -105,7 +93,7 @@ struct ServiceView: View {
 							}
 						}
 						
-						//MARK:- Rear
+						//MARK:- Rear -
 						Section(header:
 							HStack {
 								Image("shock-absorber")
@@ -127,10 +115,7 @@ struct ServiceView: View {
 								if rearServicedIndex == 1 {
 									HStack {
 										Text("Note:").fontWeight(.thin)
-										TextView(text: $rearServicedNote).cornerRadius(8)
-											.onTapGesture {
-												self.slideScreen = true
-										}
+										CustomTextField(text: $rearServicedNote, placeholder: "")
 									}
 									DatePicker(selection: $rFullServicedDate, in: ...Date(), displayedComponents: .date) {
 										Text("Date Serviced").fontWeight(.thin)
@@ -148,37 +133,24 @@ struct ServiceView: View {
 									Text("Full Service Includes Air Can Service").fontWeight(.thin).italic()
 									HStack {
 										Text("Note:").fontWeight(.thin)
-										TextView(text: $rearServicedNote).cornerRadius(8)
-											.onTapGesture {
-												self.slideScreen = true
-										}
+										CustomTextField(text: $rearServicedNote, placeholder: "")
 									}
 									DatePicker(selection: $rFullServicedDate, in: ...Date(), displayedComponents: .date) {
 										Text("Date Serviced").fontWeight(.thin)
 									}
 									
-									
 								} else if rearServicedIndex == 2 {
 									Text("Air Can only Serviced").fontWeight(.thin).italic()
 									HStack {
 										Text("Note:").fontWeight(.thin)
-										TextView(text: $rearServicedNote).cornerRadius(8)
-											.onTapGesture {
-												self.slideScreen = true
-										}
+										CustomTextField(text: $rearServicedNote, placeholder: "")
 									}
 									DatePicker(selection: $rAirCanServicedDate, in: ...Date(), displayedComponents: .date) {
 										Text("Date Serviced").fontWeight(.thin)
 									}
-									
-									
 								}
 							}
 						}
-						
-						
-						// if no service toggles disable save button
-						
 					} // end form
 						
 						.onAppear(perform: {self.setup()})
@@ -186,7 +158,9 @@ struct ServiceView: View {
 						.gesture(tap, including: keyboard.keyBoardShown ? .all : .none)
 						.navigationBarTitle("Service")
 					
-				// MARK: - SAVE BUTTON
+				// MARK: - SAVE BUTTON -
+					
+					// if no service toggles disable save button
 					if frontServicedIndex == 0 && rearServicedIndex == 0 {
 						Text("Add a Service as needed").foregroundColor(.orange)
 					} else {
@@ -216,12 +190,7 @@ struct ServiceView: View {
 			.padding()
 				
 		}
-		
-			
-		.offset(y: slideScreen ?  -keyboard.height  :  0)
 		.animation(.spring())
-			
-
 	}
 
 	

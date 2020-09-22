@@ -27,7 +27,8 @@ struct NotesDetailView: View {
 	
     let note: Notes
 	
-    var body: some View {
+	var body: some View {
+		
 		if #available(iOS 14.0, *) {
 			ZStack {
 				VStack{
@@ -39,10 +40,10 @@ struct NotesDetailView: View {
 							FavoritesView(favorite: self.$isFavorite)
 							
 						}.font(.headline)
+							TextView(text: self.$noteText)
+								.frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
+								.cornerRadius(8)
 						
-						TextView(text: self.$noteText)
-							.frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
-							.cornerRadius(8)
 						RatingView(rating: self.$rating)
 							.font(.headline)
 						Divider()
@@ -206,6 +207,7 @@ struct NotesDetailView: View {
 			// This keeps the keyboard from pushing the view up in iOS14
 			.ignoresSafeArea(.keyboard)
 			
+			
 			.onAppear(perform: {self.setup()})
 			// Dismisses the keyboard
 			.onTapGesture { UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to:nil, from:nil, for:nil) }
@@ -222,9 +224,10 @@ struct NotesDetailView: View {
 			}) {
 				Image(systemName: "trash")
 			})
-				} else {
-					// Fallback on earlier versions - Dont need anything here as ios13 works successfully on the keyboard slide up
-				}
+		} else {
+			// Fallback on earlier versions
+		}
+				
     }
 	
 

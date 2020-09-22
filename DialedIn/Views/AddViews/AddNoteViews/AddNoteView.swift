@@ -34,7 +34,6 @@ struct AddNoteView: View {
     
     var body: some View {
         NavigationView {
-			
 			VStack {
 				Form{
 					Section(header: Text("Ride Details")){
@@ -52,9 +51,19 @@ struct AddNoteView: View {
 						if toggleNoteDetail == true {
 							HStack {
 								Text("Note:").fontWeight(.thin)
-								TextView(text: self.$note)
-									.frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
-									.cornerRadius(8)
+
+								if #available(iOS 14.0, *) {
+									TextEditor(text: self.$note)
+										.foregroundColor(.gray)
+										.background(Color("TextEditBackgroundColor"))
+										.cornerRadius(8)
+								} else {
+									TextView(text: self.$note)
+//									CustomTextField(text: self.$note, placeholder: "Add a note")  // CustomTextField seems better here but it doesnt allow multiple lines
+										.frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
+										.cornerRadius(8)
+								}
+								
 							}
 							HStack {
 								RatingView(rating: $rating)

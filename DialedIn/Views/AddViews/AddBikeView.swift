@@ -35,8 +35,7 @@ struct AddBikeView: View {
     @State private var lastAirCanServiceDate = Date()
     @State private var lastRearFullServiceDate = Date()
 	@State private var strokeLength = ""
-	
-	@State private var slideScreen = false
+
 	@State private var saveText = "Save"
     
 //TODO: figure out how to only allow 1 default bike
@@ -47,32 +46,24 @@ struct AddBikeView: View {
                     Section(header: Text("Bike Details")){
 						HStack {
 							Text("Bike Name:").fontWeight(.thin)
-							TextView(text: $bikeName).cornerRadius(8)
-								
+							CustomTextField(text: $bikeName, placeholder: "Enter a Name")
 						}
 						HStack {
 							Text("Note:").fontWeight(.thin)
-							TextView(text: $bikeNote).cornerRadius(8)
-								
+							CustomTextField(text: $bikeNote, placeholder: "Add a Note")
 						}
 //                        Toggle(isOn: $setDefault.animation(), label: {Text("Set as Default Bike?")})
 					}
-						.onTapGesture {
-							self.slideScreen = false
-						}
                     
                     Section(header: Text("Fork Details")){
 						HStack{
 							Text("Fork Info:").fontWeight(.thin)
-							TextView(text: $forkInfo).cornerRadius(8)
-								.onTapGesture {
-									self.slideScreen = false
-							}
+							CustomTextField(text: $forkInfo, placeholder: "Add Fork Info")
 						}
 						
 						HStack {
 							Text("Travel (mm):").fontWeight(.thin)
-							CustomUIKitTextField(text: $forkTravel, placeholder: "Enter Fork length in mm")
+							CustomNumberField(text: $forkTravel, placeholder: "Enter Fork length in mm")
 						}
 						
                         Toggle(isOn: $forkDualReboundToggle.animation(), label: {Text("Dual Rebound?").fontWeight(.thin)})
@@ -101,15 +92,12 @@ struct AddBikeView: View {
                         } else if rearSetupIndex == 1 {
 							HStack {
 								Text("Rear Info:").fontWeight(.thin)
-								TextView(text: $rearInfo).cornerRadius(8)
-									.onTapGesture {
-										self.slideScreen = true
-								}
+								CustomTextField(text: $rearInfo, placeholder: "Add Rear Info")
 							}
 							
 							HStack {
 								Text("Travel (mm):").fontWeight(.thin)
-								CustomUIKitTextField(text: $strokeLength, placeholder: "Enter Shock Stroke in mm")
+								CustomNumberField(text: $strokeLength, placeholder: "Enter Shock Stroke in mm")
 							}
 							
 							
@@ -127,18 +115,13 @@ struct AddBikeView: View {
                         } else if rearSetupIndex == 2 {
 							HStack {
 								Text("Rear Info:").fontWeight(.thin)
-								TextView(text: $rearInfo).cornerRadius(8)
-									.onTapGesture {
-										self.slideScreen = true
-								}
+								CustomTextField(text: $rearInfo, placeholder: "Add Rear Info")
 							}
 							
 							HStack {
 								Text("Travel (mm):").fontWeight(.thin)
-								CustomUIKitTextField(text: $strokeLength, placeholder: "Enter Shock Stroke in mm")
-									.onTapGesture {
-										self.slideScreen = true
-								}
+								CustomNumberField(text: $strokeLength, placeholder: "Enter Shock Stroke in mm")
+									
 							}
 							
                             Toggle(isOn: $rearDualReboundToggle.animation(), label: {Text("Dual Rebound?").fontWeight(.thin)})
@@ -153,8 +136,7 @@ struct AddBikeView: View {
 
                 } .navigationBarTitle("Bike Info", displayMode: .inline)
 			
-					.offset(y: slideScreen ?  -keyboard.height  :  0)
-					.animation(.spring())
+				.animation(.spring())
 	
 
                 Button(action: {
