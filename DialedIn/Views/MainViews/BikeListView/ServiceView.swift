@@ -156,7 +156,8 @@ struct ServiceView: View {
 						.onAppear(perform: {self.setup()})
 						// Dismisses the keyboard
 						.gesture(tap, including: keyboard.keyBoardShown ? .all : .none)
-						.navigationBarTitle("Service")
+					.navigationBarTitle("Service")
+					
 					
 				// MARK: - SAVE BUTTON -
 					

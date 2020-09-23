@@ -26,7 +26,12 @@ struct AppView: View {
             // https://www.youtube.com/watch?v=EBbhIbI2Hg8
             //
             
-            
+			HomeTabView()
+				.tabItem {
+					Image(systemName: "house")
+					Text("Home")
+				}
+			
             NotesListView()
                 .tabItem {
                     Image(systemName: "list.dash")
