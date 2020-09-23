@@ -1,5 +1,5 @@
 //
-//  AddDetailView.swift
+//  NotesDetailView.swift
 //  DialedIn
 //
 //  Created by Jason Hilimire on 1/27/20.
@@ -225,7 +225,8 @@ struct NotesDetailView: View {
 				Image(systemName: "trash")
 			})
 		} else {
-			// Fallback on earlier versions
+			// Uses iOS 13 - 
+			NotesEditDetailView_13(note: note)
 		}
 				
     }
