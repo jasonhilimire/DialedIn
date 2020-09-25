@@ -15,40 +15,18 @@ struct HomeTabView: View {
 			GeometryReader { geometry in
 				VStack {
 					NavigationLink(destination: AddNoteView()) {
-						
-						Text("Add Note")
-							.font(.title)
-							.foregroundColor(Color.white)
-							.multilineTextAlignment(.center)
-							.frame(maxWidth: .infinity, maxHeight: .infinity)
-							.background(Color.blue)
-							.cornerRadius(20)
-//							.padding()
+						HomeNoteView()
 					}
 
 					Spacer()
 					
 					NavigationLink(destination: ServiceView()) {
-						
-						Text("Add Service")
-							.font(.title)
-							.foregroundColor(Color.white)
-							.multilineTextAlignment(.center)
-							.frame(maxWidth: .infinity, maxHeight: 150)
-							.background(Color.green)
-							.cornerRadius(20)
+						HomeServiceView()
 					}
 					Spacer()
 					
 					NavigationLink(destination: AddBikeView()) {
-						
-						Text("Add Bike")
-							.font(.title)
-							.foregroundColor(Color.white)
-							.multilineTextAlignment(.center)
-							.frame(maxWidth: .infinity, maxHeight: 80)
-							.background(Color.pink)
-							.cornerRadius(20)
+						HomeBikeView()
 					}
 				} // end VStack
 				.padding()
