@@ -21,11 +21,6 @@ struct AppView: View {
         
     var body: some View {
         TabView {
-            //TODO: Add Scrolling/Main View for recent notes? and or TopRated Notes
-            // https://www.hackingwithswift.com/quick-start/swiftui/how-to-add-horizontal-and-vertical-scrolling-using-scrollview
-            // https://www.youtube.com/watch?v=EBbhIbI2Hg8
-            //
-            
 			HomeTabView()
 				.tabItem {
 					Image(systemName: "house")
@@ -43,11 +38,11 @@ struct AppView: View {
                     Image(systemName: "gear")
                     Text("Bikes")
                 }
-			ServiceView()
-				.tabItem {
-					Image(systemName: "wrench")
-					Text("Service")
-			}
+//			ServiceView()
+//				.tabItem {
+//					Image(systemName: "wrench")
+//					Text("Service")
+//			}
 			
         }
 			.animation(.default)

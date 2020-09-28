@@ -78,6 +78,17 @@ extension FrontService {
 		request.sortDescriptors = [NSSortDescriptor(keyPath: \FrontService.lowersService, ascending: true)]
 		return request
 	}
+	
+	static func lastFrontServiceLowersFetchRequest() -> NSFetchRequest<FrontService> {
+		let request: NSFetchRequest<FrontService> = FrontService.fetchRequest()
+		request.sortDescriptors = [NSSortDescriptor(keyPath: \FrontService.lowersService, ascending: true)]
+		request.fetchLimit = 1
+		return request
+	}
+	
+	
+	
+	
 }
 
 extension Fork {

@@ -25,9 +25,9 @@ struct HomeTabView: View {
 					}
 					Spacer()
 					
-					NavigationLink(destination: AddBikeView()) {
-						HomeBikeView()
-					}
+//					NavigationLink(destination: AddBikeView()) {
+//						HomeBikeView()
+//					}
 				} // end VStack
 				.padding()
 				.navigationBarTitle("Dialed In")

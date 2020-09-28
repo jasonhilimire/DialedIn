@@ -263,7 +263,7 @@ class NoteFrontSetupModel: ObservableObject {
         case sag
 	
         func getSetting(note: [Notes]) -> Int16 {
-            // if no filteredBike is found sets all values to 0
+            // if no filteredBike is found sets all values to respected Ints
           switch self {
           case .compression:
               return note.last?.fCompression ?? 5
