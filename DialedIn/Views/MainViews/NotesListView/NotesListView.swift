@@ -38,9 +38,7 @@ struct NotesListView: View {
 						.padding(.top, 5)
 					
 				if bikes.count == 0 {
-					Text("Please Create a Bike!")
-						.font(.largeTitle)
-						.fontWeight(.thin)
+					CreateBikeView()
 				}
 				
 				List{
