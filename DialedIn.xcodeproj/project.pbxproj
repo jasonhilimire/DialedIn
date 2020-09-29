@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		A309B9D623E2898300A08F22 /* BikeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A309B9D523E2898300A08F22 /* BikeListView.swift */; };
-		A3177375241DD6C100E281BF /* BikeAddNoteButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3177374241DD6C100E281BF /* BikeAddNoteButtonView.swift */; };
 		A3250096246E2D7F00F5A96E /* SaveToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3250095246E2D7F00F5A96E /* SaveToastView.swift */; };
 		A326FAC723F3BC6E002490E2 /* CoreData Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A326FAC623F3BC6E002490E2 /* CoreData Extensions.swift */; };
 		A3273B7223EF8F6F007A3792 /* NoteFrontSetupModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3273B7123EF8F6F007A3792 /* NoteFrontSetupModel.swift */; };
@@ -86,7 +85,6 @@
 
 /* Begin PBXFileReference section */
 		A309B9D523E2898300A08F22 /* BikeListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeListView.swift; sourceTree = "<group>"; };
-		A3177374241DD6C100E281BF /* BikeAddNoteButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeAddNoteButtonView.swift; sourceTree = "<group>"; };
 		A3250095246E2D7F00F5A96E /* SaveToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveToastView.swift; sourceTree = "<group>"; };
 		A326FAC623F3BC6E002490E2 /* CoreData Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoreData Extensions.swift"; sourceTree = "<group>"; };
 		A3273B7123EF8F6F007A3792 /* NoteFrontSetupModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteFrontSetupModel.swift; sourceTree = "<group>"; };
@@ -182,7 +180,6 @@
 			children = (
 				A309B9D523E2898300A08F22 /* BikeListView.swift */,
 				A3D518062425BD63007DEE9D /* ServiceView.swift */,
-				A3FBA8BE24034623001F3885 /* BikeDetailViews */,
 			);
 			path = BikeListView;
 			sourceTree = "<group>";
@@ -197,23 +194,42 @@
 			path = CoreData;
 			sourceTree = "<group>";
 		};
+		A33E3D8F25239AD100B9F47E /* Notes */ = {
+			isa = PBXGroup;
+			children = (
+				A3C7A1D52401F85200A741A8 /* AddNoteViews */,
+				A3C7A1D42401F81300A741A8 /* NotesDetailViews */,
+				A3B99236241DD9A4007E9B7B /* NotesListView */,
+			);
+			path = Notes;
+			sourceTree = "<group>";
+		};
+		A33E3D9025239AD600B9F47E /* Bike */ = {
+			isa = PBXGroup;
+			children = (
+				A3B8B79623F0E9EF00CE1EF8 /* BikePickerView.swift */,
+				A3DDCC8223DFF97900CD1476 /* AddBikeView.swift */,
+				A3177373241DD61F00E281BF /* BikeListView */,
+				A3FBA8BE24034623001F3885 /* BikeDetailViews */,
+			);
+			path = Bike;
+			sourceTree = "<group>";
+		};
+		A33E3D9125239ADB00B9F47E /* Service */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
 		A3918AD123E3E764002A1D61 /* MainViews */ = {
 			isa = PBXGroup;
 			children = (
-				A3B99236241DD9A4007E9B7B /* NotesListView */,
-				A3177373241DD61F00E281BF /* BikeListView */,
-				A3DDCC8023DFF96400CD1476 /* AppView.swift */,
+				A33E3D8F25239AD100B9F47E /* Notes */,
+				A33E3D9025239AD600B9F47E /* Bike */,
+				A33E3D9125239ADB00B9F47E /* Service */,
 			);
 			path = MainViews;
-			sourceTree = "<group>";
-		};
-		A3918AD223E3E769002A1D61 /* AddViews */ = {
-			isa = PBXGroup;
-			children = (
-				A3DDCC8223DFF97900CD1476 /* AddBikeView.swift */,
-				A3C7A1D52401F85200A741A8 /* AddNoteViews */,
-			);
-			path = AddViews;
 			sourceTree = "<group>";
 		};
 		A3918AD323E3E76C002A1D61 /* SingleViews */ = {
@@ -232,7 +248,6 @@
 				A3C16E6E23DE9EC4005BFA14 /* NotesListView.swift */,
 				A33F02B024062A89005A0A8F /* FilteredNoteView.swift */,
 				A3250095246E2D7F00F5A96E /* SaveToastView.swift */,
-				A3C7A1D42401F81300A741A8 /* NotesDetailViews */,
 			);
 			path = NotesListView;
 			sourceTree = "<group>";
@@ -240,7 +255,6 @@
 		A3B99237241DDAF9007E9B7B /* Unused */ = {
 			isa = PBXGroup;
 			children = (
-				A3177374241DD6C100E281BF /* BikeAddNoteButtonView.swift */,
 				A33F02AE2406201D005A0A8F /* AddNoteBikeView.swift */,
 				A383EFF8241D55900039A04C /* NoteStyledCellView.swift */,
 				A36C24C02437FED000B43121 /* ServicesListView.swift */,
@@ -325,9 +339,9 @@
 		A3C16EAB23DEA454005BFA14 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				A3918AD323E3E76C002A1D61 /* SingleViews */,
-				A3918AD223E3E769002A1D61 /* AddViews */,
+				A3DDCC8023DFF96400CD1476 /* AppView.swift */,
 				A3918AD123E3E764002A1D61 /* MainViews */,
+				A3918AD323E3E76C002A1D61 /* SingleViews */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -396,7 +410,6 @@
 			isa = PBXGroup;
 			children = (
 				A3DDCC7E23DFF2C900CD1476 /* AddNoteView.swift */,
-				A3B8B79623F0E9EF00CE1EF8 /* BikePickerView.swift */,
 				A3C7A1D62401F87D00A741A8 /* AddNoteFrontSetupView.swift */,
 				A3FBA8B224024024001F3885 /* AddNoteRearSetupView.swift */,
 			);
@@ -570,7 +583,6 @@
 				A3C16E6A23DE9EC4005BFA14 /* SceneDelegate.swift in Sources */,
 				A3D518372426B565007DEE9D /* FrontServiceModel.swift in Sources */,
 				A3EC242023E68E21002954A9 /* EmojiRatingView.swift in Sources */,
-				A3177375241DD6C100E281BF /* BikeAddNoteButtonView.swift in Sources */,
 				A3FBA8BC240342E7001F3885 /* ForkLastServicedView.swift in Sources */,
 				A3C7A1D72401F87D00A741A8 /* AddNoteFrontSetupView.swift in Sources */,
 				A3D5181B24268E55007DEE9D /* Fork+CoreDataProperties.swift in Sources */,
