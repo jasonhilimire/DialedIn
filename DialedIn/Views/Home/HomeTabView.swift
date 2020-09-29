@@ -36,12 +36,3 @@ struct HomeTabView: View {
 	}
 }
 
-struct HomeTabView_Previews: PreviewProvider {
-    static var previews: some View {
-		Group {
-			HomeTabView()
-			HomeTabView()
-				.padding(.all)
-		}
-    }
-}

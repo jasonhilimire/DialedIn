@@ -17,6 +17,8 @@ struct HomeNoteView: View {
 	
     var body: some View {
 		ForEach(fetchRequest.wrappedValue, id: \.self) { note in
+			NoteView(note: note)
+		/*
 			VStack {
 				HStack {
 					Text(note.bike?.name ?? "Unknown Bike")
@@ -38,9 +40,10 @@ struct HomeNoteView: View {
 							if note.rating > 0 {
 								RatingView(rating: .constant(Int(note.rating)))
 							}
-							Text(note.note ?? "")
-								.fontWeight(.thin)
-								
+//							Text(note.note ?? "")
+//								.fontWeight(.thin)
+					// Use an observed object in a new view for items that will change/ can be changed
+							NoteView(note: note)
 						}
 						.font(.footnote)
 						Spacer()
@@ -119,6 +122,7 @@ struct HomeNoteView: View {
 					}.font(.caption)
 				} // end HSTack Settings
 			}
+			*/
 			.padding()
 			.foregroundColor(Color("TextColor"))
 			
@@ -130,6 +134,7 @@ struct HomeNoteView: View {
 		.frame(maxWidth: .infinity, maxHeight: .infinity)
 		.background(Color.blue)
 		.cornerRadius(20)
+		
 	}
 			
 	init(){
@@ -139,9 +144,16 @@ struct HomeNoteView: View {
 		request.sortDescriptors = [sort]
 		//		request.predicate = what searching for here
 		fetchRequest = FetchRequest<Notes>(fetchRequest: request)
+//		fetchRequest.update() // not sure why how this isnt working 'contect in environment is not connected to a persistent store manager?
 	}
 }
 	
 
-
-
+// Separatig each Observable object into its own View allows it to update when changing
+struct NoteView: View {
+	@ObservedObject var note: Notes
+	
+	var body: some View {
+		Text(note.note ?? "")
+	}
+}
