@@ -29,11 +29,8 @@ struct BikesView: View {
 						BikeCardView(bike: bike)
 				} //: LOOP
 			} //: TAB
-			.tabViewStyle(PageTabViewStyle())
-			.padding(.vertical, 20)
-		}
-		.navigationBarTitle("Bikes") // doesnt seem to be working??
-		.navigationBarItems(trailing: Button(action: {self.showingAddScreen.toggle()
+			.navigationBarTitle("Bikes") // doesnt seem to be working??
+			.navigationBarItems(trailing: Button(action: {self.showingAddScreen.toggle()
 			}) {
 				Image(systemName: "plus.circle").foregroundColor(Color("TextColor"))
 					.font(.title)
@@ -41,8 +38,14 @@ struct BikesView: View {
 			.sheet(isPresented: $showingAddScreen)  {
 				AddBikeView().environment(\.managedObjectContext, self.moc)
 			}
+			
+			
+			.tabViewStyle(PageTabViewStyle())
+			.padding(.vertical, 20)
 		}
-//	}
+		
+	}
+	
 }
 
 struct BikesView_Previews: PreviewProvider {
