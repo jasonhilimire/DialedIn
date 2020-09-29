@@ -28,185 +28,175 @@ struct NotesDetailView: View {
     let note: Notes
 	
 	var body: some View {
-		
-		if #available(iOS 14.0, *) {
-			ZStack {
-				VStack{
-					VStack {
-						HStack {
-							Text(self.note.date != nil ? "\(self.note.date!, formatter: dateFormatter)" : "")
-								.fontWeight(.thin)
+		ZStack {
+			VStack{
+				VStack {
+					HStack {
+						Text(self.note.date != nil ? "\(self.note.date!, formatter: dateFormatter)" : "")
+							.fontWeight(.thin)
+						Spacer()
+						FavoritesView(favorite: self.$isFavorite)
+						
+					}.font(.headline)
+						TextView(text: self.$noteText)
+							.frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
+							.cornerRadius(8)
+					
+					RatingView(rating: self.$rating)
+						.font(.headline)
+					
+					Divider()
+
+					//Front
+					Group {
+						VStack {
+							VStack {
+								HStack {
+									Image("bicycle-fork")
+										.resizable()
+										.frame(width: 50, height: 50)
+										.scaledToFit()
+									Text("Fork Details")
+										.font(.headline)
+										.fontWeight(.thin)
+										.fixedSize()
+								}
+							}
 							Spacer()
-							FavoritesView(favorite: self.$isFavorite)
 							
-						}.font(.headline)
-							TextView(text: self.$noteText)
-								.frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
-								.cornerRadius(8)
-						
-						RatingView(rating: self.$rating)
-							.font(.headline)
-						Divider()
-						
-						//					if savePressed == true {
-						//						SaveToastView()
-						//							.transition(.opacity)
-						//					}
-						
-						//Front
-						Group {
 							VStack {
-								VStack {
-									HStack {
-										Image("bicycle-fork")
-											.resizable()
-											.frame(width: 50, height: 50)
-											.scaledToFit()
-										Text("Fork Details")
-											.font(.headline)
-											.fontWeight(.thin)
-											.fixedSize()
-									}
+								HStack {
+									Text("Fork PSI: \(self.note.fAirVolume, specifier: "%.1f")").customNotesText()
+									Text("Tokens: \(self.note.fTokens)").customNotesText()
 								}
-								Spacer()
-								
-								VStack {
-									HStack {
-										Text("Fork PSI: \(self.note.fAirVolume, specifier: "%.1f")").customNotesText()
-										Text("Tokens: \(self.note.fTokens)").customNotesText()
-									}
+							}
+							Spacer()
+							VStack{
+								HStack{
+									Text("Sag %: \(calcSag(sag: Double(self.note.fSag), travel: self.note.bike?.frontSetup?.travel ?? 0.0), specifier: "%.1f")").customNotesText()
+									Text("Tire PSI: \(self.note.fTirePressure, specifier: "%.1f")").customNotesText()
 								}
-								Spacer()
-								VStack{
+							}
+							Spacer()
+							VStack{
+								if self.note.bike?.frontSetup?.dualCompression == true {
+									HStack {
+										Text("HSC: \(self.note.fHSC)").customNotesText()
+										Text("LSC: \(self.note.fLSC)").customNotesText()
+									}
+								} else {
+									Text("Compression: \(self.note.fCompression)").customNotesText()
+								}
+							}
+							Spacer()
+							
+							VStack {
+								if self.note.bike?.frontSetup?.dualCompression == true {
 									HStack{
-										Text("Sag %: \(calcSag(sag: Double(self.note.fSag), travel: self.note.bike?.frontSetup?.travel ?? 0.0), specifier: "%.1f")").customNotesText()
-										Text("Tire PSI: \(self.note.fTirePressure, specifier: "%.1f")").customNotesText()
+										Text("HSR: \(self.note.fHSR)").customNotesText()
+										Text("LSR \(self.note.fLSR)").customNotesText()
 									}
-								}
-								Spacer()
-								VStack{
-									if self.note.bike?.frontSetup?.dualCompression == true {
-										HStack {
-											Text("HSC: \(self.note.fHSC)").customNotesText()
-											Text("LSC: \(self.note.fLSC)").customNotesText()
-										}
-									} else {
-										Text("Compression: \(self.note.fCompression)").customNotesText()
-									}
-								}
-								Spacer()
-								
-								VStack {
-									if self.note.bike?.frontSetup?.dualCompression == true {
-										HStack{
-											Text("HSR: \(self.note.fHSR)").customNotesText()
-											Text("LSR \(self.note.fLSR)").customNotesText()
-										}
-									} else {
-										Text("Rebound: \(self.note.fRebound)").customNotesText()
-									}
+								} else {
+									Text("Rebound: \(self.note.fRebound)").customNotesText()
 								}
 							}
-							.font(.subheadline)
-							
 						}
+						.font(.subheadline)
 						
-						
-						Divider()
-						//Rear
-						Group {
-							VStack {
-								VStack {
-									HStack {
-										Image("shock-absorber")
-											.resizable()
-											.frame(width: 50, height: 50)
-											.scaledToFit()
-										Text("Rear Shock Details")
-											.font(.headline)
-											.fontWeight(.thin)
-											.fixedSize()
-									}
-								}
-								Spacer()
-								
-								VStack {
-									if self.note.bike?.hasRearShock == false {
-										Text("Hardtail")
-											.font(.title)
-											.fontWeight(.thin)
-											.fixedSize()
-									} else {
-										VStack{
-											HStack{
-												Text("Spring: \(self.note.rAirSpring, specifier: "%.0f")").customNotesText()
-												
-												if self.note.bike?.rearSetup?.isCoil == false {
-													Text("Tokens: \(self.note.rTokens)").customNotesText()
-												}
-											}
-										}
-										Spacer()
-										
-										VStack{
-											HStack {
-												Text("Sag %: \(calcSag(sag: Double(self.note.rSag), travel: self.note.bike?.rearSetup?.strokeLength ?? 0.0), specifier: "%.1f")").customNotesText()
-												Text("Tire PSI: \(self.note.rTirePressure, specifier: "%.1f")").customNotesText()
-											}
-										}
-										Spacer()
-										
-										VStack{
-											if self.note.bike?.rearSetup?.dualCompression == true {
-												HStack {
-													Text("HSC: \(self.note.rHSC)").customNotesText()
-													Text("LSC: \(self.note.rLSC)").customNotesText()
-												}
-											} else {
-												Text("Compression: \(self.note.rCompression)").customNotesText()
-											}
-										}
-										Spacer()
-										
-										VStack {
-											if self.note.bike?.rearSetup?.dualRebound == true {
-												HStack{
-													Text("HSR: \(self.note.rHSR)").customNotesText()
-													Text("LSR: \(self.note.rLSR)").customNotesText()
-												}
-											} else {
-												Text("Rebound: \(self.note.rRebound)").customNotesText()
-											}
-										}
-									}
-								}
-							}
-							.font(.subheadline)
-							
-						}
 					}
 					
-					.padding()
-					Spacer()
-					Button(action: {
-						self.savePressed.toggle()
-						withAnimation(.linear(duration: 0.05), {
-							self.saveText = "     SAVED!!     "  // no idea why, but have to add spaces here other wise it builds the word slowly with SA...., annoying as all hell
-						})
-						
-						
-						self.updateNote(note: self.note)
-						try? self.moc.save()
-					}) {
-						SaveButtonView(saveText: $saveText)
-					}.buttonStyle(OrangeButtonStyle())
-					.padding()
-				} // end form
-			}
+					
+					Divider()
+					//Rear
+					Group {
+						VStack {
+							VStack {
+								HStack {
+									Image("shock-absorber")
+										.resizable()
+										.frame(width: 50, height: 50)
+										.scaledToFit()
+									Text("Rear Shock Details")
+										.font(.headline)
+										.fontWeight(.thin)
+										.fixedSize()
+								}
+							}
+							Spacer()
+							
+							VStack {
+								if self.note.bike?.hasRearShock == false {
+									Text("Hardtail")
+										.font(.title)
+										.fontWeight(.thin)
+										.fixedSize()
+								} else {
+									VStack{
+										HStack{
+											Text("Spring: \(self.note.rAirSpring, specifier: "%.0f")").customNotesText()
+											
+											if self.note.bike?.rearSetup?.isCoil == false {
+												Text("Tokens: \(self.note.rTokens)").customNotesText()
+											}
+										}
+									}
+									Spacer()
+									
+									VStack{
+										HStack {
+											Text("Sag %: \(calcSag(sag: Double(self.note.rSag), travel: self.note.bike?.rearSetup?.strokeLength ?? 0.0), specifier: "%.1f")").customNotesText()
+											Text("Tire PSI: \(self.note.rTirePressure, specifier: "%.1f")").customNotesText()
+										}
+									}
+									Spacer()
+									
+									VStack{
+										if self.note.bike?.rearSetup?.dualCompression == true {
+											HStack {
+												Text("HSC: \(self.note.rHSC)").customNotesText()
+												Text("LSC: \(self.note.rLSC)").customNotesText()
+											}
+										} else {
+											Text("Compression: \(self.note.rCompression)").customNotesText()
+										}
+									}
+									Spacer()
+									
+									VStack {
+										if self.note.bike?.rearSetup?.dualRebound == true {
+											HStack{
+												Text("HSR: \(self.note.rHSR)").customNotesText()
+												Text("LSR: \(self.note.rLSR)").customNotesText()
+											}
+										} else {
+											Text("Rebound: \(self.note.rRebound)").customNotesText()
+										}
+									}
+								}
+							}
+						}
+						.font(.subheadline)
+					}
+				}
+				
+				.padding()
+				Spacer()
+				Button(action: {
+					self.savePressed.toggle()
+					withAnimation(.linear(duration: 0.05), {
+						self.saveText = "     SAVED!!     "  // no idea why, but have to add spaces here other wise it builds the word slowly with SA...., annoying as all hell
+					})
+					self.updateNote(note: self.note)
+					try? self.moc.save()
+				}) {
+					SaveButtonView(saveText: $saveText)
+				}.buttonStyle(OrangeButtonStyle())
+				.padding()
+			} // end form
+		}
 			
 			// This keeps the keyboard from pushing the view up in iOS14
 			.ignoresSafeArea(.keyboard)
-			
 			
 			.onAppear(perform: {self.setup()})
 			// Dismisses the keyboard
@@ -224,11 +214,6 @@ struct NotesDetailView: View {
 			}) {
 				Image(systemName: "trash")
 			})
-		} else {
-			// Uses iOS 13 - 
-			NotesEditDetailView_13(note: note)
-		}
-				
     }
 	
 
