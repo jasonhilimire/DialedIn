@@ -33,7 +33,8 @@ struct AppView: View {
                     Text("Notes")
                 }
             
-            BikeListView()
+//            BikeListView()
+				BikesView()
                 .tabItem {
                     Image(systemName: "gear")
                     Text("Bikes")

@@ -10,6 +10,7 @@
 		A309B9D623E2898300A08F22 /* BikeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A309B9D523E2898300A08F22 /* BikeListView.swift */; };
 		A31605F02523B976009071E9 /* BikeCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A31605EF2523B976009071E9 /* BikeCardView.swift */; };
 		A31605FA2523BAA1009071E9 /* ArrowButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A31605F92523BAA1009071E9 /* ArrowButtonView.swift */; };
+		A31606022523BF3E009071E9 /* BikesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A31606012523BF3E009071E9 /* BikesView.swift */; };
 		A3250096246E2D7F00F5A96E /* SaveToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3250095246E2D7F00F5A96E /* SaveToastView.swift */; };
 		A326FAC723F3BC6E002490E2 /* CoreData Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A326FAC623F3BC6E002490E2 /* CoreData Extensions.swift */; };
 		A3273B7223EF8F6F007A3792 /* NoteFrontSetupModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3273B7123EF8F6F007A3792 /* NoteFrontSetupModel.swift */; };
@@ -89,6 +90,7 @@
 		A309B9D523E2898300A08F22 /* BikeListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeListView.swift; sourceTree = "<group>"; };
 		A31605EF2523B976009071E9 /* BikeCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeCardView.swift; sourceTree = "<group>"; };
 		A31605F92523BAA1009071E9 /* ArrowButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrowButtonView.swift; sourceTree = "<group>"; };
+		A31606012523BF3E009071E9 /* BikesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikesView.swift; sourceTree = "<group>"; };
 		A3250095246E2D7F00F5A96E /* SaveToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveToastView.swift; sourceTree = "<group>"; };
 		A326FAC623F3BC6E002490E2 /* CoreData Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoreData Extensions.swift"; sourceTree = "<group>"; };
 		A3273B7123EF8F6F007A3792 /* NoteFrontSetupModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteFrontSetupModel.swift; sourceTree = "<group>"; };
@@ -183,6 +185,7 @@
 			isa = PBXGroup;
 			children = (
 				A31605EF2523B976009071E9 /* BikeCardView.swift */,
+				A31606012523BF3E009071E9 /* BikesView.swift */,
 			);
 			path = BikeCards;
 			sourceTree = "<group>";
@@ -598,6 +601,7 @@
 				A3FBA8BD240342E7001F3885 /* RearShockLastServicedView.swift in Sources */,
 				A3C16E6A23DE9EC4005BFA14 /* SceneDelegate.swift in Sources */,
 				A3D518372426B565007DEE9D /* FrontServiceModel.swift in Sources */,
+				A31606022523BF3E009071E9 /* BikesView.swift in Sources */,
 				A3EC242023E68E21002954A9 /* EmojiRatingView.swift in Sources */,
 				A3FBA8BC240342E7001F3885 /* ForkLastServicedView.swift in Sources */,
 				A3C7A1D72401F87D00A741A8 /* AddNoteFrontSetupView.swift in Sources */,

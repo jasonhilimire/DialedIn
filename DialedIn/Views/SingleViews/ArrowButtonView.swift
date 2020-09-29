@@ -12,9 +12,7 @@ struct ArrowButtonView: View {
 	@Binding var buttonText: String
 	
     var body: some View {
-		Button(action: {
-			print("Arrow Button Tapped")
-		}){
+
 			HStack(spacing: 8) {
 				Text("\(buttonText)")
 				
@@ -26,7 +24,7 @@ struct ArrowButtonView: View {
 			.background(
 				Capsule().strokeBorder(Color.white, lineWidth: 1.25)
 			)
-		} //: Button
+		 //: Button
 		.accentColor(Color.white)
     }
 }
