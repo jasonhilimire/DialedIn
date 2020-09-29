@@ -20,6 +20,11 @@ struct BikesView: View {
 	// bool to show the Sheet
 	@State private var showingAddScreen = false
 	
+	// Published if Objects did change- seems to be working, but seems flaky
+	@State private var refreshing = false
+	private var didChange =  NotificationCenter.default.publisher(for: .NSManagedObjectContextObjectsDidChange)
+
+	
 	
 // MARK: - BODY -
     var body: some View {
@@ -28,6 +33,10 @@ struct BikesView: View {
 				ForEach(bikes, id: \.self) { bike in
 						BikeCardView(bike: bike)
 				} //: LOOP
+				// here is the listener for published context event
+				.onReceive(self.didChange) { _ in
+					self.refreshing.toggle()
+				}
 			} //: TAB
 			.navigationBarTitle("Bikes") // doesnt seem to be working??
 			.navigationBarItems(trailing: Button(action: {self.showingAddScreen.toggle()
@@ -38,8 +47,6 @@ struct BikesView: View {
 			.sheet(isPresented: $showingAddScreen)  {
 				AddBikeView().environment(\.managedObjectContext, self.moc)
 			}
-			
-			
 			.tabViewStyle(PageTabViewStyle())
 			.padding(.vertical, 20)
 		}

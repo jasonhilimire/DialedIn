@@ -22,6 +22,8 @@ struct BikeCardView: View {
 		
 			ZStack {
 				VStack(spacing: 20){
+					// DELETE BUTTON??? HERE OR ON THE DETAIL VIEW??
+					
 					// BIKE: IMAGE - change these images here so it shows a full suspension or hardtail depending on bike type
 					Image("bike")
 						.resizable()
