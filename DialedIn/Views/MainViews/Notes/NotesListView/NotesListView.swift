@@ -41,14 +41,14 @@ struct NotesListView: View {
 					CreateBikeView()
 				}
 				
-				List{
+				ScrollView{
 					if pickerChoiceIndex == 0 {
 						FilteredNoteView(filter: false)
 					} else if pickerChoiceIndex == 1 {
 						FilteredNoteView(filter: true)
 					}
 				}
-			}
+			}.padding(.horizontal)
 				
 	// remove the separator
 			.onAppear { UITableView.appearance().separatorStyle = .none }

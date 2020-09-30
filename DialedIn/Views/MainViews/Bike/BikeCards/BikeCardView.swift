@@ -79,6 +79,7 @@ struct BikeCardView: View {
 			]) , startPoint: .top, endPoint: .bottom)))
 			.cornerRadius(20)
 			.padding(.horizontal, 20)
+			.shadow(color: Color("ShadowColor"), radius: 5, x: -5, y: 5)
 			// Show the Alert to delete the Bike
 			.alert(isPresented: $showingDeleteAlert) {
 				Alert(title: Text("Delete Bike"), message: Text("\(deleteText)"), primaryButton: .destructive(Text("Delete")) {
