@@ -19,9 +19,8 @@ struct BikeCardView: View {
 	
 // MARK: - BODY -
     var body: some View {
-		
 			ZStack {
-				VStack(spacing: 20){
+				VStack{
 					// DELETE BUTTON??? HERE OR ON THE DETAIL VIEW??
 					
 					// BIKE: IMAGE - change these images here so it shows a full suspension or hardtail depending on bike type
@@ -46,24 +45,26 @@ struct BikeCardView: View {
 						.padding(.horizontal, 16)
 						.frame(maxWidth: 480)
 					
-					// BUTTON:
+//					// BUTTON:
 					NavigationLink(destination: BikeDetailView(bike: bike)) {
 						ArrowButtonView(buttonText: $buttonText)
 					}
 					
 				} //: VSTACK
+				.padding(.bottom, 16)
 			} //: ZSTACK
 			.onAppear{
 				withAnimation(.easeOut(duration: 0.5)) {
 					isAnimating = true
 				}
 			}
-			.frame(minWidth: 0, idealWidth: 100, maxWidth: .infinity, minHeight: 0, idealHeight: 100, maxHeight: .infinity, alignment: .center)
+//			.frame(minWidth: 0, idealWidth: 100, maxWidth: .infinity, minHeight: 0, idealHeight: 100, maxHeight: .infinity, alignment: .center)
 			.background((LinearGradient(gradient: Gradient(colors: [Color.orange, Color.red
 			]) , startPoint: .top, endPoint: .bottom)))
 			.cornerRadius(20)
 			.padding(.horizontal, 20)
-    }
+		
+	}
 }
 
 

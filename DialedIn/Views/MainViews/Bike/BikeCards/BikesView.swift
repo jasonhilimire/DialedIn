@@ -29,7 +29,7 @@ struct BikesView: View {
 // MARK: - BODY -
     var body: some View {
 		NavigationView {
-			TabView {
+			ScrollView {
 				ForEach(bikes, id: \.self) { bike in
 						BikeCardView(bike: bike)
 				} //: LOOP
@@ -47,7 +47,8 @@ struct BikesView: View {
 			.sheet(isPresented: $showingAddScreen)  {
 				AddBikeView().environment(\.managedObjectContext, self.moc)
 			}
-			.tabViewStyle(PageTabViewStyle())
+//			.tabViewStyle(PageTabViewStyle())
+			.listStyle(InsetGroupedListStyle())
 			.padding(.vertical, 20)
 		}
 		

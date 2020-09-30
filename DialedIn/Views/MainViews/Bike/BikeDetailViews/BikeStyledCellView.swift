@@ -43,28 +43,10 @@ struct BikeStyledCellView: View {
 					Text(self.bike.bikeNote ?? "")
 						.font(.footnote)
 						.fontWeight(.ultraLight)
-					.onAppear(perform: {self.setup()})
-					
-	/// IF SHOW SERVICES HERE WHEN DELETE IT WILL CRASH :( 
-
-//					VStack {
-//						Section {
-//							ForkLastServicedView(bikeName: $bikeName, fork: self.bike.frontSetup!, bike: self.bike)
-//						}
-//						Divider()
-//						Section{
-//
-//							if self.bike.hasRearShock == false {
-//								Text("HardTail")
-//							} else {
-//								RearShockLastServicedView(rear: self.bike.rearSetup!, bike: self.bike, bikeName: $bikeName)
-//							}
-//						}
-//					}
 					
 					Spacer()
 				}
-
+				.onAppear(perform: {self.setup()})
 				.padding([.top, .leading, .trailing])
 				Spacer()
 			}
