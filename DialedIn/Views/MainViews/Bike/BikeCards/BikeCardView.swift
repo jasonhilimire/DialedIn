@@ -14,6 +14,11 @@ struct BikeCardView: View {
 	
 	@State private var isAnimating: Bool = false
 	@State var buttonText = "View"
+	@State var showingDeleteAlert = false
+	var deleteText = """
+	Are you sure?
+	- this will delete all related notes -
+	"""
 
 	let bike: Bike
 	
@@ -22,6 +27,17 @@ struct BikeCardView: View {
 			ZStack {
 				VStack{
 					// DELETE BUTTON??? HERE OR ON THE DETAIL VIEW??
+					HStack {
+						Spacer()
+						
+						Button(action: {
+							self.showingDeleteAlert.toggle()
+						}) {
+							DeleteButtonView()
+						}
+						
+					}
+					.padding(8)
 					
 					// BIKE: IMAGE - change these images here so it shows a full suspension or hardtail depending on bike type
 					Image("bike")
@@ -63,7 +79,21 @@ struct BikeCardView: View {
 			]) , startPoint: .top, endPoint: .bottom)))
 			.cornerRadius(20)
 			.padding(.horizontal, 20)
+			// Show the Alert to delete the Bike
+			.alert(isPresented: $showingDeleteAlert) {
+				Alert(title: Text("Delete Bike"), message: Text("\(deleteText)"), primaryButton: .destructive(Text("Delete")) {
+					self.deleteBike()
+				}, secondaryButton: .cancel()
+				)
+			}
 		
+	}
+	
+	
+	func deleteBike() {
+		moc.delete(bike)
+		try? self.moc.save()
+		hapticSuccess()
 	}
 }
 

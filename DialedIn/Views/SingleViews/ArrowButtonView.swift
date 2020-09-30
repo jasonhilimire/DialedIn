@@ -12,7 +12,6 @@ struct ArrowButtonView: View {
 	@Binding var buttonText: String
 	
     var body: some View {
-
 			HStack(spacing: 8) {
 				Text("\(buttonText)")
 				
