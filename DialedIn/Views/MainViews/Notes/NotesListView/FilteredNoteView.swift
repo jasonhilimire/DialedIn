@@ -134,19 +134,8 @@ struct FilteredNoteView: View {
 					}
 				}
 			}
-//			.onDelete(perform: deleteNotes)
 		}
 	
-//	func deleteNotes(at offsets: IndexSet) {
-//		for offset in offsets {
-//			// find this note in our fetch request
-//			let note = fetchRequest[offset]
-//			// delete it from the context
-//			moc.delete(note)
-//		}
-//		// save the context
-//		try? moc.save()
-//	}
 	
 	init(filter: Bool?){
 		// need to add sort descriptors
