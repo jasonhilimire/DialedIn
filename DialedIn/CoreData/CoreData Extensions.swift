@@ -46,11 +46,15 @@ extension Notes{
         return request
     }
 	
-	//
-	static func favoritedNotesFetchRequest() -> NSFetchRequest<Notes> {
+	// Find favorite notes based on bool set
+	static func favoritedNotesFetchRequest(filter: Bool) -> NSFetchRequest<Notes> {
 		let request: NSFetchRequest<Notes> = Notes.fetchRequest()
 		request.sortDescriptors = [NSSortDescriptor(keyPath: \Notes.date, ascending: false)]
-		request.predicate = NSPredicate(format: "isFavorite == TRUE")
+		if filter == true {
+			request.predicate = NSPredicate(format: "isFavorite == TRUE")
+		} else {
+			request.predicate = NSPredicate(format: "isFavorite == NIL OR isFavorite == TRUE OR isFavorite == FALSE")
+		}
 		return request
 	}
 

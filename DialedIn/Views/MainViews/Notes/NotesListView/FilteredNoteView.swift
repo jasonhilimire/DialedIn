@@ -15,8 +15,14 @@ import CoreData
 
 
 struct FilteredNoteView: View {
-	var fetchRequest: FetchRequest<Notes>
 	@Environment(\.managedObjectContext) var moc
+	
+	var fetchRequest: FetchRequest<Notes>
+	
+	init(filter: Bool?){
+		let request: NSFetchRequest<Notes> = Notes.favoritedNotesFetchRequest(filter: filter ?? false)
+		fetchRequest = FetchRequest<Notes>(fetchRequest: request)
+	}
 	
     var body: some View {
 		ForEach(fetchRequest.wrappedValue, id: \.self) { note in
@@ -135,16 +141,4 @@ struct FilteredNoteView: View {
 				}
 			}
 		}
-	
-	
-	init(filter: Bool?){
-		// need to add sort descriptors
-		if filter == true {
-			fetchRequest = FetchRequest<Notes>(entity: Notes.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \Notes.date, ascending: false)], predicate: NSPredicate(format: "isFavorite == TRUE"))
-		} else {
-			fetchRequest = FetchRequest<Notes>(entity: Notes.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \Notes.date, ascending: false)], predicate: NSPredicate(format: "isFavorite == NIL OR isFavorite == TRUE OR isFavorite == FALSE"))
-		}
-	}
-	
-	
 }
