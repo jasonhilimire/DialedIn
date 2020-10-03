@@ -10,19 +10,17 @@ import SwiftUI
 import CoreData
 
 struct FilteredBikeNotesView: View {
+	// MARK: - PROPERTIES -
 	@Environment(\.managedObjectContext) var moc
 	
 	var fetchRequest: FetchRequest<Notes>
 	
 	init(filter: String) {
-		// Fetch through notes using bike.name provided and only show the last 5
-		let request: NSFetchRequest<Notes> = Notes.fetchRequest()
-		request.fetchLimit = 5
-		request.predicate = NSPredicate(format: "%K = %@", "bike.name", filter)
-		request.sortDescriptors = [NSSortDescriptor(keyPath: \Notes.date, ascending: false)]
+		let request: NSFetchRequest<Notes> = Notes.Last5NotesFetchRequest(filter: filter)
 		fetchRequest = FetchRequest<Notes>(fetchRequest: request)
 	}
 	
+	// MARK: - BODY -
     var body: some View {
 		GeometryReader { geometry in
 			ScrollView {
@@ -51,11 +49,5 @@ struct FilteredBikeNotesView: View {
 				.frame(width: geometry.size.width, height: geometry.size.height, alignment: .topLeading)
 			}
 		}
-    }
-}
-
-struct FilteredBikeView_Previews: PreviewProvider {
-    static var previews: some View {
-        FilteredBikeNotesView(filter: "filter")
     }
 }

@@ -38,7 +38,7 @@ extension Notes{
     }
     
     //TODO: Dont think this will work for fetching bikes as it would be a subquery
-    static func filteredNotesFetchRequest(filter: String) -> NSFetchRequest<Notes> {
+    static func Last5NotesFetchRequest(filter: String) -> NSFetchRequest<Notes> {
         let request: NSFetchRequest<Notes> = Notes.fetchRequest()
         request.sortDescriptors = [NSSortDescriptor(keyPath: \Notes.date, ascending: true)]
         request.predicate = NSPredicate(format: "%K = %@", "bike.name", filter)
@@ -57,6 +57,7 @@ extension Notes{
 		}
 		return request
 	}
+
 
 }
 
