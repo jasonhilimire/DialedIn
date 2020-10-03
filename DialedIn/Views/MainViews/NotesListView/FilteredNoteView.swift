@@ -16,6 +16,7 @@ import CoreData
 
 struct FilteredNoteView: View {
 	var fetchRequest: FetchRequest<Notes>
+
 	@Environment(\.managedObjectContext) var moc
 	
     var body: some View {
@@ -132,27 +133,14 @@ struct FilteredNoteView: View {
 					//				.shadow(color: Color("ShadowColor"), radius: 5, x: 5, y: -5)
 				}
 			}
-//			.onDelete(perform: deleteNotes)
 		}
 	
-//	func deleteNotes(at offsets: IndexSet) {
-//		for offset in offsets {
-//			// find this note in our fetch request
-//			let note = fetchRequest[offset]
-//			// delete it from the context
-//			moc.delete(note)
-//		}
-//		// save the context
-//		try? moc.save()
-//	}
+
 	
 	init(filter: Bool?){
 		// need to add sort descriptors
-		if filter == true {
-			fetchRequest = FetchRequest<Notes>(entity: Notes.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \Notes.date, ascending: false)], predicate: NSPredicate(format: "isFavorite == TRUE"))
-		} else {
-			fetchRequest = FetchRequest<Notes>(entity: Notes.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \Notes.date, ascending: false)], predicate: NSPredicate(format: "isFavorite == NIL OR isFavorite == TRUE OR isFavorite == FALSE"))
-		}
+		let request: NSFetchRequest<Notes> = Notes.favoritedNotesFetchRequest(filter: filter ?? false)
+		fetchRequest = FetchRequest<Notes>(fetchRequest: request)
 	}
 	
 	

@@ -58,6 +58,11 @@ class BikeModel: ObservableObject {
 		return filteredBike
 	}
 	
+	func filterLastBike() -> String {
+		let filteredBike = getBikes()
+		return filteredBike.last?.name ?? "No bike found"
+	}
+	
 	
 	func getRear() -> Bool {
 		let last = filterBikes(for: bikeName)

@@ -51,14 +51,7 @@ class FrontServiceModel: ObservableObject {
 		return filteredService.last?.serviceNote ?? ""
 	}
 	
-	////
-	
-	
-	
-	
-	
-	
-	
+
 	init() {
 		getLastServicedDates()
 	}
