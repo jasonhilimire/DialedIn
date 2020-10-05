@@ -51,14 +51,6 @@ class FrontServiceModel: ObservableObject {
 		return filteredService.last?.serviceNote ?? ""
 	}
 	
-	////
-	
-	
-	
-	
-	
-	
-	
 	init() {
 		getLastServicedDates()
 	}
@@ -82,54 +74,25 @@ class FrontServiceModel: ObservableObject {
 	}
 	
 	let didChange = PassthroughSubject<FrontServiceModel, Never>()
-	
-	func getLastLowersService() -> Date {
-		let lastLower = ServiceDates.lowers
-		return lastLower.getLastServiceDates(frontService: filterFront(for: bikeName))
-	}
-	
-	func getLastFullService() -> Date {
-		let lastFull = ServiceDates.full
-		return lastFull.getLastServiceDates(frontService: filterFront(for: bikeName))
-	}
-	
-	func getFork() -> [FrontService] {
-		let fork = try! managedObjectContext.fetch(FrontService.frontServiceFetchRequest())
-		return fork
-	}
-	
-	func filterFront(for name: String) -> [FrontService] {
-		let filteredBikes = getFork().filter { bikes in
-			bikes.service?.bike?.name == name
-		}
-		
-//		print("FilteredBike: \(filteredBikes)") /// returning an empty array?
-		return filteredBikes
-	}
-	
 
-	
-	
 	func getLastServicedDates() {
-//		lastLowerService = getLastLowersService()
 		lastLowerService = getlowersDate(bike: bikeName)
-		lastFullService = getLastFullService()
+		lastFullService = getFullDate(bike: bikeName)
 	}
 	
-	enum ServiceDates {
-		case lowers
-		case full
-		
-		func getLastServiceDates(frontService: [FrontService]) -> Date {
-			switch self {
-				case .lowers:
-					return frontService.last?.lowersService ?? Date()
-				case .full:
-					return frontService.last?.fullService ?? Date()
-				
-			}
-		}
-	}
-	
+//	enum ServiceDates {
+//		case lowers
+//		case full
+//
+//		func getLastServiceDates(frontService: [FrontService]) -> Date {
+//			switch self {
+//				case .lowers:
+//					return frontService.last?.lowersService ?? Date()
+//				case .full:
+//					return frontService.last?.fullService ?? Date()
+//
+//			}
+//		}
+//	}
 }
 

@@ -37,7 +37,7 @@ extension Notes{
         return request
     }
     
-    //TODO: Dont think this will work for fetching bikes as it would be a subquery
+
     static func Last5NotesFetchRequest(filter: String) -> NSFetchRequest<Notes> {
         let request: NSFetchRequest<Notes> = Notes.fetchRequest()
         request.sortDescriptors = [NSSortDescriptor(keyPath: \Notes.date, ascending: true)]
@@ -45,6 +45,14 @@ extension Notes{
 		request.fetchLimit = 5
         return request
     }
+	
+	// Fetch the last note regardless of bike
+	static func LastNoteFetchRequest(filter: String) -> NSFetchRequest<Notes> {
+		let request: NSFetchRequest<Notes> = Notes.fetchRequest()
+		request.sortDescriptors = [NSSortDescriptor(keyPath: \Notes.date, ascending: false)]
+		request.fetchLimit = 1
+		return request
+	}
 	
 	// Find favorite notes based on bool set
 	static func favoritedNotesFetchRequest(filter: Bool) -> NSFetchRequest<Notes> {
@@ -68,6 +76,17 @@ extension RearService {
 		request.sortDescriptors = [NSSortDescriptor(keyPath: \RearService.service?.bike?.name, ascending: true)]
 		return request
 	}
+	
+	// Last Rear Service regardless of bike
+	static func lastRearServiceFetchRequest() -> NSFetchRequest<RearService> {
+		let request: NSFetchRequest<RearService> = RearService.fetchRequest()
+		request.sortDescriptors = [NSSortDescriptor(keyPath: \RearService.service?.bike?.name, ascending: false)]
+		request.fetchLimit = 1
+		return request
+	}
+	
+	
+	
 }
 
 extension FrontService {
@@ -78,6 +97,15 @@ extension FrontService {
 		return request
 	}
 	
+	// Last Front Service regardless of bike
+	static func lastFrontServiceFetchRequest() -> NSFetchRequest<FrontService> {
+		let request: NSFetchRequest<FrontService> = FrontService.fetchRequest()
+		request.sortDescriptors = [NSSortDescriptor(keyPath: \FrontService.service?.bike?.name, ascending: false)]
+		request.fetchLimit = 1
+		return request
+	}
+	
+	// fetch only lowers
 	static func frontServiceLowersFetchRequest(filter: String) -> NSFetchRequest<FrontService> {
 		let request: NSFetchRequest<FrontService> = FrontService.fetchRequest()
 		request.sortDescriptors = [NSSortDescriptor(keyPath: \FrontService.lowersService, ascending: true)]

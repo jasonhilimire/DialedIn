@@ -127,9 +127,3 @@ struct NotesStyleCardView: View {
 		}
     }
 }
-
-//struct NotesStyleCardView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        NotesStyleCardView()
-//    }
-//}

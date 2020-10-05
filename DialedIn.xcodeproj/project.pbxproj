@@ -194,7 +194,6 @@
 			isa = PBXGroup;
 			children = (
 				A309B9D523E2898300A08F22 /* BikeListView.swift */,
-				A3D518062425BD63007DEE9D /* ServiceView.swift */,
 			);
 			path = BikeListView;
 			sourceTree = "<group>";
@@ -234,6 +233,7 @@
 		A33E3D9125239ADB00B9F47E /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				A3D518062425BD63007DEE9D /* ServiceView.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
