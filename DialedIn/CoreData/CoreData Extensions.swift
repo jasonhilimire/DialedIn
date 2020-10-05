@@ -47,7 +47,7 @@ extension Notes{
     }
 	
 	// Fetch the last note regardless of bike
-	static func LastNoteFetchRequest(filter: String) -> NSFetchRequest<Notes> {
+	static func LastNoteFetchRequest() -> NSFetchRequest<Notes> {
 		let request: NSFetchRequest<Notes> = Notes.fetchRequest()
 		request.sortDescriptors = [NSSortDescriptor(keyPath: \Notes.date, ascending: false)]
 		request.fetchLimit = 1
