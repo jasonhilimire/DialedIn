@@ -11,9 +11,10 @@ import SwiftUI
 struct HomeTabView: View {
     var body: some View {
 		VStack{
-			LastNoteView()
+			HomeNoteView()
 			HomeServiceView()
 		}
+		.padding()
     }
 }
 

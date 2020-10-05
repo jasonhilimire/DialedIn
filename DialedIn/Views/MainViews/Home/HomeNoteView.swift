@@ -10,39 +10,26 @@ import SwiftUI
 import CoreData
 
 struct HomeNoteView: View {
-	
 	@Environment(\.managedObjectContext) var moc
-	
-	var fetchRequest: FetchRequest<Notes>
 	
     var body: some View {
 		HStack {
 			LastNoteView()
+			
 			.padding()
 			.foregroundColor(Color("TextColor"))
 			
 // TODO: Add A VStack with a Capsule around the text and -> that informs user that a tap will create a new note
-// TODO: Possibly move the fetchRequest into the HomeTabView??  Currently doesn not refresh notes unless the app is closed
-// TODO: Make a NotesView? as this is a repeat?
+// TODO: not refreshing if a note is edited - *** seems to be occuring in normal notes view also** if adding a new notes, doesnt stay as 1 note it becomes 2
+			
+// TODO:
 
 		}
 		.frame(maxWidth: .infinity, maxHeight: .infinity)
 		.background(Color.blue)
 		.cornerRadius(20)
-		
 	}
-	
-	
-			
-	init(){
-		let request: NSFetchRequest<Notes> = Notes.fetchRequest()
-		request.fetchLimit = 1
-		let sort = NSSortDescriptor(keyPath: \Notes.date, ascending: false)
-		request.sortDescriptors = [sort]
-		//		request.predicate = what searching for here
-		fetchRequest = FetchRequest<Notes>(fetchRequest: request)
-//		fetchRequest.update() // not sure why how this isnt working 'contect in environment is not connected to a persistent store manager?
-	}
+
 }
 	
 

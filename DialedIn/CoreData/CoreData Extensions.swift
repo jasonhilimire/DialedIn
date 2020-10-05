@@ -63,6 +63,7 @@ extension Notes{
 		} else {
 			request.predicate = NSPredicate(format: "isFavorite == NIL OR isFavorite == TRUE OR isFavorite == FALSE")
 		}
+//		request.fetchLimit = 1
 		return request
 	}
 
