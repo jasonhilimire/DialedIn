@@ -73,7 +73,12 @@ struct ServiceView: View {
 							if frontServicedIndex == 1 {
 								HStack {
 									Text("Note:").fontWeight(.thin)
+// TODO: IF USE TextEditor- the keyboard does not slide up
 									CustomTextField(text: $frontServicedNote , placeholder: "")
+//									TextEditor(text: self.$frontServicedNote)
+//										.foregroundColor(.gray)
+//										.background(Color("TextEditBackgroundColor"))
+//										.cornerRadius(8)
 								}
 								Text("Full Service Includes Lowers Service").fontWeight(.thin).italic()
 								DatePicker(selection: $fFullServicedDate, in: ...Date(), displayedComponents: .date) {
@@ -85,6 +90,10 @@ struct ServiceView: View {
 								HStack {
 									Text("Note:").fontWeight(.thin)
 									CustomTextField(text: $frontServicedNote, placeholder: "")
+//									TextEditor(text: self.$frontServicedNote)
+//										.foregroundColor(.gray)
+//										.background(Color("TextEditBackgroundColor"))
+//										.cornerRadius(8)
 								}
 								DatePicker(selection: $fLowersServicedDate, in: ...Date(), displayedComponents: .date) {
 									Text("Date Serviced").fontWeight(.thin)
@@ -115,7 +124,12 @@ struct ServiceView: View {
 								if rearServicedIndex == 1 {
 									HStack {
 										Text("Note:").fontWeight(.thin)
+
 										CustomTextField(text: $rearServicedNote, placeholder: "")
+//										TextEditor(text: self.$rearServicedNote)
+//											.foregroundColor(.gray)
+//											.background(Color("TextEditBackgroundColor"))
+//											.cornerRadius(8)
 									}
 									DatePicker(selection: $rFullServicedDate, in: ...Date(), displayedComponents: .date) {
 										Text("Date Serviced").fontWeight(.thin)
@@ -134,6 +148,10 @@ struct ServiceView: View {
 									HStack {
 										Text("Note:").fontWeight(.thin)
 										CustomTextField(text: $rearServicedNote, placeholder: "")
+//										TextEditor(text: self.$rearServicedNote)
+//											.foregroundColor(.gray)
+//											.background(Color("TextEditBackgroundColor"))
+//											.cornerRadius(8)
 									}
 									DatePicker(selection: $rFullServicedDate, in: ...Date(), displayedComponents: .date) {
 										Text("Date Serviced").fontWeight(.thin)
@@ -144,6 +162,10 @@ struct ServiceView: View {
 									HStack {
 										Text("Note:").fontWeight(.thin)
 										CustomTextField(text: $rearServicedNote, placeholder: "")
+//										TextEditor(text: self.$rearServicedNote)
+//											.foregroundColor(.gray)
+//											.background(Color("TextEditBackgroundColor"))
+//											.cornerRadius(8)
 									}
 									DatePicker(selection: $rAirCanServicedDate, in: ...Date(), displayedComponents: .date) {
 										Text("Date Serviced").fontWeight(.thin)

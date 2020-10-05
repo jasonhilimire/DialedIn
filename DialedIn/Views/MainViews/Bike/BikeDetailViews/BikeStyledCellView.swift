@@ -50,7 +50,6 @@ struct BikeStyledCellView: View {
 				.padding([.top, .leading, .trailing])
 				Spacer()
 			}
-//			.padding(.bottom, 5)
 			
 		} // END Buttons
 			.foregroundColor(Color("TextColor"))
@@ -58,11 +57,6 @@ struct BikeStyledCellView: View {
 			.cornerRadius(4.0)
 			// Shadow for left & bottom
 			.shadow(color: Color("ShadowColor"), radius: 5, x: -5, y: 5)
-			// Shadow for right & top
-//			.shadow(color: Color("BackgroundColor"), radius: 5, x: 5, y: -5)
-
-
-			
 	} // END Whole Card VStack
 	
 	
