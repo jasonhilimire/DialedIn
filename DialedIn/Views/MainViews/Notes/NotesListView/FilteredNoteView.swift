@@ -24,6 +24,8 @@ struct FilteredNoteView: View {
 		fetchRequest = FetchRequest<Notes>(fetchRequest: request)
 	}
 	
+
+	
     var body: some View {
 		ForEach(fetchRequest.wrappedValue, id: \.self) { note in
 				NavigationLink(destination: NotesDetailView(note: note)){

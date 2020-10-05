@@ -10,8 +10,8 @@ import SwiftUI
 
 struct NotesStyleCardView: View {
 	// MARK: - PROPERTIES -
-	
-	let note: Notes
+	@ObservedObject var note: Notes
+
 	// MARK: - BODY
     var body: some View {
 		ZStack {
