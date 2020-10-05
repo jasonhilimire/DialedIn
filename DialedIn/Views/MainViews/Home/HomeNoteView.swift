@@ -10,26 +10,27 @@ import SwiftUI
 import CoreData
 
 struct HomeNoteView: View {
+// MARK: - PROPERTIES -
+	// Create the MOC
 	@Environment(\.managedObjectContext) var moc
 	
-    var body: some View {
-		HStack {
-			LastNoteView()
-			
-			.padding()
-			.foregroundColor(Color("TextColor"))
-			
-// TODO: Add A VStack with a Capsule around the text and -> that informs user that a tap will create a new note
-// TODO: not refreshing if a note is edited - *** seems to be occuring in normal notes view also** if adding a new notes, doesnt stay as 1 note it becomes 2
-			
-// TODO:
+	// create a Fetch request for Bike
+	@FetchRequest(entity: Bike.entity(), sortDescriptors: [
+		NSSortDescriptor(keyPath: \Bike.name, ascending: true)
+	]) var bikes: FetchedResults<Bike>
 
-		}
-		.frame(maxWidth: .infinity, maxHeight: .infinity)
-		.background(Color.blue)
-		.cornerRadius(20)
+	// MARK: - BODY -
+	var body: some View {
+		VStack {
+			// dont delete this?? no idea why but it keeps from having 2 notes in the same view
+			if bikes.count == 0 {
+				EmptyView() // Create a view here
+			}
+			ScrollView{
+				LastNoteView()
+			}
+		}.padding(.horizontal)
 	}
-
 }
 	
 

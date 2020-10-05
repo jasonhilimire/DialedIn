@@ -21,6 +21,7 @@ struct LastNoteView: View {
 	
 	var body: some View {
 		ForEach(fetchRequest.wrappedValue, id: \.self) { note in
+			// REMOVE THE Navigation LINK - only need to show the note
 			NavigationLink(destination: NotesDetailView(note: note)){
 				NotesStyleCardView(note: note)
 			}

@@ -9,7 +9,13 @@
 import SwiftUI
 
 struct HomeTabView: View {
+	// MARK: - PROPERTIES -
+	
+
+	// MARK: - BODY -
     var body: some View {
+// TODO: WRAP IN A NAVIGATION VIEW? or at least add a custom header
+// TODO : ADD BUTTONS To SHOW sheets for adding Notes /  service / bike
 		VStack{
 			HomeNoteView()
 			HomeServiceView()
