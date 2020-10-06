@@ -42,7 +42,7 @@ struct HomeServiceView: View {
 //				}
 //			}
 			HStack {
-				Text("Add Service")
+				Text("Last Services")
 					.font(.title)
 					
 				Image(systemName:"wrench")
