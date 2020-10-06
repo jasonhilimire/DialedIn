@@ -10,8 +10,11 @@ import SwiftUI
 
 struct HomeTabView: View {
 	// MARK: - PROPERTIES -
-	@State var addNote = "Add Note"
-	@State var addService = "Add Service"
+	// Create the MOC
+	@Environment(\.managedObjectContext) var moc
+	
+	@State var showAddNoteScreen = false
+	@State var showAddServiceScreen = false
 
 	// MARK: - BODY -
     var body: some View {
@@ -25,20 +28,29 @@ struct HomeTabView: View {
 				HStack {
 					Button(action: {
 						print("Add Note Pressed")
+						self.showAddNoteScreen.toggle()
+						
 					}) {
 						HStack {
 							Image(systemName: "gauge.badge.plus")
 							Text("Add Note")
+						}
+						.sheet(isPresented: $showAddNoteScreen)  {
+							AddNoteView().environment(\.managedObjectContext, self.moc)
 						}
 					}.buttonStyle(GradientButtonStyle())
 					
 					Spacer()
 					Button(action: {
 						print("Add Service Pressed")
+						self.showAddServiceScreen.toggle()
 					}) {
 						HStack {
 							Image(systemName: "wrench")
 							Text("Add Service")
+						}
+						.sheet(isPresented: $showAddServiceScreen)  {
+							ServiceView().environment(\.managedObjectContext, self.moc)
 						}
 					}.buttonStyle(GradientButtonStyle())
 				}
