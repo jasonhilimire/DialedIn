@@ -98,10 +98,18 @@ extension FrontService {
 		return request
 	}
 	
-	// Last Front Service regardless of bike
-	static func lastFrontServiceFetchRequest() -> NSFetchRequest<FrontService> {
+	// Last full Service regardless of bike
+	static func lastFrontFullServiceFetchRequest() -> NSFetchRequest<FrontService> {
 		let request: NSFetchRequest<FrontService> = FrontService.fetchRequest()
-		request.sortDescriptors = [NSSortDescriptor(keyPath: \FrontService.service?.bike?.name, ascending: false)]
+		request.sortDescriptors = [NSSortDescriptor(keyPath: \FrontService.fullService, ascending: false)]
+		request.fetchLimit = 1
+		return request
+	}
+	
+	// Last lowers Service regardless of bike
+	static func lastFrontLowerServiceFetchRequest() -> NSFetchRequest<FrontService> {
+		let request: NSFetchRequest<FrontService> = FrontService.fetchRequest()
+		request.sortDescriptors = [NSSortDescriptor(keyPath: \FrontService.lowersService, ascending: false)]
 		request.fetchLimit = 1
 		return request
 	}

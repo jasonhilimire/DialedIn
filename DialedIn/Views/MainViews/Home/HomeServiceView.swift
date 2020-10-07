@@ -18,13 +18,12 @@ struct HomeServiceView: View {
 	
 	
 	init(){
-		let request: NSFetchRequest<FrontService> = FrontService.lastFrontServiceFetchRequest()
+		let request: NSFetchRequest<FrontService> = FrontService.lastFrontLowerServiceFetchRequest()
 		fetchRequest = FetchRequest<FrontService>(fetchRequest: request)
 	}
 	
 	// SHOW THE LAST SERVICES ADDED
-	// Fetch the Bike.fork.frontservices sorted by date with a fetchlimit = 1, which will give the last record, do the same for the rear if bike names are different??? ensure show the names on the labels
-	
+	// ALSO NEED TO DO A SEPARATE FETCH FOR FULL SERVICE? doesnt seem to be pulling correctly
 	
 	@State private var bikeName = ""
 	
