@@ -24,7 +24,7 @@ struct AppView: View {
             HomeTabView()
 				.tabItem {
 					Image(systemName: "house")
-					Text("Notes")
+					Text("Home")
 				}
 			
             NotesListView()

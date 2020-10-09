@@ -9,53 +9,67 @@
 import SwiftUI
 import CoreData
 
+// SHOW THE LAST SERVICES ADDED, based on the last bike note added -  maybe set up for 'default bike' (though need to configure defaults so they are only applicable for one bike
+// Fetch the last note.bike.name - then feed that into the views that are already configured
+// ensure they dont duplicate -
+// could also use side scrollable cards sorted by name for bikes on the bottom list?
+
+
 struct HomeServiceView: View {
-	
+	//MARK: - PROPERTIES -
 	@Environment(\.managedObjectContext) var moc
 	
-	var fetchRequest: FetchRequest<FrontService>
+	// create a Fetch request for Bike
+	@FetchRequest(entity: Bike.entity(), sortDescriptors: [
+		NSSortDescriptor(keyPath: \Bike.name, ascending: true)
+	]) var bikes: FetchedResults<Bike>
 	
 	
-	
-	init(){
-		let request: NSFetchRequest<FrontService> = FrontService.lastFrontLowerServiceFetchRequest()
-		fetchRequest = FetchRequest<FrontService>(fetchRequest: request)
+	// MARK: - BODY -
+	var body: some View {
+		ScrollView(.horizontal) {
+			HStack(spacing: 15) {
+				ForEach(bikes, id: \.self) { bike in
+					HomeStyledCardView(bike: bike)
+				}
+			}
+		}
 	}
-	
-	// SHOW THE LAST SERVICES ADDED
-	// ALSO NEED TO DO A SEPARATE FETCH FOR FULL SERVICE? doesnt seem to be pulling correctly
-	
+}
+
+struct HomeStyledCardView: View {
+	@ObservedObject var bike: Bike
 	@State private var bikeName = ""
 	
 	var body: some View {
-		ForEach(fetchRequest.wrappedValue, id: \.self) { service in
-			FrontServiceHomeView(frontService: service)
-		}
 		
-
-		.foregroundColor(Color.white)
-		.multilineTextAlignment(.center)
-		
-		//		}
-		
-		.frame(maxWidth: .infinity, maxHeight: 150)
-		.background(LinearGradient(gradient: Gradient(colors: [.green, .purple]), startPoint: .top, endPoint: .bottom))
-		.cornerRadius(20)
-	}
-}
-
-
-struct FrontServiceHomeView: View {
-	//	@ObservedObject var frontService = FrontServiceModel()
-	let frontService: FrontService
-	
-	var body: some View {
 		VStack {
-			Text("Bike: \(frontService.service?.bike?.name ?? "Bike Not Found")")
-			Text("Note:\(frontService.serviceNote ?? "") ")
-			Text(frontService.lowersService != nil ? "Lowers: \(frontService.lowersService!, formatter: dateFormatter)" : "")
-			Text(frontService.fullService != nil ? "Full: \(frontService.fullService!, formatter: dateFormatter)" : "")
+			Text(self.bike.name ?? "Unknown Bike")
+			Text("Info: \(self.bike.bikeNote ?? "")" )
+				.font(.subheadline)
+				.fontWeight(.thin)
+			VStack {
+				Section {
+					ForkLastServicedView(bikeName: $bikeName, fork: self.bike.frontSetup!, bike: self.bike)
+				}
+				Divider()
+				Section{
+					if self.bike.hasRearShock == false {
+						Text("HardTail")
+					} else {
+						RearShockLastServicedView(rear: self.bike.rearSetup!, bike: self.bike, bikeName: $bikeName)
+					}
+				}
+			}
 		}
+		.frame(width: 300, height: 250)
+		.background(Color.red)
+		.cornerRadius(20)
+//		.padding(.horizontal, 5)
+		.shadow(color: Color("ShadowColor"), radius: 5, x: -5, y: 5)
 	}
-	
 }
+
+
+
+
