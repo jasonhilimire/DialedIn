@@ -26,9 +26,8 @@ struct HomeNoteView: View {
 			if bikes.count == 0 {
 				EmptyView() // Create a view here
 			}
-			ScrollView{
 				LastNoteView()
-			}
+
 		}.padding(.horizontal)
 	}
 }
