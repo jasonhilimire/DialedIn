@@ -27,6 +27,9 @@ struct HomeServiceView: View {
 	
 	// MARK: - BODY -
 	var body: some View {
+		if bikes.count == 0 {
+			EmptyView() // Create a view here
+		}
 		ScrollView(.horizontal) {
 			HStack(spacing: 15) {
 				ForEach(bikes, id: \.self) { bike in
@@ -65,9 +68,12 @@ struct HomeStyledCardView: View {
 			}
 		}
 		.frame(width: 300, height: 250)
-		.background(Color.orange)
-		.foregroundColor(Color.white)
+		.foregroundColor(Color("TextColor"))
+		.background(Color("BackgroundColor"))
 		.cornerRadius(20)
+		.overlay(
+			RoundedRectangle(cornerRadius: 20)
+				.stroke(Color.orange, lineWidth: 2))
 		.shadow(color: Color(red: 0, green: 0, blue: 0, opacity: 0.15), radius: 2, x: 2, y: 2)
 		
 	}

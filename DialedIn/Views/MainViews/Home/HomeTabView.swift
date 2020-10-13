@@ -13,6 +13,12 @@ struct HomeTabView: View {
 	// Create the MOC
 	@Environment(\.managedObjectContext) var moc
 	
+	// create a Fetch request for Bike
+	@FetchRequest(entity: Bike.entity(), sortDescriptors: [
+		NSSortDescriptor(keyPath: \Bike.name, ascending: true)
+	]) var bikes: FetchedResults<Bike>
+
+	
 	@State var showAddNoteScreen = false
 	@State var showAddServiceScreen = false
 
@@ -21,10 +27,13 @@ struct HomeTabView: View {
 // TODO: WRAP IN A NAVIGATION VIEW? or at least add a custom header
 // TODO : ADD BUTTONS To SHOW sheets for adding Notes /  service / bike
 		NavigationView() {
+			
+			if bikes.count == 0 {
+				CreateBikeView()
+			}
 			VStack{
 				ZStack {
-					HomeNoteView()
-					
+					LastNoteView() // if notes break and not updating was using HomeNoteViewHere() and note the above check for bikes
 				}
 				
 				HStack {

@@ -24,11 +24,11 @@ struct HomeNoteView: View {
 		VStack {
 			// dont delete this?? no idea why but it keeps from having 2 notes in the same view
 			if bikes.count == 0 {
-				EmptyView() // Create a view here
+				CreateBikeView() // Create a view here
 			}
 				LastNoteView()
 
-		}.padding(.horizontal)
+		}
 	}
 }
 	
