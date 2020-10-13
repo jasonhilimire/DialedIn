@@ -1,22 +1,25 @@
 //
-//  NotesStyleCardView.swift
+//  NotesHomeStyledCardView.swift
 //  DialedIn
 //
-//  Created by Jason Hilimire on 10/3/20.
+//  Created by Jason Hilimire on 10/12/20.
 //  Copyright © 2020 Jason Hilimire. All rights reserved.
 //
 
 import SwiftUI
 
-struct NotesStyleCardView: View {
+struct NotesHomeStyledCardView: View {
 	// MARK: - PROPERTIES -
 	
 	@ObservedObject var note: Notes
 	
 	// MARK: - BODY
-    var body: some View {
+	var body: some View {
 		ZStack {
 			VStack {
+				Text("Last Note:")
+					.font(.title2)
+					.shadow(color: Color(red: 0, green: 0, blue: 0, opacity: 0.15), radius: 2, x: 2, y: 2)
 				HStack {
 					Text(note.bike?.name ?? "Unknown Bike")
 						.fontWeight(.thin)
@@ -123,8 +126,8 @@ struct NotesStyleCardView: View {
 			.cornerRadius(20)
 			// Shadow for left & Bottom
 			.shadow(color: Color("ShadowColor"), radius: 5, x: -5, y: 5)
-			//shadow for right & top
-			//				.shadow(color: Color("ShadowColor"), radius: 5, x: 5, y: -5)
+
 		}
-    }
+	}
 }
+

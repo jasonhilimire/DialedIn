@@ -45,6 +45,8 @@ struct HomeStyledCardView: View {
 		
 		VStack {
 			Text(self.bike.name ?? "Unknown Bike")
+				.fontWeight(.heavy)
+				.shadow(color: Color("ShadowColor"), radius: 5, x: -5, y: 5)
 			Text("Info: \(self.bike.bikeNote ?? "")" )
 				.font(.subheadline)
 				.fontWeight(.thin)
@@ -63,10 +65,11 @@ struct HomeStyledCardView: View {
 			}
 		}
 		.frame(width: 300, height: 250)
-		.background(Color.red)
+		.background(Color.orange)
+		.foregroundColor(Color.white)
 		.cornerRadius(20)
-//		.padding(.horizontal, 5)
-		.shadow(color: Color("ShadowColor"), radius: 5, x: -5, y: 5)
+		.shadow(color: Color(red: 0, green: 0, blue: 0, opacity: 0.15), radius: 2, x: 2, y: 2)
+		
 	}
 }
 

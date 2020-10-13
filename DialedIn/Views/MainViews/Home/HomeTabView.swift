@@ -22,9 +22,11 @@ struct HomeTabView: View {
 // TODO : ADD BUTTONS To SHOW sheets for adding Notes /  service / bike
 		NavigationView() {
 			VStack{
-				Text("Last Note Added")
-					.font(.title2)
-				HomeNoteView()
+				ZStack {
+					HomeNoteView()
+					
+				}
+				
 				HStack {
 					Button(action: {
 						print("Add Note Pressed")
@@ -39,6 +41,7 @@ struct HomeTabView: View {
 							AddNoteView().environment(\.managedObjectContext, self.moc)
 						}
 					}.buttonStyle(GradientButtonStyle())
+					
 					
 					Spacer()
 					Button(action: {
