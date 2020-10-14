@@ -14,10 +14,6 @@ struct BikeDetailView: View {
     @Environment(\.managedObjectContext) var moc
     @Environment(\.presentationMode) var presentationMode
 	
-	@ObservedObject var front = NoteFrontSetupModel()
-	@ObservedObject var rear = NoteRearSetupModel()
-	
-    
 	@State private var bikeName = ""
 	@State var showServiceScreen = false
 	@State var showEditScreen = false

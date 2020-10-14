@@ -36,18 +36,24 @@ struct HomeServiceView: View {
 			HStack(spacing: 15) {
 				ForEach(bikes, id: \.self) { bike in
 					HomeStyledCardView(bike: bike)
+//					BikeDetailView(bike: bike)
 				}
 			}
 		}
 	}
 }
 
+
+// MARK: - HomeStyledCardView -
 struct HomeStyledCardView: View {
-	@ObservedObject var bike: Bike
-	@State private var bikeName = ""
+	@Environment(\.managedObjectContext) var moc
+	@Environment(\.presentationMode) var presentationMode
 	
+	@State private var bikeName = ""
+
+	let bike: Bike
+
 	var body: some View {
-		
 		VStack {
 			Text(self.bike.name ?? "Unknown Bike")
 				.fontWeight(.heavy)
