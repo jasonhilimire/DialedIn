@@ -12,14 +12,14 @@ struct RearShockLastServicedView: View {
 	
     @Environment(\.managedObjectContext) var moc
     
-    let rear: RearShock
-	let bike: Bike
 	@ObservedObject var rearService = RearServiceModel()
 	@Binding var bikeName: String
 	
+	let bike: Bike
+	
     var body: some View {
 		VStack (alignment: .leading) { // Rear Section
-			if rear.bike?.hasRearShock == false {
+			if self.bike.hasRearShock  == false {
 				HStack {
 					Text("")
 					Spacer()
@@ -30,10 +30,10 @@ struct RearShockLastServicedView: View {
 						.font(.headline)
 						.fontWeight(.light)
 					Spacer()
-					Text("\(self.rear.info ?? "")")
+					Text("\(self.bike.rearSetup?.info ?? "")")
 				}
 				.padding(.horizontal)
-				if rear.bike?.rearSetup?.isCoil == false {
+				if self.bike.rearSetup?.isCoil == false {
 					HStack {
 						Text("Last Air Can Service:")
 						.fontWeight(.thin)
@@ -88,6 +88,7 @@ struct RearShockLastServicedView: View {
 		bikeName = self.bike.name ?? "Unknown bike"
 		rearService.bikeName = bikeName
 		rearService.getLastServicedDates()
+		
 		
 		print("Full service \(self.rearService.lastFullServ)")
 	}

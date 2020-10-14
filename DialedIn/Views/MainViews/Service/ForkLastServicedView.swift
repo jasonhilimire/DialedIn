@@ -15,7 +15,7 @@ struct ForkLastServicedView: View {
     @ObservedObject var frontService = FrontServiceModel()
 	@Binding var bikeName: String
 	
-    let fork: Fork
+//    let fork: Fork
 	let bike: Bike
 	
 	
@@ -26,7 +26,7 @@ struct ForkLastServicedView: View {
 					.font(.headline)
 					.fontWeight(.light)
 				Spacer()
-				Text("\(self.fork.info ?? "")")
+				Text("\(self.bike.frontSetup?.info ?? "")")
 			}
 			.padding([.top, .leading, .trailing])
 			

@@ -24,52 +24,53 @@ struct HomeTabView: View {
 
 	// MARK: - BODY -
     var body: some View {
-// TODO: WRAP IN A NAVIGATION VIEW? or at least add a custom header
-// TODO : ADD BUTTONS To SHOW sheets for adding Notes /  service / bike
 		NavigationView() {
-			
-			if bikes.count == 0 {
-				CreateBikeView()
-			}
-			VStack{
-				ZStack {
-					LastNoteView() // if notes break and not updating was using HomeNoteViewHere() and note the above check for bikes
+			ZStack {
+				if bikes.count == 0 {
+					CreateBikeView()
 				}
-				
-				HStack {
-					Button(action: {
-						print("Add Note Pressed")
-						self.showAddNoteScreen.toggle()
-						
-					}) {
-						HStack {
-							Image(systemName: "gauge.badge.plus")
-							Text("Add Note")
-						}
-						.sheet(isPresented: $showAddNoteScreen)  {
-							AddNoteView().environment(\.managedObjectContext, self.moc)
-						}
-					}.buttonStyle(GradientButtonStyle())
+				VStack{
+					ZStack {
+						LastNoteView() // if notes break and not updating was using HomeNoteViewHere() and note the above check for bikes
+					}
 					
-					
-					Spacer()
-					Button(action: {
-						print("Add Service Pressed")
-						self.showAddServiceScreen.toggle()
-					}) {
+					if bikes.count > 0 {
 						HStack {
-							Image(systemName: "wrench")
-							Text("Add Service")
+							Button(action: {
+								print("Add Note Pressed")
+								self.showAddNoteScreen.toggle()
+								
+							}) {
+								HStack {
+									Image(systemName: "gauge.badge.plus")
+									Text("Add Note")
+								}
+								.sheet(isPresented: $showAddNoteScreen)  {
+									AddNoteView().environment(\.managedObjectContext, self.moc)
+								}
+							}.buttonStyle(GradientButtonStyle())
+							
+							
+							Spacer()
+							Button(action: {
+								print("Add Service Pressed")
+								self.showAddServiceScreen.toggle()
+							}) {
+								HStack {
+									Image(systemName: "wrench")
+									Text("Add Service")
+								}
+								.sheet(isPresented: $showAddServiceScreen)  {
+									ServiceView().environment(\.managedObjectContext, self.moc)
+								}
+							}.buttonStyle(GradientButtonStyle())
 						}
-						.sheet(isPresented: $showAddServiceScreen)  {
-							ServiceView().environment(\.managedObjectContext, self.moc)
-						}
-					}.buttonStyle(GradientButtonStyle())
+					}
+					HomeServiceView()
 				}
-				HomeServiceView()
+				.padding()
+				.navigationTitle("Dialed In")
 			}
-			.padding()
-			.navigationTitle("Dialed In")
 		}
     }
 }

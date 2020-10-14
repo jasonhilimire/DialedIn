@@ -24,6 +24,8 @@ struct HomeServiceView: View {
 		NSSortDescriptor(keyPath: \Bike.name, ascending: true)
 	]) var bikes: FetchedResults<Bike>
 	
+
+	
 	
 	// MARK: - BODY -
 	var body: some View {
@@ -55,14 +57,14 @@ struct HomeStyledCardView: View {
 				.fontWeight(.thin)
 			VStack {
 				Section {
-					ForkLastServicedView(bikeName: $bikeName, fork: self.bike.frontSetup!, bike: self.bike)
+					ForkLastServicedView(bikeName: $bikeName, bike: self.bike)
 				}
 				Divider()
 				Section{
 					if self.bike.hasRearShock == false {
 						Text("HardTail")
 					} else {
-						RearShockLastServicedView(rear: self.bike.rearSetup!, bike: self.bike, bikeName: $bikeName)
+						RearShockLastServicedView(bikeName: $bikeName, bike: self.bike)
 					}
 				}
 			}
