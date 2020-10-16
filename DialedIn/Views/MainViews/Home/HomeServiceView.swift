@@ -32,14 +32,21 @@ struct HomeServiceView: View {
 		if bikes.count == 0 {
 			EmptyView() // Create a view here
 		}
-		ScrollView(.horizontal) {
-			HStack(spacing: 15) {
-				ForEach(bikes, id: \.self) { bike in
-					HomeStyledCardView(bike: bike)
-//					BikeDetailView(bike: bike)
+		GeometryReader { fullView in
+			ScrollView(.horizontal, showsIndicators: false) {
+				HStack {
+					ForEach(bikes, id: \.self) { bike in
+						GeometryReader { geo in
+							HomeStyledCardView(bike: bike)
+								.rotation3DEffect(.degrees(-Double(geo.frame(in: .global).midX - fullView.size.width / 2) / 10), axis: (x: 0, y: 1, z: 0))
+						}
+						.frame(width: 270) // used a smaller width than the 300 for the card so can see the edge
+					}
 				}
+				.padding(.horizontal, (fullView.size.width - 270) / 2)
 			}
 		}
+		.edgesIgnoringSafeArea(.all)
 	}
 }
 
@@ -75,7 +82,7 @@ struct HomeStyledCardView: View {
 				}
 			}
 		}
-		.frame(width: 300, height: 250)
+		.frame(width: 300, height: 240)
 		.foregroundColor(Color("TextColor"))
 		.background(Color("BackgroundColor"))
 		.cornerRadius(20)
