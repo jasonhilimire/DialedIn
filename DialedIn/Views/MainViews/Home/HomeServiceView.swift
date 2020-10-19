@@ -43,7 +43,9 @@ struct HomeServiceView: View {
 						.frame(width: 270) // used a smaller width than the 300 for the card so can see the edge
 					}
 				}
+				.padding(.top)
 				.padding(.horizontal, (fullView.size.width - 270) / 2)
+				.shadow(color: Color("ShadowColor"), radius: 5, x: 1, y: 1)
 			}
 		}
 		.edgesIgnoringSafeArea(.all)
