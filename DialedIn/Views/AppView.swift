@@ -10,26 +10,22 @@ import SwiftUI
 
 struct AppView: View {
     
-	init() {
-		UINavigationBar.appearance().backgroundColor = .systemOrange
-//		UITabBar.appearance().barTintColor = UIColor.orange
-
-		UINavigationBar.appearance().largeTitleTextAttributes = [
-			.foregroundColor: UIColor.white,
-			.font : UIFont(name:"Helvetica Neue", size: 40)!]
-	}
+	// GIVES AN ORANGE HEADER
+//	init() {
+//		UINavigationBar.appearance().backgroundColor = .systemOrange
+////		UITabBar.appearance().barTintColor = UIColor.orange
+//
+//		UINavigationBar.appearance().largeTitleTextAttributes = [
+//			.foregroundColor: UIColor.white,
+//			.font : UIFont(name:"Helvetica Neue", size: 40)!]
+//	}
         
     var body: some View {
         TabView {
-            //TODO: Add Scrolling/Main View for recent notes? and or TopRated Notes
-            // https://www.hackingwithswift.com/quick-start/swiftui/how-to-add-horizontal-and-vertical-scrolling-using-scrollview
-            // https://www.youtube.com/watch?v=EBbhIbI2Hg8
-            //
-            
             HomeTabView()
 				.tabItem {
 					Image(systemName: "house")
-					Text("Notes")
+					Text("Home")
 				}
 			
             NotesListView()
@@ -38,17 +34,17 @@ struct AppView: View {
                     Text("Notes")
                 }
             
-//            BikeListView()
 				BikesView()
                 .tabItem {
-                    Image(systemName: "gear")
+//					Image("mountainbike")
+					Image(systemName: "hare")
                     Text("Bikes")
                 }
-			ServiceView()
-				.tabItem {
-					Image(systemName: "wrench")
-					Text("Service")
-			}
+//			ServiceView()
+//				.tabItem {
+//					Image(systemName: "wrench")
+//					Text("Service")
+//			}
 			
         }
 			.animation(.default)

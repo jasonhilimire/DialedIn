@@ -38,4 +38,28 @@ struct FavoritesView: View {
 	}
 }
 
+struct HomeFavoritesView: View {
+	@Binding var favorite: Bool
+
+	var offImage = Image(systemName: "bookmark")
+	var onImage = Image(systemName: "bookmark.fill")
+	
+	var offColor = Color.gray
+	var onColor = Color.white
+	
+	var body: some View {
+		HStack {
+			self.image()
+				.foregroundColor(self.favorite ? self.onColor: self.offColor)
+		}
+	}
+	
+	func image() -> Image {
+		if favorite == false {
+			return offImage
+		} else {
+			return onImage
+		}
+	}
+}
 

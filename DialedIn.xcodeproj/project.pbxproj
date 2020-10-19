@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A309B9D623E2898300A08F22 /* BikeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A309B9D523E2898300A08F22 /* BikeListView.swift */; };
+		A30D9668253549840094CE90 /* NotesHomeStyledCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30D9667253549840094CE90 /* NotesHomeStyledCardView.swift */; };
 		A31605F02523B976009071E9 /* BikeCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A31605EF2523B976009071E9 /* BikeCardView.swift */; };
 		A31605FA2523BAA1009071E9 /* ArrowButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A31605F92523BAA1009071E9 /* ArrowButtonView.swift */; };
 		A31606022523BF3E009071E9 /* BikesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A31606012523BF3E009071E9 /* BikesView.swift */; };
@@ -19,6 +20,7 @@
 		A33F02B124062A89005A0A8F /* FilteredNoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33F02B024062A89005A0A8F /* FilteredNoteView.swift */; };
 		A36C24C12437FED000B43121 /* ServicesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36C24C02437FED000B43121 /* ServicesListView.swift */; };
 		A37468C324455C2900EC867E /* BikeNotesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37468C224455C2900EC867E /* BikeNotesListView.swift */; };
+		A37B1EC0252C0D8500147F94 /* GradientButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37B1EBF252C0D8500147F94 /* GradientButtonStyle.swift */; };
 		A3850EB225292700008982D8 /* NotesStyleCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3850EB125292700008982D8 /* NotesStyleCardView.swift */; };
 		A3918AD023E3E446002A1D61 /* SaveButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3918ACF23E3E446002A1D61 /* SaveButtonView.swift */; };
 		A393F9BD252ACAB700F39E04 /* HomeTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A393F9BC252ACAB700F39E04 /* HomeTabView.swift */; };
@@ -90,6 +92,7 @@
 
 /* Begin PBXFileReference section */
 		A309B9D523E2898300A08F22 /* BikeListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeListView.swift; sourceTree = "<group>"; };
+		A30D9667253549840094CE90 /* NotesHomeStyledCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesHomeStyledCardView.swift; sourceTree = "<group>"; };
 		A31605EF2523B976009071E9 /* BikeCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeCardView.swift; sourceTree = "<group>"; };
 		A31605F92523BAA1009071E9 /* ArrowButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrowButtonView.swift; sourceTree = "<group>"; };
 		A31606012523BF3E009071E9 /* BikesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikesView.swift; sourceTree = "<group>"; };
@@ -101,6 +104,7 @@
 		A33F02B024062A89005A0A8F /* FilteredNoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilteredNoteView.swift; sourceTree = "<group>"; };
 		A36C24C02437FED000B43121 /* ServicesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesListView.swift; sourceTree = "<group>"; };
 		A37468C224455C2900EC867E /* BikeNotesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeNotesListView.swift; sourceTree = "<group>"; };
+		A37B1EBF252C0D8500147F94 /* GradientButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientButtonStyle.swift; sourceTree = "<group>"; };
 		A3850EB125292700008982D8 /* NotesStyleCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesStyleCardView.swift; sourceTree = "<group>"; };
 		A3918ACF23E3E446002A1D61 /* SaveButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveButtonView.swift; sourceTree = "<group>"; };
 		A393F9BC252ACAB700F39E04 /* HomeTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabView.swift; sourceTree = "<group>"; };
@@ -262,6 +266,7 @@
 				A3918ACF23E3E446002A1D61 /* SaveButtonView.swift */,
 				A3F8592D2511BFAA00278E7B /* CreateBikeView.swift */,
 				A31605F92523BAA1009071E9 /* ArrowButtonView.swift */,
+				A37B1EBF252C0D8500147F94 /* GradientButtonStyle.swift */,
 				A39E45F4252436AC004142CE /* DeleteButtonView.swift */,
 			);
 			path = SingleViews;
@@ -283,6 +288,7 @@
 			children = (
 				A3C16E6E23DE9EC4005BFA14 /* NotesListView.swift */,
 				A3850EB125292700008982D8 /* NotesStyleCardView.swift */,
+				A30D9667253549840094CE90 /* NotesHomeStyledCardView.swift */,
 				A33F02B024062A89005A0A8F /* FilteredNoteView.swift */,
 				A3250095246E2D7F00F5A96E /* SaveToastView.swift */,
 				A393F9CD252ACBC800F39E04 /* LastNoteView.swift */,
@@ -616,6 +622,7 @@
 				A3C16E6F23DE9EC4005BFA14 /* NotesListView.swift in Sources */,
 				A3FBA8BD240342E7001F3885 /* RearShockLastServicedView.swift in Sources */,
 				A3C16E6A23DE9EC4005BFA14 /* SceneDelegate.swift in Sources */,
+				A37B1EC0252C0D8500147F94 /* GradientButtonStyle.swift in Sources */,
 				A3D518372426B565007DEE9D /* FrontServiceModel.swift in Sources */,
 				A31606022523BF3E009071E9 /* BikesView.swift in Sources */,
 				A393F9CE252ACBC800F39E04 /* LastNoteView.swift in Sources */,
@@ -641,6 +648,7 @@
 				A3850EB225292700008982D8 /* NotesStyleCardView.swift in Sources */,
 				A3DDCC7F23DFF2C900CD1476 /* AddNoteView.swift in Sources */,
 				A39E45F5252436AC004142CE /* DeleteButtonView.swift in Sources */,
+				A30D9668253549840094CE90 /* NotesHomeStyledCardView.swift in Sources */,
 				A3FBA8B324024024001F3885 /* AddNoteRearSetupView.swift in Sources */,
 				A36C24C12437FED000B43121 /* ServicesListView.swift in Sources */,
 				A3C16EBD23DEA582005BFA14 /* Fork+CoreDataClass.swift in Sources */,

@@ -1,30 +1,31 @@
 //
-//  NotesStyleCardView.swift
+//  NotesHomeStyledCardView.swift
 //  DialedIn
 //
-//  Created by Jason Hilimire on 10/3/20.
+//  Created by Jason Hilimire on 10/12/20.
 //  Copyright © 2020 Jason Hilimire. All rights reserved.
 //
 
 import SwiftUI
 
-struct NotesStyleCardView: View {
+struct NotesHomeStyledCardView: View {
 	// MARK: - PROPERTIES -
 	
 	@ObservedObject var note: Notes
 	
 	// MARK: - BODY
-    var body: some View {
+	var body: some View {
 		ZStack {
 			VStack {
+				Text("Last Note:")
+					.font(.title2)
+					.shadow(color: Color(red: 0, green: 0, blue: 0, opacity: 0.15), radius: 2, x: 2, y: 2)
 				HStack {
 					Text(note.bike?.name ?? "Unknown Bike")
-						.fontWeight(.thin)
 					Spacer()
 					Text(note.date != nil ? "\(note.date!, formatter: dateFormatter)" : "")
-						.fontWeight(.thin)
 					if note.isFavorite == true {
-						FavoritesView(favorite: .constant(note.isFavorite))
+						HomeFavoritesView(favorite: .constant(note.isFavorite))
 					} else {
 						Text("   ")
 					}
@@ -35,10 +36,9 @@ struct NotesStyleCardView: View {
 					HStack {
 						VStack(alignment: .leading) {
 							if note.rating > 0 {
-								RatingView(rating: .constant(Int(note.rating)))
+								HomeRatingView(rating: .constant(Int(note.rating)))
 							}
 							Text(note.note ?? "")
-								.fontWeight(.thin)
 						}
 						.font(.footnote)
 						Spacer()
@@ -51,20 +51,15 @@ struct NotesStyleCardView: View {
 					VStack {
 						HStack {
 							Text("F")
-								.fontWeight(.thin)
 							Text("\(note.fAirVolume, specifier: "%.1f")")
-								.fontWeight(.thin)
 						}
 						.lineLimit(1)
 						.padding([.top, .bottom, .trailing])
 						.font(.body)
 						
-						
 						HStack {
 							Text("R")
-								.fontWeight(.thin)
 							Text("\(note.rAirSpring, specifier: "%.0f")")
-								.fontWeight(.thin)
 						}
 						.lineLimit(1)
 						.padding([.top, .bottom, .trailing])
@@ -76,55 +71,56 @@ struct NotesStyleCardView: View {
 					Spacer()
 					VStack(alignment: .leading) {
 						if note.bike?.frontSetup?.dualRebound == true {
-							Text("HSR: \(note.fHSR)").fontWeight(.thin)
-							Text("LSR: \(note.fLSR)").fontWeight(.thin)
+							Text("HSR: \(note.fHSR)")
+							Text("LSR: \(note.fLSR)")
 						} else {
-							Text("Reb: \(note.fRebound)").fontWeight(.thin)
+							Text("Reb: \(note.fRebound)")
 							
 						}
-						Text("Sag %: \(calcSag(sag: Double(note.fSag), travel: note.bike?.frontSetup?.travel ?? 0.0), specifier: "%.1f")").fontWeight(.thin)
+						Text("Sag %: \(calcSag(sag: Double(note.fSag), travel: note.bike?.frontSetup?.travel ?? 0.0), specifier: "%.1f")")
 						Divider()
 						if note.bike?.rearSetup?.dualRebound == true {
-							Text("HSR: \(note.rHSR)").fontWeight(.thin)
-							Text("LSR: \(note.rLSR)").fontWeight(.thin)
+							Text("HSR: \(note.rHSR)")
+							Text("LSR: \(note.rLSR)")
 						} else {
-							Text("Reb: \(note.rRebound)").fontWeight(.thin)
+							Text("Reb: \(note.rRebound)")
 						}
-						Text("Sag %: \(calcSag(sag: Double(note.rSag), travel: note.bike?.rearSetup?.strokeLength ?? 0.0), specifier: "%.1f")").fontWeight(.thin)
+						Text("Sag %: \(calcSag(sag: Double(note.rSag), travel: note.bike?.rearSetup?.strokeLength ?? 0.0), specifier: "%.1f")")
 					}.font(.caption)
 					
 					Spacer()
 					VStack(alignment: .leading) {
 						if note.bike?.frontSetup?.dualCompression == true {
-							Text("HSC: \(note.fHSC)").fontWeight(.thin)
-							Text("LSC: \(note.fLSC)").fontWeight(.thin)
+							Text("HSC: \(note.fHSC)")
+							Text("LSC: \(note.fLSC)")
 						} else {
-							Text("Comp: \(note.fCompression)").fontWeight(.thin)
+							Text("Comp: \(note.fCompression)")
 						}
-						Text("Tokens: \(note.fTokens)").fontWeight(.thin)
+						Text("Tokens: \(note.fTokens)")
 						Divider()
 						if note.bike?.rearSetup?.dualCompression == true {
-							Text("HSC: \(note.rHSC)").fontWeight(.thin)
-							Text("LSC: \(note.rLSC)").fontWeight(.thin)
+							Text("HSC: \(note.rHSC)")
+							Text("LSC: \(note.rLSC)")
 						} else {
-							Text("Comp: \(note.rCompression)").fontWeight(.thin)
+							Text("Comp: \(note.rCompression)")
 						}
 						if note.bike?.rearSetup?.isCoil == false {
-							Text("Tokens: \(note.rTokens)").fontWeight(.thin)
+							Text("Tokens: \(note.rTokens)")
 						} else {
-							Text("").fontWeight(.thin)
+							Text("")
 						}
 					}.font(.caption)
 				} // end HSTack Settings
 			}
 			.padding()
-			.foregroundColor(Color("TextColor"))
-			.background(Color("BackgroundColor"))
+			.foregroundColor(Color.white)
+			.background((LinearGradient(gradient: Gradient(colors: [Color.orange, Color.red
+			]) , startPoint: .top, endPoint: .bottom)))
 			.cornerRadius(20)
 			// Shadow for left & Bottom
 			.shadow(color: Color("ShadowColor"), radius: 5, x: -5, y: 5)
-			//shadow for right & top
-			//				.shadow(color: Color("ShadowColor"), radius: 5, x: 5, y: -5)
+
 		}
-    }
+	}
 }
+

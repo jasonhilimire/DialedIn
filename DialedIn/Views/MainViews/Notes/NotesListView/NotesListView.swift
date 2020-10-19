@@ -43,12 +43,12 @@ struct NotesListView: View {
 				
 				ScrollView{
 					if pickerChoiceIndex == 0 {
-						FilteredNoteView(filter: false)
+						FilteredNoteView(filter: false).padding(.horizontal)
 					} else if pickerChoiceIndex == 1 {
-						FilteredNoteView(filter: true)
+						FilteredNoteView(filter: true).padding(.horizontal)
 					}
 				}
-			}.padding(.horizontal)
+			}
 				
 	// remove the separator
 			.onAppear { UITableView.appearance().separatorStyle = .none }

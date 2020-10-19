@@ -14,10 +14,6 @@ struct BikeDetailView: View {
     @Environment(\.managedObjectContext) var moc
     @Environment(\.presentationMode) var presentationMode
 	
-	@ObservedObject var front = NoteFrontSetupModel()
-	@ObservedObject var rear = NoteRearSetupModel()
-	
-    
 	@State private var bikeName = ""
 	@State var showServiceScreen = false
 	@State var showEditScreen = false
@@ -33,14 +29,14 @@ struct BikeDetailView: View {
 						.fontWeight(.thin)
 					VStack {
 						Section {
-							ForkLastServicedView(bikeName: $bikeName, fork: self.bike.frontSetup!, bike: self.bike)
+							ForkLastServicedView(bikeName: $bikeName, bike: self.bike)
 						}
 						Divider()
 						Section{
 							if self.bike.hasRearShock == false {
 								Text("HardTail")
 							} else {
-								RearShockLastServicedView(rear: self.bike.rearSetup!, bike: self.bike, bikeName: $bikeName)
+								RearShockLastServicedView(bikeName: $bikeName, bike: self.bike)
 							}
 						}
 					}
