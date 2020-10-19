@@ -85,7 +85,9 @@ struct HomeTabView: View {
 				} //: END Main ZSTACK
 			}
 		}
+		.navigationViewStyle(StackNavigationViewStyle())
     }
+	
 }
 
 struct HomeTabView_Previews: PreviewProvider {
