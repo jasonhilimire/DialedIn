@@ -12,7 +12,8 @@ import CoreData
 
 
 struct NotesListView: View {
-    
+// MARK: - PROPERTIES -
+	
        // Create the MOC
     @Environment(\.managedObjectContext) var moc
 	
@@ -27,6 +28,7 @@ struct NotesListView: View {
 	@State private var pickerChoiceIndex = 0	
 	
     var body: some View {
+// MARK: - BODY -
 		NavigationView {
 			VStack {
 				Picker("Service Type", selection: $pickerChoiceIndex) {
@@ -41,7 +43,7 @@ struct NotesListView: View {
 					CreateBikeView()
 				}
 				
-				ScrollView{
+				ScrollView {
 					if pickerChoiceIndex == 0 {
 						FilteredNoteView(filter: false).padding(.horizontal)
 					} else if pickerChoiceIndex == 1 {
@@ -50,8 +52,7 @@ struct NotesListView: View {
 				}
 			}
 				
-	// remove the separator
-			.onAppear { UITableView.appearance().separatorStyle = .none }
+			.onAppear { UITableView.appearance().separatorStyle = .none } 	// remove the separator
             .navigationBarTitle("Dialed In")
 			.navigationBarItems(
 				trailing:

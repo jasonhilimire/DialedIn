@@ -33,6 +33,7 @@ struct HomeTabView: View {
 					VStack{
 						ZStack {
 							LastNoteView() // if notes break and not updating was using HomeNoteViewHere() and note the above check for bikes
+								
 								.frame(height: geo.size.height / 2.5 )
 						}
 						

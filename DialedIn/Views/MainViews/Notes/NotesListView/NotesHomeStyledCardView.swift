@@ -10,8 +10,12 @@ import SwiftUI
 
 struct NotesHomeStyledCardView: View {
 	// MARK: - PROPERTIES -
-	
+	// Create the MOC
+	@Environment(\.managedObjectContext) var moc
+	@Environment(\.presentationMode) var presentationMode
 	@ObservedObject var note: Notes
+	
+	@State private var showingAddScreen = false
 	
 	// MARK: - BODY
 	var body: some View {
@@ -119,7 +123,62 @@ struct NotesHomeStyledCardView: View {
 			.cornerRadius(20)
 			// Shadow for left & Bottom
 			.shadow(color: Color("ShadowColor"), radius: 5, x: -5, y: 5)
+			.contextMenu {
+				VStack {
+					Button(action: {updateNote(note: note)}) {
+						HStack {
+	// Works successfully- but probably needs a good animation
+							if note.isFavorite == false {
+								Text("Favorite")
+								Image(systemName: "bookmark")
+							} else {
+								Text("Remove Favorite")
+								Image(systemName: "bookmark.fill")
+							}
+						}
+					}
+					Button(action: {self.showingAddScreen.toggle()}) {
+						HStack {
+							Text("Edit")
+							Image(systemName: "square.and.pencil")
+						}
 
+					}
+						
+					Divider()
+					Button(action: {deleteNote()}) {
+						HStack {
+							Text("Delete")
+							Image(systemName: "trash")
+						}
+						.foregroundColor(Color.red)
+					}
+				}
+			}
+			.sheet(isPresented: $showingAddScreen)  {
+				NotesDetailView(note: note)
+			}
+
+		}
+	}
+	
+	func deleteNote() {
+		moc.delete(note)
+		try? self.moc.save()
+		hapticSuccess()
+	}
+	
+	func updateNote(note: Notes) {
+		self.note.isFavorite.toggle()
+		moc.performAndWait {
+			note.isFavorite = self.note.isFavorite
+			try? self.moc.save()
+		}
+		print("Updated Favorite")
+		hapticSuccess()
+		// this pauses the view transition
+		DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
+			self.presentationMode.wrappedValue.dismiss()
 		}
 	}
 }

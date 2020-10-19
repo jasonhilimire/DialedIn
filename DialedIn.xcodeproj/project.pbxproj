@@ -220,8 +220,8 @@
 			isa = PBXGroup;
 			children = (
 				A3C7A1D52401F85200A741A8 /* AddNoteViews */,
-				A3C7A1D42401F81300A741A8 /* NotesDetailViews */,
 				A3B99236241DD9A4007E9B7B /* NotesListView */,
+				A3C7A1D42401F81300A741A8 /* NotesDetailViews */,
 			);
 			path = Notes;
 			sourceTree = "<group>";
