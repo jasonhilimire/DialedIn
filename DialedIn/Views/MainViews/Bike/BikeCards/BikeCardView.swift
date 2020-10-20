@@ -108,7 +108,6 @@ struct BikeCardView: View {
 				}, secondaryButton: .cancel()
 				)
 			}
-		
 	}
 	
 	
