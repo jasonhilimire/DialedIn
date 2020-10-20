@@ -19,8 +19,8 @@ struct BikeCardView: View {
 	Are you sure?
 	- this will delete all related notes -
 	"""
-	@State var travel = 123.0
-	@State var strokeLength = ""
+	@State var travel = 0.0
+	@State var strokeLength = 0.0
 
 	let bike: Bike
 	
@@ -53,7 +53,6 @@ struct BikeCardView: View {
 						.font(.largeTitle)
 						.fontWeight(.heavy)
 						.shadow(color: Color(red: 0, green: 0, blue: 0, opacity: 0.15), radius: 2, x: 2, y: 2)
-//						.padding(.bottom, 6)
 					
 					// BIKE: DETAILS
 					Text(self.bike.bikeNote ?? "")
@@ -67,14 +66,13 @@ struct BikeCardView: View {
 					VStack {
 						HStack{
 							Text(self.bike.frontSetup?.info ?? "")
-							Text("\(self.bike.frontSetup?.travel ?? 0.0, specifier: "%.0f")mm" ) // TODO: remove the zero
+							Text("\(travel, specifier: "%.0f")mm")
 						}
 						
-					
 						if self.bike.hasRearShock == true {
 							HStack {
 								Text(self.bike.rearSetup?.info ?? "")
-								Text("Stroke Length : \(self.bike.rearSetup?.strokeLength ?? 0, specifier: "%.2f")mm") // TODO:  remove the zero
+								Text("Stroke Length : \(strokeLength, specifier: "%.2f")mm")
 							}
 						}
 					}
@@ -121,10 +119,12 @@ struct BikeCardView: View {
 	}
 	
 	func setup() {
-//		if self.bike.frontSetup?.travel != nil {
-//			self.bike.frontSetup?.travel = travel
-//		}
-		print("setup ran")
+		if (self.bike.frontSetup?.travel) != nil {
+			travel = self.bike.frontSetup!.travel
+		}
+		if (self.bike.rearSetup?.strokeLength) != nil {
+			strokeLength = self.bike.rearSetup!.strokeLength
+		}
 	}
 }
 
