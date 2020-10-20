@@ -15,10 +15,12 @@ struct BikeCardView: View {
 	@State private var isAnimating: Bool = false
 	@State var buttonText = "View"
 	@State var showingDeleteAlert = false
-	var deleteText = """
+	 var deleteText = """
 	Are you sure?
 	- this will delete all related notes -
 	"""
+	@State var travel = 123.0
+	@State var strokeLength = ""
 
 	let bike: Bike
 	
@@ -26,10 +28,8 @@ struct BikeCardView: View {
     var body: some View {
 			ZStack {
 				VStack{
-					// DELETE BUTTON??? HERE OR ON THE DETAIL VIEW??
 					HStack {
 						Spacer()
-						
 						Button(action: {
 							self.showingDeleteAlert.toggle()
 						}) {
@@ -53,17 +53,38 @@ struct BikeCardView: View {
 						.font(.largeTitle)
 						.fontWeight(.heavy)
 						.shadow(color: Color(red: 0, green: 0, blue: 0, opacity: 0.15), radius: 2, x: 2, y: 2)
+//						.padding(.bottom, 6)
 					
 					// BIKE: DETAILS
 					Text(self.bike.bikeNote ?? "")
 						.foregroundColor(Color.white)
+						.font(.caption)
 						.multilineTextAlignment(.center)
 						.padding(.horizontal, 16)
 						.frame(maxWidth: 480)
+						.padding(.bottom, 2)
+					
+					VStack {
+						HStack{
+							Text(self.bike.frontSetup?.info ?? "")
+							Text("\(self.bike.frontSetup?.travel ?? 0.0, specifier: "%.0f")mm" ) // TODO: remove the zero
+						}
+						
+					
+						if self.bike.hasRearShock == true {
+							HStack {
+								Text(self.bike.rearSetup?.info ?? "")
+								Text("Stroke Length : \(self.bike.rearSetup?.strokeLength ?? 0, specifier: "%.2f")mm") // TODO:  remove the zero
+							}
+						}
+					}
+					.foregroundColor(Color.white)
+					.multilineTextAlignment(.center)
+					.padding(.bottom, 12)
 					
 //					// BUTTON:
 					NavigationLink(destination: BikeDetailView(bike: bike)) {
-						ArrowButtonView(buttonText: $buttonText)
+						ArrowButtonView(buttonText: $buttonText)  // ANIMATED CARD FLIP TO SHOW Services on the backside
 					}
 					
 				} //: VSTACK
@@ -74,6 +95,8 @@ struct BikeCardView: View {
 					isAnimating = true
 				}
 			}
+			.onAppear(perform: {self.setup()})
+			
 //			.frame(minWidth: 0, idealWidth: 100, maxWidth: .infinity, minHeight: 0, idealHeight: 100, maxHeight: .infinity, alignment: .center)
 			.background((LinearGradient(gradient: Gradient(colors: [Color.orange, Color.red
 			]) , startPoint: .top, endPoint: .bottom)))
@@ -95,6 +118,13 @@ struct BikeCardView: View {
 		moc.delete(bike)
 		try? self.moc.save()
 		hapticSuccess()
+	}
+	
+	func setup() {
+//		if self.bike.frontSetup?.travel != nil {
+//			self.bike.frontSetup?.travel = travel
+//		}
+		print("setup ran")
 	}
 }
 

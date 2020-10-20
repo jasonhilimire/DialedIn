@@ -96,7 +96,7 @@ struct AddBikeView: View {
 							}
 							
 							HStack {
-								Text("Travel (mm):").fontWeight(.thin)
+								Text("Shock Stroke (mm):").fontWeight(.thin)
 								CustomNumberField(text: $strokeLength, placeholder: "Enter Shock Stroke in mm")
 							}
 							
@@ -119,7 +119,7 @@ struct AddBikeView: View {
 							}
 							
 							HStack {
-								Text("Travel (mm):").fontWeight(.thin)
+								Text("Shock Stroke (mm):").fontWeight(.thin)
 								CustomNumberField(text: $strokeLength, placeholder: "Enter Shock Stroke in mm")
 									
 							}
