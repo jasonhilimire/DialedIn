@@ -115,7 +115,7 @@ struct NotesHomeStyledCardView: View {
 						}
 					}.font(.caption)
 				} // end HSTack Settings
-			}
+			} //: END VSTACK
 			.padding()
 			.foregroundColor(Color.white)
 			.background((LinearGradient(gradient: Gradient(colors: [Color.orange, Color.red
@@ -123,6 +123,7 @@ struct NotesHomeStyledCardView: View {
 			.cornerRadius(20)
 			// Shadow for left & Bottom
 			.shadow(color: Color("ShadowColor"), radius: 5, x: -5, y: 5)
+			//: CONTEXT MENU
 			.contextMenu {
 				VStack {
 					Button(action: {updateNote(note: note)}) {
@@ -158,8 +159,7 @@ struct NotesHomeStyledCardView: View {
 			.sheet(isPresented: $showingAddScreen)  {
 				NotesDetailView(note: note)
 			}
-
-		}
+		} //: END ZSTACK
 	}
 	
 	func deleteNote() {
