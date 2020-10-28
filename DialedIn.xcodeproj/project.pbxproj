@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A3072F4625490D9E00C8F385 /* BikeDetailCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3072F4525490D9E00C8F385 /* BikeDetailCardView.swift */; };
 		A309B9D623E2898300A08F22 /* BikeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A309B9D523E2898300A08F22 /* BikeListView.swift */; };
 		A30D9668253549840094CE90 /* NotesHomeStyledCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30D9667253549840094CE90 /* NotesHomeStyledCardView.swift */; };
 		A31605F02523B976009071E9 /* BikeCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A31605EF2523B976009071E9 /* BikeCardView.swift */; };
@@ -91,6 +92,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A3072F4525490D9E00C8F385 /* BikeDetailCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeDetailCardView.swift; sourceTree = "<group>"; };
 		A309B9D523E2898300A08F22 /* BikeListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeListView.swift; sourceTree = "<group>"; };
 		A30D9667253549840094CE90 /* NotesHomeStyledCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesHomeStyledCardView.swift; sourceTree = "<group>"; };
 		A31605EF2523B976009071E9 /* BikeCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeCardView.swift; sourceTree = "<group>"; };
@@ -458,6 +460,7 @@
 		A3FBA8BE24034623001F3885 /* BikeDetailViews */ = {
 			isa = PBXGroup;
 			children = (
+				A3072F4525490D9E00C8F385 /* BikeDetailCardView.swift */,
 				A3FBA8B8240342E6001F3885 /* BikeDetailView.swift */,
 				A3E1A6AE2409B78100C4DFD5 /* FilteredBikeNotesView.swift */,
 				A3D63B44241DCD3400852575 /* BikeStyledCellView.swift */,
@@ -628,6 +631,7 @@
 				A393F9CE252ACBC800F39E04 /* LastNoteView.swift in Sources */,
 				A393F9C9252ACB1B00F39E04 /* HomeNoteView.swift in Sources */,
 				A3FBA8BC240342E7001F3885 /* ForkLastServicedView.swift in Sources */,
+				A3072F4625490D9E00C8F385 /* BikeDetailCardView.swift in Sources */,
 				A3C7A1D72401F87D00A741A8 /* AddNoteFrontSetupView.swift in Sources */,
 				A3D5181B24268E55007DEE9D /* Fork+CoreDataProperties.swift in Sources */,
 				A3D518352426B558007DEE9D /* RearServiceModel.swift in Sources */,

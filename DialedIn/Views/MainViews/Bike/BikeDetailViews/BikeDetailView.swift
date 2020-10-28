@@ -49,20 +49,20 @@ struct BikeDetailView: View {
 			FilteredBikeNotesView(filter: self.bikeName)
 			
 		}
-		.padding()
+//		.padding()
 		.navigationBarTitle(self.bike.name ?? "Unknown Bike")
-		.navigationBarItems(trailing: Button(action: {
-			withAnimation {
-				self.showEditScreen.toggle()
-			}
-		}) {
-				Image(systemName: "square.and.pencil").foregroundColor(Color("TextColor"))
-					.font(.title)
-					.padding()
-		})
-			.sheet(isPresented: $showEditScreen)  {
-				EditBikeDetailView(bike: self.bike).environment(\.managedObjectContext, self.moc)
-		}
+//		.navigationBarItems(trailing: Button(action: {
+//			withAnimation {
+//				self.showEditScreen.toggle()
+//			}
+//		}) {
+//				Image(systemName: "square.and.pencil").foregroundColor(Color("TextColor"))
+//					.font(.title)
+//					.padding()
+//		})
+//			.sheet(isPresented: $showEditScreen)  {
+//				EditBikeDetailView(bike: self.bike).environment(\.managedObjectContext, self.moc)
+//		}
     }
 }
 

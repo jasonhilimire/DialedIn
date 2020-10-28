@@ -9,9 +9,11 @@
 import SwiftUI
 
 struct DeleteButtonView: View {
+	@Binding var symbolImage: String
+	
     var body: some View {
 		HStack(spacing: 8) {
-			Image(systemName: "trash")
+			Image(systemName: symbolImage)
 				.imageScale(.large)
 				.foregroundColor(.white)
 
@@ -28,7 +30,7 @@ struct DeleteButtonView: View {
 
 struct DeleteButtonView_Previews: PreviewProvider {
     static var previews: some View {
-        DeleteButtonView()
+		DeleteButtonView(symbolImage: .constant("trash"))
 			.preferredColorScheme(.dark)
 			.previewLayout(.sizeThatFits)
     }

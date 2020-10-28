@@ -14,6 +14,7 @@ struct BikeCardView: View {
 	
 	@State private var isAnimating: Bool = false
 	@State var buttonText = "View"
+	@State var symbolImage = "trash"
 	@State var showingDeleteAlert = false
 	 var deleteText = """
 	Are you sure?
@@ -33,7 +34,7 @@ struct BikeCardView: View {
 						Button(action: {
 							self.showingDeleteAlert.toggle()
 						}) {
-							DeleteButtonView()
+							DeleteButtonView(symbolImage: $symbolImage)
 						}
 						
 					}
@@ -81,7 +82,7 @@ struct BikeCardView: View {
 					.padding(.bottom, 12)
 					
 //					// BUTTON:
-					NavigationLink(destination: BikeDetailView(bike: bike)) {
+					NavigationLink(destination: BikeDetailCardView(bike: bike)) {
 						ArrowButtonView(buttonText: $buttonText)  // ANIMATED CARD FLIP TO SHOW Services on the backside
 					}
 					
