@@ -15,6 +15,8 @@ struct BikeDetailCardView: View {
 	@State private var isAnimating: Bool = false
 	@State var buttonText = "BACK"
 	@State var symbolImage = "square.and.pencil"
+	
+	@State var showEditScreen = false
 
 	let bike: Bike
 	
@@ -25,9 +27,11 @@ struct BikeDetailCardView: View {
 				HStack {
 					Spacer()
 					Button(action: {
-						// Edit Bike
+						withAnimation {
+							self.showEditScreen.toggle()
+						}
 					}) {
-						DeleteButtonView(symbolImage: $symbolImage)
+						CircularButtonView(symbolImage: $symbolImage)
 					}
 					
 				}
@@ -60,6 +64,9 @@ struct BikeDetailCardView: View {
 		.padding(.vertical, 20)
 		.shadow(color: Color("ShadowColor"), radius: 5, x: -5, y: 5)
 
+		.sheet(isPresented: $showEditScreen)  {
+			EditBikeDetailView(bike: self.bike).environment(\.managedObjectContext, self.moc)
+		}
 	}
 
 }

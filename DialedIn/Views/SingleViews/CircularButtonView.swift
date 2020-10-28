@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct DeleteButtonView: View {
+struct CircularButtonView: View {
 	@Binding var symbolImage: String
 	
     var body: some View {
@@ -30,7 +30,7 @@ struct DeleteButtonView: View {
 
 struct DeleteButtonView_Previews: PreviewProvider {
     static var previews: some View {
-		DeleteButtonView(symbolImage: .constant("trash"))
+		CircularButtonView(symbolImage: .constant("trash"))
 			.preferredColorScheme(.dark)
 			.previewLayout(.sizeThatFits)
     }

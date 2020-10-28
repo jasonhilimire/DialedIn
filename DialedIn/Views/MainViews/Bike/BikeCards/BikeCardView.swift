@@ -34,7 +34,7 @@ struct BikeCardView: View {
 						Button(action: {
 							self.showingDeleteAlert.toggle()
 						}) {
-							DeleteButtonView(symbolImage: $symbolImage)
+							CircularButtonView(symbolImage: $symbolImage)
 						}
 						
 					}
