@@ -21,42 +21,47 @@ struct ForkLastServicedView: View {
 	
     var body: some View {
 		VStack(alignment: .leading) { // Fork Section
-			HStack {
-				Text("Fork")
-					.font(.headline)
-					.fontWeight(.semibold)
-				Spacer()
-				Text("\(self.bike.frontSetup?.info ?? "")")
-			}
-			.padding([.top, .leading, .trailing])
-			
-			HStack(alignment: .center) {
-				Text("Lowers Last Serviced:")
-					.fontWeight(.light)
-				Spacer()
-				Text( "\(self.frontService.getlowersDate(bike: self.bikeName), formatter: dateFormatter)")
-					.fontWeight(.light)
+				HStack {
+					Image("bicycle-fork")
+						.resizable()
+						.frame(width: 25, height: 25)
+						.scaledToFit()
+					Text("\(self.bike.frontSetup?.info ?? "") - \(self.bike.frontSetup?.travel ?? 0.0, specifier: "%.2f")mm")
+						.font(.headline)
+						.fontWeight(.semibold)
+					Spacer()
+
+	//				Text("\(self.bike.frontSetup?.info ?? "")")
+				}
+				.padding([.top, .leading, .trailing])
 				
-			}
-			.padding(.horizontal)
-			.font(.footnote)
-			
-			HStack {
-				Text("Last Full Service:")
+				HStack(alignment: .center) {
+					Text("Lowers Last Serviced:")
+						.fontWeight(.light)
+					Spacer()
+					Text( "\(self.frontService.getlowersDate(bike: self.bikeName), formatter: dateFormatter)")
+						.fontWeight(.light)
+					
+				}
+				.padding(.horizontal)
+				.font(.footnote)
+				
+				HStack {
+					Text("Last Full Service:")
+						.fontWeight(.light)
+					Spacer()
+					Text("\(self.frontService.getFullDate(bike: self.bikeName), formatter: dateFormatter)")
+						.fontWeight(.light)
+				}
+				.padding(.horizontal)
+				.font(.footnote)
+				
+				HStack {
+					Text("\(self.frontService.getFrontServiceNote(bike: self.bikeName))")
 					.fontWeight(.light)
-				Spacer()
-				Text("\(self.frontService.getFullDate(bike: self.bikeName), formatter: dateFormatter)")
-					.fontWeight(.light)
-			}
-			.padding(.horizontal)
-			.font(.footnote)
-			
-			HStack {
-				Text("\(self.frontService.getFrontServiceNote(bike: self.bikeName))")
-				.fontWeight(.light)
-			}
-			.padding(.horizontal)
-			.font(.footnote)
+				}
+				.padding(.horizontal)
+				.font(.footnote)
 		} .onAppear(perform: {self.setup()})
     }
 	

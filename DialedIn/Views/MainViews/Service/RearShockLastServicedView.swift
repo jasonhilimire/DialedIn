@@ -26,11 +26,14 @@ struct RearShockLastServicedView: View {
 				}
 			} else {
 				HStack {
-					Text("Rear")
+					Image("shock-absorber")
+						.resizable()
+						.frame(width: 25, height: 25)
+						.scaledToFit()
+					Text("\(self.bike.rearSetup?.info ?? "") - \(self.bike.rearSetup?.strokeLength ?? 0.0 , specifier: "%.2f")mm")
 						.font(.headline)
 						.fontWeight(.semibold)
-					Spacer()
-					Text("\(self.bike.rearSetup?.info ?? "")")
+					
 				}
 				.padding(.horizontal)
 				if self.bike.rearSetup?.isCoil == false {

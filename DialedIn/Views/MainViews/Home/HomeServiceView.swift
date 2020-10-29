@@ -84,7 +84,7 @@ struct HomeStyledCardView: View {
 				}
 			}
 		}
-		.frame(width: 300, height: 240)
+		.frame(width: 300, height: 250)
 		.foregroundColor(Color("TextColor"))
 		.background(Color("BackgroundColor"))
 		.cornerRadius(20)

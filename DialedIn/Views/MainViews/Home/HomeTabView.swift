@@ -78,7 +78,7 @@ struct HomeTabView: View {
 						
 						
 						HomeServiceView()
-							.frame(width: .infinity, height: geo.size.height / 2.5 )
+							.frame(width: .infinity, height: geo.size.height / 2.3 )
 					}
 					.padding()
 					.navigationTitle("Dialed In")
