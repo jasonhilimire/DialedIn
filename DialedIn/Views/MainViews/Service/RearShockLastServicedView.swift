@@ -28,7 +28,7 @@ struct RearShockLastServicedView: View {
 				HStack {
 					Text("Rear")
 						.font(.headline)
-						.fontWeight(.light)
+						.fontWeight(.semibold)
 					Spacer()
 					Text("\(self.bike.rearSetup?.info ?? "")")
 				}
@@ -36,27 +36,27 @@ struct RearShockLastServicedView: View {
 				if self.bike.rearSetup?.isCoil == false {
 					HStack {
 						Text("Last Air Can Service:")
-						.fontWeight(.thin)
+						.fontWeight(.light)
 						Spacer()
 						Text("\(self.rearService.getAirCanDate(bike: self.bikeName), formatter: dateFormatter)")
-						.fontWeight(.thin)
+						.fontWeight(.light)
 					}
 					.padding(.horizontal)
 					.font(.footnote)
 					
 					HStack {
 						Text("Last Full Service:")
-						.fontWeight(.thin)
+						.fontWeight(.light)
 						Spacer()
 						Text("\(self.rearService.getFullDate(bike: self.bikeName), formatter: dateFormatter)")
-						.fontWeight(.thin)
+						.fontWeight(.light)
 					}
 					.padding(.horizontal)
 					.font(.footnote)
 					
 					HStack {
 						Text("\(self.rearService.getRearServiceNote(bike: self.bikeName))")
-						.fontWeight(.thin)
+						.fontWeight(.light)
 					}
 					.padding(.horizontal)
 					.font(.footnote)
@@ -64,17 +64,17 @@ struct RearShockLastServicedView: View {
 				} else {
 					HStack {
 						Text("Last Full Service:")
-						.fontWeight(.thin)
+						.fontWeight(.light)
 						Spacer()
 						Text("\(self.rearService.getFullDate(bike: self.bikeName), formatter: dateFormatter)")
-						.fontWeight(.thin)
+						.fontWeight(.light)
 					}
 					.padding(.horizontal)
 					.font(.footnote)
 					
 					HStack {
 						Text("\(self.rearService.getRearServiceNote(bike: self.bikeName))")
-							.fontWeight(.thin)
+							.fontWeight(.light)
 					}
 					.padding(.horizontal)
 					.font(.footnote)

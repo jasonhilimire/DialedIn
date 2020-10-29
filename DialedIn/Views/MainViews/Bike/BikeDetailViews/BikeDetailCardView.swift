@@ -36,6 +36,7 @@ struct BikeDetailCardView: View {
 					
 				}
 				.padding(8)
+				.shadow(color: Color("ShadowColor"), radius: 5, x: -5, y: 5)
 				
 				BikeDetailView(bike: bike)
 				.foregroundColor(Color.white)

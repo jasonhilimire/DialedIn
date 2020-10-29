@@ -30,15 +30,15 @@ struct FilteredBikeNotesView: View {
 							VStack(alignment: .leading){
 								Text("\(note.date!, formatter: dateFormatter)")
 									.font(.callout)
-									.fontWeight(.thin)
+									.fontWeight(.light)
 								
 								Text("\(note.wrappedNote)")
 									.font(.caption)
-									.fontWeight(.thin)
+									.fontWeight(.light)
 									.lineLimit(1)
 								Divider()
 							}
-							.foregroundColor(Color("TextColor"))
+//							.foregroundColor(Color("TextColor"))
 						}
 						Spacer()
 						Image(systemName: "chevron.right")

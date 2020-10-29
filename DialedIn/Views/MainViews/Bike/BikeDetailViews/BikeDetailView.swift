@@ -24,9 +24,8 @@ struct BikeDetailView: View {
 		VStack{
 				VStack {
 
-					Text("Info: \(self.bike.bikeNote ?? "")" )
+					Text("Note: \(self.bike.bikeNote ?? "")" )
 						.font(.subheadline)
-						.fontWeight(.thin)
 					VStack {
 						Section {
 							ForkLastServicedView(bikeName: $bikeName, bike: self.bike)
@@ -45,24 +44,14 @@ struct BikeDetailView: View {
 
 			Text("Last 5 Notes")
 				.font(.largeTitle)
-				.fontWeight(.thin)
+				.fontWeight(.bold)
+				.shadow(color: Color("ShadowColor"), radius: 5, x: -5, y: 5)
 			FilteredBikeNotesView(filter: self.bikeName)
+				.padding(.horizontal)
 			
 		}
-//		.padding()
 		.navigationBarTitle(self.bike.name ?? "Unknown Bike")
-//		.navigationBarItems(trailing: Button(action: {
-//			withAnimation {
-//				self.showEditScreen.toggle()
-//			}
-//		}) {
-//				Image(systemName: "square.and.pencil").foregroundColor(Color("TextColor"))
-//					.font(.title)
-//					.padding()
-//		})
-//			.sheet(isPresented: $showEditScreen)  {
-//				EditBikeDetailView(bike: self.bike).environment(\.managedObjectContext, self.moc)
-//		}
+
     }
 }
 

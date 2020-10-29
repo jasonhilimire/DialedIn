@@ -24,7 +24,7 @@ struct ForkLastServicedView: View {
 			HStack {
 				Text("Fork")
 					.font(.headline)
-					.fontWeight(.light)
+					.fontWeight(.semibold)
 				Spacer()
 				Text("\(self.bike.frontSetup?.info ?? "")")
 			}
@@ -32,10 +32,10 @@ struct ForkLastServicedView: View {
 			
 			HStack(alignment: .center) {
 				Text("Lowers Last Serviced:")
-					.fontWeight(.thin)
+					.fontWeight(.light)
 				Spacer()
 				Text( "\(self.frontService.getlowersDate(bike: self.bikeName), formatter: dateFormatter)")
-					.fontWeight(.thin)
+					.fontWeight(.light)
 				
 			}
 			.padding(.horizontal)
@@ -43,17 +43,17 @@ struct ForkLastServicedView: View {
 			
 			HStack {
 				Text("Last Full Service:")
-					.fontWeight(.thin)
+					.fontWeight(.light)
 				Spacer()
 				Text("\(self.frontService.getFullDate(bike: self.bikeName), formatter: dateFormatter)")
-					.fontWeight(.thin)
+					.fontWeight(.light)
 			}
 			.padding(.horizontal)
 			.font(.footnote)
 			
 			HStack {
 				Text("\(self.frontService.getFrontServiceNote(bike: self.bikeName))")
-				.fontWeight(.thin)
+				.fontWeight(.light)
 			}
 			.padding(.horizontal)
 			.font(.footnote)

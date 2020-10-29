@@ -33,12 +33,14 @@ struct BikeCardView: View {
 						Spacer()
 						Button(action: {
 							self.showingDeleteAlert.toggle()
+							
 						}) {
 							CircularButtonView(symbolImage: $symbolImage)
 						}
 						
 					}
 					.padding(8)
+					.shadow(color: Color("ShadowColor"), radius: 5, x: -5, y: 5)
 					
 					// BIKE: IMAGE - change these images here so it shows a full suspension or hardtail depending on bike type
 					Image("bike")
