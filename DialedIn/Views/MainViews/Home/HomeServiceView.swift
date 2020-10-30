@@ -45,7 +45,7 @@ struct HomeServiceView: View {
 				}
 				.padding(.top)
 				.padding(.horizontal, (fullView.size.width - 270) / 2)
-				.shadow(color: Color("ShadowColor"), radius: 5, x: 1, y: 1)
+				.customShadow()
 			}
 		}
 		.edgesIgnoringSafeArea(.all)
@@ -66,7 +66,7 @@ struct HomeStyledCardView: View {
 		VStack {
 			Text(self.bike.name ?? "Unknown Bike")
 				.fontWeight(.heavy)
-				.shadow(color: Color("ShadowColor"), radius: 5, x: -5, y: 5)
+				.customTextShadow()
 			Text("Info: \(self.bike.bikeNote ?? "")" )
 				.font(.subheadline)
 				.fontWeight(.thin)
@@ -91,7 +91,7 @@ struct HomeStyledCardView: View {
 		.overlay(
 			RoundedRectangle(cornerRadius: 20)
 				.stroke(Color.orange, lineWidth: 2))
-		.shadow(color: Color(red: 0, green: 0, blue: 0, opacity: 0.15), radius: 2, x: 2, y: 2)
+		.customShadow()
 		
 	}
 }

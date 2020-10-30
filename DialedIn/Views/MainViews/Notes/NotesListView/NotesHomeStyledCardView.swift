@@ -22,8 +22,9 @@ struct NotesHomeStyledCardView: View {
 		ZStack {
 			VStack {
 				Text("Last Note:")
-					.font(.title2)
-					.shadow(color: Color(red: 0, green: 0, blue: 0, opacity: 0.15), radius: 2, x: 2, y: 2)
+					.font(.title)
+					.bold()
+					.customTextShadow()
 				HStack {
 					Text(note.bike?.name ?? "Unknown Bike")
 					Spacer()
@@ -122,7 +123,7 @@ struct NotesHomeStyledCardView: View {
 			]) , startPoint: .top, endPoint: .bottom)))
 			.cornerRadius(20)
 			// Shadow for left & Bottom
-			.shadow(color: Color("ShadowColor"), radius: 5, x: -5, y: 5)
+			.customShadow()
 			//: CONTEXT MENU
 			.contextMenu {
 				VStack {

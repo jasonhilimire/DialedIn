@@ -122,9 +122,8 @@ struct NotesStyleCardView: View {
 			.background(Color("BackgroundColor"))
 			.cornerRadius(20)
 			// Shadow for left & Bottom
-			.shadow(color: Color("ShadowColor"), radius: 5, x: -5, y: 5)
-			//shadow for right & top
-			//				.shadow(color: Color("ShadowColor"), radius: 5, x: 5, y: -5)
+			.customShadow()
+
 		}
     }
 }

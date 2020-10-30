@@ -40,13 +40,13 @@ struct BikeCardView: View {
 						
 					}
 					.padding(8)
-					.shadow(color: Color("ShadowColor"), radius: 5, x: -5, y: 5)
+					.customTextShadow()
 					
 					// BIKE: IMAGE - change these images here so it shows a full suspension or hardtail depending on bike type
 					Image("bike")
 						.resizable()
 						.scaledToFit()
-						.shadow(color: Color(red: 0, green: 0, blue: 0, opacity: 0.15), radius: 8, x: 6, y: 8)
+						.customTextShadow()
 						.scaleEffect(isAnimating ? 1.0 : 0.6)
 						.padding(.horizontal, 10)
 					
@@ -55,7 +55,7 @@ struct BikeCardView: View {
 						.foregroundColor(Color.white)
 						.font(.largeTitle)
 						.fontWeight(.heavy)
-						.shadow(color: Color(red: 0, green: 0, blue: 0, opacity: 0.15), radius: 2, x: 2, y: 2)
+						.customTextShadow()
 					
 					// BIKE: DETAILS
 					Text(self.bike.bikeNote ?? "")
@@ -103,7 +103,7 @@ struct BikeCardView: View {
 			]) , startPoint: .top, endPoint: .bottom)))
 			.cornerRadius(20)
 			.padding(.horizontal, 20)
-			.shadow(color: Color("ShadowColor"), radius: 5, x: -5, y: 5)
+			.customShadow()
 			// Show the Alert to delete the Bike
 			.alert(isPresented: $showingDeleteAlert) {
 				Alert(title: Text("Delete Bike"), message: Text("\(deleteText)"), primaryButton: .destructive(Text("Delete")) {

@@ -56,7 +56,7 @@ struct BikeStyledCellView: View {
 			.background(Color("BackgroundColor"))
 			.cornerRadius(4.0)
 			// Shadow for left & bottom
-			.shadow(color: Color("ShadowColor"), radius: 5, x: -5, y: 5)
+			.customShadow()
 	} // END Whole Card VStack
 	
 	

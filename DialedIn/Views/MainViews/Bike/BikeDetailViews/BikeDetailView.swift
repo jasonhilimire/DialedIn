@@ -45,7 +45,7 @@ struct BikeDetailView: View {
 			Text("Last 5 Notes")
 				.font(.largeTitle)
 				.fontWeight(.bold)
-				.shadow(color: Color("ShadowColor"), radius: 5, x: -5, y: 5)
+				.customTextShadow()
 			FilteredBikeNotesView(filter: self.bikeName)
 				.padding(.horizontal)
 			

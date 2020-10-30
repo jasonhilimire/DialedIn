@@ -197,8 +197,34 @@ struct CustNotesText: ViewModifier {
 	}
 }
 
+struct ShadowModifier: ViewModifier {
+	// this shadow is disabled in dark mode
+	func body(content: Content) -> some View {
+		content
+			.shadow(color: Color("ShadowColor"), radius: 5, x: -5, y: 5)
+	}
+}
+
+
+struct CardShadowModifier: ViewModifier {
+	// this shadow Modifies Text on Cards
+	func body(content: Content) -> some View {
+		content
+			.shadow(color: Color(red: 0, green: 0, blue: 0, opacity: 0.15), radius: 8, x: 6, y: 8)
+	}
+}
+
+
 extension View {
 	func customNotesText() -> some View {
 		return self.modifier(CustNotesText())
+	}
+	
+	func customShadow() -> some View {
+		return self.modifier(ShadowModifier())
+	}
+	
+	func customTextShadow() -> some View {
+		return self.modifier(CardShadowModifier())
 	}
 }

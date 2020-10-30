@@ -36,7 +36,7 @@ struct BikeDetailCardView: View {
 					
 				}
 				.padding(8)
-				.shadow(color: Color("ShadowColor"), radius: 5, x: -5, y: 5)
+				.customTextShadow()
 				
 				BikeDetailView(bike: bike)
 				.foregroundColor(Color.white)
@@ -63,7 +63,7 @@ struct BikeDetailCardView: View {
 		.cornerRadius(20)
 		.padding(.horizontal, 20)
 		.padding(.vertical, 20)
-		.shadow(color: Color("ShadowColor"), radius: 5, x: -5, y: 5)
+		.customShadow()
 
 		.sheet(isPresented: $showEditScreen)  {
 			EditBikeDetailView(bike: self.bike).environment(\.managedObjectContext, self.moc)
