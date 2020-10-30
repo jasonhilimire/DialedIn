@@ -24,7 +24,8 @@ struct ArrowButtonView: View {
 				Capsule().strokeBorder(Color.white, lineWidth: 1.25)
 			)
 		 //: Button
-		.accentColor(Color.white)
+			.accentColor(Color.white)
+			.customTextShadow()
     }
 }
 

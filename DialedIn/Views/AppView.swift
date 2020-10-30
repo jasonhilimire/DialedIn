@@ -47,7 +47,8 @@ struct AppView: View {
 //			}
 			
         }
-			.animation(.default)
+//		.transition(AnyTransition.scale.animation(.easeInOut(duration: 1)))
+		.transition(AnyTransition.move(edge: .bottom).combined(with: .opacity).animation(.easeInOut(duration: 1)))
         .accentColor(Color("TextColor"))
     }
 }

@@ -25,6 +25,7 @@ struct CircularButtonView: View {
 		)
 		//: Button
 		.accentColor(Color.white)
+		.customTextShadow()
     }
 }
 

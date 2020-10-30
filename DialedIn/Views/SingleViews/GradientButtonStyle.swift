@@ -16,7 +16,7 @@ struct GradientButtonStyle: ButtonStyle {
 			.background(LinearGradient(gradient: Gradient(colors: [Color.red, Color.orange]), startPoint: .leading, endPoint: .trailing))
 			.cornerRadius(15.0)
 			.scaleEffect(configuration.isPressed ? 1.3 : 1.0)
-			.shadow(color: Color("ShadowColor"), radius: 5, x: 1, y: 1)
+			.customTextShadow()
 	}
 }
 
