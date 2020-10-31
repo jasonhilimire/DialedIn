@@ -12,7 +12,6 @@ struct BikeDetailCardView: View {
 	// MARK: - PROPERTIES -
 	@Environment(\.managedObjectContext) var moc
 	
-	@State private var isAnimating: Bool = false
 	@State var buttonText = "Edit"
 	@State var symbolImage = "square.and.pencil"
 	@State var showEditScreen = false
@@ -52,11 +51,7 @@ struct BikeDetailCardView: View {
 			} //: VSTACK
 			.padding(.bottom, 16)
 		} //: ZSTACK
-		.onAppear{
-			withAnimation(.easeOut(duration: 0.5)) {
-				isAnimating = true
-			}
-		}
+
 		
 		//			.frame(minWidth: 0, idealWidth: 100, maxWidth: .infinity, minHeight: 0, idealHeight: 100, maxHeight: .infinity, alignment: .center)
 		.background(Color.gray)

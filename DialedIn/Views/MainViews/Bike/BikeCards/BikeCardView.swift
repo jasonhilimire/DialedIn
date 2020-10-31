@@ -84,9 +84,7 @@ struct BikeCardView: View {
 					.padding(.bottom, 12)
 					
 //					// BUTTON:
-//					NavigationLink(destination: BikeDetailCardView(bike: bike)) {
-						ArrowButtonView(buttonText: $buttonText)  // ANIMATED CARD FLIP TO SHOW Services on the backside
-//					}
+					ArrowButtonView(buttonText: $buttonText)  // ANIMATED CARD FLIP TO SHOW Services on the backside
 					
 				} //: VSTACK
 				.padding(.bottom, 16)
