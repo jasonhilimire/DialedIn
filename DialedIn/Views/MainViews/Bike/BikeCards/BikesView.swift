@@ -29,32 +29,37 @@ struct BikesView: View {
 	
 // MARK: - BODY -
     var body: some View {
-		NavigationView {
+		VStack {
+			HStack {
+				Text("Bikes").bold().font(.largeTitle)
+				Spacer()
+				Button(action: {self.showingAddScreen.toggle()
+				}) {
+					Image(systemName: "plus.circle").foregroundColor(Color("TextColor"))
+						.font(.largeTitle)
+				}
+			}
+			.padding(.horizontal, 20)
+			.padding(.top, 16)
+			
 			ScrollView {
 				ForEach(bikes, id: \.self) { bike in
-						BikeCardFlipView(bike: bike)
+					BikeCardFlipView(bike: bike)
 				} //: LOOP
 				// here is the listener for published context event
 				.onReceive(self.didChange) { _ in
 					self.refreshing.toggle()
 				}
 			} //: TAB
-			.navigationBarTitle("Bikes") // doesnt seem to be working??
-			.navigationBarItems(trailing: Button(action: {self.showingAddScreen.toggle()
-			}) {
-				Image(systemName: "plus.circle").foregroundColor(Color("TextColor"))
-					.font(.title)
-			})
+			
 			.sheet(isPresented: $showingAddScreen)  {
 				AddBikeView().environment(\.managedObjectContext, self.moc)
-			}
-
+			} //: END SCROLL VIEW
+			
 			.listStyle(InsetGroupedListStyle())
 			.padding(.vertical, 20)
-		}
-		
+		}//: END VSTACK
 	}
-	
 }
 
 struct BikesView_Previews: PreviewProvider {

@@ -36,47 +36,42 @@ struct HomeTabView: View {
 								
 								.frame(height: geo.size.height / 2.5 )
 						}
-						
-	//					if bikes.count > 0 {
 								
-							GeometryReader { innergeo in
-								HStack {
-									Button(action: {
-										print("Add Service Pressed")
-										self.showAddServiceScreen.toggle()
-									}) {
-										HStack {
-											Image(systemName: "wrench")
-											Text("Add Service")
-										}
-										.sheet(isPresented: $showAddServiceScreen)  {
-											ServiceView().environment(\.managedObjectContext, self.moc)
-										}
-									}.buttonStyle(GradientButtonStyle())
-									.frame(width: innergeo.size.width / 2, height: 15)
+						GeometryReader { innergeo in
+							HStack {
+								Button(action: {
+									print("Add Service Pressed")
+									self.showAddServiceScreen.toggle()
+								}) {
+									HStack {
+										Image(systemName: "wrench")
+										Text("Add Service")
+									}
+									.sheet(isPresented: $showAddServiceScreen)  {
+										ServiceView().environment(\.managedObjectContext, self.moc)
+									}
+								}.buttonStyle(GradientButtonStyle())
+								.frame(width: innergeo.size.width / 2, height: 15)
+								
+								Spacer()
+								Button(action: {
+									print("Add Note Pressed")
+									self.showAddNoteScreen.toggle()
 									
-									Spacer()
-									Button(action: {
-										print("Add Note Pressed")
-										self.showAddNoteScreen.toggle()
-										
-									}) {
-										HStack {
-											Image(systemName: "gauge.badge.plus")
-											Text("Add Note")
-										}
-										.sheet(isPresented: $showAddNoteScreen)  {
-											AddNoteView().environment(\.managedObjectContext, self.moc)
-										}
-									}.buttonStyle(GradientButtonStyle())
-									.frame(width: innergeo.size.width / 2, height: 15)
+								}) {
+									HStack {
+										Image(systemName: "gauge.badge.plus")
+										Text("Add Note")
+									}
+									.sheet(isPresented: $showAddNoteScreen)  {
+										AddNoteView().environment(\.managedObjectContext, self.moc)
+									}
+								}.buttonStyle(GradientButtonStyle())
+								.frame(width: innergeo.size.width / 2, height: 15)
 
-								} //: END HSTACK
-								.frame(width: .infinity, height: geo.size.height / 9 )
-							}
-	//					}
-						
-						
+							} //: END HSTACK
+							.frame(width: .infinity, height: geo.size.height / 9 )
+						}
 						HomeServiceView()
 							.frame(width: .infinity, height: geo.size.height / 2.3 )
 					}
