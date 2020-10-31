@@ -24,20 +24,18 @@ struct BikeDetailCardView: View {
 			VStack{
 				HStack {
 					Spacer()
-//					NavigationLink(destination: EditBikeDetailView(bike: bike)) {
-//						CircularButtonView(symbolImage: $symbolImage)
-//					}
-					
-					
-					Button(action: {
-						withAnimation {
-							
-							self.showEditScreen.toggle()
-							print("Show Edit Screen \(showEditScreen)")
-						}
-					}) {
+					NavigationLink(destination: EditBikeDetailView(bike: bike)) {
 						CircularButtonView(symbolImage: $symbolImage)
 					}
+					
+					//TODO: showing the sheet doesnt work- have to use navigationlink for now
+//					Button(action: {
+//						withAnimation {
+//							self.showEditScreen.toggle()
+//						}
+//					}) {
+//						CircularButtonView(symbolImage: $symbolImage)
+//					}
 					
 				}
 				.padding(8)

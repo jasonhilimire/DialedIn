@@ -76,7 +76,7 @@ struct HomeTabView: View {
 							.frame(width: .infinity, height: geo.size.height / 2.3 )
 					}
 					.padding()
-					.navigationTitle("Dialed In")
+					.navigationBarTitle("Dialed In")
 				} //: END Main ZSTACK
 			}
 		}

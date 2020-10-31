@@ -53,7 +53,7 @@ struct NotesListView: View {
 			}
 				
 			.onAppear { UITableView.appearance().separatorStyle = .none } 	// remove the separator
-            .navigationBarTitle("Dialed In")
+            .navigationBarTitle("Dialed In - Notes")
 			.navigationBarItems(
 				trailing:
                 Button(action: {self.checkBikesExist()

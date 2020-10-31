@@ -29,19 +29,7 @@ struct BikesView: View {
 	
 // MARK: - BODY -
     var body: some View {
-		VStack {
-			HStack {
-				Text("Bikes").bold().font(.largeTitle)
-				Spacer()
-				Button(action: {self.showingAddScreen.toggle()
-				}) {
-					Image(systemName: "plus.circle").foregroundColor(Color("TextColor"))
-						.font(.largeTitle)
-				}
-			}
-			.padding(.horizontal, 20)
-			.padding(.top, 16)
-			
+		NavigationView {
 			ScrollView {
 				ForEach(bikes, id: \.self) { bike in
 					BikeCardFlipView(bike: bike)
@@ -50,7 +38,9 @@ struct BikesView: View {
 				.onReceive(self.didChange) { _ in
 					self.refreshing.toggle()
 				}
-			} //: TAB
+				
+				
+			} //: SCROLLVIEW
 			
 			.sheet(isPresented: $showingAddScreen)  {
 				AddBikeView().environment(\.managedObjectContext, self.moc)
@@ -58,7 +48,13 @@ struct BikesView: View {
 			
 			.listStyle(InsetGroupedListStyle())
 			.padding(.vertical, 20)
-		}//: END VSTACK
+			.navigationBarTitle("Dialed In")
+			.navigationBarItems(trailing: Button(action: {self.showingAddScreen.toggle()
+			}) {
+				Image(systemName: "plus.circle").foregroundColor(Color("TextColor"))
+					.font(.largeTitle)
+			})
+		}
 	}
 }
 
