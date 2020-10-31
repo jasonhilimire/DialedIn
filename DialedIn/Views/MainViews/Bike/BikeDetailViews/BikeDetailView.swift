@@ -15,8 +15,6 @@ struct BikeDetailView: View {
     @Environment(\.presentationMode) var presentationMode
 	
 	@State private var bikeName = ""
-	@State var showServiceScreen = false
-	@State var showEditScreen = false
 
     let bike: Bike
 	

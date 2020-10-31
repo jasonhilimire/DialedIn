@@ -19,6 +19,7 @@ struct BikesView: View {
 	
 	// bool to show the Sheet
 	@State private var showingAddScreen = false
+	@State private var showingEditScreen = false
 	
 	// Published if Objects did change- seems to be working, but seems flaky
 	@State private var refreshing = false
@@ -31,7 +32,7 @@ struct BikesView: View {
 		NavigationView {
 			ScrollView {
 				ForEach(bikes, id: \.self) { bike in
-						BikeCardView(bike: bike)
+						BikeCardFlipView(bike: bike)
 				} //: LOOP
 				// here is the listener for published context event
 				.onReceive(self.didChange) { _ in
@@ -47,7 +48,7 @@ struct BikesView: View {
 			.sheet(isPresented: $showingAddScreen)  {
 				AddBikeView().environment(\.managedObjectContext, self.moc)
 			}
-//			.tabViewStyle(PageTabViewStyle())
+
 			.listStyle(InsetGroupedListStyle())
 			.padding(.vertical, 20)
 		}

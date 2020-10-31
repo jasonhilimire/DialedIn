@@ -13,9 +13,8 @@ struct BikeDetailCardView: View {
 	@Environment(\.managedObjectContext) var moc
 	
 	@State private var isAnimating: Bool = false
-	@State var buttonText = "BACK"
+	@State var buttonText = "Edit"
 	@State var symbolImage = "square.and.pencil"
-	
 	@State var showEditScreen = false
 
 	let bike: Bike
@@ -26,9 +25,16 @@ struct BikeDetailCardView: View {
 			VStack{
 				HStack {
 					Spacer()
+//					NavigationLink(destination: EditBikeDetailView(bike: bike)) {
+//						CircularButtonView(symbolImage: $symbolImage)
+//					}
+					
+					
 					Button(action: {
 						withAnimation {
+							
 							self.showEditScreen.toggle()
+							print("Show Edit Screen \(showEditScreen)")
 						}
 					}) {
 						CircularButtonView(symbolImage: $symbolImage)
@@ -42,13 +48,7 @@ struct BikeDetailCardView: View {
 				.foregroundColor(Color.white)
 				.multilineTextAlignment(.center)
 				.padding(.bottom, 12)
-				
-				// BUTTON:
-				/// TODO: HIDE BUTTON UNTIL CAN FIGURE OUT HOW TO GET OUT OF ENDLESS LOOP
-//				NavigationLink(destination: BikeCardView(bike: bike)) {
-//					ArrowButtonView(buttonText: $buttonText)  // ANIMATED CARD FLIP TO SHOW Services on the backside
-//				}
-				
+
 			} //: VSTACK
 			.padding(.bottom, 16)
 		} //: ZSTACK
@@ -62,11 +62,11 @@ struct BikeDetailCardView: View {
 		.background(Color.gray)
 		.cornerRadius(20)
 		.padding(.horizontal, 20)
-		.padding(.vertical, 20)
 		.customShadow()
 
 		.sheet(isPresented: $showEditScreen)  {
 			EditBikeDetailView(bike: self.bike).environment(\.managedObjectContext, self.moc)
+
 		}
 	}
 

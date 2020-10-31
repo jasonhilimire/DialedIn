@@ -17,8 +17,6 @@ struct BikeListView: View {
         NSSortDescriptor(keyPath: \Bike.name, ascending: true)
     ]) var bikes: FetchedResults<Bike>
     
-    // bool to show the Sheet
-    @State private var showingAddScreen = false
 
 	var body: some View {
 		NavigationView {
@@ -26,28 +24,14 @@ struct BikeListView: View {
 				ForEach(bikes, id: \.self) { bike in
 					NavigationLink(destination: BikeDetailView(bike: bike)) {
 					BikeStyledCellView(bike: bike)
-					.padding(5)
+						.padding(.horizontal, 5)
 					}
 				}
-
 				.onDelete(perform: deleteBikes) // -- Causes error:  Fatal error: Unexpectedly found nil while unwrapping an Optional value: if ServiceViews are shown
 			}
-			.navigationBarTitle("Bikes")
-			.navigationBarItems(leading: EditButton().foregroundColor(Color("TextColor")), trailing:
-				Button(action: {self.showingAddScreen.toggle()
-				}) {
-					Image(systemName: "plus.circle").foregroundColor(Color("TextColor"))
-						.font(.title)
-			})
-				.sheet(isPresented: $showingAddScreen)  {
-					AddBikeView().environment(\.managedObjectContext, self.moc)
-			}
 		}
-		
 	}
 	
-	
-
 	func deleteBikes(at offsets: IndexSet) {
 		for offset in offsets {
 			// find this note in our fetch request

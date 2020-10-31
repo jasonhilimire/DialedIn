@@ -23,7 +23,6 @@ struct BikeStyledCellView: View {
 	@State private var showingNotesView = false
 	@State private var showingServiceView = false
 	@State private var bikeName = ""
-	
 
 	let bike: Bike
 	
@@ -58,8 +57,6 @@ struct BikeStyledCellView: View {
 			// Shadow for left & bottom
 			.customShadow()
 	} // END Whole Card VStack
-	
-	
 	
 	func setup() {
 		bikeName = self.bike.name ?? ""

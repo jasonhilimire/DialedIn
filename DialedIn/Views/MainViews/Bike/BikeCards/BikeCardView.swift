@@ -84,9 +84,9 @@ struct BikeCardView: View {
 					.padding(.bottom, 12)
 					
 //					// BUTTON:
-					NavigationLink(destination: BikeDetailCardView(bike: bike)) {
+//					NavigationLink(destination: BikeDetailCardView(bike: bike)) {
 						ArrowButtonView(buttonText: $buttonText)  // ANIMATED CARD FLIP TO SHOW Services on the backside
-					}
+//					}
 					
 				} //: VSTACK
 				.padding(.bottom, 16)
@@ -98,7 +98,7 @@ struct BikeCardView: View {
 			}
 			.onAppear(perform: {self.setup()})
 			
-//			.frame(minWidth: 0, idealWidth: 100, maxWidth: .infinity, minHeight: 0, idealHeight: 100, maxHeight: .infinity, alignment: .center)
+//			.frame(minWidth: 0, idealWidth: 100, maxWidth: .infinity, minHeight: 0, idealHeight: 150, maxHeight: .infinity, alignment: .center)
 			.background((LinearGradient(gradient: Gradient(colors: [Color.orange, Color.red
 			]) , startPoint: .top, endPoint: .bottom)))
 			.cornerRadius(20)
