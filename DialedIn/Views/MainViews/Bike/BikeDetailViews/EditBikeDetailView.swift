@@ -41,7 +41,7 @@ struct EditBikeDetailView: View {
 	
 	//TODO: figure out how to only allow 1 default bike
 	var body: some View {
-		NavigationView {
+//		NavigationView {
 			VStack {
 				Form {
 					Section(header: Text("Bike Details")){
@@ -121,9 +121,10 @@ struct EditBikeDetailView: View {
 						}
 					}
 					
-				} .navigationBarTitle("Edit Bike Info", displayMode: .inline)
+//				}
+//				.navigationBarTitle("Edit Bike Info")
 
-					.animation(.spring())
+//					.animation(.spring())
 				
 				
 				Button(action: {

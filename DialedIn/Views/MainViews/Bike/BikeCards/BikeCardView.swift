@@ -13,7 +13,7 @@ struct BikeCardView: View {
 	@Environment(\.managedObjectContext) var moc
 	
 	@State private var isAnimating: Bool = false
-	@State var buttonText = "View"
+	@State var buttonText = "Tap to Flip"
 	@State var symbolImage = "trash"
 	@State var showingDeleteAlert = false
 	 var deleteText = """

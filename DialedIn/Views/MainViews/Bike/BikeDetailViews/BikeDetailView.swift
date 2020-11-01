@@ -51,8 +51,6 @@ struct BikeDetailView: View {
 				.padding(.horizontal)
 			
 		}
-		.navigationBarTitle(self.bike.name ?? "Unknown Bike")
-
     }
 }
 

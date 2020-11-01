@@ -48,7 +48,7 @@ struct BikesView: View {
 			
 			.listStyle(InsetGroupedListStyle())
 			.padding(.vertical, 20)
-			.navigationBarTitle("Dialed In")
+			.navigationBarTitle("Dialed In - Bikes")
 			.navigationBarItems(trailing: Button(action: {self.showingAddScreen.toggle()
 			}) {
 				Image(systemName: "plus.circle").foregroundColor(Color("TextColor"))
