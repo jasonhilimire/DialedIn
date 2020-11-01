@@ -152,7 +152,7 @@ struct AddBikeView: View {
 						self.presentationMode.wrappedValue.dismiss()
 					}
                     }) {
-						SaveButtonView(saveText: $saveText)
+						SaveButtonView(buttonText: $saveText)
                         }.buttonStyle(OrangeButtonStyle())
                     Spacer()
             }

@@ -10,14 +10,14 @@ import SwiftUI
 
 // TODO: Change this to a buttonstyle
 struct SaveButtonView: View {
-	@Binding var saveText: String
+	@Binding var buttonText: String
    
 	
 	var body: some View {
          HStack {
                Image(systemName: "checkmark.circle")
-               Text("\(saveText)")
-				.fontWeight(.thin)
+               Text("\(buttonText)")
+				.fontWeight(.regular)
 			}
 			
     }
@@ -36,7 +36,7 @@ struct OrangeButtonStyle: ButtonStyle {
 			.foregroundColor(Color("TextColor"))
 			.padding().frame(maxWidth: 400)
 			.background(Color.orange)
-			.cornerRadius(8)
+			.cornerRadius(15)
 			.scaleEffect(configuration.isPressed ? 0.6 : 1.0)
 			.animation(.spring())
 	}

@@ -189,7 +189,7 @@ struct NotesDetailView: View {
 					self.updateNote(note: self.note)
 					try? self.moc.save()
 				}) {
-					SaveButtonView(saveText: $saveText)
+					SaveButtonView(buttonText: $saveText)
 				}.buttonStyle(OrangeButtonStyle())
 				.padding()
 			} // end form
