@@ -31,15 +31,17 @@ struct BikesView: View {
     var body: some View {
 		NavigationView {
 			ScrollView {
-				ForEach(bikes, id: \.self) { bike in
-					BikeCardFlipView(bike: bike)
-				} //: LOOP
-				// here is the listener for published context event
-				.onReceive(self.didChange) { _ in
-					self.refreshing.toggle()
+				if bikes.count == 0 {
+					NoBikes_FlipExampleView()
+				} else {
+					ForEach(bikes, id: \.self) { bike in
+						BikeCardFlipView(bike: bike)
+					} //: LOOP
+					// here is the listener for published context event
+					.onReceive(self.didChange) { _ in
+						self.refreshing.toggle()
+					}
 				}
-				
-				
 			} //: SCROLLVIEW
 			
 			.sheet(isPresented: $showingAddScreen)  {
