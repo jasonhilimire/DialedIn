@@ -9,6 +9,8 @@
 import SwiftUI
 
 struct OnBoardingView: View {
+	
+	@AppStorage("needsAppOnboarding") var needsAppOnboarding: Bool = true
 	@State var buttonText = "Let's Go!"
 	
 	
@@ -40,7 +42,7 @@ struct OnBoardingView: View {
 							.scaledToFit()
 							.frame(width: 55, height: 55)
 	//						.padding(.horizontal, 10)
-						Text("Create a bike & add your fork/shock setup info")
+						Text("Create a bike - add your fork & shock setup info")
 							.font(.title3)
 							.fontWeight(.semibold)
 							.foregroundColor(.white)
@@ -77,7 +79,8 @@ struct OnBoardingView: View {
 				Spacer()
 				HStack {
 					Button(action: {
-						//
+						// DISMISS ONBOARD VIEW
+						needsAppOnboarding = false
 						withAnimation(.linear(duration: 0.05), {
 							self.buttonText = "     SHRED ON!!     "
 						})
@@ -91,8 +94,6 @@ struct OnBoardingView: View {
 				
 			}
 			Spacer()
-			
-			
 			
 		}
 		.frame(minWidth: 0, idealWidth: .infinity, maxWidth: .infinity, minHeight: 0, idealHeight: .infinity, maxHeight: .infinity, alignment: .top)

@@ -19,6 +19,8 @@ struct AppView: View {
 //			.foregroundColor: UIColor.white,
 //			.font : UIFont(name:"Helvetica Neue", size: 40)!]
 //	}
+	
+	@AppStorage("needsAppOnboarding") private var needsAppOnboarding: Bool = true
         
     var body: some View {
         TabView {
@@ -40,15 +42,13 @@ struct AppView: View {
 					Image(systemName: "hare")
                     Text("Bikes")
                 }
-//			ServiceView()
-//				.tabItem {
-//					Image(systemName: "wrench")
-//					Text("Service")
-//			}
-			
         }
 		.animation(.default)
         .accentColor(Color("TextColor"))
+		// shows the OnBoarding View
+		.sheet(isPresented: $needsAppOnboarding){
+			OnBoardingView()
+		}
     }
 }
 
