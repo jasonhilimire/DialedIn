@@ -23,7 +23,10 @@ struct BikeDetailView: View {
 				VStack {
 
 					Text("Note: \(self.bike.bikeNote ?? "")" )
-						.font(.subheadline)
+						.font(.title3)
+						.customShadow()
+						.fixedSize(horizontal: false, vertical: true)
+						.padding(5)
 					VStack {
 						Section {
 							ForkLastServicedView(bikeName: $bikeName, bike: self.bike)

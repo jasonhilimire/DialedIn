@@ -27,7 +27,6 @@ struct HomeNoteView: View {
 				CreateBikeView() // Create a view here
 			}
 				LastNoteView()
-
 		}
 	}
 }

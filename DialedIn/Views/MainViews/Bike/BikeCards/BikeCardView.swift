@@ -23,7 +23,7 @@ struct BikeCardView: View {
 	@State var travel = 0.0
 	@State var strokeLength = 0.0
 
-	let bike: Bike
+	@ObservedObject var bike: Bike
 	
 // MARK: - BODY -
     var body: some View {

@@ -33,9 +33,10 @@ struct RearShockLastServicedView: View {
 					Text("\(self.bike.rearSetup?.info ?? "") - \(self.bike.rearSetup?.strokeLength ?? 0.0 , specifier: "%.2f")mm")
 						.font(.headline)
 						.fontWeight(.semibold)
-					
 				}
 				.padding(.horizontal)
+				.customShadow()
+				
 				if self.bike.rearSetup?.isCoil == false {
 					HStack {
 						Text("Last Air Can Service:")

@@ -34,6 +34,7 @@ struct ForkLastServicedView: View {
 	//				Text("\(self.bike.frontSetup?.info ?? "")")
 				}
 				.padding([.top, .leading, .trailing])
+				.customShadow()
 				
 				HStack(alignment: .center) {
 					Text("Lowers Last Serviced:")
