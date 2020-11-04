@@ -40,7 +40,6 @@ struct HomeTabView: View {
 						GeometryReader { innergeo in
 							HStack {
 								Button(action: {
-									print("Add Service Pressed")
 									self.showAddServiceScreen.toggle()
 								}) {
 									HStack {
