@@ -62,6 +62,5 @@ struct BikeDetailCardView: View {
 
 		}
 	}
-
 }
 

@@ -40,6 +40,7 @@ struct NoBikes_BikeCardExampleView: View {
 					.customTextShadow()
 					.scaleEffect(isAnimating ? 1.0 : 0.6)
 					.padding(.horizontal, 10)
+					.frame(width: 350, height: 350, alignment: .center)
 				
 				// BIKE: NAME
 				Text("Example Bike")

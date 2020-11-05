@@ -17,81 +17,14 @@ struct NoBikes_ServiceExampleView: View {
 			Text("Info: Please Create your first bike!" )
 				.font(.subheadline)
 				.fontWeight(.thin)
+			
 			VStack {
 				Section {
-					VStack(alignment: .leading) { // Fork Section
-						HStack {
-							Image("bicycle-fork")
-								.resizable()
-								.frame(width: 25, height: 25)
-								.scaledToFit()
-							Text("Sick Shock - 165mm")
-								.font(.headline)
-								.fontWeight(.semibold)
-							Spacer()
-							
-							//				Text("\(self.bike.frontSetup?.info ?? "")")
-						}
-						.padding([.top, .leading, .trailing])
-						.customShadow()
-						
-						HStack(alignment: .center) {
-							Text("Lowers Last Serviced:")
-								.fontWeight(.light)
-							Spacer()
-							Text( "\(Date(), formatter: dateFormatter)")
-								.fontWeight(.light)
-							
-						}
-						.padding(.horizontal)
-						.font(.footnote)
-						
-						HStack {
-							Text("Last Full Service:")
-								.fontWeight(.light)
-							Spacer()
-							Text("\(Date(), formatter: dateFormatter)")
-								.fontWeight(.light)
-						}
-						.padding(.horizontal)
-						.font(.footnote)
-					}
+					ForkServiceExampleView()
 				}
 				Divider()
 				Section{
-					VStack (alignment: .leading) { // Rear Section
-							HStack {
-								Image("shock-absorber")
-									.resizable()
-									.frame(width: 25, height: 25)
-									.scaledToFit()
-								Text("Boingy Bits, stroke - 52.5mm")
-									.font(.headline)
-									.fontWeight(.semibold)
-							}
-							.padding(.horizontal)
-							.customShadow()
-							
-								HStack {
-									Text("Last Air Can Service:")
-										.fontWeight(.light)
-									Spacer()
-									Text("\(Date(), formatter: dateFormatter)")
-										.fontWeight(.light)
-								}
-								.padding(.horizontal)
-								.font(.footnote)
-								
-								HStack {
-									Text("Last Full Service:")
-										.fontWeight(.light)
-									Spacer()
-									Text("\(Date(), formatter: dateFormatter)")
-										.fontWeight(.light)
-								}
-								.padding(.horizontal)
-								.font(.footnote)
-					}
+					RearServiceExampleView()
 				}
 			}
 		}
@@ -103,6 +36,86 @@ struct NoBikes_ServiceExampleView: View {
 			RoundedRectangle(cornerRadius: 20)
 				.stroke(Color.orange, lineWidth: 2))
 		.customShadow()
+	}
+}
+
+struct ForkServiceExampleView: View {
+	var body: some View {
+		VStack(alignment: .leading) { // Fork Section
+			HStack {
+				Image("bicycle-fork")
+					.resizable()
+					.frame(width: 25, height: 25)
+					.scaledToFit()
+				Text("Sick Shock - 165mm")
+					.font(.headline)
+					.fontWeight(.semibold)
+				Spacer()
+				
+				//				Text("\(self.bike.frontSetup?.info ?? "")")
+			}
+			.padding([.top, .leading, .trailing])
+			.customShadow()
+			
+			HStack(alignment: .center) {
+				Text("Lowers Last Serviced:")
+					.fontWeight(.light)
+				Spacer()
+				Text( "\(Date(), formatter: dateFormatter)")
+					.fontWeight(.light)
+				
+			}
+			.padding(.horizontal)
+			.font(.footnote)
+			
+			HStack {
+				Text("Last Full Service:")
+					.fontWeight(.light)
+				Spacer()
+				Text("\(Date(), formatter: dateFormatter)")
+					.fontWeight(.light)
+			}
+			.padding(.horizontal)
+			.font(.footnote)
+		}
+	}
+}
+
+struct RearServiceExampleView: View {
+	var body: some View {
+		VStack (alignment: .leading) { // Rear Section
+			HStack {
+				Image("shock-absorber")
+					.resizable()
+					.frame(width: 25, height: 25)
+					.scaledToFit()
+				Text("Boingy Bits, stroke: 52.5mm")
+					.font(.headline)
+					.fontWeight(.semibold)
+			}
+			.padding(.horizontal)
+			.customShadow()
+			
+			HStack {
+				Text("Last Air Can Service:")
+					.fontWeight(.light)
+				Spacer()
+				Text("\(Date(), formatter: dateFormatter)")
+					.fontWeight(.light)
+			}
+			.padding(.horizontal)
+			.font(.footnote)
+			
+			HStack {
+				Text("Last Full Service:")
+					.fontWeight(.light)
+				Spacer()
+				Text("\(Date(), formatter: dateFormatter)")
+					.fontWeight(.light)
+			}
+			.padding(.horizontal)
+			.font(.footnote)
+		}
 	}
 }
 

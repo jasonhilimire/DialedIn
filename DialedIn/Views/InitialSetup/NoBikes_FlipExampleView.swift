@@ -15,7 +15,7 @@ struct NoBikes_FlipExampleView: View {
 	
 	var body: some View {
 		let front = NoBikes_BikeCardExampleView()
-		let back = NoBikes_ServiceExampleView()
+		let back = NoBikes_BikeDetailCardExampleView()
 		
 		FlipView(front: front, back: back, showBack: $showBack)
 	}

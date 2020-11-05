@@ -20,27 +20,27 @@ struct BikeDetailView: View {
 	
     var body: some View {
 		VStack{
-				VStack {
+			VStack {
 
-					Text("Note: \(self.bike.bikeNote ?? "")" )
-						.font(.title3)
-						.customShadow()
-						.fixedSize(horizontal: false, vertical: true)
-						.padding(5)
-					VStack {
-						Section {
-							ForkLastServicedView(bikeName: $bikeName, bike: self.bike)
-						}
-						Divider()
-						Section{
-							if self.bike.hasRearShock == false {
-								Text("HardTail")
-							} else {
-								RearShockLastServicedView(bikeName: $bikeName, bike: self.bike)
-							}
+				Text("Note: \(self.bike.bikeNote ?? "")" )
+					.font(.title3)
+					.customShadow()
+					.fixedSize(horizontal: false, vertical: true)
+					.padding(5)
+				VStack {
+					Section {
+						ForkLastServicedView(bikeName: $bikeName, bike: self.bike)
+					}
+					Divider()
+					Section{
+						if self.bike.hasRearShock == false {
+							Text("HardTail")
+						} else {
+							RearShockLastServicedView(bikeName: $bikeName, bike: self.bike)
 						}
 					}
 				}
+			}
 			Spacer(minLength: 20)
 
 			Text("Last 5 Notes")
