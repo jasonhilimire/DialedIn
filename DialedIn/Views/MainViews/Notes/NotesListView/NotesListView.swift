@@ -63,7 +63,7 @@ struct NotesListView: View {
 					if bikes.count >= 1 {
 						Image(systemName: "gauge.badge.plus")
 							.foregroundColor(Color("TextColor"))
-							.font(.title)
+							.font(.system(size: 35))
 					}
 					
             })

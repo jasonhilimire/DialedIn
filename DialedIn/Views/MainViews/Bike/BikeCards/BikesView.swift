@@ -53,8 +53,12 @@ struct BikesView: View {
 			.navigationBarTitle("Dialed In - Bikes")
 			.navigationBarItems(trailing: Button(action: {self.showingAddScreen.toggle()
 			}) {
+				if bikes.count == 0 {
+					PulsatingPlusButtonView()
+				} else {
 				Image(systemName: "plus.circle").foregroundColor(Color("TextColor"))
-					.font(.largeTitle)
+					.font(.system(size: 35))
+				}
 			})
 		}
 	}
