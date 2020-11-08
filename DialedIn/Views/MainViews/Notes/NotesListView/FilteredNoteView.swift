@@ -34,3 +34,18 @@ struct FilteredNoteView: View {
 			}
 		}
 }
+
+/*
+// Correctly works to sort headers by bikeName but losse ability to show favorites etc - need to somehow filter Bikes with Filtered Notes?
+ForEach(bikes, id: \.self) { bike in
+Section(header: Text(bike.wrappedBikeName)) {
+ForEach(bike.notesArray, id: \.self) { note in
+NavigationLink(destination: NotesDetailView(note: note)){
+NotesStyleCardView(note: note)
+}
+}
+}
+}
+}
+
+*/

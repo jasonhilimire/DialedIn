@@ -36,6 +36,7 @@ struct NotesHomeStyledCardView: View {
 					}
 				}
 				Spacer()
+				.customShadow()
 				
 				VStack(alignment: .leading) {
 					HStack {
@@ -72,6 +73,7 @@ struct NotesHomeStyledCardView: View {
 					}
 					// TODO: the width shouldnt be fixed, but if you have 5 characters its being truncated
 					.frame(width: 110, alignment: .leading)
+					.customShadow()
 					
 					Spacer()
 					VStack(alignment: .leading) {

@@ -22,6 +22,7 @@ struct NoBikes_NoteExampleView: View {
 					Text("\(Date(), formatter: dateFormatter)")
 					
 				}
+				.customShadow()
 				Spacer()
 				
 				VStack(alignment: .leading) {
@@ -57,6 +58,7 @@ struct NoBikes_NoteExampleView: View {
 					}
 					// TODO: the width shouldnt be fixed, but if you have 5 characters its being truncated
 					.frame(width: 110, alignment: .leading)
+					.customShadow()
 					
 					Spacer()
 					VStack(alignment: .leading) {
