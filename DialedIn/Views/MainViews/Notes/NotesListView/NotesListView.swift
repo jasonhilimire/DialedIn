@@ -45,9 +45,11 @@ struct NotesListView: View {
 				
 				ScrollView {
 					if pickerChoiceIndex == 0 {
-						FilteredNoteView(filter: false).padding(.horizontal)
+						FilteredNoteView(filter: false)
+							.padding(.horizontal)
 					} else if pickerChoiceIndex == 1 {
-						FilteredNoteView(filter: true).padding(.horizontal)
+						FilteredNoteView(filter: true)
+							.padding(.horizontal)
 					}
 				}
 			}

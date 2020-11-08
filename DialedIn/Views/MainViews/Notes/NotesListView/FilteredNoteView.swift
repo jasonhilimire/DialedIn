@@ -17,35 +17,49 @@ import CoreData
 struct FilteredNoteView: View {
 	@Environment(\.managedObjectContext) var moc
 	
-	var fetchRequest: FetchRequest<Notes>
+//	var fetchRequest: FetchRequest<Notes>
+//
+//	init(filter: Bool?){
+//		let request: NSFetchRequest<Notes> = Notes.favoritedNotesFetchRequest(filter: filter ?? false)
+//		fetchRequest = FetchRequest<Notes>(fetchRequest: request)
+//	}
 	
-	init(filter: Bool?){
-		let request: NSFetchRequest<Notes> = Notes.favoritedNotesFetchRequest(filter: filter ?? false)
-		fetchRequest = FetchRequest<Notes>(fetchRequest: request)
-	}
+	@State var filter: Bool
+	
+	// create a Fetch request for Bike
+	@FetchRequest(entity: Bike.entity(), sortDescriptors: [
+		NSSortDescriptor(keyPath: \Bike.name, ascending: true)
+	]) var bikes: FetchedResults<Bike>
 	
 
 	
     var body: some View {
-		ForEach(fetchRequest.wrappedValue, id: \.self) { note in
-				NavigationLink(destination: NotesDetailView(note: note)){
-					NotesStyleCardView(note: note)
+//		ForEach(fetchRequest.wrappedValue, id: \.self) { note in
+//				NavigationLink(destination: NotesDetailView(note: note)){
+//					NotesStyleCardView(note: note)
+//				}
+//			}
+		
+		ForEach(bikes, id: \.self) { bike in
+			Section(header: Text(bike.wrappedBikeName)) {
+				let array = bike.notesArray
+				let filtered = array.filter { $0.isFavorite } // this works but will show bike names that dont have favorites
+				if filter == true {
+				ForEach(filtered, id: \.self) { note in
+					NavigationLink(destination: NotesDetailView(note: note)){
+						NotesStyleCardView(note: note)
+						}
+					}
+				} else {
+					ForEach(array, id: \.self) { note in
+						NavigationLink(destination: NotesDetailView(note: note)){
+							NotesStyleCardView(note: note)
+						}
+					}
 				}
 			}
 		}
+	}
 }
 
-/*
-// Correctly works to sort headers by bikeName but losse ability to show favorites etc - need to somehow filter Bikes with Filtered Notes?
-ForEach(bikes, id: \.self) { bike in
-Section(header: Text(bike.wrappedBikeName)) {
-ForEach(bike.notesArray, id: \.self) { note in
-NavigationLink(destination: NotesDetailView(note: note)){
-NotesStyleCardView(note: note)
-}
-}
-}
-}
-}
 
-*/
