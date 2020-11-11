@@ -34,37 +34,21 @@ struct FilteredNoteView: View {
 	
 	func filterFavorites() -> [Bike] {
 		// this filters to only show bikes if they have a favorite prevents showing a section header when there is no favorite for that bike
-		// TODO: Now utilize the search text to filter or be used in a fetch request
 		let filteredBikes = try! moc.fetch(Bike.bikesFetchRequest())
-		let foundBikes = filteredBikes.filter {$0.notesArray.contains {$0.isFavorite}}
+		let foundBikes = filter ? filteredBikes.filter {$0.notesArray.contains {$0.isFavorite}} : filteredBikes
 		return foundBikes
 	}
 	
     var body: some View {
-		if filter == true {
-			// TODO: refactor this down to 1 
-			ForEach(filterFavorites(), id: \.self) { bike in
-				// this filters down to show notes that are favorited
+		ForEach(filterFavorites(), id: \.self) { bike in
+			// this filters down to show notes that are favorited if true and then filters again on search text
 				let array = bike.notesArray
-				let filtered = array.filter { $0.isFavorite }
+				let filtered = filter ? array.filter { $0.isFavorite } : array
 				let searched = filtered.filter({ searchText.isEmpty ? true : $0.wrappedNote.lowercased().contains(searchText.lowercased()) })
-				Section(header: Text(bike.wrappedBikeName)) {
-					ForEach(searched, id: \.self) { note in
-						NavigationLink(destination: NotesDetailView(note: note)){
-							NotesStyleCardView(note: note)
-						}
-					}
-				}
-			}
-		} else {
-			ForEach(bikes, id: \.self) { bike in
-				let array = bike.notesArray
-				let searched = array.filter({ searchText.isEmpty ? true : $0.wrappedNote.lowercased().contains(searchText.lowercased()) })
-				Section(header: Text(bike.wrappedBikeName)) {
-					ForEach(searched, id: \.self) { note in
-						NavigationLink(destination: NotesDetailView(note: note)){
-							NotesStyleCardView(note: note)
-						}
+			Section(header: Text(bike.wrappedBikeName)) {
+				ForEach(searched, id: \.self) { note in
+					NavigationLink(destination: NotesDetailView(note: note)){
+						NotesStyleCardView(note: note)
 					}
 				}
 			}
