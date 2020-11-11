@@ -31,27 +31,31 @@ struct FilteredNoteView: View {
 		NSSortDescriptor(keyPath: \Bike.name, ascending: true)
 	]) var bikes: FetchedResults<Bike>
 	
-
+	func filterFavorites() -> [Bike] {
+		let filteredBikes = try! moc.fetch(Bike.bikesFetchRequest())
+		let foundBikes = filteredBikes.filter {$0.notesArray.contains {$0.isFavorite}}
+		return foundBikes
+	}
+	
 	
     var body: some View {
-//		ForEach(fetchRequest.wrappedValue, id: \.self) { note in
-//				NavigationLink(destination: NotesDetailView(note: note)){
-//					NotesStyleCardView(note: note)
-//				}
-//			}
-		
-		ForEach(bikes, id: \.self) { bike in
-			Section(header: Text(bike.wrappedBikeName)) {
+		if filter == true {
+			// TODO: Filters correctly! but if you make a change and are still on favorites view it doesnt remove it- minor bug till you change the view
+			ForEach(filterFavorites(), id: \.self) { bike in
 				let array = bike.notesArray
-				let filtered = array.filter { $0.isFavorite } // this works but will show bike names that dont have favorites
-				if filter == true {
-				ForEach(filtered, id: \.self) { note in
-					NavigationLink(destination: NotesDetailView(note: note)){
-						NotesStyleCardView(note: note)
+				let filtered = array.filter { $0.isFavorite }
+				Section(header: Text(bike.wrappedBikeName)) {
+					ForEach(filtered, id: \.self) { note in
+						NavigationLink(destination: NotesDetailView(note: note)){
+							NotesStyleCardView(note: note)
 						}
 					}
-				} else {
-					ForEach(array, id: \.self) { note in
+				}
+			}
+		} else {
+			ForEach(bikes, id: \.self) { bike in
+				Section(header: Text(bike.wrappedBikeName)) {
+					ForEach(bike.notesArray, id: \.self) { note in
 						NavigationLink(destination: NotesDetailView(note: note)){
 							NotesStyleCardView(note: note)
 						}
