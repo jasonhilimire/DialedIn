@@ -40,24 +40,16 @@ struct FilteredNoteView: View {
 		return foundBikes
 	}
 	
-	func filterSearchText(for search: String) -> [Bike] {
-		// kinda working but perhaps use actual fetch so can get fuzzy matching?
-		// TODO: Filters correctly! but if you make a change and are still on favorites view it doesnt remove it- minor bug till you change the view
-		let filtered = filterFavorites()
-		let searched = filtered.filter({ searchText.isEmpty ? true : $0.wrappedBikeName.contains(searchText) })
-		return searched
-	}
-	
-	
     var body: some View {
 		if filter == true {
-			// TODO: refactor this so filterFavorites takes the bool for isFavorite and no need for else statement ??? ??? not sure though as may only show false
+			// TODO: refactor this down to 1 
 			ForEach(filterFavorites(), id: \.self) { bike in
 				// this filters down to show notes that are favorited
 				let array = bike.notesArray
 				let filtered = array.filter { $0.isFavorite }
+				let searched = filtered.filter({ searchText.isEmpty ? true : $0.wrappedNote.lowercased().contains(searchText.lowercased()) })
 				Section(header: Text(bike.wrappedBikeName)) {
-					ForEach(filtered, id: \.self) { note in
+					ForEach(searched, id: \.self) { note in
 						NavigationLink(destination: NotesDetailView(note: note)){
 							NotesStyleCardView(note: note)
 						}
@@ -66,8 +58,10 @@ struct FilteredNoteView: View {
 			}
 		} else {
 			ForEach(bikes, id: \.self) { bike in
+				let array = bike.notesArray
+				let searched = array.filter({ searchText.isEmpty ? true : $0.wrappedNote.lowercased().contains(searchText.lowercased()) })
 				Section(header: Text(bike.wrappedBikeName)) {
-					ForEach(bike.notesArray, id: \.self) { note in
+					ForEach(searched, id: \.self) { note in
 						NavigationLink(destination: NotesDetailView(note: note)){
 							NotesStyleCardView(note: note)
 						}
