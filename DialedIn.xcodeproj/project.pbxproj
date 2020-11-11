@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A3072F4625490D9E00C8F385 /* BikeDetailCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3072F4525490D9E00C8F385 /* BikeDetailCardView.swift */; };
+		A3077DEB255B8DAD00981486 /* SearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3077DEA255B8DAD00981486 /* SearchBarView.swift */; };
 		A30D9668253549840094CE90 /* NotesHomeStyledCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30D9667253549840094CE90 /* NotesHomeStyledCardView.swift */; };
 		A313D5F2255396030073FE33 /* NoBikes_BikeDetailCardExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A313D5F1255396030073FE33 /* NoBikes_BikeDetailCardExampleView.swift */; };
 		A313D5F725539B240073FE33 /* PulsatingPlusButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A313D5F625539B240073FE33 /* PulsatingPlusButtonView.swift */; };
@@ -101,6 +102,7 @@
 
 /* Begin PBXFileReference section */
 		A3072F4525490D9E00C8F385 /* BikeDetailCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeDetailCardView.swift; sourceTree = "<group>"; };
+		A3077DEA255B8DAD00981486 /* SearchBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarView.swift; sourceTree = "<group>"; };
 		A30D9667253549840094CE90 /* NotesHomeStyledCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesHomeStyledCardView.swift; sourceTree = "<group>"; };
 		A313D5F1255396030073FE33 /* NoBikes_BikeDetailCardExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoBikes_BikeDetailCardExampleView.swift; sourceTree = "<group>"; };
 		A313D5F625539B240073FE33 /* PulsatingPlusButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PulsatingPlusButtonView.swift; sourceTree = "<group>"; };
@@ -293,6 +295,7 @@
 				A37B1EBF252C0D8500147F94 /* GradientButtonStyle.swift */,
 				A39E45F4252436AC004142CE /* CircularButtonView.swift */,
 				A313D5F625539B240073FE33 /* PulsatingPlusButtonView.swift */,
+				A3077DEA255B8DAD00981486 /* SearchBarView.swift */,
 			);
 			path = SingleViews;
 			sourceTree = "<group>";
@@ -657,6 +660,7 @@
 				A393F9CE252ACBC800F39E04 /* LastNoteView.swift in Sources */,
 				A393F9C9252ACB1B00F39E04 /* HomeNoteView.swift in Sources */,
 				A3FBA8BC240342E7001F3885 /* ForkLastServicedView.swift in Sources */,
+				A3077DEB255B8DAD00981486 /* SearchBarView.swift in Sources */,
 				A3072F4625490D9E00C8F385 /* BikeDetailCardView.swift in Sources */,
 				A3C7A1D72401F87D00A741A8 /* AddNoteFrontSetupView.swift in Sources */,
 				A3D5181B24268E55007DEE9D /* Fork+CoreDataProperties.swift in Sources */,
