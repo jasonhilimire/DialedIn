@@ -24,6 +24,33 @@ struct HomeTabView: View {
 	
 	@State var showAddNoteScreen = false
 	@State var showAddServiceScreen = false
+	@State var activeSheet: ActiveSheet?
+	
+	
+	var trailingBarItems: some View {
+		Menu {
+			Button(action: { activeSheet = .addNote}) {
+				Label("Add New Note", systemImage: "gauge.badge.plus")
+			}
+			Button(action: {activeSheet = .addService }) {
+				Label("Add New Service", systemImage: "wrench")
+			}
+			Button(action: {activeSheet = .addBike }) {
+				Label("Add New Bike", systemImage: "hare")
+			}
+		} label: {
+			Image(systemName: "plus.circle")
+				.font(.system(size: 35))
+		}
+	}
+	
+	enum ActiveSheet: Identifiable {
+		case addNote, addService, addBike
+		
+		var id: Int {
+			hashValue
+		}
+	}
 	
 
 	// MARK: - BODY -
@@ -34,34 +61,47 @@ struct HomeTabView: View {
 					if bikes.count == 0 && notes.count == 0 {
 						NoBikes_HomeScreenExampleView()
 					} else if notes.count == 0 {
+						
 						VStack{
+
 							NoBikes_NoteExampleView()
-								.frame(height: geo.size.height / 2.5 )
-							HomeTabButtonsView(showAddServiceScreen: $showAddServiceScreen, showAddNoteScreen: $showAddNoteScreen)
-								.padding(.top, 40)
+								.frame(height: geo.size.height / 2 )
+//							HomeTabButtonsView(showAddServiceScreen: $showAddServiceScreen, showAddNoteScreen: $showAddNoteScreen)
+//								.padding(.top, 40)
 							HomeServiceView()
-								.frame(width: .infinity, height: geo.size.height / 2.5 )
+								.frame(width: .infinity, height: geo.size.height / 2 )
 						}
 						.padding()
 						.navigationBarTitle("Dialed In")
 					} else {
 						VStack{
 							LastNoteView() // if notes break and not updating was using HomeNoteViewHere() and note the above check for bikes
-									.frame(height: geo.size.height / 2.5 )
-							HomeTabButtonsView(showAddServiceScreen: $showAddServiceScreen, showAddNoteScreen: $showAddNoteScreen)
-	//							.frame(width: .infinity, height: geo.size.height / 9 )
-								.padding(.top, 40)
+									.frame(height: geo.size.height / 2 )
+//							HomeTabButtonsView(showAddServiceScreen: $showAddServiceScreen, showAddNoteScreen: $showAddNoteScreen)
+//								.padding(.top, 40)
 							HomeServiceView()
-								.frame(width: .infinity, height: geo.size.height / 2.5 )
+								.frame(width: .infinity, height: geo.size.height / 2 )
 						}
 						.padding()
 						.navigationBarTitle("Dialed In")
+						.navigationBarItems(trailing: trailingBarItems)
 					}
 				}//: END Main ZSTACK
 			}
 		}
 		.navigationViewStyle(StackNavigationViewStyle())
+		.sheet(item: $activeSheet) { item in
+			switch item {
+				case .addNote:
+					AddNoteView()
+				case .addService:
+					ServiceView()
+				case .addBike:
+					AddBikeView()
+			}
+		}
     }
+	
 }
 
 struct HomeTabButtonsView: View {
