@@ -33,6 +33,7 @@ struct FilteredNoteView: View {
 	]) var bikes: FetchedResults<Bike>
 	
 	func filterFavorites() -> [Bike] {
+		// this filters to only show bikes if they have a favorite prevents showing a section header when there is no favorite for that bike
 		// TODO: Now utilize the search text to filter or be used in a fetch request
 		let filteredBikes = try! moc.fetch(Bike.bikesFetchRequest())
 		let foundBikes = filteredBikes.filter {$0.notesArray.contains {$0.isFavorite}}
@@ -41,6 +42,7 @@ struct FilteredNoteView: View {
 	
 	func filterSearchText(for search: String) -> [Bike] {
 		// kinda working but perhaps use actual fetch so can get fuzzy matching?
+		// TODO: Filters correctly! but if you make a change and are still on favorites view it doesnt remove it- minor bug till you change the view
 		let filtered = filterFavorites()
 		let searched = filtered.filter({ searchText.isEmpty ? true : $0.wrappedBikeName.contains(searchText) })
 		return searched
@@ -49,10 +51,9 @@ struct FilteredNoteView: View {
 	
     var body: some View {
 		if filter == true {
-			// TODO: Filters correctly! but if you make a change and are still on favorites view it doesnt remove it- minor bug till you change the view
-			
 			// TODO: refactor this so filterFavorites takes the bool for isFavorite and no need for else statement ??? ??? not sure though as may only show false
-			ForEach(filterSearchText(for: searchText), id: \.self) { bike in
+			ForEach(filterFavorites(), id: \.self) { bike in
+				// this filters down to show notes that are favorited
 				let array = bike.notesArray
 				let filtered = array.filter { $0.isFavorite }
 				Section(header: Text(bike.wrappedBikeName)) {
