@@ -48,19 +48,14 @@ struct NotesListView: View {
 					}.pickerStyle(SegmentedPickerStyle())
 					.padding([.leading, .trailing])
 					.padding(.bottom, 5)
-					
-				}
-
-				List(bikes.filter({ searchText.isEmpty ? true : $0.bik  contains(searchText) })) { item in
-					Text(item.name)
 				}
 				
 				ScrollView {
 					if pickerChoiceIndex == 0 {
-						FilteredNoteView(filter: false)
+						FilteredNoteView(filter: false, searchText: $searchText)
 							.padding(.horizontal)
 					} else if pickerChoiceIndex == 1 {
-						FilteredNoteView(filter: true)
+						FilteredNoteView(filter: true, searchText: $searchText)
 							.padding(.horizontal)
 					}
 				}
