@@ -66,8 +66,7 @@ struct HomeTabView: View {
 
 							NoBikes_NoteExampleView()
 								.frame(height: geo.size.height / 2 )
-//							HomeTabButtonsView(showAddServiceScreen: $showAddServiceScreen, showAddNoteScreen: $showAddNoteScreen)
-//								.padding(.top, 40)
+
 							HomeServiceView()
 								.frame(width: .infinity, height: geo.size.height / 2 )
 						}
@@ -77,8 +76,7 @@ struct HomeTabView: View {
 						VStack{
 							LastNoteView() // if notes break and not updating was using HomeNoteViewHere() and note the above check for bikes
 									.frame(height: geo.size.height / 2 )
-//							HomeTabButtonsView(showAddServiceScreen: $showAddServiceScreen, showAddNoteScreen: $showAddNoteScreen)
-//								.padding(.top, 40)
+							// NEW VIEW HERE?  Total note count or last service info??
 							HomeServiceView()
 								.frame(width: .infinity, height: geo.size.height / 2 )
 						}
@@ -104,49 +102,6 @@ struct HomeTabView: View {
 	
 }
 
-struct HomeTabButtonsView: View {
-	// MARK: - PROPERTIES -
-	// Create the MOC
-	@Environment(\.managedObjectContext) var moc
-	@Binding var showAddServiceScreen: Bool
-	@Binding var showAddNoteScreen: Bool
-	
-	var body: some View {
-		GeometryReader { innergeo in
-			HStack {
-				Button(action: {
-					self.showAddServiceScreen.toggle()
-				}) {
-					HStack {
-						Image(systemName: "wrench")
-						Text("Add Service")
-					}
-					.sheet(isPresented: $showAddServiceScreen)  {
-						ServiceView().environment(\.managedObjectContext, self.moc)
-					}
-				}.buttonStyle(GradientButtonStyle())
-				.frame(width: innergeo.size.width / 2, height: 15)
-				
-				Spacer()
-				Button(action: {
-					print("Add Note Pressed")
-					self.showAddNoteScreen.toggle()
-					
-				}) {
-					HStack {
-						Image(systemName: "gauge.badge.plus")
-						Text("Add Note")
-					}
-					.sheet(isPresented: $showAddNoteScreen)  {
-						AddNoteView().environment(\.managedObjectContext, self.moc)
-					}
-				}.buttonStyle(GradientButtonStyle())
-				.frame(width: innergeo.size.width / 2, height: 15)
-				
-			} //: END HSTACK
-		}
-	}
-}
 
 struct HomeTabView_Previews: PreviewProvider {
     static var previews: some View {
