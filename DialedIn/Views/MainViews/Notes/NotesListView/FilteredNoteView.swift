@@ -17,21 +17,9 @@ import CoreData
 struct FilteredNoteView: View {
 	@Environment(\.managedObjectContext) var moc
 	
-//	var fetchRequest: FetchRequest<Notes>
-//
-//	init(filter: Bool?){
-//		let request: NSFetchRequest<Notes> = Notes.favoritedNotesFetchRequest(filter: filter ?? false)
-//		fetchRequest = FetchRequest<Notes>(fetchRequest: request)
-//	}
-	
 	@State var filter: Bool
 	@Binding var searchText : String
-	
-	// create a Fetch request for Bike
-	@FetchRequest(entity: Bike.entity(), sortDescriptors: [
-		NSSortDescriptor(keyPath: \Bike.name, ascending: true)
-	]) var bikes: FetchedResults<Bike>
-	
+
 	func filterFavorites() -> [Bike] {
 		// this filters to only show bikes if they have a favorite prevents showing a section header when there is no favorite for that bike
 		let filteredBikes = try! moc.fetch(Bike.bikesFetchRequest())
@@ -39,12 +27,19 @@ struct FilteredNoteView: View {
 		return foundBikes
 	}
 	
+//	func filterNotes(filter: Bool, search : String) -> [Notes] {
+//		let fetchRequest =  try! moc.fetch(Notes.favoritedNotesFetchRequest(filter: filter))
+//		let searched = fetchRequest.contains
+//		return searched
+//	}
+	
     var body: some View {
 		ForEach(filterFavorites(), id: \.self) { bike in
 			// this filters down to show notes that are favorited if true and then filters again on search text
 				let array = bike.notesArray
 				let filtered = filter ? array.filter { $0.isFavorite } : array
 				let searched = filtered.filter({ searchText.isEmpty ? true : $0.wrappedNote.lowercased().contains(searchText.lowercased()) })
+			// TODO: Add ability for filter for wrappedBikeName, wrappedBikeNote
 			Section(header: Text(bike.wrappedBikeName)) {
 				ForEach(searched, id: \.self) { note in
 					NavigationLink(destination: NotesDetailView(note: note)){
