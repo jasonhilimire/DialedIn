@@ -228,3 +228,19 @@ extension View {
 		return self.modifier(CardShadowModifier())
 	}
 }
+
+
+
+extension Calendar {
+	func numberOfDaysBetween(from: Date, and to: Date) -> Int {
+		let fromDate = startOfDay(for: from) // <1>
+		let toDate = startOfDay(for: to) // <2>
+		let numberOfDays = dateComponents([.day], from: fromDate, to: toDate) // <3>
+		
+		return numberOfDays.day!
+	}
+}
+
+func daysBetween(start: Date, end: Date) -> Int {
+	return Calendar.current.dateComponents([.day], from: start, to: end).day!
+}

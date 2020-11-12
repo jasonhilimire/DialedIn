@@ -14,6 +14,8 @@ struct RearShockLastServicedView: View {
     
 	@ObservedObject var rearService = RearServiceModel()
 	@Binding var bikeName: String
+	@State var elapsedAirService = 0
+	@State var elapsedFullService = 0
 	
 	let bike: Bike
 	
@@ -44,6 +46,9 @@ struct RearShockLastServicedView: View {
 						Spacer()
 						Text("\(self.rearService.getAirCanDate(bike: self.bikeName), formatter: dateFormatter)")
 						.fontWeight(.light)
+						Text("(\(elapsedAirService))")
+							.fontWeight(.light)
+							.foregroundColor(Color.red)
 					}
 					.padding(.horizontal)
 					.font(.footnote)
@@ -54,6 +59,9 @@ struct RearShockLastServicedView: View {
 						Spacer()
 						Text("\(self.rearService.getFullDate(bike: self.bikeName), formatter: dateFormatter)")
 						.fontWeight(.light)
+						Text("(\(elapsedFullService))")
+							.fontWeight(.light)
+							.foregroundColor(Color.red)
 					}
 					.padding(.horizontal)
 					.font(.footnote)
@@ -72,6 +80,9 @@ struct RearShockLastServicedView: View {
 						Spacer()
 						Text("\(self.rearService.getFullDate(bike: self.bikeName), formatter: dateFormatter)")
 						.fontWeight(.light)
+						Text("(\(elapsedFullService))")
+							.fontWeight(.light)
+							.foregroundColor(Color.red)
 					}
 					.padding(.horizontal)
 					.font(.footnote)
@@ -93,7 +104,10 @@ struct RearShockLastServicedView: View {
 		rearService.bikeName = bikeName
 		rearService.getLastServicedDates()
 		
-		
+		elapsedAirService = daysBetween(start: self.rearService.lastAirServ, end: Date())
+		elapsedFullService = daysBetween(start: self.rearService.lastFullServ, end: Date())
+
+		print("Days since last rear air service \(elapsedAirService)")
 		print("Full service \(self.rearService.lastFullServ)")
 	}
 }
