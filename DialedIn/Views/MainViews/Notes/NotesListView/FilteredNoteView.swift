@@ -25,6 +25,7 @@ struct FilteredNoteView: View {
 //	}
 	
 	@State var filter: Bool
+	@Binding var searchText : String
 	
 	// create a Fetch request for Bike
 	@FetchRequest(entity: Bike.entity(), sortDescriptors: [
@@ -32,33 +33,22 @@ struct FilteredNoteView: View {
 	]) var bikes: FetchedResults<Bike>
 	
 	func filterFavorites() -> [Bike] {
+		// this filters to only show bikes if they have a favorite prevents showing a section header when there is no favorite for that bike
 		let filteredBikes = try! moc.fetch(Bike.bikesFetchRequest())
-		let foundBikes = filteredBikes.filter {$0.notesArray.contains {$0.isFavorite}}
+		let foundBikes = filter ? filteredBikes.filter {$0.notesArray.contains {$0.isFavorite}} : filteredBikes
 		return foundBikes
 	}
 	
-	
     var body: some View {
-		if filter == true {
-			// TODO: Filters correctly! but if you make a change and are still on favorites view it doesnt remove it- minor bug till you change the view
-			ForEach(filterFavorites(), id: \.self) { bike in
+		ForEach(filterFavorites(), id: \.self) { bike in
+			// this filters down to show notes that are favorited if true and then filters again on search text
 				let array = bike.notesArray
-				let filtered = array.filter { $0.isFavorite }
-				Section(header: Text(bike.wrappedBikeName)) {
-					ForEach(filtered, id: \.self) { note in
-						NavigationLink(destination: NotesDetailView(note: note)){
-							NotesStyleCardView(note: note)
-						}
-					}
-				}
-			}
-		} else {
-			ForEach(bikes, id: \.self) { bike in
-				Section(header: Text(bike.wrappedBikeName)) {
-					ForEach(bike.notesArray, id: \.self) { note in
-						NavigationLink(destination: NotesDetailView(note: note)){
-							NotesStyleCardView(note: note)
-						}
+				let filtered = filter ? array.filter { $0.isFavorite } : array
+				let searched = filtered.filter({ searchText.isEmpty ? true : $0.wrappedNote.lowercased().contains(searchText.lowercased()) })
+			Section(header: Text(bike.wrappedBikeName)) {
+				ForEach(searched, id: \.self) { note in
+					NavigationLink(destination: NotesDetailView(note: note)){
+						NotesStyleCardView(note: note)
 					}
 				}
 			}

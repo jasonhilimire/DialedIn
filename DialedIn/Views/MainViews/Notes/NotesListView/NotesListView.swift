@@ -25,30 +25,37 @@ struct NotesListView: View {
     @State private var showingAddScreen = false
 	@State private var showFavorites = false
 	@State private var pickerChoice = ["All", "Favorites"]
-	@State private var pickerChoiceIndex = 0	
+	@State private var pickerChoiceIndex = 0
+	@State private var searchText = ""
 	
     var body: some View {
 // MARK: - BODY -
 		NavigationView {
 			VStack {
-				Picker("Service Type", selection: $pickerChoiceIndex) {
-					ForEach(0..<pickerChoice.count) { index in
-						Text(self.pickerChoice[index]).tag(index)
-						}
-					}.pickerStyle(SegmentedPickerStyle())
+				VStack{
+					
+					if bikes.count == 0 {
+						CreateBikeView()
+					}
+					SearchBarView(text: $searchText)
 						.padding([.leading, .trailing])
 						.padding(.top, 5)
 					
-				if bikes.count == 0 {
-					CreateBikeView()
+					Picker("Service Type", selection: $pickerChoiceIndex) {
+						ForEach(0..<pickerChoice.count) { index in
+							Text(self.pickerChoice[index]).tag(index)
+						}
+					}.pickerStyle(SegmentedPickerStyle())
+					.padding([.leading, .trailing])
+					.padding(.bottom, 5)
 				}
 				
 				ScrollView {
 					if pickerChoiceIndex == 0 {
-						FilteredNoteView(filter: false)
+						FilteredNoteView(filter: false, searchText: $searchText)
 							.padding(.horizontal)
 					} else if pickerChoiceIndex == 1 {
-						FilteredNoteView(filter: true)
+						FilteredNoteView(filter: true, searchText: $searchText)
 							.padding(.horizontal)
 					}
 				}
