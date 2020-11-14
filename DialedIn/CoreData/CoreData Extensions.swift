@@ -47,13 +47,6 @@ extension Notes{
     }
 	
 	
-	static func searchNotesFetchRequest(searchText: String) -> NSFetchRequest<Notes> {
-		let request: NSFetchRequest<Notes> = Notes.fetchRequest()
-		request.sortDescriptors = [NSSortDescriptor(keyPath: \Notes.date, ascending: true)]
-		request.predicate = NSPredicate(format: "%K = %@", "bike.name", searchText)
-		return request
-	}
-	
 	// Fetch the last note regardless of bike
 	static func LastNoteFetchRequest() -> NSFetchRequest<Notes> {
 		let request: NSFetchRequest<Notes> = Notes.fetchRequest()
