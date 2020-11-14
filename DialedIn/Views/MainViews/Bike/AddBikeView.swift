@@ -57,7 +57,7 @@ struct AddBikeView: View {
                     
                     Section(header: Text("Fork Details")){
 						HStack{
-							Text("Fork Info:").fontWeight(.thin)
+							Text("Fork Name/Info:").fontWeight(.thin)
 							CustomTextField(text: $forkInfo, placeholder: "Add Fork Info")
 						}
 						
@@ -91,7 +91,7 @@ struct AddBikeView: View {
                             
                         } else if rearSetupIndex == 1 {
 							HStack {
-								Text("Rear Info:").fontWeight(.thin)
+								Text("Rear Name/Info:").fontWeight(.thin)
 								CustomTextField(text: $rearInfo, placeholder: "Add Rear Info")
 							}
 							
@@ -114,7 +114,7 @@ struct AddBikeView: View {
                             }
                         } else if rearSetupIndex == 2 {
 							HStack {
-								Text("Rear Info:").fontWeight(.thin)
+								Text("Rear Name/Info:").fontWeight(.thin)
 								CustomTextField(text: $rearInfo, placeholder: "Add Rear Info")
 							}
 							
