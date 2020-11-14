@@ -25,6 +25,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         // Apply the Merge policy for unique records
         context.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
+		
+		// Update UI in response to remote changes
+		context.automaticallyMergesChangesFromParent = true
         
         // Create the SwiftUI view and set the context as the value for the managedObjectContext environment keyPath.
         // Add `@Environment(\.managedObjectContext)` in the views that will need the context.

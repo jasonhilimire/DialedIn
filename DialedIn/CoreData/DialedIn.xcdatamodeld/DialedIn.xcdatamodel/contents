@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="16119" systemVersion="19F101" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17511" systemVersion="20B29" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Bike" representedClassName="Bike" syncable="YES">
         <attribute name="bikeNote" optional="YES" attributeType="String"/>
         <attribute name="hasRearShock" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
@@ -8,11 +8,6 @@
         <relationship name="frontSetup" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Fork" inverseName="bike" inverseEntity="Fork"/>
         <relationship name="rearSetup" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="RearShock" inverseName="bike" inverseEntity="RearShock"/>
         <relationship name="setupNotes" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Notes" inverseName="bike" inverseEntity="Notes"/>
-        <uniquenessConstraints>
-            <uniquenessConstraint>
-                <constraint value="name"/>
-            </uniquenessConstraint>
-        </uniquenessConstraints>
     </entity>
     <entity name="Fork" representedClassName="Fork" syncable="YES">
         <attribute name="dualCompression" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
@@ -71,7 +66,7 @@
         <relationship name="rearService" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="RearService" inverseName="service" inverseEntity="RearService"/>
     </entity>
     <elements>
-        <element name="Bike" positionX="-1295.51171875" positionY="-477.16015625" width="128" height="148"/>
+        <element name="Bike" positionX="-1295.51171875" positionY="-477.16015625" width="128" height="134"/>
         <element name="Fork" positionX="-680.84765625" positionY="-601.16796875" width="128" height="133"/>
         <element name="FrontService" positionX="-440.9609375" positionY="-596.84375" width="128" height="103"/>
         <element name="Notes" positionX="-908.890625" positionY="-180.9140625" width="117.93359375" height="418"/>
