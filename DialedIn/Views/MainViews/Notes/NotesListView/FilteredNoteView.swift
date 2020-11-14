@@ -27,21 +27,28 @@ struct FilteredNoteView: View {
 		return foundBikes
 	}
 	
-//	func filterNotes(filter: Bool, search : String) -> [Notes] {
-//		let fetchRequest =  try! moc.fetch(Notes.favoritedNotesFetchRequest(filter: filter))
-//		let searched = fetchRequest.contains
-//		return searched
-//	}
+	func filterNotes(array : [Notes]) -> [Notes] {
+		// list of attributes to be searched bike.name, bike.bikeNote, notes.note, // maybe RearShock.info, Fork.info
+		let predicate1 = NSPredicate(format: "bike.name contains [cd] %@", searchText)
+		let predicate2 = NSPredicate(format: "bike.bikeNote contains [cd] %@", searchText)
+		let predicate3 =  NSPredicate(format: "note contains [cd] %@", searchText)
+		let predicate4 = NSPredicate(format: "bike.frontSetup.info contains [cd] %@", searchText)
+		let predicate5 = NSPredicate(format: "bike.rearSetup.info contains [cd] %@", searchText)
+		
+		let compoundPredicate = NSCompoundPredicate(
+			orPredicateWithSubpredicates: [predicate1, predicate2, predicate3, predicate4, predicate5]
+		)
+		
+		let compoundPredicateResult = array.filter { searchText.isEmpty ? true : compoundPredicate.evaluate(with:$0) }
+		return compoundPredicateResult
+	}
 	
     var body: some View {
 		ForEach(filterFavorites(), id: \.self) { bike in
 			// this filters down to show notes that are favorited if true and then filters again on search text
 				let array = bike.notesArray
-				let filtered = filter ? array.filter { $0.isFavorite } : array
-				let searched = filtered.filter({ searchText.isEmpty ? true : $0.wrappedNote.lowercased().contains(searchText.lowercased()) })
-			// TODO: Add ability for filter for wrappedBikeName, wrappedBikeNote
 			Section(header: Text(bike.wrappedBikeName)) {
-				ForEach(searched, id: \.self) { note in
+				ForEach(filterNotes(array: array), id: \.self) { note in
 					NavigationLink(destination: NotesDetailView(note: note)){
 						NotesStyleCardView(note: note)
 					}
