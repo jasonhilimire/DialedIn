@@ -24,7 +24,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         
         // Apply the Merge policy for unique records
-        context.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
+//        context.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
 		
 		// Update UI in response to remote changes
 		context.automaticallyMergesChangesFromParent = true
