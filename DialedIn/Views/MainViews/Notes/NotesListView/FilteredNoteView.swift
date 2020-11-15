@@ -39,17 +39,21 @@ struct FilteredNoteView: View {
 		let predicate4 = NSPredicate(format: "bike.frontSetup.info contains [cd] %@", searchText)
 		let predicate5 = NSPredicate(format: "bike.rearSetup.info contains [cd] %@", searchText)
 		
+		// use compound predicate to search through all predicates
 		let compoundPredicate = NSCompoundPredicate(
 			orPredicateWithSubpredicates: [predicate1, predicate2, predicate3, predicate4, predicate5]
 		)
 		
-		let compoundPredicateResult = array.filter { searchText.isEmpty ? true : compoundPredicate.evaluate(with:$0) }
+		// filter the array basd on isFavorite - then the searchText
+		let filtered = filter ? array.filter { $0.isFavorite } : array
+		let compoundPredicateResult = filtered.filter { searchText.isEmpty ? true : compoundPredicate.evaluate(with:$0) }
 		return compoundPredicateResult
 	}
 	
+	
+	
     var body: some View {
 		ForEach(filterFavorites(), id: \.self) { bike in
-			// this filters down to show notes that are favorited if true and then filters again on search text
 				let array = bike.notesArray
 			Section(header: Text(bike.wrappedBikeName)) {
 				ForEach(filterNotes(array: array), id: \.self) { note in
