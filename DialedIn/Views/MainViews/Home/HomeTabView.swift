@@ -75,7 +75,7 @@ struct HomeTabView: View {
 					} else {
 						VStack{
 							LastNoteView() // if notes break and not updating was using HomeNoteViewHere() and note the above check for bikes
-									.frame(height: geo.size.height / 2 )
+								.frame(height: geo.size.height / 2.5 )
 							// NEW VIEW HERE?  Total note count or last service info??
 							HomeServiceView()
 								.frame(width: .infinity, height: geo.size.height / 2 )

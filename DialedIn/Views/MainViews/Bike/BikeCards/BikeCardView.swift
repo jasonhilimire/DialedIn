@@ -48,7 +48,7 @@ struct BikeCardView: View {
 						.scaledToFit()
 						.customTextShadow()
 						.scaleEffect(isAnimating ? 1.0 : 0.6)
-						.frame(width: 350, height: 350, alignment: .center)
+						.frame(width: 250, height: 250, alignment: .center)
 						.padding(.horizontal, 10)
 					
 					// BIKE: NAME
