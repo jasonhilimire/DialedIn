@@ -17,6 +17,10 @@ import CoreData
 struct FilteredNoteView: View {
 	@Environment(\.managedObjectContext) var moc
 	
+
+	@FetchRequest(fetchRequest: Bike.bikesFetchRequest())
+	var bikes: FetchedResults<Bike>
+	
 	@State var filter: Bool
 	@Binding var searchText : String
 
