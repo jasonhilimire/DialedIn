@@ -48,6 +48,7 @@ struct NotesListView: View {
 					}.pickerStyle(SegmentedPickerStyle())
 					.padding([.leading, .trailing])
 					.padding(.bottom, 5)
+					.customShadow()
 				}
 				
 				ScrollView {

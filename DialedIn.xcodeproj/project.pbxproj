@@ -15,7 +15,6 @@
 		A31605F02523B976009071E9 /* BikeCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A31605EF2523B976009071E9 /* BikeCardView.swift */; };
 		A31605FA2523BAA1009071E9 /* ArrowButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A31605F92523BAA1009071E9 /* ArrowButtonView.swift */; };
 		A31606022523BF3E009071E9 /* BikesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A31606012523BF3E009071E9 /* BikesView.swift */; };
-		A3250096246E2D7F00F5A96E /* SaveToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3250095246E2D7F00F5A96E /* SaveToastView.swift */; };
 		A326FAC723F3BC6E002490E2 /* CoreData Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A326FAC623F3BC6E002490E2 /* CoreData Extensions.swift */; };
 		A3273B7223EF8F6F007A3792 /* NoteFrontSetupModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3273B7123EF8F6F007A3792 /* NoteFrontSetupModel.swift */; };
 		A3273B7523EF998B007A3792 /* Notes+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3273B7323EF998B007A3792 /* Notes+CoreDataClass.swift */; };
@@ -28,8 +27,6 @@
 		A33C7F86254DF741002E6F47 /* BikeCardFlipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33C7F85254DF741002E6F47 /* BikeCardFlipView.swift */; };
 		A33C7FCA254F25AB002E6F47 /* OnBoardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33C7FC9254F25AB002E6F47 /* OnBoardingView.swift */; };
 		A33F02B124062A89005A0A8F /* FilteredNoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33F02B024062A89005A0A8F /* FilteredNoteView.swift */; };
-		A36C24C12437FED000B43121 /* ServicesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36C24C02437FED000B43121 /* ServicesListView.swift */; };
-		A37468C324455C2900EC867E /* BikeNotesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37468C224455C2900EC867E /* BikeNotesListView.swift */; };
 		A37B1EC0252C0D8500147F94 /* GradientButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37B1EBF252C0D8500147F94 /* GradientButtonStyle.swift */; };
 		A3850EB225292700008982D8 /* NotesStyleCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3850EB125292700008982D8 /* NotesStyleCardView.swift */; };
 		A38D56B225609ACF00E83041 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A38D56B125609ACF00E83041 /* CloudKit.framework */; };
@@ -110,7 +107,6 @@
 		A31605EF2523B976009071E9 /* BikeCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeCardView.swift; sourceTree = "<group>"; };
 		A31605F92523BAA1009071E9 /* ArrowButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrowButtonView.swift; sourceTree = "<group>"; };
 		A31606012523BF3E009071E9 /* BikesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikesView.swift; sourceTree = "<group>"; };
-		A3250095246E2D7F00F5A96E /* SaveToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveToastView.swift; sourceTree = "<group>"; };
 		A326FAC623F3BC6E002490E2 /* CoreData Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoreData Extensions.swift"; sourceTree = "<group>"; };
 		A3273B7123EF8F6F007A3792 /* NoteFrontSetupModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteFrontSetupModel.swift; sourceTree = "<group>"; };
 		A3273B7323EF998B007A3792 /* Notes+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notes+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -123,8 +119,6 @@
 		A33C7F85254DF741002E6F47 /* BikeCardFlipView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeCardFlipView.swift; sourceTree = "<group>"; };
 		A33C7FC9254F25AB002E6F47 /* OnBoardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingView.swift; sourceTree = "<group>"; };
 		A33F02B024062A89005A0A8F /* FilteredNoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilteredNoteView.swift; sourceTree = "<group>"; };
-		A36C24C02437FED000B43121 /* ServicesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesListView.swift; sourceTree = "<group>"; };
-		A37468C224455C2900EC867E /* BikeNotesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeNotesListView.swift; sourceTree = "<group>"; };
 		A37B1EBF252C0D8500147F94 /* GradientButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientButtonStyle.swift; sourceTree = "<group>"; };
 		A3850EB125292700008982D8 /* NotesStyleCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesStyleCardView.swift; sourceTree = "<group>"; };
 		A38D56AC25609ABF00E83041 /* Dialed In.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Dialed In.entitlements"; sourceTree = "<group>"; };
@@ -300,13 +294,8 @@
 		A3918AD323E3E76C002A1D61 /* SingleViews */ = {
 			isa = PBXGroup;
 			children = (
-				A3B99237241DDAF9007E9B7B /* Unused */,
-				A3918ACF23E3E446002A1D61 /* SaveButtonView.swift */,
+				A3ED8D582561A474009C66E7 /* Buttons */,
 				A3F8592D2511BFAA00278E7B /* CreateBikeView.swift */,
-				A31605F92523BAA1009071E9 /* ArrowButtonView.swift */,
-				A37B1EBF252C0D8500147F94 /* GradientButtonStyle.swift */,
-				A39E45F4252436AC004142CE /* CircularButtonView.swift */,
-				A313D5F625539B240073FE33 /* PulsatingPlusButtonView.swift */,
 				A3077DEA255B8DAD00981486 /* SearchBarView.swift */,
 			);
 			path = SingleViews;
@@ -330,19 +319,9 @@
 				A3850EB125292700008982D8 /* NotesStyleCardView.swift */,
 				A30D9667253549840094CE90 /* NotesHomeStyledCardView.swift */,
 				A33F02B024062A89005A0A8F /* FilteredNoteView.swift */,
-				A3250095246E2D7F00F5A96E /* SaveToastView.swift */,
 				A393F9CD252ACBC800F39E04 /* LastNoteView.swift */,
 			);
 			path = NotesListView;
-			sourceTree = "<group>";
-		};
-		A3B99237241DDAF9007E9B7B /* Unused */ = {
-			isa = PBXGroup;
-			children = (
-				A36C24C02437FED000B43121 /* ServicesListView.swift */,
-				A37468C224455C2900EC867E /* BikeNotesListView.swift */,
-			);
-			path = Unused;
 			sourceTree = "<group>";
 		};
 		A3C16E5B23DE9EC4005BFA14 = {
@@ -498,6 +477,18 @@
 			path = AddNoteViews;
 			sourceTree = "<group>";
 		};
+		A3ED8D582561A474009C66E7 /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				A3918ACF23E3E446002A1D61 /* SaveButtonView.swift */,
+				A31605F92523BAA1009071E9 /* ArrowButtonView.swift */,
+				A37B1EBF252C0D8500147F94 /* GradientButtonStyle.swift */,
+				A39E45F4252436AC004142CE /* CircularButtonView.swift */,
+				A313D5F625539B240073FE33 /* PulsatingPlusButtonView.swift */,
+			);
+			path = Buttons;
+			sourceTree = "<group>";
+		};
 		A3FBA8BE24034623001F3885 /* BikeDetailViews */ = {
 			isa = PBXGroup;
 			children = (
@@ -650,7 +641,6 @@
 				A3DDCC7A23DFEFEB00CD1476 /* Bike+CoreDataClass.swift in Sources */,
 				A3D5181624268DB6007DEE9D /* RearService+CoreDataClass.swift in Sources */,
 				A3C16E6823DE9EC4005BFA14 /* AppDelegate.swift in Sources */,
-				A3250096246E2D7F00F5A96E /* SaveToastView.swift in Sources */,
 				A3B8B79723F0E9EF00CE1EF8 /* BikePickerView.swift in Sources */,
 				A3D5181724268DB6007DEE9D /* RearService+CoreDataProperties.swift in Sources */,
 				A31605F02523B976009071E9 /* BikeCardView.swift in Sources */,
@@ -685,7 +675,6 @@
 				A313D5F2255396030073FE33 /* NoBikes_BikeDetailCardExampleView.swift in Sources */,
 				A32F65A8254F7621005827A7 /* NoBikes_HomeScreenExampleView.swift in Sources */,
 				A3D5181324268DB6007DEE9D /* FrontService+CoreDataProperties.swift in Sources */,
-				A37468C324455C2900EC867E /* BikeNotesListView.swift in Sources */,
 				A3A1297023FB9AC50014EC8A /* NoteRearSetupModel.swift in Sources */,
 				A33F02B124062A89005A0A8F /* FilteredNoteView.swift in Sources */,
 				A326FAC723F3BC6E002490E2 /* CoreData Extensions.swift in Sources */,
@@ -701,7 +690,6 @@
 				A39E45F5252436AC004142CE /* CircularButtonView.swift in Sources */,
 				A30D9668253549840094CE90 /* NotesHomeStyledCardView.swift in Sources */,
 				A3FBA8B324024024001F3885 /* AddNoteRearSetupView.swift in Sources */,
-				A36C24C12437FED000B43121 /* ServicesListView.swift in Sources */,
 				A313D5F725539B240073FE33 /* PulsatingPlusButtonView.swift in Sources */,
 				A3C16EBD23DEA582005BFA14 /* Fork+CoreDataClass.swift in Sources */,
 				A32F65BB254F76C9005827A7 /* NoBikes_ServiceExampleView.swift in Sources */,
