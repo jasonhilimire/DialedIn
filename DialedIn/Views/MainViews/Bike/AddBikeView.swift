@@ -138,7 +138,7 @@ struct AddBikeView: View {
 
                 } .navigationBarTitle("Bike Info", displayMode: .inline)
 				.alert(isPresented: $duplicateNameAlert) {
-					Alert(title: Text("Duplicate Name"), message: Text("Duplicate Bike Names are note allowed"), primaryButton: .destructive(Text("Delete")) {
+					Alert(title: Text("Duplicate Bike Name"), message: Text("Duplicate Bike Names are not allowed - please change"), primaryButton: .destructive(Text("Clear")) {
 						self.bikeName = ""
 					}, secondaryButton: .cancel()
 					)
@@ -148,16 +148,21 @@ struct AddBikeView: View {
 	
 
                 Button(action: {
-					self.saveNewBike()
-					print("Dual Comp: \(self.$forkDualCompToggle)")
-					print("Dual Reb: \(self.$forkDualReboundToggle)")
-					withAnimation(.linear(duration: 0.05), {
-						self.saveText = "     SAVED!!     "  // no idea why, but have to add spaces here other wise it builds the word slowly with SA...., annoying as all hell
-					})
-					try? self.moc.save()
-					hapticSuccess()
+					self.checkBikeNameExists()
+					if duplicateNameAlert == false {
+						
+						self.saveNewBike()
+						withAnimation(.linear(duration: 0.05), {
+							self.saveText = "     SAVED!!     "  // no idea why, but have to add spaces here other wise it builds the word slowly with SA...., annoying as all hell
+						})
+						try? self.moc.save()
+						hapticSuccess()
+					}
 					DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
-						self.presentationMode.wrappedValue.dismiss()
+						// prevents the alert from being dismissed automatically
+						if duplicateNameAlert == false {
+							self.presentationMode.wrappedValue.dismiss()
+						}
 					}
                     }) {
 						SaveButtonView(buttonText: $saveText)
@@ -236,6 +241,16 @@ struct AddBikeView: View {
 		
 	}
 	
+	
+	func checkBikeNameExists() {
+		let filteredBikes = try! moc.fetch(Bike.bikesFetchRequest())
+		for bike in filteredBikes {
+			if bike.name == bikeName {
+				duplicateNameAlert.toggle()
+				break
+			}
+		}
+	}
 
 }
 
