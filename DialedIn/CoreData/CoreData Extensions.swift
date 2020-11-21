@@ -26,8 +26,7 @@ extension Bike{
         request.sortDescriptors = [NSSortDescriptor(keyPath: \Bike.name, ascending: true)]
         request.predicate = NSPredicate(format: "name == %@", filter)
         return request
-    }
-    
+    }    
 }
 
 extension Notes{

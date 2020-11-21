@@ -37,6 +37,8 @@ struct AddBikeView: View {
 	@State private var strokeLength = ""
 
 	@State private var saveText = "Save"
+	
+	@State var duplicateNameAlert = false
     
 //TODO: figure out how to only allow 1 default bike
     var body: some View {
@@ -135,6 +137,12 @@ struct AddBikeView: View {
                     }
 
                 } .navigationBarTitle("Bike Info", displayMode: .inline)
+				.alert(isPresented: $duplicateNameAlert) {
+					Alert(title: Text("Duplicate Name"), message: Text("Duplicate Bike Names are note allowed"), primaryButton: .destructive(Text("Delete")) {
+						self.bikeName = ""
+					}, secondaryButton: .cancel()
+					)
+				}
 			
 				.animation(.spring())
 	
@@ -179,7 +187,7 @@ struct AddBikeView: View {
 		
 		// - Bike Creation
 		
-		newBike?.name = self.bikeName
+		newBike?.name = self.bikeName // function check here
 		newBike?.bikeNote = self.bikeNote
 		newBike?.isDefault = self.setDefault
 		
@@ -195,7 +203,6 @@ struct AddBikeView: View {
 		
 
 		// - Rear Creation -
-		
 		
 		if self.rearSetupIndex == 1 {
 			newBike?.hasRearShock = true
@@ -226,7 +233,10 @@ struct AddBikeView: View {
 			newBike?.hasRearShock = false
 			newRearShock?.isCoil = false
 		}
+		
 	}
+	
+
 }
 
 struct BikeView_Previews: PreviewProvider {
