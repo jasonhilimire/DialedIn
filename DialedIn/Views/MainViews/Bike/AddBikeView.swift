@@ -173,7 +173,6 @@ struct AddBikeView: View {
 		newFrontService.service = Fork(context: self.moc)
 		let newFork = newFrontService.service
 		let newBike = newRearService.service?.bike
-		
 		let dateString = dateFormatter.string(from: Date())
 		
 		
@@ -191,7 +190,7 @@ struct AddBikeView: View {
 		newFork?.info = self.forkInfo
 		newFrontService.lowersService = self.lastLowerServiceDate
 		newFrontService.fullService = self.lastFullForkServiceDate
-		newFrontService.serviceNote = "Bike Created: \(dateString), no services done yet"
+		newFrontService.serviceNote = "Bike Created: \(dateString), no services found yet"
 		
 
 		// - Rear Creation -
@@ -207,7 +206,7 @@ struct AddBikeView: View {
 			newRearService.airCanService = self.lastAirCanServiceDate
 			newRearService.fullService = self.lastRearFullServiceDate
 			
-			newRearService.serviceNote = "Bike Created: \(dateString), no services done yet"
+			newRearService.serviceNote = "Bike Created: \(dateString), no services found yet"
 
 		} else if self.rearSetupIndex == 2 {
 			self.isCoilToggle.toggle()
@@ -220,7 +219,7 @@ struct AddBikeView: View {
 			newRearShock?.isCoil = self.isCoilToggle
 			newRearService.airCanService = self.lastAirCanServiceDate
 			newRearService.fullService = self.lastRearFullServiceDate
-			newRearService.serviceNote = "Bike Created: \(dateString), no services done yet"
+			newRearService.serviceNote = "Bike Created: \(dateString), no services found yet"
 
 		} else if self.rearSetupIndex == 0 {
 			newBike?.hasRearShock = false
