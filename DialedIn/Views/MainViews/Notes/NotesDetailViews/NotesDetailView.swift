@@ -16,6 +16,7 @@ struct NotesDetailView: View {
 	@ObservedObject var keyboard = KeyboardObserver()
 	
     @State private var showingDeleteAlert = false
+	@State private var showingEditSheet = false
 	
 	@State private var airVolume: Double = 0
 	@State private var rating = 3
@@ -102,7 +103,6 @@ struct NotesDetailView: View {
 							}
 						}
 						.font(.subheadline)
-						
 					}
 					
 					
@@ -208,12 +208,26 @@ struct NotesDetailView: View {
 				}, secondaryButton: .cancel()
 				)
 			}
-			//		.animation(.default) // this moves the view when Save toast appears
-			.navigationBarItems(trailing: Button(action: {
-				self.showingDeleteAlert = true
-			}) {
-				Image(systemName: "trash")
-			})
+			.navigationBarItems(trailing:
+				HStack {
+					Button(action: {
+						showingEditSheet.toggle()
+					}) {
+						Image(systemName: "square.and.pencil")
+					}
+					.padding(.horizontal, 20)
+					Spacer()
+					Button(action: {
+						self.showingDeleteAlert = true
+					}) {
+						Image(systemName: "trash")
+					}
+				})
+		.sheet(isPresented: $showingEditSheet)  {
+			//TODO:  EditNoteDetailViewSheet needs to be created & properly accept
+			//AddNoteView().environment(\.managedObjectContext, self.moc)
+		}
+									
     }
 	
 

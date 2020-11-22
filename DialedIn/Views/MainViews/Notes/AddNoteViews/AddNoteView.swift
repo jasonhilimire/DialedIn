@@ -78,6 +78,7 @@ struct AddNoteView: View {
 						
 					){
 						AddNoteFrontSetupView(front: frontSetup)
+						
 					}
 					
 			// MARK: - Rear Setup -
