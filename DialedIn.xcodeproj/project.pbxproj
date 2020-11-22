@@ -38,6 +38,7 @@
 		A393F9CE252ACBC800F39E04 /* LastNoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A393F9CD252ACBC800F39E04 /* LastNoteView.swift */; };
 		A39E45F5252436AC004142CE /* CircularButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A39E45F4252436AC004142CE /* CircularButtonView.swift */; };
 		A3A1297023FB9AC50014EC8A /* NoteRearSetupModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3A1296F23FB9AC50014EC8A /* NoteRearSetupModel.swift */; };
+		A3B4D4EC256A13E900D84C48 /* EditNoteDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B4D4EB256A13E900D84C48 /* EditNoteDetailView.swift */; };
 		A3B8B79523F0E66900CE1EF8 /* BikeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B8B79423F0E66900CE1EF8 /* BikeModel.swift */; };
 		A3B8B79723F0E9EF00CE1EF8 /* BikePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B8B79623F0E9EF00CE1EF8 /* BikePickerView.swift */; };
 		A3C16E6823DE9EC4005BFA14 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C16E6723DE9EC4005BFA14 /* AppDelegate.swift */; };
@@ -131,6 +132,7 @@
 		A393F9CD252ACBC800F39E04 /* LastNoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastNoteView.swift; sourceTree = "<group>"; };
 		A39E45F4252436AC004142CE /* CircularButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularButtonView.swift; sourceTree = "<group>"; };
 		A3A1296F23FB9AC50014EC8A /* NoteRearSetupModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteRearSetupModel.swift; sourceTree = "<group>"; };
+		A3B4D4EB256A13E900D84C48 /* EditNoteDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditNoteDetailView.swift; sourceTree = "<group>"; };
 		A3B8B79423F0E66900CE1EF8 /* BikeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeModel.swift; sourceTree = "<group>"; };
 		A3B8B79623F0E9EF00CE1EF8 /* BikePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikePickerView.swift; sourceTree = "<group>"; };
 		A3C16E6423DE9EC4005BFA14 /* Dialed In.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Dialed In.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -463,6 +465,7 @@
 				A3DDCC7C23DFF21700CD1476 /* NotesDetailView.swift */,
 				A3C76CA323EF66450047BBCC /* RatingView.swift */,
 				A3E04FC1244B9E0000FEB391 /* FavoritesView.swift */,
+				A3B4D4EB256A13E900D84C48 /* EditNoteDetailView.swift */,
 			);
 			path = NotesDetailViews;
 			sourceTree = "<group>";
@@ -692,6 +695,7 @@
 				A3FBA8B324024024001F3885 /* AddNoteRearSetupView.swift in Sources */,
 				A313D5F725539B240073FE33 /* PulsatingPlusButtonView.swift in Sources */,
 				A3C16EBD23DEA582005BFA14 /* Fork+CoreDataClass.swift in Sources */,
+				A3B4D4EC256A13E900D84C48 /* EditNoteDetailView.swift in Sources */,
 				A32F65BB254F76C9005827A7 /* NoBikes_ServiceExampleView.swift in Sources */,
 				A32F65B6254F769B005827A7 /* NoBikes_BikeCardExampleView.swift in Sources */,
 				A393F9C7252ACB1B00F39E04 /* HomeServiceView.swift in Sources */,

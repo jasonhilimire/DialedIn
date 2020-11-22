@@ -16,6 +16,7 @@ struct NotesDetailView: View {
 	@ObservedObject var keyboard = KeyboardObserver()
 	
     @State private var showingDeleteAlert = false
+	@State private var showingEditDetail = false
 	
 	@State private var airVolume: Double = 0
 	@State private var rating = 3
@@ -24,6 +25,7 @@ struct NotesDetailView: View {
 	
 	@State private var savePressed = false
 	@State private var saveText = "Save"
+	
 	
     let note: Notes
 	
@@ -205,15 +207,28 @@ struct NotesDetailView: View {
 			.alert(isPresented: $showingDeleteAlert) {
 				Alert(title: Text("Delete Note"), message: Text("Are you sure?"), primaryButton: .destructive(Text("Delete")) {
 					self.deleteNote()
-				}, secondaryButton: .cancel()
-				)
+				}, secondaryButton: .cancel())
 			}
-			//		.animation(.default) // this moves the view when Save toast appears
-			.navigationBarItems(trailing: Button(action: {
-				self.showingDeleteAlert = true
-			}) {
-				Image(systemName: "trash")
+			.navigationBarItems(trailing:
+				HStack {
+					Button(action: {
+						print("edit pressed")
+						showingEditDetail.toggle()
+					}) {
+						Image(systemName: "square.and.pencil")
+							.padding(.horizontal, 20)
+					}
+					Spacer(minLength: 5)
+					Button(action: {
+						self.showingDeleteAlert = true
+					}) {
+						Image(systemName: "trash")
+					}
 			})
+			.sheet(isPresented: $showingEditDetail)  {
+				// need new View Edit Note Detail and pass in current note
+				EditNoteDetailView(note: note).environment(\.managedObjectContext, self.moc)
+			}
     }
 	
 

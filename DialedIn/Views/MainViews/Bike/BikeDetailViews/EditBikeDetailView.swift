@@ -121,12 +121,6 @@ struct EditBikeDetailView: View {
 						}
 					}
 					
-//				}
-//				.navigationBarTitle("Edit Bike Info")
-
-//					.animation(.spring())
-				
-				
 				Button(action: {
 					//dismisses the sheet
 					self.saveNewBike()
