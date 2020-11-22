@@ -236,6 +236,22 @@ class NoteFrontSetupModel: ObservableObject {
 		fTravel = getTravel(bike: bikeName)
 
     }
+	
+	func getCurrentNoteFrontSettings(note: Notes) {
+		lastFAirSetting = note.fAirVolume
+		lastFHSCSetting = note.fHSC
+		lastFLSCSetting = note.fLSC
+		lastFCompSetting = note.fCompression
+		lastFHSRSetting = note.fHSR
+		lastFLSRSetting = note.fLSR
+		lastFReboundSetting = note.fRebound
+		lastFTokenSetting = note.fTokens
+		lastFSagSetting = note.fSag
+		lastFTirePressure = note.fTirePressure
+		fComp = getDualComp(bike: bikeName)
+		fReb = getDualReb(bike: bikeName)
+		fTravel = getTravel(bike: bikeName)
+	}
     
  // THIS WORKS Now need to figure out how to pass the selected bike into the Model from the pickerview
     func filterBikes(for name: String) -> [Notes] {

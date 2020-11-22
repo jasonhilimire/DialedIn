@@ -225,7 +225,7 @@ struct NotesDetailView: View {
 				})
 		.sheet(isPresented: $showingEditSheet)  {
 			//TODO:  EditNoteDetailViewSheet needs to be created & properly accept
-			//AddNoteView().environment(\.managedObjectContext, self.moc)
+			EditNotesDetailView(note: note).environment(\.managedObjectContext, self.moc)
 		}
 									
     }
