@@ -49,11 +49,6 @@ class NoteFrontSetupModel: ObservableObject {
 		return filteredBike.last?.travel ?? 0.0
 	}
 	
-	
-	
-	
-	
-
 	init() {
         getLastFrontSettings()
     }
@@ -175,7 +170,6 @@ class NoteFrontSetupModel: ObservableObject {
     }
 	
 	
-    
     func getLastFHSR() -> Int16 {
         let lastRecord = FrontSettings.hsr
         return lastRecord.getSetting(note: filterBikes(for: bikeName))
@@ -192,7 +186,6 @@ class NoteFrontSetupModel: ObservableObject {
     }
 	
 	
-    
     func getLastFTokens() -> Int16 {
         let lastRecord = FrontSettings.tokens
         return lastRecord.getSetting(note: filterBikes(for: bikeName))

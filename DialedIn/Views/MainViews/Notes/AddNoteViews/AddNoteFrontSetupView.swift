@@ -13,6 +13,8 @@ struct AddNoteFrontSetupView: View {
     
     @State private var sag = 20
 	var haptic = UIImpactFeedbackGenerator(style: .light)
+	var isEdit = false
+	
     
  //TODO: Configure Booleans
     var body: some View {
@@ -41,7 +43,6 @@ struct AddNoteFrontSetupView: View {
             }
 
             // Rebound
-
             if front.fReb == true {
                 Stepper(value: $front.lastFHSRSetting, in: 0...25, onEditingChanged: {_ in DispatchQueue.main.async {self.haptic.impactOccurred()}}, label: {Text("High Sp Rebound: \(self.front.lastFHSRSetting)").fontWeight(.thin)})
                 Stepper(value: $front.lastFLSRSetting, in: 0...25, onEditingChanged: {_ in DispatchQueue.main.async {self.haptic.impactOccurred()}}, label: {Text("Low Sp Rebound: \(self.front.lastFLSRSetting)").fontWeight(.thin)})
@@ -56,10 +57,7 @@ struct AddNoteFrontSetupView: View {
 				Stepper(value: $front.lastFTirePressure, in: 0...40, step: 0.1, onEditingChanged: {_ in DispatchQueue.main.async {self.haptic.impactOccurred()}}, label: {Text("PSI: \(self.front.lastFTirePressure)").fontWeight(.thin)}).labelsHidden()
 			}
 		}
-//		.onAppear(perform: {self.setup()})
 	}
-	
-	
 }
 
 

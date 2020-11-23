@@ -97,7 +97,7 @@ struct EditNotesDetailView: View {
 				.navigationBarTitle("Dialed In", displayMode: .inline)
 				
 				Button(action: {
-					self.saveNote()
+					self.updateNote()
 					
 					withAnimation(.linear(duration: 0.05), {
 						self.saveText = "     SAVED!!     "  // no idea why, but have to add spaces here other wise it builds the word slowly with SA...., annoying as all hell
@@ -120,56 +120,39 @@ struct EditNotesDetailView: View {
 	
 	// MARK: - FUNCTIONS -
 	
-	
-	// TODO: Creating a new note rather than updating current note
-	func saveNote() {
-		var bikes : [Bike] = []
-		let fetchRequest = Bike.selectedBikeFetchRequest(filter: bikeName)
-		do {
-			bikes = try moc.fetch(fetchRequest)
-		} catch let error as NSError {
-			print("Could not fetch. \(error), \(error.userInfo)")
-		}
-		
-		let bike = bikes[0]
-		
-		
-		
-		let newNote = Notes(context: self.moc)
-		newNote.note = self.noteText
-		newNote.rating = Int16(self.rating)
-		newNote.date = self.date
-		newNote.isFavorite = self.isFavorite
+	func updateNote() {
+
+		note.note = self.noteText
+		note.rating = Int16(self.rating)
+		note.date = self.date
+		note.isFavorite = self.isFavorite
 		
 		// FRONT
-		newNote.fAirVolume = Double(self.frontSetup.lastFAirSetting)
-		newNote.fCompression = self.frontSetup.lastFCompSetting
-		newNote.fHSC = self.frontSetup.lastFHSCSetting
-		newNote.fLSC = self.frontSetup.lastFLSCSetting
-		newNote.fRebound = self.frontSetup.lastFReboundSetting
-		newNote.fHSR = self.frontSetup.lastFHSRSetting
-		newNote.fLSR = self.frontSetup.lastFLSRSetting
-		newNote.fTokens = self.frontSetup.lastFTokenSetting
-		newNote.fSag = self.frontSetup.lastFSagSetting
-		newNote.fTirePressure = self.frontSetup.lastFTirePressure
-		newNote.bike?.hasRearShock = self.rearSetup.hasRear
-		
+		note.fAirVolume = Double(self.frontSetup.lastFAirSetting)
+		note.fCompression = self.frontSetup.lastFCompSetting
+		note.fHSC = self.frontSetup.lastFHSCSetting
+		note.fLSC = self.frontSetup.lastFLSCSetting
+		note.fRebound = self.frontSetup.lastFReboundSetting
+		note.fHSR = self.frontSetup.lastFHSRSetting
+		note.fLSR = self.frontSetup.lastFLSRSetting
+		note.fTokens = self.frontSetup.lastFTokenSetting
+		note.fSag = self.frontSetup.lastFSagSetting
+		note.fTirePressure = self.frontSetup.lastFTirePressure
+		note.bike?.hasRearShock = self.rearSetup.hasRear
 		
 		// REAR
-		newNote.rAirSpring = self.rearSetup.lastRAirSpringSetting
-		newNote.rCompression = self.rearSetup.lastRCompSetting
-		newNote.rHSC = self.rearSetup.lastRHSCSetting
-		newNote.rLSC = self.rearSetup.lastRLSCSetting
-		newNote.rRebound = self.rearSetup.lastRReboundSetting
-		newNote.rHSR = self.rearSetup.lastRHSRSetting
-		newNote.rLSR = self.rearSetup.lastRLSRSetting
+		note.rAirSpring = self.rearSetup.lastRAirSpringSetting
+		note.rCompression = self.rearSetup.lastRCompSetting
+		note.rHSC = self.rearSetup.lastRHSCSetting
+		note.rLSC = self.rearSetup.lastRLSCSetting
+		note.rRebound = self.rearSetup.lastRReboundSetting
+		note.rHSR = self.rearSetup.lastRHSRSetting
+		note.rLSR = self.rearSetup.lastRLSRSetting
 		// TODO: something here for a coil???
-		newNote.rTokens = self.rearSetup.lastRTokenSetting
-		newNote.rSag = self.rearSetup.lastRSagSetting
-		newNote.rTirePressure = self.rearSetup.lastRTirePressure
-		
-		bike.addToSetupNotes(newNote)
-		
+		note.rTokens = self.rearSetup.lastRTokenSetting
+		note.rSag = self.rearSetup.lastRSagSetting
+		note.rTirePressure = self.rearSetup.lastRTirePressure
+				
 	}
 	
 	func setup() {
@@ -194,7 +177,7 @@ struct EditNotesDetailView: View {
 		
 		*/
 		
-		// TODOLG Edit Models to get current note Data into SetupViews???
+		// TODO: Edit Models to get current note Data into SetupViews???
 		frontSetup.bikeName = bikeName
 		frontSetup.getCurrentNoteFrontSettings(note: note)
 		

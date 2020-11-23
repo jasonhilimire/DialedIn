@@ -13,6 +13,7 @@ struct NotesDetailView: View {
     
     @Environment(\.managedObjectContext) var moc
     @Environment(\.presentationMode) var presentationMode
+	
 	@ObservedObject var keyboard = KeyboardObserver()
 	
     @State private var showingDeleteAlert = false
@@ -197,7 +198,6 @@ struct NotesDetailView: View {
 			
 			// This keeps the keyboard from pushing the view up in iOS14
 			.ignoresSafeArea(.keyboard)
-			
 			.onAppear(perform: {self.setup()})
 			// Dismisses the keyboard
 			.onTapGesture { UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to:nil, from:nil, for:nil) }
@@ -258,6 +258,7 @@ struct NotesDetailView: View {
 	}
 	
 	func setup() {
+		// TODO: when coming back from EditNotesDetailVew- these arenot updating? but other values are
 		rating = Int(note.rating)
 		noteText = note.note ?? ""
 		isFavorite = note.isFavorite
