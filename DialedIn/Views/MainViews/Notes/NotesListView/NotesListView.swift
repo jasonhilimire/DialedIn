@@ -51,15 +51,15 @@ struct NotesListView: View {
 					.customShadow()
 				}
 				
-				ScrollView {
+//				ScrollView {
 					if pickerChoiceIndex == 0 {
 						FilteredNoteView(filter: false, searchText: $searchText)
-							.padding(.horizontal)
+//							.padding(.horizontal)
 					} else if pickerChoiceIndex == 1 {
 						FilteredNoteView(filter: true, searchText: $searchText)
-							.padding(.horizontal)
+//							.padding(.horizontal)
 					}
-				}
+//				}
 			}
 				
 			.onAppear { UITableView.appearance().separatorStyle = .none } 	// remove the separator

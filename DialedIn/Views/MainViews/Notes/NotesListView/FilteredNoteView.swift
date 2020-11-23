@@ -53,16 +53,21 @@ struct FilteredNoteView: View {
 	
 	
     var body: some View {
-		ForEach(filterFavorites(), id: \.self) { bike in
-				let array = bike.notesArray
-			Section(header: Text(bike.wrappedBikeName)) {
-				ForEach(filterNotes(array: array), id: \.self) { note in
-					NavigationLink(destination: NotesDetailView(note: note)){
-						NotesStyleCardView(note: note)
+		ScrollView(showsIndicators: false) {
+			ForEach(filterFavorites(), id: \.self) { bike in
+					let array = bike.notesArray
+				Section(header: Text(bike.wrappedBikeName)) {
+					ForEach(filterNotes(array: array), id: \.self) { note in
+						NavigationLink(destination: NotesDetailView(note: note)){
+							NotesStyleCardView(note: note)
+								.padding(.horizontal)
+						}
 					}
 				}
 			}
 		}
+		
+		.edgesIgnoringSafeArea(.horizontal)
 	}
 }
 
