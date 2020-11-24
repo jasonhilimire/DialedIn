@@ -47,7 +47,8 @@ struct FilteredNoteView: View {
 		// filter the array basd on isFavorite - then the searchText
 		let filtered = filter ? array.filter { $0.isFavorite } : array
 		let compoundPredicateResult = filtered.filter { searchText.isEmpty ? true : compoundPredicate.evaluate(with:$0) }
-		return compoundPredicateResult
+		let sortedbyDateResults = compoundPredicateResult.sorted(by: {$0.date ?? Date() > $1.date ?? Date()})
+		return sortedbyDateResults
 	}
 	
 	
