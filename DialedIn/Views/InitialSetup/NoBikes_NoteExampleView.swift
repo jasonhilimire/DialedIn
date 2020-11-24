@@ -62,6 +62,16 @@ struct NoBikes_NoteExampleView: View {
 					
 					Spacer()
 					VStack(alignment: .leading) {
+						Text("HSC: 6")
+						Text("LSC: 7")
+						Text("Tokens: 2")
+						Divider()
+						Text("HSC: 9")
+						Text("LSC: 7")
+					}.font(.caption)
+					
+					Spacer()
+					VStack(alignment: .leading) {
 						Text("HSR: 8")
 						Text("LSR: 7")
 						Text("Sag %: 25")
@@ -69,16 +79,6 @@ struct NoBikes_NoteExampleView: View {
 						Text("HSR: 12")
 						Text("LSR: 13")
 						Text("Sag %: 33")
-					}.font(.caption)
-					
-					Spacer()
-					VStack(alignment: .leading) {
-						Text("HSC: 6")
-						Text("LSC: 7")
-						Text("Tokens: 2")
-						Divider()
-						Text("HSC: 9")
-						Text("LSC: 7")
 					}.font(.caption)
 				} // end HSTack Settings
 			} //: END VSTACK

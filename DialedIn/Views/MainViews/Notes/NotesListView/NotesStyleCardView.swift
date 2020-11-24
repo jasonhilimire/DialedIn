@@ -72,26 +72,6 @@ struct NotesStyleCardView: View {
 					
 					Spacer()
 					VStack(alignment: .leading) {
-						if note.bike?.frontSetup?.dualRebound == true {
-							Text("HSR: \(note.fHSR)").fontWeight(.thin)
-							Text("LSR: \(note.fLSR)").fontWeight(.thin)
-						} else {
-							Text("Reb: \(note.fRebound)").fontWeight(.thin)
-							
-						}
-						Text("Sag %: \(calcSag(sag: Double(note.fSag), travel: note.bike?.frontSetup?.travel ?? 0.0), specifier: "%.1f")").fontWeight(.thin)
-						Divider()
-						if note.bike?.rearSetup?.dualRebound == true {
-							Text("HSR: \(note.rHSR)").fontWeight(.thin)
-							Text("LSR: \(note.rLSR)").fontWeight(.thin)
-						} else {
-							Text("Reb: \(note.rRebound)").fontWeight(.thin)
-						}
-						Text("Sag %: \(calcSag(sag: Double(note.rSag), travel: note.bike?.rearSetup?.strokeLength ?? 0.0), specifier: "%.1f")").fontWeight(.thin)
-					}.font(.caption)
-					
-					Spacer()
-					VStack(alignment: .leading) {
 						if note.bike?.frontSetup?.dualCompression == true {
 							Text("HSC: \(note.fHSC)").fontWeight(.thin)
 							Text("LSC: \(note.fLSC)").fontWeight(.thin)
@@ -111,6 +91,26 @@ struct NotesStyleCardView: View {
 						} else {
 							Text("").fontWeight(.thin)
 						}
+					}.font(.caption)
+					
+					Spacer()
+					VStack(alignment: .leading) {
+						if note.bike?.frontSetup?.dualRebound == true {
+							Text("HSR: \(note.fHSR)").fontWeight(.thin)
+							Text("LSR: \(note.fLSR)").fontWeight(.thin)
+						} else {
+							Text("Reb: \(note.fRebound)").fontWeight(.thin)
+							
+						}
+						Text("Sag %: \(calcSag(sag: Double(note.fSag), travel: note.bike?.frontSetup?.travel ?? 0.0), specifier: "%.1f")").fontWeight(.thin)
+						Divider()
+						if note.bike?.rearSetup?.dualRebound == true {
+							Text("HSR: \(note.rHSR)").fontWeight(.thin)
+							Text("LSR: \(note.rLSR)").fontWeight(.thin)
+						} else {
+							Text("Reb: \(note.rRebound)").fontWeight(.thin)
+						}
+						Text("Sag %: \(calcSag(sag: Double(note.rSag), travel: note.bike?.rearSetup?.strokeLength ?? 0.0), specifier: "%.1f")").fontWeight(.thin)
 					}.font(.caption)
 				} // end HSTack Settings
 			}

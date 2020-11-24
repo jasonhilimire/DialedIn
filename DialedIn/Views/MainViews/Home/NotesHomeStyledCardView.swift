@@ -76,26 +76,7 @@ struct NotesHomeStyledCardView: View {
 					.customShadow()
 					
 					Spacer()
-					VStack(alignment: .leading) {
-						if note.bike?.frontSetup?.dualRebound == true {
-							Text("HSR: \(note.fHSR)")
-							Text("LSR: \(note.fLSR)")
-						} else {
-							Text("Reb: \(note.fRebound)")
-							
-						}
-						Text("Sag %: \(calcSag(sag: Double(note.fSag), travel: note.bike?.frontSetup?.travel ?? 0.0), specifier: "%.1f")")
-						Divider()
-						if note.bike?.rearSetup?.dualRebound == true {
-							Text("HSR: \(note.rHSR)")
-							Text("LSR: \(note.rLSR)")
-						} else {
-							Text("Reb: \(note.rRebound)")
-						}
-						Text("Sag %: \(calcSag(sag: Double(note.rSag), travel: note.bike?.rearSetup?.strokeLength ?? 0.0), specifier: "%.1f")")
-					}.font(.caption)
 					
-					Spacer()
 					VStack(alignment: .leading) {
 						if note.bike?.frontSetup?.dualCompression == true {
 							Text("HSC: \(note.fHSC)")
@@ -117,6 +98,28 @@ struct NotesHomeStyledCardView: View {
 							Text("")
 						}
 					}.font(.caption)
+					
+					Spacer()
+					
+					VStack(alignment: .leading) {
+						if note.bike?.frontSetup?.dualRebound == true {
+							Text("HSR: \(note.fHSR)")
+							Text("LSR: \(note.fLSR)")
+						} else {
+							Text("Reb: \(note.fRebound)")
+							
+						}
+						Text("Sag %: \(calcSag(sag: Double(note.fSag), travel: note.bike?.frontSetup?.travel ?? 0.0), specifier: "%.1f")")
+						Divider()
+						if note.bike?.rearSetup?.dualRebound == true {
+							Text("HSR: \(note.rHSR)")
+							Text("LSR: \(note.rLSR)")
+						} else {
+							Text("Reb: \(note.rRebound)")
+						}
+						Text("Sag %: \(calcSag(sag: Double(note.rSag), travel: note.bike?.rearSetup?.strokeLength ?? 0.0), specifier: "%.1f")")
+					}.font(.caption)
+					
 				} // end HSTack Settings
 			} //: END VSTACK
 			.padding()
