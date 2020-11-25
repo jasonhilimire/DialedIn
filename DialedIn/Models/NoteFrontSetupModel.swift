@@ -12,7 +12,7 @@ import Combine
 
 class NoteFrontSetupModel: ObservableObject {
     
-    let managedObjectContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    let managedObjectContext = PersistentCloudKitContainer.persistentContainer.viewContext
 	
 // This gets the dual Reb/ Comp settings for setup when creating a note
 	func getFrontSettings(filter: String) -> [Fork] {
