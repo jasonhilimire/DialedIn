@@ -67,7 +67,6 @@
 		A3DDCC7B23DFEFEB00CD1476 /* Bike+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DDCC7923DFEFEB00CD1476 /* Bike+CoreDataProperties.swift */; };
 		A3DDCC7D23DFF21700CD1476 /* NotesDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DDCC7C23DFF21700CD1476 /* NotesDetailView.swift */; };
 		A3DDCC7F23DFF2C900CD1476 /* AddNoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DDCC7E23DFF2C900CD1476 /* AddNoteView.swift */; };
-		A3DDCC8123DFF96400CD1476 /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DDCC8023DFF96400CD1476 /* AppView.swift */; };
 		A3DDCC8323DFF97900CD1476 /* AddBikeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DDCC8223DFF97900CD1476 /* AddBikeView.swift */; };
 		A3E04FC2244B9E0000FEB391 /* FavoritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E04FC1244B9E0000FEB391 /* FavoritesView.swift */; };
 		A3E1A6AF2409B78100C4DFD5 /* FilteredBikeNotesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E1A6AE2409B78100C4DFD5 /* FilteredBikeNotesView.swift */; };
@@ -168,7 +167,6 @@
 		A3DDCC7923DFEFEB00CD1476 /* Bike+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bike+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		A3DDCC7C23DFF21700CD1476 /* NotesDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesDetailView.swift; sourceTree = "<group>"; };
 		A3DDCC7E23DFF2C900CD1476 /* AddNoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNoteView.swift; sourceTree = "<group>"; };
-		A3DDCC8023DFF96400CD1476 /* AppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppView.swift; sourceTree = "<group>"; };
 		A3DDCC8223DFF97900CD1476 /* AddBikeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBikeView.swift; sourceTree = "<group>"; };
 		A3E04FC1244B9E0000FEB391 /* FavoritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesView.swift; sourceTree = "<group>"; };
 		A3E1A6AE2409B78100C4DFD5 /* FilteredBikeNotesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilteredBikeNotesView.swift; sourceTree = "<group>"; };
@@ -350,11 +348,10 @@
 		A3C16E6623DE9EC4005BFA14 /* DialedIn */ = {
 			isa = PBXGroup;
 			children = (
-				A38D56AC25609ABF00E83041 /* Dialed In.entitlements */,
 				A3D5181F2426925B007DEE9D /* README.md */,
+				A3C76CA023EF5DC70047BBCC /* Setup */,
 				A326FAC823F3BC80002490E2 /* CoreData */,
 				A3C16EAC23DEA461005BFA14 /* Models */,
-				A3C76CA023EF5DC70047BBCC /* Delegates */,
 				A3C16EAB23DEA454005BFA14 /* Views */,
 				A3C16E7023DE9EC5005BFA14 /* Assets.xcassets */,
 				A3C16E7523DE9EC5005BFA14 /* LaunchScreen.storyboard */,
@@ -402,7 +399,6 @@
 		A3C16EAB23DEA454005BFA14 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				A3DDCC8023DFF96400CD1476 /* AppView.swift */,
 				A32F65AC254F7635005827A7 /* InitialSetup */,
 				A3918AD123E3E764002A1D61 /* MainViews */,
 				A3918AD323E3E76C002A1D61 /* SingleViews */,
@@ -450,14 +446,15 @@
 			path = Classes;
 			sourceTree = "<group>";
 		};
-		A3C76CA023EF5DC70047BBCC /* Delegates */ = {
+		A3C76CA023EF5DC70047BBCC /* Setup */ = {
 			isa = PBXGroup;
 			children = (
+				A38D56AC25609ABF00E83041 /* Dialed In.entitlements */,
 				A3F3596E256F141700CC3F5F /* PersistentCloudKitContainer.swift */,
 				A3F35960256F100900CC3F5F /* ContentView.swift */,
 				A3F35961256F100900CC3F5F /* DialedApp.swift */,
 			);
-			path = Delegates;
+			path = Setup;
 			sourceTree = "<group>";
 		};
 		A3C7A1D42401F81300A741A8 /* NotesDetailViews */ = {
@@ -684,7 +681,6 @@
 				A326FAC723F3BC6E002490E2 /* CoreData Extensions.swift in Sources */,
 				A3B8B79523F0E66900CE1EF8 /* BikeModel.swift in Sources */,
 				A3E04FC2244B9E0000FEB391 /* FavoritesView.swift in Sources */,
-				A3DDCC8123DFF96400CD1476 /* AppView.swift in Sources */,
 				A3DDCC7D23DFF21700CD1476 /* NotesDetailView.swift in Sources */,
 				A3273B7523EF998B007A3792 /* Notes+CoreDataClass.swift in Sources */,
 				A3918AD023E3E446002A1D61 /* SaveButtonView.swift in Sources */,
