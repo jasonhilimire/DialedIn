@@ -14,6 +14,7 @@ struct ContentView: View {
 	
 	// Create the MOC
 	@Environment(\.managedObjectContext) var moc
+	@EnvironmentObject var quickActionSettings: QuickActionSettings
 	
 	var body: some View {
 		TabView {
@@ -45,3 +46,16 @@ struct ContentView: View {
 		}
 	}
 }
+
+struct QuickActionModel : Identifiable {
+	let id = UUID()
+	let name: String
+	let tag: QuickActionSettings.QuickAction
+}
+
+let allQuickActions = [
+	QuickActionModel(name: "Add Note", tag: .details(name: "addNote")),
+	QuickActionModel(name: "Search",tag: .details(name: "search")),
+	QuickActionModel(name: "Add Service", tag: .details(name: "addService")),
+	
+]

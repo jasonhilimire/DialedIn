@@ -7,6 +7,9 @@
 
 import SwiftUI
 
+var shortcutItemToHandle: UIApplicationShortcutItem?
+let quickActionSettings = QuickActionSettings()
+
 @main
 struct DialedInApp: App {
     let context = PersistentCloudKitContainer.persistentContainer.viewContext
@@ -14,12 +17,31 @@ struct DialedInApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView().environment(\.managedObjectContext, context)
+            ContentView()
+				.environment(\.managedObjectContext, context)
+				// We will use this modifier below to pass along which quick action that was pressed
+				.environmentObject(quickActionSettings)
 			
 			.onChange(of: lifeCycle) { (newLifeCyclePhase) in
 				switch newLifeCyclePhase {
 					case .active :
 						print("App is active")
+						guard let name = shortcutItemToHandle?.userInfo?["name"] as? String else { return }
+						
+						switch name {
+							case "addNote":
+								print("Add Note is selected")
+								quickActionSettings.quickAction = .details(name: name)
+							case "search":
+								print("Search is selected")
+								quickActionSettings.quickAction = .details(name: name)
+							case "addService":
+								print("Add Service is selected")
+								quickActionSettings.quickAction = .details(name: name)
+							default:
+								print("default ")
+						}
+						
 					case .inactive:
 						print("App is inactive")
 					case .background:
@@ -37,13 +59,13 @@ struct DialedInApp: App {
 	
 	func addQuickActions() {
 		var addNoteInfo: [String: NSSecureCoding] {
-			return ["name" : "Add Note" as NSSecureCoding]
+			return ["name" : "addNote" as NSSecureCoding]
 		}
 		var searchNoteInfo: [String: NSSecureCoding] {
-			return ["name" : "Search" as NSSecureCoding]
+			return ["name" : "search" as NSSecureCoding]
 		}
 		var addServiceInfo: [String: NSSecureCoding] {
-			return ["name" : "Add Service" as NSSecureCoding]
+			return ["name" : "addService" as NSSecureCoding]
 		}
 		
 		UIApplication.shared.shortcutItems = [
@@ -51,5 +73,24 @@ struct DialedInApp: App {
 			UIApplicationShortcutItem(type: "Search Notes", localizedTitle: "Search Notes", localizedSubtitle: "", icon: UIApplicationShortcutIcon(type: .search), userInfo: searchNoteInfo),
 			UIApplicationShortcutItem(type: "Add Service", localizedTitle: "Add Service", localizedSubtitle: "", icon: UIApplicationShortcutIcon(type: .confirmation), userInfo: addServiceInfo),
 		]
+	}
+	
+	class AppDelegate: NSObject, UIApplicationDelegate {
+		func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
+			if let shortcutItem = options.shortcutItem {
+				shortcutItemToHandle = shortcutItem
+			}
+			
+			let sceneConfiguration = UISceneConfiguration(name: "Custom Configuration", sessionRole: connectingSceneSession.role)
+			sceneConfiguration.delegateClass = CustomSceneDelegate.self
+			
+			return sceneConfiguration
+		}
+	}
+	
+	class CustomSceneDelegate: UIResponder, UIWindowSceneDelegate {
+		func windowScene(_ windowScene: UIWindowScene, performActionFor shortcutItem: UIApplicationShortcutItem, completionHandler: @escaping (Bool) -> Void) {
+			shortcutItemToHandle = shortcutItem
+		}
 	}
 }
