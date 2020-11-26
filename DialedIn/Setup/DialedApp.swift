@@ -36,10 +36,20 @@ struct DialedInApp: App {
     }
 	
 	func addQuickActions() {
+		var addNoteInfo: [String: NSSecureCoding] {
+			return ["name" : "Add Note" as NSSecureCoding]
+		}
+		var searchNoteInfo: [String: NSSecureCoding] {
+			return ["name" : "Search" as NSSecureCoding]
+		}
+		var addServiceInfo: [String: NSSecureCoding] {
+			return ["name" : "Add Service" as NSSecureCoding]
+		}
+		
 		UIApplication.shared.shortcutItems = [
-			UIApplicationShortcutItem(type: "Add Note", localizedTitle: "Add Note"),
-			UIApplicationShortcutItem(type: "Search Notes", localizedTitle: "Search Notes"),
-			UIApplicationShortcutItem(type: "Add Service", localizedTitle: "Add Service"),
+			UIApplicationShortcutItem(type: "Add Note", localizedTitle: "Add Note", localizedSubtitle: "", icon: UIApplicationShortcutIcon(type: .compose), userInfo: addNoteInfo),
+			UIApplicationShortcutItem(type: "Search Notes", localizedTitle: "Search Notes", localizedSubtitle: "", icon: UIApplicationShortcutIcon(type: .search), userInfo: searchNoteInfo),
+			UIApplicationShortcutItem(type: "Add Service", localizedTitle: "Add Service", localizedSubtitle: "", icon: UIApplicationShortcutIcon(type: .confirmation), userInfo: addServiceInfo),
 		]
 	}
 }
