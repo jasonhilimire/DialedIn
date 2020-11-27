@@ -56,7 +56,7 @@ struct FilteredNoteView: View {
     var body: some View {
 		ForEach(filterFavorites(), id: \.self) { bike in
 				let array = bike.notesArray
-			Section(header: Text(bike.wrappedBikeName)) {
+			Section(header: Text(bike.wrappedBikeName).italic().underline().font(.system(size: 16))){
 				ForEach(filterNotes(array: array), id: \.self) { note in
 					NavigationLink(destination: NotesDetailView(note: note)){
 						NotesStyleCardView(note: note)

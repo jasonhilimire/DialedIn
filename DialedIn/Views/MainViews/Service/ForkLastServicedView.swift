@@ -33,8 +33,6 @@ struct ForkLastServicedView: View {
 						.font(.headline)
 						.fontWeight(.semibold)
 					Spacer()
-
-	//				Text("\(self.bike.frontSetup?.info ?? "")")
 				}
 				.padding([.top, .leading, .trailing])
 				.customShadow()
@@ -83,7 +81,7 @@ struct ForkLastServicedView: View {
 		frontService.bikeName = bikeName
 		frontService.getLastServicedDates()
 		elapsedLowersService = daysBetween(start: self.frontService.lastLowerService, end: Date())
-		elapsedFullService = daysBetween(start: self.frontService.lastLowerService, end: Date())
+		elapsedFullService = daysBetween(start: self.frontService.lastFullService, end: Date())
 	}
 }
 

@@ -107,8 +107,6 @@ struct RearShockLastServicedView: View {
 		elapsedAirService = daysBetween(start: self.rearService.lastAirServ, end: Date())
 		elapsedFullService = daysBetween(start: self.rearService.lastFullServ, end: Date())
 
-		print("Days since last rear air service \(elapsedAirService)")
-		print("Full service \(self.rearService.lastFullServ)")
 	}
 }
 

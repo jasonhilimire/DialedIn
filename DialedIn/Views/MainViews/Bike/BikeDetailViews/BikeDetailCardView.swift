@@ -27,16 +27,6 @@ struct BikeDetailCardView: View {
 					NavigationLink(destination: EditBikeDetailView(bike: bike)) {
 						CircularButtonView(symbolImage: $symbolImage)
 					}
-					
-					//TODO: showing the sheet doesnt work- have to use navigationlink for now
-//					Button(action: {
-//						withAnimation {
-//							self.showEditScreen.toggle()
-//						}
-//					}) {
-//						CircularButtonView(symbolImage: $symbolImage)
-//					}
-					
 				}
 				.padding(8)
 				.customTextShadow()
@@ -44,22 +34,19 @@ struct BikeDetailCardView: View {
 				BikeDetailView(bike: bike)
 				.foregroundColor(Color.white)
 				.multilineTextAlignment(.center)
-				.padding(.bottom, 12)
+//				.padding(.bottom, 8)
 
 			} //: VSTACK
-			.padding(.bottom, 16)
+//			.padding(.bottom, 8)
 		} //: ZSTACK
-
 		
 		//			.frame(minWidth: 0, idealWidth: 100, maxWidth: .infinity, minHeight: 0, idealHeight: 100, maxHeight: .infinity, alignment: .center)
 		.background(Color.gray)
 		.cornerRadius(20)
 		.padding(.horizontal, 20)
 		.customShadow()
-
 		.sheet(isPresented: $showEditScreen)  {
 			EditBikeDetailView(bike: self.bike).environment(\.managedObjectContext, self.moc)
-
 		}
 	}
 }

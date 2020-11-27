@@ -49,7 +49,6 @@ struct BikesView: View {
 			} //: END SCROLL VIEW
 			
 			.listStyle(InsetGroupedListStyle())
-			.padding(.vertical, 20)
 			.navigationBarTitle("Dialed In - Bikes")
 			.navigationBarItems(trailing: Button(action: {self.showingAddScreen.toggle()
 			}) {

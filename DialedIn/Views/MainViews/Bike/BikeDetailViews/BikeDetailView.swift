@@ -21,12 +21,11 @@ struct BikeDetailView: View {
     var body: some View {
 		VStack{
 			VStack {
-
 				Text("Note: \(self.bike.bikeNote ?? "")" )
-					.font(.title3)
+					.font(.subheadline)
 					.customShadow()
 					.fixedSize(horizontal: false, vertical: true)
-					.padding(5)
+					.padding(2)
 				VStack {
 					Section {
 						ForkLastServicedView(bikeName: $bikeName, bike: self.bike)
@@ -41,12 +40,8 @@ struct BikeDetailView: View {
 					}
 				}
 			}
-			Spacer(minLength: 20)
+			Spacer(minLength:5)
 
-			Text("Last 5 Notes")
-				.font(.largeTitle)
-				.fontWeight(.bold)
-				.customTextShadow()
 			FilteredBikeNotesView(filter: self.bikeName)
 				.padding(.horizontal)
 			

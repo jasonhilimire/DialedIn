@@ -37,7 +37,6 @@ struct BikeCardView: View {
 						}) {
 							CircularButtonView(symbolImage: $symbolImage)
 						}
-						
 					}
 					.padding(8)
 					.customTextShadow()
@@ -48,7 +47,7 @@ struct BikeCardView: View {
 						.scaledToFit()
 						.customTextShadow()
 						.scaleEffect(isAnimating ? 1.0 : 0.6)
-						.frame(width: 250, height: 250, alignment: .center)
+						.frame(width: 310, height: 310, alignment: .center)
 						.padding(.horizontal, 10)
 					
 					// BIKE: NAME
