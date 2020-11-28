@@ -29,6 +29,7 @@ struct NotesDetailView: View {
 	
     let note: Notes
 	
+	// MARK - BODY -
 	var body: some View {
 		ZStack {
 			VStack{
@@ -49,7 +50,7 @@ struct NotesDetailView: View {
 					
 					Divider()
 
-					//Front
+					// MARK: - FRONT -
 					Group {
 						VStack {
 							VStack {
@@ -106,10 +107,9 @@ struct NotesDetailView: View {
 						.font(.subheadline)
 						
 					}
-					
-					
 					Divider()
-					//Rear
+					
+					// MARK: - FRONT -
 					Group {
 						VStack {
 							VStack {
@@ -226,13 +226,12 @@ struct NotesDetailView: View {
 					}
 			})
 			.sheet(isPresented: $showingEditDetail)  {
-				// need new View Edit Note Detail and pass in current note
 				EditNoteDetailView(note: note).environment(\.managedObjectContext, self.moc)
 			}
     }
 	
 
-    
+    // MARK: - FUNCTIONS -
     func deleteNote() {
         moc.delete(self.note)
         try? self.moc.save()

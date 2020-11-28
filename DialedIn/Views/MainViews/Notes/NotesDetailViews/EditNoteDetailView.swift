@@ -32,9 +32,14 @@ struct EditNoteDetailView: View {
 	@State private var toggleNoteDetail = true
 	@State private var saveText = "Save"
 	
+	@State private var isEdit = true
+	
+	var haptic = UIImpactFeedbackGenerator(style: .light)
+	
 	
 	let note: Notes
 	
+	//  MARK: - BODY -
 	var body: some View {
 		NavigationView {
 			VStack {
@@ -78,10 +83,20 @@ struct EditNoteDetailView: View {
 								}
 							
 					){
-						AddNoteFrontSetupView(front: frontSetup)
+						AddNoteFrontSetupView(front: frontSetup, isDetailEdit: $isEdit, note: note)
+						
+//						VStack{
+//							// AirPressure
+//							HStack{
+//								Text("PSI: \(psi, specifier: "%.1f")").fontWeight(.thin)
+//								Slider(value: $psi, in: 45...120, step: 1.0)
+//								Stepper(value: $psi, in: 45...120, step: 0.5, onEditingChanged: {_ in DispatchQueue.main.async {self.haptic.impactOccurred()}}, label: {Text("PSI: \(self.psi)").fontWeight(.thin)}).labelsHidden()
+//
+//							}
+//						}
 					}
 					
-					// MARK: - Rear Setup -
+					// MARK: - REAR SETUP -
 					Section(header:
 								HStack {
 									Image("shock-absorber")
@@ -121,65 +136,55 @@ struct EditNoteDetailView: View {
 	
 	// MARK: - FUNCTIONS -
 	
-	
-	
 	func saveNote() {
-		var bikes : [Bike] = []
-		let fetchRequest = Bike.selectedBikeFetchRequest(filter: bikeName)
-		do {
-			bikes = try moc.fetch(fetchRequest)
-		} catch let error as NSError {
-			print("Could not fetch. \(error), \(error.userInfo)")
-		}
-		
-		let bike = bikes[0]
-		
-		let newNote = Notes(context: self.moc)
-		newNote.note = self.noteText
-		newNote.rating = Int16(self.rating)
-		newNote.date = self.date
-		newNote.isFavorite = self.isFavorite
+		note.note = self.noteText
+		note.rating = Int16(self.rating)
+		note.date = self.date
+		note.isFavorite = self.isFavorite
 		
 		// FRONT
-		newNote.fAirVolume = Double(self.frontSetup.lastFAirSetting)
-		newNote.fCompression = self.frontSetup.lastFCompSetting
-		newNote.fHSC = self.frontSetup.lastFHSCSetting
-		newNote.fLSC = self.frontSetup.lastFLSCSetting
-		newNote.fRebound = self.frontSetup.lastFReboundSetting
-		newNote.fHSR = self.frontSetup.lastFHSRSetting
-		newNote.fLSR = self.frontSetup.lastFLSRSetting
-		newNote.fTokens = self.frontSetup.lastFTokenSetting
-		newNote.fSag = self.frontSetup.lastFSagSetting
-		newNote.fTirePressure = self.frontSetup.lastFTirePressure
-		newNote.bike?.hasRearShock = self.rearSetup.hasRear
+		note.fAirVolume = self.frontSetup.lastFAirSetting
+		note.fCompression = self.frontSetup.lastFCompSetting
+		note.fHSC = self.frontSetup.lastFHSCSetting
+		note.fLSC = self.frontSetup.lastFLSCSetting
+		note.fRebound = self.frontSetup.lastFReboundSetting
+		note.fHSR = self.frontSetup.lastFHSRSetting
+		note.fLSR = self.frontSetup.lastFLSRSetting
+		note.fTokens = self.frontSetup.lastFTokenSetting
+		note.fSag = self.frontSetup.lastFSagSetting
+		note.fTirePressure = self.frontSetup.lastFTirePressure
+		note.bike?.hasRearShock = self.rearSetup.hasRear
 		
 		// REAR
-		newNote.rAirSpring = self.rearSetup.lastRAirSpringSetting
-		newNote.rCompression = self.rearSetup.lastRCompSetting
-		newNote.rHSC = self.rearSetup.lastRHSCSetting
-		newNote.rLSC = self.rearSetup.lastRLSCSetting
-		newNote.rRebound = self.rearSetup.lastRReboundSetting
-		newNote.rHSR = self.rearSetup.lastRHSRSetting
-		newNote.rLSR = self.rearSetup.lastRLSRSetting
+		note.rAirSpring = self.rearSetup.lastRAirSpringSetting
+		note.rCompression = self.rearSetup.lastRCompSetting
+		note.rHSC = self.rearSetup.lastRHSCSetting
+		note.rLSC = self.rearSetup.lastRLSCSetting
+		note.rRebound = self.rearSetup.lastRReboundSetting
+		note.rHSR = self.rearSetup.lastRHSRSetting
+		note.rLSR = self.rearSetup.lastRLSRSetting
 		// TODO: something here for a coil???
-		newNote.rTokens = self.rearSetup.lastRTokenSetting
-		newNote.rSag = self.rearSetup.lastRSagSetting
-		newNote.rTirePressure = self.rearSetup.lastRTirePressure
+		note.rTokens = self.rearSetup.lastRTokenSetting
+		note.rSag = self.rearSetup.lastRSagSetting
+		note.rTirePressure = self.rearSetup.lastRTirePressure
 		
-		bike.addToSetupNotes(newNote)
 		
 	}
 	
 	func setup() {
+		bikeName = self.note.bike?.name ?? "Unknown Bike"
 		rating = Int(self.note.rating)
 		noteText = self.note.note ?? ""
-		bikeName = self.note.bike?.name ?? "Unknown Bike"
+		isFavorite = self.note.isFavorite
+		date = note.date ?? Date()
+		frontSetup.bikeName = bikeName
+		frontSetup.getNoteFrontSettings(note: note)
+		
 		
 		// TODO: values are getting set for frontsetup - but they are not reflecting on the screen properly
-		print("bike name is: \(bikeName)")
 		
-		frontSetup.bikeName = bikeName
-		print("front setup air = \(frontSetup.lastFAirSetting)")
+		
+
 		
 		rearSetup.bikeName = self.bikeName
 		rearSetup.getLastRearSettings()
