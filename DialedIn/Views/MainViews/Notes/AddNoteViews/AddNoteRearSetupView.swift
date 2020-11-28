@@ -11,6 +11,9 @@ import SwiftUI
 struct AddNoteRearSetupView: View {
     @ObservedObject var rear = NoteRearSetupModel()
 	var haptic = UIImpactFeedbackGenerator(style: .light)
+	
+	var isDetailEdit: Binding<Bool>?
+	let note : Notes?
 
 //TODO, SET BOOLEANS
     var body: some View {
@@ -64,13 +67,14 @@ struct AddNoteRearSetupView: View {
 				}
 				
             }
-            
-        }
+        }.onAppear(perform: {self.setup(isEdit: (isDetailEdit != nil))})
     }
+	
+	func setup(isEdit: Bool) {
+		if isEdit == true {
+			rear.getNoteRearSettings(note: note!)
+		}
+	}
 }
 
-struct AddNoteRearSetupView_Previews: PreviewProvider {
-    static var previews: some View {
-        AddNoteRearSetupView()
-    }
-}
+

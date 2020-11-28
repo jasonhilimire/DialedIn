@@ -92,7 +92,7 @@ struct AddNoteView: View {
 							Text("Rear Suspension Details")
 						}
 					){
-						AddNoteRearSetupView(rear: rearSetup)
+						AddNoteRearSetupView(rear: rearSetup, note: nil)
 					}
 				} // end form
 					.onAppear(perform: {self.setup()}) // change to onReceive??

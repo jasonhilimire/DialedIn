@@ -282,6 +282,26 @@ class NoteRearSetupModel: ObservableObject {
 			
        }
 	
+	func getNoteRearSettings(note: Notes) {
+		// Get all the settings and assign
+		lastRAirSpringSetting = note.rAirSpring
+		lastRHSCSetting = note.rHSC
+		lastRLSCSetting = note.rLSC
+		lastRCompSetting = note.rCompression
+		lastRHSRSetting = note.rHSR
+		lastRLSRSetting = note.rLSR
+		lastRReboundSetting = note.rRebound
+		lastRTokenSetting = note.rTokens
+		lastRSagSetting = note.rSag
+		lastRTirePressure = note.rTirePressure
+		rReb = getDualReb(bike: bikeName)
+		rComp = getDualComp(bike: bikeName)
+		coil = getCoil(bike: bikeName)
+		hasRear = getHasRear(bike: bikeName)
+		travel = getTravel(bike: bikeName)
+		
+	}
+	
        func filterNote(for name: String) -> [Notes] {
            let filteredNotes = getNotes().filter { bikes in
                bikes.bike?.name == name

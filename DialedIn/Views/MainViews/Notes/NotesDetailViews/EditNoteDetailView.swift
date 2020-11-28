@@ -106,14 +106,14 @@ struct EditNoteDetailView: View {
 									Text("Rear Suspension Details")
 								}
 					){
-						AddNoteRearSetupView(rear: rearSetup)
+						AddNoteRearSetupView(rear: rearSetup, note: note)
 					}
 				} // end form
 				.onAppear(perform: {self.setup()}) // change to onReceive??
 				.navigationBarTitle("Dialed In", displayMode: .inline)
 				
 				Button(action: {
-					self.saveNote()
+					self.updateNote()
 					
 					withAnimation(.linear(duration: 0.05), {
 						self.saveText = "     SAVED!!     "  // no idea why, but have to add spaces here other wise it builds the word slowly with SA...., annoying as all hell
@@ -136,7 +136,7 @@ struct EditNoteDetailView: View {
 	
 	// MARK: - FUNCTIONS -
 	
-	func saveNote() {
+	func updateNote() {
 		note.note = self.noteText
 		note.rating = Int16(self.rating)
 		note.date = self.date
@@ -175,20 +175,13 @@ struct EditNoteDetailView: View {
 		bikeName = self.note.bike?.name ?? "Unknown Bike"
 		rating = Int(self.note.rating)
 		noteText = self.note.note ?? ""
-		isFavorite = self.note.isFavorite
+		isFavorite = note.isFavorite
 		date = note.date ?? Date()
-		frontSetup.bikeName = bikeName
+		frontSetup.bikeName = self.bikeName
 		frontSetup.getNoteFrontSettings(note: note)
-		
-		
-		// TODO: values are getting set for frontsetup - but they are not reflecting on the screen properly
-		
-		
-
-		
 		rearSetup.bikeName = self.bikeName
-		rearSetup.getLastRearSettings()
-		
+		rearSetup.getNoteRearSettings(note: note)
+	
 	}
 }
 

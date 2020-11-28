@@ -11,13 +11,14 @@ import SwiftUI
 struct AddNoteFrontSetupView: View {
     @ObservedObject var front = NoteFrontSetupModel()
 	
+	@State private var sag = 20
+	var haptic = UIImpactFeedbackGenerator(style: .light)
 	var isDetailEdit: Binding<Bool>?
 	let note : Notes?
 	
-    @State private var sag = 20
-	var haptic = UIImpactFeedbackGenerator(style: .light)
+
     
- //TODO: Configure Booleans
+// MARK: - BODY -
     var body: some View {
         VStack{
               // AirPressure
