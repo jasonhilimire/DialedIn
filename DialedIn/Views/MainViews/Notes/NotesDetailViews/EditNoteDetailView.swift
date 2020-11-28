@@ -84,16 +84,6 @@ struct EditNoteDetailView: View {
 							
 					){
 						AddNoteFrontSetupView(front: frontSetup, isDetailEdit: $isEdit, note: note)
-						
-//						VStack{
-//							// AirPressure
-//							HStack{
-//								Text("PSI: \(psi, specifier: "%.1f")").fontWeight(.thin)
-//								Slider(value: $psi, in: 45...120, step: 1.0)
-//								Stepper(value: $psi, in: 45...120, step: 0.5, onEditingChanged: {_ in DispatchQueue.main.async {self.haptic.impactOccurred()}}, label: {Text("PSI: \(self.psi)").fontWeight(.thin)}).labelsHidden()
-//
-//							}
-//						}
 					}
 					
 					// MARK: - REAR SETUP -
@@ -109,7 +99,9 @@ struct EditNoteDetailView: View {
 						AddNoteRearSetupView(rear: rearSetup, note: note)
 					}
 				} // end form
-				.onAppear(perform: {self.setup()}) // change to onReceive??
+				.onAppear(perform: {self.setup()})
+
+	
 				.navigationBarTitle("Dialed In", displayMode: .inline)
 				
 				Button(action: {
@@ -126,7 +118,7 @@ struct EditNoteDetailView: View {
 					}
 				}) {
 					SaveButtonView(buttonText: $saveText)
-				}.buttonStyle(OrangeButtonStyle())
+				}.buttonStyle(OrangeButtonStyle()).padding(.horizontal)
 			}
 		}
 		// Dismisses the keyboard

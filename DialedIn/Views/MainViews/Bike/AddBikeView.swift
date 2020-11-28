@@ -153,7 +153,7 @@ struct AddBikeView: View {
 					}
                     }) {
 						SaveButtonView(buttonText: $saveText)
-                        }.buttonStyle(OrangeButtonStyle())
+                        }.buttonStyle(OrangeButtonStyle()).padding(.horizontal)
                     Spacer()
             }
 			.animation(.default)

@@ -112,7 +112,7 @@ struct AddNoteView: View {
 					}
 				}) {
 					SaveButtonView(buttonText: $saveText)
-				}.buttonStyle(OrangeButtonStyle())
+				}.buttonStyle(OrangeButtonStyle()).padding(.horizontal)
 			}
         }
 			// Dismisses the keyboard

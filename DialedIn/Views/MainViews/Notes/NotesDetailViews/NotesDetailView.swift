@@ -27,7 +27,7 @@ struct NotesDetailView: View {
 	@State private var saveText = "Save"
 	
 	
-    let note: Notes
+    @ObservedObject var note: Notes
 	
 	// MARK - BODY -
 	var body: some View {
@@ -201,6 +201,7 @@ struct NotesDetailView: View {
 			.ignoresSafeArea(.keyboard)
 			
 			.onAppear(perform: {self.setup()})
+
 			// Dismisses the keyboard
 			.onTapGesture { UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to:nil, from:nil, for:nil) }
 			.navigationBarTitle(Text(note.bike?.name ?? "Unknown Note"), displayMode: .inline)
@@ -227,6 +228,7 @@ struct NotesDetailView: View {
 			})
 			.sheet(isPresented: $showingEditDetail)  {
 				EditNoteDetailView(note: note).environment(\.managedObjectContext, self.moc)
+
 			}
     }
 	
@@ -263,8 +265,6 @@ struct NotesDetailView: View {
 		isFavorite = note.isFavorite
 	}
 	
-	
-    
 
 }
 
