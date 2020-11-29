@@ -14,20 +14,19 @@ struct NotesDetailView: View {
     @Environment(\.managedObjectContext) var moc
     @Environment(\.presentationMode) var presentationMode
 	@ObservedObject var keyboard = KeyboardObserver()
+	@ObservedObject var noteModel = NoteModel()
 	
     @State private var showingDeleteAlert = false
 	@State private var showingEditDetail = false
-	
 	@State private var airVolume: Double = 0
 	@State private var rating = 3
 	@State private var noteText = ""
 	@State private var isFavorite = false
-	
 	@State private var savePressed = false
 	@State private var saveText = "Save"
 	
 	
-    @ObservedObject var note: Notes
+    let  note: Notes
 	
 	// MARK - BODY -
 	var body: some View {
@@ -41,9 +40,10 @@ struct NotesDetailView: View {
 						FavoritesView(favorite: self.$isFavorite)
 						
 					}.font(.headline)
-						TextView(text: self.$noteText)
+					TextView(text: $noteText)
 							.frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
 							.cornerRadius(8)
+							
 					
 					RatingView(rating: self.$rating)
 						.font(.headline)
@@ -199,8 +199,12 @@ struct NotesDetailView: View {
 			
 			// This keeps the keyboard from pushing the view up in iOS14
 			.ignoresSafeArea(.keyboard)
-			
 			.onAppear(perform: {self.setup()})
+			.onChange(of: showingEditDetail, perform: {value in
+				self.setup()
+		})
+
+		
 
 			// Dismisses the keyboard
 			.onTapGesture { UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to:nil, from:nil, for:nil) }
@@ -213,8 +217,8 @@ struct NotesDetailView: View {
 			.navigationBarItems(trailing:
 				HStack {
 					Button(action: {
-						print("edit pressed")
 						showingEditDetail.toggle()
+						
 					}) {
 						Image(systemName: "square.and.pencil")
 							.padding(.horizontal, 20)
@@ -228,7 +232,6 @@ struct NotesDetailView: View {
 			})
 			.sheet(isPresented: $showingEditDetail)  {
 				EditNoteDetailView(note: note).environment(\.managedObjectContext, self.moc)
-
 			}
     }
 	
@@ -248,9 +251,10 @@ struct NotesDetailView: View {
 			note.note = updatedNote
 			note.rating = Int16(updatedRating)
 			note.isFavorite = updatedFavorite
-			try? self.moc.save()
+			if self.moc.hasChanges {
+				try? self.moc.save()
+			}
 		}
-		print("Updated note: \(updatedNote)")
 		hapticSuccess()
 		// this pauses the view transition
 		DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
@@ -260,9 +264,10 @@ struct NotesDetailView: View {
 	}
 	
 	func setup() {
-		rating = Int(note.rating)
-		noteText = note.note ?? ""
-		isFavorite = note.isFavorite
+		noteModel.getNoteModel(note: note)
+		rating = Int(noteModel.noteRating)
+		noteText = noteModel.noteText
+		isFavorite = noteModel.noteFavorite
 	}
 	
 

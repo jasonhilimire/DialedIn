@@ -21,6 +21,7 @@ struct EditNoteDetailView: View {
 	@ObservedObject var frontSetup = NoteFrontSetupModel()
 	@ObservedObject var rearSetup = NoteRearSetupModel()
 	@ObservedObject var keyboard = KeyboardObserver()
+	@ObservedObject var noteModel = NoteModel()
 	
 	@State private var createdInitialBike = false
 	@State private var bikeNameIndex = 0
@@ -164,10 +165,14 @@ struct EditNoteDetailView: View {
 	}
 	
 	func setup() {
+		noteModel.getNoteModel(note: note)
+		rating = Int(noteModel.noteRating)
+		noteText = noteModel.noteText
+		isFavorite = noteModel.noteFavorite
 		bikeName = self.note.bike?.name ?? "Unknown Bike"
-		rating = Int(self.note.rating)
-		noteText = self.note.note ?? ""
-		isFavorite = note.isFavorite
+//		rating = Int(self.note.rating)
+//		noteText = self.note.note ?? ""
+//		isFavorite = note.isFavorite
 		date = note.date ?? Date()
 		frontSetup.bikeName = self.bikeName
 		frontSetup.getNoteFrontSettings(note: note)

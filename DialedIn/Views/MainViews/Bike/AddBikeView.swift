@@ -141,8 +141,6 @@ struct AddBikeView: View {
 
                 Button(action: {
 					self.saveNewBike()
-					print("Dual Comp: \(self.$forkDualCompToggle)")
-					print("Dual Reb: \(self.$forkDualReboundToggle)")
 					withAnimation(.linear(duration: 0.05), {
 						self.saveText = "     SAVED!!     "  // no idea why, but have to add spaces here other wise it builds the word slowly with SA...., annoying as all hell
 					})
