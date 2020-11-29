@@ -32,14 +32,14 @@ extension Bike{
 extension Notes{
     static func notesFetchRequest() -> NSFetchRequest<Notes> {
         let request: NSFetchRequest<Notes> = Notes.fetchRequest()
-        request.sortDescriptors = [NSSortDescriptor(keyPath: \Notes.date, ascending: true)]
+        request.sortDescriptors = [NSSortDescriptor(keyPath: \Notes.date, ascending: false)]
         return request
     }
     
 
     static func Last5NotesFetchRequest(filter: String) -> NSFetchRequest<Notes> {
         let request: NSFetchRequest<Notes> = Notes.fetchRequest()
-        request.sortDescriptors = [NSSortDescriptor(keyPath: \Notes.date, ascending: true)]
+        request.sortDescriptors = [NSSortDescriptor(keyPath: \Notes.date, ascending: false)]
         request.predicate = NSPredicate(format: "%K = %@", "bike.name", filter)
 		request.fetchLimit = 5
         return request

@@ -14,6 +14,7 @@ struct RearShockLastServicedView: View {
     
 	@ObservedObject var rearService = RearServiceModel()
 	@Binding var bikeName: String
+	
 	@State var elapsedAirService = 0
 	@State var elapsedFullService = 0
 	
@@ -42,12 +43,11 @@ struct RearShockLastServicedView: View {
 				if self.bike.rearSetup?.isCoil == false {
 					HStack {
 						Text("Last Air Can Service:")
-						.fontWeight(.light)
+							.fontWeight(.light)
 						Spacer()
 						Text("\(self.rearService.getAirCanDate(bike: self.bikeName), formatter: dateFormatter)")
-						.fontWeight(.light)
-						Text("(\(elapsedAirService))")
 							.fontWeight(.light)
+						Text("(\(elapsedAirService))")
 							.foregroundColor(Color.red)
 					}
 					.padding(.horizontal)
@@ -55,12 +55,11 @@ struct RearShockLastServicedView: View {
 					
 					HStack {
 						Text("Last Full Service:")
-						.fontWeight(.light)
+							.fontWeight(.light)
 						Spacer()
 						Text("\(self.rearService.getFullDate(bike: self.bikeName), formatter: dateFormatter)")
-						.fontWeight(.light)
-						Text("(\(elapsedFullService))")
 							.fontWeight(.light)
+						Text("(\(elapsedFullService))")
 							.foregroundColor(Color.red)
 					}
 					.padding(.horizontal)
@@ -68,7 +67,7 @@ struct RearShockLastServicedView: View {
 					
 					HStack {
 						Text("\(self.rearService.getRearServiceNote(bike: self.bikeName))")
-						.fontWeight(.light)
+							.fontWeight(.light)
 					}
 					.padding(.horizontal)
 					.font(.footnote)
@@ -76,10 +75,10 @@ struct RearShockLastServicedView: View {
 				} else {
 					HStack {
 						Text("Last Full Service:")
-						.fontWeight(.light)
+							.fontWeight(.light)
 						Spacer()
 						Text("\(self.rearService.getFullDate(bike: self.bikeName), formatter: dateFormatter)")
-						.fontWeight(.light)
+							.fontWeight(.light)
 						Text("(\(elapsedFullService))")
 							.fontWeight(.light)
 							.foregroundColor(Color.red)

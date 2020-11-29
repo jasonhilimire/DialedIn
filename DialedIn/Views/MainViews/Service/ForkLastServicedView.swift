@@ -46,7 +46,6 @@ struct ForkLastServicedView: View {
 						.fontWeight(.light)
 						
 					Text("(\(elapsedLowersService))")
-						.fontWeight(.light)
 						.foregroundColor(Color.red)					
 				}
 				.padding(.horizontal)
@@ -60,7 +59,6 @@ struct ForkLastServicedView: View {
 						.fontWeight(.light)
 					
 					Text("(\(elapsedFullService))")
-						.fontWeight(.light)
 						.foregroundColor(Color.red)
 				}
 				.padding(.horizontal)
