@@ -13,6 +13,7 @@ struct BikeDetailCardView: View {
 	@Environment(\.managedObjectContext) var moc
 	
 	@State var buttonText = "Edit"
+	@State var wrenchImage = "wrench"
 	@State var symbolImage = "square.and.pencil"
 	@State var showEditScreen = false
 
@@ -23,6 +24,9 @@ struct BikeDetailCardView: View {
 		ZStack {
 			VStack{
 				HStack {
+					NavigationLink(destination: ServiceView()) {
+						CircularButtonView(symbolImage: $wrenchImage)
+					}
 					Spacer()
 					NavigationLink(destination: EditBikeDetailView(bike: bike)) {
 						CircularButtonView(symbolImage: $symbolImage)
