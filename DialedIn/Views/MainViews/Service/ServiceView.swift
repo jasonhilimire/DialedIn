@@ -41,6 +41,9 @@ struct ServiceView: View {
 	@State private var saveText = "Save"
 	@State private var opacity: Double = 1
 	
+	var isFromBikeCard: Binding<Bool>?
+	let bike: Bike?
+	
 	var body: some View {
 		NavigationView {
 			VStack {
@@ -51,6 +54,9 @@ struct ServiceView: View {
 						if bikes.count == 1 {
 							Text("\(self.bikes[bikeNameIndex].name!)")
 								.fontWeight(.thin)
+						} else if (isFromBikeCard != nil) == true {
+							Text("\(self.bike?.name ?? "Unknown")")
+								.fontWeight(.semibold)
 						} else {
 							BikePickerView(bikeNameIndex: $bikeNameIndex)
 						}
@@ -218,15 +224,13 @@ struct ServiceView: View {
 	//MARK:- Functions
 	func setup() {
 		bikeName = bikes[bikeNameIndex].name ?? "Unknown"
-		rearService.bikeName = bikeName
-		rearService.getLastServicedDates()
-		rearServicedNote = ""
-		
 		frontService.bikeName = bikeName
 		frontService.getLastServicedDates()
 		frontServicedNote = ""
-		
 		frontServicedIndex = 0
+		rearService.bikeName = bikeName
+		rearService.getLastServicedDates()
+		rearServicedNote = ""
 		rearServicedIndex = 0
 		savePressed = false
 		saveText = "Save"
@@ -234,6 +238,10 @@ struct ServiceView: View {
 	
 	
 	func fetchAddService() {
+		if (isFromBikeCard != nil) {
+			bikeName = bike?.name ?? "Unknown"
+		}
+		
 		var bikes : [Bike] = []
 		let fetchRequest = Bike.selectedBikeFetchRequest(filter: bikeName)
 		

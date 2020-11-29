@@ -16,6 +16,7 @@ struct BikeDetailCardView: View {
 	@State var wrenchImage = "wrench"
 	@State var symbolImage = "square.and.pencil"
 	@State var showEditScreen = false
+	@State var isFromBikeCard = true
 
 	let bike: Bike
 	
@@ -24,7 +25,7 @@ struct BikeDetailCardView: View {
 		ZStack {
 			VStack{
 				HStack {
-					NavigationLink(destination: ServiceView()) {
+					NavigationLink(destination: ServiceView(isFromBikeCard: $isFromBikeCard, bike: bike)) {
 						CircularButtonView(symbolImage: $wrenchImage)
 					}
 					Spacer()

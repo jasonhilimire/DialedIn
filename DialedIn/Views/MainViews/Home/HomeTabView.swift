@@ -93,7 +93,7 @@ struct HomeTabView: View {
 				case .addNote:
 					AddNoteView()
 				case .addService:
-					ServiceView()
+					ServiceView(bike: nil)
 				case .addBike:
 					AddBikeView()
 			}
