@@ -31,6 +31,8 @@ struct AddNoteView: View {
 	@State private var isFavorite = false
 	@State private var toggleNoteDetail = false
 	@State private var saveText = "Save"
+	
+	
     
     var body: some View {
         NavigationView {
@@ -77,7 +79,7 @@ struct AddNoteView: View {
 						}
 						
 					){
-						AddNoteFrontSetupView(front: frontSetup)
+						AddNoteFrontSetupView(front: frontSetup, note: nil)
 					}
 					
 			// MARK: - Rear Setup -
@@ -90,7 +92,7 @@ struct AddNoteView: View {
 							Text("Rear Suspension Details")
 						}
 					){
-						AddNoteRearSetupView(rear: rearSetup)
+						AddNoteRearSetupView(rear: rearSetup, note: nil)
 					}
 				} // end form
 					.onAppear(perform: {self.setup()}) // change to onReceive??
@@ -110,7 +112,7 @@ struct AddNoteView: View {
 					}
 				}) {
 					SaveButtonView(buttonText: $saveText)
-				}.buttonStyle(OrangeButtonStyle())
+				}.buttonStyle(OrangeButtonStyle()).padding(.horizontal)
 			}
         }
 			// Dismisses the keyboard
@@ -133,8 +135,6 @@ struct AddNoteView: View {
 		
 		let bike = bikes[0]
 		
-		
-		
         let newNote = Notes(context: self.moc)
         newNote.note = self.note
         newNote.rating = Int16(self.rating)
@@ -153,7 +153,6 @@ struct AddNoteView: View {
         newNote.fSag = self.frontSetup.lastFSagSetting
 		newNote.fTirePressure = self.frontSetup.lastFTirePressure
         newNote.bike?.hasRearShock = self.rearSetup.hasRear
-		
 		
         // REAR
         newNote.rAirSpring = self.rearSetup.lastRAirSpringSetting

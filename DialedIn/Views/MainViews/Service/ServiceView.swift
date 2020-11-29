@@ -191,7 +191,6 @@ struct ServiceView: View {
 							withAnimation(.easeInOut(duration: 0.4)) {
 								self.savePressed.toggle()
 							}
-							print("Save pressed")
 							self.fetchAddService()
 							try? self.moc.save()
 							self.savePressed.toggle()
