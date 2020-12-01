@@ -27,6 +27,7 @@
 		A33C7F86254DF741002E6F47 /* BikeCardFlipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33C7F85254DF741002E6F47 /* BikeCardFlipView.swift */; };
 		A33C7FCA254F25AB002E6F47 /* OnBoardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33C7FC9254F25AB002E6F47 /* OnBoardingView.swift */; };
 		A33F02B124062A89005A0A8F /* FilteredNoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33F02B024062A89005A0A8F /* FilteredNoteView.swift */; };
+		A3655BB02575E9F6009DACDE /* BoolModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3655BAF2575E9F6009DACDE /* BoolModel.swift */; };
 		A37A8953257304AA00D301E1 /* NoteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37A8952257304A900D301E1 /* NoteModel.swift */; };
 		A37B1EC0252C0D8500147F94 /* GradientButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37B1EBF252C0D8500147F94 /* GradientButtonStyle.swift */; };
 		A3850EB225292700008982D8 /* NotesStyleCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3850EB125292700008982D8 /* NotesStyleCardView.swift */; };
@@ -121,6 +122,7 @@
 		A33C7F85254DF741002E6F47 /* BikeCardFlipView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeCardFlipView.swift; sourceTree = "<group>"; };
 		A33C7FC9254F25AB002E6F47 /* OnBoardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingView.swift; sourceTree = "<group>"; };
 		A33F02B024062A89005A0A8F /* FilteredNoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilteredNoteView.swift; sourceTree = "<group>"; };
+		A3655BAF2575E9F6009DACDE /* BoolModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoolModel.swift; sourceTree = "<group>"; };
 		A37A8952257304A900D301E1 /* NoteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteModel.swift; sourceTree = "<group>"; };
 		A37B1EBF252C0D8500147F94 /* GradientButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientButtonStyle.swift; sourceTree = "<group>"; };
 		A3850EB125292700008982D8 /* NotesStyleCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesStyleCardView.swift; sourceTree = "<group>"; };
@@ -423,6 +425,7 @@
 				A3B8B79423F0E66900CE1EF8 /* BikeModel.swift */,
 				A3CAFF5A2465F95000B144EA /* KeyboardObserver.swift */,
 				A37A8952257304A900D301E1 /* NoteModel.swift */,
+				A3655BAF2575E9F6009DACDE /* BoolModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -686,6 +689,7 @@
 				A33F02B124062A89005A0A8F /* FilteredNoteView.swift in Sources */,
 				A326FAC723F3BC6E002490E2 /* CoreData Extensions.swift in Sources */,
 				A3B8B79523F0E66900CE1EF8 /* BikeModel.swift in Sources */,
+				A3655BB02575E9F6009DACDE /* BoolModel.swift in Sources */,
 				A3E04FC2244B9E0000FEB391 /* FavoritesView.swift in Sources */,
 				A3DDCC8123DFF96400CD1476 /* AppView.swift in Sources */,
 				A3DDCC7D23DFF21700CD1476 /* NotesDetailView.swift in Sources */,

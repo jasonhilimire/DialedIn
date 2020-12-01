@@ -11,11 +11,10 @@ import SwiftUI
 struct BikeDetailCardView: View {
 	// MARK: - PROPERTIES -
 	@Environment(\.managedObjectContext) var moc
+	@EnvironmentObject var showScreenBool: BoolModel
 	
-	@State var buttonText = "Edit"
 	@State var wrenchImage = "wrench"
 	@State var symbolImage = "square.and.pencil"
-	@State var showEditScreen = false
 	@State var isFromBikeCard = true
 
 	let bike: Bike
@@ -25,13 +24,30 @@ struct BikeDetailCardView: View {
 		ZStack {
 			VStack{
 				HStack {
-					NavigationLink(destination: ServiceView(isFromBikeCard: $isFromBikeCard, bike: bike)) {
+//					NavigationLink(destination: ServiceView(isFromBikeCard: $isFromBikeCard, bike: bike)) {
+//						CircularButtonView(symbolImage: $wrenchImage)
+//					}
+					Button(action: {
+						self.showScreenBool.isShowingService.toggle()
+						publishBikeName()
+					}) {
 						CircularButtonView(symbolImage: $wrenchImage)
 					}
+					.padding(8)
+					.customTextShadow()
+					
 					Spacer()
-					NavigationLink(destination: EditBikeDetailView(bike: bike)) {
+//					NavigationLink(destination: EditBikeDetailView(bike: bike)) {
+//						CircularButtonView(symbolImage: $symbolImage)
+//					}
+					Button(action: {
+						self.showScreenBool.isShowingEdit.toggle()
+						publishBikeName()
+					}) {
 						CircularButtonView(symbolImage: $symbolImage)
 					}
+					.padding(8)
+					.customTextShadow()
 				}
 				.padding(8)
 				.customTextShadow()
@@ -50,9 +66,12 @@ struct BikeDetailCardView: View {
 		.cornerRadius(20)
 		.padding(.horizontal, 20)
 		.customShadow()
-		.sheet(isPresented: $showEditScreen)  {
-			EditBikeDetailView(bike: self.bike).environment(\.managedObjectContext, self.moc)
-		}
 	}
+	
+	func publishBikeName() {
+		self.showScreenBool.bikeName = bike.name ?? "Unknown"
+		print("Bike name is \(self.showScreenBool.bikeName ) + \(bike.name)")
+	}
+	
 }
 

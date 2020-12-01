@@ -12,6 +12,7 @@ struct ServiceView: View {
 	// Create the MOC
 	@Environment(\.managedObjectContext) var moc
 	@Environment(\.presentationMode) var presentationMode
+	@EnvironmentObject var boolModel: BoolModel
 	
 	
 	// Get All the bikes for the PickerView
@@ -43,6 +44,7 @@ struct ServiceView: View {
 	
 	var isFromBikeCard: Binding<Bool>?
 	let bike: Bike?
+
 	
 	var body: some View {
 		NavigationView {
@@ -55,7 +57,7 @@ struct ServiceView: View {
 							Text("\(self.bikes[bikeNameIndex].name!)")
 								.fontWeight(.thin)
 						} else if (isFromBikeCard != nil) == true {
-							Text("\(self.bike?.name ?? "Unknown")")
+							Text("\(boolModel.bikeName)")
 								.fontWeight(.semibold)
 						} else {
 							BikePickerView(bikeNameIndex: $bikeNameIndex)
@@ -239,7 +241,9 @@ struct ServiceView: View {
 	
 	func fetchAddService() {
 		if (isFromBikeCard != nil) {
-			bikeName = bike?.name ?? "Unknown"
+//			bikeName = bike?.name ?? "Unknown"
+			bikeName = boolModel.bikeName
+			print("Service view bike name is \(bikeName)")
 		}
 		
 		var bikes : [Bike] = []

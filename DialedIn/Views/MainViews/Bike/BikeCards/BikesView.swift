@@ -17,9 +17,12 @@ struct BikesView: View {
 		NSSortDescriptor(keyPath: \Bike.name, ascending: true)
 	]) var bikes: FetchedResults<Bike>
 	
+	@EnvironmentObject var showScreenBool: BoolModel
+	
 	// bool to show the Sheet
 	@State private var showingAddScreen = false
 	@State private var showingEditScreen = false
+	@State var isFromBikeCard = true
 	
 	// Published if Objects did change- seems to be working, but seems flaky
 	@State private var refreshing = false
@@ -46,7 +49,20 @@ struct BikesView: View {
 			
 			.sheet(isPresented: $showingAddScreen)  {
 				AddBikeView().environment(\.managedObjectContext, self.moc)
-			} //: END SCROLL VIEW
+			}
+			
+			.sheet(isPresented: $showScreenBool.isShowingService)  {
+				ServiceView(isFromBikeCard: $isFromBikeCard, bike: nil) // how to pass the proper bike
+					.environmentObject(self.showScreenBool)
+					.environment(\.managedObjectContext, self.moc)
+			}
+			
+//			.sheet(isPresented: $showScreenBool.isShowingEdit)  {
+//				EditBikeDetailView(, bike: <#Bike#>)// how to pass the proper bike?
+//					.environmentObject(self.showScreenBool)
+//					.environment(\.managedObjectContext, self.moc)
+//			}
+			
 			
 			.listStyle(InsetGroupedListStyle())
 			.navigationBarTitle("Dialed In - Bikes")
