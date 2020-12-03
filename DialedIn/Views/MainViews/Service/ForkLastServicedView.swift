@@ -35,7 +35,7 @@ struct ForkLastServicedView: View {
 					Spacer()
 				}
 				.padding([.top, .leading, .trailing])
-				.customShadow()
+				.customTextShadow()
 				
 				HStack(alignment: .center) {
 					Text("Lowers Last Serviced:")

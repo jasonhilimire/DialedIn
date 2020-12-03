@@ -31,7 +31,7 @@ struct CircularButtonView: View {
 
 struct DeleteButtonView_Previews: PreviewProvider {
     static var previews: some View {
-		CircularButtonView(symbolImage: .constant("trash"))
+		CircularButtonView(symbolImage: .constant("wrench"))
 			.preferredColorScheme(.dark)
 			.previewLayout(.sizeThatFits)
     }
