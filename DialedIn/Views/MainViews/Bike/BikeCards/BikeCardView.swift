@@ -47,7 +47,7 @@ struct BikeCardView: View {
 						.scaledToFit()
 						.customTextShadow()
 						.scaleEffect(isAnimating ? 1.0 : 0.6)
-						.frame(width: 310, height: 310, alignment: .center)
+						.frame(width: .infinity, height: 310, alignment: .center)
 						.padding(.horizontal, 10)
 					
 					// BIKE: NAME
@@ -88,6 +88,7 @@ struct BikeCardView: View {
 					
 				} //: VSTACK
 				.padding(.bottom, 16)
+//				.padding(.horizontal, 10)
 			} //: ZSTACK
 			.onAppear{
 				withAnimation(.easeOut(duration: 0.5)) {
