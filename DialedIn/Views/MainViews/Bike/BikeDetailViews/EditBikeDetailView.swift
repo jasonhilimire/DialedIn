@@ -9,10 +9,13 @@
 import SwiftUI
 
 struct EditBikeDetailView: View {
+	//MARK: - PROPERTIES -
 
 	// Create the MOC
 	@Environment(\.managedObjectContext) var moc
 	@Environment(\.presentationMode) var presentationMode
+	
+	@EnvironmentObject var showScreenBool: BoolModel
 	
 	@ObservedObject var keyboard = KeyboardObserver()
 	@ObservedObject var front = NoteFrontSetupModel()
@@ -37,9 +40,10 @@ struct EditBikeDetailView: View {
 	
 	@State private var saveText = "Save"
 	
-	let bike: Bike
+//	let bike: Bike
 	
 	//TODO: figure out how to only allow 1 default bike
+	//MARK: - BODY -
 	var body: some View {
 //		NavigationView {
 			VStack {
@@ -71,7 +75,6 @@ struct EditBikeDetailView: View {
 						
 						Toggle(isOn: $forkDualReboundToggle.animation(), label: {Text("Dual Rebound?").fontWeight(.thin)})
 						Toggle(isOn: $forkDualCompToggle.animation(), label: {Text("Dual Compression?").fontWeight(.thin)})
-						
 					}
 					
 					Section(header: Text("Shock Details")){
@@ -94,9 +97,7 @@ struct EditBikeDetailView: View {
 							HStack {
 								Text("Stroke Travel (mm):").fontWeight(.thin)
 								CustomNumberField(text: $strokeLength, placeholder: "Enter Shock Stroke in mm")
-									
 							}
-							
 							
 							Toggle(isOn: $rearDualReboundToggle.animation(), label: {Text("Dual Rebound?").fontWeight(.thin)})
 							
@@ -111,19 +112,17 @@ struct EditBikeDetailView: View {
 							HStack {
 								Text("Stroke Travel (mm):").fontWeight(.thin)
 								CustomNumberField(text: $strokeLength, placeholder: "Enter Shock Stroke in mm")
-									
 							}
 							
 							Toggle(isOn: $rearDualReboundToggle.animation(), label: {Text("Dual Rebound?").fontWeight(.thin)})
 							
 							Toggle(isOn: $rearDualCompToggle.animation(), label: {Text("Dual Compression?").fontWeight(.thin)})
-							
 						}
 					}
 					
 				Button(action: {
 					//dismisses the sheet
-					self.saveNewBike()
+					self.updateBike()
 
 					withAnimation(.linear(duration: 0.05), {
 						self.saveText = "     SAVED!!     "  // no idea why, but have to add spaces here other wise it builds the word slowly with SA...., annoying as all hell
@@ -146,8 +145,12 @@ struct EditBikeDetailView: View {
 			.onAppear(perform: {self.setup()})
 	}
 	
-	func saveNewBike() {
+	//MARK: - FUNCTIONS -
+	
+	func updateBike() {
 		// - Bike Edit
+		
+		let bike = fetchBike(for: bikeName)
 		
 		bike.name = self.bikeName
 		bike.bikeNote = self.bikeNote
@@ -159,11 +162,7 @@ struct EditBikeDetailView: View {
 		bike.frontSetup?.dualRebound = self.forkDualReboundToggle
 		bike.frontSetup?.info = self.forkInfo
 
-		
-		
 		// - Rear Creation -
-		
-		
 		if self.rearSetupIndex == 1 {
 			bike.hasRearShock = true
 			bike.rearSetup?.info = self.rearInfo
@@ -172,7 +171,6 @@ struct EditBikeDetailView: View {
 			bike.rearSetup?.dualRebound = self.rearDualCompToggle
 			bike.rearSetup?.isCoil = self.isCoilToggle
 
-			
 		} else if self.rearSetupIndex == 2 {
 			self.isCoilToggle.toggle()
 			
@@ -183,7 +181,6 @@ struct EditBikeDetailView: View {
 			bike.rearSetup?.dualRebound = self.rearDualCompToggle
 			bike.rearSetup?.isCoil = self.isCoilToggle
 
-			
 		} else if self.rearSetupIndex == 0 {
 			bike.hasRearShock = false
 			bike.rearSetup?.isCoil = false
@@ -191,11 +188,13 @@ struct EditBikeDetailView: View {
 	}
 	
 	func setup(){
-		bikeName = self.bike.wrappedBikeName
-		bikeNote = self.bike.bikeNote ?? ""
+//		bikeName = self.bike.wrappedBikeName
+		bikeName = showScreenBool.bikeName
+		let bike = fetchBike(for: bikeName)
+		bikeNote = bike.bikeNote ?? ""
 		
 		forkInfo = bike.frontSetup?.self.wrappedForkInfo ?? ""
-		forkTravel = "\(self.bike.frontSetup?.travel ?? 0)"
+		forkTravel = "\(bike.frontSetup?.travel ?? 0)"
 		
 		rearInfo = bike.rearSetup?.wrappedRearInfo ?? ""
 		strokeLength = "\(bike.rearSetup?.strokeLength ?? 0)" 
@@ -205,8 +204,10 @@ struct EditBikeDetailView: View {
 	}
 	
 	func setIndex(){
-		let hasRear = self.bike.hasRearShock
-		let isCoil = self.bike.rearSetup?.isCoil
+		let bike = fetchBike(for: bikeName)
+		
+		let hasRear = bike.hasRearShock
+		let isCoil = bike.rearSetup?.isCoil
 
 		if hasRear == false {
 			rearSetupIndex = 0
@@ -218,10 +219,12 @@ struct EditBikeDetailView: View {
 	}
 	
 	func setToggles() {
-		forkDualReboundToggle = self.bike.frontSetup!.dualRebound ? true : false
-		forkDualCompToggle = self.bike.frontSetup!.dualCompression ? true : false
-		rearDualReboundToggle = self.bike.rearSetup!.dualRebound ? true : false
-		rearDualCompToggle = self.bike.rearSetup!.dualCompression ? true: false
+		let bike = fetchBike(for: bikeName)
+		
+		forkDualReboundToggle = bike.frontSetup!.dualRebound ? true : false
+		forkDualCompToggle = bike.frontSetup!.dualCompression ? true : false
+		rearDualReboundToggle = bike.rearSetup!.dualRebound ? true : false
+		rearDualCompToggle = bike.rearSetup!.dualCompression ? true: false
 	
 	}
 }

@@ -28,7 +28,5 @@ class BoolModel: ObservableObject {
 		didSet {
 			didChange.send(self)
 		}
-	}
-	
-
+	}	
 }

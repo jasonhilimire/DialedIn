@@ -241,21 +241,13 @@ struct ServiceView: View {
 	
 	func fetchAddService() {
 		if (isFromBikeCard != nil) {
-//			bikeName = bike?.name ?? "Unknown"
 			bikeName = boolModel.bikeName
 			print("Service view bike name is \(bikeName)")
 		}
 		
-		var bikes : [Bike] = []
-		let fetchRequest = Bike.selectedBikeFetchRequest(filter: bikeName)
-		
-		do {
-			bikes = try moc.fetch(fetchRequest)
-		} catch let error as NSError {
-			print("Could not fetch. \(error), \(error.userInfo)")
-		}
-		
-		let fork = bikes[0].frontSetup
+		let bike = fetchBike(for: bikeName)
+
+		let fork = bike.frontSetup
 		let newFrontService = FrontService(context: self.moc)
 		if frontServicedIndex == 1 {
 			newFrontService.fullService = self.fFullServicedDate
@@ -272,7 +264,7 @@ struct ServiceView: View {
 			fork?.addToFrontService(newFrontService)
 		}
 		
-		let rear = bikes[0].rearSetup
+		let rear = bike.rearSetup
 		let newRearService = RearService(context: self.moc)
 		if rearServicedIndex == 1 {
 			newRearService.fullService = self.rFullServicedDate

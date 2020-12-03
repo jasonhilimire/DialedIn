@@ -11,6 +11,8 @@ import SwiftUI
 import Combine
 import UIKit
 
+
+
 var dateFormatter: DateFormatter {
 	let formatter = DateFormatter()
 	formatter.dateStyle = .short
@@ -229,7 +231,22 @@ extension View {
 	}
 }
 
-
+// Calculates Days between service
 func daysBetween(start: Date, end: Date) -> Int {
 	return Calendar.current.dateComponents([.day], from: start, to: end).day!
+}
+
+// Performs a fetch request for selected Bike and returns it
+
+func fetchBike(for bikeName: String) -> Bike {
+	let moc = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+	var bikes : [Bike] = []
+	let fetchRequest = Bike.selectedBikeFetchRequest(filter: bikeName)
+	do {
+		bikes = try moc.fetch(fetchRequest)
+	} catch let error as NSError {
+		print("Could not fetch. \(error), \(error.userInfo)")
+	}
+	let bike = bikes[0]
+	return bike
 }

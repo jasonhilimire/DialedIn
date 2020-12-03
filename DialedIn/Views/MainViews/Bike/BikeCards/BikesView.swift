@@ -57,11 +57,11 @@ struct BikesView: View {
 					.environment(\.managedObjectContext, self.moc)
 			}
 			
-//			.sheet(isPresented: $showScreenBool.isShowingEdit)  {
-//				EditBikeDetailView(, bike: <#Bike#>)// how to pass the proper bike?
-//					.environmentObject(self.showScreenBool)
-//					.environment(\.managedObjectContext, self.moc)
-//			}
+			.sheet(isPresented: $showScreenBool.isShowingEdit)  {
+				EditBikeDetailView()
+					.environmentObject(self.showScreenBool)
+					.environment(\.managedObjectContext, self.moc)
+			}
 			
 			
 			.listStyle(InsetGroupedListStyle())

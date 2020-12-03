@@ -125,15 +125,8 @@ struct AddNoteView: View {
 	
     
     func saveNote() {
-		var bikes : [Bike] = []
-		let fetchRequest = Bike.selectedBikeFetchRequest(filter: bikeName)
-		do {
-			bikes = try moc.fetch(fetchRequest)
-		} catch let error as NSError {
-			print("Could not fetch. \(error), \(error.userInfo)")
-		}
+		let bike = fetchBike(for: bikeName)
 		
-		let bike = bikes[0]
 		
         let newNote = Notes(context: self.moc)
         newNote.note = self.note

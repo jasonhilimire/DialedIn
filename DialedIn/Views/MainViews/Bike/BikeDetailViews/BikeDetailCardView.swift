@@ -24,9 +24,6 @@ struct BikeDetailCardView: View {
 		ZStack {
 			VStack{
 				HStack {
-//					NavigationLink(destination: ServiceView(isFromBikeCard: $isFromBikeCard, bike: bike)) {
-//						CircularButtonView(symbolImage: $wrenchImage)
-//					}
 					Button(action: {
 						self.showScreenBool.isShowingService.toggle()
 						publishBikeName()
@@ -37,12 +34,11 @@ struct BikeDetailCardView: View {
 					.customTextShadow()
 					
 					Spacer()
-//					NavigationLink(destination: EditBikeDetailView(bike: bike)) {
-//						CircularButtonView(symbolImage: $symbolImage)
-//					}
+					
 					Button(action: {
 						self.showScreenBool.isShowingEdit.toggle()
 						publishBikeName()
+
 					}) {
 						CircularButtonView(symbolImage: $symbolImage)
 					}
@@ -55,13 +51,9 @@ struct BikeDetailCardView: View {
 				BikeDetailView(bike: bike)
 				.foregroundColor(Color.white)
 				.multilineTextAlignment(.center)
-//				.padding(.bottom, 8)
 
 			} //: VSTACK
-//			.padding(.bottom, 8)
 		} //: ZSTACK
-		
-		//			.frame(minWidth: 0, idealWidth: 100, maxWidth: .infinity, minHeight: 0, idealHeight: 100, maxHeight: .infinity, alignment: .center)
 		.background(Color.gray)
 		.cornerRadius(20)
 		.padding(.horizontal, 20)
@@ -70,7 +62,6 @@ struct BikeDetailCardView: View {
 	
 	func publishBikeName() {
 		self.showScreenBool.bikeName = bike.name ?? "Unknown"
-		print("Bike name is \(self.showScreenBool.bikeName ) + \(bike.name)")
 	}
 	
 }
