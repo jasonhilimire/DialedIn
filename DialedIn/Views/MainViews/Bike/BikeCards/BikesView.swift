@@ -64,10 +64,6 @@ struct BikesView: View {
 								.environment(\.managedObjectContext, self.moc)
 						}))
 			
-			
-
-			
-			
 			.listStyle(InsetGroupedListStyle())
 			.navigationBarTitle("Dialed In - Bikes")
 			.navigationBarItems(trailing: Button(action: {self.showingAddScreen.toggle()

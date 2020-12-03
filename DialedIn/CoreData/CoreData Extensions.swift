@@ -25,6 +25,7 @@ extension Bike{
         let request: NSFetchRequest<Bike> = Bike.bikesFetchRequest()
         request.sortDescriptors = [NSSortDescriptor(keyPath: \Bike.name, ascending: true)]
         request.predicate = NSPredicate(format: "name == %@", filter)
+		request.fetchLimit = 1
         return request
     }    
 }
