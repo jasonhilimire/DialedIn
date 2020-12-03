@@ -13,7 +13,7 @@ import CoreData
 
 class FrontServiceModel: ObservableObject {
 	
-	let managedObjectContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+	let managedObjectContext = PersistentCloudKitContainer.persistentContainer.viewContext
 	
 	
 	//// now working!! might only need this and delete rest?

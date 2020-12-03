@@ -12,7 +12,7 @@ import SwiftUI
 
 class NoteModel: ObservableObject {
 	
-	let managedObjectContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+	let managedObjectContext = PersistentCloudKitContainer.persistentContainer.viewContext
 	
 	// MARK: - Published Variables
 	
