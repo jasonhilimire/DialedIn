@@ -150,7 +150,7 @@ struct EditBikeDetailView: View {
 	func updateBike() {
 		// - Bike Edit
 		
-		let bike = fetchBike(for: bikeName)
+		let bike = fetchBike(for: showScreenBool.bikeName)
 		
 		bike.name = self.bikeName
 		bike.bikeNote = self.bikeNote
