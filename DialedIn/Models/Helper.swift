@@ -239,7 +239,7 @@ func daysBetween(start: Date, end: Date) -> Int {
 // Performs a fetch request for selected Bike and returns it
 
 func fetchBike(for bikeName: String) -> Bike {
-	let moc = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+	let moc = PersistentCloudKitContainer.persistentContainer.viewContext
 	var bikes : [Bike] = []
 	let fetchRequest = Bike.selectedBikeFetchRequest(filter: bikeName)
 	do {

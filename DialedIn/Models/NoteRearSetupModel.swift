@@ -11,7 +11,7 @@ import SwiftUI
 import Combine
 
 class NoteRearSetupModel: ObservableObject {
-    let managedObjectContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+	let managedObjectContext = PersistentCloudKitContainer.persistentContainer.viewContext
 	
 	func getRearSettings(filter: String) -> [RearShock] {
 		var bikes : [RearShock] = []

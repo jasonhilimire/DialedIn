@@ -12,7 +12,7 @@ import Combine
 
 class BikeModel: ObservableObject {
     
-    let managedObjectContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+	let managedObjectContext = PersistentCloudKitContainer.persistentContainer.viewContext
     
     
     init() {
