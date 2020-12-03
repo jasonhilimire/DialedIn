@@ -51,17 +51,21 @@ struct BikesView: View {
 				AddBikeView().environment(\.managedObjectContext, self.moc)
 			}
 			
-			.sheet(isPresented: $showScreenBool.isShowingService)  {
-				ServiceView(isFromBikeCard: $isFromBikeCard, bike: nil) // how to pass the proper bike
-					.environmentObject(self.showScreenBool)
-					.environment(\.managedObjectContext, self.moc)
-			}
 			
-			.sheet(isPresented: $showScreenBool.isShowingEdit)  {
-				EditBikeDetailView()
+			// nested background view to show 2 sheets in same vies...
+			.background(EmptyView().sheet(isPresented: $showScreenBool.isShowingService) {
+				ServiceView(isFromBikeCard: $isFromBikeCard, bike: nil) 
 					.environmentObject(self.showScreenBool)
 					.environment(\.managedObjectContext, self.moc)
 			}
+						.background(EmptyView().sheet(isPresented: $showScreenBool.isShowingEdit) {
+							EditBikeDetailView()
+								.environmentObject(self.showScreenBool)
+								.environment(\.managedObjectContext, self.moc)
+						}))
+			
+			
+
 			
 			
 			.listStyle(InsetGroupedListStyle())

@@ -46,7 +46,6 @@ struct HomeTabView: View {
 	
 	enum ActiveSheet: Identifiable {
 		case addNote, addService, addBike
-		
 		var id: Int {
 			hashValue
 		}
@@ -61,9 +60,7 @@ struct HomeTabView: View {
 					if bikes.count == 0 && notes.count == 0 {
 						NoBikes_HomeScreenExampleView()
 					} else if notes.count == 0 {
-						
 						VStack{
-
 							NoBikes_NoteExampleView()
 								.frame(height: geo.size.height / 2 )
 
@@ -76,7 +73,6 @@ struct HomeTabView: View {
 						VStack{
 							LastNoteView() // if notes break and not updating was using HomeNoteViewHere() and note the above check for bikes
 								.frame(height: geo.size.height / 2.5 )
-							// NEW VIEW HERE?  Total note count or last service info??
 							HomeServiceView()
 								.frame(width: .infinity, height: geo.size.height / 2 )
 						}
