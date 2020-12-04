@@ -20,11 +20,11 @@ struct FavoritesView: View {
 	
 	var body: some View {
 		HStack {
-//			Text(label)
-				self.image()
-					.foregroundColor(self.favorite ? self.onColor: self.offColor)
-					.onTapGesture {
-						self.favorite.toggle()
+			self.image()
+				.imageScale(.large)
+				.foregroundColor(self.favorite ? self.onColor: self.offColor)
+				.onTapGesture {
+					self.favorite.toggle()
 			}
 		}
 	}
@@ -50,6 +50,7 @@ struct HomeFavoritesView: View {
 	var body: some View {
 		HStack {
 			self.image()
+				.imageScale(.large)
 				.foregroundColor(self.favorite ? self.onColor: self.offColor)
 		}
 	}
