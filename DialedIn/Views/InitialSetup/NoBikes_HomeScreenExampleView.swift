@@ -12,6 +12,31 @@ struct NoBikes_HomeScreenExampleView: View {
 	// MARK: - PROPERTIES -
 	@State private var showingAlert: Bool = false
 	private var alertText = "You must create a bike before adding notes or services"
+	@State var activeSheet: ActiveSheet?
+	
+	var trailingBarItems: some View {
+		Menu {
+			Button(action: { showingAlert.toggle()}) {
+				Label("Add New Note", systemImage: "gauge.badge.plus")
+			}
+			Button(action: {showingAlert.toggle() }) {
+				Label("Add New Service", systemImage: "wrench")
+			}
+			Button(action: {activeSheet = .addBike }) {
+				Label("Add New Bike", systemImage: "hare")
+			}
+		} label: {
+			Image(systemName: "plus.circle")
+				.font(.system(size: 35))
+		}
+	}
+	
+	enum ActiveSheet: Identifiable {
+		case addNote, addService, addBike
+		var id: Int {
+			hashValue
+		}
+	}
 	
 	// MARK: - BODY -
     var body: some View {
@@ -24,42 +49,29 @@ struct NoBikes_HomeScreenExampleView: View {
 							.frame(height: geo.size.height / 2.5 )
 					}
 					
-					GeometryReader { innergeo in
-						HStack {
-							Button(action: {
-								self.showingAlert.toggle()
-							}) {
-								HStack {
-									Image(systemName: "wrench")
-									Text("Add Service")
-								}
-							}.buttonStyle(GradientButtonStyle())
-							.frame(width: innergeo.size.width / 2, height: 15)
-							
-							Spacer()
-							Button(action: {
-								self.showingAlert.toggle()
-							}) {
-								HStack {
-									Image(systemName: "gauge.badge.plus")
-									Text("Add Note")
-								}
-							}.buttonStyle(GradientButtonStyle())
-							.frame(width: innergeo.size.width / 2, height: 15)
-							
-						} //: END HSTACK
-						.frame(width: .infinity, height: geo.size.height / 9 )
-					}
+
 					NoBikes_ServiceExampleView()
 						.frame(width: .infinity, height: geo.size.height / 2.3 )
 				}
 				.padding()
 				.navigationBarTitle("Dialed In")
+				.navigationBarItems(trailing: trailingBarItems)
 			} //: END Main ZSTACK
 			.alert(isPresented: $showingAlert) {
 				Alert(title: Text("Please Create a Bike"), message: Text("\(alertText)"), primaryButton: .default(Text("OK")) {
 					//
 				}, secondaryButton: .cancel())
+			}
+		}
+		
+		.sheet(item: $activeSheet) { item in
+			switch item {
+				case .addNote:
+					AddNoteView()
+				case .addService:
+					ServiceView(bike: nil)
+				case .addBike:
+					AddBikeView()
 			}
 		}
 	}
