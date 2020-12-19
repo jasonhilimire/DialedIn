@@ -24,8 +24,6 @@ struct HomeServiceView: View {
 		NSSortDescriptor(keyPath: \Bike.name, ascending: true)
 	]) var bikes: FetchedResults<Bike>
 	
-
-	
 	
 	// MARK: - BODY -
 	var body: some View {
@@ -57,8 +55,15 @@ struct HomeServiceView: View {
 struct HomeStyledCardView: View {
 	@Environment(\.managedObjectContext) var moc
 	@Environment(\.presentationMode) var presentationMode
+	@EnvironmentObject var showScreenBool: BoolModel
 	
 	@State private var bikeName = ""
+	@State private var showingServiceScreen = false
+	@State private var showingEditScreen = false
+	@State private var showingNoteScreen = false
+	@State private var isfromBikeCard = true
+	
+	
 
 	let bike: Bike
 
@@ -92,7 +97,42 @@ struct HomeStyledCardView: View {
 			RoundedRectangle(cornerRadius: 20)
 				.stroke(Color.orange, lineWidth: 2))
 		.customShadow()
-		
+		.contextMenu {
+			VStack {
+				Button(action: {
+					self.showScreenBool.isShowingService.toggle()
+					publishBikeName()
+				}) {
+					HStack {
+						Text("Service")
+						Image(systemName: "wrench.fill")
+						}
+					}
+				}
+				Button(action: {print("Add Note")}) {
+					HStack {
+						Text("Edit")
+						Image(systemName: "gauge.badge.plus")
+					}
+				}
+				Divider()
+				Button(action: {print("edit")}) {
+					HStack {
+						Text("Edit")
+						Image(systemName: "square.and.pencil")
+					}
+				
+			}
+		}
+		.sheet(isPresented: $showScreenBool.isShowingService)  {
+			ServiceView( isFromBikeCard: $isfromBikeCard, bike: bike)
+				.environmentObject(self.showScreenBool)
+				.environment(\.managedObjectContext, self.moc)
+		}
+	}
+	
+	func publishBikeName() {
+		self.showScreenBool.bikeName = bike.name ?? "Unknown"
 	}
 }
 
