@@ -52,7 +52,7 @@ struct BikesView: View {
 			}
 			
 			
-			// nested background view to show 2 sheets in same vies...
+			// nested background view to show 2 sheets in same view...
 			.background(EmptyView().sheet(isPresented: $showScreenBool.isShowingService) {
 				ServiceView(isFromBikeCard: $isFromBikeCard, bike: nil) 
 					.environmentObject(self.showScreenBool)

@@ -58,10 +58,7 @@ struct HomeStyledCardView: View {
 	@EnvironmentObject var showScreenBool: BoolModel
 	
 	@State private var bikeName = ""
-	@State private var showingServiceScreen = false
-	@State private var showingEditScreen = false
-	@State private var showingNoteScreen = false
-	@State private var isfromBikeCard = true
+	@State private var isFromBikeCard = true
 	
 	
 
@@ -89,7 +86,7 @@ struct HomeStyledCardView: View {
 				}
 			}
 		}
-		.frame(width: 300, height: 250)
+		.frame(width: 300, height: 275)
 		.foregroundColor(Color("TextColor"))
 		.background(Color("BackgroundColor"))
 		.cornerRadius(20)
@@ -105,30 +102,40 @@ struct HomeStyledCardView: View {
 				}) {
 					HStack {
 						Text("Service")
-						Image(systemName: "wrench.fill")
+						Image(systemName: "wrench")
 						}
 					}
-				}
-				Button(action: {print("Add Note")}) {
-					HStack {
-						Text("Edit")
-						Image(systemName: "gauge.badge.plus")
-					}
-				}
-				Divider()
-				Button(action: {print("edit")}) {
+				Button(action: {
+					self.showScreenBool.isShowingEdit.toggle()
+					publishBikeName()
+				}) {
 					HStack {
 						Text("Edit")
 						Image(systemName: "square.and.pencil")
 					}
-				
-			}
-		}
-		.sheet(isPresented: $showScreenBool.isShowingService)  {
-			ServiceView( isFromBikeCard: $isfromBikeCard, bike: bike)
+				}
+			
+//			Divider()
+//				Button(action: {print("Add Note")}) {
+//					HStack {
+//						Text("Add Note")
+//						Image(systemName: "gauge.badge.plus")
+//					}
+//				}
+			}  //: END VSTACK
+		} //: END CONTEXT
+
+		// nested background view to show 2 sheets in same view...
+		.background(EmptyView().sheet(isPresented: $showScreenBool.isShowingService) {
+			ServiceView(isFromBikeCard: $isFromBikeCard, bike: bike)
 				.environmentObject(self.showScreenBool)
 				.environment(\.managedObjectContext, self.moc)
 		}
+		.background(EmptyView().sheet(isPresented: $showScreenBool.isShowingEdit) {
+			EditBikeDetailView()
+				.environmentObject(self.showScreenBool)
+				.environment(\.managedObjectContext, self.moc)
+		}))
 	}
 	
 	func publishBikeName() {
