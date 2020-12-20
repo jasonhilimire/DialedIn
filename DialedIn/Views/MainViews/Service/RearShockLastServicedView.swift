@@ -38,7 +38,7 @@ struct RearShockLastServicedView: View {
 						.fontWeight(.semibold)
 				}
 				.padding(.horizontal)
-				.customShadow()
+				.customTextShadow()
 				
 				if self.bike.rearSetup?.isCoil == false {
 					HStack {

@@ -16,6 +16,7 @@ struct CircularButtonView: View {
 			Image(systemName: symbolImage)
 				.imageScale(.large)
 				.foregroundColor(.white)
+				.frame(width: 28.5, height: 28.5, alignment: .center) // frame allows for constant sizing otherwize SF Symbol images are not same :/
 
 		}
 		.padding(.horizontal, 16)
@@ -31,7 +32,7 @@ struct CircularButtonView: View {
 
 struct DeleteButtonView_Previews: PreviewProvider {
     static var previews: some View {
-		CircularButtonView(symbolImage: .constant("trash"))
+		CircularButtonView(symbolImage: .constant("wrench"))
 			.preferredColorScheme(.dark)
 			.previewLayout(.sizeThatFits)
     }

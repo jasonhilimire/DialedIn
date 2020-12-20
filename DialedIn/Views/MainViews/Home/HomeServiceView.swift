@@ -24,8 +24,6 @@ struct HomeServiceView: View {
 		NSSortDescriptor(keyPath: \Bike.name, ascending: true)
 	]) var bikes: FetchedResults<Bike>
 	
-
-	
 	
 	// MARK: - BODY -
 	var body: some View {
@@ -57,8 +55,12 @@ struct HomeServiceView: View {
 struct HomeStyledCardView: View {
 	@Environment(\.managedObjectContext) var moc
 	@Environment(\.presentationMode) var presentationMode
+	@EnvironmentObject var showScreenBool: BoolModel
 	
 	@State private var bikeName = ""
+	@State private var isFromBikeCard = true
+	
+	
 
 	let bike: Bike
 
@@ -84,7 +86,7 @@ struct HomeStyledCardView: View {
 				}
 			}
 		}
-		.frame(width: 300, height: 250)
+		.frame(width: 300, height: 275)
 		.foregroundColor(Color("TextColor"))
 		.background(Color("BackgroundColor"))
 		.cornerRadius(20)
@@ -92,7 +94,52 @@ struct HomeStyledCardView: View {
 			RoundedRectangle(cornerRadius: 20)
 				.stroke(Color.orange, lineWidth: 2))
 		.customShadow()
-		
+		.contextMenu {
+			VStack {
+				Button(action: {
+					self.showScreenBool.isShowingService.toggle()
+					publishBikeName()
+				}) {
+					HStack {
+						Text("Add Service")
+						Image(systemName: "wrench")
+						}
+					}
+				Button(action: {
+					self.showScreenBool.isShowingEdit.toggle()
+					publishBikeName()
+				}) {
+					HStack {
+						Text("Edit Bike")
+						Image(systemName: "square.and.pencil")
+					}
+				}
+			
+//			Divider()
+//				Button(action: {print("Add Note")}) {
+//					HStack {
+//						Text("Add Note")
+//						Image(systemName: "note.text.badge.plus")
+//					}
+//				}
+			}  //: END VSTACK
+		} //: END CONTEXT
+
+		// nested background view to show 2 sheets in same view...
+		.background(EmptyView().sheet(isPresented: $showScreenBool.isShowingService) {
+			ServiceView(isFromBikeCard: $isFromBikeCard, bike: bike)
+				.environmentObject(self.showScreenBool)
+				.environment(\.managedObjectContext, self.moc)
+		}
+		.background(EmptyView().sheet(isPresented: $showScreenBool.isShowingEdit) {
+			EditBikeDetailView()
+				.environmentObject(self.showScreenBool)
+				.environment(\.managedObjectContext, self.moc)
+		}))
+	}
+	
+	func publishBikeName() {
+		self.showScreenBool.bikeName = bike.name ?? "Unknown"
 	}
 }
 

@@ -63,7 +63,7 @@ struct OnBoardingView: View {
 					.customTextShadow()
 					.padding()
 					HStack {
-						Image(systemName: "gauge.badge.plus")
+						Image(systemName: "note.text.badge.plus")
 							.resizable()
 							.scaledToFit()
 							.frame(width: 55, height: 55)

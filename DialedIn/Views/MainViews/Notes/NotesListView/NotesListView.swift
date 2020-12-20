@@ -71,7 +71,7 @@ struct NotesListView: View {
                 }) {
 					// only show button if we have a bike
 					if bikes.count >= 1 {
-						Image(systemName: "gauge.badge.plus")
+						Image(systemName: "note.text.badge.plus")
 							.foregroundColor(Color("TextColor"))
 							.font(.system(size: 35))
 					}

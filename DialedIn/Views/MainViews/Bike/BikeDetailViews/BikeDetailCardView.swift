@@ -30,9 +30,7 @@ struct BikeDetailCardView: View {
 					}) {
 						CircularButtonView(symbolImage: $wrenchImage)
 					}
-					.padding(8)
-					.customTextShadow()
-					
+
 					Spacer()
 					
 					Button(action: {
@@ -42,8 +40,6 @@ struct BikeDetailCardView: View {
 					}) {
 						CircularButtonView(symbolImage: $symbolImage)
 					}
-					.padding(8)
-					.customTextShadow()
 				}
 				.padding(8)
 				.customTextShadow()

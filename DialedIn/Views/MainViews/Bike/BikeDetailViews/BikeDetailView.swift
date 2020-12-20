@@ -23,7 +23,7 @@ struct BikeDetailView: View {
 			VStack {
 				Text("Note: \(self.bike.bikeNote ?? "")" )
 					.font(.subheadline)
-					.customShadow()
+					.customTextShadow()
 					.fixedSize(horizontal: false, vertical: true)
 					.padding(2)
 				VStack {

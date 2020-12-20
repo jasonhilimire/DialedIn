@@ -15,7 +15,7 @@ struct NotesHomeStyledCardView: View {
 	@Environment(\.presentationMode) var presentationMode
 	@ObservedObject var note: Notes
 	
-	@State private var showingAddScreen = false
+	@State private var showingEditScreen = false
 	
 	// MARK: - BODY
 	var body: some View {
@@ -144,7 +144,7 @@ struct NotesHomeStyledCardView: View {
 							}
 						}
 					}
-					Button(action: {self.showingAddScreen.toggle()}) {
+					Button(action: {self.showingEditScreen.toggle()}) {
 						HStack {
 							Text("Edit")
 							Image(systemName: "square.and.pencil")
@@ -162,7 +162,7 @@ struct NotesHomeStyledCardView: View {
 					}
 				}
 			}
-			.sheet(isPresented: $showingAddScreen)  {
+			.sheet(isPresented: $showingEditScreen)  {
 				NotesDetailView(note: note)
 			}
 		} //: END ZSTACK

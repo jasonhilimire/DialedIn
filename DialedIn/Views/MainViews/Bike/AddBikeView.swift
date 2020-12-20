@@ -57,7 +57,17 @@ struct AddBikeView: View {
 //                        Toggle(isOn: $setDefault.animation(), label: {Text("Set as Default Bike?")})
 					}
                     
-                    Section(header: Text("Fork Details")){
+					// MARK: - Front Setup -
+					Section(header:
+								HStack {
+									Image("bicycle-fork")
+										.resizable()
+										.frame(width: 50, height: 50)
+										.scaledToFit()
+									Text("Fork Details")
+								}
+							
+					){
 						HStack{
 							Text("Fork Name/Info:").fontWeight(.thin)
 							CustomTextField(text: $forkInfo, placeholder: "Add Fork Info")
@@ -80,7 +90,16 @@ struct AddBikeView: View {
                         }
                     }
                     
-                    Section(header: Text("Shock Details")){
+					// MARK: - REAR SETUP =
+					Section(header:
+								HStack {
+									Image("shock-absorber")
+										.resizable()
+										.frame(width: 50, height: 50)
+										.scaledToFit()
+									Text("Shock Details")
+								}
+					){
                         Picker("Rear Setup", selection: $rearSetupIndex) {
                             ForEach(0..<rearSetups.count) { index in
                                 Text(self.rearSetups[index]).tag(index)
@@ -244,7 +263,7 @@ struct AddBikeView: View {
 	func checkBikeNameExists() {
 		let filteredBikes = try! moc.fetch(Bike.bikesFetchRequest())
 		for bike in filteredBikes {
-			if bike.name == bikeName {
+			if bike.name?.lowercased() == bikeName.lowercased() {
 				duplicateNameAlert.toggle()
 				break
 			}
@@ -253,8 +272,3 @@ struct AddBikeView: View {
 
 }
 
-struct BikeView_Previews: PreviewProvider {
-    static var previews: some View {
-        AddBikeView()
-    }
-}
