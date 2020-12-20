@@ -111,7 +111,7 @@ struct HomeStyledCardView: View {
 				}) {
 					HStack {
 						Text("Edit Bike")
-						Image(systemName: "square.and.pencil")
+						Image(systemName: "doc.badge.gearshape")
 					}
 				}
 			

@@ -160,8 +160,6 @@ struct EditNoteDetailView: View {
 		note.rTokens = self.rearSetup.lastRTokenSetting
 		note.rSag = self.rearSetup.lastRSagSetting
 		note.rTirePressure = self.rearSetup.lastRTirePressure
-		
-		
 	}
 	
 	func setup() {
@@ -170,9 +168,6 @@ struct EditNoteDetailView: View {
 		noteText = noteModel.noteText
 		isFavorite = noteModel.noteFavorite
 		bikeName = self.note.bike?.name ?? "Unknown Bike"
-//		rating = Int(self.note.rating)
-//		noteText = self.note.note ?? ""
-//		isFavorite = note.isFavorite
 		date = note.date ?? Date()
 		frontSetup.bikeName = self.bikeName
 		frontSetup.getNoteFrontSettings(note: note)
