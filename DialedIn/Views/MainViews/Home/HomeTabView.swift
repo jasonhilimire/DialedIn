@@ -30,13 +30,13 @@ struct HomeTabView: View {
 	var trailingBarItems: some View {
 		Menu {
 			Button(action: { activeSheet = .addNote}) {
-				Label("Add New Note", systemImage: "gauge.badge.plus")
+				Label("Add New Note", systemImage: "note.text.badge.plus")
 			}
 			Button(action: {activeSheet = .addService }) {
 				Label("Add New Service", systemImage: "wrench")
 			}
 			Button(action: {activeSheet = .addBike }) {
-				Label("Add New Bike", systemImage: "hare")
+				Label("Add New Bike", systemImage: "bicycle")
 			}
 		} label: {
 			Image(systemName: "plus.circle")

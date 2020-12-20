@@ -26,14 +26,13 @@ struct ContentView: View {
 			
 			NotesListView()
 				.tabItem {
-					Image(systemName: "list.dash")
+					Image(systemName: "note.text")
 					Text("Notes")
 				}
 			
 			BikesView()
 				.tabItem {
-					//					Image("mountainbike")
-					Image(systemName: "hare")
+					Image(systemName: "bicycle")
 					Text("Bikes")
 				}
 		}

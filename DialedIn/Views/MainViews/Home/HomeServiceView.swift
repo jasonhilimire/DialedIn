@@ -101,7 +101,7 @@ struct HomeStyledCardView: View {
 					publishBikeName()
 				}) {
 					HStack {
-						Text("Service")
+						Text("Add Service")
 						Image(systemName: "wrench")
 						}
 					}
@@ -110,7 +110,7 @@ struct HomeStyledCardView: View {
 					publishBikeName()
 				}) {
 					HStack {
-						Text("Edit")
+						Text("Edit Bike")
 						Image(systemName: "square.and.pencil")
 					}
 				}
@@ -119,7 +119,7 @@ struct HomeStyledCardView: View {
 //				Button(action: {print("Add Note")}) {
 //					HStack {
 //						Text("Add Note")
-//						Image(systemName: "gauge.badge.plus")
+//						Image(systemName: "note.text.badge.plus")
 //					}
 //				}
 			}  //: END VSTACK
