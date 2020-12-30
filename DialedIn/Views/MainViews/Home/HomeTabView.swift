@@ -51,7 +51,6 @@ struct HomeTabView: View {
 		}
 	}
 	
-
 	// MARK: - BODY -
     var body: some View {
 		NavigationView() {
@@ -81,8 +80,8 @@ struct HomeTabView: View {
 						.navigationBarItems(trailing: trailingBarItems)
 					}
 				}//: END Main ZSTACK
-			}
-		}
+			} //: END GEOREADER
+		} //: END NAV VIEW
 		.navigationViewStyle(StackNavigationViewStyle())
 		.sheet(item: $activeSheet) { item in
 			switch item {
@@ -94,13 +93,5 @@ struct HomeTabView: View {
 					AddBikeView()
 			}
 		}
-    }
-	
-}
-
-
-struct HomeTabView_Previews: PreviewProvider {
-    static var previews: some View {
-        HomeTabView()
     }
 }

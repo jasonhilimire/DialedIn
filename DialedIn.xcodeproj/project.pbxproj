@@ -355,7 +355,7 @@
 				A38D56AC25609ABF00E83041 /* Dialed In.entitlements */,
 				A3D5181F2426925B007DEE9D /* README.md */,
 				A326FAC823F3BC80002490E2 /* CoreData */,
-				A3C16EAC23DEA461005BFA14 /* Models */,
+				A3C16EAC23DEA461005BFA14 /* ViewModels */,
 				A3C76CA023EF5DC70047BBCC /* Delegates */,
 				A3C16EAB23DEA454005BFA14 /* Views */,
 				A3C16E7023DE9EC5005BFA14 /* Assets.xcassets */,
@@ -411,7 +411,7 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		A3C16EAC23DEA461005BFA14 /* Models */ = {
+		A3C16EAC23DEA461005BFA14 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
 				A3F567A124343B1100C769A4 /* Helper.swift */,
@@ -424,7 +424,7 @@
 				A37A8952257304A900D301E1 /* NoteModel.swift */,
 				A3655BAF2575E9F6009DACDE /* BoolModel.swift */,
 			);
-			path = Models;
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		A3C16EAD23DEA4ED005BFA14 /* Properties */ = {
@@ -886,6 +886,7 @@
 				MARKETING_VERSION = 1.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.peanutApps.DialedIn;
 				PRODUCT_NAME = "Dialed In";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "";
@@ -910,6 +911,7 @@
 				MARKETING_VERSION = 1.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.peanutApps.DialedIn;
 				PRODUCT_NAME = "Dialed In";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "";
