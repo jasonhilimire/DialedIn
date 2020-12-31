@@ -60,6 +60,7 @@ struct HomeStyledCardView: View {
 	@State private var bikeName = ""
 	@State private var isFromBikeCard = true
 	
+	
 	let bike: Bike
 
 	var body: some View {

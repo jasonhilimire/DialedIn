@@ -25,7 +25,7 @@ struct HomeTabView: View {
 	@State var showAddNoteScreen = false
 	@State var showAddServiceScreen = false
 	@State var activeSheet: ActiveSheet?
-	
+	@State var flipHorizontally = true
 	
 	var trailingBarItems: some View {
 		Menu {

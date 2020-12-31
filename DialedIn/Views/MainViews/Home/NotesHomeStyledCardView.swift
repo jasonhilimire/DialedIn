@@ -16,6 +16,7 @@ struct NotesHomeStyledCardView: View {
 	@ObservedObject var note: Notes
 	
 	@State private var showingEditScreen = false
+	@State var cardAnimation = false
 	
 	// MARK: - BODY
 	var body: some View {
@@ -129,12 +130,18 @@ struct NotesHomeStyledCardView: View {
 			.cornerRadius(20)
 			// Shadow for left & Bottom
 			.customShadow()
+			// CardAnimation
+			.rotationEffect(Angle.degrees(cardAnimation ? 360 : 0))
+			.animation(Animation.easeOut(duration: 1.5))
+			
+			
 			//: CONTEXT MENU
 			.contextMenu {
 				VStack {
-					Button(action: {updateNote(note: note)}) {
+					Button(action: withAnimation() {
+							{updateNote(note: note)}
+					}) {
 						HStack {
-	// Works successfully- but probably needs a good animation
 							if note.isFavorite == false {
 								Text("Favorite")
 								Image(systemName: "bookmark")
@@ -168,6 +175,7 @@ struct NotesHomeStyledCardView: View {
 		} //: END ZSTACK
 	}
 	
+	// MARK: - FUNCTIONS -
 	func deleteNote() {
 		moc.delete(note)
 		try? self.moc.save()
@@ -176,16 +184,15 @@ struct NotesHomeStyledCardView: View {
 	
 	func updateNote(note: Notes) {
 		self.note.isFavorite.toggle()
+		self.cardAnimation.toggle()
 		moc.performAndWait {
 			note.isFavorite = self.note.isFavorite
 			try? self.moc.save()
 		}
-		print("Updated Favorite")
 		hapticSuccess()
-		// this pauses the view transition
-		DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
-			self.presentationMode.wrappedValue.dismiss()
-		}
 	}
 }
+		
+		
+
 
