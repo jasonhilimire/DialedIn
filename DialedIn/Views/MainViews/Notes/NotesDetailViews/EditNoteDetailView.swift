@@ -122,8 +122,9 @@ struct EditNoteDetailView: View {
 				}.buttonStyle(OrangeButtonStyle()).padding(.horizontal)
 			}
 		}
-		// Dismisses the keyboard
-		.gesture(tap, including: keyboard.keyBoardShown ? .all : .none)
+		// Dismisses the keyboard not sure why the standard doesnt work, but whatever
+//		.gesture(tap, including: keyboard.keyBoardShown ? .all : .none)
+		.onTapGesture { UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to:nil, from:nil, for:nil) }
 		
 	}
 	
@@ -173,7 +174,6 @@ struct EditNoteDetailView: View {
 		frontSetup.getNoteFrontSettings(note: note)
 		rearSetup.bikeName = self.bikeName
 		rearSetup.getNoteRearSettings(note: note)
-	
 	}
 }
 
