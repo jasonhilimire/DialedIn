@@ -17,7 +17,7 @@ struct BikesView: View {
 		NSSortDescriptor(keyPath: \Bike.name, ascending: true)
 	]) var bikes: FetchedResults<Bike>
 	
-	@EnvironmentObject var showScreenBool: BoolModel
+	@EnvironmentObject var showScreenBool: EnviroObjectsModel
 	
 	// bool to show the Sheet
 	@State private var showingAddScreen = false

@@ -9,7 +9,7 @@ import SwiftUI
 
 @main
 struct DialedInApp: App {
-	@StateObject private var boolModel = BoolModel()
+	@StateObject private var boolModel = EnviroObjectsModel()
 	
     let context = PersistentCloudKitContainer.persistentContainer.viewContext
 	

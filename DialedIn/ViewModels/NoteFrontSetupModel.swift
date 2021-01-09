@@ -27,7 +27,6 @@ class NoteFrontSetupModel: ObservableObject {
 		return bikes
 	}
 
-
 	func getDualComp(bike: String) -> Bool {
 		let filteredBike = getFrontSettings(filter: bike).filter { bikes in
 			bikes.bike?.frontSetup?.bike?.name == bike
@@ -143,7 +142,7 @@ class NoteFrontSetupModel: ObservableObject {
     
     let didChange = PassthroughSubject<NoteFrontSetupModel, Never>()
     
-    // MARK: - Functions
+    // MARK: - Functions -
     // get Last Settings
 	
     
@@ -153,7 +152,6 @@ class NoteFrontSetupModel: ObservableObject {
         return lastAirSetting ?? 65.0
     }
 	
-    
     func getLastFHSC() -> Int16 {
         let lastRecord = FrontSettings.hsc
         return lastRecord.getSetting(note: filterBikes(for: bikeName))
@@ -169,8 +167,6 @@ class NoteFrontSetupModel: ObservableObject {
         return lastRecord.getSetting(note: filterBikes(for: bikeName))
     }
 	
-	
-    
     func getLastFHSR() -> Int16 {
         let lastRecord = FrontSettings.hsr
         return lastRecord.getSetting(note: filterBikes(for: bikeName))
@@ -186,8 +182,6 @@ class NoteFrontSetupModel: ObservableObject {
         return lastRecord.getSetting(note: filterBikes(for: bikeName))
     }
 	
-	
-    
     func getLastFTokens() -> Int16 {
         let lastRecord = FrontSettings.tokens
         return lastRecord.getSetting(note: filterBikes(for: bikeName))
@@ -229,7 +223,6 @@ class NoteFrontSetupModel: ObservableObject {
         fComp = getDualComp(bike: bikeName)
         fReb = getDualReb(bike: bikeName)
 		fTravel = getTravel(bike: bikeName)
-
     }
 	
 	
@@ -247,8 +240,6 @@ class NoteFrontSetupModel: ObservableObject {
 		fComp = getDualComp(bike: bikeName)
 		fReb = getDualReb(bike: bikeName)
 		fTravel = getTravel(bike: bikeName)
-		
-		
 	}
     
  // THIS WORKS Now need to figure out how to pass the selected bike into the Model from the pickerview
@@ -300,5 +291,4 @@ class NoteFrontSetupModel: ObservableObject {
       }
         
     }
-    
 }

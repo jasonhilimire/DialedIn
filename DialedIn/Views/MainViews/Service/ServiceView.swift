@@ -12,7 +12,7 @@ struct ServiceView: View {
 	// Create the MOC
 	@Environment(\.managedObjectContext) var moc
 	@Environment(\.presentationMode) var presentationMode
-	@EnvironmentObject var boolModel: BoolModel
+	@EnvironmentObject var boolModel: EnviroObjectsModel
 	
 	
 	// Get All the bikes for the PickerView

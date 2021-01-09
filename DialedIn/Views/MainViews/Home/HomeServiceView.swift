@@ -55,7 +55,7 @@ struct HomeServiceView: View {
 struct HomeStyledCardView: View {
 	@Environment(\.managedObjectContext) var moc
 	@Environment(\.presentationMode) var presentationMode
-	@EnvironmentObject var showScreenBool: BoolModel
+	@EnvironmentObject var enviroObject: EnviroObjectsModel
 	
 	@State private var bikeName = ""
 	@State private var isFromBikeCard = true
@@ -96,7 +96,7 @@ struct HomeStyledCardView: View {
 		.contextMenu {
 			VStack {
 				Button(action: {
-					self.showScreenBool.isShowingService.toggle()
+					self.enviroObject.isShowingService.toggle()
 					publishBikeName()
 				}) {
 					HStack {
@@ -105,7 +105,7 @@ struct HomeStyledCardView: View {
 						}
 					}
 				Button(action: {
-					self.showScreenBool.isShowingEdit.toggle()
+					self.enviroObject.isShowingEdit.toggle()
 					publishBikeName()
 				}) {
 					HStack {
@@ -117,20 +117,21 @@ struct HomeStyledCardView: View {
 		} //: END CONTEXT
 
 		// nested background view to show 2 sheets in same view...
-		.background(EmptyView().sheet(isPresented: $showScreenBool.isShowingService) {
+		.background(EmptyView().sheet(isPresented: $enviroObject.isShowingService) {
 			ServiceView(isFromBikeCard: $isFromBikeCard, bike: bike)
-				.environmentObject(self.showScreenBool)
+				.environmentObject(self.enviroObject)
 				.environment(\.managedObjectContext, self.moc)
 		}
-		.background(EmptyView().sheet(isPresented: $showScreenBool.isShowingEdit) {
+		.background(EmptyView().sheet(isPresented: $enviroObject.isShowingEdit) {
 			EditBikeDetailView()
-				.environmentObject(self.showScreenBool)
+				.environmentObject(self.enviroObject)
 				.environment(\.managedObjectContext, self.moc)
 		}))
 	} //: END VIEW
 	
+	
 	func publishBikeName() {
-		self.showScreenBool.bikeName = bike.name ?? "Unknown"
+		self.enviroObject.bikeName = bike.name ?? "Unknown"
 	}
 }
 

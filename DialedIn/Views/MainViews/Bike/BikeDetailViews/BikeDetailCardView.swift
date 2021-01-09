@@ -11,7 +11,7 @@ import SwiftUI
 struct BikeDetailCardView: View {
 	// MARK: - PROPERTIES -
 	@Environment(\.managedObjectContext) var moc
-	@EnvironmentObject var showScreenBool: BoolModel
+	@EnvironmentObject var showScreenBool: EnviroObjectsModel
 	
 	@State var wrenchImage = "wrench"
 	@State var symbolImage = "square.and.pencil"

@@ -73,26 +73,18 @@ class FrontServiceModel: ObservableObject {
 		}
 	}
 	
+	@Published var elapsedLowerServiceDate: Int = 90 {
+		didSet {
+			didChange.send(self)
+		}
+	}
+	
 	let didChange = PassthroughSubject<FrontServiceModel, Never>()
 
 	func getLastServicedDates() {
 		lastLowerService = getlowersDate(bike: bikeName)
 		lastFullService = getFullDate(bike: bikeName)
+		elapsedLowerServiceDate = daysBetween(start: lastLowerService, end: Date())
 	}
-	
-//	enum ServiceDates {
-//		case lowers
-//		case full
-//
-//		func getLastServiceDates(frontService: [FrontService]) -> Date {
-//			switch self {
-//				case .lowers:
-//					return frontService.last?.lowersService ?? Date()
-//				case .full:
-//					return frontService.last?.fullService ?? Date()
-//
-//			}
-//		}
-//	}
 }
 

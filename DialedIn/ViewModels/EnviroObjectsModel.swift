@@ -9,8 +9,8 @@
 import Foundation
 import Combine
 
-class BoolModel: ObservableObject {
-	let didChange = PassthroughSubject<BoolModel, Never>()
+class EnviroObjectsModel: ObservableObject {
+	let didChange = PassthroughSubject<EnviroObjectsModel, Never>()
 	
 	@Published var isShowingService: Bool = false {
 		didSet {
@@ -18,15 +18,23 @@ class BoolModel: ObservableObject {
 		}
 	}
 	
-	@Published var isShowingEdit: Bool = false{
+	@Published var isShowingEdit: Bool = false {
 		didSet {
 			didChange.send(self)
 		}
 	}
 	
-	@Published var bikeName: String = ""{
+	@Published var bikeName: String = "" {
 		didSet {
 			didChange.send(self)
 		}
-	}	
+	}
+	
+	// TODO: Replace with actual setting in Core Data Model
+	@Published var frontServiceWarning: Int = 15 {
+		didSet {
+			didChange.send(self)
+		}
+	}
+	
 }

@@ -15,7 +15,7 @@ struct EditBikeDetailView: View {
 	@Environment(\.managedObjectContext) var moc
 	@Environment(\.presentationMode) var presentationMode
 	
-	@EnvironmentObject var showScreenBool: BoolModel
+	@EnvironmentObject var showScreenBool: EnviroObjectsModel
 	
 	@ObservedObject var keyboard = KeyboardObserver()
 	@ObservedObject var front = NoteFrontSetupModel()

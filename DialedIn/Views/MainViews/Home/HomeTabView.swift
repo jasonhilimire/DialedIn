@@ -25,8 +25,13 @@ struct HomeTabView: View {
 	@State var showAddNoteScreen = false
 	@State var showAddServiceScreen = false
 	@State var activeSheet: ActiveSheet?
+	@State private var alertIdentifier: AlertIdentifier?
 	@State var flipHorizontally = true
 	
+	@State var showServiceWarning = false
+	@State var alertText = "Service has elapsed schedule- Recommend servicing soon!"
+	
+	// Plus button setup
 	var trailingBarItems: some View {
 		Menu {
 			Button(action: { activeSheet = .addNote}) {
@@ -46,6 +51,13 @@ struct HomeTabView: View {
 	
 	enum ActiveSheet: Identifiable {
 		case addNote, addService, addBike
+		var id: Int {
+			hashValue
+		}
+	}
+	
+	enum AlertIdentifier: Identifiable {
+		case frontLowers, frontFull, rearAirCan, rearFull
 		var id: Int {
 			hashValue
 		}
@@ -80,6 +92,32 @@ struct HomeTabView: View {
 						.navigationBarItems(trailing: trailingBarItems)
 					}
 				}//: END Main ZSTACK
+				
+				.alert(isPresented: $showServiceWarning) {
+					switch alertIdentifier {
+						case .frontLowers:
+							return Alert(title: Text("Lowers Service Needed"), message: Text("\(alertText)"), primaryButton: .default(Text("OK")) {
+								//
+							}, secondaryButton: .cancel())
+						case .frontFull:
+							return Alert(title: Text("Full Fork Service Needed"), message: Text("\(alertText)"), primaryButton: .default(Text("OK")) {
+								//
+							}, secondaryButton: .cancel())
+						case .rearAirCan:
+							return Alert(title: Text("Rear AirCan Service Needed"), message: Text("\(alertText)"), primaryButton: .default(Text("OK")) {
+								//
+							}, secondaryButton: .cancel())
+						case .rearFull:
+							return Alert(title: Text("Full Rear Service Needed"), message: Text("\(alertText)"), primaryButton: .default(Text("OK")) {
+								//
+							}, secondaryButton: .cancel())
+						case .none:
+							return Alert(title: Text("Oops" ), message: Text("\(alertText)"), primaryButton: .default(Text("OK")) {
+								//
+							}, secondaryButton: .cancel())
+					}
+					
+				}
 			} //: END GEOREADER
 		} //: END NAV VIEW
 		.navigationViewStyle(StackNavigationViewStyle())
@@ -93,5 +131,7 @@ struct HomeTabView: View {
 					AddBikeView()
 			}
 		}
+		
+		/// add some kind of function that checks and sets the alertidentifier if x self.alertIdentifier = .frontLowers
     }
 }

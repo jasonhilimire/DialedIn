@@ -78,7 +78,7 @@ struct ForkLastServicedView: View {
 		bikeName = self.bike.name ?? "Unknown bike"
 		frontService.bikeName = bikeName
 		frontService.getLastServicedDates()
-		elapsedLowersService = daysBetween(start: self.frontService.lastLowerService, end: Date())
+		elapsedLowersService = frontService.elapsedLowerServiceDate
 		elapsedFullService = daysBetween(start: self.frontService.lastFullService, end: Date())
 	}
 }
