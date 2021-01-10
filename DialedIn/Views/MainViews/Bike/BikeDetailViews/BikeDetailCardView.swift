@@ -45,8 +45,8 @@ struct BikeDetailCardView: View {
 				.customTextShadow()
 				
 				BikeDetailView(bike: bike)
-				.foregroundColor(Color.white)
-				.multilineTextAlignment(.center)
+					.foregroundColor(Color.white)
+					.multilineTextAlignment(.center)
 
 			} //: VSTACK
 		} //: ZSTACK

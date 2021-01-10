@@ -18,7 +18,10 @@ struct ForkLastServicedView: View {
 	@State var elapsedLowersService = 0
 	@State var elapsedFullService = 0
 	
-//    let fork: Fork
+	@State var elapsedLowersServiceAnimation = false
+	@State var elapsedFullServiceAnimation = false
+	
+
 	let bike: Bike
 	
 	
@@ -39,35 +42,34 @@ struct ForkLastServicedView: View {
 				
 				HStack(alignment: .center) {
 					Text("Lowers Last Serviced:")
-						.fontWeight(.light)
-
+						.fontWeight(elapsedLowersServiceAnimation ? .bold : nil)
 					Spacer()
 					Text( "\(self.frontService.getlowersDate(bike: self.bikeName), formatter: dateFormatter)")
-						.fontWeight(.light)
-						
+						.fontWeight(elapsedLowersServiceAnimation ? .bold : nil)
 					Text("(\(elapsedLowersService))")
-						.foregroundColor(Color.red)					
+						.foregroundColor(Color.red)
+						.fontWeight(elapsedLowersServiceAnimation ? .bold : nil)
 				}
 				.padding(.horizontal)
 				.font(.footnote)
-								
+				.foregroundColor(elapsedLowersServiceAnimation ? .red : nil)
+			
 				HStack {
 					Text("Last Full Service:")
-						.fontWeight(.light)
 					Spacer()
 					Text("\(self.frontService.getFullDate(bike: self.bikeName), formatter: dateFormatter)")
-						.fontWeight(.light)
-					
+						.fontWeight(elapsedFullServiceAnimation ? .bold : nil)
 					Text("(\(elapsedFullService))")
 						.foregroundColor(Color.red)
+						.fontWeight(elapsedFullServiceAnimation ? .bold : nil)
 				}
 				.padding(.horizontal)
 				.font(.footnote)
+				.foregroundColor(elapsedFullServiceAnimation ? .red : nil)  // TODO: OVERWRITING PARENT VIEW THAT SETS COLOR TO WHITE WHEN NIL???
 				
+			
 				HStack {
-					Text("\(self.frontService.getFrontServiceNote(bike: self.bikeName))")
-					.fontWeight(.light)
-					
+					Text("\(self.frontService.getFrontServiceNote(bike: self.bikeName))").fontWeight(.light)
 				}
 				.padding(.horizontal)
 				.font(.footnote)
@@ -78,8 +80,17 @@ struct ForkLastServicedView: View {
 		bikeName = self.bike.name ?? "Unknown bike"
 		frontService.bikeName = bikeName
 		frontService.getLastServicedDates()
-		elapsedLowersService = daysBetween(start: self.frontService.lastLowerService, end: Date())
-		elapsedFullService = daysBetween(start: self.frontService.lastFullService, end: Date())
+		elapsedLowersService = frontService.elapsedLowerServiceDate
+		elapsedFullService = frontService.elapsedFullServiceDate
+		
+		// TODO: USE A REAL SET VALUE - but also if access from BikeCardFlipView this isnt seeting the boolean correctly, when click on hom then back to bikes it working- may need to be an observed object
+		if elapsedLowersService > 20 {
+			elapsedLowersServiceAnimation.toggle()
+		}
+		
+		if elapsedFullService > 30 {
+			elapsedFullServiceAnimation.toggle()
+		}
 	}
 }
 
