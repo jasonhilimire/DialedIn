@@ -22,11 +22,13 @@ struct HomeTabView: View {
 		NSSortDescriptor(keyPath: \Notes.date, ascending: true)
 	]) var notes: FetchedResults<Notes>
 	
+	
+	@EnvironmentObject var enviroObject: EnviroObjectsModel
 	@State var showAddNoteScreen = false
 	@State var showAddServiceScreen = false
-	@State var activeSheet: ActiveSheet?
+	@State private var activeSheet: ActiveSheet?
 	@State private var alertIdentifier: AlertIdentifier?
-	@State var flipHorizontally = true
+	@State private var flipHorizontally = true
 	
 	@State var showServiceWarning = false
 	@State var alertText = "Service has elapsed schedule- Recommend servicing soon!"
@@ -94,6 +96,7 @@ struct HomeTabView: View {
 				}//: END Main ZSTACK
 				
 				.alert(isPresented: $showServiceWarning) {
+					// TODO: update so bike name is show in the alert
 					switch alertIdentifier {
 						case .frontLowers:
 							return Alert(title: Text("Lowers Service Needed"), message: Text("\(alertText)"), primaryButton: .default(Text("OK")) {
@@ -130,8 +133,18 @@ struct HomeTabView: View {
 				case .addBike:
 					AddBikeView()
 			}
+		} .onAppear(perform: {self.setup()})
+	}
+	
+	func setup() {
+		alert()
+	}
+	
+	//TODO: STUB OUT the rest for all cases
+	func alert() {
+		if enviroObject.frontServiceWarning == true {
+			alertIdentifier = .frontLowers
+			self.showServiceWarning.toggle()
 		}
-		
-		/// add some kind of function that checks and sets the alertidentifier if x self.alertIdentifier = .frontLowers
-    }
+	}
 }

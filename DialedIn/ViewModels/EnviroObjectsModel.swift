@@ -30,8 +30,8 @@ class EnviroObjectsModel: ObservableObject {
 		}
 	}
 	
-	// TODO: Replace with actual setting in Core Data Model
-	@Published var frontServiceWarning: Int = 15 {
+	// TODO: Stub out rest of service warnings
+	@Published var frontServiceWarning: Bool = false {
 		didSet {
 			didChange.send(self)
 		}

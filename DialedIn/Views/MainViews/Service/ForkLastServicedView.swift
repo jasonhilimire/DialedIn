@@ -12,11 +12,14 @@ struct ForkLastServicedView: View {
     
     @Environment(\.managedObjectContext) var moc
     
+	@EnvironmentObject var enviroObject: EnviroObjectsModel
     @ObservedObject var frontService = FrontServiceModel()
 	@Binding var bikeName: String
 	
 	@State var elapsedLowersService = 0
 	@State var elapsedFullService = 0
+	@State var serviceDue = false
+	@State var serviceWarning = 15
 	
 //    let fork: Fork
 	let bike: Bike
@@ -80,6 +83,11 @@ struct ForkLastServicedView: View {
 		frontService.getLastServicedDates()
 		elapsedLowersService = frontService.elapsedLowerServiceDate
 		elapsedFullService = daysBetween(start: self.frontService.lastFullService, end: Date())
+		enviroObject.frontServiceWarning = elapsedServiceLower()
+	}
+	
+	func elapsedServiceLower() -> Bool {
+		elapsedLowersService > 15 ? true : false
 	}
 }
 
