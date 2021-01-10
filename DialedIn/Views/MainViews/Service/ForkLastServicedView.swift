@@ -18,8 +18,8 @@ struct ForkLastServicedView: View {
 	@State var elapsedLowersService = 0
 	@State var elapsedFullService = 0
 	
-	@State var elapsedLowersServiceAnimation = false
-	@State var elapsedFullServiceAnimation = false
+	@State var elapsedLowersServiceColor = false
+	@State var elapsedFullServiceColor = false
 	
 
 	let bike: Bike
@@ -42,30 +42,28 @@ struct ForkLastServicedView: View {
 				
 				HStack(alignment: .center) {
 					Text("Lowers Last Serviced:")
-						.fontWeight(elapsedLowersServiceAnimation ? .bold : nil)
 					Spacer()
 					Text( "\(self.frontService.getlowersDate(bike: self.bikeName), formatter: dateFormatter)")
-						.fontWeight(elapsedLowersServiceAnimation ? .bold : nil)
 					Text("(\(elapsedLowersService))")
-						.foregroundColor(Color.red)
-						.fontWeight(elapsedLowersServiceAnimation ? .bold : nil)
+						.foregroundColor(elapsedLowersServiceColor ? nil : Color.red)
 				}
 				.padding(.horizontal)
-				.font(.footnote)
-				.foregroundColor(elapsedLowersServiceAnimation ? .red : nil)
+				.if(elapsedLowersServiceColor) { $0.customFootnoteBold() } else: { $0.font(.footnote) }
+				.background(elapsedLowersServiceColor ? Color(.red): nil)
+
 			
 				HStack {
 					Text("Last Full Service:")
 					Spacer()
 					Text("\(self.frontService.getFullDate(bike: self.bikeName), formatter: dateFormatter)")
-						.fontWeight(elapsedFullServiceAnimation ? .bold : nil)
 					Text("(\(elapsedFullService))")
-						.foregroundColor(Color.red)
-						.fontWeight(elapsedFullServiceAnimation ? .bold : nil)
+						.foregroundColor(elapsedFullServiceColor ? nil: Color.red)
 				}
 				.padding(.horizontal)
-				.font(.footnote)
-				.foregroundColor(elapsedFullServiceAnimation ? .red : nil)  // TODO: OVERWRITING PARENT VIEW THAT SETS COLOR TO WHITE WHEN NIL???
+				.if(elapsedFullServiceColor) { $0.customFootnoteBold() } else: { $0.font(.footnote) }
+				.background(elapsedFullServiceColor ? Color(.red): nil)
+				
+
 				
 			
 				HStack {
@@ -85,11 +83,11 @@ struct ForkLastServicedView: View {
 		
 		// TODO: USE A REAL SET VALUE - but also if access from BikeCardFlipView this isnt seeting the boolean correctly, when click on hom then back to bikes it working- may need to be an observed object
 		if elapsedLowersService > 20 {
-			elapsedLowersServiceAnimation.toggle()
+			elapsedLowersServiceColor.toggle()
 		}
 		
-		if elapsedFullService > 30 {
-			elapsedFullServiceAnimation.toggle()
+		if elapsedFullService > 20 {
+			elapsedFullServiceColor.toggle()
 		}
 	}
 }
