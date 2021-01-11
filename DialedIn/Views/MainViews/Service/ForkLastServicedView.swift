@@ -78,17 +78,13 @@ struct ForkLastServicedView: View {
 		bikeName = self.bike.name ?? "Unknown bike"
 		frontService.bikeName = bikeName
 		frontService.getLastServicedDates()
+		
+		// Get Service dates from the FrontService Observed Object
 		elapsedLowersService = frontService.elapsedLowerServiceDate
 		elapsedFullService = frontService.elapsedFullServiceDate
 		
-		// TODO: USE A REAL SET VALUE - but also if access from BikeCardFlipView this isnt seeting the boolean correctly, when click on hom then back to bikes it working- may need to be an observed object
-		if elapsedLowersService > 20 {
-			elapsedLowersServiceColor.toggle()
-		}
-		
-		if elapsedFullService > 20 {
-			elapsedFullServiceColor.toggle()
-		}
+		elapsedLowersServiceColor = frontService.elapsedLowersServiceWarning
+		elapsedFullServiceColor = frontService.elapsedFullServiceWarning
 	}
 }
 

@@ -14,7 +14,69 @@ import CoreData
 class FrontServiceModel: ObservableObject {
 	
 	let managedObjectContext = PersistentCloudKitContainer.persistentContainer.viewContext
+	@AppStorage("frontLowersServiceSetting") private var frontLowersServiceSetting: Int = 90
+	@AppStorage("frontFullServiceSetting") private var frontFullServiceSetting: Int = 180
 	
+	// MARK: - PUBLISHED VARIABLES -
+	
+	@Published var bikeName: String = "" {
+		didSet {
+			didChange.send(self)
+		}
+	}
+	
+	@Published var lastLowerService: Date = Date() {
+		didSet {
+			didChange.send(self)
+		}
+	}
+	
+	@Published var lastFullService: Date = Date() {
+		didSet {
+			didChange.send(self)
+		}
+	}
+	
+	@Published var elapsedLowerServiceDate: Int = 90 {
+		didSet {
+			didChange.send(self)
+		}
+	}
+	
+	@Published var elapsedFullServiceDate: Int = 90 {
+		didSet {
+			didChange.send(self)
+		}
+	}
+	
+	@Published var elapsedLowersServiceWarning: Bool = false {
+		didSet {
+			didChange.send(self)
+		}
+	}
+	
+	@Published var elapsedFullServiceWarning: Bool = false {
+		didSet {
+			didChange.send(self)
+		}
+	}
+	
+	let didChange = PassthroughSubject<FrontServiceModel, Never>()
+	
+	init() {
+		getLastServicedDates()
+	}
+	
+	// MARK: - FUNCTIONS -
+	
+	func getLastServicedDates() {
+		lastLowerService = getlowersDate(bike: bikeName)
+		lastFullService = getFullDate(bike: bikeName)
+		elapsedLowerServiceDate = daysBetween(start: lastLowerService, end: Date())
+		elapsedFullServiceDate = daysBetween(start: lastFullService, end: Date())
+		elapsedLowersServiceWarning = lowersServiceWarning()
+		elapsedFullServiceWarning = fullServiceWarning()
+	}
 	
 	//// now working!! might only need this and delete rest?
 	func getFrontServices(filter: String) -> [FrontService] {
@@ -51,46 +113,12 @@ class FrontServiceModel: ObservableObject {
 		return filteredService.last?.serviceNote ?? ""
 	}
 	
-	init() {
-		getLastServicedDates()
+	
+	func lowersServiceWarning() -> Bool {
+		elapsedLowerServiceDate >= frontLowersServiceSetting ?  true : false
 	}
 	
-	@Published var bikeName: String = "" {
-		didSet {
-			didChange.send(self)
-		}
-	}
-	
-	@Published var lastLowerService: Date = Date() {
-		didSet {
-			didChange.send(self)
-		}
-	}
-	
-	@Published var lastFullService: Date = Date() {
-		didSet {
-			didChange.send(self)
-		}
-	}
-	
-	@Published var elapsedLowerServiceDate: Int = 90 {
-		didSet {
-			didChange.send(self)
-		}
-	}
-	
-	@Published var elapsedFullServiceDate: Int = 90 {
-		didSet {
-			didChange.send(self)
-		}
-	}
-	
-	let didChange = PassthroughSubject<FrontServiceModel, Never>()
-	
-	func getLastServicedDates() {
-		lastLowerService = getlowersDate(bike: bikeName)
-		lastFullService = getFullDate(bike: bikeName)
-		elapsedLowerServiceDate = daysBetween(start: lastLowerService, end: Date())
-		elapsedFullServiceDate = daysBetween(start: lastFullService, end: Date())
+	func fullServiceWarning() -> Bool {
+		elapsedFullServiceDate >= frontFullServiceSetting ? true : false
 	}
 }

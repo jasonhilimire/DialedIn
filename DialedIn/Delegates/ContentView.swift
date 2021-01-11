@@ -9,8 +9,15 @@ import SwiftUI
 import CoreData
 
 struct ContentView: View {
-
+	// OnBoarding App Storage
 	@AppStorage("needsAppOnboarding") private var needsAppOnboarding: Bool = true
+	
+	// Default settings for user configured Service Warning
+	@AppStorage("frontLowersServiceSetting") private var frontLowersServiceSetting: Int = 90
+	@AppStorage("frontFullServiceSetting") private var frontFullServiceSetting: Int = 180
+	
+	@AppStorage("rearAirCanServiceSetting") private var rearAirCanServiceSetting: Int = 90
+	@AppStorage("rearFullServiceSetting") private var rearFullServiceSetting: Int = 180
 	
 	
 	// Create the MOC
