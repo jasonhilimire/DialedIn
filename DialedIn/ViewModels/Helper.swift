@@ -216,6 +216,16 @@ struct CardShadowModifier: ViewModifier {
 	}
 }
 
+struct FootnoteBoldTextModifier: ViewModifier {
+	// system font, size footnote and bold
+	let font = Font.system(.footnote).weight(.bold)
+	
+	func body(content: Content) -> some View {
+		content
+			.font(font)
+	}
+}
+
 
 extension View {
 	func customNotesText() -> some View {
@@ -228,6 +238,10 @@ extension View {
 	
 	func customTextShadow() -> some View {
 		return self.modifier(CardShadowModifier())
+	}
+	
+	func customFootnoteBold() -> some View {
+		return self.modifier(FootnoteBoldTextModifier())
 	}
 }
 
@@ -249,4 +263,20 @@ func fetchBike(for bikeName: String) -> Bike {
 	}
 	let bike = bikes[0]
 	return bike
+}
+
+// alllows if else conditional on view modifiers
+extension View {
+	@ViewBuilder
+	func `if`<TrueContent: View, FalseContent: View>(
+		_ condition: Bool,
+		if ifTransform: (Self) -> TrueContent,
+		else elseTransform: (Self) -> FalseContent
+	) -> some View {
+		if condition {
+			ifTransform(self)
+		} else {
+			elseTransform(self)
+		}
+	}
 }

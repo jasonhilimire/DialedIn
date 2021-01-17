@@ -18,6 +18,9 @@ struct RearShockLastServicedView: View {
 	@State var elapsedAirService = 0
 	@State var elapsedFullService = 0
 	
+	@State var elapsedAirServiceColor = false
+	@State var elapsedFullServiceColor = false
+	
 	let bike: Bike
 	
     var body: some View {
@@ -43,48 +46,39 @@ struct RearShockLastServicedView: View {
 				if self.bike.rearSetup?.isCoil == false {
 					HStack {
 						Text("Last Air Can Service:")
-							.fontWeight(.light)
 						Spacer()
 						Text("\(self.rearService.getAirCanDate(bike: self.bikeName), formatter: dateFormatter)")
-							.fontWeight(.light)
 						Text("(\(elapsedAirService))")
-							.foregroundColor(Color.red)
+							.foregroundColor(elapsedAirServiceColor ? nil: Color.red)
 					}
 					.padding(.horizontal)
-					.font(.footnote)
+					.if(elapsedAirServiceColor) { $0.customFootnoteBold() } else: { $0.font(.footnote) }
+					.background(elapsedAirServiceColor ? Color(.red): nil)
 					
 					HStack {
 						Text("Last Full Service:")
-							.fontWeight(.light)
+							
 						Spacer()
 						Text("\(self.rearService.getFullDate(bike: self.bikeName), formatter: dateFormatter)")
-							.fontWeight(.light)
 						Text("(\(elapsedFullService))")
-							.foregroundColor(Color.red)
+							.foregroundColor(elapsedFullServiceColor ? nil: Color.red)
 					}
 					.padding(.horizontal)
-					.font(.footnote)
-					
-					HStack {
-						Text("\(self.rearService.getRearServiceNote(bike: self.bikeName))")
-							.fontWeight(.light)
-					}
-					.padding(.horizontal)
-					.font(.footnote)
+					.if(elapsedAirServiceColor) { $0.customFootnoteBold() } else: { $0.font(.footnote) }
+						.background(elapsedAirServiceColor ? Color(.red): nil)
 					
 				} else {
 					HStack {
 						Text("Last Full Service:")
-							.fontWeight(.light)
+							
 						Spacer()
 						Text("\(self.rearService.getFullDate(bike: self.bikeName), formatter: dateFormatter)")
-							.fontWeight(.light)
 						Text("(\(elapsedFullService))")
-							.fontWeight(.light)
-							.foregroundColor(Color.red)
+							.foregroundColor(elapsedFullServiceColor ? nil: Color.red)
 					}
 					.padding(.horizontal)
-					.font(.footnote)
+					.if(elapsedAirServiceColor) { $0.customFootnoteBold() } else: { $0.font(.footnote) }
+						.background(elapsedAirServiceColor ? Color(.red): nil)
 					
 					HStack {
 						Text("\(self.rearService.getRearServiceNote(bike: self.bikeName))")
@@ -103,8 +97,12 @@ struct RearShockLastServicedView: View {
 		rearService.bikeName = bikeName
 		rearService.getLastServicedDates()
 		
-		elapsedAirService = daysBetween(start: self.rearService.lastAirServ, end: Date())
-		elapsedFullService = daysBetween(start: self.rearService.lastFullServ, end: Date())
+		// Get Service dates from the RearService Observed Object
+		elapsedAirService = rearService.elapsedAirCanServiceDate
+		elapsedFullService = rearService.elapsedFullServiceDate
+		
+		elapsedAirServiceColor = rearService.elapsedAirCanServiceWarning
+		elapsedFullServiceColor = rearService.elapsedAirCanServiceWarning
 
 	}
 }

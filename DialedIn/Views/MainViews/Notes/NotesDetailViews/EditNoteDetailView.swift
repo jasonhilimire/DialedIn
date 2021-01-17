@@ -122,8 +122,9 @@ struct EditNoteDetailView: View {
 				}.buttonStyle(OrangeButtonStyle()).padding(.horizontal)
 			}
 		}
-		// Dismisses the keyboard
-		.gesture(tap, including: keyboard.keyBoardShown ? .all : .none)
+		// Dismisses the keyboard not sure why the standard doesnt work, but whatever
+//		.gesture(tap, including: keyboard.keyBoardShown ? .all : .none)
+		.onTapGesture { UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to:nil, from:nil, for:nil) }
 		
 	}
 	
@@ -160,8 +161,6 @@ struct EditNoteDetailView: View {
 		note.rTokens = self.rearSetup.lastRTokenSetting
 		note.rSag = self.rearSetup.lastRSagSetting
 		note.rTirePressure = self.rearSetup.lastRTirePressure
-		
-		
 	}
 	
 	func setup() {
@@ -170,15 +169,11 @@ struct EditNoteDetailView: View {
 		noteText = noteModel.noteText
 		isFavorite = noteModel.noteFavorite
 		bikeName = self.note.bike?.name ?? "Unknown Bike"
-//		rating = Int(self.note.rating)
-//		noteText = self.note.note ?? ""
-//		isFavorite = note.isFavorite
 		date = note.date ?? Date()
 		frontSetup.bikeName = self.bikeName
 		frontSetup.getNoteFrontSettings(note: note)
 		rearSetup.bikeName = self.bikeName
 		rearSetup.getNoteRearSettings(note: note)
-	
 	}
 }
 

@@ -18,7 +18,10 @@ struct ForkLastServicedView: View {
 	@State var elapsedLowersService = 0
 	@State var elapsedFullService = 0
 	
-//    let fork: Fork
+	@State var elapsedLowersServiceColor = false
+	@State var elapsedFullServiceColor = false
+	
+
 	let bike: Bike
 	
 	
@@ -39,35 +42,32 @@ struct ForkLastServicedView: View {
 				
 				HStack(alignment: .center) {
 					Text("Lowers Last Serviced:")
-						.fontWeight(.light)
-
 					Spacer()
 					Text( "\(self.frontService.getlowersDate(bike: self.bikeName), formatter: dateFormatter)")
-						.fontWeight(.light)
-						
 					Text("(\(elapsedLowersService))")
-						.foregroundColor(Color.red)					
+						.foregroundColor(elapsedLowersServiceColor ? nil : Color.red)
 				}
 				.padding(.horizontal)
-				.font(.footnote)
-								
+				.if(elapsedLowersServiceColor) { $0.customFootnoteBold() } else: { $0.font(.footnote) }
+				.background(elapsedLowersServiceColor ? Color(.red): nil)
+
+			
 				HStack {
 					Text("Last Full Service:")
-						.fontWeight(.light)
 					Spacer()
 					Text("\(self.frontService.getFullDate(bike: self.bikeName), formatter: dateFormatter)")
-						.fontWeight(.light)
-					
 					Text("(\(elapsedFullService))")
-						.foregroundColor(Color.red)
+						.foregroundColor(elapsedFullServiceColor ? nil: Color.red)
 				}
 				.padding(.horizontal)
-				.font(.footnote)
+				.if(elapsedFullServiceColor) { $0.customFootnoteBold() } else: { $0.font(.footnote) }
+				.background(elapsedFullServiceColor ? Color(.red): nil)
 				
+
+				
+			
 				HStack {
-					Text("\(self.frontService.getFrontServiceNote(bike: self.bikeName))")
-					.fontWeight(.light)
-					
+					Text("\(self.frontService.getFrontServiceNote(bike: self.bikeName))").fontWeight(.light)
 				}
 				.padding(.horizontal)
 				.font(.footnote)
@@ -78,8 +78,13 @@ struct ForkLastServicedView: View {
 		bikeName = self.bike.name ?? "Unknown bike"
 		frontService.bikeName = bikeName
 		frontService.getLastServicedDates()
-		elapsedLowersService = daysBetween(start: self.frontService.lastLowerService, end: Date())
-		elapsedFullService = daysBetween(start: self.frontService.lastFullService, end: Date())
+		
+		// Get Service dates from the FrontService Observed Object
+		elapsedLowersService = frontService.elapsedLowerServiceDate
+		elapsedFullService = frontService.elapsedFullServiceDate
+		
+		elapsedLowersServiceColor = frontService.elapsedLowersServiceWarning
+		elapsedFullServiceColor = frontService.elapsedFullServiceWarning
 	}
 }
 

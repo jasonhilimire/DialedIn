@@ -48,7 +48,7 @@ struct NotesDetailView: View {
 					RatingView(rating: self.$rating)
 						.font(.headline)
 					
-					Divider()
+					Divider().padding(.bottom, 5)
 
 					// MARK: - FRONT -
 					Group {
@@ -107,9 +107,9 @@ struct NotesDetailView: View {
 						.font(.subheadline)
 						
 					}
-					Divider()
+					Divider().padding(.bottom, 5)
 					
-					// MARK: - FRONT -
+					// MARK: - REAR -
 					Group {
 						VStack {
 							VStack {
@@ -124,6 +124,7 @@ struct NotesDetailView: View {
 										.fixedSize()
 								}
 							}
+							
 							Spacer()
 							
 							VStack {
@@ -177,6 +178,7 @@ struct NotesDetailView: View {
 								}
 							}
 						}
+						
 						.font(.subheadline)
 					}
 				}

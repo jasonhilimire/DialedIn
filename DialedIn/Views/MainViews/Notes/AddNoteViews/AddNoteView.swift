@@ -122,8 +122,6 @@ struct AddNoteView: View {
     
     // MARK: - FUNCTIONS -
 	
-	
-    
     func saveNote() {
 		let bike = fetchBike(for: bikeName)
 		

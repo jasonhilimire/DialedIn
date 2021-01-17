@@ -61,7 +61,6 @@ struct HomeStyledCardView: View {
 	@State private var isFromBikeCard = true
 	
 	
-
 	let bike: Bike
 
 	var body: some View {
@@ -85,7 +84,7 @@ struct HomeStyledCardView: View {
 					}
 				}
 			}
-		}
+		} //: END VSTACK
 		.frame(width: 300, height: 275)
 		.foregroundColor(Color("TextColor"))
 		.background(Color("BackgroundColor"))
@@ -111,17 +110,9 @@ struct HomeStyledCardView: View {
 				}) {
 					HStack {
 						Text("Edit Bike")
-						Image(systemName: "square.and.pencil")
+						Image(systemName: "doc.badge.gearshape")
 					}
 				}
-			
-//			Divider()
-//				Button(action: {print("Add Note")}) {
-//					HStack {
-//						Text("Add Note")
-//						Image(systemName: "note.text.badge.plus")
-//					}
-//				}
 			}  //: END VSTACK
 		} //: END CONTEXT
 
@@ -136,7 +127,7 @@ struct HomeStyledCardView: View {
 				.environmentObject(self.showScreenBool)
 				.environment(\.managedObjectContext, self.moc)
 		}))
-	}
+	} //: END VIEW
 	
 	func publishBikeName() {
 		self.showScreenBool.bikeName = bike.name ?? "Unknown"
