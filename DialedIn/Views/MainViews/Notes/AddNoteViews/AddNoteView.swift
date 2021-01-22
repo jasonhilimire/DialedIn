@@ -69,32 +69,11 @@ struct AddNoteView: View {
 					}
 					
 					// MARK: - FRONT SETUP -
-					Section(header:
-						HStack {
-							Image("bicycle-fork")
-								.resizable()
-								.frame(width: 50, height: 50)
-								.scaledToFit()
-							Text("Front Suspension Details")
-						}
-						
-					){
-						AddNoteFrontSetupView(front: frontSetup, note: nil)
-					}
+					AddNoteFrontSetupView(front: frontSetup, note: nil)
 					
 			// MARK: - Rear Setup -
-					Section(header:
-						HStack {
-							Image("shock-absorber")
-								.resizable()
-								.frame(width: 50, height: 50)
-								.scaledToFit()
-							Text("Rear Suspension Details")
-						}
-					){
-						AddNoteRearSetupView(rear: rearSetup, note: nil)
-					}
-				} // end form
+					AddNoteRearSetupView(rear: rearSetup, note: nil)
+				} //: FORM
 					.onAppear(perform: {self.setup()}) // change to onReceive??
 					.navigationBarTitle("Dialed In", displayMode: .inline)
 				
@@ -113,7 +92,7 @@ struct AddNoteView: View {
 				}) {
 					SaveButtonView(buttonText: $saveText)
 				}.buttonStyle(OrangeButtonStyle()).padding(.horizontal)
-			}
+			} //: VSTACK
         }
 			// Dismisses the keyboard
 		.gesture(tap, including: keyboard.keyBoardShown ? .all : .none)
