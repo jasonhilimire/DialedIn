@@ -105,9 +105,10 @@ struct EditNoteDetailView: View {
 				}.buttonStyle(OrangeButtonStyle()).padding(.horizontal)
 			}
 		}
-		// Dismisses the keyboard not sure why the standard doesnt work, but whatever
-//		.gesture(tap, including: keyboard.keyBoardShown ? .all : .none)
-		.onTapGesture { UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to:nil, from:nil, for:nil) }
+		// Dismisses the keyboard not sure why the standard doesnt work, but whatever // TODO: NOT WORKING IN THIS VIEW CORRECTLY
+		.gesture(tap, including: keyboard.keyBoardShown ? .all : .none)
+
+		
 		
 	}
 	

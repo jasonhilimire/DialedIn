@@ -78,7 +78,6 @@ struct AddNoteFrontSetupView: View {
 	func setup(isEdit: Bool) {
 		if isEdit == true {
 			front.getNoteFrontSettings(note: note!)
-			print("note air volume = \(note?.fAirVolume ) ")
 		}
 	}
 }

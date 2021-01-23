@@ -19,6 +19,26 @@ struct DialedInApp: App {
             ContentView()
                 .environment(\.managedObjectContext, context)
 				.environmentObject(boolModel)
+				.onAppear(perform: UIApplication.shared.addTapGestureRecognizer)
         }
     }
+}
+
+// TODO: fixes keyboard issues in EditNoteDetailView- but can cause some weird issues when selecting text for copy, select etcc in notesdetailview- maybe remove gestures there?
+
+extension UIApplication {
+	func addTapGestureRecognizer() {
+		guard let window = windows.first else { return }
+		let tapGesture = UITapGestureRecognizer(target: window, action: #selector(UIView.endEditing))
+		tapGesture.requiresExclusiveTouchType = false
+		tapGesture.cancelsTouchesInView = false
+		tapGesture.delegate = self
+		window.addGestureRecognizer(tapGesture)
+	}
+}
+
+extension UIApplication: UIGestureRecognizerDelegate {
+	public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+		return false // set to `false` if you don't want to detect tap during other gestures
+	}
 }
