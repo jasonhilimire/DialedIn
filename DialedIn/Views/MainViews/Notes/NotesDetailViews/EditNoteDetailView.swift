@@ -106,7 +106,7 @@ struct EditNoteDetailView: View {
 			}
 		}
 		// Dismisses the keyboard not sure why the standard doesnt work, but whatever // TODO: NOT WORKING IN THIS VIEW CORRECTLY
-		.gesture(tap, including: keyboard.keyBoardShown ? .all : .none)
+//		.gesture(tap, including: keyboard.keyBoardShown ? .all : .none)
 
 		
 		
