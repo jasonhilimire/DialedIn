@@ -191,7 +191,7 @@ struct AddBikeView: View {
 			.animation(.default)
         }
 			// Dismisses the keyboard
-			.gesture(tap, including: keyboard.keyBoardShown ? .all : .none)
+//			.gesture(tap, including: keyboard.keyBoardShown ? .all : .none)
     }
 	
 	func saveNewBike() {

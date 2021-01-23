@@ -247,7 +247,7 @@ class NoteFrontSetupModel: ObservableObject {
 		fComp = getDualComp(bike: bikeName)
 		fReb = getDualReb(bike: bikeName)
 		fTravel = getTravel(bike: bikeName)
-		
+		print("getNoteFrontSettings Ran \(note.fAirVolume)")
 		
 	}
     

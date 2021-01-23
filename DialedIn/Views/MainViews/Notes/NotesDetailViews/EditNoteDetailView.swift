@@ -45,6 +45,7 @@ struct EditNoteDetailView: View {
 		NavigationView {
 			VStack {
 				Form{
+//TODO:  MAKE THIS SECTION ITS OWN VIEW - REUSABLE for ADD && EDITDETAIL dont forget bikepickerview from addnoteview
 					Section(header: Text("Ride Details")){
 						
 							Text("\(note.bike?.name ?? "Unknown Bike")")
@@ -74,31 +75,13 @@ struct EditNoteDetailView: View {
 					}
 					
 					// MARK: - FRONT SETUP -
-					Section(header:
-								HStack {
-									Image("bicycle-fork")
-										.resizable()
-										.frame(width: 50, height: 50)
-										.scaledToFit()
-									Text("Front Suspension Details")
-								}
-							
-					){
-						AddNoteFrontSetupView(front: frontSetup, isDetailEdit: $isEdit, note: note)
-					}
+					
+					AddNoteFrontSetupView(front: frontSetup, isDetailEdit: $isEdit, note: note)
 					
 					// MARK: - REAR SETUP -
-					Section(header:
-								HStack {
-									Image("shock-absorber")
-										.resizable()
-										.frame(width: 50, height: 50)
-										.scaledToFit()
-									Text("Rear Suspension Details")
-								}
-					){
-						AddNoteRearSetupView(rear: rearSetup, note: note)
-					}
+
+					AddNoteRearSetupView(rear: rearSetup, note: note)
+					
 				} // end form
 				.onAppear(perform: {self.setup()})
 
@@ -122,13 +105,16 @@ struct EditNoteDetailView: View {
 				}.buttonStyle(OrangeButtonStyle()).padding(.horizontal)
 			}
 		}
-		// Dismisses the keyboard not sure why the standard doesnt work, but whatever
+		// Dismisses the keyboard not sure why the standard doesnt work, but whatever // TODO: NOT WORKING IN THIS VIEW CORRECTLY
 //		.gesture(tap, including: keyboard.keyBoardShown ? .all : .none)
-		.onTapGesture { UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to:nil, from:nil, for:nil) }
+
+		
 		
 	}
 	
 	// MARK: - FUNCTIONS -
+	
+	// TODO: USING isEDIT flag (update so its binding from NotesDetail) add the save function here, update setup
 	
 	func updateNote() {
 		note.note = self.noteText
@@ -171,9 +157,10 @@ struct EditNoteDetailView: View {
 		bikeName = self.note.bike?.name ?? "Unknown Bike"
 		date = note.date ?? Date()
 		frontSetup.bikeName = self.bikeName
-		frontSetup.getNoteFrontSettings(note: note)
+//		frontSetup.getNoteFrontSettings(note: note)
 		rearSetup.bikeName = self.bikeName
 		rearSetup.getNoteRearSettings(note: note)
+		print("EditNoteDetailView Setup ran")
 	}
 }
 
