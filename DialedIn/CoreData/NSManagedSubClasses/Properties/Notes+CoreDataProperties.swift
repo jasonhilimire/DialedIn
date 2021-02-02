@@ -17,6 +17,7 @@ extension Notes {
         return NSFetchRequest<Notes>(entityName: "Notes")
     }
 
+	@NSManaged public var id: UUID
 	@NSManaged public var date: Date?
 	@NSManaged public var fAirVolume: Double
 	@NSManaged public var fCompression: Int16

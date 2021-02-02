@@ -125,6 +125,7 @@
 		A35642BF25787A5500A5A45B /* PersistentCloudKitContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistentCloudKitContainer.swift; sourceTree = "<group>"; };
 		A35642C025787A5500A5A45B /* DialedApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DialedApp.swift; sourceTree = "<group>"; };
 		A3655BAF2575E9F6009DACDE /* BoolModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoolModel.swift; sourceTree = "<group>"; };
+		A36DF5EE25C8E7BB00393FD7 /* DialedIn v2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "DialedIn v2.xcdatamodel"; sourceTree = "<group>"; };
 		A37A8952257304A900D301E1 /* NoteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteModel.swift; sourceTree = "<group>"; };
 		A37B1EBF252C0D8500147F94 /* GradientButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientButtonStyle.swift; sourceTree = "<group>"; };
 		A3850EB125292700008982D8 /* NotesStyleCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesStyleCardView.swift; sourceTree = "<group>"; };
@@ -150,7 +151,7 @@
 		A3C16E7823DE9EC5005BFA14 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A3C16E7D23DE9EC5005BFA14 /* DialedInTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DialedInTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3C16E8123DE9EC5005BFA14 /* DialedInTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialedInTests.swift; sourceTree = "<group>"; };
-		A3C16E8323DE9EC5005BFA14 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A3C16E8323DE9EC5005BFA14 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = DialedInTests/Info.plist; sourceTree = SOURCE_ROOT; };
 		A3C16E8823DE9EC5005BFA14 /* DialedInUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DialedInUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3C16E8C23DE9EC5005BFA14 /* DialedInUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialedInUITests.swift; sourceTree = "<group>"; };
 		A3C16E8E23DE9EC5005BFA14 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -224,6 +225,7 @@
 		A326FAC823F3BC80002490E2 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				A35642BF25787A5500A5A45B /* PersistentCloudKitContainer.swift */,
 				A3C16EAA23DEA41C005BFA14 /* NSManagedSubClasses */,
 				A3C16E6B23DE9EC4005BFA14 /* DialedIn.xcdatamodeld */,
 				A326FAC623F3BC6E002490E2 /* CoreData Extensions.swift */,
@@ -352,15 +354,13 @@
 		A3C16E6623DE9EC4005BFA14 /* DialedIn */ = {
 			isa = PBXGroup;
 			children = (
+				A3C76CA023EF5DC70047BBCC /* App Files */,
+				A3C16E7823DE9EC5005BFA14 /* Info.plist */,
 				A38D56AC25609ABF00E83041 /* Dialed In.entitlements */,
 				A3D5181F2426925B007DEE9D /* README.md */,
 				A326FAC823F3BC80002490E2 /* CoreData */,
 				A3C16EAC23DEA461005BFA14 /* ViewModels */,
-				A3C76CA023EF5DC70047BBCC /* Delegates */,
 				A3C16EAB23DEA454005BFA14 /* Views */,
-				A3C16E7023DE9EC5005BFA14 /* Assets.xcassets */,
-				A3C16E7523DE9EC5005BFA14 /* LaunchScreen.storyboard */,
-				A3C16E7823DE9EC5005BFA14 /* Info.plist */,
 				A3C16E7223DE9EC5005BFA14 /* Preview Content */,
 			);
 			path = DialedIn;
@@ -377,8 +377,8 @@
 		A3C16E8023DE9EC5005BFA14 /* DialedInTests */ = {
 			isa = PBXGroup;
 			children = (
-				A3C16E8123DE9EC5005BFA14 /* DialedInTests.swift */,
 				A3C16E8323DE9EC5005BFA14 /* Info.plist */,
+				A3C16E8123DE9EC5005BFA14 /* DialedInTests.swift */,
 			);
 			path = DialedInTests;
 			sourceTree = "<group>";
@@ -453,14 +453,15 @@
 			path = Classes;
 			sourceTree = "<group>";
 		};
-		A3C76CA023EF5DC70047BBCC /* Delegates */ = {
+		A3C76CA023EF5DC70047BBCC /* App Files */ = {
 			isa = PBXGroup;
 			children = (
+				A3C16E7023DE9EC5005BFA14 /* Assets.xcassets */,
+				A3C16E7523DE9EC5005BFA14 /* LaunchScreen.storyboard */,
 				A35642BE25787A5500A5A45B /* ContentView.swift */,
 				A35642C025787A5500A5A45B /* DialedApp.swift */,
-				A35642BF25787A5500A5A45B /* PersistentCloudKitContainer.swift */,
 			);
-			path = Delegates;
+			path = "App Files";
 			sourceTree = "<group>";
 		};
 		A3C7A1D42401F81300A741A8 /* NotesDetailViews */ = {
@@ -1047,9 +1048,10 @@
 		A3C16E6B23DE9EC4005BFA14 /* DialedIn.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				A36DF5EE25C8E7BB00393FD7 /* DialedIn v2.xcdatamodel */,
 				A3C16E6C23DE9EC4005BFA14 /* DialedIn.xcdatamodel */,
 			);
-			currentVersion = A3C16E6C23DE9EC4005BFA14 /* DialedIn.xcdatamodel */;
+			currentVersion = A36DF5EE25C8E7BB00393FD7 /* DialedIn v2.xcdatamodel */;
 			path = DialedIn.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

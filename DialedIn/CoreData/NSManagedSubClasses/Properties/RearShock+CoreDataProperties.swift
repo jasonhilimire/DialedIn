@@ -17,11 +17,13 @@ extension RearShock {
         return NSFetchRequest<RearShock>(entityName: "RearShock")
     }
 
+	@NSManaged public var id: UUID
     @NSManaged public var dualCompression: Bool
     @NSManaged public var dualRebound: Bool
     @NSManaged public var info: String?
     @NSManaged public var isCoil: Bool
 	@NSManaged public var strokeLength: Double
+	@NSManaged public var rearTravel: Double
     @NSManaged public var bike: Bike?
     @NSManaged public var rearService: NSSet?
 	

@@ -17,6 +17,7 @@ extension FrontService {
         return NSFetchRequest<FrontService>(entityName: "FrontService")
     }
 
+	@NSManaged public var id: UUID
     @NSManaged public var fullService: Date?
     @NSManaged public var lowersService: Date?
     @NSManaged public var serviceNote: String?
