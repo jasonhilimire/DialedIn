@@ -19,6 +19,7 @@ public class BikeViewModel: ObservableObject {
 //        getLastBike()
 //    }
     
+	
 	@Published var name: String = "" {
 		didSet {
 			didChange.send(self)
@@ -43,7 +44,6 @@ public class BikeViewModel: ObservableObject {
 		}
 	}
 	
-	//TODO: ADD FRONTSETUP CONNECTION
 	//TODO: ADD REARSETUP CONNECTION
 	//TODO: ADD SETUPNOTES Connection
 	
@@ -56,28 +56,36 @@ public class BikeViewModel: ObservableObject {
 	}
 
 	
-	class func createBike(name: String, bikeNote: String, isDefault: Bool, hasRearShock: Bool) -> Bike {
+	class func createBike(name: String, bikeNote: String, isDefault: Bool, hasRearShock: Bool, fork: ForkViewModel, rear: RearShockViewModel, rearSetupIndex: Int) -> Bike {
 		let bike = BikeViewModel.newBike()
+		bike.id = UUID()
 		bike.name = name
 		bike.bikeNote = bikeNote
 		bike.isDefault = isDefault
 		bike.hasRearShock = hasRearShock
-		// Front Setup?
+		
+		bike.frontSetup?.dualCompression = fork.dualCompression
+		bike.frontSetup?.dualRebound = fork.dualRebound
+		bike.frontSetup?.info = fork.info
+		bike.frontSetup?.travel = fork.travel
+		
 		// Rear Setup?
-		// Setup Notes?
 		
 		PersistentCloudKitContainer.saveContext()
 		return bike
 	}
 	
 	
-	public func update() {
-
+	public func update(name: String, bikeNote: String, isDefault: Bool, hasRearShock: Bool) {
+		self.name = name
+		self.bikeNote = bikeNote
+		self.isDefault = isDefault
+		self.hasRearShock = hasRearShock
 		PersistentCloudKitContainer.saveContext()
 	}
 
 	public func delete() {
-		PersistentCloudKitContainer.context.delete(self)
+//		PersistentCloudKitContainer.context.delete(self)
 	}
     
     let didChange = PassthroughSubject<BikeViewModel, Never>()

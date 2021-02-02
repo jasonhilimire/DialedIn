@@ -1,5 +1,5 @@
 //
-//  Helper.swift
+//  Constants.swift
 //  DialedIn
 //
 //  Created by Jason Hilimire on 3/31/20.
@@ -198,6 +198,9 @@ struct CustNotesText: ViewModifier {
 			.fixedSize()
 	}
 }
+
+
+// MARK: - MODIFIERS -
 
 struct ShadowModifier: ViewModifier {
 	// this shadow is disabled in dark mode
