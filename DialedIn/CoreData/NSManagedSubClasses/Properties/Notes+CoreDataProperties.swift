@@ -42,6 +42,7 @@ extension Notes {
 	@NSManaged public var fTirePressure: Double
 	@NSManaged public var rTirePressure: Double
 	@NSManaged public var bike: Bike?
+	@NSManaged public var id: UUID
 
     public var wrappedNote: String {
         note ?? "Unknown Note"

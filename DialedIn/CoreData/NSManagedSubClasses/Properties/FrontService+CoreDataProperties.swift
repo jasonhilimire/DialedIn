@@ -21,6 +21,7 @@ extension FrontService {
     @NSManaged public var lowersService: Date?
     @NSManaged public var serviceNote: String?
     @NSManaged public var service: Fork?
+	@NSManaged public var id: UUID
 
 	public var wrapped_forkServiceNote: String {
 		serviceNote ?? ""

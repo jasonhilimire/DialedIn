@@ -21,6 +21,7 @@ extension RearService {
     @NSManaged public var fullService: Date?
     @NSManaged public var serviceNote: String?
     @NSManaged public var service: RearShock?
+	@NSManaged public var id: UUID
 	
 	public var wrappedRearServiceNote: String {
 		serviceNote ?? ""

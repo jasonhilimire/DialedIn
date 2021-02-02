@@ -128,6 +128,7 @@
 		A37A8952257304A900D301E1 /* NoteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteModel.swift; sourceTree = "<group>"; };
 		A37B1EBF252C0D8500147F94 /* GradientButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientButtonStyle.swift; sourceTree = "<group>"; };
 		A3850EB125292700008982D8 /* NotesStyleCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesStyleCardView.swift; sourceTree = "<group>"; };
+		A388189325C8E427008FF37B /* DialedIn v2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "DialedIn v2.xcdatamodel"; sourceTree = "<group>"; };
 		A38D56AC25609ABF00E83041 /* Dialed In.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Dialed In.entitlements"; sourceTree = "<group>"; };
 		A38D56B125609ACF00E83041 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		A3918ACF23E3E446002A1D61 /* SaveButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveButtonView.swift; sourceTree = "<group>"; };
@@ -224,6 +225,7 @@
 		A326FAC823F3BC80002490E2 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				A35642BF25787A5500A5A45B /* PersistentCloudKitContainer.swift */,
 				A3C16EAA23DEA41C005BFA14 /* NSManagedSubClasses */,
 				A3C16E6B23DE9EC4005BFA14 /* DialedIn.xcdatamodeld */,
 				A326FAC623F3BC6E002490E2 /* CoreData Extensions.swift */,
@@ -352,15 +354,10 @@
 		A3C16E6623DE9EC4005BFA14 /* DialedIn */ = {
 			isa = PBXGroup;
 			children = (
-				A38D56AC25609ABF00E83041 /* Dialed In.entitlements */,
-				A3D5181F2426925B007DEE9D /* README.md */,
 				A326FAC823F3BC80002490E2 /* CoreData */,
 				A3C16EAC23DEA461005BFA14 /* ViewModels */,
-				A3C76CA023EF5DC70047BBCC /* Delegates */,
+				A3C76CA023EF5DC70047BBCC /* App */,
 				A3C16EAB23DEA454005BFA14 /* Views */,
-				A3C16E7023DE9EC5005BFA14 /* Assets.xcassets */,
-				A3C16E7523DE9EC5005BFA14 /* LaunchScreen.storyboard */,
-				A3C16E7823DE9EC5005BFA14 /* Info.plist */,
 				A3C16E7223DE9EC5005BFA14 /* Preview Content */,
 			);
 			path = DialedIn;
@@ -453,14 +450,18 @@
 			path = Classes;
 			sourceTree = "<group>";
 		};
-		A3C76CA023EF5DC70047BBCC /* Delegates */ = {
+		A3C76CA023EF5DC70047BBCC /* App */ = {
 			isa = PBXGroup;
 			children = (
 				A35642BE25787A5500A5A45B /* ContentView.swift */,
 				A35642C025787A5500A5A45B /* DialedApp.swift */,
-				A35642BF25787A5500A5A45B /* PersistentCloudKitContainer.swift */,
+				A38D56AC25609ABF00E83041 /* Dialed In.entitlements */,
+				A3D5181F2426925B007DEE9D /* README.md */,
+				A3C16E7023DE9EC5005BFA14 /* Assets.xcassets */,
+				A3C16E7523DE9EC5005BFA14 /* LaunchScreen.storyboard */,
+				A3C16E7823DE9EC5005BFA14 /* Info.plist */,
 			);
-			path = Delegates;
+			path = App;
 			sourceTree = "<group>";
 		};
 		A3C7A1D42401F81300A741A8 /* NotesDetailViews */ = {
@@ -1047,9 +1048,10 @@
 		A3C16E6B23DE9EC4005BFA14 /* DialedIn.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				A388189325C8E427008FF37B /* DialedIn v2.xcdatamodel */,
 				A3C16E6C23DE9EC4005BFA14 /* DialedIn.xcdatamodel */,
 			);
-			currentVersion = A3C16E6C23DE9EC4005BFA14 /* DialedIn.xcdatamodel */;
+			currentVersion = A388189325C8E427008FF37B /* DialedIn v2.xcdatamodel */;
 			path = DialedIn.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

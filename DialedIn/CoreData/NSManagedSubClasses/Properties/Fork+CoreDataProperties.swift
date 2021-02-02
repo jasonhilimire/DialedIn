@@ -23,6 +23,7 @@ extension Fork {
 	@NSManaged public var travel: Double
 	@NSManaged public var bike: Bike?
 	@NSManaged public var frontService: NSSet?
+	@NSManaged public var id: UUID
 	
 	public var wrappedForkInfo: String {
 		info ?? "Unknown Info"

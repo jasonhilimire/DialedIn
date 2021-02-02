@@ -24,6 +24,7 @@ extension Bike {
     @NSManaged public var frontSetup: Fork?
     @NSManaged public var rearSetup: RearShock?
     @NSManaged public var setupNotes: NSSet?
+	@NSManaged public var id: UUID
     
     public var wrappedBikeName: String {
         name ?? "Unknown Name"
