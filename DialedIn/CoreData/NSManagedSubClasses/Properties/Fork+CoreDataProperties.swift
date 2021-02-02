@@ -17,6 +17,7 @@ extension Fork {
 		return NSFetchRequest<Fork>(entityName: "Fork")
 	}
 	
+	@NSManaged public var id: UUID
 	@NSManaged public var dualCompression: Bool
 	@NSManaged public var dualRebound: Bool
 	@NSManaged public var info: String?

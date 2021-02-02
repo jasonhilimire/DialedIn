@@ -26,7 +26,14 @@ public class PersistentCloudKitContainer {
                 })
                 container.viewContext.automaticallyMergesChangesFromParent = true
                 container.viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
-                return container
+			
+			// For Core Data lightweight migration
+				let description = NSPersistentStoreDescription()
+				description.shouldMigrateStoreAutomatically = true
+				description.shouldInferMappingModelAutomatically = true
+				container.persistentStoreDescriptions = [description]
+                
+			return container
         }()
     
         // MARK: - Core Data Saving support

@@ -17,6 +17,7 @@ extension RearService {
         return NSFetchRequest<RearService>(entityName: "RearService")
     }
 
+	@NSManaged public var id: UUID
     @NSManaged public var airCanService: Date?
     @NSManaged public var fullService: Date?
     @NSManaged public var serviceNote: String?
