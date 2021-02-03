@@ -56,20 +56,53 @@ public class BikeViewModel: ObservableObject {
 	}
 
 	
-	class func createBike(name: String, bikeNote: String, isDefault: Bool, hasRearShock: Bool, fork: ForkViewModel, rear: RearShockViewModel, rearSetupIndex: Int) -> Bike {
+	class func createBike(name: String, bikeNote: String, isDefault: Bool, fork: ForkViewModel, rear: RearShockViewModel, rearSetupIndex: Int) -> Bike {
+		//TODO: This doesnt follow the convention in Addbike view that is currently working :/
 		let bike = BikeViewModel.newBike()
+		
+		
 		bike.id = UUID()
 		bike.name = name
 		bike.bikeNote = bikeNote
 		bike.isDefault = isDefault
-		bike.hasRearShock = hasRearShock
+
 		
+		// Front Setup
 		bike.frontSetup?.dualCompression = fork.dualCompression
 		bike.frontSetup?.dualRebound = fork.dualRebound
 		bike.frontSetup?.info = fork.info
 		bike.frontSetup?.travel = fork.travel
 		
-		// Rear Setup?
+		// Rear Setup
+		if rearSetupIndex == 1 {
+			bike.hasRearShock = true
+			bike.rearSetup?.info = rear.info
+			bike.rearSetup?.strokeLength = rear.strokeLength
+			bike.rearSetup?.dualCompression = rear.dualCompression
+			bike.rearSetup?.dualRebound = rear.dualRebound
+			bike.rearSetup?.isCoil = rear.isCoil
+//			newRearService.airCanService = self.lastAirCanServiceDate
+//			newRearService.fullService = self.lastRearFullServiceDate
+//			bike.rearSetup..serviceNote = "Bike Created: \(dateString), no services found yet"
+			
+		} else if rearSetupIndex == 2 {
+//			self.isCoilToggle.toggle()
+			
+			bike.hasRearShock = true
+			bike.rearSetup?.info = rear.info
+			bike.rearSetup?.strokeLength = rear.strokeLength
+			bike.rearSetup?.dualCompression = rear.dualCompression
+			bike.rearSetup?.dualRebound = rear.dualRebound
+			bike.rearSetup?.isCoil = rear.isCoil
+//			newRearService.airCanService = self.lastAirCanServiceDate
+//			newRearService.fullService = self.lastRearFullServiceDate
+//			newRearService.serviceNote = "Bike Created: \(dateString), no services found yet"
+			
+		} else if rearSetupIndex == 0 {
+			bike.hasRearShock = false
+			bike.rearSetup?.isCoil = false
+		}
+		
 		
 		PersistentCloudKitContainer.saveContext()
 		return bike
