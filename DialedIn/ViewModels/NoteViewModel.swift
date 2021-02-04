@@ -24,7 +24,7 @@ class NoteViewModel: ObservableObject {
 		}
 	}
 	
-	@Published var noteRating: Int16 = 1 {
+	@Published var noteRating: Int = 1 {
 		didSet {
 			didChange.send(self)
 		}
@@ -45,7 +45,7 @@ class NoteViewModel: ObservableObject {
 	
 	func getNoteModel(note: Notes) {
 		noteText = note.note ?? ""
-		noteRating = note.rating
+		noteRating = Int(note.rating)
 		noteFavorite = note.isFavorite
 		fAirSetting = note.fAirVolume
 	}

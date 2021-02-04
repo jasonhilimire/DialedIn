@@ -34,6 +34,8 @@ struct EditNoteDetailView: View {
 	@State private var saveText = "Save"
 	
 	// Front Note Details
+	
+//TODO: Use Bindings for all front items, but currently is not setting them properly perhaps same as NoteFrontSeetupModel- need to do a fetch, based on UUID possibly?
 	@State private var fAirSetting = 45.0
 	@State private var fCompression: Int16 = 4
 	@State private var fHSC: Int16 = 4
@@ -45,17 +47,7 @@ struct EditNoteDetailView: View {
 	@State private var fSag: Int16 = 10
 	@State private var fTirePressure = 0.0
 
-	// Rear Note Details
-	@State private var rSpring = 200
-	@State private var rCompression: Int16 = 4
-	@State private var rHSC: Int16 = 4
-	@State private var rLSC: Int16 = 4
-	@State private var rRebound: Int16 = 4
-	@State private var rHSR: Int16 = 4
-	@State private var rLSR: Int16 = 4
-	@State private var rTokens: Int16 = 1
-	@State private var rSag: Int16 = 10
-	@State private var rTirePressure = 0.0
+
 	
 	@State private var isEdit = true
 	
@@ -90,7 +82,7 @@ struct EditNoteDetailView: View {
 									.cornerRadius(8)
 							}
 							HStack {
-								RatingView(rating: $rating)
+								RatingView(rating: $noteModel.noteRating)
 								Spacer()
 								Text("Favorite:").fontWeight(.thin)
 								FavoritesView(favorite: self.$isFavorite)
@@ -100,7 +92,7 @@ struct EditNoteDetailView: View {
 					
 					// MARK: - FRONT SETUP -
 					
-					AddNoteFrontSetupView(front: frontSetup, noteModel: noteModel, fAirSetting: $fAirSetting, fCompression: $fCompression, fHSC: $fHSC, fLSC: $fLSC, fRebound: $fRebound, fHSR: $fHSR, fLSR: $fLSR, fTokens: $fTokens, fSag: $fSag, fTirePressure: $fTirePressure, isDetailEdit: $isEdit, note: note)
+					AddNoteFrontSetupView(front: frontSetup, noteModel: noteModel, fAirSetting: $noteModel.fAirSetting, fCompression: $fCompression, fHSC: $fHSC, fLSC: $fLSC, fRebound: $fRebound, fHSR: $fHSR, fLSR: $fLSR, fTokens: $fTokens, fSag: $fSag, fTirePressure: $fTirePressure, isDetailEdit: $isEdit, note: note)
 					
 					// MARK: - REAR SETUP -
 
@@ -141,53 +133,22 @@ struct EditNoteDetailView: View {
 	// MARK: - FUNCTIONS -
 	
 	// TODO: USING isEDIT flag (update so its binding from NotesDetail) add the save function here, update setup
-	
-	func updateNote() {
-		note.note = self.noteText
-		note.rating = Int16(self.rating)
-		note.date = self.date
-		note.isFavorite = self.isFavorite
 		
-		// FRONT
-		note.fAirVolume = self.frontSetup.lastFAirSetting
-		note.fCompression = self.frontSetup.lastFCompSetting
-		note.fHSC = self.frontSetup.lastFHSCSetting
-		note.fLSC = self.frontSetup.lastFLSCSetting
-		note.fRebound = self.frontSetup.lastFReboundSetting
-		note.fHSR = self.frontSetup.lastFHSRSetting
-		note.fLSR = self.frontSetup.lastFLSRSetting
-		note.fTokens = self.frontSetup.lastFTokenSetting
-		note.fSag = self.frontSetup.lastFSagSetting
-		note.fTirePressure = self.frontSetup.lastFTirePressure
-
-		
-		// REAR
-		note.rAirSpring = self.rearSetup.lastRAirSpringSetting
-		note.rCompression = self.rearSetup.lastRCompSetting
-		note.rHSC = self.rearSetup.lastRHSCSetting
-		note.rLSC = self.rearSetup.lastRLSCSetting
-		note.rRebound = self.rearSetup.lastRReboundSetting
-		note.rHSR = self.rearSetup.lastRHSRSetting
-		note.rLSR = self.rearSetup.lastRLSRSetting
-		// TODO: something here for a coil???
-		note.rTokens = self.rearSetup.lastRTokenSetting
-		note.rSag = self.rearSetup.lastRSagSetting
-		note.rTirePressure = self.rearSetup.lastRTirePressure
-	}
-	
 	func setup() {
+		//noteModel.getNoteModel is not setting Bindings in EditNoteDetailView?
 		noteModel.getNoteModel(note: note)
+		print("Note Text\(noteModel.noteText)")
 		rating = Int(noteModel.noteRating)
-		noteText = noteModel.noteText
+//		noteText = noteModel.noteText
 		isFavorite = noteModel.noteFavorite
 		
 		bikeName = self.note.bike?.name ?? "Unknown Bike"
 		date = note.date ?? Date()
 		frontSetup.bikeName = self.bikeName
-//		frontSetup.getNoteFrontSettings(note: note)
+
 		rearSetup.bikeName = self.bikeName
 		rearSetup.getNoteRearSettings(note: note)
-		print("EditNoteDetailView Setup ran")
+
 	}
 }
 

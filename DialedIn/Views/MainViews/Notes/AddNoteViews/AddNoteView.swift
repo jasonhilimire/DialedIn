@@ -33,32 +33,6 @@ struct AddNoteView: View {
 	@State private var saveText = "Save"
 	@State private var isEdit = false
 	
-	// Front Note Details
-	@State private var fAirSetting = 45.0
-	@State private var fCompression: Int16 = 4
-	@State private var fHSC: Int16 = 4
-	@State private var fLSC: Int16 = 4
-	@State private var fRebound: Int16 = 4
-	@State private var fHSR: Int16 = 4
-	@State private var fLSR: Int16 = 4
-	@State private var fTokens: Int16 = 1
-	@State private var fSag: Int16 = 10
-	@State private var fTirePressure = 0.0
-	
-	// Rear Note Details
-	@State private var rSpring = 200
-	@State private var rCompression: Int16 = 4
-	@State private var rHSC: Int16 = 4
-	@State private var rLSC: Int16 = 4
-	@State private var rRebound: Int16 = 4
-	@State private var rHSR: Int16 = 4
-	@State private var rLSR: Int16 = 4
-	@State private var rTokens: Int16 = 1
-	@State private var rSag: Int16 = 10
-	@State private var rTirePressure = 0.0
-	
-	
-    
     var body: some View {
         NavigationView {
 			VStack {
@@ -94,7 +68,7 @@ struct AddNoteView: View {
 					}
 					
 					// MARK: - FRONT SETUP -
-					AddNoteFrontSetupView(front: frontSetup, fAirSetting: $fAirSetting, fCompression: $fCompression, fHSC: $fHSC, fLSC: $fLSC, fRebound: $fRebound, fHSR: $fHSR, fLSR: $fLSR, fTokens: $fTokens, fSag: $fSag, fTirePressure: $fTirePressure, isDetailEdit: $isEdit, note: nil)
+					AddNoteFrontSetupView(front: frontSetup, fAirSetting: $frontSetup.lastFAirSetting, fCompression: $frontSetup.lastFCompSetting, fHSC: $frontSetup.lastFHSCSetting, fLSC: $frontSetup.lastFLSCSetting, fRebound: $frontSetup.lastFReboundSetting, fHSR: $frontSetup.lastFHSRSetting, fLSR: $frontSetup.lastFLSRSetting, fTokens: $frontSetup.lastFTokenSetting, fSag: $frontSetup.lastFSagSetting, fTirePressure: $frontSetup.lastFTirePressure, isDetailEdit: $isEdit, note: nil)
 					
 			// MARK: - Rear Setup -
 					AddNoteRearSetupView(rear: rearSetup, note: nil)
