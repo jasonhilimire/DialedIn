@@ -21,7 +21,7 @@ struct EditNoteDetailView: View {
 	@ObservedObject var frontSetup = NoteFrontSetupModel()
 	@ObservedObject var rearSetup = NoteRearSetupModel()
 	@ObservedObject var keyboard = KeyboardObserver()
-	@ObservedObject var noteModel = NoteModel()
+	@ObservedObject var noteModel = NoteViewModel()
 	
 	@State private var createdInitialBike = false
 	@State private var bikeNameIndex = 0
@@ -32,6 +32,30 @@ struct EditNoteDetailView: View {
 	@State private var isFavorite = false
 	@State private var toggleNoteDetail = true
 	@State private var saveText = "Save"
+	
+	// Front Note Details
+	@State private var fAirSetting = 45.0
+	@State private var fCompression: Int16 = 4
+	@State private var fHSC: Int16 = 4
+	@State private var fLSC: Int16 = 4
+	@State private var fRebound: Int16 = 4
+	@State private var fHSR: Int16 = 4
+	@State private var fLSR: Int16 = 4
+	@State private var fTokens: Int16 = 1
+	@State private var fSag: Int16 = 10
+	@State private var fTirePressure = 0.0
+
+	// Rear Note Details
+	@State private var rSpring = 200
+	@State private var rCompression: Int16 = 4
+	@State private var rHSC: Int16 = 4
+	@State private var rLSC: Int16 = 4
+	@State private var rRebound: Int16 = 4
+	@State private var rHSR: Int16 = 4
+	@State private var rLSR: Int16 = 4
+	@State private var rTokens: Int16 = 1
+	@State private var rSag: Int16 = 10
+	@State private var rTirePressure = 0.0
 	
 	@State private var isEdit = true
 	
@@ -76,7 +100,7 @@ struct EditNoteDetailView: View {
 					
 					// MARK: - FRONT SETUP -
 					
-					AddNoteFrontSetupView(front: frontSetup, isDetailEdit: $isEdit, note: note)
+					AddNoteFrontSetupView(front: frontSetup, noteModel: noteModel, fAirSetting: $fAirSetting, fCompression: $fCompression, fHSC: $fHSC, fLSC: $fLSC, fRebound: $fRebound, fHSR: $fHSR, fLSR: $fLSR, fTokens: $fTokens, fSag: $fSag, fTirePressure: $fTirePressure, isDetailEdit: $isEdit, note: note)
 					
 					// MARK: - REAR SETUP -
 
@@ -89,11 +113,13 @@ struct EditNoteDetailView: View {
 				.navigationBarTitle("Dialed In", displayMode: .inline)
 				
 				Button(action: {
-					self.updateNote()
+					noteModel.updateNoteDetails(note: note, noteText: self.noteText, rating: self.rating, date: self.date, isFavorite: self.isFavorite)
+					noteModel.updateFrontNoteDetails(note: note, fAir: fAirSetting, fCompression: fCompression, fHSC: fHSC, fLSC: fLSC, fRebound: fRebound, fHSR: fHSR, fLSR: fLSR, fTokens: fTokens, fSag: fSag, fTirePressure: fTirePressure)
 					
 					withAnimation(.linear(duration: 0.05), {
 						self.saveText = "     SAVED!!     "  // no idea why, but have to add spaces here other wise it builds the word slowly with SA...., annoying as all hell
 					})
+					
 					
 					try? self.moc.save()
 					hapticSuccess()
@@ -133,7 +159,7 @@ struct EditNoteDetailView: View {
 		note.fTokens = self.frontSetup.lastFTokenSetting
 		note.fSag = self.frontSetup.lastFSagSetting
 		note.fTirePressure = self.frontSetup.lastFTirePressure
-		note.bike?.hasRearShock = self.rearSetup.hasRear
+
 		
 		// REAR
 		note.rAirSpring = self.rearSetup.lastRAirSpringSetting
@@ -154,6 +180,7 @@ struct EditNoteDetailView: View {
 		rating = Int(noteModel.noteRating)
 		noteText = noteModel.noteText
 		isFavorite = noteModel.noteFavorite
+		
 		bikeName = self.note.bike?.name ?? "Unknown Bike"
 		date = note.date ?? Date()
 		frontSetup.bikeName = self.bikeName

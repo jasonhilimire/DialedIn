@@ -246,9 +246,7 @@ class NoteFrontSetupModel: ObservableObject {
 		lastFTirePressure = note.fTirePressure
 		fComp = getDualComp(bike: bikeName)
 		fReb = getDualReb(bike: bikeName)
-		fTravel = getTravel(bike: bikeName)
-		print("getNoteFrontSettings Ran \(note.fAirVolume)")
-		
+		fTravel = getTravel(bike: bikeName)		
 	}
     
  // THIS WORKS Now need to figure out how to pass the selected bike into the Model from the pickerview

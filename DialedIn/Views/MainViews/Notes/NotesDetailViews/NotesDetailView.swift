@@ -14,7 +14,7 @@ struct NotesDetailView: View {
     @Environment(\.managedObjectContext) var moc
     @Environment(\.presentationMode) var presentationMode
 	@ObservedObject var keyboard = KeyboardObserver()
-	@ObservedObject var noteModel = NoteModel()
+	@ObservedObject var noteModel = NoteViewModel()
 	
     @State private var showingDeleteAlert = false
 	@State private var showingEditDetail = false

@@ -10,9 +10,22 @@ import SwiftUI
 
 struct AddNoteFrontSetupView: View {
     @ObservedObject var front = NoteFrontSetupModel()
+	@ObservedObject var noteModel = NoteViewModel()
 	
 	@State private var sag = 20
-	@State private var fAirvolume = 35.0
+	@Binding var fAirSetting: Double
+	@Binding var fCompression: Int16
+	@Binding var fHSC: Int16
+	@Binding var fLSC: Int16
+	@Binding var fRebound: Int16
+	@Binding var fHSR: Int16
+	@Binding var fLSR: Int16
+	@Binding var fTokens: Int16
+	@Binding var fSag: Int16
+	@Binding var fTirePressure: Double
+	
+	
+	
 	var haptic = UIImpactFeedbackGenerator(style: .light)
 	var isDetailEdit: Binding<Bool>?
 	let note : Notes?
@@ -34,41 +47,41 @@ struct AddNoteFrontSetupView: View {
 			VStack{
 					  // AirPressure
 				HStack{
-					Text("PSI: \(front.lastFAirSetting, specifier: "%.1f")").fontWeight(.thin)
-					Slider(value: $front.lastFAirSetting, in: 45...120, step: 1.0)
-					Stepper(value: $front.lastFAirSetting, in: 45...120, step: 0.5, onEditingChanged: {_ in DispatchQueue.main.async {self.haptic.impactOccurred()}}, label: {Text("PSI: \(self.front.lastFAirSetting)").fontWeight(.thin)}).labelsHidden()
+					Text("PSI: \(fAirSetting, specifier: "%.1f")").fontWeight(.thin)
+					Slider(value: $fAirSetting, in: 45...150, step: 1.0)
+					Stepper(value: $fAirSetting, in: 45...150, step: 0.5, onEditingChanged: {_ in DispatchQueue.main.async {self.haptic.impactOccurred()}}, label: {Text("PSI: \(self.fAirSetting)").fontWeight(.thin)}).labelsHidden()
 
 					}
 					
 					//Sag
-					Stepper(value: $front.lastFSagSetting   , in: 0...70, onEditingChanged: {_ in DispatchQueue.main.async {self.haptic.impactOccurred()}}, label: {Text("Sag (mm): \(self.front.lastFSagSetting) -- Sag %: \(calcSag(sag: Double(self.front.lastFSagSetting), travel: front.fTravel), specifier: "%.1f")").fontWeight(.thin)})
+					Stepper(value: $fSag   , in: 0...70, onEditingChanged: {_ in DispatchQueue.main.async {self.haptic.impactOccurred()}}, label: {Text("Sag (mm): \(self.fSag) -- Sag %: \(calcSag(sag: Double(self.fSag), travel: front.fTravel), specifier: "%.1f")").fontWeight(.thin)})
 				
 					// Tokens
-					Stepper(value: $front.lastFTokenSetting   , in: 0...6, onEditingChanged: {_ in DispatchQueue.main.async {self.haptic.impactOccurred()}}, label: {Text("Tokens: \(self.front.lastFTokenSetting)").fontWeight(.thin)})
+					Stepper(value: $fTokens, in: 0...8, onEditingChanged: {_ in DispatchQueue.main.async {self.haptic.impactOccurred()}}, label: {Text("Tokens: \(self.fTokens)").fontWeight(.thin)})
 
 					
 					//Compression
 					if front.fComp == true {
-						Stepper(value: $front.lastFHSCSetting, in: 0...25, onEditingChanged: {_ in DispatchQueue.main.async {self.haptic.impactOccurred()}}, label: {Text("High Sp Comp: \(self.front.lastFHSCSetting)").fontWeight(.thin)})
-						Stepper(value: $front.lastFLSCSetting, in: 0...25, onEditingChanged: {_ in DispatchQueue.main.async {self.haptic.impactOccurred()}}, label: {Text("Low Sp Comp: \(self.front.lastFLSCSetting)").fontWeight(.thin)})
+						Stepper(value: $fHSC, in: 0...25, onEditingChanged: {_ in DispatchQueue.main.async {self.haptic.impactOccurred()}}, label: {Text("High Sp Comp: \(self.fHSC)").fontWeight(.thin)})
+						Stepper(value: $fLSC, in: 0...25, onEditingChanged: {_ in DispatchQueue.main.async {self.haptic.impactOccurred()}}, label: {Text("Low Sp Comp: \(self.fLSC)").fontWeight(.thin)})
 					} else {
-						Stepper(value: $front.lastFCompSetting, in: 0...25, onEditingChanged: {_ in DispatchQueue.main.async {self.haptic.impactOccurred()}}, label: {Text("Compression: \(self.front.lastFCompSetting)").fontWeight(.thin)})
+						Stepper(value: $fCompression, in: 0...25, onEditingChanged: {_ in DispatchQueue.main.async {self.haptic.impactOccurred()}}, label: {Text("Compression: \(self.fCompression)").fontWeight(.thin)})
 					}
 
 					// Rebound
 
 					if front.fReb == true {
-						Stepper(value: $front.lastFHSRSetting, in: 0...25, onEditingChanged: {_ in DispatchQueue.main.async {self.haptic.impactOccurred()}}, label: {Text("High Sp Rebound: \(self.front.lastFHSRSetting)").fontWeight(.thin)})
-						Stepper(value: $front.lastFLSRSetting, in: 0...25, onEditingChanged: {_ in DispatchQueue.main.async {self.haptic.impactOccurred()}}, label: {Text("Low Sp Rebound: \(self.front.lastFLSRSetting)").fontWeight(.thin)})
+						Stepper(value: $fHSR, in: 0...25, onEditingChanged: {_ in DispatchQueue.main.async {self.haptic.impactOccurred()}}, label: {Text("High Sp Rebound: \(self.fHSR)").fontWeight(.thin)})
+						Stepper(value: $fLSR, in: 0...25, onEditingChanged: {_ in DispatchQueue.main.async {self.haptic.impactOccurred()}}, label: {Text("Low Sp Rebound: \(self.fLSR)").fontWeight(.thin)})
 					} else {
-						Stepper(value: $front.lastFReboundSetting, in: 0...25, onEditingChanged: {_ in DispatchQueue.main.async {self.haptic.impactOccurred()}}, label: {Text("Rebound: \(self.front.lastFReboundSetting)").fontWeight(.thin)})
+						Stepper(value: $fRebound, in: 0...25, onEditingChanged: {_ in DispatchQueue.main.async {self.haptic.impactOccurred()}}, label: {Text("Rebound: \(self.fRebound)").fontWeight(.thin)})
 					}
 					
 					// Tire Pressure
 					HStack {
-						Text("Tire PSI: \(front.lastFTirePressure, specifier: "%.1f")").fontWeight(.thin)
-						Slider(value: $front.lastFTirePressure, in: 0...40, step: 0.5)
-						Stepper(value: $front.lastFTirePressure, in: 0...40, step: 0.1, onEditingChanged: {_ in DispatchQueue.main.async {self.haptic.impactOccurred()}}, label: {Text("PSI: \(self.front.lastFTirePressure)").fontWeight(.thin)}).labelsHidden()
+						Text("Tire PSI: \(fTirePressure, specifier: "%.1f")").fontWeight(.thin)
+						Slider(value: $fTirePressure, in: 0...40, step: 0.5)
+						Stepper(value: $fTirePressure, in: 0...40, step: 0.1, onEditingChanged: {_ in DispatchQueue.main.async {self.haptic.impactOccurred()}}, label: {Text("PSI: \(self.fTirePressure)").fontWeight(.thin)}).labelsHidden()
 					}
 			}.onAppear(perform: {self.setup(isEdit: (isDetailEdit != nil))})
 		}
@@ -77,10 +90,12 @@ struct AddNoteFrontSetupView: View {
 	
 	func setup(isEdit: Bool) {
 		if isEdit == true {
-			front.getNoteFrontSettings(note: note!)
+			fAirSetting = note?.fAirVolume ?? 0.0
 		}
+		fAirSetting = front.getLastAir()
 	}
 }
 
+///
 
 
