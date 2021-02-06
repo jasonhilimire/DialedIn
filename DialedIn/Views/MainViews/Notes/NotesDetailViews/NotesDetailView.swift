@@ -24,6 +24,7 @@ struct NotesDetailView: View {
 	@State private var isDetailEdit = true
 	
 	@State private var isFrontEdit = false
+	@State private var isRearEdit = false
 	
 	
     let note: Notes
@@ -48,6 +49,7 @@ struct NotesDetailView: View {
 					// MARK: - FRONT -
 					
 					if isFrontEdit == true {
+						//TODO: Show the AddFrontSetupView
 						HStack{
 							Text("PSI: \(noteModel.fAirVolume, specifier: "%.1f")").fontWeight(.thin)
 							Slider(value: $noteModel.fAirVolume, in: 45...120, step: 1.0)
@@ -72,6 +74,22 @@ struct NotesDetailView: View {
 
 					// MARK: - REAR -
 					
+					if isRearEdit == true {
+						//TODO show the Rear SetupView
+						Text("Edit Rear")
+							.transition(.move(edge: .leading))
+							.animation(Animation.linear(duration: 0.3))
+					}
+					
+					if isRearEdit == false {
+						RearNoteDetailsView(noteModel: noteModel, note: note)
+							.transition(.move(edge: .trailing))
+							.animation(Animation.linear(duration: 0.3))
+							.onLongPressGesture {
+								self.isFrontEdit.toggle()
+							}
+					}
+					
 				}
 				
 				.padding()
@@ -84,6 +102,7 @@ struct NotesDetailView: View {
 					self.updateNote(note: self.note)
 					try? self.moc.save()
 					self.isFrontEdit.toggle()
+					self.isRearEdit.toggle()
 				}) {
 					SaveButtonView(buttonText: $saveText)
 				}.buttonStyle(OrangeButtonStyle())
