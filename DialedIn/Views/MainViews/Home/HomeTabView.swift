@@ -82,6 +82,7 @@ struct HomeTabView: View {
 				}//: END Main ZSTACK
 			} //: END GEOREADER
 		} //: END NAV VIEW
+		.onAppear(perform: {self.setup()})
 		.navigationViewStyle(StackNavigationViewStyle())
 		.sheet(item: $activeSheet) { item in
 			switch item {
@@ -93,5 +94,26 @@ struct HomeTabView: View {
 					AddBikeView()
 			}
 		}
-    }
+	}
+	
+	func setup(){
+// TODO: this needs to be based on a flag and only run 1x in the app though its ok for this value to change
+		updateNotes()
+		updateBikes()
+	}
+	
+	func updateNotes() {
+		for note in notes {
+			note.id = UUID()
+			try? self.moc.save()
+		}
+	}
+	
+	func updateBikes() {
+		for bike in bikes {
+			bike.id = UUID()
+			try? self.moc.save()
+		}
+	}
+	
 }

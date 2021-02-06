@@ -110,6 +110,7 @@ struct AddNoteView: View {
         newNote.rating = Int16(self.rating)
         newNote.date = self.date
 		newNote.isFavorite = self.isFavorite
+		newNote.id = UUID()
 
 		// FRONT
         newNote.fAirVolume = Double(self.frontSetup.lastFAirSetting)

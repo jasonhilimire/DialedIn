@@ -21,7 +21,7 @@ struct EditNoteDetailView: View {
 	@ObservedObject var frontSetup = NoteFrontSetupModel()
 	@ObservedObject var rearSetup = NoteRearSetupModel()
 	@ObservedObject var keyboard = KeyboardObserver()
-	@ObservedObject var noteModel = NoteModel()
+	@ObservedObject var noteModel = EditNoteViewModel()
 	
 	@State private var createdInitialBike = false
 	@State private var bikeNameIndex = 0

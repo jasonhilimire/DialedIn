@@ -70,14 +70,7 @@ struct AddNoteFrontSetupView: View {
 						Slider(value: $front.lastFTirePressure, in: 0...40, step: 0.5)
 						Stepper(value: $front.lastFTirePressure, in: 0...40, step: 0.1, onEditingChanged: {_ in DispatchQueue.main.async {self.haptic.impactOccurred()}}, label: {Text("PSI: \(self.front.lastFTirePressure)").fontWeight(.thin)}).labelsHidden()
 					}
-			}.onAppear(perform: {self.setup(isEdit: (isDetailEdit != nil))})
-		}
-	}
-	
-	
-	func setup(isEdit: Bool) {
-		if isEdit == true {
-			front.getNoteFrontSettings(note: note!)
+			}
 		}
 	}
 }

@@ -46,6 +46,14 @@ extension Notes{
         return request
     }
 	
+	static func NoteByIDFetchRequest(filter: UUID) -> NSFetchRequest<Notes> {
+		let request: NSFetchRequest<Notes> = Notes.fetchRequest()
+		request.sortDescriptors = [NSSortDescriptor(keyPath: \Notes.date, ascending: false)]
+		request.predicate = NSPredicate(format: "id = %@", filter as CVarArg)
+		request.fetchLimit = 1
+		return request
+	}
+	
 	
 	// Fetch the last note regardless of bike
 	static func LastNoteFetchRequest() -> NSFetchRequest<Notes> {

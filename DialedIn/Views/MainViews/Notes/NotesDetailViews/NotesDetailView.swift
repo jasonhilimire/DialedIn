@@ -14,43 +14,41 @@ struct NotesDetailView: View {
     @Environment(\.managedObjectContext) var moc
     @Environment(\.presentationMode) var presentationMode
 	@ObservedObject var keyboard = KeyboardObserver()
-	@ObservedObject var noteModel = NoteModel()
+	@ObservedObject var noteModel = EditNoteViewModel()
+	@ObservedObject var front = NoteFrontSetupModel()
 	
     @State private var showingDeleteAlert = false
 	@State private var showingEditDetail = false
-	@State private var airVolume: Double = 0
-	@State private var rating = 3
-	@State private var noteText = ""
-	@State private var isFavorite = false
 	@State private var savePressed = false
 	@State private var saveText = "Save"
+	@State private var isDetailEdit = true
+	
+	@State private var isFrontEdit = false
 	
 	
-    let  note: Notes
+    let note: Notes
+	
+	init(note: Notes) {
+		self.note = note
+		noteModel.getNoteModel(note: note)
+	}
 	
 	// MARK - BODY -
 	var body: some View {
 		ZStack {
 			VStack{
 				VStack {
-					HStack {
-						Text(self.note.date != nil ? "\(self.note.date!, formatter: dateFormatter)" : "")
-							.fontWeight(.thin)
-						Spacer()
-						FavoritesView(favorite: self.$isFavorite)
-						
-					}.font(.headline)
-					TextView(text: $noteText)
-							.frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
-							.cornerRadius(8)
-							
-					
-					RatingView(rating: self.$rating)
-						.font(.headline)
-					
+					NoteTextFavRatView(noteModel: noteModel)
 					Divider().padding(.bottom, 5)
 
 					// MARK: - FRONT -
+					HStack{
+						Text("PSI: \(noteModel.fAirVolume, specifier: "%.1f")").fontWeight(.thin)
+						Slider(value: $noteModel.fAirVolume, in: 45...120, step: 1.0)
+//						Stepper(value: $noteModel.fAirVolume, in: 45...120, step: 0.5, onEditingChanged: {_ in DispatchQueue.main.async {self.haptic.impactOccurred()}}, label: {Text("PSI: \(self.noteModel.fAirVolume)").fontWeight(.thin)}).labelsHidden()
+						
+					}
+
 					Group {
 						VStack {
 							VStack {
@@ -105,10 +103,12 @@ struct NotesDetailView: View {
 							}
 						}
 						.font(.subheadline)
-						
 					}
 					Divider().padding(.bottom, 5)
-					
+						.onLongPressGesture {
+							self.isFrontEdit.toggle()
+						}
+
 					// MARK: - REAR -
 					Group {
 						VStack {
@@ -201,10 +201,10 @@ struct NotesDetailView: View {
 			
 			// This keeps the keyboard from pushing the view up in iOS14
 			.ignoresSafeArea(.keyboard)
-			.onAppear(perform: {self.setup()})
-			.onChange(of: showingEditDetail, perform: {value in
-				self.setup()
-		})
+//			.onAppear(perform: {self.setup()})
+//			.onChange(of: showingEditDetail, perform: {value in
+//				self.setup()
+//		})
 
 		
 
@@ -245,14 +245,13 @@ struct NotesDetailView: View {
         presentationMode.wrappedValue.dismiss()
     }
 	
+	// TODO: Move this to the view Model
 	func updateNote(note: Notes) {
-		let updatedNote = self.noteText
-		let updatedRating = self.rating
-		let updatedFavorite = self.isFavorite
 		moc.performAndWait {
-			note.note = updatedNote
-			note.rating = Int16(updatedRating)
-			note.isFavorite = updatedFavorite
+			note.note = noteModel.noteText
+			note.rating = Int16(noteModel.noteRating)
+			note.isFavorite = noteModel.noteFavorite
+			note.fAirVolume = noteModel.fAirVolume
 			if self.moc.hasChanges {
 				try? self.moc.save()
 			}
@@ -266,10 +265,8 @@ struct NotesDetailView: View {
 	}
 	
 	func setup() {
-		noteModel.getNoteModel(note: note)
-		rating = Int(noteModel.noteRating)
-		noteText = noteModel.noteText
-		isFavorite = noteModel.noteFavorite
+
+//
 	}
 	
 
