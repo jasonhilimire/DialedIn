@@ -11,13 +11,13 @@ import Combine
 import SwiftUI
 
 
-class EditNoteViewModel: ObservableObject {
+class NoteViewModel: ObservableObject {
 	
 	let managedObjectContext = PersistentCloudKitContainer.persistentContainer.viewContext
 	
 	// MARK: - Published Variables
 	
-	let didChange = PassthroughSubject<EditNoteViewModel, Never>()
+	let didChange = PassthroughSubject<NoteViewModel, Never>()
 	
 	// MARK: - Note Details -
 	@Published var noteText: String = "" {
@@ -201,6 +201,32 @@ class EditNoteViewModel: ObservableObject {
 		rTokenSetting = note.rTokens
 		rSagSetting = note.rSag
 		rTirePressure = note.rTirePressure
+	}
+	
+	func getLastFrontNote(front: NoteFrontSetupModel) {
+		fAirVolume = front.lastFAirSetting
+		fCompSetting = front.lastFCompSetting
+		fHSCSetting = front.lastFHSCSetting
+		fLSCSetting = front.lastFLSCSetting
+		fReboundSetting = front.lastFReboundSetting
+		fHSRSetting = front.lastFHSRSetting
+		fLSRSetting = front.lastFLSRSetting
+		fTokenSetting = front.lastFTokenSetting
+		fSagSetting = front.lastFSagSetting
+		fTirePressure = front.lastFTirePressure
+	}
+	
+	func getLastRearNote(front: NoteRearSetupModel) {
+		rSpring = front.lastRAirSpringSetting
+		rCompSetting = front.lastRCompSetting
+		rHSCSetting = front.lastRHSCSetting
+		rLSCSetting = front.lastRLSCSetting
+		rReboundSetting = front.lastRReboundSetting
+		rHSRSetting = front.lastRHSRSetting
+		rLSRSetting = front.lastRLSRSetting
+		rTokenSetting = front.lastRTokenSetting
+		rSagSetting = front.lastRSagSetting
+		rTirePressure = front.lastRTirePressure
 	}
 	
 	func saveNote() {

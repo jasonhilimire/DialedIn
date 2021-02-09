@@ -14,11 +14,11 @@ struct NotesDetailView: View {
     @Environment(\.managedObjectContext) var moc
     @Environment(\.presentationMode) var presentationMode
 	@ObservedObject var keyboard = KeyboardObserver()
-	@ObservedObject var noteModel = EditNoteViewModel()
+	@ObservedObject var noteVM = NoteViewModel()
 	@ObservedObject var front = NoteFrontSetupModel()
+	@ObservedObject var rear = NoteRearSetupModel()
 	
     @State private var showingDeleteAlert = false
-	@State private var showingEditDetail = false
 	@State private var savePressed = false
 	@State private var saveText = "Save"
 	@State private var isDetailEdit = true
@@ -31,7 +31,7 @@ struct NotesDetailView: View {
 	
 	init(note: Notes) {
 		self.note = note
-		noteModel.getNoteModel(note: note)
+		noteVM.getNoteModel(note: note)
 	}
 	
 	// MARK - BODY -
@@ -39,29 +39,23 @@ struct NotesDetailView: View {
 		ZStack {
 			VStack{
 				VStack {
-					
-						NoteTextFavRatView(noteModel: noteModel)
-							
+					NoteTextFavRatView(noteModel: noteVM)
 					
 					Divider().padding(.bottom, 5)
-						// Save button needs to toggle isFrontEdit
 
 					// MARK: - FRONT -
 					
 					if isFrontEdit == true {
-						//TODO: Show the AddFrontSetupView
-						HStack{
-							Text("PSI: \(noteModel.fAirVolume, specifier: "%.1f")").fontWeight(.thin)
-							Slider(value: $noteModel.fAirVolume, in: 45...120, step: 1.0)
+//TODO: Show the AddFrontSetupView
+						AddNoteFrontSetupView(front: front, noteVM: noteVM, note: note)
 
-						}
 						.transition(.move(edge: .leading))
 						.animation(Animation.linear(duration: 0.3))
 					}
 					
 					
 					if isFrontEdit == false {
-						FrontNoteDetailsView(noteModel: noteModel, note: note)
+						FrontNoteDetailsView(noteModel: noteVM, note: note)
 							.transition(.move(edge: .trailing))
 							.animation(Animation.linear(duration: 0.3))
 							.onLongPressGesture {
@@ -75,18 +69,18 @@ struct NotesDetailView: View {
 					// MARK: - REAR -
 					
 					if isRearEdit == true {
-						//TODO show the Rear SetupView
+//TODO show the Rear SetupView
 						Text("Edit Rear")
 							.transition(.move(edge: .leading))
 							.animation(Animation.linear(duration: 0.3))
 					}
 					
 					if isRearEdit == false {
-						RearNoteDetailsView(noteModel: noteModel, note: note)
+						RearNoteDetailsView(noteModel: noteVM, note: note)
 							.transition(.move(edge: .trailing))
 							.animation(Animation.linear(duration: 0.3))
 							.onLongPressGesture {
-								self.isFrontEdit.toggle()
+								self.isRearEdit.toggle()
 							}
 					}
 					
@@ -123,24 +117,12 @@ struct NotesDetailView: View {
 				}, secondaryButton: .cancel())
 			}
 			.navigationBarItems(trailing:
-				HStack {
-					Button(action: {
-						showingEditDetail.toggle()
-						
-					}) {
-						Image(systemName: "square.and.pencil")
-							.padding(.horizontal, 20)
-					}
-					Spacer(minLength: 5)
-					Button(action: {
-						self.showingDeleteAlert = true
-					}) {
-						Image(systemName: "trash")
-					}
-			})
-			.sheet(isPresented: $showingEditDetail)  {
-				EditNoteDetailView(note: note).environment(\.managedObjectContext, self.moc)
-			}
+				Button(action: {
+					self.showingDeleteAlert = true
+				}) {
+					Image(systemName: "trash")
+				}
+			)
     }
 	
 
@@ -154,10 +136,10 @@ struct NotesDetailView: View {
 	// TODO: Move this to the view Model
 	func updateNote(note: Notes) {
 		moc.performAndWait {
-			note.note = noteModel.noteText
-			note.rating = Int16(noteModel.noteRating)
-			note.isFavorite = noteModel.noteFavorite
-			note.fAirVolume = noteModel.fAirVolume
+			note.note = noteVM.noteText
+			note.rating = Int16(noteVM.noteRating)
+			note.isFavorite = noteVM.noteFavorite
+			note.fAirVolume = noteVM.fAirVolume
 			if self.moc.hasChanges {
 				try? self.moc.save()
 			}

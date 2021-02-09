@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct FrontNoteDetailsView: View {
-	@ObservedObject var noteModel = EditNoteViewModel()
+	@ObservedObject var noteModel = NoteViewModel()
 	
 	let note: Notes
 	

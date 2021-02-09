@@ -21,6 +21,8 @@ struct AddNoteView: View {
     @ObservedObject var frontSetup = NoteFrontSetupModel()
     @ObservedObject var rearSetup = NoteRearSetupModel()
 	@ObservedObject var keyboard = KeyboardObserver()
+	@ObservedObject var noteVM = NoteViewModel()
+	
 
     @State private var createdInitialBike = false
     @State private var bikeNameIndex = 0
@@ -32,7 +34,12 @@ struct AddNoteView: View {
 	@State private var toggleNoteDetail = false
 	@State private var saveText = "Save"
 	
-	
+//	init() {
+//		frontSetup.bikeName = bikeName
+//		frontSetup.getLastFrontSettings()
+//		noteVM.getLastFrontNote(front: frontSetup)
+//		noteVM.getLastRearNote(front: rearSetup)
+//	}
     
     var body: some View {
         NavigationView {
@@ -69,7 +76,7 @@ struct AddNoteView: View {
 					}
 					
 					// MARK: - FRONT SETUP -
-					AddNoteFrontSetupView(front: frontSetup, note: nil)
+					AddNoteFrontSetupView(noteVM: noteVM, note: nil)
 					
 			// MARK: - Rear Setup -
 					AddNoteRearSetupView(rear: rearSetup, note: nil)
@@ -102,6 +109,7 @@ struct AddNoteView: View {
     // MARK: - FUNCTIONS -
 	
     func saveNote() {
+//TODO: change to noteVM
 		let bike = fetchBike(for: bikeName)
 		
 		
@@ -146,9 +154,11 @@ struct AddNoteView: View {
         bikeName = bikes[bikeNameIndex].name ?? "Unknown"
         frontSetup.bikeName = bikeName
         frontSetup.getLastFrontSettings()
-        
+		noteVM.getLastFrontNote(front: frontSetup)
+		
         rearSetup.bikeName = bikeName
         rearSetup.getLastRearSettings()
+		noteVM.getLastRearNote(front: rearSetup)
 
     }
     

@@ -10,7 +10,7 @@ import SwiftUI
 
 struct RearNoteDetailsView: View {
 	
-	@ObservedObject var noteModel = EditNoteViewModel()
+	@ObservedObject var noteModel = NoteViewModel()
 	
 	let note : Notes
     var body: some View {

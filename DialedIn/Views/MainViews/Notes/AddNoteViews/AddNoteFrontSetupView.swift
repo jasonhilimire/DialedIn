@@ -10,11 +10,10 @@ import SwiftUI
 
 struct AddNoteFrontSetupView: View {
     @ObservedObject var front = NoteFrontSetupModel()
+	@ObservedObject var noteVM = NoteViewModel()
 	
-	@State private var sag = 20
-	@State private var fAirvolume = 35.0
 	var haptic = UIImpactFeedbackGenerator(style: .light)
-	var isDetailEdit: Binding<Bool>?
+
 	let note : Notes?
 	
 
@@ -34,9 +33,9 @@ struct AddNoteFrontSetupView: View {
 			VStack{
 					  // AirPressure
 				HStack{
-					Text("PSI: \(front.lastFAirSetting, specifier: "%.1f")").fontWeight(.thin)
-					Slider(value: $front.lastFAirSetting, in: 45...120, step: 1.0)
-					Stepper(value: $front.lastFAirSetting, in: 45...120, step: 0.5, onEditingChanged: {_ in DispatchQueue.main.async {self.haptic.impactOccurred()}}, label: {Text("PSI: \(self.front.lastFAirSetting)").fontWeight(.thin)}).labelsHidden()
+					Text("PSI: \(noteVM.fAirVolume, specifier: "%.1f")").fontWeight(.thin)
+					Slider(value: $noteVM.fAirVolume, in: 45...120, step: 1.0)
+					Stepper(value: $noteVM.fAirVolume, in: 45...120, step: 0.5, onEditingChanged: {_ in DispatchQueue.main.async {self.haptic.impactOccurred()}}, label: {Text("PSI: \(self.noteVM.fAirVolume)").fontWeight(.thin)}).labelsHidden()
 
 					}
 					

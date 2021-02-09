@@ -10,7 +10,7 @@ import SwiftUI
 
 struct NoteTextFavRatView: View {
 	
-	@ObservedObject var noteModel = EditNoteViewModel()
+	@ObservedObject var noteModel = NoteViewModel()
 	
 	
     var body: some View {
