@@ -36,7 +36,8 @@ struct NotesDetailView: View {
 	
 	// MARK - BODY -
 	var body: some View {
-		ZStack {
+		//TODO: Spacing isnt working to push Save button to bottom of view any longer?? did when was ZStack?
+		ScrollView {
 			VStack{
 				VStack {
 					NoteTextFavRatView(noteModel: noteVM)
@@ -52,7 +53,7 @@ struct NotesDetailView: View {
 					}
 					
 					if isFrontEdit == false {
-						FrontNoteDetailsView(noteModel: noteVM, note: note)
+						FrontNoteDetailsView(noteVM: noteVM, note: note)
 							.transition(.move(edge: .trailing))
 							.animation(Animation.linear(duration: 0.3))
 							.onLongPressGesture {
@@ -100,8 +101,8 @@ struct NotesDetailView: View {
 					SaveButtonView(buttonText: $saveText)
 				}.buttonStyle(OrangeButtonStyle())
 				.padding()
-			} //: FORM
-		}
+			} //: VSTACK
+		} //: SCROLLVIEW
 			
 		// MARK: - MODIFIERS -
 			// This keeps the keyboard from pushing the view up in iOS14

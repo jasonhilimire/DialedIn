@@ -81,7 +81,7 @@ struct ServiceView: View {
 							if frontServicedIndex == 1 {
 								HStack {
 									Text("Note:").fontWeight(.thin)
-// TODO: IF USE TextEditor- the keyboard does not slide up
+// IF USE TextEditor- the keyboard does not slide up
 									CustomTextField(text: $frontServicedNote , placeholder: "")
 //									TextEditor(text: self.$frontServicedNote)
 //										.foregroundColor(.gray)
@@ -194,7 +194,7 @@ struct ServiceView: View {
 					if frontServicedIndex == 0 && rearServicedIndex == 0 {
 						Text("Add a Service as needed").foregroundColor(.orange)
 					} else {
-						/// TODO: Encapsulate the save in a function and reset the screen & dismiss the toast
+						
 						Button(action: {
 							withAnimation(.easeInOut(duration: 0.4)) {
 								self.savePressed.toggle()
