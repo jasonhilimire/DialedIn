@@ -78,7 +78,6 @@ struct NotesDetailView: View {
 								self.isRearEdit.toggle()
 							}
 					}
-					
 				}
 				
 				.padding()
@@ -88,8 +87,13 @@ struct NotesDetailView: View {
 					withAnimation(.linear(duration: 0.05), {
 						self.saveText = "     SAVED!!     "  // no idea why, but have to add spaces here other wise it builds the word slowly with SA...., annoying as all hell
 					})
-					self.updateNote(note: self.note)
-					try? self.moc.save()
+					self.noteVM.updateNote(self.note)
+					
+					hapticSuccess()
+					// keep this as stops weird view transition to NotesF&R SetupViews
+					DispatchQueue.main.asyncAfter(deadline: .now()) {
+						self.presentationMode.wrappedValue.dismiss()
+					}
 					self.isFrontEdit.toggle()
 					self.isRearEdit.toggle()
 				}) {
@@ -101,14 +105,14 @@ struct NotesDetailView: View {
 			
 		// MARK: - MODIFIERS -
 			// This keeps the keyboard from pushing the view up in iOS14
-			.ignoresSafeArea(.keyboard)
-			// Dismisses the keyboard
-			.onTapGesture { UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to:nil, from:nil, for:nil) }
+//			.ignoresSafeArea(.keyboard)
+
 			.navigationBarTitle(Text(note.bike?.name ?? "Unknown Note"), displayMode: .inline)
 		// ALERT
 			.alert(isPresented: $showingDeleteAlert) {
 				Alert(title: Text("Delete Note"), message: Text("Are you sure?"), primaryButton: .destructive(Text("Delete")) {
-					self.deleteNote()
+					self.noteVM.deleteNote(note)
+					presentationMode.wrappedValue.dismiss()
 				}, secondaryButton: .cancel())
 			}
 			.navigationBarItems(trailing:
@@ -119,33 +123,6 @@ struct NotesDetailView: View {
 				}
 			)
     }
-	
-
-    // MARK: - FUNCTIONS -
-    func deleteNote() {
-        moc.delete(self.note)
-        try? self.moc.save()
-        presentationMode.wrappedValue.dismiss()
-    }
-	
-	// TODO: Move this to the view Model
-	func updateNote(note: Notes) {
-		moc.performAndWait {
-			note.note = noteVM.noteText
-			note.rating = Int16(noteVM.noteRating)
-			note.isFavorite = noteVM.noteFavorite
-			note.fAirVolume = noteVM.fAirVolume
-			if self.moc.hasChanges {
-				try? self.moc.save()
-			}
-		}
-		hapticSuccess()
-		// this pauses the view transition
-		DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
-			self.presentationMode.wrappedValue.dismiss()
-			
-		}
-	}
 }
 
 

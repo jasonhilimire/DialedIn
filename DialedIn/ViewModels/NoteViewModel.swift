@@ -265,10 +265,49 @@ class NoteViewModel: ObservableObject {
 		
 		bike.addToSetupNotes(newNote)
 		
+		try? self.managedObjectContext.save()
 	}
 	
-	func updateNote() {
+	func updateNote(_ note: Notes) {
+		managedObjectContext.performAndWait {
+			note.note = self.noteText
+			note.rating = Int16(self.noteRating)
+			note.date = self.noteDate
+			note.isFavorite = self.noteFavorite
+			
+			// FRONT
+			note.fAirVolume = Double(self.fAirVolume)
+			note.fCompression = self.fCompSetting
+			note.fHSC = self.fHSCSetting
+			note.fLSC = self.fLSCSetting
+			note.fRebound = self.fReboundSetting
+			note.fHSR = self.fHSRSetting
+			note.fLSR = self.fLSRSetting
+			note.fTokens = self.fTokenSetting
+			note.fSag = self.fSagSetting
+			note.fTirePressure = self.fTirePressure
+			
+			// REAR
+			note.rAirSpring = self.rSpring
+			note.rCompression = self.rCompSetting
+			note.rHSC = self.rHSCSetting
+			note.rLSC = self.rLSCSetting
+			note.rRebound = self.rReboundSetting
+			note.rHSR = self.rHSRSetting
+			note.rLSR = self.rLSRSetting
+			note.rTokens = self.rTokenSetting
+			note.rSag = self.rSagSetting
+			note.rTirePressure = self.rTirePressure
 		
+			if self.managedObjectContext.hasChanges {
+				try? self.managedObjectContext.save()
+			}
+		}
+	}
+	
+	func deleteNote(_ note: Notes) {
+		managedObjectContext.delete(note)
+		try? self.managedObjectContext.save()
 	}
 	
 }

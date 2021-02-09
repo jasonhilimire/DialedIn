@@ -20,17 +20,13 @@ struct AddNoteView: View {
     
     @ObservedObject var frontSetup = NoteFrontSetupModel()
     @ObservedObject var rearSetup = NoteRearSetupModel()
-	@ObservedObject var keyboard = KeyboardObserver()
+//	@ObservedObject var keyboard = KeyboardObserver()
 	@ObservedObject var noteVM = NoteViewModel()
 	
 
     @State private var createdInitialBike = false
     @State private var bikeNameIndex = 0
     @State var bikeName = ""
-    @State private var note = ""
-    @State private var date = Date()
-    @State private var rating = 0
-	@State private var isFavorite = false
 	@State private var toggleNoteDetail = false
 	@State private var saveText = "Save"
 
@@ -69,7 +65,7 @@ struct AddNoteView: View {
 						}
 					}
 					
-					// MARK: - FRONT SETUP -
+			// MARK: - FRONT SETUP -
 					NoteFrontSetupView(front: frontSetup, noteVM: noteVM, note: nil)
 					
 			// MARK: - Rear Setup -
@@ -85,7 +81,6 @@ struct AddNoteView: View {
 						self.saveText = "     SAVED!!     "  // no idea why, but have to add spaces here other wise it builds the word slowly with SA...., annoying as all hell
 					})
 					
-					try? self.moc.save()
 					hapticSuccess()
 					DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
 						self.presentationMode.wrappedValue.dismiss()
@@ -97,7 +92,6 @@ struct AddNoteView: View {
         }
 			// Dismisses the keyboard
 //		.gesture(tap, including: keyboard.keyBoardShown ? .all : .none)
-
     }
     
     // MARK: - FUNCTIONS -
