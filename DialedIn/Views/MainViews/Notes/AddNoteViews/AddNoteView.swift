@@ -46,7 +46,7 @@ struct AddNoteView: View {
 						} else {
 							BikePickerView(bikeNameIndex: $bikeNameIndex)
 						}
-						DatePicker(selection: $date, in: ...Date(), displayedComponents: .date) {
+						DatePicker(selection: $noteVM.noteDate, in: ...Date(), displayedComponents: .date) {
 							Text("Select a date:")
 							.fontWeight(.thin)
 						}
@@ -55,31 +55,31 @@ struct AddNoteView: View {
 							HStack {
 								Text("Note:").fontWeight(.thin)
 
-								TextEditor(text: self.$note)
+								TextEditor(text: self.$noteVM.noteText)
 									.foregroundColor(.gray)
 									.background(Color("TextEditBackgroundColor"))
 									.cornerRadius(8)
 							}
 							HStack {
-								RatingView(rating: $rating)
+								RatingView(rating: $noteVM.noteRating)
 								Spacer()
 								Text("Favorite:").fontWeight(.thin)
-								FavoritesView(favorite: self.$isFavorite)
+								FavoritesView(favorite: self.$noteVM.noteFavorite)
 							}
 						}
 					}
 					
 					// MARK: - FRONT SETUP -
-					NoteFrontSetupView(noteVM: noteVM, note: nil)
+					NoteFrontSetupView(front: frontSetup, noteVM: noteVM, note: nil)
 					
 			// MARK: - Rear Setup -
-					NoteRearSetupView(rear: rearSetup, note: nil)
+					NoteRearSetupView(rear: rearSetup, noteVM: noteVM, note: nil)
 				} //: FORM
 					.onAppear(perform: {self.setup()}) // change to onReceive??
 					.navigationBarTitle("Dialed In", displayMode: .inline)
 				
 				Button(action: {
-					self.saveNote()
+					self.noteVM.saveNote(bikeName: bikeName)
 					
 					withAnimation(.linear(duration: 0.05), {
 						self.saveText = "     SAVED!!     "  // no idea why, but have to add spaces here other wise it builds the word slowly with SA...., annoying as all hell
@@ -102,48 +102,6 @@ struct AddNoteView: View {
     
     // MARK: - FUNCTIONS -
 	
-    func saveNote() {
-//TODO: change to noteVM
-		let bike = fetchBike(for: bikeName)
-		
-		
-        let newNote = Notes(context: self.moc)
-        newNote.note = self.note
-        newNote.rating = Int16(self.rating)
-        newNote.date = self.date
-		newNote.isFavorite = self.isFavorite
-		newNote.id = UUID()
-
-		// FRONT
-        newNote.fAirVolume = Double(self.frontSetup.lastFAirSetting)
-        newNote.fCompression = self.frontSetup.lastFCompSetting
-        newNote.fHSC = self.frontSetup.lastFHSCSetting
-        newNote.fLSC = self.frontSetup.lastFLSCSetting
-        newNote.fRebound = self.frontSetup.lastFReboundSetting
-        newNote.fHSR = self.frontSetup.lastFHSRSetting
-        newNote.fLSR = self.frontSetup.lastFLSRSetting
-        newNote.fTokens = self.frontSetup.lastFTokenSetting
-        newNote.fSag = self.frontSetup.lastFSagSetting
-		newNote.fTirePressure = self.frontSetup.lastFTirePressure
-        newNote.bike?.hasRearShock = self.rearSetup.hasRear
-		
-        // REAR
-        newNote.rAirSpring = self.rearSetup.lastRAirSpringSetting
-        newNote.rCompression = self.rearSetup.lastRCompSetting
-        newNote.rHSC = self.rearSetup.lastRHSCSetting
-        newNote.rLSC = self.rearSetup.lastRLSCSetting
-        newNote.rRebound = self.rearSetup.lastRReboundSetting
-        newNote.rHSR = self.rearSetup.lastRHSRSetting
-        newNote.rLSR = self.rearSetup.lastRLSRSetting
-// TODO: something here for a coil???
-        newNote.rTokens = self.rearSetup.lastRTokenSetting
-        newNote.rSag = self.rearSetup.lastRSagSetting
-		newNote.rTirePressure = self.rearSetup.lastRTirePressure
-		
-		bike.addToSetupNotes(newNote)
-  
-    }
-    
     func setup() {
         bikeName = bikes[bikeNameIndex].name ?? "Unknown"
         frontSetup.bikeName = bikeName

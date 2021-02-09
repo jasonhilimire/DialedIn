@@ -229,7 +229,41 @@ class NoteViewModel: ObservableObject {
 		rTirePressure = front.lastRTirePressure
 	}
 	
-	func saveNote() {
+	func saveNote(bikeName: String) {
+		let bike = fetchBike(for: bikeName)
+		
+		let newNote = Notes(context: self.managedObjectContext)
+		newNote.note = self.noteText
+		newNote.rating = Int16(self.noteRating)
+		newNote.date = self.noteDate
+		newNote.isFavorite = self.noteFavorite
+		newNote.id = UUID()
+		
+		// FRONT
+		newNote.fAirVolume = Double(self.fAirVolume)
+		newNote.fCompression = self.fCompSetting
+		newNote.fHSC = self.fHSCSetting
+		newNote.fLSC = self.fLSCSetting
+		newNote.fRebound = self.fReboundSetting
+		newNote.fHSR = self.fHSRSetting
+		newNote.fLSR = self.fLSRSetting
+		newNote.fTokens = self.fTokenSetting
+		newNote.fSag = self.fSagSetting
+		newNote.fTirePressure = self.fTirePressure
+		
+		// REAR
+		newNote.rAirSpring = self.rSpring
+		newNote.rCompression = self.rCompSetting
+		newNote.rHSC = self.rHSCSetting
+		newNote.rLSC = self.rLSCSetting
+		newNote.rRebound = self.rReboundSetting
+		newNote.rHSR = self.rHSRSetting
+		newNote.rLSR = self.rLSRSetting
+		newNote.rTokens = self.rTokenSetting
+		newNote.rSag = self.rSagSetting
+		newNote.rTirePressure = self.rTirePressure
+		
+		bike.addToSetupNotes(newNote)
 		
 	}
 	
