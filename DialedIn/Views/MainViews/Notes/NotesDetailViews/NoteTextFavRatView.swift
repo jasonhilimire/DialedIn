@@ -22,9 +22,8 @@ struct NoteTextFavRatView: View {
 			
 		}.font(.headline)
 			TextView(text: $noteModel.noteText)
-			.frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
+			.frame(minWidth: 0, maxWidth: .infinity, minHeight: 80, maxHeight: .infinity)
 			.cornerRadius(8)
-			
 			
 			RatingView(rating: self.$noteModel.noteRating)
 			.font(.headline)

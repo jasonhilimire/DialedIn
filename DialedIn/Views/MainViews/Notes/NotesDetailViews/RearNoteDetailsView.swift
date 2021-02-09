@@ -13,6 +13,7 @@ struct RearNoteDetailsView: View {
 	@ObservedObject var noteModel = NoteViewModel()
 	
 	let note : Notes
+	
     var body: some View {
 		Group {
 			VStack {

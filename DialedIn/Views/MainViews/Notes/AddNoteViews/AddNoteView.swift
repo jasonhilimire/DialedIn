@@ -33,13 +33,7 @@ struct AddNoteView: View {
 	@State private var isFavorite = false
 	@State private var toggleNoteDetail = false
 	@State private var saveText = "Save"
-	
-//	init() {
-//		frontSetup.bikeName = bikeName
-//		frontSetup.getLastFrontSettings()
-//		noteVM.getLastFrontNote(front: frontSetup)
-//		noteVM.getLastRearNote(front: rearSetup)
-//	}
+
     
     var body: some View {
         NavigationView {
@@ -76,10 +70,10 @@ struct AddNoteView: View {
 					}
 					
 					// MARK: - FRONT SETUP -
-					AddNoteFrontSetupView(noteVM: noteVM, note: nil)
+					NoteFrontSetupView(noteVM: noteVM, note: nil)
 					
 			// MARK: - Rear Setup -
-					AddNoteRearSetupView(rear: rearSetup, note: nil)
+					NoteRearSetupView(rear: rearSetup, note: nil)
 				} //: FORM
 					.onAppear(perform: {self.setup()}) // change to onReceive??
 					.navigationBarTitle("Dialed In", displayMode: .inline)

@@ -46,13 +46,10 @@ struct NotesDetailView: View {
 					// MARK: - FRONT -
 					
 					if isFrontEdit == true {
-//TODO: Show the AddFrontSetupView
-						AddNoteFrontSetupView(front: front, noteVM: noteVM, note: note)
-
+						NoteFrontSetupView(front: front, noteVM: noteVM, isDetailEdit: $isDetailEdit, note: note)
 						.transition(.move(edge: .leading))
 						.animation(Animation.linear(duration: 0.3))
 					}
-					
 					
 					if isFrontEdit == false {
 						FrontNoteDetailsView(noteModel: noteVM, note: note)
@@ -65,12 +62,10 @@ struct NotesDetailView: View {
 					
 					Divider().padding(.bottom, 5)
 						
-
 					// MARK: - REAR -
 					
 					if isRearEdit == true {
-//TODO show the Rear SetupView
-						Text("Edit Rear")
+						NoteRearSetupView(rear: rear, noteVM: noteVM, isDetailEdit: $isDetailEdit, note: note)
 							.transition(.move(edge: .leading))
 							.animation(Animation.linear(duration: 0.3))
 					}
