@@ -11,9 +11,10 @@ import SwiftUI
 struct NoteFrontSetupView: View {
     @ObservedObject var front = NoteFrontSetupModel()
 	@ObservedObject var noteVM = NoteViewModel()
-	
+		
 	var haptic = UIImpactFeedbackGenerator(style: .light)
 	var isDetailEdit: Binding<Bool>?
+	
 
 	let note : Notes?
 	
@@ -23,12 +24,27 @@ struct NoteFrontSetupView: View {
     var body: some View {
 		Section(header:
 					HStack {
+						if (isDetailEdit != nil) {
+							Button(action: {
+								noteVM.isFrontEdit.toggle()
+								noteVM.getNoteFront(note: note!)
+							}) {
+								Image(systemName: "xmark.circle.fill")
+									.resizable()
+									.frame(width: 15, height: 15)
+									.scaledToFit()
+									.foregroundColor(.gray)
+							}
+						}
+						
+						Spacer()
 						Image("bicycle-fork")
 							.resizable()
 							.frame(width: 50, height: 50)
 							.scaledToFit()
 						Text("Front Suspension Details")
-					}
+						Spacer()
+					} //: HSTACK
 				
 		) {
 			VStack{

@@ -22,16 +22,12 @@ struct NotesDetailView: View {
 	@State private var savePressed = false
 	@State private var saveText = "Save"
 	@State private var isDetailEdit = true
-	
-	@State private var isFrontEdit = false
-	@State private var isRearEdit = false
-	
-	
+		
     let note: Notes
 	
 	init(note: Notes) {
 		self.note = note
-		noteVM.getNoteModel(note: note)
+		noteVM.getNote(note: note)
 	}
 	
 	// MARK - BODY -
@@ -46,18 +42,18 @@ struct NotesDetailView: View {
 
 					// MARK: - FRONT -
 					
-					if isFrontEdit == true {
+					if noteVM.isFrontEdit == true {
 						NoteFrontSetupView(front: front, noteVM: noteVM, isDetailEdit: $isDetailEdit, note: note)
 						.transition(.move(edge: .leading))
 						.animation(Animation.linear(duration: 0.3))
 					}
 					
-					if isFrontEdit == false {
+					if noteVM.isFrontEdit == false {
 						FrontNoteDetailsView(noteVM: noteVM, note: note)
 							.transition(.move(edge: .trailing))
 							.animation(Animation.linear(duration: 0.3))
 							.onLongPressGesture {
-								self.isFrontEdit.toggle()
+								self.noteVM.isFrontEdit.toggle()
 							}
 					}
 					
@@ -65,18 +61,18 @@ struct NotesDetailView: View {
 						
 					// MARK: - REAR -
 					
-					if isRearEdit == true {
+					if noteVM.isRearEdit == true {
 						NoteRearSetupView(rear: rear, noteVM: noteVM, isDetailEdit: $isDetailEdit, note: note)
 							.transition(.move(edge: .leading))
 							.animation(Animation.linear(duration: 0.3))
 					}
 					
-					if isRearEdit == false {
+					if noteVM.isRearEdit == false {
 						RearNoteDetailsView(noteModel: noteVM, note: note)
 							.transition(.move(edge: .trailing))
 							.animation(Animation.linear(duration: 0.3))
 							.onLongPressGesture {
-								self.isRearEdit.toggle()
+								self.noteVM.isRearEdit.toggle()
 							}
 					}
 				}
@@ -95,8 +91,6 @@ struct NotesDetailView: View {
 					DispatchQueue.main.asyncAfter(deadline: .now()) {
 						self.presentationMode.wrappedValue.dismiss()
 					}
-					self.isFrontEdit.toggle()
-					self.isRearEdit.toggle()
 				}) {
 					SaveButtonView(buttonText: $saveText)
 				}.buttonStyle(OrangeButtonStyle())

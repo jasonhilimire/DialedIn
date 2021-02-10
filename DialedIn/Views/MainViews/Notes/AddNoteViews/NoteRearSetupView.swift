@@ -20,11 +20,25 @@ struct NoteRearSetupView: View {
     var body: some View {
 		Section(header:
 					HStack {
+						if (isDetailEdit != nil) {
+							Button(action: {
+								noteVM.isRearEdit.toggle()
+								noteVM.getNoteRear(note: note!)
+							}) {
+								Image(systemName: "xmark.circle.fill")
+									.resizable()
+									.frame(width: 15, height: 15)
+									.scaledToFit()
+									.foregroundColor(.gray)
+							}
+						}
+						Spacer()
 						Image("shock-absorber")
 							.resizable()
 							.frame(width: 50, height: 50)
 							.scaledToFit()
 						Text("Rear Suspension Details")
+						Spacer()
 					}
 		) {
 			VStack {

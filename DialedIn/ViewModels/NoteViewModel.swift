@@ -168,18 +168,40 @@ class NoteViewModel: ObservableObject {
 		}
 	}
 	
+	@Published var isFrontEdit: Bool = false {
+		didSet {
+			didChange.send(self)
+		}
+	}
+	
+	@Published var isRearEdit: Bool = false {
+		didSet {
+			didChange.send(self)
+		}
+	}
+	
+	
 	init() {
 		//
 	}
 
 	// MARK: - FUNCTIONS
 	
-	func getNoteModel(note: Notes) {
+	func getNote(note: Notes) {
+		getNoteDetails(note: note)
+		getNoteFront(note: note)
+		getNoteRear(note: note)
+	}
+	
+	func getNoteDetails(note: Notes) {
 		noteText = note.note ?? ""
 		noteRating = Int(note.rating)
 		noteFavorite = note.isFavorite
 		noteDate = note.date ?? Date()
-		//front
+	}
+	
+	
+	func getNoteFront(note: Notes) {
 		fAirVolume = note.fAirVolume
 		fCompSetting = note.fCompression
 		fHSCSetting = note.fHSC
@@ -190,7 +212,9 @@ class NoteViewModel: ObservableObject {
 		fTokenSetting = note.fTokens
 		fSagSetting = note.fSag
 		fTirePressure = note.fTirePressure
-		//rear
+	}
+	
+	func getNoteRear(note: Notes) {
 		rSpring = note.rAirSpring
 		rCompSetting = note.rCompression
 		rHSCSetting = note.rHSC
