@@ -81,7 +81,7 @@ struct ServiceView: View {
 							if frontServicedIndex == 1 {
 								HStack {
 									Text("Note:").fontWeight(.thin)
-// TODO: IF USE TextEditor- the keyboard does not slide up
+// IF USE TextEditor- the keyboard does not slide up
 									CustomTextField(text: $frontServicedNote , placeholder: "")
 //									TextEditor(text: self.$frontServicedNote)
 //										.foregroundColor(.gray)
@@ -185,7 +185,7 @@ struct ServiceView: View {
 						
 						.onAppear(perform: {self.setup()})
 						// Dismisses the keyboard
-						.gesture(tap, including: keyboard.keyBoardShown ? .all : .none)
+//						.gesture(tap, including: keyboard.keyBoardShown ? .all : .none)
 						.navigationBarTitle("Service")
 					
 				// MARK: - SAVE BUTTON -
@@ -194,7 +194,7 @@ struct ServiceView: View {
 					if frontServicedIndex == 0 && rearServicedIndex == 0 {
 						Text("Add a Service as needed").foregroundColor(.orange)
 					} else {
-						/// TODO: Encapsulate the save in a function and reset the screen & dismiss the toast
+						
 						Button(action: {
 							withAnimation(.easeInOut(duration: 0.4)) {
 								self.savePressed.toggle()
@@ -249,11 +249,14 @@ struct ServiceView: View {
 
 		let fork = bike.frontSetup
 		let newFrontService = FrontService(context: self.moc)
+		
+		
+		
 		if frontServicedIndex == 1 {
 			newFrontService.fullService = self.fFullServicedDate
 			newFrontService.lowersService = self.fFullServicedDate
 			newFrontService.serviceNote = self.frontServicedNote
-			print("full service: \(self.fFullServicedDate)")
+			newFrontService.id = UUID()
 			fork?.addToFrontService(newFrontService)
 			
 		} else if frontServicedIndex == 2 {
@@ -261,15 +264,19 @@ struct ServiceView: View {
 			newFrontService.fullService = frontService.getFullDate(bike: bikeName)
 			newFrontService.lowersService = self.fLowersServicedDate
 			newFrontService.serviceNote = self.frontServicedNote
+			newFrontService.id = UUID()
 			fork?.addToFrontService(newFrontService)
 		}
 		
 		let rear = bike.rearSetup
 		let newRearService = RearService(context: self.moc)
+		
+		
 		if rearServicedIndex == 1 {
 			newRearService.fullService = self.rFullServicedDate
 			newRearService.airCanService = self.rFullServicedDate
 			newRearService.serviceNote = self.rearServicedNote
+			newRearService.id = UUID()
 			rear?.addToRearService(newRearService)
 			
 		} else if rearServicedIndex == 2 {
@@ -277,6 +284,7 @@ struct ServiceView: View {
 			newRearService.fullService = rearService.getFullDate(bike: bikeName)
 			newRearService.airCanService = self.rAirCanServicedDate
 			newRearService.serviceNote = self.rearServicedNote
+			newRearService.id = UUID()
 			rear?.addToRearService(newRearService)
 		}
 	}

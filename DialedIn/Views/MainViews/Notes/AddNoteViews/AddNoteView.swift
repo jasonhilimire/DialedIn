@@ -20,19 +20,16 @@ struct AddNoteView: View {
     
     @ObservedObject var frontSetup = NoteFrontSetupModel()
     @ObservedObject var rearSetup = NoteRearSetupModel()
-	@ObservedObject var keyboard = KeyboardObserver()
+//	@ObservedObject var keyboard = KeyboardObserver()
+	@ObservedObject var noteVM = NoteViewModel()
+	
 
     @State private var createdInitialBike = false
     @State private var bikeNameIndex = 0
     @State var bikeName = ""
-    @State private var note = ""
-    @State private var date = Date()
-    @State private var rating = 0
-	@State private var isFavorite = false
 	@State private var toggleNoteDetail = false
 	@State private var saveText = "Save"
-	
-	
+
     
     var body: some View {
         NavigationView {
@@ -45,7 +42,7 @@ struct AddNoteView: View {
 						} else {
 							BikePickerView(bikeNameIndex: $bikeNameIndex)
 						}
-						DatePicker(selection: $date, in: ...Date(), displayedComponents: .date) {
+						DatePicker(selection: $noteVM.noteDate, in: ...Date(), displayedComponents: .date) {
 							Text("Select a date:")
 							.fontWeight(.thin)
 						}
@@ -54,58 +51,36 @@ struct AddNoteView: View {
 							HStack {
 								Text("Note:").fontWeight(.thin)
 
-								TextEditor(text: self.$note)
+								TextEditor(text: self.$noteVM.noteText)
 									.foregroundColor(.gray)
 									.background(Color("TextEditBackgroundColor"))
 									.cornerRadius(8)
 							}
 							HStack {
-								RatingView(rating: $rating)
+								RatingView(rating: $noteVM.noteRating)
 								Spacer()
 								Text("Favorite:").fontWeight(.thin)
-								FavoritesView(favorite: self.$isFavorite)
+								FavoritesView(favorite: self.$noteVM.noteFavorite)
 							}
 						}
 					}
 					
-					// MARK: - FRONT SETUP -
-					Section(header:
-						HStack {
-							Image("bicycle-fork")
-								.resizable()
-								.frame(width: 50, height: 50)
-								.scaledToFit()
-							Text("Front Suspension Details")
-						}
-						
-					){
-						AddNoteFrontSetupView(front: frontSetup, note: nil)
-					}
+			// MARK: - FRONT SETUP -
+					NoteFrontSetupView(front: frontSetup, noteVM: noteVM, note: nil)
 					
 			// MARK: - Rear Setup -
-					Section(header:
-						HStack {
-							Image("shock-absorber")
-								.resizable()
-								.frame(width: 50, height: 50)
-								.scaledToFit()
-							Text("Rear Suspension Details")
-						}
-					){
-						AddNoteRearSetupView(rear: rearSetup, note: nil)
-					}
-				} // end form
+					NoteRearSetupView(rear: rearSetup, noteVM: noteVM, note: nil)
+				} //: FORM
 					.onAppear(perform: {self.setup()}) // change to onReceive??
 					.navigationBarTitle("Dialed In", displayMode: .inline)
 				
 				Button(action: {
-					self.saveNote()
+					self.noteVM.saveNote(bikeName: bikeName)
 					
 					withAnimation(.linear(duration: 0.05), {
 						self.saveText = "     SAVED!!     "  // no idea why, but have to add spaces here other wise it builds the word slowly with SA...., annoying as all hell
 					})
 					
-					try? self.moc.save()
 					hapticSuccess()
 					DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
 						self.presentationMode.wrappedValue.dismiss()
@@ -113,62 +88,23 @@ struct AddNoteView: View {
 				}) {
 					SaveButtonView(buttonText: $saveText)
 				}.buttonStyle(OrangeButtonStyle()).padding(.horizontal)
-			}
+			} //: VSTACK
         }
 			// Dismisses the keyboard
-		.gesture(tap, including: keyboard.keyBoardShown ? .all : .none)
-
+//		.gesture(tap, including: keyboard.keyBoardShown ? .all : .none)
     }
     
     // MARK: - FUNCTIONS -
 	
-    func saveNote() {
-		let bike = fetchBike(for: bikeName)
-		
-		
-        let newNote = Notes(context: self.moc)
-        newNote.note = self.note
-        newNote.rating = Int16(self.rating)
-        newNote.date = self.date
-		newNote.isFavorite = self.isFavorite
-
-		// FRONT
-        newNote.fAirVolume = Double(self.frontSetup.lastFAirSetting)
-        newNote.fCompression = self.frontSetup.lastFCompSetting
-        newNote.fHSC = self.frontSetup.lastFHSCSetting
-        newNote.fLSC = self.frontSetup.lastFLSCSetting
-        newNote.fRebound = self.frontSetup.lastFReboundSetting
-        newNote.fHSR = self.frontSetup.lastFHSRSetting
-        newNote.fLSR = self.frontSetup.lastFLSRSetting
-        newNote.fTokens = self.frontSetup.lastFTokenSetting
-        newNote.fSag = self.frontSetup.lastFSagSetting
-		newNote.fTirePressure = self.frontSetup.lastFTirePressure
-        newNote.bike?.hasRearShock = self.rearSetup.hasRear
-		
-        // REAR
-        newNote.rAirSpring = self.rearSetup.lastRAirSpringSetting
-        newNote.rCompression = self.rearSetup.lastRCompSetting
-        newNote.rHSC = self.rearSetup.lastRHSCSetting
-        newNote.rLSC = self.rearSetup.lastRLSCSetting
-        newNote.rRebound = self.rearSetup.lastRReboundSetting
-        newNote.rHSR = self.rearSetup.lastRHSRSetting
-        newNote.rLSR = self.rearSetup.lastRLSRSetting
-// TODO: something here for a coil???
-        newNote.rTokens = self.rearSetup.lastRTokenSetting
-        newNote.rSag = self.rearSetup.lastRSagSetting
-		newNote.rTirePressure = self.rearSetup.lastRTirePressure
-		
-		bike.addToSetupNotes(newNote)
-  
-    }
-    
     func setup() {
         bikeName = bikes[bikeNameIndex].name ?? "Unknown"
         frontSetup.bikeName = bikeName
         frontSetup.getLastFrontSettings()
-        
+		noteVM.getLastFrontNote(front: frontSetup)
+		
         rearSetup.bikeName = bikeName
         rearSetup.getLastRearSettings()
+		noteVM.getLastRearNote(front: rearSetup)
 
     }
     

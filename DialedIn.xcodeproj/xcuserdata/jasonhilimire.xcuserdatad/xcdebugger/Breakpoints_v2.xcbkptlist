@@ -7,25 +7,15 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "A71DEFC6-1CA7-4234-BFEF-2B876E9AF256"
-            shouldBeEnabled = "Yes"
+            uuid = "338716BF-4E14-4B21-8AC6-D8D8064DA39E"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
-            continueAfterRunningActions = "Yes"
-            filePath = "DialedIn/Views/MainViews/Notes/NotesDetailViews/EditNoteDetailView.swift"
+            continueAfterRunningActions = "No"
+            filePath = "DialedIn/Views/MainViews/Notes/AddNoteViews/AddNoteFrontSetupView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "174"
-            endingLineNumber = "174"
-            landmarkName = "setup()"
-            landmarkType = "7">
-            <Actions>
-               <BreakpointActionProxy
-                  ActionExtensionID = "Xcode.BreakpointAction.DebuggerCommand">
-                  <ActionContent
-                     consoleCommand = "po print(&quot;bike name is: \(bikeName)&quot;)">
-                  </ActionContent>
-               </BreakpointActionProxy>
-            </Actions>
+            startingLineNumber = "87"
+            endingLineNumber = "87">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

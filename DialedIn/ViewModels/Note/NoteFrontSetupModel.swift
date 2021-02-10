@@ -186,8 +186,6 @@ class NoteFrontSetupModel: ObservableObject {
         return lastRecord.getSetting(note: filterBikes(for: bikeName))
     }
 	
-	
-    
     func getLastFTokens() -> Int16 {
         let lastRecord = FrontSettings.tokens
         return lastRecord.getSetting(note: filterBikes(for: bikeName))
@@ -226,30 +224,19 @@ class NoteFrontSetupModel: ObservableObject {
         lastFTokenSetting = getLastFTokens()
         lastFSagSetting = getLastFSag()
 		lastFTirePressure = getLastTirePSI()
-        fComp = getDualComp(bike: bikeName)
-        fReb = getDualReb(bike: bikeName)
-		fTravel = getTravel(bike: bikeName)
-
+		getForkSettings(bikeName: bikeName)
+       
     }
 	
-	
-	func getNoteFrontSettings(note: Notes) {
-		lastFAirSetting = note.fAirVolume
-		lastFHSCSetting = note.fHSC
-		lastFLSCSetting = note.fLSC
-		lastFCompSetting = note.fCompression
-		lastFHSRSetting = note.fHSR
-		lastFLSRSetting = note.fLSR
-		lastFReboundSetting = note.fRebound
-		lastFTokenSetting = note.fTokens
-		lastFSagSetting = note.fSag
-		lastFTirePressure = note.fTirePressure
+	func getForkSettings(bikeName: String){
+//TODO: refactor this out to the FORK VIEW MODEL
 		fComp = getDualComp(bike: bikeName)
 		fReb = getDualReb(bike: bikeName)
 		fTravel = getTravel(bike: bikeName)
-		
-		
 	}
+	
+	
+	
     
  // THIS WORKS Now need to figure out how to pass the selected bike into the Model from the pickerview
     func filterBikes(for name: String) -> [Notes] {
@@ -258,6 +245,17 @@ class NoteFrontSetupModel: ObservableObject {
         }
         return filteredBikes
     }
+	
+	// Not being used for anything but example on how to fetch by UUID
+	func getNoteByID(for noteID: UUID) -> Notes  {
+		let notes = try! managedObjectContext.fetch(Notes.NoteByIDFetchRequest(filter: noteID))
+		if let note = notes.first {
+			print("Note:\(note)")
+			return note
+		} else {
+			return notes[0]
+		}
+	}
 	
 	func filter(for name: String) -> [Bike] {
 		let filteredBikes = getBikes().filter { bikes in

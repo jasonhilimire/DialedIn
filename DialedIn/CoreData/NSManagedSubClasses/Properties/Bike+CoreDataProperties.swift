@@ -17,6 +17,7 @@ extension Bike {
         return NSFetchRequest<Bike>(entityName: "Bike")
     }
 
+	@NSManaged public var id: UUID
     @NSManaged public var hasRearShock: Bool
     @NSManaged public var isDefault: Bool
     @NSManaged public var name: String?

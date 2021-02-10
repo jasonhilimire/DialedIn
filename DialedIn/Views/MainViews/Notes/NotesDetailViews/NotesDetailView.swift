@@ -14,265 +14,122 @@ struct NotesDetailView: View {
     @Environment(\.managedObjectContext) var moc
     @Environment(\.presentationMode) var presentationMode
 	@ObservedObject var keyboard = KeyboardObserver()
-	@ObservedObject var noteModel = NoteModel()
+	@ObservedObject var noteVM = NoteViewModel()
+	@ObservedObject var front = NoteFrontSetupModel()
+	@ObservedObject var rear = NoteRearSetupModel()
 	
     @State private var showingDeleteAlert = false
-	@State private var showingEditDetail = false
-	@State private var airVolume: Double = 0
-	@State private var rating = 3
-	@State private var noteText = ""
-	@State private var isFavorite = false
 	@State private var savePressed = false
 	@State private var saveText = "Save"
+	@State private var isDetailEdit = true
+		
+    let note: Notes
 	
-	
-    let  note: Notes
+	init(note: Notes) {
+		self.note = note
+		noteVM.getNote(note: note)
+	}
 	
 	// MARK - BODY -
 	var body: some View {
-		ZStack {
+		//TODO: Spacing isnt working to push Save button to bottom of view any longer?? did when was ZStack?
+		ScrollView {
 			VStack{
 				VStack {
-					HStack {
-						Text(self.note.date != nil ? "\(self.note.date!, formatter: dateFormatter)" : "")
-							.fontWeight(.thin)
-						Spacer()
-						FavoritesView(favorite: self.$isFavorite)
-						
-					}.font(.headline)
-					TextView(text: $noteText)
-							.frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
-							.cornerRadius(8)
-							
-					
-					RatingView(rating: self.$rating)
-						.font(.headline)
+					NoteTextFavRatView(noteModel: noteVM)
 					
 					Divider().padding(.bottom, 5)
 
 					// MARK: - FRONT -
-					Group {
-						VStack {
-							VStack {
-								HStack {
-									Image("bicycle-fork")
-										.resizable()
-										.frame(width: 50, height: 50)
-										.scaledToFit()
-									Text("\(self.note.bike?.frontSetup?.info ?? "Fork Details")")
-										.font(.headline)
-										.fontWeight(.thin)
-										.fixedSize()
-								}
-							}
-							Spacer()
-							
-							VStack {
-								HStack {
-									Text("Fork PSI: \(self.note.fAirVolume, specifier: "%.1f")").customNotesText()
-									Text("Tokens: \(self.note.fTokens)").customNotesText()
-								}
-							}
-							Spacer()
-							VStack{
-								HStack{
-									Text("Sag %: \(calcSag(sag: Double(self.note.fSag), travel: self.note.bike?.frontSetup?.travel ?? 0.0), specifier: "%.1f")").customNotesText()
-									Text("Tire PSI: \(self.note.fTirePressure, specifier: "%.1f")").customNotesText()
-								}
-							}
-							Spacer()
-							VStack{
-								if self.note.bike?.frontSetup?.dualCompression == true {
-									HStack {
-										Text("HSC: \(self.note.fHSC)").customNotesText()
-										Text("LSC: \(self.note.fLSC)").customNotesText()
-									}
-								} else {
-									Text("Compression: \(self.note.fCompression)").customNotesText()
-								}
-							}
-							Spacer()
-							
-							VStack {
-								if self.note.bike?.frontSetup?.dualCompression == true {
-									HStack{
-										Text("HSR: \(self.note.fHSR)").customNotesText()
-										Text("LSR \(self.note.fLSR)").customNotesText()
-									}
-								} else {
-									Text("Rebound: \(self.note.fRebound)").customNotesText()
-								}
-							}
-						}
-						.font(.subheadline)
-						
-					}
-					Divider().padding(.bottom, 5)
 					
-					// MARK: - REAR -
-					Group {
-						VStack {
-							VStack {
-								HStack {
-									Image("shock-absorber")
-										.resizable()
-										.frame(width: 50, height: 50)
-										.scaledToFit()
-									Text("\(self.note.bike?.rearSetup?.info ?? "Rear Shock Details")")
-										.font(.headline)
-										.fontWeight(.thin)
-										.fixedSize()
-								}
-							}
-							
-							Spacer()
-							
-							VStack {
-								if self.note.bike?.hasRearShock == false {
-									Text("Hardtail")
-										.font(.title)
-										.fontWeight(.thin)
-										.fixedSize()
-								} else {
-									VStack{
-										HStack{
-											Text("Spring: \(self.note.rAirSpring, specifier: "%.0f")").customNotesText()
-											
-											if self.note.bike?.rearSetup?.isCoil == false {
-												Text("Tokens: \(self.note.rTokens)").customNotesText()
-											}
-										}
-									}
-									Spacer()
-									
-									VStack{
-										HStack {
-											Text("Sag %: \(calcSag(sag: Double(self.note.rSag), travel: self.note.bike?.rearSetup?.strokeLength ?? 0.0), specifier: "%.1f")").customNotesText()
-											Text("Tire PSI: \(self.note.rTirePressure, specifier: "%.1f")").customNotesText()
-										}
-									}
-									Spacer()
-									
-									VStack{
-										if self.note.bike?.rearSetup?.dualCompression == true {
-											HStack {
-												Text("HSC: \(self.note.rHSC)").customNotesText()
-												Text("LSC: \(self.note.rLSC)").customNotesText()
-											}
-										} else {
-											Text("Compression: \(self.note.rCompression)").customNotesText()
-										}
-									}
-									Spacer()
-									
-									VStack {
-										if self.note.bike?.rearSetup?.dualRebound == true {
-											HStack{
-												Text("HSR: \(self.note.rHSR)").customNotesText()
-												Text("LSR: \(self.note.rLSR)").customNotesText()
-											}
-										} else {
-											Text("Rebound: \(self.note.rRebound)").customNotesText()
-										}
-									}
-								}
-							}
-						}
-						
-						.font(.subheadline)
+					if noteVM.isFrontEdit == true {
+						NoteFrontSetupView(front: front, noteVM: noteVM, isDetailEdit: $isDetailEdit, note: note)
+						.transition(.move(edge: .leading))
+						.animation(Animation.linear(duration: 0.3))
 					}
+					
+					if noteVM.isFrontEdit == false {
+						FrontNoteDetailsView(noteVM: noteVM, note: note)
+							.transition(.move(edge: .trailing))
+							.animation(Animation.linear(duration: 0.3))
+							.onLongPressGesture {
+								self.noteVM.isFrontEdit.toggle()
+							}
+					}
+					
+					Divider().padding(.bottom, 5)
+						
+					// MARK: - REAR -
+					
+					if noteVM.isRearEdit == true {
+						NoteRearSetupView(rear: rear, noteVM: noteVM, isDetailEdit: $isDetailEdit, note: note)
+							.transition(.move(edge: .leading))
+							.animation(Animation.linear(duration: 0.3))
+					}
+					
+					if noteVM.isRearEdit == false {
+						RearNoteDetailsView(noteModel: noteVM, note: note)
+							.transition(.move(edge: .trailing))
+							.animation(Animation.linear(duration: 0.3))
+							.onLongPressGesture {
+								self.noteVM.isRearEdit.toggle()
+							}
+					}
+					
+					Divider().padding(.bottom, 5)
 				}
 				
 				.padding()
-				Spacer()
-				Button(action: {
-					self.savePressed.toggle()
-					withAnimation(.linear(duration: 0.05), {
-						self.saveText = "     SAVED!!     "  // no idea why, but have to add spaces here other wise it builds the word slowly with SA...., annoying as all hell
-					})
-					self.updateNote(note: self.note)
-					try? self.moc.save()
-				}) {
-					SaveButtonView(buttonText: $saveText)
-				}.buttonStyle(OrangeButtonStyle())
-				.padding()
-			} // end form
-		}
+//				Spacer()
+				
+			} //: VSTACK
 			
-			// This keeps the keyboard from pushing the view up in iOS14
-			.ignoresSafeArea(.keyboard)
-			.onAppear(perform: {self.setup()})
-			.onChange(of: showingEditDetail, perform: {value in
-				self.setup()
-		})
-
+		} //: SCROLLVIEW
+		.onAppear(perform: {self.setup()})
 		
+		// Keeps the button in a fixed position at the bottom of the view
+		Button(action: {
+			self.savePressed.toggle()
+			withAnimation(.linear(duration: 0.05), {
+				self.saveText = "     SAVED!!     "  // no idea why, but have to add spaces here other wise it builds the word slowly with SA...., annoying as all hell
+			})
+			self.noteVM.updateNote(self.note)
+			
+			hapticSuccess()
+			// keep this as stops weird view transition to NotesF&R SetupViews
+			DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
+				self.presentationMode.wrappedValue.dismiss()
+			}
+		}) {
+			SaveButtonView(buttonText: $saveText)
+		}.buttonStyle(OrangeButtonStyle())
+		.padding()
+		
+			
+		// MARK: - MODIFIERS -
+			// This keeps the keyboard from pushing the view up in iOS14
+//			.ignoresSafeArea(.keyboard)
 
-			// Dismisses the keyboard
-			.onTapGesture { UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to:nil, from:nil, for:nil) }
 			.navigationBarTitle(Text(note.bike?.name ?? "Unknown Note"), displayMode: .inline)
+		// ALERT
 			.alert(isPresented: $showingDeleteAlert) {
 				Alert(title: Text("Delete Note"), message: Text("Are you sure?"), primaryButton: .destructive(Text("Delete")) {
-					self.deleteNote()
+					self.noteVM.deleteNote(note)
+					presentationMode.wrappedValue.dismiss()
 				}, secondaryButton: .cancel())
 			}
 			.navigationBarItems(trailing:
-				HStack {
-					Button(action: {
-						showingEditDetail.toggle()
-						
-					}) {
-						Image(systemName: "square.and.pencil")
-							.padding(.horizontal, 20)
-					}
-					Spacer(minLength: 5)
-					Button(action: {
-						self.showingDeleteAlert = true
-					}) {
-						Image(systemName: "trash")
-					}
-			})
-			.sheet(isPresented: $showingEditDetail)  {
-				EditNoteDetailView(note: note).environment(\.managedObjectContext, self.moc)
-			}
-    }
-	
-
-    // MARK: - FUNCTIONS -
-    func deleteNote() {
-        moc.delete(self.note)
-        try? self.moc.save()
-        presentationMode.wrappedValue.dismiss()
-    }
-	
-	func updateNote(note: Notes) {
-		let updatedNote = self.noteText
-		let updatedRating = self.rating
-		let updatedFavorite = self.isFavorite
-		moc.performAndWait {
-			note.note = updatedNote
-			note.rating = Int16(updatedRating)
-			note.isFavorite = updatedFavorite
-			if self.moc.hasChanges {
-				try? self.moc.save()
-			}
-		}
-		hapticSuccess()
-		// this pauses the view transition
-		DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
-			self.presentationMode.wrappedValue.dismiss()
-			
-		}
+				Button(action: {
+					self.showingDeleteAlert = true
+				}) {
+					Image(systemName: "trash")
+				}
+			)
 	}
-	
-	func setup() {
-		noteModel.getNoteModel(note: note)
-		rating = Int(noteModel.noteRating)
-		noteText = noteModel.noteText
-		isFavorite = noteModel.noteFavorite
+	func setup(){
+		front.getForkSettings(bikeName: note.bike?.name ?? "")
+		rear.getRearSetup(bikeName: note.bike?.name ?? "")
 	}
-	
-
 }
 
 

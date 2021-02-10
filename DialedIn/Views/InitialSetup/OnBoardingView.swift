@@ -128,10 +128,6 @@ struct OnBoardingView: View {
 				}
 				Spacer()
 				
-				
-				
-				
-				
 				HStack {
 					Button(action: {
 						// DISMISS ONBOARD VIEW

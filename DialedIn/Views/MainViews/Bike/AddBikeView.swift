@@ -191,7 +191,7 @@ struct AddBikeView: View {
 			.animation(.default)
         }
 			// Dismisses the keyboard
-			.gesture(tap, including: keyboard.keyBoardShown ? .all : .none)
+//			.gesture(tap, including: keyboard.keyBoardShown ? .all : .none)
     }
 	
 	func saveNewBike() {
@@ -213,6 +213,7 @@ struct AddBikeView: View {
 		newBike?.name = self.bikeName // function check here
 		newBike?.bikeNote = self.bikeNote
 		newBike?.isDefault = self.setDefault
+		newBike?.id = UUID()
 		
 		// - Front Creation
 		newFrontService.service?.bike = newBike
@@ -220,12 +221,16 @@ struct AddBikeView: View {
 		newFork?.dualCompression = self.forkDualCompToggle
 		newFork?.dualRebound = self.forkDualReboundToggle
 		newFork?.info = self.forkInfo
+		newFork?.id = UUID()
 		newFrontService.lowersService = self.lastLowerServiceDate
 		newFrontService.fullService = self.lastFullForkServiceDate
 		newFrontService.serviceNote = "Bike Created: \(dateString), no services found yet"
+		newFrontService.id = UUID()
 		
 
 		// - Rear Creation -
+		
+		
 		
 		if self.rearSetupIndex == 1 {
 			newBike?.hasRearShock = true
@@ -238,6 +243,8 @@ struct AddBikeView: View {
 			newRearService.fullService = self.lastRearFullServiceDate
 			
 			newRearService.serviceNote = "Bike Created: \(dateString), no services found yet"
+			newRearShock?.id = UUID()
+			newRearService.id = UUID()
 
 		} else if self.rearSetupIndex == 2 {
 			self.isCoilToggle.toggle()
@@ -251,10 +258,14 @@ struct AddBikeView: View {
 			newRearService.airCanService = self.lastAirCanServiceDate
 			newRearService.fullService = self.lastRearFullServiceDate
 			newRearService.serviceNote = "Bike Created: \(dateString), no services found yet"
+			newRearShock?.id = UUID()
+			newRearService.id = UUID()
 
 		} else if self.rearSetupIndex == 0 {
 			newBike?.hasRearShock = false
 			newRearShock?.isCoil = false
+			newRearShock?.id = UUID()
+			newRearService.id = UUID()
 		}
 		
 	}
