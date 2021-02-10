@@ -39,5 +39,6 @@ struct OrangeButtonStyle: ButtonStyle {
 			.cornerRadius(15)
 			.scaleEffect(configuration.isPressed ? 0.6 : 1.0)
 			.animation(.spring())
+			.customShadow()
 	}
 }

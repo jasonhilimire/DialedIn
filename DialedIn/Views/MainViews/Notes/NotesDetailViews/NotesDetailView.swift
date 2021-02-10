@@ -85,6 +85,7 @@ struct NotesDetailView: View {
 			} //: VSTACK
 			
 		} //: SCROLLVIEW
+		.onAppear(perform: {self.setup()})
 		
 		// Keeps the button in a fixed position at the bottom of the view
 		Button(action: {
@@ -124,7 +125,11 @@ struct NotesDetailView: View {
 					Image(systemName: "trash")
 				}
 			)
-    }
+	}
+	func setup(){
+		front.getForkSettings(bikeName: note.bike?.name ?? "")
+		rear.getRearSetup(bikeName: note.bike?.name ?? "")
+	}
 }
 
 

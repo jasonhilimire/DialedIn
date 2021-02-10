@@ -92,15 +92,10 @@ struct NoteRearSetupView: View {
 					}
 					
 				}
-			}.onAppear(perform: {self.setup(isEdit: (isDetailEdit != nil))})
+			}
 		}
     }
 	
-	func setup(isEdit: Bool) {
-		if isEdit == true {
-			rear.getNoteRearSettings(note: note!)
-		}
-	}
 }
 
 

@@ -224,10 +224,18 @@ class NoteFrontSetupModel: ObservableObject {
         lastFTokenSetting = getLastFTokens()
         lastFSagSetting = getLastFSag()
 		lastFTirePressure = getLastTirePSI()
-        fComp = getDualComp(bike: bikeName)
-        fReb = getDualReb(bike: bikeName)
-		fTravel = getTravel(bike: bikeName)
+		getForkSettings(bikeName: bikeName)
+       
     }
+	
+	func getForkSettings(bikeName: String){
+//TODO: refactor this out to the FORK VIEW MODEL
+		fComp = getDualComp(bike: bikeName)
+		fReb = getDualReb(bike: bikeName)
+		fTravel = getTravel(bike: bikeName)
+	}
+	
+	
 	
     
  // THIS WORKS Now need to figure out how to pass the selected bike into the Model from the pickerview
