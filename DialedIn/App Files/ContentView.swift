@@ -12,6 +12,10 @@ struct ContentView: View {
 	// OnBoarding App Storage
 	@AppStorage("needsAppOnboarding") private var needsAppOnboarding: Bool = true
 	
+	// Setup UUID for Models that were created without prior to transition /// remove before go live
+	@AppStorage("addUUIDS") private var addUUID: Bool = true
+	
+	
 	// Default settings for user configured Service Warning
 	@AppStorage("frontLowersServiceSetting") private var frontLowersServiceSetting: Int = 90
 	@AppStorage("frontFullServiceSetting") private var frontFullServiceSetting: Int = 180

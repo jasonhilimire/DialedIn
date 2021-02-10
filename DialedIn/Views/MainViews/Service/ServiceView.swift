@@ -249,11 +249,14 @@ struct ServiceView: View {
 
 		let fork = bike.frontSetup
 		let newFrontService = FrontService(context: self.moc)
+		
+		
+		
 		if frontServicedIndex == 1 {
 			newFrontService.fullService = self.fFullServicedDate
 			newFrontService.lowersService = self.fFullServicedDate
 			newFrontService.serviceNote = self.frontServicedNote
-			print("full service: \(self.fFullServicedDate)")
+			newFrontService.id = UUID()
 			fork?.addToFrontService(newFrontService)
 			
 		} else if frontServicedIndex == 2 {
@@ -261,15 +264,19 @@ struct ServiceView: View {
 			newFrontService.fullService = frontService.getFullDate(bike: bikeName)
 			newFrontService.lowersService = self.fLowersServicedDate
 			newFrontService.serviceNote = self.frontServicedNote
+			newFrontService.id = UUID()
 			fork?.addToFrontService(newFrontService)
 		}
 		
 		let rear = bike.rearSetup
 		let newRearService = RearService(context: self.moc)
+		
+		
 		if rearServicedIndex == 1 {
 			newRearService.fullService = self.rFullServicedDate
 			newRearService.airCanService = self.rFullServicedDate
 			newRearService.serviceNote = self.rearServicedNote
+			newRearService.id = UUID()
 			rear?.addToRearService(newRearService)
 			
 		} else if rearServicedIndex == 2 {
@@ -277,6 +284,7 @@ struct ServiceView: View {
 			newRearService.fullService = rearService.getFullDate(bike: bikeName)
 			newRearService.airCanService = self.rAirCanServicedDate
 			newRearService.serviceNote = self.rearServicedNote
+			newRearService.id = UUID()
 			rear?.addToRearService(newRearService)
 		}
 	}

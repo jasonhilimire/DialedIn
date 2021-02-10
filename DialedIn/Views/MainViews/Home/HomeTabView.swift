@@ -10,6 +10,8 @@ import SwiftUI
 
 struct HomeTabView: View {
 	// MARK: - PROPERTIES -
+	@AppStorage("addUUIDS") private var addUUID: Bool = true
+	
 	// Create the MOC
 	@Environment(\.managedObjectContext) var moc
 	
@@ -97,9 +99,11 @@ struct HomeTabView: View {
 	}
 	
 	func setup(){
-// TODO: this needs to be based on a flag and only run 1x in the app though its ok for this value to change
+		// remove before GoLive /
+		// add for Services???
 		updateNotes()
 		updateBikes()
+		addUUID = false
 	}
 	
 	func updateNotes() {
@@ -112,8 +116,12 @@ struct HomeTabView: View {
 	func updateBikes() {
 		for bike in bikes {
 			bike.id = UUID()
+			bike.frontSetup?.id = UUID()
+			bike.rearSetup?.id = UUID()
+			
 			try? self.moc.save()
 		}
 	}
+	
 	
 }
