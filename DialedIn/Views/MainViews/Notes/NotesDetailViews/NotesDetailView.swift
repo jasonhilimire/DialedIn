@@ -75,28 +75,35 @@ struct NotesDetailView: View {
 								self.noteVM.isRearEdit.toggle()
 							}
 					}
+					
+					Divider().padding(.bottom, 5)
 				}
 				
 				.padding()
-				Spacer()
-				Button(action: {
-					self.savePressed.toggle()
-					withAnimation(.linear(duration: 0.05), {
-						self.saveText = "     SAVED!!     "  // no idea why, but have to add spaces here other wise it builds the word slowly with SA...., annoying as all hell
-					})
-					self.noteVM.updateNote(self.note)
-					
-					hapticSuccess()
-					// keep this as stops weird view transition to NotesF&R SetupViews
-					DispatchQueue.main.asyncAfter(deadline: .now()) {
-						self.presentationMode.wrappedValue.dismiss()
-					}
-				}) {
-					SaveButtonView(buttonText: $saveText)
-				}.buttonStyle(OrangeButtonStyle())
-				.padding()
+//				Spacer()
+				
 			} //: VSTACK
+			
 		} //: SCROLLVIEW
+		
+		// Keeps the button in a fixed position at the bottom of the view
+		Button(action: {
+			self.savePressed.toggle()
+			withAnimation(.linear(duration: 0.05), {
+				self.saveText = "     SAVED!!     "  // no idea why, but have to add spaces here other wise it builds the word slowly with SA...., annoying as all hell
+			})
+			self.noteVM.updateNote(self.note)
+			
+			hapticSuccess()
+			// keep this as stops weird view transition to NotesF&R SetupViews
+			DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
+				self.presentationMode.wrappedValue.dismiss()
+			}
+		}) {
+			SaveButtonView(buttonText: $saveText)
+		}.buttonStyle(OrangeButtonStyle())
+		.padding()
+		
 			
 		// MARK: - MODIFIERS -
 			// This keeps the keyboard from pushing the view up in iOS14
