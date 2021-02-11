@@ -20,7 +20,8 @@ struct BikeCardView: View {
 	Are you sure?
 	- this will delete all related notes -
 	"""
-	@State var travel = 0.0
+	@State var frontTravel = 0.0
+	@State var rearTravel = 0.0
 	@State var strokeLength = 0.0
 
 	@ObservedObject var bike: Bike
@@ -69,14 +70,15 @@ struct BikeCardView: View {
 					VStack {
 						HStack{
 							Text(self.bike.frontSetup?.info ?? "")
-							Text("\(travel, specifier: "%.0f")mm")
+							Text("\(frontTravel, specifier: "%.0f")mm")
 						}
 						
 						if self.bike.hasRearShock == true {
 							HStack {
 								Text(self.bike.rearSetup?.info ?? "")
-								Text("Stroke Length : \(strokeLength, specifier: "%.2f")mm")
+								Text("\(rearTravel, specifier: "%.2f")mm")
 							}
+							Text("Stroke Length : \(strokeLength, specifier: "%.2f")mm")
 						}
 					}
 					.foregroundColor(Color.white)
@@ -88,7 +90,7 @@ struct BikeCardView: View {
 					
 				} //: VSTACK
 				.padding(.bottom, 16)
-//				.padding(.horizontal, 10)
+
 			} //: ZSTACK
 			.onAppear{
 				withAnimation(.easeOut(duration: 0.5)) {
@@ -96,8 +98,6 @@ struct BikeCardView: View {
 				}
 			}
 			.onAppear(perform: {self.setup()})
-			
-//			.frame(minWidth: 0, idealWidth: 100, maxWidth: .infinity, minHeight: 0, idealHeight: 150, maxHeight: .infinity, alignment: .center)
 			.background((LinearGradient(gradient: Gradient(colors: [Color.orange, Color.red
 			]) , startPoint: .top, endPoint: .bottom)))
 			.cornerRadius(20)
@@ -120,20 +120,14 @@ struct BikeCardView: View {
 	
 	func setup() {
 		if (self.bike.frontSetup?.travel) != nil {
-			travel = self.bike.frontSetup!.travel
+			frontTravel = self.bike.frontSetup!.travel
 		}
 		if (self.bike.rearSetup?.strokeLength) != nil {
 			strokeLength = self.bike.rearSetup!.strokeLength
 		}
+		
+		if (self.bike.rearSetup?.rearTravel) != nil {
+			rearTravel = self.bike.rearSetup!.rearTravel
+		}
 	}
 }
-
-
-
-// MARK: - PREVIEW -
-//struct BikeCardView_Previews: PreviewProvider {
-//    static var previews: some View {
-//		BikeCardView(bike: )
-//			.previewLayout(.fixed(width: 320, height: 640))
-//    }
-//}

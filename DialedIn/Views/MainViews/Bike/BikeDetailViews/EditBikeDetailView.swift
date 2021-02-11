@@ -37,6 +37,7 @@ struct EditBikeDetailView: View {
 	@State private var rearDualReboundToggle = false
 	@State private var rearDualCompToggle = false
 	@State private var strokeLength = ""
+	@State private var rearTravel = ""
 	
 	@State private var saveText = "Save"
 	
@@ -96,7 +97,12 @@ struct EditBikeDetailView: View {
 							
 							HStack {
 								Text("Stroke Travel (mm):").fontWeight(.thin)
-								CustomNumberField(text: $strokeLength, placeholder: "Enter Shock Stroke in mm")
+								CustomNumberField(text: $strokeLength, placeholder: "Used for Sag Calculation")
+							}
+							
+							HStack {
+								Text("Rear Travel (mm):").fontWeight(.thin)
+								CustomNumberField(text: $rearTravel, placeholder: "Enter Rear Travel in mm")
 							}
 							
 							Toggle(isOn: $rearDualReboundToggle.animation(), label: {Text("Dual Rebound?").fontWeight(.thin)})
@@ -165,6 +171,7 @@ struct EditBikeDetailView: View {
 			bike.hasRearShock = true
 			bike.rearSetup?.info = self.rearInfo
 			bike.rearSetup?.strokeLength = Double(self.strokeLength) ?? 0.0
+			bike.rearSetup?.rearTravel = Double(self.rearTravel) ?? 0.0
 			bike.rearSetup?.dualCompression = self.rearDualCompToggle
 			bike.rearSetup?.dualRebound = self.rearDualCompToggle
 			bike.rearSetup?.isCoil = self.isCoilToggle
@@ -175,6 +182,7 @@ struct EditBikeDetailView: View {
 			bike.hasRearShock = true
 			bike.rearSetup?.info = self.rearInfo
 			bike.rearSetup?.strokeLength = Double(self.strokeLength) ?? 0.0
+			bike.rearSetup?.rearTravel = Double(self.rearTravel) ?? 0.0
 			bike.rearSetup?.dualCompression = self.rearDualCompToggle
 			bike.rearSetup?.dualRebound = self.rearDualCompToggle
 			bike.rearSetup?.isCoil = self.isCoilToggle
@@ -195,7 +203,8 @@ struct EditBikeDetailView: View {
 		forkTravel = "\(bike.frontSetup?.travel ?? 0)"
 		
 		rearInfo = bike.rearSetup?.wrappedRearInfo ?? ""
-		strokeLength = "\(bike.rearSetup?.strokeLength ?? 0)" 
+		strokeLength = "\(bike.rearSetup?.strokeLength ?? 0)"
+		rearTravel = "\(bike.rearSetup?.rearTravel ?? 0)" 
 	
 		setToggles()
 		setIndex()
