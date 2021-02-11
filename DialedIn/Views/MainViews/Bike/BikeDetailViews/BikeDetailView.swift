@@ -38,6 +38,7 @@ struct BikeDetailView: View {
 							RearShockLastServicedView(bikeName: $bikeName, bike: self.bike)
 						}
 					}
+					Divider()
 				}
 			}
 			Spacer(minLength:5)

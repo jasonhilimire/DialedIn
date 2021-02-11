@@ -36,9 +36,14 @@ struct RearShockLastServicedView: View {
 						.resizable()
 						.frame(width: 25, height: 25)
 						.scaledToFit()
-					Text("\(self.bike.rearSetup?.info ?? "") - \(self.bike.rearSetup?.strokeLength ?? 0.0 , specifier: "%.2f")mm")
-						.font(.headline)
-						.fontWeight(.semibold)
+					VStack {
+						Text("\(self.bike.rearSetup?.info ?? "") - \(self.bike.rearSetup?.rearTravel ?? 0.0 , specifier: "%.2f")mm")
+							.font(.headline)
+							.fontWeight(.semibold)
+						Text("Stroke: \(self.bike.rearSetup?.strokeLength ?? 0.0 , specifier: "%.2f")mm")
+							.font(.headline)
+							.fontWeight(.semibold)
+					}
 				}
 				.padding(.horizontal)
 				.customTextShadow()
