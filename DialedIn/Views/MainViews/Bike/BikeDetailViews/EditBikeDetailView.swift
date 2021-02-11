@@ -119,11 +119,11 @@ struct EditBikeDetailView: View {
 							Toggle(isOn: $rearDualCompToggle.animation(), label: {Text("Dual Compression?").fontWeight(.thin)})
 						}
 					}
-					
+				} //: FORM
 				Button(action: {
 					//dismisses the sheet
 					self.updateBike()
-
+					
 					withAnimation(.linear(duration: 0.05), {
 						self.saveText = "     SAVED!!     "  // no idea why, but have to add spaces here other wise it builds the word slowly with SA...., annoying as all hell
 					})
@@ -136,8 +136,6 @@ struct EditBikeDetailView: View {
 				}) {
 					SaveButtonView(buttonText: $saveText)
 				}.buttonStyle(OrangeButtonStyle())
-				Spacer()
-			}
 			.animation(.default)
 		}
 			// Dismisses the keyboard
