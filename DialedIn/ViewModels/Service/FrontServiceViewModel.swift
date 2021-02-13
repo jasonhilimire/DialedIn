@@ -11,27 +11,48 @@ import SwiftUI
 import Combine
 import CoreData
 
-class FrontServiceModel: ObservableObject {
+class FrontServiceViewModel: ObservableObject {
 	
 	let managedObjectContext = PersistentCloudKitContainer.persistentContainer.viewContext
 	@AppStorage("frontLowersServiceSetting") private var frontLowersServiceSetting: Int = 90
 	@AppStorage("frontFullServiceSetting") private var frontFullServiceSetting: Int = 180
 	
+	/*
+	@NSManaged public var id: UUID
+	@NSManaged public var fullService: Date?
+	@NSManaged public var lowersService: Date?
+	@NSManaged public var serviceNote: String?
+	@NSManaged public var service: Fork?
+	
+	public var wrapped_forkServiceNote: String {
+	serviceNote ?? ""
+	}
+	*/
+
 	// MARK: - PUBLISHED VARIABLES -
 	
-	@Published var bikeName: String = "" {
+	var bikeName: String = ""
+	var frontServiced = ["None", "Full", "Lower"]
+	
+	@Published var frontServicedIndex = 0 {
 		didSet {
 			didChange.send(self)
 		}
 	}
 	
-	@Published var lastLowerService: Date = Date() {
+	@Published var lowersServiceDate: Date = Date() {
 		didSet {
 			didChange.send(self)
 		}
 	}
 	
-	@Published var lastFullService: Date = Date() {
+	@Published var fullServiceDate: Date = Date() {
+		didSet {
+			didChange.send(self)
+		}
+	}
+	
+	@Published var serviceNote: String = "" {
 		didSet {
 			didChange.send(self)
 		}
@@ -61,19 +82,19 @@ class FrontServiceModel: ObservableObject {
 		}
 	}
 	
-	let didChange = PassthroughSubject<FrontServiceModel, Never>()
+	let didChange = PassthroughSubject<FrontServiceViewModel, Never>()
 	
 	init() {
-		getLastServicedDates()
+//		getLastServicedDates()
 	}
 	
 	// MARK: - FUNCTIONS -
 	
 	func getLastServicedDates() {
-		lastLowerService = getlowersDate(bike: bikeName)
-		lastFullService = getFullDate(bike: bikeName)
-		elapsedLowerServiceDate = daysBetween(start: lastLowerService, end: Date())
-		elapsedFullServiceDate = daysBetween(start: lastFullService, end: Date())
+		lowersServiceDate = getlowersDate(bike: bikeName)
+		fullServiceDate = getFullDate(bike: bikeName)
+		elapsedLowerServiceDate = daysBetween(start: lowersServiceDate, end: Date())
+		elapsedFullServiceDate = daysBetween(start: fullServiceDate, end: Date())
 		elapsedLowersServiceWarning = lowersServiceWarning()
 		elapsedFullServiceWarning = fullServiceWarning()
 	}
@@ -120,5 +141,25 @@ class FrontServiceModel: ObservableObject {
 	
 	func fullServiceWarning() -> Bool {
 		elapsedFullServiceDate >= frontFullServiceSetting ? true : false
+	}
+	
+	
+	func addFrontService(bikeName: String) {
+		let bike = fetchBike(for: bikeName)
+		let fork = bike.frontSetup
+		let newFrontService = FrontService(context: self.managedObjectContext)
+		
+		if frontServicedIndex == 1 {
+			newFrontService.fullService = fullServiceDate
+			newFrontService.lowersService = fullServiceDate
+		} else if frontServicedIndex == 2 {
+			// -- lowers only sets full service back to last full service --
+			newFrontService.fullService = getFullDate(bike: bikeName)
+			newFrontService.lowersService = lowersServiceDate
+		}
+		
+		newFrontService.id = UUID()
+		newFrontService.serviceNote = serviceNote
+		fork?.addToFrontService(newFrontService)
 	}
 }

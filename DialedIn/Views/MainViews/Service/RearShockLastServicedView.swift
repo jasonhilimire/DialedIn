@@ -12,7 +12,7 @@ struct RearShockLastServicedView: View {
 	
     @Environment(\.managedObjectContext) var moc
     
-	@ObservedObject var rearService = RearServiceModel()
+	@ObservedObject var rearService = RearServiceViewModel()
 	@Binding var bikeName: String
 	
 	@State var elapsedAirService = 0

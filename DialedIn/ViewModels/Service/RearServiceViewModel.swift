@@ -10,7 +10,7 @@ import Foundation
 import SwiftUI
 import Combine
 
-class RearServiceModel: ObservableObject {
+class RearServiceViewModel: ObservableObject {
 	
 	let managedObjectContext = PersistentCloudKitContainer.persistentContainer.viewContext
 	@AppStorage("rearAirCanServiceSetting") private var rearAirCanServiceSetting: Int = 90
@@ -18,19 +18,28 @@ class RearServiceModel: ObservableObject {
 	
 	// MARK: - PUBLISHED VARIABLES -
 	
-	@Published var bikeName: String = "" {
+	var bikeName: String = ""
+	var rearServiced = ["None", "Full", "AirCan"]
+	
+	@Published var rearServicedIndex = 0 {
 		didSet {
 			didChange.send(self)
 		}
 	}
 	
-	@Published var lastAirService: Date = Date() {
+	@Published var airCanServicedDate: Date = Date() {
 		didSet {
 			didChange.send(self)
 		}
 	}
 	
-	@Published var lastFullService: Date = Date() {
+	@Published var fullServiceDate: Date = Date() {
+		didSet {
+			didChange.send(self)
+		}
+	}
+	
+	@Published var serviceNote: String = "" {
 		didSet {
 			didChange.send(self)
 		}
@@ -60,20 +69,20 @@ class RearServiceModel: ObservableObject {
 		}
 	}
 	
-	let didChange = PassthroughSubject<RearServiceModel, Never>()
+	let didChange = PassthroughSubject<RearServiceViewModel, Never>()
 
 	
 	init() {
-		getLastServicedDates()
+//		getLastServicedDates()
 	}
 	
 	// MARK: - FUNCTIONS -
 	
 	func getLastServicedDates() {
-		lastAirService = getAirCanDate(bike: bikeName)
-		lastFullService = getFullDate(bike: bikeName)
-		elapsedAirCanServiceDate = daysBetween(start: lastAirService, end: Date())
-		elapsedFullServiceDate = daysBetween(start: lastFullService, end: Date())
+		airCanServicedDate = getAirCanDate(bike: bikeName)
+		fullServiceDate = getFullDate(bike: bikeName)
+		elapsedAirCanServiceDate = daysBetween(start: airCanServicedDate, end: Date())
+		elapsedFullServiceDate = daysBetween(start: fullServiceDate, end: Date())
 		elapsedAirCanServiceWarning = airCanServiceWarning()
 		elapsedFullServiceWarning = fullServiceWarning()
 	}
@@ -119,5 +128,24 @@ class RearServiceModel: ObservableObject {
 	
 	func fullServiceWarning() -> Bool {
 		elapsedFullServiceDate >= rearFullServiceSetting ? true : false
+	}
+	
+	func addRearService(bikeName: String) {
+		 let bike = fetchBike(for: bikeName)
+		 let rear = bike.rearSetup
+		 let newRearService = RearService(context: self.managedObjectContext)
+		
+		 if rearServicedIndex == 1 {
+			newRearService.fullService = fullServiceDate
+			newRearService.airCanService = fullServiceDate
+		 } else if rearServicedIndex == 2 {
+		 	// -- lowers only sets full service back to last full service --
+		 	newRearService.fullService = getFullDate(bike: bikeName)
+			newRearService.airCanService = airCanServicedDate
+		 }
+		
+		 newRearService.id = UUID()
+		 newRearService.serviceNote = serviceNote
+		 rear?.addToRearService(newRearService)
 	}
 }

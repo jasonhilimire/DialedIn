@@ -12,7 +12,7 @@ struct ForkLastServicedView: View {
     
     @Environment(\.managedObjectContext) var moc
     
-    @ObservedObject var frontService = FrontServiceModel()
+    @ObservedObject var frontService = FrontServiceViewModel()
 	@Binding var bikeName: String
 	
 	@State var elapsedLowersService = 0
