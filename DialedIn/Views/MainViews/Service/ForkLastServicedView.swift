@@ -64,8 +64,6 @@ struct ForkLastServicedView: View {
 				.background(elapsedFullServiceColor ? Color(.red): nil)
 				
 
-				
-			
 				HStack {
 					Text("\(self.frontService.getFrontServiceNote(bike: self.bikeName))").fontWeight(.light)
 				}

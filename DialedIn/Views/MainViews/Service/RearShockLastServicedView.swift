@@ -84,14 +84,13 @@ struct RearShockLastServicedView: View {
 					.padding(.horizontal)
 					.if(elapsedAirServiceColor) { $0.customFootnoteBold() } else: { $0.font(.footnote) }
 						.background(elapsedAirServiceColor ? Color(.red): nil)
-					
-					HStack {
-						Text("\(self.rearService.getRearServiceNote(bike: self.bikeName))")
-							.fontWeight(.light)
-					}
-					.padding(.horizontal)
-					.font(.footnote)
 				}
+				HStack {
+					Text("\(self.rearService.getRearServiceNote(bike: self.bikeName))")
+						.fontWeight(.light)
+				}
+				.padding(.horizontal)
+				.font(.footnote)
 			}
 		} .onAppear(perform: {self.setup()})
     }
