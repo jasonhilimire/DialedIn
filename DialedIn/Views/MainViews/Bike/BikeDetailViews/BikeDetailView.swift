@@ -35,7 +35,7 @@ struct BikeDetailView: View {
 						if self.bike.hasRearShock == false {
 							Text("HardTail")
 						} else {
-							RearShockLastServicedView(bikeName: $bikeName, bike: self.bike)
+							RearShockLastServicedView(bike: self.bike)
 						}
 					}
 					Divider()

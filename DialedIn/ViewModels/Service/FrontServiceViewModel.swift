@@ -93,8 +93,8 @@ class FrontServiceViewModel: ObservableObject {
 	func getLastServicedDates(bike: String) {
 		lowersServiceDate = getlowersDate(bike: bike)
 		fullServiceDate = getFullDate(bike: bike)
-		elapsedLowersServiceDate = daysBetween(start: lowersServiceDate, end: Date())
-		elapsedFullServiceDate = daysBetween(start: fullServiceDate, end: Date())
+		elapsedLowersServiceDate = getElapsedLowersServiceDate(lowersServiceDate)
+		elapsedFullServiceDate = getElapsedFullServiceDate(fullServiceDate)
 		elapsedLowersServiceWarning = lowersServiceWarning()
 		elapsedFullServiceWarning = fullServiceWarning()
 		serviceNote = getFrontServiceNote(bike: bike)
@@ -137,6 +137,11 @@ class FrontServiceViewModel: ObservableObject {
 	
 	func getElapsedLowersServiceDate(_ lastlowersDate: Date) -> Int {
 		let elapsed = daysBetween(start: lastlowersDate, end: Date())
+		return elapsed
+	}
+	
+	func getElapsedFullServiceDate(_ lastFullDate: Date) -> Int {
+		let elapsed = daysBetween(start: lastFullDate, end: Date())
 		return elapsed
 	}
 	

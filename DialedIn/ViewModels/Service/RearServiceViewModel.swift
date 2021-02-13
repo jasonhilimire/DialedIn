@@ -78,13 +78,14 @@ class RearServiceViewModel: ObservableObject {
 	
 	// MARK: - FUNCTIONS -
 	
-	func getLastServicedDates() {
-		airCanServicedDate = getAirCanDate(bike: bikeName)
-		fullServiceDate = getFullDate(bike: bikeName)
-		elapsedAirCanServiceDate = daysBetween(start: airCanServicedDate, end: Date())
-		elapsedFullServiceDate = daysBetween(start: fullServiceDate, end: Date())
+	func getLastServicedDates(bike: String) {
+		airCanServicedDate = getAirCanDate(bike: bike)
+		fullServiceDate = getFullDate(bike: bike)
+		elapsedAirCanServiceDate = getElapsedAirCanServiceDate(airCanServicedDate)
+		elapsedFullServiceDate = getElapsedFullServiceDate(fullServiceDate)
 		elapsedAirCanServiceWarning = airCanServiceWarning()
 		elapsedFullServiceWarning = fullServiceWarning()
+		serviceNote = getRearServiceNote(bike: bike)
 	}
 	
 	//// now working!! might only need this and delete rest?
@@ -120,6 +121,16 @@ class RearServiceViewModel: ObservableObject {
 			bikes.service?.bike?.name == bike
 		}
 		return filteredService.last?.serviceNote ?? ""
+	}
+	
+	func getElapsedAirCanServiceDate(_ lastAirCanDate: Date) -> Int {
+		let elapsed = daysBetween(start: lastAirCanDate, end: Date())
+		return elapsed
+	}
+	
+	func getElapsedFullServiceDate(_ lastFullDate: Date) -> Int {
+		let elapsed = daysBetween(start: lastFullDate, end: Date())
+		return elapsed
 	}
 		
 	func airCanServiceWarning() -> Bool {
