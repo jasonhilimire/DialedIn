@@ -45,13 +45,13 @@ class RearServiceViewModel: ObservableObject {
 		}
 	}
 	
-	@Published var elapsedAirCanServiceDate: Int = 90 {
+	@Published var elapsedAirCanServiceDays: Int = 90 {
 		didSet {
 			didChange.send(self)
 		}
 	}
 	
-	@Published var elapsedFullServiceDate: Int = 90 {
+	@Published var elapsedFullServiceDays: Int = 90 {
 		didSet {
 			didChange.send(self)
 		}
@@ -81,8 +81,8 @@ class RearServiceViewModel: ObservableObject {
 	func getLastServicedDates(bike: String) {
 		airCanServicedDate = getAirCanDate(bike: bike)
 		fullServiceDate = getFullDate(bike: bike)
-		elapsedAirCanServiceDate = getElapsedAirCanServiceDate(airCanServicedDate)
-		elapsedFullServiceDate = getElapsedFullServiceDate(fullServiceDate)
+		elapsedAirCanServiceDays = getElapsedAirCanServiceDays(airCanServicedDate)
+		elapsedFullServiceDays = getElapsedFullServiceDays(fullServiceDate)
 		elapsedAirCanServiceWarning = airCanServiceWarning()
 		elapsedFullServiceWarning = fullServiceWarning()
 		serviceNote = getRearServiceNote(bike: bike)
@@ -123,22 +123,22 @@ class RearServiceViewModel: ObservableObject {
 		return filteredService.last?.serviceNote ?? ""
 	}
 	
-	func getElapsedAirCanServiceDate(_ lastAirCanDate: Date) -> Int {
+	func getElapsedAirCanServiceDays(_ lastAirCanDate: Date) -> Int {
 		let elapsed = daysBetween(start: lastAirCanDate, end: Date())
 		return elapsed
 	}
 	
-	func getElapsedFullServiceDate(_ lastFullDate: Date) -> Int {
+	func getElapsedFullServiceDays(_ lastFullDate: Date) -> Int {
 		let elapsed = daysBetween(start: lastFullDate, end: Date())
 		return elapsed
 	}
 		
 	func airCanServiceWarning() -> Bool {
-		elapsedAirCanServiceDate >= rearAirCanServiceSetting ?  true : false
+		elapsedAirCanServiceDays >= rearAirCanServiceSetting ?  true : false
 	}
 	
 	func fullServiceWarning() -> Bool {
-		elapsedFullServiceDate >= rearFullServiceSetting ? true : false
+		elapsedFullServiceDays >= rearFullServiceSetting ? true : false
 	}
 	
 	func addRearService(bikeName: String) {

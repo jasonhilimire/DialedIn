@@ -41,7 +41,7 @@ struct ForkLastServicedView: View {
 					Text("Lowers Last Serviced:")
 					Spacer()
 					Text( "\(self.frontService.lowersServiceDate, formatter: dateFormatter)")
-					Text("(\(frontService.elapsedLowersServiceDate))")
+					Text("(\(frontService.elapsedLowersServiceDays))")
 						.foregroundColor(frontService.elapsedLowersServiceWarning ? nil : Color.red)
 				}
 				.padding(.horizontal)
@@ -53,7 +53,7 @@ struct ForkLastServicedView: View {
 					Text("Last Full Service:")
 					Spacer()
 					Text("\(self.frontService.fullServiceDate, formatter: dateFormatter)")
-					Text("(\(frontService.elapsedFullServiceDate))")
+					Text("(\(frontService.elapsedFullServiceDays))")
 						.foregroundColor(frontService.elapsedFullServiceWarning ? nil: Color.red)
 				}
 				.padding(.horizontal)

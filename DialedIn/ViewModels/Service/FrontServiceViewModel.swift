@@ -58,13 +58,13 @@ class FrontServiceViewModel: ObservableObject {
 		}
 	}
 	
-	@Published var elapsedLowersServiceDate: Int = 90 {
+	@Published var elapsedLowersServiceDays: Int = 90 {
 		didSet {
 			didChange.send(self)
 		}
 	}
 	
-	@Published var elapsedFullServiceDate: Int = 90 {
+	@Published var elapsedFullServiceDays: Int = 90 {
 		didSet {
 			didChange.send(self)
 		}
@@ -93,8 +93,8 @@ class FrontServiceViewModel: ObservableObject {
 	func getLastServicedDates(bike: String) {
 		lowersServiceDate = getlowersDate(bike: bike)
 		fullServiceDate = getFullDate(bike: bike)
-		elapsedLowersServiceDate = getElapsedLowersServiceDate(lowersServiceDate)
-		elapsedFullServiceDate = getElapsedFullServiceDate(fullServiceDate)
+		elapsedLowersServiceDays = getElapsedLowersServiceDays(lowersServiceDate)
+		elapsedFullServiceDays = getElapsedFullServiceDays(fullServiceDate)
 		elapsedLowersServiceWarning = lowersServiceWarning()
 		elapsedFullServiceWarning = fullServiceWarning()
 		serviceNote = getFrontServiceNote(bike: bike)
@@ -135,22 +135,22 @@ class FrontServiceViewModel: ObservableObject {
 		return filteredService.last?.serviceNote ?? ""
 	}
 	
-	func getElapsedLowersServiceDate(_ lastlowersDate: Date) -> Int {
+	func getElapsedLowersServiceDays(_ lastlowersDate: Date) -> Int {
 		let elapsed = daysBetween(start: lastlowersDate, end: Date())
 		return elapsed
 	}
 	
-	func getElapsedFullServiceDate(_ lastFullDate: Date) -> Int {
+	func getElapsedFullServiceDays(_ lastFullDate: Date) -> Int {
 		let elapsed = daysBetween(start: lastFullDate, end: Date())
 		return elapsed
 	}
 	
 	func lowersServiceWarning() -> Bool {
-		elapsedLowersServiceDate >= frontLowersServiceSetting ?  true : false
+		elapsedLowersServiceDays >= frontLowersServiceSetting ?  true : false
 	}
 	
 	func fullServiceWarning() -> Bool {
-		elapsedFullServiceDate >= frontFullServiceSetting ? true : false
+		elapsedFullServiceDays >= frontFullServiceSetting ? true : false
 	}
 	
 	

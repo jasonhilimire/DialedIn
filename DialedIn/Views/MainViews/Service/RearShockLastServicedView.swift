@@ -51,7 +51,7 @@ struct RearShockLastServicedView: View {
 						Text("Last Air Can Service:")
 						Spacer()
 						Text("\(self.rearService.airCanServicedDate, formatter: dateFormatter)")
-						Text("(\(rearService.elapsedAirCanServiceDate))")
+						Text("(\(rearService.elapsedAirCanServiceDays))")
 							.foregroundColor(rearService.elapsedAirCanServiceWarning ? nil: Color.red)
 					}
 					.padding(.horizontal)
@@ -62,7 +62,7 @@ struct RearShockLastServicedView: View {
 						Text("Last Full Service:")
 						Spacer()
 						Text("\(self.rearService.fullServiceDate, formatter: dateFormatter)")
-						Text("(\(rearService.elapsedFullServiceDate))")
+						Text("(\(rearService.elapsedFullServiceDays))")
 							.foregroundColor(rearService.elapsedFullServiceWarning ? nil: Color.red)
 					}
 					.padding(.horizontal)
@@ -75,7 +75,7 @@ struct RearShockLastServicedView: View {
 							
 						Spacer()
 						Text("\(self.rearService.fullServiceDate, formatter: dateFormatter)")
-						Text("(\(rearService.elapsedFullServiceDate))")
+						Text("(\(rearService.elapsedFullServiceDays))")
 							.foregroundColor(rearService.elapsedFullServiceWarning ? nil: Color.red)
 					}
 					.padding(.horizontal)
