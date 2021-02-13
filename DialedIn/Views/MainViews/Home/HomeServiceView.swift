@@ -73,7 +73,7 @@ struct HomeStyledCardView: View {
 				.fontWeight(.thin)
 			VStack {
 				Section {
-					ForkLastServicedView(bikeName: $bikeName, bike: self.bike)
+					ForkLastServicedView(bike: self.bike)
 				}
 				Divider()
 				Section{

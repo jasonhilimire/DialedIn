@@ -58,7 +58,7 @@ class FrontServiceViewModel: ObservableObject {
 		}
 	}
 	
-	@Published var elapsedLowerServiceDate: Int = 90 {
+	@Published var elapsedLowersServiceDate: Int = 90 {
 		didSet {
 			didChange.send(self)
 		}
@@ -90,13 +90,14 @@ class FrontServiceViewModel: ObservableObject {
 	
 	// MARK: - FUNCTIONS -
 	
-	func getLastServicedDates() {
-		lowersServiceDate = getlowersDate(bike: bikeName)
-		fullServiceDate = getFullDate(bike: bikeName)
-		elapsedLowerServiceDate = daysBetween(start: lowersServiceDate, end: Date())
+	func getLastServicedDates(bike: String) {
+		lowersServiceDate = getlowersDate(bike: bike)
+		fullServiceDate = getFullDate(bike: bike)
+		elapsedLowersServiceDate = daysBetween(start: lowersServiceDate, end: Date())
 		elapsedFullServiceDate = daysBetween(start: fullServiceDate, end: Date())
 		elapsedLowersServiceWarning = lowersServiceWarning()
 		elapsedFullServiceWarning = fullServiceWarning()
+		serviceNote = getFrontServiceNote(bike: bike)
 	}
 	
 	//// now working!! might only need this and delete rest?
@@ -134,9 +135,13 @@ class FrontServiceViewModel: ObservableObject {
 		return filteredService.last?.serviceNote ?? ""
 	}
 	
+	func getElapsedLowersServiceDate(_ lastlowersDate: Date) -> Int {
+		let elapsed = daysBetween(start: lastlowersDate, end: Date())
+		return elapsed
+	}
 	
 	func lowersServiceWarning() -> Bool {
-		elapsedLowerServiceDate >= frontLowersServiceSetting ?  true : false
+		elapsedLowersServiceDate >= frontLowersServiceSetting ?  true : false
 	}
 	
 	func fullServiceWarning() -> Bool {

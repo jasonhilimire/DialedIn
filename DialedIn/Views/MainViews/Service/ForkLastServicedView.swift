@@ -13,16 +13,13 @@ struct ForkLastServicedView: View {
     @Environment(\.managedObjectContext) var moc
     
     @ObservedObject var frontService = FrontServiceViewModel()
-	@Binding var bikeName: String
-	
-	@State var elapsedLowersService = 0
-	@State var elapsedFullService = 0
-	
-	@State var elapsedLowersServiceColor = false
-	@State var elapsedFullServiceColor = false
-	
 
 	let bike: Bike
+	
+	init(bike: Bike){
+		self.bike = bike
+		frontService.getLastServicedDates(bike: bike.wrappedBikeName)
+	}
 	
 	
     var body: some View {
@@ -43,46 +40,33 @@ struct ForkLastServicedView: View {
 				HStack(alignment: .center) {
 					Text("Lowers Last Serviced:")
 					Spacer()
-					Text( "\(self.frontService.getlowersDate(bike: self.bikeName), formatter: dateFormatter)")
-					Text("(\(elapsedLowersService))")
-						.foregroundColor(elapsedLowersServiceColor ? nil : Color.red)
+					Text( "\(self.frontService.lowersServiceDate, formatter: dateFormatter)")
+					Text("(\(frontService.elapsedLowersServiceDate))")
+						.foregroundColor(frontService.elapsedLowersServiceWarning ? nil : Color.red)
 				}
 				.padding(.horizontal)
-				.if(elapsedLowersServiceColor) { $0.customFootnoteBold() } else: { $0.font(.footnote) }
-				.background(elapsedLowersServiceColor ? Color(.red): nil)
+				.if(frontService.elapsedLowersServiceWarning) { $0.customFootnoteBold() } else: { $0.font(.footnote) }
+				.background(frontService.elapsedLowersServiceWarning ? Color(.red): nil)
 
 			
 				HStack {
 					Text("Last Full Service:")
 					Spacer()
-					Text("\(self.frontService.getFullDate(bike: self.bikeName), formatter: dateFormatter)")
-					Text("(\(elapsedFullService))")
-						.foregroundColor(elapsedFullServiceColor ? nil: Color.red)
+					Text("\(self.frontService.fullServiceDate, formatter: dateFormatter)")
+					Text("(\(frontService.elapsedFullServiceDate))")
+						.foregroundColor(frontService.elapsedFullServiceWarning ? nil: Color.red)
 				}
 				.padding(.horizontal)
-				.if(elapsedFullServiceColor) { $0.customFootnoteBold() } else: { $0.font(.footnote) }
-				.background(elapsedFullServiceColor ? Color(.red): nil)
+				.if(frontService.elapsedFullServiceWarning) { $0.customFootnoteBold() } else: { $0.font(.footnote) }
+				.background(frontService.elapsedFullServiceWarning ? Color(.red): nil)
 				
 
 				HStack {
-					Text("\(self.frontService.getFrontServiceNote(bike: self.bikeName))").fontWeight(.light)
+					Text("\(self.frontService.serviceNote)").fontWeight(.light)
 				}
 				.padding(.horizontal)
 				.font(.footnote)
-		} .onAppear(perform: {self.setup()})
+		}
     }
-	
-	func setup() {
-		bikeName = self.bike.name ?? "Unknown bike"
-		frontService.bikeName = bikeName
-		frontService.getLastServicedDates()
-		
-		// Get Service dates from the FrontService Observed Object
-		elapsedLowersService = frontService.elapsedLowerServiceDate
-		elapsedFullService = frontService.elapsedFullServiceDate
-		
-		elapsedLowersServiceColor = frontService.elapsedLowersServiceWarning
-		elapsedFullServiceColor = frontService.elapsedFullServiceWarning
-	}
 }
 

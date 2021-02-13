@@ -28,7 +28,7 @@ struct BikeDetailView: View {
 					.padding(2)
 				VStack {
 					Section {
-						ForkLastServicedView(bikeName: $bikeName, bike: self.bike)
+						ForkLastServicedView(bike: self.bike)
 					}
 					Divider()
 					Section{
