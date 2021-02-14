@@ -85,27 +85,7 @@ class NoteFrontSetupViewModel: ObservableObject {
 		}
 	}
 
-	
-// TODO: refactor these fork settings into own Model
-    @Published var fComp: Bool = true {
-        didSet {
-            didChange.send(self)
-        }
-    }
-    
-    @Published var fReb: Bool = true {
-        didSet {
-            didChange.send(self)
-        }
-    }
-	
-	@Published var fTravel: Double = 0 {
-		didSet {
-			didChange.send(self)
-		}
-	}
-	
-    
+	    
     let didChange = PassthroughSubject<NoteFrontSetupViewModel, Never>()
     
     // MARK: - Functions

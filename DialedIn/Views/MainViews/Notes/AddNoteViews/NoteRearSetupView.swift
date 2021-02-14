@@ -10,6 +10,7 @@ import SwiftUI
 
 struct NoteRearSetupView: View {
     @ObservedObject var rear = NoteRearSetupModel()
+	@ObservedObject var rearVM = RearShockViewModel()
 	@ObservedObject var noteVM = NoteViewModel()
 	
 	var haptic = UIImpactFeedbackGenerator(style: .light)
@@ -46,7 +47,7 @@ struct NoteRearSetupView: View {
 					Text("Hardtail").fontWeight(.thin)
 				} else {
 					// Air - Coil
-					if rear.coil == false {
+					if rearVM.isCoil == false {
 						HStack{
 							Text("PSI: \(self.noteVM.rSpring, specifier: "%.0f")").fontWeight(.thin)
 							Slider(value: $noteVM.rSpring, in: 150...350, step: 1.0)
@@ -60,16 +61,16 @@ struct NoteRearSetupView: View {
 							}
 						}
 					//Sag
-					Stepper(value: $noteVM.rSagSetting  , in: 0...50, onEditingChanged: {_ in DispatchQueue.main.async {self.haptic.impactOccurred()}}, label: {Text("Sag (mm): \(self.noteVM.rSagSetting) -- Sag %: \(calcSag(sag: Double(self.noteVM.rSagSetting), travel: rear.travel), specifier: "%.1f")").fontWeight(.thin)})
+					Stepper(value: $noteVM.rSagSetting  , in: 0...50, onEditingChanged: {_ in DispatchQueue.main.async {self.haptic.impactOccurred()}}, label: {Text("Sag (mm): \(self.noteVM.rSagSetting) -- Sag %: \(calcSag(sag: Double(self.noteVM.rSagSetting), travel: rearVM.travel), specifier: "%.1f")").fontWeight(.thin)})
 					
 					
-					//Tokens- only if a coil
-					if rear.coil == false {
+					//Tokens- only if NOT coil
+					if rearVM.isCoil == false {
 						Stepper(value: $noteVM.rTokenSetting, in: 0...6, onEditingChanged: {_ in DispatchQueue.main.async {self.haptic.impactOccurred()}}, label: {Text("Tokens: \(self.noteVM.rTokenSetting)").fontWeight(.thin)})
 					}
 					
 					//Compression
-					if rear.rComp == true {
+					if rearVM.dualCompression == true {
 						Stepper(value: $noteVM.rHSCSetting, in: 0...25, onEditingChanged: {_ in DispatchQueue.main.async {self.haptic.impactOccurred()}}, label: {Text("High Sp Comp: \(self.noteVM.rHSCSetting)").fontWeight(.thin)})
 						Stepper(value: $noteVM.rHSCSetting, in: 0...25, onEditingChanged: {_ in DispatchQueue.main.async {self.haptic.impactOccurred()}}, label: {Text("Low Sp Comp: \(self.noteVM.rLSCSetting)").fontWeight(.thin)})
 						} else {
@@ -77,7 +78,7 @@ struct NoteRearSetupView: View {
 						}
 						
 					// Rebound
-					if rear.rReb == true {
+					if rearVM.dualRebound == true {
 						Stepper(value: $noteVM.rHSRSetting, in: 0...25, onEditingChanged: {_ in DispatchQueue.main.async {self.haptic.impactOccurred()}}, label: {Text("High Sp Rebound: \(self.noteVM.rHSRSetting)").fontWeight(.thin)})
 						Stepper(value: $noteVM.rLSRSetting, in: 0...25, onEditingChanged: {_ in DispatchQueue.main.async {self.haptic.impactOccurred()}}, label: {Text("Low Sp Rebound: \(self.noteVM.rLSRSetting)").fontWeight(.thin)})
 						} else {

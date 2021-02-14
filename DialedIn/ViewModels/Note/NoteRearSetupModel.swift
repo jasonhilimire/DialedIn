@@ -13,42 +13,7 @@ import Combine
 class NoteRearSetupModel: ObservableObject {
 	let managedObjectContext = PersistentCloudKitContainer.persistentContainer.viewContext
 	
-	func getRearSettings(filter: String) -> [RearShock] {
-		var bikes : [RearShock] = []
-		let fetchRequest = RearShock.rearFetchRequest()
-		
-		do {
-			bikes = try managedObjectContext.fetch(fetchRequest)
-		} catch let error as NSError {
-			print("Could not fetch. \(error), \(error.userInfo)")
-		}
-		return bikes
-	}
-	
-	
-	func getDualComp(bike: String) -> Bool {
-		let filteredBike = getRearSettings(filter: bike).filter { bikes in
-			bikes.bike?.rearSetup?.bike?.name == bike
-		}
-		return filteredBike.last?.dualCompression ?? true
-	}
-	
-	func getDualReb(bike: String) -> Bool {
-		let filteredBike = getRearSettings(filter: bike).filter { bikes in
-			bikes.bike?.rearSetup?.bike?.name == bike
-		}
-		return filteredBike.last?.dualRebound ?? true
-	}
-	
-	func getCoil(bike: String) -> Bool {
-		let filteredBike = getRearSettings(filter: bike).filter { bikes in
-			bikes.bike?.rearSetup?.bike?.name == bike
-		}
-		return filteredBike.last?.isCoil ?? false
-	}
-	
 
-	
 	
 	func getBike(filter: String) -> [Bike] {
 		var bikes : [Bike] = []
@@ -69,15 +34,7 @@ class NoteRearSetupModel: ObservableObject {
 		return filteredBike.last?.hasRearShock ?? true
 	}
 	
-	func getTravel(bike: String) -> Double {
-		let filteredBike = getBike(filter: bike).filter { bikes in
-			bikes.name == bike
-		}
-		return filteredBike.last?.rearSetup?.strokeLength ?? 0.0
-	}
-	
 
-	
    
        init() {
            getLastRearSettings()
@@ -144,23 +101,7 @@ class NoteRearSetupModel: ObservableObject {
            }
        }
     
-        @Published var coil: Bool = true {
-            didSet {
-                didChange.send(self)
-            }
-        }
-    
-        @Published var rComp: Bool = true {
-            didSet {
-                didChange.send(self)
-            }
-        }
-    
-        @Published var rReb: Bool = true {
-            didSet {
-                didChange.send(self)
-            }
-        }
+       
     
         @Published var hasRear: Bool = true {
             didSet {
@@ -168,11 +109,6 @@ class NoteRearSetupModel: ObservableObject {
             }
         }
 	
-		@Published var travel : Double = 0 {
-			didSet {
-				didChange.send(self)
-			}
-		}
 	
 		@Published var lastRTirePressure: Double = 0.0 {
 			didSet {
@@ -274,17 +210,9 @@ class NoteRearSetupModel: ObservableObject {
             lastRTokenSetting = getLastRTokens()
             lastRSagSetting = getLastRSag()
 			lastRTirePressure = getLastTirePSI()
-			getRearSetup(bikeName: bikeName)
-       }
-	
-	func getRearSetup(bikeName: String){
-	//TODO: RearFactor into own RearViewModel
-		rReb = getDualReb(bike: bikeName)
-		rComp = getDualComp(bike: bikeName)
-		coil = getCoil(bike: bikeName)
+//TODO refactor hasRear into BikeViewModel
 		hasRear = getHasRear(bike: bikeName)
-		travel = getTravel(bike: bikeName)
-	}
+       }
 	
 	
        func filterNote(for name: String) -> [Notes] {

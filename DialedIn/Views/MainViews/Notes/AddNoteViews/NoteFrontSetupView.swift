@@ -55,7 +55,7 @@ struct NoteFrontSetupView: View {
 					}
 					
 					//Sag
-				Stepper(value: $noteVM.fSagSetting , in: 0...70, onEditingChanged: {_ in DispatchQueue.main.async {self.haptic.impactOccurred()}}, label: {Text("Sag (mm): \(self.noteVM.fSagSetting) -- Sag %: \(calcSag(sag: Double(self.noteVM.fSagSetting), travel: front.fTravel), specifier: "%.1f")").fontWeight(.thin)})
+				Stepper(value: $noteVM.fSagSetting , in: 0...70, onEditingChanged: {_ in DispatchQueue.main.async {self.haptic.impactOccurred()}}, label: {Text("Sag (mm): \(self.noteVM.fSagSetting) -- Sag %: \(calcSag(sag: Double(self.noteVM.fSagSetting), travel: forkVM.travel), specifier: "%.1f")").fontWeight(.thin)})
 				
 					// Tokens
 				Stepper(value: $noteVM.fTokenSetting , in: 0...6, onEditingChanged: {_ in DispatchQueue.main.async {self.haptic.impactOccurred()}}, label: {Text("Tokens: \(self.noteVM.fTokenSetting )").fontWeight(.thin)})

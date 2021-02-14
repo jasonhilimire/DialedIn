@@ -21,6 +21,7 @@ struct AddNoteView: View {
     @ObservedObject var frontSetup = NoteFrontSetupViewModel()
     @ObservedObject var rearSetup = NoteRearSetupModel()
 	@ObservedObject var forkVM = ForkViewModel()
+	@ObservedObject var rearVM = RearShockViewModel()
 	@ObservedObject var noteVM = NoteViewModel()
 	
 
@@ -69,7 +70,7 @@ struct AddNoteView: View {
 					NoteFrontSetupView(front: frontSetup, noteVM: noteVM, forkVM: forkVM, note: nil)
 					
 			// MARK: - Rear Setup -
-					NoteRearSetupView(rear: rearSetup, noteVM: noteVM, note: nil)
+					NoteRearSetupView(rear: rearSetup, rearVM: rearVM, noteVM: noteVM, note: nil)
 				} //: FORM
 					.onAppear(perform: {self.setup()}) // change to onReceive??
 					.navigationBarTitle("Dialed In", displayMode: .inline)
@@ -106,6 +107,7 @@ struct AddNoteView: View {
         rearSetup.bikeName = bikeName
         rearSetup.getLastRearSettings()
 		noteVM.getLastRearNote(front: rearSetup)
+		rearVM.getRearSetup(bikeName: bikeName)
 
     }
     

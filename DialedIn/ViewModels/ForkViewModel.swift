@@ -19,6 +19,8 @@ class ForkViewModel: ObservableObject {
 	
 	// MARK: - Fork Details -
 	
+//	var id: UUID
+	
 	@Published var dualCompression: Bool = true {
 		didSet {
 			didChange.send(self)

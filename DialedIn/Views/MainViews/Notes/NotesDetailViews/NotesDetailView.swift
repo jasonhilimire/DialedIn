@@ -18,6 +18,7 @@ struct NotesDetailView: View {
 	@ObservedObject var front = NoteFrontSetupViewModel()
 	@ObservedObject var rear = NoteRearSetupModel()
 	@ObservedObject var forkVM = ForkViewModel()
+	@ObservedObject var rearVM = RearShockViewModel()
 	
     @State private var showingDeleteAlert = false
 	@State private var savePressed = false
@@ -30,8 +31,7 @@ struct NotesDetailView: View {
 		self.note = note
 		noteVM.getNote(note: note)
 		forkVM.getForkSettings(bikeName: note.bike?.name ?? "")
-
-		rear.getRearSetup(bikeName: note.bike?.name ?? "")
+		rearVM.getRearSetup(bikeName: note.bike?.name ?? "")
 	}
 	
 	// MARK - BODY -
@@ -66,7 +66,7 @@ struct NotesDetailView: View {
 					// MARK: - REAR -
 					
 					if noteVM.isRearEdit == true {
-						NoteRearSetupView(rear: rear, noteVM: noteVM, isDetailEdit: $isDetailEdit, note: note)
+						NoteRearSetupView(rear: rear, rearVM: rearVM, noteVM: noteVM, isDetailEdit: $isDetailEdit, note: note)
 							.transition(.move(edge: .leading))
 							.animation(Animation.linear(duration: 0.3))
 					}
