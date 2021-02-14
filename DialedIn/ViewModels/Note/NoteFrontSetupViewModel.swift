@@ -10,44 +10,9 @@ import Foundation
 import SwiftUI
 import Combine
 
-class NoteFrontSetupModel: ObservableObject {
+class NoteFrontSetupViewModel: ObservableObject {
     
 	let managedObjectContext = PersistentCloudKitContainer.persistentContainer.viewContext
-	
-// This gets the dual Reb/ Comp settings for setup when creating a note
-	func getFrontSettings(filter: String) -> [Fork] {
-		var bikes : [Fork] = []
-		let fetchRequest = Fork.forkFetchRequest()
-
-		do {
-			bikes = try managedObjectContext.fetch(fetchRequest)
-		} catch let error as NSError {
-			print("Could not fetch. \(error), \(error.userInfo)")
-		}
-		return bikes
-	}
-
-
-	func getDualComp(bike: String) -> Bool {
-		let filteredBike = getFrontSettings(filter: bike).filter { bikes in
-			bikes.bike?.frontSetup?.bike?.name == bike
-		}
-		return filteredBike.last?.dualCompression ?? true
-	}
-	
-	func getDualReb(bike: String) -> Bool {
-		let filteredBike = getFrontSettings(filter: bike).filter { bikes in
-			bikes.bike?.frontSetup?.bike?.name == bike
-		}
-		return filteredBike.last?.dualRebound ?? true
-	}
-	
-	func getTravel(bike: String) -> Double {
-		let filteredBike = getFrontSettings(filter: bike).filter { bikes in
-			bikes.bike?.frontSetup?.bike?.name == bike
-		}
-		return filteredBike.last?.travel ?? 0.0
-	}
 	
 	init() {
         getLastFrontSettings()
@@ -141,7 +106,7 @@ class NoteFrontSetupModel: ObservableObject {
 	}
 	
     
-    let didChange = PassthroughSubject<NoteFrontSetupModel, Never>()
+    let didChange = PassthroughSubject<NoteFrontSetupViewModel, Never>()
     
     // MARK: - Functions
     // get Last Settings
@@ -169,8 +134,6 @@ class NoteFrontSetupModel: ObservableObject {
         return lastRecord.getSetting(note: filterBikes(for: bikeName))
     }
 	
-	
-    
     func getLastFHSR() -> Int16 {
         let lastRecord = FrontSettings.hsr
         return lastRecord.getSetting(note: filterBikes(for: bikeName))
@@ -224,20 +187,8 @@ class NoteFrontSetupModel: ObservableObject {
         lastFTokenSetting = getLastFTokens()
         lastFSagSetting = getLastFSag()
 		lastFTirePressure = getLastTirePSI()
-		getForkSettings(bikeName: bikeName)
-       
     }
 	
-	func getForkSettings(bikeName: String){
-//TODO: refactor this out to the FORK VIEW MODEL
-		fComp = getDualComp(bike: bikeName)
-		fReb = getDualReb(bike: bikeName)
-		fTravel = getTravel(bike: bikeName)
-	}
-	
-	
-	
-    
  // THIS WORKS Now need to figure out how to pass the selected bike into the Model from the pickerview
     func filterBikes(for name: String) -> [Notes] {
         let filteredBikes = getNotes().filter { bikes in

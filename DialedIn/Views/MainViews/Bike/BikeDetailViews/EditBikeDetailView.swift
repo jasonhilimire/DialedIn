@@ -18,7 +18,7 @@ struct EditBikeDetailView: View {
 	@EnvironmentObject var showScreenBool: BoolModel
 	
 	@ObservedObject var keyboard = KeyboardObserver()
-	@ObservedObject var front = NoteFrontSetupModel()
+	@ObservedObject var front = NoteFrontSetupViewModel()
 	@ObservedObject var rear = NoteRearSetupModel()
 	
 	@State private var bikeName = ""

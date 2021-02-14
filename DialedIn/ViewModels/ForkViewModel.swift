@@ -15,22 +15,33 @@ class ForkViewModel: ObservableObject {
 	
 	// MARK: - Published Variables
 	
-	let didChange = PassthroughSubject<NoteViewModel, Never>()
+	let didChange = PassthroughSubject<ForkViewModel, Never>()
 	
 	// MARK: - Fork Details -
 	
-	@Published var dualCompression: Bool
-	@Published var dualRebound: Bool
-	@Published var info: String?
-	@Published var travel: Double
-	
-	init(dualCompression: Bool, dualRebound: Bool, info: String, travel: Double) {
-		self.dualCompression = dualCompression
-		self.dualRebound = dualRebound
-		self.info = info
-		self.travel = travel
+	@Published var dualCompression: Bool = true {
+		didSet {
+			didChange.send(self)
+		}
+	}
+	@Published var dualRebound: Bool = true {
+		didSet {
+			didChange.send(self)
+		}
+	}
+	@Published var info: String? = "" {
+		didSet {
+			didChange.send(self)
+		}
+	}
+	@Published var travel: Double = 0.0 {
+		didSet {
+			didChange.send(self)
+		}
 	}
 	
+
+	// MARK: - FUNCTIONS -
 	func getFrontSettings(filter: String) -> [Fork] {
 		var bikes : [Fork] = []
 		let fetchRequest = Fork.forkFetchRequest()
@@ -43,7 +54,7 @@ class ForkViewModel: ObservableObject {
 		return bikes
 	}
 	
-//TODO: Utilize these and refactor out of NoteFrontSetup
+
 	func getDualComp(bike: String) -> Bool {
 		let filteredBike = getFrontSettings(filter: bike).filter { bikes in
 			bikes.bike?.frontSetup?.bike?.name == bike
@@ -63,6 +74,21 @@ class ForkViewModel: ObservableObject {
 			bikes.bike?.frontSetup?.bike?.name == bike
 		}
 		return filteredBike.last?.travel ?? 0.0
+	}
+	
+	
+	func getInfo(bike: String) -> String {
+		let filteredBike = getFrontSettings(filter: bike).filter { bikes in
+			bikes.bike?.frontSetup?.bike?.name == bike
+		}
+		return filteredBike.last?.info ?? ""
+	}
+	
+	func getForkSettings(bikeName: String){
+		dualCompression = getDualComp(bike: bikeName)
+		dualRebound = getDualReb(bike: bikeName)
+		travel = getTravel(bike: bikeName)
+		info = getInfo(bike: bikeName)
 	}
 	
 	

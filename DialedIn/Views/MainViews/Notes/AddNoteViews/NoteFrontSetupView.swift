@@ -9,17 +9,15 @@
 import SwiftUI
 
 struct NoteFrontSetupView: View {
-    @ObservedObject var front = NoteFrontSetupModel()
+    @ObservedObject var front = NoteFrontSetupViewModel()
 	@ObservedObject var noteVM = NoteViewModel()
+	@ObservedObject var forkVM = ForkViewModel()
 		
 	var haptic = UIImpactFeedbackGenerator(style: .light)
 	var isDetailEdit: Binding<Bool>?
 	
-
 	let note : Notes?
 	
-
-    
 // MARK: - BODY -
     var body: some View {
 		Section(header:
@@ -64,7 +62,7 @@ struct NoteFrontSetupView: View {
 
 					
 					//Compression
-					if front.fComp == true {
+				if forkVM.dualCompression == true {
 						Stepper(value: $noteVM.fHSCSetting, in: 0...25, onEditingChanged: {_ in DispatchQueue.main.async {self.haptic.impactOccurred()}}, label: {Text("High Sp Comp: \(self.noteVM.fHSCSetting)").fontWeight(.thin)})
 						Stepper(value: $noteVM.fLSCSetting, in: 0...25, onEditingChanged: {_ in DispatchQueue.main.async {self.haptic.impactOccurred()}}, label: {Text("Low Sp Comp: \(self.noteVM.fLSCSetting)").fontWeight(.thin)})
 					} else {
@@ -72,7 +70,7 @@ struct NoteFrontSetupView: View {
 					}
 
 					// Rebound
-					if front.fReb == true {
+				if forkVM.dualRebound == true {
 						Stepper(value: $noteVM.fHSRSetting, in: 0...25, onEditingChanged: {_ in DispatchQueue.main.async {self.haptic.impactOccurred()}}, label: {Text("High Sp Rebound: \(self.noteVM.fHSRSetting)").fontWeight(.thin)})
 						Stepper(value: $noteVM.fLSRSetting, in: 0...25, onEditingChanged: {_ in DispatchQueue.main.async {self.haptic.impactOccurred()}}, label: {Text("Low Sp Rebound: \(self.noteVM.fLSRSetting)").fontWeight(.thin)})
 					} else {

@@ -18,9 +18,9 @@ struct AddNoteView: View {
     @FetchRequest(fetchRequest: Bike.bikesFetchRequest())
     var bikes: FetchedResults<Bike>
     
-    @ObservedObject var frontSetup = NoteFrontSetupModel()
+    @ObservedObject var frontSetup = NoteFrontSetupViewModel()
     @ObservedObject var rearSetup = NoteRearSetupModel()
-//	@ObservedObject var keyboard = KeyboardObserver()
+	@ObservedObject var forkVM = ForkViewModel()
 	@ObservedObject var noteVM = NoteViewModel()
 	
 
@@ -66,7 +66,7 @@ struct AddNoteView: View {
 					}
 					
 			// MARK: - FRONT SETUP -
-					NoteFrontSetupView(front: frontSetup, noteVM: noteVM, note: nil)
+					NoteFrontSetupView(front: frontSetup, noteVM: noteVM, forkVM: forkVM, note: nil)
 					
 			// MARK: - Rear Setup -
 					NoteRearSetupView(rear: rearSetup, noteVM: noteVM, note: nil)
@@ -101,6 +101,7 @@ struct AddNoteView: View {
         frontSetup.bikeName = bikeName
         frontSetup.getLastFrontSettings()
 		noteVM.getLastFrontNote(front: frontSetup)
+		forkVM.getForkSettings(bikeName: bikeName)
 		
         rearSetup.bikeName = bikeName
         rearSetup.getLastRearSettings()

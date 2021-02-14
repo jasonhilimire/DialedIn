@@ -13,10 +13,11 @@ struct NotesDetailView: View {
     
     @Environment(\.managedObjectContext) var moc
     @Environment(\.presentationMode) var presentationMode
-	@ObservedObject var keyboard = KeyboardObserver()
+
 	@ObservedObject var noteVM = NoteViewModel()
-	@ObservedObject var front = NoteFrontSetupModel()
+	@ObservedObject var front = NoteFrontSetupViewModel()
 	@ObservedObject var rear = NoteRearSetupModel()
+	@ObservedObject var forkVM = ForkViewModel()
 	
     @State private var showingDeleteAlert = false
 	@State private var savePressed = false
@@ -28,6 +29,9 @@ struct NotesDetailView: View {
 	init(note: Notes) {
 		self.note = note
 		noteVM.getNote(note: note)
+		forkVM.getForkSettings(bikeName: note.bike?.name ?? "")
+
+		rear.getRearSetup(bikeName: note.bike?.name ?? "")
 	}
 	
 	// MARK - BODY -
@@ -43,7 +47,7 @@ struct NotesDetailView: View {
 					// MARK: - FRONT -
 					
 					if noteVM.isFrontEdit == true {
-						NoteFrontSetupView(front: front, noteVM: noteVM, isDetailEdit: $isDetailEdit, note: note)
+						NoteFrontSetupView(front: front, noteVM: noteVM, forkVM: forkVM, isDetailEdit: $isDetailEdit, note: note)
 						.transition(.move(edge: .leading))
 						.animation(Animation.linear(duration: 0.3))
 					}
@@ -85,7 +89,6 @@ struct NotesDetailView: View {
 			} //: VSTACK
 			
 		} //: SCROLLVIEW
-		.onAppear(perform: {self.setup()})
 		
 		// Keeps the button in a fixed position at the bottom of the view
 		Button(action: {
@@ -125,10 +128,6 @@ struct NotesDetailView: View {
 					Image(systemName: "trash")
 				}
 			)
-	}
-	func setup(){
-		front.getForkSettings(bikeName: note.bike?.name ?? "")
-		rear.getRearSetup(bikeName: note.bike?.name ?? "")
 	}
 }
 
