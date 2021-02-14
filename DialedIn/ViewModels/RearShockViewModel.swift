@@ -1,5 +1,5 @@
 //
-//  ShockViewModel.swift
+//  RearShockViewModel.swift
 //  DialedIn
 //
 //  Created by Jason Hilimire on 2/14/21.
@@ -114,6 +114,29 @@ class RearShockViewModel: ObservableObject {
 		isCoil = getCoil(bike: bikeName)
 		strokeLength = getStrokeLength(bike: bikeName)
 		travel = getTravel(bike: bikeName)
+	}
+	
+	// TODO: ADD Create Update Delete
+	
+	func createRearShock(_ rearService: RearService) -> RearShock {
+		let rearShock = RearShock(context: self.managedObjectContext)
+		rearShock.id = UUID()
+		rearShock.dualCompression = self.dualCompression
+		rearShock.dualRebound = self.dualRebound
+		rearShock.rearTravel = self.travel
+		rearShock.isCoil = self.isCoil
+		rearShock.strokeLength = self.strokeLength
+		
+		if self.info == "" {
+			rearShock.info = "RearShock"
+		} else {
+			rearShock.info = self.info
+		}
+		
+		rearShock.addToRearService(rearService)
+		try? self.managedObjectContext.save()
+		return rearShock
+		
 	}
 	
 }

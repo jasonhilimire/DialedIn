@@ -159,4 +159,17 @@ class RearServiceViewModel: ObservableObject {
 		 newRearService.serviceNote = serviceNote
 		 rear?.addToRearService(newRearService)
 	}
+	
+	func createRearService() -> RearService {
+		let dateString = dateFormatter.string(from: Date())
+		let newRearService = RearService(context: self.managedObjectContext)
+		
+		newRearService.id = UUID()
+		newRearService.airCanService = self.airCanServicedDate
+		newRearService.fullService = self.fullServiceDate
+		newRearService.serviceNote = "Bike Created: \(dateString), no services found yet"
+		
+		try? self.managedObjectContext.save()
+		return newRearService
+	}
 }

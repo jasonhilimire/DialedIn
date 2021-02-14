@@ -13,6 +13,8 @@ struct AddBikeView: View {
     @Environment(\.managedObjectContext) var moc
     @Environment(\.presentationMode) var presentationMode
 	
+	@ObservedObject var bikeVM = BikeViewModel()
+	
     @State private var bikeName = ""
     @State private var bikeNote = ""
     @State private var setDefault = false

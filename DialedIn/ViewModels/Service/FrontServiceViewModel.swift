@@ -17,17 +17,6 @@ class FrontServiceViewModel: ObservableObject {
 	@AppStorage("frontLowersServiceSetting") private var frontLowersServiceSetting: Int = 90
 	@AppStorage("frontFullServiceSetting") private var frontFullServiceSetting: Int = 180
 	
-	/*
-	@NSManaged public var id: UUID
-	@NSManaged public var fullService: Date?
-	@NSManaged public var lowersService: Date?
-	@NSManaged public var serviceNote: String?
-	@NSManaged public var service: Fork?
-	
-	public var wrapped_forkServiceNote: String {
-	serviceNote ?? ""
-	}
-	*/
 
 	// MARK: - PUBLISHED VARIABLES -
 	
@@ -172,4 +161,18 @@ class FrontServiceViewModel: ObservableObject {
 		newFrontService.serviceNote = serviceNote
 		fork?.addToFrontService(newFrontService)
 	}
+	
+	func createFrontService() -> FrontService {
+		let dateString = dateFormatter.string(from: Date())
+		let newFrontService = FrontService(context: self.managedObjectContext)
+		
+		newFrontService.lowersService = self.lowersServiceDate
+		newFrontService.fullService = self.fullServiceDate
+		newFrontService.serviceNote = "Bike Created: \(dateString), no services found yet"
+		newFrontService.id = UUID()
+		
+		try? self.managedObjectContext.save()
+		return newFrontService
+	}
+	
 }

@@ -93,5 +93,27 @@ class ForkViewModel: ObservableObject {
 		info = getInfo(bike: bikeName)
 	}
 	
+	// TODO: ADD Create Update Delete
+	//
+	
+	func createFork(_ frontService: FrontService) -> Fork {
+		let newFork = Fork(context: self.managedObjectContext)
+		newFork.id = UUID()
+		newFork.dualCompression = self.dualCompression
+		newFork.dualRebound = self.dualRebound
+		newFork.travel = self.travel
+		
+		if self.info == "" {
+			newFork.info = "Fork"
+		} else {
+			newFork.info = self.info
+		}
+		
+		newFork.addToFrontService(frontService)
+		try? self.managedObjectContext.save()
+		return newFork
+		
+	}
+	
 	
 }

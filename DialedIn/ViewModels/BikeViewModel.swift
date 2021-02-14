@@ -1,5 +1,5 @@
 //
-//  BikeModel.swift
+//  BikeViewModel.swift
 //  DialedIn
 //
 //  Created by Jason Hilimire on 2/9/20.
@@ -10,14 +10,20 @@ import Foundation
 import SwiftUI
 import Combine
 
-class BikeModel: ObservableObject {
+class BikeViewModel: ObservableObject {
     
 	let managedObjectContext = PersistentCloudKitContainer.persistentContainer.viewContext
+	
+	var rearSetupIndex = 1
+	var rearSetups = ["None", "Air", "Coil"]
+	var duplicateNameAlert = false
     
     
     init() {
-        getLastBike()
+//        getLastBike()
     }
+	
+//	var id: UUID
     
 	@Published var bikeName: String = "" {
 		didSet {
@@ -42,9 +48,8 @@ class BikeModel: ObservableObject {
 			didChange.send(self)
 		}
 	}
-	
     
-    let didChange = PassthroughSubject<BikeModel, Never>()
+    let didChange = PassthroughSubject<BikeViewModel, Never>()
 
 	func getBikes() -> [Bike] {
 		let bikes = try! managedObjectContext.fetch(Bike.bikesFetchRequest())
@@ -52,9 +57,7 @@ class BikeModel: ObservableObject {
 	}
 	
 	func filterBikes(for name: String) -> [Bike] {
-		let filteredBike = getBikes().filter { bikes in
-			bikes.name == name
-		}
+		let filteredBike = try! managedObjectContext.fetch(Bike.selectedBikeFetchRequest(filter: name))
 		return filteredBike
 	}
 	
@@ -83,5 +86,53 @@ class BikeModel: ObservableObject {
 		hasRearShock = getRear()
 		isDefault = getDefault()
     }
+	
+	func saveNewBike(fork: Fork, rearShock: RearShock, frontService: FrontService, rearService: RearService) {
+		let newBike = Bike(context: managedObjectContext)
+		
+		
+		newBike.id = UUID()
+		newBike.name = self.bikeName
+		newBike.bikeNote = self.bikeNote
+		newBike.isDefault = self.isDefault
+		newBike.hasRearShock = self.hasRearShock
+		
+		
+
+		
+		// - Rear Creation -
+		
+		
+		if self.rearSetupIndex == 1 {
+			// set coil to false
+			newBike.hasRearShock = true
+			
+			
+		} else if self.rearSetupIndex == 2 {
+			// set coil to true
+			
+			newBike.hasRearShock = true
+
+			
+		} else if self.rearSetupIndex == 0 {
+			// set coil to true
+			newBike.hasRearShock = false
+			
+		}
+		
+		try? self.managedObjectContext.save()
+		
+	}
+	
+	
+	func checkBikeNameExists() {
+		let filteredBikes = try! managedObjectContext.fetch(Bike.bikesFetchRequest())
+		for bike in filteredBikes {
+			if bike.name?.lowercased() == bikeName.lowercased() {
+				duplicateNameAlert.toggle()
+				break
+			}
+		}
+	}
 
 }
