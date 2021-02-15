@@ -17,8 +17,9 @@ struct EditBikeDetailView: View {
 	
 	@EnvironmentObject var showScreenBool: BoolModel
 	
-	@ObservedObject var fork = ForkViewModel()
-	@ObservedObject var rearShock = RearShockViewModel()
+	@ObservedObject var forkVM = ForkViewModel()
+	@ObservedObject var rearShockVM = RearShockViewModel()
+	@ObservedObject var bikeVM = BikeViewModel()
 //	@ObservedObject var front = NoteFrontSetupViewModel()
 //	@ObservedObject var rear = NoteRearSetupModel()
 	
@@ -42,14 +43,15 @@ struct EditBikeDetailView: View {
 	
 	@State private var saveText = "Save"
 	
-	let bike: Bike
-	
-	init(bike: Bike) {
-		self.bike = bike
-		bikeName = bike.wrappedBikeName
-		fork.getForkSettings(bikeName: bikeName)
-		rearShock.getRearSetup(bikeName: bikeName)
-	}
+//	let bike: Bike
+////
+//	init() {
+//		let bikeName = self.showScreenBool.bikeName
+//		bikeVM.filterBikes(for: bikeName)
+//		bikeVM.getBike()
+//		forkVM.getForkSettings(bikeName: bikeName)
+//		rearShockVM.getRearSetup(bikeName: bikeName)
+//	}
 	
 	//TODO: figure out how to only allow 1 default bike
 	//MARK: - BODY -
@@ -57,82 +59,14 @@ struct EditBikeDetailView: View {
 //		NavigationView {
 			VStack {
 				Form {
-					Section(header: Text("Bike Details")){
-						HStack {
-							Text("Bike Name: ").fontWeight(.thin)
-							CustomTextField(text: $bikeName, placeholder: "Enter a name")
-						}
-						
-						HStack {
-							Text("Note:").fontWeight(.thin)
-							CustomTextField(text: $bikeNote, placeholder: "Add a note")
-						}
-						//                        Toggle(isOn: $setDefault.animation(), label: {Text("Set as Default Bike?")})
-					}
+					BikeDetailFormView(bikeVM: bikeVM)
 					
+					// MARK: - Front Setup -
+					ForkSetupFormView(forkVM: forkVM)
 					
-					Section(header: Text("Fork Details")){
-						HStack{
-							Text("Fork Name/Info:").fontWeight(.thin)
-							CustomTextField(text: $forkInfo, placeholder: "Fork Description")
-						}
-						
-						HStack {
-							Text("Travel (mm):").fontWeight(.thin)
-							CustomNumberField(text: $forkTravel, placeholder: "Enter Fork length in mm")
-						}
-						
-						Toggle(isOn: $forkDualReboundToggle.animation(), label: {Text("Dual Rebound?").fontWeight(.thin)})
-						Toggle(isOn: $forkDualCompToggle.animation(), label: {Text("Dual Compression?").fontWeight(.thin)})
-					}
-					
-					Section(header: Text("Shock Details")){
-						Picker("Rear Setup", selection: $rearSetupIndex) {
-							ForEach(0..<rearSetups.count) { index in
-								Text(self.rearSetups[index]).tag(index)
-							}
-						}.pickerStyle(SegmentedPickerStyle())
-						
-						// Display Form based on rear setup from Picker
-						if rearSetupIndex == 0 {
-							Text("No Rear Suspension").fontWeight(.thin)
-							
-						} else if rearSetupIndex == 1 {
-							HStack {
-								Text("Rear Name/Info:").fontWeight(.thin)
-								CustomTextField(text: $rearInfo, placeholder: "Rear Description")
-							}
-							
-							HStack {
-								Text("Stroke Travel (mm):").fontWeight(.thin)
-								CustomNumberField(text: $strokeLength, placeholder: "Used for Sag Calculation")
-							}
-							
-							HStack {
-								Text("Rear Travel (mm):").fontWeight(.thin)
-								CustomNumberField(text: $rearTravel, placeholder: "Enter Rear Travel in mm")
-							}
-							
-							Toggle(isOn: $rearDualReboundToggle.animation(), label: {Text("Dual Rebound?").fontWeight(.thin)})
-							
-							Toggle(isOn: $rearDualCompToggle.animation(), label: {Text("Dual Compression?").fontWeight(.thin)})
-							
-						} else if rearSetupIndex == 2 {
-							HStack {
-								Text("Rear Name/Info:").fontWeight(.thin)
-								CustomTextField(text: $rearInfo, placeholder: "Rear Description")
-							}
-							
-							HStack {
-								Text("Stroke Travel (mm):").fontWeight(.thin)
-								CustomNumberField(text: $strokeLength, placeholder: "Enter Shock Stroke in mm")
-							}
-							
-							Toggle(isOn: $rearDualReboundToggle.animation(), label: {Text("Dual Rebound?").fontWeight(.thin)})
-							
-							Toggle(isOn: $rearDualCompToggle.animation(), label: {Text("Dual Compression?").fontWeight(.thin)})
-						}
-					}
+					// MARK: - REAR SETUP -
+					RearSetupFormView(bikeVM: bikeVM, rearShockVM: rearShockVM)
+
 				} //: FORM
 				Button(action: {
 					//dismisses the sheet
@@ -152,58 +86,60 @@ struct EditBikeDetailView: View {
 				}.buttonStyle(OrangeButtonStyle())
 			.animation(.default)
 		}
-			// Dismisses the keyboard
-//			.gesture(tap, including: keyboard.keyBoardShown ? .all : .none)
 			.onAppear(perform: {self.setup()})
 	}
 	
 	//MARK: - FUNCTIONS -
 	
 	func updateBike() {
-		// - Bike Edit
-		
-		let bike = fetchBike(for: showScreenBool.bikeName)
-		
-		bike.name = self.bikeName
-		bike.bikeNote = self.bikeNote
-		bike.isDefault = self.setDefault
-		
-		// - Front Creation
-		bike.frontSetup?.travel = Double(self.forkTravel) ?? 0.0
-		bike.frontSetup?.dualCompression = self.forkDualCompToggle
-		bike.frontSetup?.dualRebound = self.forkDualReboundToggle
-		bike.frontSetup?.info = self.forkInfo
-
-		// - Rear Creation -
-		if self.rearSetupIndex == 1 {
-			bike.hasRearShock = true
-			bike.rearSetup?.info = self.rearInfo
-			bike.rearSetup?.strokeLength = Double(self.strokeLength) ?? 0.0
-			bike.rearSetup?.rearTravel = Double(self.rearTravel) ?? 0.0
-			bike.rearSetup?.dualCompression = self.rearDualCompToggle
-			bike.rearSetup?.dualRebound = self.rearDualCompToggle
-			bike.rearSetup?.isCoil = self.isCoilToggle
-
-		} else if self.rearSetupIndex == 2 {
-			self.isCoilToggle.toggle()
-			
-			bike.hasRearShock = true
-			bike.rearSetup?.info = self.rearInfo
-			bike.rearSetup?.strokeLength = Double(self.strokeLength) ?? 0.0
-			bike.rearSetup?.rearTravel = Double(self.rearTravel) ?? 0.0
-			bike.rearSetup?.dualCompression = self.rearDualCompToggle
-			bike.rearSetup?.dualRebound = self.rearDualCompToggle
-			bike.rearSetup?.isCoil = self.isCoilToggle
-
-		} else if self.rearSetupIndex == 0 {
-			bike.hasRearShock = false
-			bike.rearSetup?.isCoil = false
-		}
+//		// - Bike Edit
+//
+//		let bike = fetchBike(for: showScreenBool.bikeName)
+//
+//		bike.name = self.bikeName
+//		bike.bikeNote = self.bikeNote
+//		bike.isDefault = self.setDefault
+//
+//		// - Front Creation
+//		bike.frontSetup?.travel = Double(self.forkTravel) ?? 0.0
+//		bike.frontSetup?.dualCompression = self.forkDualCompToggle
+//		bike.frontSetup?.dualRebound = self.forkDualReboundToggle
+//		bike.frontSetup?.info = self.forkInfo
+//
+//		// - Rear Creation -
+//		if self.rearSetupIndex == 1 {
+//			bike.hasRearShock = true
+//			bike.rearSetup?.info = self.rearInfo
+//			bike.rearSetup?.strokeLength = Double(self.strokeLength) ?? 0.0
+//			bike.rearSetup?.rearTravel = Double(self.rearTravel) ?? 0.0
+//			bike.rearSetup?.dualCompression = self.rearDualCompToggle
+//			bike.rearSetup?.dualRebound = self.rearDualCompToggle
+//			bike.rearSetup?.isCoil = self.isCoilToggle
+//
+//		} else if self.rearSetupIndex == 2 {
+//			self.isCoilToggle.toggle()
+//
+//			bike.hasRearShock = true
+//			bike.rearSetup?.info = self.rearInfo
+//			bike.rearSetup?.strokeLength = Double(self.strokeLength) ?? 0.0
+//			bike.rearSetup?.rearTravel = Double(self.rearTravel) ?? 0.0
+//			bike.rearSetup?.dualCompression = self.rearDualCompToggle
+//			bike.rearSetup?.dualRebound = self.rearDualCompToggle
+//			bike.rearSetup?.isCoil = self.isCoilToggle
+//
+//		} else if self.rearSetupIndex == 0 {
+//			bike.hasRearShock = false
+//			bike.rearSetup?.isCoil = false
+//		}
 	}
 	
 	func setup(){
 ////		bikeName = self.bike.wrappedBikeName
-//		bikeName = showScreenBool.bikeName
+		bikeName = showScreenBool.bikeName
+		bikeVM.filterBikes(for: bikeName)
+		bikeVM.getBike()
+		forkVM.getForkSettings(bikeName: bikeName)
+		rearShockVM.getRearSetup(bikeName: bikeName)
 //		let bike = fetchBike(for: bikeName)
 //		bikeNote = bike.bikeNote ?? ""
 //
@@ -219,27 +155,27 @@ struct EditBikeDetailView: View {
 	}
 	
 	func setIndex(){
-		let bike = fetchBike(for: bikeName)
-		
-		let hasRear = bike.hasRearShock
-		let isCoil = bike.rearSetup?.isCoil
-
-		if hasRear == false {
-			rearSetupIndex = 0
-		} else if isCoil == true {
-			rearSetupIndex = 2
-		} else {
-			rearSetupIndex = 1
-		}
+//		let bike = fetchBike(for: bikeName)
+//		
+//		let hasRear = bike.hasRearShock
+//		let isCoil = bike.rearSetup?.isCoil
+//
+//		if hasRear == false {
+//			rearSetupIndex = 0
+//		} else if isCoil == true {
+//			rearSetupIndex = 2
+//		} else {
+//			rearSetupIndex = 1
+//		}
 	}
 	
 	func setToggles() {
-		let bike = fetchBike(for: bikeName)
-		
-		forkDualReboundToggle = bike.frontSetup!.dualRebound ? true : false
-		forkDualCompToggle = bike.frontSetup!.dualCompression ? true : false
-		rearDualReboundToggle = bike.rearSetup!.dualRebound ? true : false
-		rearDualCompToggle = bike.rearSetup!.dualCompression ? true: false
-	
+//		let bike = fetchBike(for: bikeName)
+//
+//		forkDualReboundToggle = bike.frontSetup!.dualRebound ? true : false
+//		forkDualCompToggle = bike.frontSetup!.dualCompression ? true : false
+//		rearDualReboundToggle = bike.rearSetup!.dualRebound ? true : false
+//		rearDualCompToggle = bike.rearSetup!.dualCompression ? true: false
+//
 	}
 }

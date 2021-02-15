@@ -61,7 +61,7 @@ class BikeViewModel: ObservableObject {
 		return filteredBike
 	}
 	
-	
+//TODO: REFACTOR to incluce forName: String into each below & getBike
 	func getRear() -> Bool {
 		let last = filterBikes(for: bikeName ?? "")
 		guard let rear = last.last?.hasRearShock else {return true}
@@ -81,7 +81,8 @@ class BikeViewModel: ObservableObject {
 		return rear
 	}
 	
-    func getLastBike() {
+    func getBike() {
+//TODO: Add BikeName here?? 
         bikeNote = getNote()
 		hasRearShock = getRear()
 		isDefault = getDefault()

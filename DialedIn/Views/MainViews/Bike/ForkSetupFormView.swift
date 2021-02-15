@@ -36,7 +36,7 @@ struct ForkSetupFormView: View {
 			
 			Toggle(isOn: $forkVM.dualRebound.animation(), label: {Text("Dual Rebound?").fontWeight(.thin)})
 			Toggle(isOn: $forkVM.dualCompression.animation(), label: {Text("Dual Compression?").fontWeight(.thin)})
-			
+// TODO: Wrap in an isAdd if Statement
 			DatePicker(selection: $frontServiceVM.lowersServiceDate, in: ...Date(), displayedComponents: .date) {
 				Text("Last Lower Service").fontWeight(.thin)
 			}
