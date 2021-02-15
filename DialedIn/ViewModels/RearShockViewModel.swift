@@ -19,13 +19,13 @@ class RearShockViewModel: ObservableObject {
 
 //	var id: UUID
 	
-	@Published var dualCompression: Bool = true {
+	@Published var dualCompression: Bool = false {
 		didSet {
 			didChange.send(self)
 		}
 	}
 	
-	@Published var dualRebound: Bool = true {
+	@Published var dualRebound: Bool = false {
 		didSet {
 			didChange.send(self)
 		}

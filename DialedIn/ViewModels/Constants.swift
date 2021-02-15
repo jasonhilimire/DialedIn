@@ -280,3 +280,12 @@ extension View {
 		}
 	}
 }
+
+// Operator overload - fixes Cannot convert value of type 'Binding<String?>' to expected argument type 'Binding<String>'
+
+func ??<T>(lhs: Binding<Optional<T>>, rhs: T) -> Binding<T> {
+	Binding(
+		get: { lhs.wrappedValue ?? rhs },
+		set: { lhs.wrappedValue = $0 }
+	)
+}
