@@ -55,6 +55,19 @@ class RearShockViewModel: ObservableObject {
 		}
 	}
 	
+	@Published var strokeLengthString: String? = "" {
+		didSet {
+			didChange.send(self)
+		}
+	}
+	
+	@Published var travelString: String? = "" {
+		didSet {
+			didChange.send(self)
+		}
+	}
+	
+	
 	
 	// MARK: - FUNCTIONS -
 	
@@ -106,14 +119,35 @@ class RearShockViewModel: ObservableObject {
 		return filteredBike.last?.strokeLength ?? 0.0
 	}
 	
+	func getTravelString(bike: String) -> String {
+		let filteredBike = getRearSettings(filter: bike).filter { bikes in
+			bikes.bike?.rearSetup?.bike?.name == bike
+		}
+		return String(filteredBike.last?.rearTravel ?? 0.0)
+	}
+	
+	func getStrokeLengthString(bike: String) -> String {
+		let filteredBike = getRearSettings(filter: bike).filter { bikes in
+			bikes.bike?.rearSetup?.bike?.name == bike
+		}
+		return String(filteredBike.last?.strokeLength ?? 0.0)
+	}
+	
+	func convertTravel(from travel: String) -> Double {
+		let converted: Double
+		converted = Double(travel) ?? 0.0
+		return converted
+	}
+	
 	
 	func getRearSetup(bikeName: String){
-		//TODO: RearFactor into own RearViewModel
 		dualRebound = getDualReb(bike: bikeName)
 		dualCompression = getDualComp(bike: bikeName)
 		isCoil = getCoil(bike: bikeName)
 		strokeLength = getStrokeLength(bike: bikeName)
 		travel = getTravel(bike: bikeName)
+		strokeLengthString = getStrokeLengthString(bike: bikeName)
+		travelString = getTravelString(bike: bikeName)
 	}
 	
 	// TODO: ADD Create Update Delete
@@ -123,12 +157,12 @@ class RearShockViewModel: ObservableObject {
 		rearShock.id = UUID()
 		rearShock.dualCompression = self.dualCompression
 		rearShock.dualRebound = self.dualRebound
-		rearShock.rearTravel = self.travel
+		rearShock.rearTravel = convertTravel(from: self.travelString!)
 		rearShock.isCoil = self.isCoil
-		rearShock.strokeLength = self.strokeLength
+		rearShock.strokeLength = convertTravel(from: self.strokeLengthString!)
 		
 		if self.info == "" {
-			rearShock.info = "RearShock"
+			rearShock.info = "Rear Shock"
 		} else {
 			rearShock.info = self.info
 		}
@@ -137,6 +171,30 @@ class RearShockViewModel: ObservableObject {
 		try? self.managedObjectContext.save()
 		return rearShock
 		
+	}
+	
+	func updateRearShock(_ rear: RearShock) -> RearShock {
+		managedObjectContext.performAndWait {
+			rear.dualCompression = self.dualCompression
+			rear.dualRebound = self.dualRebound
+			if self.info == "" {
+				rear.info = "Rear Shock"
+			} else {
+				rear.info = self.info
+			}
+			rear.rearTravel = convertTravel(from: self.travelString!)
+			rear.strokeLength = convertTravel(from: self.strokeLengthString!)
+			
+			if self.managedObjectContext.hasChanges {
+				try? self.managedObjectContext.save()
+			}
+		}
+		return rear
+	}
+	
+	func deleteRearShock(_ rear: RearShock) {
+		managedObjectContext.delete(rear)
+		try? self.managedObjectContext.save()
 	}
 	
 }

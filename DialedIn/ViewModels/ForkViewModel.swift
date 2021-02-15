@@ -137,5 +137,28 @@ class ForkViewModel: ObservableObject {
 		
 	}
 	
+	func updateFork(fork: Fork) -> Fork {
+		managedObjectContext.performAndWait {
+			fork.dualCompression = self.dualCompression
+			fork.dualRebound = self.dualRebound
+			if self.info == "" {
+				fork.info = "Fork"
+			} else {
+				fork.info = self.info
+			}
+			fork.travel = convertTravel(from: self.travelString!)
+			
+			if self.managedObjectContext.hasChanges {
+				try? self.managedObjectContext.save()
+			}
+		}
+		return fork
+	}
+	
+	func deleteFork(_ fork: Fork){
+		managedObjectContext.delete(fork)
+		try? self.managedObjectContext.save()
+	}
+	
 	
 }

@@ -17,9 +17,10 @@ struct EditBikeDetailView: View {
 	
 	@EnvironmentObject var showScreenBool: BoolModel
 	
-	@ObservedObject var keyboard = KeyboardObserver()
-	@ObservedObject var front = NoteFrontSetupViewModel()
-	@ObservedObject var rear = NoteRearSetupModel()
+	@ObservedObject var fork = ForkViewModel()
+	@ObservedObject var rearShock = RearShockViewModel()
+//	@ObservedObject var front = NoteFrontSetupViewModel()
+//	@ObservedObject var rear = NoteRearSetupModel()
 	
 	@State private var bikeName = ""
 	@State private var bikeNote = ""
@@ -41,7 +42,14 @@ struct EditBikeDetailView: View {
 	
 	@State private var saveText = "Save"
 	
-//	let bike: Bike
+	let bike: Bike
+	
+	init(bike: Bike) {
+		self.bike = bike
+		bikeName = bike.wrappedBikeName
+		fork.getForkSettings(bikeName: bikeName)
+		rearShock.getRearSetup(bikeName: bikeName)
+	}
 	
 	//TODO: figure out how to only allow 1 default bike
 	//MARK: - BODY -
@@ -194,18 +202,18 @@ struct EditBikeDetailView: View {
 	}
 	
 	func setup(){
-//		bikeName = self.bike.wrappedBikeName
-		bikeName = showScreenBool.bikeName
-		let bike = fetchBike(for: bikeName)
-		bikeNote = bike.bikeNote ?? ""
-		
-		forkInfo = bike.frontSetup?.self.wrappedForkInfo ?? ""
-		forkTravel = "\(bike.frontSetup?.travel ?? 0)"
-		
-		rearInfo = bike.rearSetup?.wrappedRearInfo ?? ""
-		strokeLength = "\(bike.rearSetup?.strokeLength ?? 0)"
-		rearTravel = "\(bike.rearSetup?.rearTravel ?? 0)" 
-	
+////		bikeName = self.bike.wrappedBikeName
+//		bikeName = showScreenBool.bikeName
+//		let bike = fetchBike(for: bikeName)
+//		bikeNote = bike.bikeNote ?? ""
+//
+//		forkInfo = bike.frontSetup?.self.wrappedForkInfo ?? ""
+//		forkTravel = "\(bike.frontSetup?.travel ?? 0)"
+//
+//		rearInfo = bike.rearSetup?.wrappedRearInfo ?? ""
+//		strokeLength = "\(bike.rearSetup?.strokeLength ?? 0)"
+//		rearTravel = "\(bike.rearSetup?.rearTravel ?? 0)"
+//
 		setToggles()
 		setIndex()
 	}

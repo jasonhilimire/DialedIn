@@ -90,7 +90,6 @@ class BikeViewModel: ObservableObject {
 	func saveNewBike(fork: Fork, rearShock: RearShock) {
 		let newBike = Bike(context: managedObjectContext)
 		
-		
 		newBike.id = UUID()
 		newBike.name = self.bikeName
 		newBike.bikeNote = self.bikeNote
@@ -100,28 +99,53 @@ class BikeViewModel: ObservableObject {
 		newBike.frontSetup = fork
 		newBike.rearSetup = rearShock
 
-		
-		// - Rear Creation -
-		
-		
+		// - Rear Creation based on Index -
 		if self.rearSetupIndex == 1 { //AirShock
 			// set coil to false
 			newBike.hasRearShock = true
-			
-			
 		} else if self.rearSetupIndex == 2 { //CoilShock
-			// set coil to true
-			
+			// set coil to false
 			newBike.hasRearShock = true
+			newBike.rearSetup?.isCoil = false
 
-			
 		} else if self.rearSetupIndex == 0 { // No Shock
 			// set coil to true
 			newBike.hasRearShock = false
-			
+			newBike.rearSetup?.isCoil = true
 		}
 		
 		try? self.managedObjectContext.save()
+	}
+	
+	func updateBike(bike: Bike, fork: Fork, rearShock: RearShock) {
+		managedObjectContext.performAndWait {
+			bike.name = self.bikeName
+			bike.bikeNote = self.bikeNote
+			bike.isDefault = self.isDefault
+			bike.hasRearShock = self.hasRearShock
+			
+			bike.frontSetup = fork
+			bike.rearSetup = rearShock
+			
+			// - Rear Creation based on Index -
+			if self.rearSetupIndex == 1 { //AirShock
+				// set coil to false
+				bike.hasRearShock = true
+			} else if self.rearSetupIndex == 2 { //CoilShock
+				// set coil to false
+				bike.hasRearShock = true
+				bike.rearSetup?.isCoil = false
+				
+			} else if self.rearSetupIndex == 0 { // No Shock
+				// set coil to true
+				bike.hasRearShock = false
+				bike.rearSetup?.isCoil = true
+			}
+			if self.managedObjectContext.hasChanges {
+				try? self.managedObjectContext.save()
+			}
+		}
+		
 		
 	}
 	
