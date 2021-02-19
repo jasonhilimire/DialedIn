@@ -17,8 +17,6 @@ struct BikeDetailCardView: View {
 	@State var symbolImage = "square.and.pencil"
 	@State var isFromBikeCard = true
 	
-
-
 	let bike: Bike
 	
 	// MARK: - BODY -
@@ -34,6 +32,11 @@ struct BikeDetailCardView: View {
 						CircularButtonView(symbolImage: $wrenchImage)
 					}
 
+					Spacer()
+					Text(bike.name ?? "")
+						.fontWeight(.bold)
+						.customTextShadow()
+						.foregroundColor(Color.white)
 					Spacer()
 					
 					Button(action: {

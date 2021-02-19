@@ -20,25 +20,9 @@ struct EditBikeDetailView: View {
 	@ObservedObject var forkVM = ForkViewModel()
 	@ObservedObject var rearShockVM = RearShockViewModel()
 	@ObservedObject var bikeVM = BikeViewModel()
-
-	@State private var bikeNote = ""
-	@State private var setDefault = false
-	
-	@State private var forkInfo = ""
-	@State private var forkDualReboundToggle = false
-	@State private var forkDualCompToggle = false
-	@State private var forkTravel = ""
-	
-	@State private var rearSetupIndex = 0
-	@State private var rearSetups = ["None", "Air", "Coil"]
-	@State private var isCoilToggle = false
-	@State private var rearInfo = ""
-	@State private var rearDualReboundToggle = false
-	@State private var rearDualCompToggle = false
-	@State private var strokeLength = ""
-	@State private var rearTravel = ""
 	
 	@State private var saveText = "Save"
+	@State private var isAdd = false
 	
 	let bike: Bike
 //
@@ -46,6 +30,7 @@ struct EditBikeDetailView: View {
 		self.bike = bike
 		let bikeName = bike.name
 		bikeVM.getBike(for: bikeName!)
+		bikeVM.getSetupIndex(bike: bike)
 		forkVM.getForkSettings(bikeName: bikeName!)
 		rearShockVM.getRearSetup(bikeName: bikeName!)
 	}
@@ -58,10 +43,10 @@ struct EditBikeDetailView: View {
 				BikeDetailFormView(bikeVM: bikeVM)
 				
 				// MARK: - Front Setup -
-				ForkSetupFormView(forkVM: forkVM)
+				ForkSetupFormView(forkVM: forkVM, isAdd: $isAdd)
 				
 				// MARK: - REAR SETUP -
-				RearSetupFormView(bikeVM: bikeVM, rearShockVM: rearShockVM)
+				RearSetupFormView(bikeVM: bikeVM, rearShockVM: rearShockVM, isAdd: $isAdd)
 
 			} //: FORM
 			Button(action: {
@@ -82,6 +67,7 @@ struct EditBikeDetailView: View {
 			}.buttonStyle(OrangeButtonStyle())
 		.animation(.default)
 		}
+		
 //			.onAppear(perform: {self.setup()})
 	}
 	

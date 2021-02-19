@@ -12,6 +12,7 @@ struct ForkSetupFormView: View {
 	@ObservedObject var forkVM = ForkViewModel()
 	@ObservedObject var frontServiceVM = FrontServiceViewModel()
 
+	@Binding var isAdd: Bool
 	
     var body: some View {
 		Section(header:
@@ -36,13 +37,14 @@ struct ForkSetupFormView: View {
 			
 			Toggle(isOn: $forkVM.dualRebound.animation(), label: {Text("Dual Rebound?").fontWeight(.thin)})
 			Toggle(isOn: $forkVM.dualCompression.animation(), label: {Text("Dual Compression?").fontWeight(.thin)})
-// TODO: Wrap in an isAdd if Statement
-			DatePicker(selection: $frontServiceVM.lowersServiceDate, in: ...Date(), displayedComponents: .date) {
-				Text("Last Lower Service").fontWeight(.thin)
-			}
-			
-			DatePicker(selection: $frontServiceVM.fullServiceDate, in: ...Date(), displayedComponents: .date) {
-				Text("Last Full Service").fontWeight(.thin)
+			if isAdd == true {
+				DatePicker(selection: $frontServiceVM.lowersServiceDate, in: ...Date(), displayedComponents: .date) {
+					Text("Last Lower Service").fontWeight(.thin)
+				}
+				
+				DatePicker(selection: $frontServiceVM.fullServiceDate, in: ...Date(), displayedComponents: .date) {
+					Text("Last Full Service").fontWeight(.thin)
+				}
 			}
 		}
     }

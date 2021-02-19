@@ -84,6 +84,13 @@ class RearShockViewModel: ObservableObject {
 	}
 	
 	
+	func getRearInfo(bike: String) -> String {
+		let filteredBike = getRearSettings(filter: bike).filter { bikes in
+			bikes.bike?.rearSetup?.bike?.name == bike
+		}
+		return filteredBike.last?.info ?? ""
+	}
+	
 	func getDualComp(bike: String) -> Bool {
 		let filteredBike = getRearSettings(filter: bike).filter { bikes in
 			bikes.bike?.rearSetup?.bike?.name == bike
@@ -148,6 +155,7 @@ class RearShockViewModel: ObservableObject {
 		travel = getTravel(bike: bikeName)
 		strokeLengthString = getStrokeLengthString(bike: bikeName)
 		travelString = getTravelString(bike: bikeName)
+		info = getRearInfo(bike: bikeName)
 	}
 	
 	// TODO: ADD Create Update Delete

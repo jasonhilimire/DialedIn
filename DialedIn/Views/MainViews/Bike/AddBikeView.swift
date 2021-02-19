@@ -20,29 +20,12 @@ struct AddBikeView: View {
 	@ObservedObject var frontServiceVM = FrontServiceViewModel()
 	@ObservedObject var rearServiceVM = RearServiceViewModel()
 	
-    @State private var bikeName = ""
-    @State private var bikeNote = ""
-    @State private var setDefault = false
 
-    @State private var forkInfo = ""
-    @State private var forkDualReboundToggle = false
-    @State private var forkDualCompToggle = false
-    @State private var lastLowerServiceDate = Date()
-    @State private var lastFullForkServiceDate = Date()
-	@State private var forkTravel = ""
-    
     @State private var rearSetupIndex = 1
     @State private var rearSetups = ["None", "Air", "Coil"]
-    @State private var isCoilToggle = false
-    @State private var rearInfo = ""
-    @State private var rearDualReboundToggle = false
-    @State private var rearDualCompToggle = false
-    @State private var lastAirCanServiceDate = Date()
-    @State private var lastRearFullServiceDate = Date()
-	@State private var strokeLength = ""
-	@State private var rearTravel = ""
 
 	@State private var saveText = "Save"
+	@State private var isAdd = true
 	
 	@State var duplicateNameAlert = false
     
@@ -54,28 +37,25 @@ struct AddBikeView: View {
 					BikeDetailFormView(bikeVM: bikeVM)
 
 //					 MARK: - Front Setup -
-					ForkSetupFormView(forkVM: forkVM, frontServiceVM: frontServiceVM)
+					ForkSetupFormView(forkVM: forkVM, frontServiceVM: frontServiceVM, isAdd: $isAdd)
                     
 					// MARK: - REAR SETUP -
-					RearSetupFormView(bikeVM: bikeVM, rearShockVM: rearShockVM, rearServiceVM: rearServiceVM)
-
+					RearSetupFormView(bikeVM: bikeVM, rearShockVM: rearShockVM, rearServiceVM: rearServiceVM, isAdd: $isAdd)
 
                 } .navigationBarTitle("Bike Info", displayMode: .inline)
 				.alert(isPresented: $duplicateNameAlert) {
 					Alert(title: Text("Duplicate Bike Name"), message: Text("Duplicate Bike Names are not allowed - please change"), primaryButton: .destructive(Text("Clear")) {
-						self.bikeName = ""
+						bikeVM.bikeName = ""
 					}, secondaryButton: .cancel()
 					)
 				}
-			
 				.animation(.spring())
 	
-
                 Button(action: {
 					self.checkBikeNameExists()
 					if duplicateNameAlert == false {
 						
-//TODO: Put this is own function - TRAVEL IS NOT SAVING PROPERLY
+//TODO: Put this is own function -
 						let newFrontService = frontServiceVM.createFrontService()
 						let newRearService = rearServiceVM.createRearService()
 						let newFork = forkVM.createFork(newFrontService)
@@ -104,11 +84,7 @@ struct AddBikeView: View {
         }
     }
 	
-	
-	
 
-
-	
 	func checkBikeNameExists() {
 		let filteredBikes = try! moc.fetch(Bike.bikesFetchRequest())
 		for bike in filteredBikes {

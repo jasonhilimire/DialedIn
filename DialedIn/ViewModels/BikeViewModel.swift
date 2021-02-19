@@ -61,8 +61,6 @@ class BikeViewModel: ObservableObject {
 		return filteredBike
 	}
 	
-	
-
 	func getName(_ bikeName: String) -> String {
 		let last = filterBikes(for: bikeName)
 		guard let rear = last.last?.wrappedBikeName else {return ""}
@@ -94,6 +92,18 @@ class BikeViewModel: ObservableObject {
 		hasRearShock = getRear(name)
 		isDefault = getDefault(name)
     }
+	
+	func getSetupIndex(bike: Bike) {
+		let setupIndex: Int
+		if bike.hasRearShock == false {
+			setupIndex = 0
+		} else if bike.rearSetup?.isCoil == true {
+			setupIndex = 3
+		} else {
+			setupIndex = 2
+		}
+		self.rearSetupIndex = setupIndex
+	}
 	
 	func saveNewBike(fork: Fork, rearShock: RearShock) {
 		let newBike = Bike(context: managedObjectContext)
@@ -157,7 +167,7 @@ class BikeViewModel: ObservableObject {
 		
 	}
 	
-	
+	//TODO: this doesnt seem to work but works in the AddBikeView
 	func checkBikeNameExists() {
 		let filteredBikes = try! managedObjectContext.fetch(Bike.bikesFetchRequest())
 		for bike in filteredBikes {

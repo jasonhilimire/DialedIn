@@ -14,6 +14,11 @@ struct RearSetupFormView: View {
 	@ObservedObject var rearShockVM = RearShockViewModel()
 	@ObservedObject var rearServiceVM = RearServiceViewModel()
 	
+	@State var rearSetupIndex = 1
+	@State var rearSetups = ["None", "Air", "Coil"]
+	
+	@Binding var isAdd: Bool
+	
     var body: some View {
 		Section(header:
 					HStack {
@@ -24,16 +29,18 @@ struct RearSetupFormView: View {
 						Text("Shock Details")
 					}
 		){
-			Picker("Rear Setup", selection: $bikeVM.rearSetupIndex) {
+			Picker("Rear Setup", selection: $rearSetupIndex) {
 				ForEach(0..<bikeVM.rearSetups.count) { index in
 					Text(self.bikeVM.rearSetups[index]).tag(index)
 				}
 			}.pickerStyle(SegmentedPickerStyle())
 			
+// TODO: how to pass setup index to ViewModel ?? If using from ViewModel- on edit setup its correct, but changing has no effect same with ADD
+// TODO: REMOVED DatePicker When in edit view
+
 			// Display Form based on rear setup from Picker
 			if bikeVM.rearSetupIndex == 0 {
 				Text("No Rear Suspension").fontWeight(.thin)
-				
 			} else if bikeVM.rearSetupIndex == 1 { //AIR SHOCK
 				HStack {
 					Text("Rear Name/Info:").fontWeight(.thin)
@@ -54,12 +61,14 @@ struct RearSetupFormView: View {
 				
 				Toggle(isOn: $rearShockVM.dualCompression.animation(), label: {Text("Dual Compression?").fontWeight(.thin)})
 				
-				DatePicker(selection: $rearServiceVM.airCanServicedDate, in: ...Date(), displayedComponents: .date) {
-					Text("Last Air Can Service").fontWeight(.thin)
-				}
-				
-				DatePicker(selection: $rearServiceVM.fullServiceDate, in: ...Date(), displayedComponents: .date) {
-					Text("Last Rear Full Service").fontWeight(.thin)
+				if isAdd == true {
+					DatePicker(selection: $rearServiceVM.airCanServicedDate, in: ...Date(), displayedComponents: .date) {
+						Text("Last Air Can Service").fontWeight(.thin)
+					}
+					
+					DatePicker(selection: $rearServiceVM.fullServiceDate, in: ...Date(), displayedComponents: .date) {
+						Text("Last Rear Full Service").fontWeight(.thin)
+					}
 				}
 			} else if bikeVM.rearSetupIndex == 2 { // COIL SHOCK
 				HStack {
@@ -81,12 +90,15 @@ struct RearSetupFormView: View {
 				
 				Toggle(isOn: $rearShockVM.dualRebound.animation(), label: {Text("Dual Compression?").fontWeight(.thin)})
 				
-				DatePicker(selection: $rearServiceVM.fullServiceDate, in: ...Date(), displayedComponents: .date) {
-					Text("Last Rear Full Service").fontWeight(.thin)
+				if isAdd == true {
+					DatePicker(selection: $rearServiceVM.fullServiceDate, in: ...Date(), displayedComponents: .date) {
+						Text("Last Rear Full Service").fontWeight(.thin)
+					}
 				}
 			}
 		}
-    }
+	}
+	
 }
 
 
