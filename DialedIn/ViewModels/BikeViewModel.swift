@@ -61,31 +61,38 @@ class BikeViewModel: ObservableObject {
 		return filteredBike
 	}
 	
-//TODO: REFACTOR to incluce forName: String into each below & getBike
-	func getRear() -> Bool {
-		let last = filterBikes(for: bikeName ?? "")
+	
+
+	func getName(_ bikeName: String) -> String {
+		let last = filterBikes(for: bikeName)
+		guard let rear = last.last?.wrappedBikeName else {return ""}
+		return rear
+	}
+	
+	func getRear(_ bikeName: String) -> Bool {
+		let last = filterBikes(for: bikeName)
 		guard let rear = last.last?.hasRearShock else {return true}
 		return rear
 	}
 	
-	func getDefault() -> Bool {
-		let last = filterBikes(for: bikeName ?? "")
+	func getDefault(_ bikeName: String) -> Bool {
+		let last = filterBikes(for: bikeName)
 		guard let rear = last.last?.isDefault else {return false}
 		return rear
 	}
 	
 	
-	func getNote() -> String {
-		let last = filterBikes(for: bikeName ?? "")
+	func getNote(_ bikeName: String) -> String {
+		let last = filterBikes(for: bikeName)
 		guard let rear = last.last?.bikeNote else {return ""}
 		return rear
 	}
 	
-    func getBike() {
-//TODO: Add BikeName here?? 
-        bikeNote = getNote()
-		hasRearShock = getRear()
-		isDefault = getDefault()
+	func getBike(for name: String) {
+		bikeName = getName(name)
+        bikeNote = getNote(name)
+		hasRearShock = getRear(name)
+		isDefault = getDefault(name)
     }
 	
 	func saveNewBike(fork: Fork, rearShock: RearShock) {

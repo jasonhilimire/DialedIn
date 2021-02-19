@@ -16,6 +16,8 @@ struct BikeDetailCardView: View {
 	@State var wrenchImage = "wrench"
 	@State var symbolImage = "square.and.pencil"
 	@State var isFromBikeCard = true
+	
+
 
 	let bike: Bike
 	
@@ -25,6 +27,7 @@ struct BikeDetailCardView: View {
 			VStack{
 				HStack {
 					Button(action: {
+						
 						self.showScreenBool.isShowingService.toggle()
 						publishBikeName()
 					}) {
@@ -34,6 +37,7 @@ struct BikeDetailCardView: View {
 					Spacer()
 					
 					Button(action: {
+						
 						self.showScreenBool.isShowingEdit.toggle()
 						publishBikeName()
 
@@ -54,10 +58,13 @@ struct BikeDetailCardView: View {
 		.cornerRadius(20)
 		.padding(.horizontal, 20)
 		.customShadow()
+		
+
 	}
 	
 	func publishBikeName() {
 		self.showScreenBool.bikeName = bike.name ?? "Unknown"
+		
 	}
 	
 }

@@ -230,8 +230,8 @@
 			isa = PBXGroup;
 			children = (
 				A31606012523BF3E009071E9 /* BikesView.swift */,
-				A31605EF2523B976009071E9 /* BikeCardView.swift */,
 				A33C7F85254DF741002E6F47 /* BikeCardFlipView.swift */,
+				A31605EF2523B976009071E9 /* BikeCardView.swift */,
 			);
 			path = BikeCards;
 			sourceTree = "<group>";

@@ -15,15 +15,12 @@ struct EditBikeDetailView: View {
 	@Environment(\.managedObjectContext) var moc
 	@Environment(\.presentationMode) var presentationMode
 	
-	@EnvironmentObject var showScreenBool: BoolModel
+	@EnvironmentObject var boolModel: BoolModel
 	
 	@ObservedObject var forkVM = ForkViewModel()
 	@ObservedObject var rearShockVM = RearShockViewModel()
 	@ObservedObject var bikeVM = BikeViewModel()
-//	@ObservedObject var front = NoteFrontSetupViewModel()
-//	@ObservedObject var rear = NoteRearSetupModel()
-	
-	@State private var bikeName = ""
+
 	@State private var bikeNote = ""
 	@State private var setDefault = false
 	
@@ -43,50 +40,49 @@ struct EditBikeDetailView: View {
 	
 	@State private var saveText = "Save"
 	
-//	let bike: Bike
-////
-//	init() {
-//		let bikeName = self.showScreenBool.bikeName
-//		bikeVM.filterBikes(for: bikeName)
-//		bikeVM.getBike()
-//		forkVM.getForkSettings(bikeName: bikeName)
-//		rearShockVM.getRearSetup(bikeName: bikeName)
-//	}
+	let bike: Bike
+//
+	init(bike: Bike) {
+		self.bike = bike
+		let bikeName = bike.name
+		bikeVM.getBike(for: bikeName!)
+		forkVM.getForkSettings(bikeName: bikeName!)
+		rearShockVM.getRearSetup(bikeName: bikeName!)
+	}
 	
 	//TODO: figure out how to only allow 1 default bike
 	//MARK: - BODY -
 	var body: some View {
-//		NavigationView {
-			VStack {
-				Form {
-					BikeDetailFormView(bikeVM: bikeVM)
-					
-					// MARK: - Front Setup -
-					ForkSetupFormView(forkVM: forkVM)
-					
-					// MARK: - REAR SETUP -
-					RearSetupFormView(bikeVM: bikeVM, rearShockVM: rearShockVM)
+		VStack {
+			Form {
+				BikeDetailFormView(bikeVM: bikeVM)
+				
+				// MARK: - Front Setup -
+				ForkSetupFormView(forkVM: forkVM)
+				
+				// MARK: - REAR SETUP -
+				RearSetupFormView(bikeVM: bikeVM, rearShockVM: rearShockVM)
 
-				} //: FORM
-				Button(action: {
-					//dismisses the sheet
-					self.updateBike()
-					
-					withAnimation(.linear(duration: 0.05), {
-						self.saveText = "     SAVED!!     "  // no idea why, but have to add spaces here other wise it builds the word slowly with SA...., annoying as all hell
-					})
-					
-					try? self.moc.save()
-					hapticSuccess()
-					DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-						self.presentationMode.wrappedValue.dismiss()
-					}
-				}) {
-					SaveButtonView(buttonText: $saveText)
-				}.buttonStyle(OrangeButtonStyle())
-			.animation(.default)
+			} //: FORM
+			Button(action: {
+				//dismisses the sheet
+				self.updateBike()
+				
+				withAnimation(.linear(duration: 0.05), {
+					self.saveText = "     SAVED!!     "  // no idea why, but have to add spaces here other wise it builds the word slowly with SA...., annoying as all hell
+				})
+				
+				try? self.moc.save()
+				hapticSuccess()
+				DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+					self.presentationMode.wrappedValue.dismiss()
+				}
+			}) {
+				SaveButtonView(buttonText: $saveText)
+			}.buttonStyle(OrangeButtonStyle())
+		.animation(.default)
 		}
-			.onAppear(perform: {self.setup()})
+//			.onAppear(perform: {self.setup()})
 	}
 	
 	//MARK: - FUNCTIONS -
@@ -134,10 +130,11 @@ struct EditBikeDetailView: View {
 	}
 	
 	func setup(){
-////		bikeName = self.bike.wrappedBikeName
-		bikeName = showScreenBool.bikeName
-		bikeVM.filterBikes(for: bikeName)
-		bikeVM.getBike()
+		
+		let bikeName = boolModel.bikeName
+		
+//TODO: name is here but not setting this up properly?? issue with BoolModel environment object overlap? -> also shoulw be passing a Bike Type in here properly, but how to get from BikesView??
+		bikeVM.getBike(for: bikeName)
 		forkVM.getForkSettings(bikeName: bikeName)
 		rearShockVM.getRearSetup(bikeName: bikeName)
 //		let bike = fetchBike(for: bikeName)

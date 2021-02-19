@@ -59,6 +59,8 @@ struct HomeStyledCardView: View {
 	
 	@State private var bikeName = ""
 	@State private var isFromBikeCard = true
+	@State private var showServiceView = false
+	@State private var showEditBikeDetailView = false
 	
 	
 	let bike: Bike
@@ -96,8 +98,10 @@ struct HomeStyledCardView: View {
 		.contextMenu {
 			VStack {
 				Button(action: {
-					self.showScreenBool.isShowingService.toggle()
 					publishBikeName()
+					self.showServiceView.toggle()
+//					self.showScreenBool.isShowingService.toggle()
+					
 				}) {
 					HStack {
 						Text("Add Service")
@@ -105,8 +109,10 @@ struct HomeStyledCardView: View {
 						}
 					}
 				Button(action: {
-					self.showScreenBool.isShowingEdit.toggle()
 					publishBikeName()
+					self.showEditBikeDetailView.toggle()
+//					self.showScreenBool.isShowingEdit.toggle()
+					
 				}) {
 					HStack {
 						Text("Edit Bike")
@@ -117,13 +123,14 @@ struct HomeStyledCardView: View {
 		} //: END CONTEXT
 
 		// nested background view to show 2 sheets in same view...
-		.background(EmptyView().sheet(isPresented: $showScreenBool.isShowingService) {
-			ServiceView(isFromBikeCard: $isFromBikeCard, bike: bike)
+		.background(EmptyView().sheet(isPresented: $showServiceView) {
+			ServiceView(isFromBikeCard: $isFromBikeCard)
 				.environmentObject(self.showScreenBool)
 				.environment(\.managedObjectContext, self.moc)
 		}
-		.background(EmptyView().sheet(isPresented: $showScreenBool.isShowingEdit) {
-			EditBikeDetailView()
+		
+		.background(EmptyView().sheet(isPresented: $showEditBikeDetailView) {
+			EditBikeDetailView(bike: bike)
 				.environmentObject(self.showScreenBool)
 				.environment(\.managedObjectContext, self.moc)
 		}))

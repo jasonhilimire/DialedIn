@@ -30,7 +30,7 @@ struct ServiceView: View {
 	@State private var opacity: Double = 1
 	
 	var isFromBikeCard: Binding<Bool>?
-	let bike: Bike?
+//	let bike: Bike?
 
 	
 	var body: some View {

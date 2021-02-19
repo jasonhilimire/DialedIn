@@ -19,11 +19,13 @@ struct BikesView: View {
 	
 	@EnvironmentObject var showScreenBool: BoolModel
 	
+	@ObservedObject var bikeVM = BikeViewModel()
+	
 	// bool to show the Sheet
 	@State private var showingAddScreen = false
-	@State private var showingEditScreen = false
+	@State private var showEditBikeDetailView = false
+	@State private var showServiceView = false
 	@State var isFromBikeCard = true
-	
 	// Published if Objects did change- seems to be working, but seems flaky
 	@State private var refreshing = false
 	private var didChange =  NotificationCenter.default.publisher(for: .NSManagedObjectContextObjectsDidChange)
@@ -43,6 +45,7 @@ struct BikesView: View {
 					// here is the listener for published context event
 					.onReceive(self.didChange) { _ in
 						self.refreshing.toggle()
+						
 					}
 				}
 			} //: SCROLLVIEW
@@ -51,18 +54,7 @@ struct BikesView: View {
 				AddBikeView().environment(\.managedObjectContext, self.moc)
 			}
 			
-			
-			// nested background view to show 2 sheets in same view...
-			.background(EmptyView().sheet(isPresented: $showScreenBool.isShowingService) {
-				ServiceView(isFromBikeCard: $isFromBikeCard, bike: nil) 
-					.environmentObject(self.showScreenBool)
-					.environment(\.managedObjectContext, self.moc)
-			}
-						.background(EmptyView().sheet(isPresented: $showScreenBool.isShowingEdit) {
-							EditBikeDetailView()
-								.environmentObject(self.showScreenBool)
-								.environment(\.managedObjectContext, self.moc)
-						}))
+
 			
 			.listStyle(InsetGroupedListStyle())
 			.navigationBarTitle("Dialed In - Bikes")
@@ -75,12 +67,19 @@ struct BikesView: View {
 					.font(.system(size: 35))
 				}
 			})
+			// nested background view to show 2 sheets in same view...
+			.background(EmptyView().sheet(isPresented: $showScreenBool.isShowingService) {
+				ServiceView(isFromBikeCard: $isFromBikeCard)
+					.environmentObject(self.showScreenBool)
+					.environment(\.managedObjectContext, self.moc)
+			}
+			
+			.background(EmptyView().sheet(isPresented: $showScreenBool.isShowingEdit) {
+				EditBikeDetailView(bike: bikeVM.filterBikes(for: showScreenBool.bikeName)[0]) // would like this to be cleaner but its working!
+					.environmentObject(self.showScreenBool)
+					.environment(\.managedObjectContext, self.moc)
+			}))
 		}
 	}
 }
 
-struct BikesView_Previews: PreviewProvider {
-    static var previews: some View {
-        BikesView()
-    }
-}

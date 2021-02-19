@@ -69,7 +69,7 @@ struct NoBikes_HomeScreenExampleView: View {
 				case .addNote:
 					AddNoteView()
 				case .addService:
-					ServiceView(bike: nil)
+					ServiceView()
 				case .addBike:
 					AddBikeView()
 			}

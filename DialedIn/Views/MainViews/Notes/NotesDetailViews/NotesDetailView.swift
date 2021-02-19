@@ -36,7 +36,6 @@ struct NotesDetailView: View {
 	
 	// MARK - BODY -
 	var body: some View {
-		//TODO: Spacing isnt working to push Save button to bottom of view any longer?? did when was ZStack?
 		ScrollView {
 			VStack{
 				VStack {

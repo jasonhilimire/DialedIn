@@ -8,7 +8,6 @@
 
 import SwiftUI
 
-//TODO: fix why the CustomTextField doesnt work here? but works fine in fork & rear setup
 
 struct BikeDetailFormView: View {
 	@ObservedObject var bikeVM = BikeViewModel()
