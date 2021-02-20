@@ -22,7 +22,6 @@ struct AddBikeView: View {
 	
 
     @State private var rearSetupIndex = 1
-    @State private var rearSetups = ["None", "Air", "Coil"]
 
 	@State private var saveText = "Save"
 	@State private var isAdd = true
@@ -40,7 +39,7 @@ struct AddBikeView: View {
 					ForkSetupFormView(forkVM: forkVM, frontServiceVM: frontServiceVM, isAdd: $isAdd)
                     
 					// MARK: - REAR SETUP -
-					RearSetupFormView(bikeVM: bikeVM, rearShockVM: rearShockVM, rearServiceVM: rearServiceVM, isAdd: $isAdd)
+					RearSetupFormView(bikeVM: bikeVM, rearShockVM: rearShockVM, rearServiceVM: rearServiceVM, rearSetupIndex: $rearSetupIndex, isAdd: $isAdd)
 
                 } .navigationBarTitle("Bike Info", displayMode: .inline)
 				.alert(isPresented: $duplicateNameAlert) {

@@ -14,11 +14,11 @@ struct RearSetupFormView: View {
 	@ObservedObject var rearShockVM = RearShockViewModel()
 	@ObservedObject var rearServiceVM = RearServiceViewModel()
 	
-	@State var rearSetupIndex = 1
+	@Binding var rearSetupIndex: Int
 	@State var rearSetups = ["None", "Air", "Coil"]
 	
 	@Binding var isAdd: Bool
-	
+
     var body: some View {
 		Section(header:
 					HStack {
@@ -34,14 +34,18 @@ struct RearSetupFormView: View {
 					Text(self.bikeVM.rearSetups[index]).tag(index)
 				}
 			}.pickerStyle(SegmentedPickerStyle())
+
+
 			
 // TODO: how to pass setup index to ViewModel ?? If using from ViewModel- on edit setup its correct, but changing has no effect same with ADD
 // TODO: REMOVED DatePicker When in edit view
 
 			// Display Form based on rear setup from Picker
-			if bikeVM.rearSetupIndex == 0 {
+
+			if rearSetupIndex == 0 {
 				Text("No Rear Suspension").fontWeight(.thin)
-			} else if bikeVM.rearSetupIndex == 1 { //AIR SHOCK
+				
+			} else if rearSetupIndex == 1 { //AIR SHOCK
 				HStack {
 					Text("Rear Name/Info:").fontWeight(.thin)
 					CustomTextField(text: $rearShockVM.info ?? "", placeholder: "Add Rear Info")
@@ -70,7 +74,7 @@ struct RearSetupFormView: View {
 						Text("Last Rear Full Service").fontWeight(.thin)
 					}
 				}
-			} else if bikeVM.rearSetupIndex == 2 { // COIL SHOCK
+			} else if rearSetupIndex == 2 { // COIL SHOCK
 				HStack {
 					Text("Rear Name/Info:").fontWeight(.thin)
 					CustomTextField(text: $rearShockVM.info ?? "", placeholder: "Add Rear Info")
@@ -78,7 +82,7 @@ struct RearSetupFormView: View {
 				
 				HStack {
 					Text("Shock Stroke (mm):").fontWeight(.thin)
-					CustomNumberField(text: $rearShockVM.strokeLengthString ?? "0.0", placeholder: "Enter Shock Stroke in mm")
+					CustomNumberField(text: $rearShockVM.strokeLengthString ?? "0.0", placeholder: "Used for Sag Calculation")
 				}
 				
 				HStack {
@@ -97,8 +101,16 @@ struct RearSetupFormView: View {
 				}
 			}
 		}
+		.onDisappear(perform: {
+			rearIndexChange()
+		})
 	}
 	
+	func rearIndexChange(){
+		bikeVM.rearSetupIndex = rearSetupIndex
+	}
+	
+
 }
 
 

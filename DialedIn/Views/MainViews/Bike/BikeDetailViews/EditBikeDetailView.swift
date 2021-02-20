@@ -23,7 +23,7 @@ struct EditBikeDetailView: View {
 	
 	@State private var saveText = "Save"
 	@State private var isAdd = false
-	
+
 	let bike: Bike
 //
 	init(bike: Bike) {
@@ -46,7 +46,7 @@ struct EditBikeDetailView: View {
 				ForkSetupFormView(forkVM: forkVM, isAdd: $isAdd)
 				
 				// MARK: - REAR SETUP -
-				RearSetupFormView(bikeVM: bikeVM, rearShockVM: rearShockVM, isAdd: $isAdd)
+				RearSetupFormView(bikeVM: bikeVM, rearShockVM: rearShockVM, rearSetupIndex: $bikeVM.rearSetupIndex, isAdd: $isAdd)
 
 			} //: FORM
 			Button(action: {

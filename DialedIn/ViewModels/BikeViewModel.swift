@@ -98,9 +98,9 @@ class BikeViewModel: ObservableObject {
 		if bike.hasRearShock == false {
 			setupIndex = 0
 		} else if bike.rearSetup?.isCoil == true {
-			setupIndex = 3
-		} else {
 			setupIndex = 2
+		} else {
+			setupIndex = 1
 		}
 		self.rearSetupIndex = setupIndex
 	}
@@ -119,17 +119,14 @@ class BikeViewModel: ObservableObject {
 
 		// - Rear Creation based on Index -
 		if self.rearSetupIndex == 1 { //AirShock
-			// set coil to false
-			newBike.hasRearShock = true
-		} else if self.rearSetupIndex == 2 { //CoilShock
-			// set coil to false
 			newBike.hasRearShock = true
 			newBike.rearSetup?.isCoil = false
-
-		} else if self.rearSetupIndex == 0 { // No Shock
-			// set coil to true
-			newBike.hasRearShock = false
+		} else if self.rearSetupIndex == 2 { //CoilShock
+			newBike.hasRearShock = true
 			newBike.rearSetup?.isCoil = true
+		} else if self.rearSetupIndex == 0 { // No Shock
+			newBike.hasRearShock = false
+			newBike.rearSetup?.isCoil = false
 		}
 		
 		try? self.managedObjectContext.save()
