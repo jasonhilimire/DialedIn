@@ -70,7 +70,7 @@ struct EditBikeDetailView: View {
 	
 	func updateBike() {
 // TODO: Updates bike correctly if it comes from BikeCards, if from HomeView only updates Toggles??
-// TODO: If from BikeCard- will crash if override Bike Name
+		boolModel.bikeName = bikeVM.bikeName ?? "" // republish the BoolModel Name so EditBikeDetail doesnt crash
 		let updatedFork = forkVM.updateFork(fork: bike.frontSetup!)
 		let updatedRear = rearShockVM.updateRearShock(rear: bike.rearSetup!)
 		bikeVM.updateBike(bike: bike, fork: updatedFork, rearShock: updatedRear)

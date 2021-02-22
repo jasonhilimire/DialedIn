@@ -45,7 +45,6 @@ struct BikesView: View {
 					// here is the listener for published context event
 					.onReceive(self.didChange) { _ in
 						self.refreshing.toggle()
-						
 					}
 				}
 			} //: SCROLLVIEW
@@ -53,8 +52,6 @@ struct BikesView: View {
 			.sheet(isPresented: $showingAddScreen)  {
 				AddBikeView().environment(\.managedObjectContext, self.moc)
 			}
-			
-
 			
 			.listStyle(InsetGroupedListStyle())
 			.navigationBarTitle("Dialed In - Bikes")
@@ -75,7 +72,7 @@ struct BikesView: View {
 			}
 			
 			.background(EmptyView().sheet(isPresented: $showScreenBool.isShowingEdit) {
-				EditBikeDetailView(bike: bikeVM.filterBikes(for: showScreenBool.bikeName)[0]) // TODO: FAILS IF CHANGE BIKE NAME
+				EditBikeDetailView(bike: bikeVM.filterBikes(for: showScreenBool.bikeName)[0]) // TODO: gotta be a better way?? but works for now
 					.environmentObject(self.showScreenBool)
 					.environment(\.managedObjectContext, self.moc)
 			}))
