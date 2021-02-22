@@ -38,7 +38,6 @@ struct RearSetupFormView: View {
 
 			
 // TODO: how to pass setup index to ViewModel ?? If using from ViewModel- on edit setup its correct, but changing has no effect same with ADD
-// TODO: REMOVED DatePicker When in edit view
 
 			// Display Form based on rear setup from Picker
 

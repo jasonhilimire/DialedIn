@@ -181,7 +181,7 @@ class RearShockViewModel: ObservableObject {
 		
 	}
 	
-	func updateRearShock(_ rear: RearShock) -> RearShock {
+	func updateRearShock(rear: RearShock) -> RearShock {
 		managedObjectContext.performAndWait {
 			rear.dualCompression = self.dualCompression
 			rear.dualRebound = self.dualRebound

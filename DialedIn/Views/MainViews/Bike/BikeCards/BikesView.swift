@@ -75,7 +75,7 @@ struct BikesView: View {
 			}
 			
 			.background(EmptyView().sheet(isPresented: $showScreenBool.isShowingEdit) {
-				EditBikeDetailView(bike: bikeVM.filterBikes(for: showScreenBool.bikeName)[0]) // would like this to be cleaner but its working!
+				EditBikeDetailView(bike: bikeVM.filterBikes(for: showScreenBool.bikeName)[0]) // TODO: FAILS IF CHANGE BIKE NAME
 					.environmentObject(self.showScreenBool)
 					.environment(\.managedObjectContext, self.moc)
 			}))
