@@ -88,8 +88,10 @@ class BikeViewModel: ObservableObject {
 	
 	func getBike(for name: String) {
 		bikeName = getName(name)
+		print("getBikeName: \(bikeName)")
         bikeNote = getNote(name)
 		hasRearShock = getRear(name)
+	
 		isDefault = getDefault(name)
     }
 	
@@ -118,15 +120,19 @@ class BikeViewModel: ObservableObject {
 		newBike.rearSetup = rearShock
 
 		// - Rear Creation based on Index -
-		if self.rearSetupIndex == 1 { //AirShock
-			newBike.hasRearShock = true
-			newBike.rearSetup?.isCoil = false
-		} else if self.rearSetupIndex == 2 { //CoilShock
-			newBike.hasRearShock = true
-			newBike.rearSetup?.isCoil = true
-		} else if self.rearSetupIndex == 0 { // No Shock
+		if self.rearSetupIndex == 0 { //Hardtail
 			newBike.hasRearShock = false
 			newBike.rearSetup?.isCoil = false
+			
+		} else if self.rearSetupIndex == 1 { //AirShock
+			// set coil to false
+			newBike.hasRearShock = true
+			newBike.rearSetup?.isCoil = false
+			
+		} else if self.rearSetupIndex == 2 { // Coil
+			// set coil to true
+			newBike.hasRearShock = true
+			newBike.rearSetup?.isCoil = true
 		}
 		
 		try? self.managedObjectContext.save()
@@ -143,25 +149,24 @@ class BikeViewModel: ObservableObject {
 			bike.rearSetup = rearShock
 			
 			// - Rear Creation based on Index -
-			if self.rearSetupIndex == 1 { //AirShock
-				// set coil to false
-				bike.hasRearShock = true
-			} else if self.rearSetupIndex == 2 { //CoilShock
+			if self.rearSetupIndex == 0 { //Hardtail
+				bike.hasRearShock = false
+				bike.rearSetup?.isCoil = false
+				
+			} else if self.rearSetupIndex == 1 { //AirShock
 				// set coil to false
 				bike.hasRearShock = true
 				bike.rearSetup?.isCoil = false
 				
-			} else if self.rearSetupIndex == 0 { // No Shock
+			} else if self.rearSetupIndex == 2 { // Coil
 				// set coil to true
-				bike.hasRearShock = false
+				bike.hasRearShock = true
 				bike.rearSetup?.isCoil = true
 			}
 			if self.managedObjectContext.hasChanges {
 				try? self.managedObjectContext.save()
 			}
 		}
-		
-		
 	}
 	
 	//TODO: this doesnt seem to work but works in the AddBikeView
@@ -176,96 +181,3 @@ class BikeViewModel: ObservableObject {
 	}
 
 }
-
-
-// PRIOR SAVE NEW BIKE
-/*
-{
-// start at the child and work way up with creating Entities
-/// Setup
-let newRearService = RearService(context: self.moc)
-newRearService.service = RearShock(context: self.moc)
-let newRearShock = newRearService.service
-newRearService.service?.bike = Bike(context: self.moc)
-let newFrontService = FrontService(context: self.moc)
-newFrontService.service = Fork(context: self.moc)
-let newFork = newFrontService.service
-let newBike = newRearService.service?.bike
-let dateString = dateFormatter.string(from: Date())
-
-
-// - Bike Creation
-
-newBike?.name = self.bikeName // function check here
-newBike?.bikeNote = self.bikeNote
-newBike?.isDefault = self.setDefault
-newBike?.id = UUID()
-
-// - Front Creation
-newFrontService.service?.bike = newBike
-newFork?.travel = Double(self.forkTravel) ?? 0.0
-newFork?.dualCompression = self.forkDualCompToggle
-newFork?.dualRebound = self.forkDualReboundToggle
-if self.forkInfo == "" {
-newFork?.info = "Fork"
-} else {
-newFork?.info = self.forkInfo
-}
-newFork?.id = UUID()
-newFrontService.lowersService = self.lastLowerServiceDate
-newFrontService.fullService = self.lastFullForkServiceDate
-newFrontService.serviceNote = "Bike Created: \(dateString), no services found yet"
-newFrontService.id = UUID()
-
-
-// - Rear Creation -
-
-
-if self.rearSetupIndex == 1 {
-newBike?.hasRearShock = true
-if rearInfo == "" {
-newRearShock?.info = "Rear Shock"
-} else {
-newRearShock?.info = self.rearInfo
-}
-newRearShock?.strokeLength = Double(self.strokeLength) ?? 0.0
-newRearShock?.rearTravel = Double(self.rearTravel) ?? 0.0
-newRearShock?.dualCompression = self.rearDualCompToggle
-newRearShock?.dualRebound = self.rearDualCompToggle
-newRearShock?.isCoil = self.isCoilToggle
-newRearService.airCanService = self.lastAirCanServiceDate
-newRearService.fullService = self.lastRearFullServiceDate
-
-newRearService.serviceNote = "Bike Created: \(dateString), no services found yet"
-newRearShock?.id = UUID()
-newRearService.id = UUID()
-
-} else if self.rearSetupIndex == 2 {
-self.isCoilToggle.toggle()
-
-newBike?.hasRearShock = true
-if rearInfo == "" {
-newRearShock?.info = "Rear Shock"
-} else {
-newRearShock?.info = self.rearInfo
-}
-newRearShock?.strokeLength = Double(self.strokeLength) ?? 0.0
-newRearShock?.rearTravel = Double(self.rearTravel) ?? 0.0
-newRearShock?.dualCompression = self.rearDualCompToggle
-newRearShock?.dualRebound = self.rearDualCompToggle
-newRearShock?.isCoil = self.isCoilToggle
-newRearService.airCanService = self.lastAirCanServiceDate
-newRearService.fullService = self.lastRearFullServiceDate
-newRearService.serviceNote = "Bike Created: \(dateString), no services found yet"
-newRearShock?.id = UUID()
-newRearService.id = UUID()
-
-} else if self.rearSetupIndex == 0 {
-newBike?.hasRearShock = false
-newRearShock?.isCoil = false
-newRearShock?.id = UUID()
-newRearService.id = UUID()
-}
-
-}
-*/

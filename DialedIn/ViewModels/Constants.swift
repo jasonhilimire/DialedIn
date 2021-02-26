@@ -251,7 +251,7 @@ func daysBetween(start: Date, end: Date) -> Int {
 }
 
 // Performs a fetch request for selected Bike and returns it
-
+//TODO: Create this using bike ID??
 func fetchBike(for bikeName: String) -> Bike {
 	let moc = PersistentCloudKitContainer.persistentContainer.viewContext
 	var bikes : [Bike] = []

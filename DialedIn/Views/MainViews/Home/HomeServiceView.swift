@@ -100,8 +100,6 @@ struct HomeStyledCardView: View {
 				Button(action: {
 					publishBikeName()
 					self.showServiceView.toggle()
-//					self.showScreenBool.isShowingService.toggle()
-					
 				}) {
 					HStack {
 						Text("Add Service")
@@ -111,8 +109,6 @@ struct HomeStyledCardView: View {
 				Button(action: {
 					publishBikeName()
 					self.showEditBikeDetailView.toggle()
-//					self.showScreenBool.isShowingEdit.toggle()
-					
 				}) {
 					HStack {
 						Text("Edit Bike")
@@ -124,7 +120,7 @@ struct HomeStyledCardView: View {
 
 		// nested background view to show 2 sheets in same view...
 		.background(EmptyView().sheet(isPresented: $showServiceView) {
-			ServiceView(isFromBikeCard: $isFromBikeCard)
+			AddServiceView(isFromBikeCard: $isFromBikeCard)
 				.environmentObject(self.showScreenBool)
 				.environment(\.managedObjectContext, self.moc)
 		}

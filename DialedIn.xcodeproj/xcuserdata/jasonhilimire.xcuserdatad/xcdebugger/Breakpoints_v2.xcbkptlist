@@ -3,4 +3,174 @@
    uuid = "4A1036B6-8845-440D-9EF7-A896D48B763A"
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "206CEDE2-CEC0-46D0-A5F5-A3A2A7BFAD12"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DialedIn/ViewModels/ForkViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "36"
+            endingLineNumber = "36"
+            landmarkName = "info"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "206CEDE2-CEC0-46D0-A5F5-A3A2A7BFAD12 - 68542678ac853776"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "property wrapper backing initializer of Dialed_In.ForkViewModel.info : Swift.Optional&lt;Swift.String&gt;"
+                  moduleName = "Dialed In"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jasonhilimire/Coding/Active%20Projects/DialedIn/DialedIn/ViewModels/ForkViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "36"
+                  endingLineNumber = "36"
+                  offsetFromSymbolStart = "27">
+               </Location>
+               <Location
+                  uuid = "206CEDE2-CEC0-46D0-A5F5-A3A2A7BFAD12 - 47bdf537a3362f59"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Dialed_In.ForkViewModel.info.getter : Swift.Optional&lt;Swift.String&gt;"
+                  moduleName = "Dialed In"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jasonhilimire/Coding/Active%20Projects/DialedIn/DialedIn/ViewModels/ForkViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "36"
+                  endingLineNumber = "36"
+                  offsetFromSymbolStart = "112">
+               </Location>
+               <Location
+                  uuid = "206CEDE2-CEC0-46D0-A5F5-A3A2A7BFAD12 - ce9e43a9df86bf1d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Dialed_In.ForkViewModel.info.setter : Swift.Optional&lt;Swift.String&gt;"
+                  moduleName = "Dialed In"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jasonhilimire/Coding/Active%20Projects/DialedIn/DialedIn/ViewModels/ForkViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "36"
+                  endingLineNumber = "36"
+                  offsetFromSymbolStart = "156">
+               </Location>
+               <Location
+                  uuid = "206CEDE2-CEC0-46D0-A5F5-A3A2A7BFAD12 - c54e459df5bbe68e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Dialed_In.ForkViewModel.info.modify : Swift.Optional&lt;Swift.String&gt;"
+                  moduleName = "Dialed In"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jasonhilimire/Coding/Active%20Projects/DialedIn/DialedIn/ViewModels/ForkViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  uuid = "206CEDE2-CEC0-46D0-A5F5-A3A2A7BFAD12 - c8bcb4f2927e6cb"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Dialed_In.ForkViewModel.info.modify : Swift.Optional&lt;Swift.String&gt; with unmangled suffix &quot;.resume.0&quot;"
+                  moduleName = "Dialed In"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jasonhilimire/Coding/Active%20Projects/DialedIn/DialedIn/ViewModels/ForkViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "36"
+                  endingLineNumber = "36"
+                  offsetFromSymbolStart = "24">
+               </Location>
+               <Location
+                  uuid = "206CEDE2-CEC0-46D0-A5F5-A3A2A7BFAD12 - 2000e7efd793b8f4"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Dialed_In.ForkViewModel.$info.getter : Combine.Published&lt;Swift.Optional&lt;Swift.String&gt;&gt;.Publisher"
+                  moduleName = "Dialed In"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jasonhilimire/Coding/Active%20Projects/DialedIn/DialedIn/ViewModels/ForkViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "36"
+                  endingLineNumber = "36"
+                  offsetFromSymbolStart = "110">
+               </Location>
+               <Location
+                  uuid = "206CEDE2-CEC0-46D0-A5F5-A3A2A7BFAD12 - f687e6ef949c50dc"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Dialed_In.ForkViewModel.$info.setter : Combine.Published&lt;Swift.Optional&lt;Swift.String&gt;&gt;.Publisher"
+                  moduleName = "Dialed In"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jasonhilimire/Coding/Active%20Projects/DialedIn/DialedIn/ViewModels/ForkViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "36"
+                  endingLineNumber = "36"
+                  offsetFromSymbolStart = "233">
+               </Location>
+               <Location
+                  uuid = "206CEDE2-CEC0-46D0-A5F5-A3A2A7BFAD12 - df87ebda95306133"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Dialed_In.ForkViewModel.$info.modify : Combine.Published&lt;Swift.Optional&lt;Swift.String&gt;&gt;.Publisher"
+                  moduleName = "Dialed In"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jasonhilimire/Coding/Active%20Projects/DialedIn/%3Ccompiler-generated%3E"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "53">
+               </Location>
+               <Location
+                  uuid = "206CEDE2-CEC0-46D0-A5F5-A3A2A7BFAD12 - 4b113432ef420a7d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Dialed_In.ForkViewModel.$info.modify : Combine.Published&lt;Swift.Optional&lt;Swift.String&gt;&gt;.Publisher with unmangled suffix &quot;.resume.0&quot;"
+                  moduleName = "Dialed In"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jasonhilimire/Coding/Active%20Projects/DialedIn/DialedIn/ViewModels/ForkViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "36"
+                  endingLineNumber = "36"
+                  offsetFromSymbolStart = "17">
+               </Location>
+               <Location
+                  uuid = "206CEDE2-CEC0-46D0-A5F5-A3A2A7BFAD12 - 3f6b89ef6798f21d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Dialed_In.ForkViewModel.init() -&gt; Dialed_In.ForkViewModel"
+                  moduleName = "Dialed In"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jasonhilimire/Coding/Active%20Projects/DialedIn/DialedIn/ViewModels/ForkViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "36"
+                  endingLineNumber = "36"
+                  offsetFromSymbolStart = "724">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

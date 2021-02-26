@@ -26,6 +26,7 @@ struct HomeTabView: View {
 	
 	@State var showAddNoteScreen = false
 	@State var showAddServiceScreen = false
+	@State var isFromBikeCard = false
 	@State var activeSheet: ActiveSheet?
 	@State var flipHorizontally = true
 	
@@ -91,7 +92,7 @@ struct HomeTabView: View {
 				case .addNote:
 					AddNoteView()
 				case .addService:
-					ServiceView()
+					AddServiceView(isFromBikeCard: $isFromBikeCard)
 				case .addBike:
 					AddBikeView()
 			}

@@ -151,6 +151,7 @@ class RearShockViewModel: ObservableObject {
 		dualRebound = getDualReb(bike: bikeName)
 		dualCompression = getDualComp(bike: bikeName)
 		isCoil = getCoil(bike: bikeName)
+		print("isCoil = \(isCoil)")
 		strokeLength = getStrokeLength(bike: bikeName)
 		travel = getTravel(bike: bikeName)
 		strokeLengthString = getStrokeLengthString(bike: bikeName)

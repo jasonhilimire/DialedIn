@@ -13,6 +13,7 @@ struct NoBikes_HomeScreenExampleView: View {
 	@State private var showingAlert: Bool = false
 	private var alertText = "You must create a bike before adding notes or services"
 	@State var activeSheet: ActiveSheet?
+	@State var isFromBikeCard = false
 	
 	var trailingBarItems: some View {
 		Menu {
@@ -69,7 +70,7 @@ struct NoBikes_HomeScreenExampleView: View {
 				case .addNote:
 					AddNoteView()
 				case .addService:
-					ServiceView()
+					AddServiceView(isFromBikeCard: $isFromBikeCard)
 				case .addBike:
 					AddBikeView()
 			}
