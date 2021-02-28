@@ -32,8 +32,9 @@ struct AddFrontServiceView: View {
 				Text("Full Service Includes Lowers Service").fontWeight(.thin).italic()
 				HStack {
 					Text("Note:").fontWeight(.thin)
-					
-					CustomTextField(text: $frontService.serviceNote , placeholder: "")
+					TextField("", text: $frontService.serviceNote)
+						.font(Font.body.weight(.thin))
+						.textFieldStyle(PlainTextFieldStyle())
 				}
 				
 				DatePicker(selection: $frontService.fullServiceDate, in: ...Date(), displayedComponents: .date) {
@@ -44,7 +45,9 @@ struct AddFrontServiceView: View {
 				Text("Lowers only Serviced").fontWeight(.thin).italic()
 				HStack {
 					Text("Note:").fontWeight(.thin)
-					CustomTextField(text: $frontService.serviceNote, placeholder: "")
+					TextField("", text: $frontService.serviceNote)
+						.font(Font.body.weight(.thin))
+						.textFieldStyle(PlainTextFieldStyle())
 				}
 				DatePicker(selection: $frontService.lowersServiceDate, in: ...Date(), displayedComponents: .date) {
 					Text("Date Serviced").fontWeight(.thin)

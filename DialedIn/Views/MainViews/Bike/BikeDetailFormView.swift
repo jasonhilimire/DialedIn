@@ -16,11 +16,17 @@ struct BikeDetailFormView: View {
 		Section(header: Text("Bike Details")){
 			HStack {
 				Text("Bike Name:").fontWeight(.thin)
-				CustomTextField(text: $bikeVM.bikeName ?? "", placeholder: "Enter a Name")
+				TextField("Enter a Name", text: $bikeVM.bikeName ?? "")
+					.font(Font.body.weight(.thin))
+					.textFieldStyle(PlainTextFieldStyle())
+
 			}
 			HStack {
 				Text("Note:").fontWeight(.thin)
-				CustomTextField(text: $bikeVM.bikeNote ?? "", placeholder: "Add a Note")
+				TextField("Enter a Note", text: $bikeVM.bikeNote ?? "")
+					.font(Font.body.weight(.thin))
+					.textFieldStyle(PlainTextFieldStyle())
+
 			}
 //                        Toggle(isOn: $bikeVM.isDefault.animation(), label: {Text("Set as Default Bike?")})
 		}

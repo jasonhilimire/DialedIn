@@ -47,17 +47,25 @@ struct RearSetupFormView: View {
 			} else if rearSetupIndex == 1 { //AIR SHOCK
 				HStack {
 					Text("Rear Name/Info:").fontWeight(.thin)
-					CustomTextField(text: $rearShockVM.info ?? "", placeholder: "Add Rear Info")
+					TextField("Add Rear Info", text: $rearShockVM.info ?? "")
+						.font(Font.body.weight(.thin))
+						.textFieldStyle(PlainTextFieldStyle())
 				}
 				
 				HStack {
 					Text("Shock Stroke (mm):").fontWeight(.thin)
-					CustomNumberField(text: $rearShockVM.strokeLengthString ?? "0.0", placeholder: "Used for Sag Calculation")
+					TextField("Used for Sag Calculation", text: $rearShockVM.strokeLengthString ?? "0.0")
+						.font(Font.body.weight(.thin))
+						.textFieldStyle(PlainTextFieldStyle())
+						.keyboardType(.decimalPad)
 				}
 				
 				HStack {
 					Text("Rear Travel (mm):").fontWeight(.thin)
-					CustomNumberField(text: $rearShockVM.travelString ?? "0.0", placeholder: "Enter Rear Travel in mm")
+					TextField("Enter Rear Travel in mm", text: $rearShockVM.travelString ?? "0.0")
+						.font(Font.body.weight(.thin))
+						.textFieldStyle(PlainTextFieldStyle())
+						.keyboardType(.decimalPad)
 				}
 				
 				Toggle(isOn: $rearShockVM.dualRebound.animation(), label: {Text("Dual Rebound?").fontWeight(.thin)})
@@ -76,17 +84,25 @@ struct RearSetupFormView: View {
 			} else if rearSetupIndex == 2 { // COIL SHOCK
 				HStack {
 					Text("Rear Name/Info:").fontWeight(.thin)
-					CustomTextField(text: $rearShockVM.info ?? "", placeholder: "Add Rear Info")
+					TextField("Add Rear Info", text: $rearShockVM.info ?? "")
+						.font(Font.body.weight(.thin))
+						.textFieldStyle(PlainTextFieldStyle())
 				}
 				
 				HStack {
 					Text("Shock Stroke (mm):").fontWeight(.thin)
-					CustomNumberField(text: $rearShockVM.strokeLengthString ?? "0.0", placeholder: "Used for Sag Calculation")
+					TextField("Used for Sag Calculation", text: $rearShockVM.strokeLengthString ?? "0.0")
+						.font(Font.body.weight(.thin))
+						.textFieldStyle(PlainTextFieldStyle())
+						.keyboardType(.decimalPad)
 				}
 				
 				HStack {
 					Text("Rear Travel (mm):").fontWeight(.thin)
-					CustomNumberField(text: $rearShockVM.travelString ?? "0.0", placeholder: "Enter Rear Travel in mm")
+					TextField("Enter Rear Travel in mm", text: $rearShockVM.travelString ?? "0.0")
+						.font(Font.body.weight(.thin))
+						.textFieldStyle(PlainTextFieldStyle())
+						.keyboardType(.decimalPad)
 				}
 				
 				Toggle(isOn: $rearShockVM.dualCompression.animation(), label: {Text("Dual Rebound?").fontWeight(.thin)})

@@ -38,8 +38,9 @@ struct AddRearServiceView: View {
 				if rearService.rearServicedIndex == 1 {
 					HStack {
 						Text("Note:").fontWeight(.thin)
-						
-						CustomTextField(text: $rearService.serviceNote, placeholder: "")
+						TextField("", text: $rearService.serviceNote)
+							.font(Font.body.weight(.thin))
+							.textFieldStyle(PlainTextFieldStyle())
 					}
 					DatePicker(selection: $rearService.fullServiceDate, in: ...Date(), displayedComponents: .date) {
 						Text("Date Serviced").fontWeight(.thin)
@@ -57,7 +58,9 @@ struct AddRearServiceView: View {
 					Text("Full Service Includes Air Can Service").fontWeight(.thin).italic()
 					HStack {
 						Text("Note:").fontWeight(.thin)
-						CustomTextField(text: $rearService.serviceNote, placeholder: "")
+						TextField("", text: $rearService.serviceNote)
+							.font(Font.body.weight(.thin))
+							.textFieldStyle(PlainTextFieldStyle())
 					}
 					DatePicker(selection: $rearService.fullServiceDate, in: ...Date(), displayedComponents: .date) {
 						Text("Date Serviced").fontWeight(.thin)
@@ -67,7 +70,9 @@ struct AddRearServiceView: View {
 					Text("Air Can only Serviced").fontWeight(.thin).italic()
 					HStack {
 						Text("Note:").fontWeight(.thin)
-						CustomTextField(text: $rearService.serviceNote, placeholder: "")
+						TextField("", text: $rearService.serviceNote)
+							.font(Font.body.weight(.thin))
+							.textFieldStyle(PlainTextFieldStyle())
 					}
 					DatePicker(selection: $rearService.airCanServicedDate, in: ...Date(), displayedComponents: .date) {
 						Text("Date Serviced").fontWeight(.thin)

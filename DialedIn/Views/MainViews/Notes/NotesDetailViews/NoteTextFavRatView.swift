@@ -22,7 +22,7 @@ struct NoteTextFavRatView: View {
 			
 		}.font(.headline)
 		TextEditor(text: self.$noteVM.noteText)
-			.font(Font.system(size: 15, weight: .thin, design: .default))
+			.font(Font.body.weight(.thin))
 			.frame(height: 155)
 			.textFieldStyle(PlainTextFieldStyle())
 			.padding([.leading, .trailing], 4)

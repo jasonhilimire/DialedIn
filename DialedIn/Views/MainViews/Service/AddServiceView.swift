@@ -64,13 +64,10 @@ struct AddServiceView: View {
 					if frontService.frontServicedIndex == 0 && rearService.rearServicedIndex == 0 {
 						Text("Add a Service as needed").foregroundColor(.orange)
 					} else {
-						
 						Button(action: {
 							withAnimation(.easeInOut(duration: 0.4)) {
 								self.savePressed.toggle()
 							}
-							
-							
 							self.addService()
 							try? self.moc.save()
 							self.savePressed.toggle()
@@ -102,8 +99,6 @@ struct AddServiceView: View {
 			frontService.bikeName = bikeName
 			rearService.bikeName = bikeName
 			rearSetupVM.getRearSetup(bikeName: bikeName)
-		print("Bike VM Name = \(bikeVM.bikeName)")
-		
 	}
 	
 	

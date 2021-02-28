@@ -27,12 +27,18 @@ struct ForkSetupFormView: View {
 		){
 			HStack{
 				Text("Fork Name/Info:").fontWeight(.thin)
-				CustomTextField(text: $forkVM.info ?? "", placeholder: "Add Fork Info")
+				TextField("Add Fork Info", text: $forkVM.info ?? "")
+					.font(Font.body.weight(.thin))
+					.textFieldStyle(PlainTextFieldStyle())
+
 			}
 			
 			HStack {
 				Text("Travel (mm):").fontWeight(.thin)
-				CustomNumberField(text: $forkVM.travelString ?? "0.0", placeholder: "Enter Fork length in mm")
+				TextField("Enter Fork length in mm", text: $forkVM.travelString ?? "0.0")
+					.font(Font.body.weight(.thin))
+					.textFieldStyle(PlainTextFieldStyle())
+					.keyboardType(.decimalPad)
 			}
 			
 			Toggle(isOn: $forkVM.dualRebound.animation(), label: {Text("Dual Rebound?").fontWeight(.thin)})
