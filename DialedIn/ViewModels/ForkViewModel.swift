@@ -141,12 +141,19 @@ class ForkViewModel: ObservableObject {
 		managedObjectContext.performAndWait {
 			fork.dualCompression = self.dualCompression
 			fork.dualRebound = self.dualRebound
+			
+			print(self.info)
+			print(self.travel)
 			if self.info == "" {
 				fork.info = "Fork"
 			} else {
 				fork.info = self.info
 			}
 			fork.travel = convertTravel(from: self.travelString!)
+			
+			print(fork.info)
+			print(fork.travel)
+			print("Rebound: \(fork.dualRebound)")
 			
 			if self.managedObjectContext.hasChanges {
 				try? self.managedObjectContext.save()

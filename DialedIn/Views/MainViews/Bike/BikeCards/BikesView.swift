@@ -19,7 +19,7 @@ struct BikesView: View {
 	
 	@EnvironmentObject var showScreenBool: BoolModel
 	
-	@ObservedObject var bikeVM = BikeViewModel()
+	@StateObject var bikeVM = BikeViewModel()
 	
 	// bool to show the Sheet
 	@State private var showingAddScreen = false
@@ -72,7 +72,7 @@ struct BikesView: View {
 			}
 			
 			.background(EmptyView().sheet(isPresented: $showScreenBool.isShowingEdit) {
-				EditBikeDetailView(bike: bikeVM.filterBikes(for: showScreenBool.bikeName)[0]) // TODO: gotta be a better way?? but works for now
+				EditBikeDetailView(bike: fetchBike(for: showScreenBool.bikeName))
 					.environmentObject(self.showScreenBool)
 					.environment(\.managedObjectContext, self.moc)
 			}))

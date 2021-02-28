@@ -50,6 +50,8 @@ struct EditBikeDetailView: View {
 
 			} //: FORM
 			Button(action: {
+				print(bikeVM.bikeName)
+				print(forkVM.info)
 				updateBike()
 				withAnimation(.linear(duration: 0.05), {
 					self.saveText = "     SAVED!!     "  // no idea why, but have to add spaces here other wise it builds the word slowly with SA...., annoying as all hell
@@ -64,6 +66,7 @@ struct EditBikeDetailView: View {
 			}.buttonStyle(OrangeButtonStyle())
 		.animation(.default)
 		}
+
 	}
 	
 	//MARK: - FUNCTIONS -
@@ -74,7 +77,7 @@ struct EditBikeDetailView: View {
 		let updatedFork = forkVM.updateFork(fork: bike.frontSetup!)
 		let updatedRear = rearShockVM.updateRearShock(rear: bike.rearSetup!)
 		bikeVM.updateBike(bike: bike, fork: updatedFork, rearShock: updatedRear)
-	}
+		}
 	
 
 }

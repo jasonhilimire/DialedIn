@@ -19,11 +19,13 @@ class BikeViewModel: ObservableObject {
 	var duplicateNameAlert = false
     
     
-    init() {
-//        getLastBike()
+	init() {
+		bikes = try! managedObjectContext.fetch(Bike.bikesFetchRequest())
     }
 	
 //	var id: UUID
+	
+	@Published var bikes: [Bike] = []
     
 	@Published var bikeName: String? = "" {
 		didSet {
@@ -88,12 +90,23 @@ class BikeViewModel: ObservableObject {
 	
 	func getBike(for name: String) {
 		bikeName = getName(name)
-		print("getBikeName: \(bikeName)")
         bikeNote = getNote(name)
 		hasRearShock = getRear(name)
 	
 		isDefault = getDefault(name)
     }
+	
+	/// ADDED to fetch instance of a BIKE
+	func fetchBike(for bikeName: String) -> Bike {
+		let fetchRequest = Bike.selectedBikeFetchRequest(filter: bikeName)
+		do {
+			bikes = try managedObjectContext.fetch(fetchRequest)
+		} catch let error as NSError {
+			print("Could not fetch. \(error), \(error.userInfo)")
+		}
+		let bike = bikes[0]
+		return bike
+	}
 	
 	func getSetupIndex(bike: Bike) {
 		let setupIndex: Int
@@ -140,6 +153,7 @@ class BikeViewModel: ObservableObject {
 	
 	func updateBike(bike: Bike, fork: Fork, rearShock: RearShock) {
 		managedObjectContext.performAndWait {
+			print("bikeName: \(self.bikeName)")
 			bike.name = self.bikeName
 			bike.bikeNote = self.bikeNote
 			bike.isDefault = self.isDefault

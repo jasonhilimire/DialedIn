@@ -57,6 +57,8 @@ struct HomeStyledCardView: View {
 	@Environment(\.presentationMode) var presentationMode
 	@EnvironmentObject var showScreenBool: BoolModel
 	
+	@StateObject var bikeVM = BikeViewModel()
+	
 	@State private var bikeName = ""
 	@State private var isFromBikeCard = true
 	@State private var showServiceView = false
@@ -126,7 +128,7 @@ struct HomeStyledCardView: View {
 		}
 		
 		.background(EmptyView().sheet(isPresented: $showEditBikeDetailView) {
-			EditBikeDetailView(bike: bike)
+			EditBikeDetailView(bike: fetchBike(for: showScreenBool.bikeName))
 				.environmentObject(self.showScreenBool)
 				.environment(\.managedObjectContext, self.moc)
 		}))
@@ -134,6 +136,7 @@ struct HomeStyledCardView: View {
 	
 	func publishBikeName() {
 		self.showScreenBool.bikeName = bike.name ?? "Unknown"
+		bikeVM.getBike(for: showScreenBool.bikeName)
 	}
 }
 
