@@ -51,7 +51,6 @@ struct AddNoteView: View {
 						if toggleNoteDetail == true {
 							HStack {
 								Text("Note:").fontWeight(.thin)
-
 								TextEditor(text: self.$noteVM.noteText)
 									.foregroundColor(.gray)
 									.background(Color("TextEditBackgroundColor"))

@@ -16,7 +16,7 @@ struct FavoritesView: View {
 	var onImage = Image(systemName: "bookmark.fill")
 	
 	var offColor = Color.gray
-	var onColor = Color.orange
+	var onColor = Color.orange  // TODO Refactor this to use a boolean from homeview and get rid of Home Favorites view
 	
 	var body: some View {
 		HStack {

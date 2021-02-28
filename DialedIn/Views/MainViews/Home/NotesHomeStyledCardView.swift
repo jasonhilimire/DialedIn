@@ -13,7 +13,7 @@ struct NotesHomeStyledCardView: View {
 	// Create the MOC
 	@Environment(\.managedObjectContext) var moc
 	@Environment(\.presentationMode) var presentationMode
-	@ObservedObject var note: Notes
+	let note: Notes
 	
 	@State private var showingEditScreen = false
 	@State var cardAnimation = false
@@ -21,6 +21,7 @@ struct NotesHomeStyledCardView: View {
 	// MARK: - BODY
 	var body: some View {
 		ZStack {
+			/*
 			VStack {
 				Text("Last Note:")
 					.font(.title)
@@ -123,6 +124,8 @@ struct NotesHomeStyledCardView: View {
 					
 				} // end HSTack Settings
 			} //: END VSTACK
+			*/
+			NotesStyleCardView(note: note)
 			.padding()
 			.foregroundColor(Color.white)
 			.background((LinearGradient(gradient: Gradient(colors: [Color.orange, Color.red
@@ -139,7 +142,7 @@ struct NotesHomeStyledCardView: View {
 			.contextMenu {
 				VStack {
 					Button(action: withAnimation() {
-							{updateNote(note: note)}
+							{updateFavorite(note: note)}
 					}) {
 						HStack {
 							if note.isFavorite == false {
@@ -182,7 +185,7 @@ struct NotesHomeStyledCardView: View {
 		hapticSuccess()
 	}
 	
-	func updateNote(note: Notes) {
+	func updateFavorite(note: Notes) {
 		self.note.isFavorite.toggle()
 		self.cardAnimation.toggle()
 		moc.performAndWait {

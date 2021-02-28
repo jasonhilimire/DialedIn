@@ -10,24 +10,31 @@ import SwiftUI
 
 struct NoteTextFavRatView: View {
 	
-	@ObservedObject var noteModel = NoteViewModel()
+	@ObservedObject var noteVM = NoteViewModel()
 	
 	
     var body: some View {
 		HStack {
-			Text("\(self.noteModel.noteDate, formatter: dateFormatter)")
+			Text("\(self.noteVM.noteDate, formatter: dateFormatter)")
 				.fontWeight(.thin)
 			Spacer()
-			FavoritesView(favorite: self.$noteModel.noteFavorite)
+			FavoritesView(favorite: self.$noteVM.noteFavorite)
 			
 		}.font(.headline)
-			TextView(text: $noteModel.noteText)
-			.frame(minWidth: 0, maxWidth: .infinity, minHeight: 100, maxHeight: .infinity)
+		TextEditor(text: self.$noteVM.noteText)
+			.font(Font.system(size: 15, weight: .thin, design: .default))
+			.frame(height: 155)
+			.textFieldStyle(PlainTextFieldStyle())
+			.padding([.leading, .trailing], 4)
 			.cornerRadius(8)
-			
-			RatingView(rating: self.$noteModel.noteRating)
+			.overlay(RoundedRectangle(cornerRadius: 16).stroke(Color.gray))
+			.padding([.leading, .trailing], 24)
+
+		RatingView(rating: self.$noteVM.noteRating)
 			.font(.headline)
-    }
+	}
+	
 }
+
 
 

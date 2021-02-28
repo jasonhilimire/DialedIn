@@ -187,6 +187,10 @@ class NoteViewModel: ObservableObject {
 
 	// MARK: - FUNCTIONS
 	
+	func updateNoteText(note: Notes, noteText: String) {
+		note.note = noteText
+	}
+	
 	func getNote(note: Notes) {
 		getNoteDetails(note: note)
 		getNoteFront(note: note)
@@ -293,6 +297,7 @@ class NoteViewModel: ObservableObject {
 	}
 	
 	func updateNote(_ note: Notes) {
+		print("UpdateNote: \(noteText)")
 		managedObjectContext.performAndWait {
 			note.note = self.noteText
 			note.rating = Int16(self.noteRating)

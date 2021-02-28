@@ -39,7 +39,7 @@ struct NotesDetailView: View {
 		ScrollView {
 			VStack{
 				VStack {
-					NoteTextFavRatView(noteModel: noteVM)
+					NoteTextFavRatView(noteVM: noteVM)
 					
 					Divider().padding(.bottom, 5)
 
@@ -96,7 +96,6 @@ struct NotesDetailView: View {
 				self.saveText = "     SAVED!!     "  // no idea why, but have to add spaces here other wise it builds the word slowly with SA...., annoying as all hell
 			})
 			self.noteVM.updateNote(self.note)
-			
 			hapticSuccess()
 			// keep this as stops weird view transition to NotesF&R SetupViews
 			DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {

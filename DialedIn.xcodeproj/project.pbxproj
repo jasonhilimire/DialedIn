@@ -336,8 +336,9 @@
 				A393F9BC252ACAB700F39E04 /* HomeTabView.swift */,
 				A393F9C5252ACB1B00F39E04 /* HomeBikeView.swift */,
 				A393F9C6252ACB1B00F39E04 /* HomeNoteView.swift */,
-				A393F9C4252ACB1B00F39E04 /* HomeServiceView.swift */,
+				A393F9CD252ACBC800F39E04 /* LastNoteView.swift */,
 				A30D9667253549840094CE90 /* NotesHomeStyledCardView.swift */,
+				A393F9C4252ACB1B00F39E04 /* HomeServiceView.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -365,9 +366,8 @@
 			isa = PBXGroup;
 			children = (
 				A3C16E6E23DE9EC4005BFA14 /* NotesListView.swift */,
-				A3850EB125292700008982D8 /* NotesStyleCardView.swift */,
 				A33F02B024062A89005A0A8F /* FilteredNoteView.swift */,
-				A393F9CD252ACBC800F39E04 /* LastNoteView.swift */,
+				A3850EB125292700008982D8 /* NotesStyleCardView.swift */,
 			);
 			path = NotesListView;
 			sourceTree = "<group>";
