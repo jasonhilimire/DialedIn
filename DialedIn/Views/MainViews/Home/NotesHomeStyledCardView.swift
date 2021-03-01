@@ -21,7 +21,6 @@ struct NotesHomeStyledCardView: View {
 	// MARK: - BODY
 	var body: some View {
 		ZStack {
-			/*
 			VStack {
 				Text("Last Note:")
 					.font(.title)
@@ -124,8 +123,7 @@ struct NotesHomeStyledCardView: View {
 					
 				} // end HSTack Settings
 			} //: END VSTACK
-			*/
-			NotesStyleCardView(note: note)
+
 			.padding()
 			.foregroundColor(Color.white)
 			.background((LinearGradient(gradient: Gradient(colors: [Color.orange, Color.red

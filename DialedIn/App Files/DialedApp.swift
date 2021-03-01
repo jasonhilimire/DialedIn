@@ -24,8 +24,8 @@ struct DialedInApp: App {
     }
 }
 
-// TODO: fixes keyboard issues - but can cause some weird issues when selecting text for copy, select etcc in notesdetailview- maybe remove gestures there?
 
+// FIXES Keyboard issues
 extension UIApplication {
 	func addTapGestureRecognizer() {
 		guard let window = windows.first else { return }

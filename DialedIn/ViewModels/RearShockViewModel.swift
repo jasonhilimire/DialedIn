@@ -158,8 +158,6 @@ class RearShockViewModel: ObservableObject {
 		info = getRearInfo(bike: bikeName)
 	}
 	
-	// TODO: ADD Create Update Delete
-	
 	func createRearShock(_ rearService: RearService) -> RearShock {
 		let rearShock = RearShock(context: self.managedObjectContext)
 		rearShock.id = UUID()

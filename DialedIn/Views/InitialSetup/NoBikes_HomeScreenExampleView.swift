@@ -46,13 +46,10 @@ struct NoBikes_HomeScreenExampleView: View {
 				VStack{
 					ZStack {
 						NoBikes_NoteExampleView()
-							
 							.frame(height: geo.size.height / 2.5 )
 					}
-					
-
-					NoBikes_ServiceExampleView()
-						.frame(width: .infinity, height: geo.size.height / 2.3 )
+						NoBikes_ServiceExampleView()
+							.frame(width: .infinity, height: geo.size.height / 2.3 )
 				}
 				.padding()
 				.navigationBarTitle("Dialed In")

@@ -93,7 +93,6 @@ struct AddServiceView: View {
 	
 	//MARK:- Functions
 	func setup(isFromBikeCard: Bool) {
-		//TODO- this isnt working at all if coming from HomePage appears the VM isnt getting updated properly boolModel not working correclty??
 		let bikeName = isFromBikeCard ? boolModel.bikeName : bikes[bikeNameIndex].name ?? "Unknown"
 			bikeVM.getBike(for: bikeName)
 			frontService.bikeName = bikeName

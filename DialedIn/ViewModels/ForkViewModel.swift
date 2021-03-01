@@ -109,9 +109,6 @@ class ForkViewModel: ObservableObject {
 		info = getInfo(bike: bikeName)
 	}
 	
-	// TODO: ADD Create Update Delete
-	//
-	
 	func convertTravel(from travel: String) -> Double {
 		let converted: Double
 		converted = Double(travel) ?? 0.0

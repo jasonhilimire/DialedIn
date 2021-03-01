@@ -83,7 +83,6 @@ struct AddRearServiceView: View {
     }
 	
 	func setup(){
-//TODO- this isnt working at all if coming from HomePage appears the VM isnt getting updated properly
 		if bikeVM.hasRearShock == false {
 			setupIndex = 0
 		} else if rearSetupVM.isCoil == true  {

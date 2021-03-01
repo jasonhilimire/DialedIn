@@ -35,8 +35,12 @@ struct HomeServiceView: View {
 				HStack {
 					ForEach(bikes, id: \.self) { bike in
 						GeometryReader { geo in
-							HomeStyledCardView(bike: bike)
+							if bikes.count == 1 {
+								HomeStyledCardView(bike: bike)
+							} else {
+								HomeStyledCardView(bike: bike)
 								.rotation3DEffect(.degrees(-Double(geo.frame(in: .global).midX - fullView.size.width / 2) / 10), axis: (x: 0, y: 1, z: 0))
+							}
 						}
 						.frame(width: 270) // used a smaller width than the 300 for the card so can see the edge
 					}
@@ -59,11 +63,9 @@ struct HomeStyledCardView: View {
 	
 	@StateObject var bikeVM = BikeViewModel()
 	
-	@State private var bikeName = ""
 	@State private var isFromBikeCard = true
 	@State private var showServiceView = false
 	@State private var showEditBikeDetailView = false
-	
 	
 	let bike: Bike
 
@@ -128,7 +130,7 @@ struct HomeStyledCardView: View {
 		}
 		
 		.background(EmptyView().sheet(isPresented: $showEditBikeDetailView) {
-			EditBikeDetailView(bike: fetchBike(for: showScreenBool.bikeName))
+			EditBikeDetailView(bike: bike)
 				.environmentObject(self.showScreenBool)
 				.environment(\.managedObjectContext, self.moc)
 		}))
