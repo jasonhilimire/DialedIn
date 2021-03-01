@@ -17,14 +17,14 @@ struct BikeDetailFormView: View {
 			HStack {
 				Text("Bike Name:").fontWeight(.thin)
 				TextField("Enter a Name", text: $bikeVM.bikeName ?? "")
-					.font(Font.body.weight(.thin))
+					.customTextField()
 					.textFieldStyle(PlainTextFieldStyle())
 
 			}
 			HStack {
 				Text("Note:").fontWeight(.thin)
 				TextField("Enter a Note", text: $bikeVM.bikeNote ?? "")
-					.font(Font.body.weight(.thin))
+					.customTextField()
 					.textFieldStyle(PlainTextFieldStyle())
 
 			}

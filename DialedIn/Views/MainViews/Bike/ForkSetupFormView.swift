@@ -28,7 +28,7 @@ struct ForkSetupFormView: View {
 			HStack{
 				Text("Fork Name/Info:").fontWeight(.thin)
 				TextField("Add Fork Info", text: $forkVM.info ?? "")
-					.font(Font.body.weight(.thin))
+					.customTextField()
 					.textFieldStyle(PlainTextFieldStyle())
 
 			}
@@ -36,7 +36,7 @@ struct ForkSetupFormView: View {
 			HStack {
 				Text("Travel (mm):").fontWeight(.thin)
 				TextField("Enter Fork length in mm", text: $forkVM.travelString ?? "0.0")
-					.font(Font.body.weight(.thin))
+					.customTextField()
 					.textFieldStyle(PlainTextFieldStyle())
 					.keyboardType(.decimalPad)
 			}

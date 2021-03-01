@@ -47,14 +47,14 @@ struct RearSetupFormView: View {
 				HStack {
 					Text("Rear Name/Info:").fontWeight(.thin)
 					TextField("Add Rear Info", text: $rearShockVM.info ?? "")
-						.font(Font.body.weight(.thin))
+						.customTextField()
 						.textFieldStyle(PlainTextFieldStyle())
 				}
 				
 				HStack {
 					Text("Shock Stroke (mm):").fontWeight(.thin)
 					TextField("Used for Sag Calculation", text: $rearShockVM.strokeLengthString ?? "0.0")
-						.font(Font.body.weight(.thin))
+						.customTextField()
 						.textFieldStyle(PlainTextFieldStyle())
 						.keyboardType(.decimalPad)
 				}
@@ -62,7 +62,7 @@ struct RearSetupFormView: View {
 				HStack {
 					Text("Rear Travel (mm):").fontWeight(.thin)
 					TextField("Enter Rear Travel in mm", text: $rearShockVM.travelString ?? "0.0")
-						.font(Font.body.weight(.thin))
+						.customTextField()
 						.textFieldStyle(PlainTextFieldStyle())
 						.keyboardType(.decimalPad)
 				}
@@ -84,14 +84,14 @@ struct RearSetupFormView: View {
 				HStack {
 					Text("Rear Name/Info:").fontWeight(.thin)
 					TextField("Add Rear Info", text: $rearShockVM.info ?? "")
-						.font(Font.body.weight(.thin))
+						.customTextField()
 						.textFieldStyle(PlainTextFieldStyle())
 				}
 				
 				HStack {
 					Text("Shock Stroke (mm):").fontWeight(.thin)
 					TextField("Used for Sag Calculation", text: $rearShockVM.strokeLengthString ?? "0.0")
-						.font(Font.body.weight(.thin))
+						.customTextField()
 						.textFieldStyle(PlainTextFieldStyle())
 						.keyboardType(.decimalPad)
 				}
@@ -99,7 +99,7 @@ struct RearSetupFormView: View {
 				HStack {
 					Text("Rear Travel (mm):").fontWeight(.thin)
 					TextField("Enter Rear Travel in mm", text: $rearShockVM.travelString ?? "0.0")
-						.font(Font.body.weight(.thin))
+						.customTextField()
 						.textFieldStyle(PlainTextFieldStyle())
 						.keyboardType(.decimalPad)
 				}

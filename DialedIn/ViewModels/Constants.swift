@@ -54,6 +54,21 @@ struct CustNotesText: ViewModifier {
 	}
 }
 
+
+struct CustTextField: ViewModifier {
+	// system font, size 16 and thin
+	let font = Font.body.weight(.thin)
+	
+	func body(content: Content) -> some View {
+		content
+			.foregroundColor(Color("TextColor"))
+			.font(font)
+			.padding(7)
+			.background(Color(.systemGray6))
+			.cornerRadius(8)
+	}
+}
+
 struct ShadowModifier: ViewModifier {
 	// this shadow is disabled in dark mode
 	func body(content: Content) -> some View {
@@ -83,6 +98,10 @@ struct FootnoteBoldTextModifier: ViewModifier {
 
 
 extension View {
+	func customTextField() -> some View {
+		return self.modifier(CustTextField())
+	}
+	
 	func customNotesText() -> some View {
 		return self.modifier(CustNotesText())
 	}

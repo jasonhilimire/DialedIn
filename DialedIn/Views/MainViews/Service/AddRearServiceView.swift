@@ -39,7 +39,7 @@ struct AddRearServiceView: View {
 					HStack {
 						Text("Note:").fontWeight(.thin)
 						TextField("", text: $rearService.serviceNote)
-							.font(Font.body.weight(.thin))
+							.customTextField()
 							.textFieldStyle(PlainTextFieldStyle())
 					}
 					DatePicker(selection: $rearService.fullServiceDate, in: ...Date(), displayedComponents: .date) {
@@ -59,7 +59,7 @@ struct AddRearServiceView: View {
 					HStack {
 						Text("Note:").fontWeight(.thin)
 						TextField("", text: $rearService.serviceNote)
-							.font(Font.body.weight(.thin))
+							.customTextField()
 							.textFieldStyle(PlainTextFieldStyle())
 					}
 					DatePicker(selection: $rearService.fullServiceDate, in: ...Date(), displayedComponents: .date) {
@@ -71,7 +71,7 @@ struct AddRearServiceView: View {
 					HStack {
 						Text("Note:").fontWeight(.thin)
 						TextField("", text: $rearService.serviceNote)
-							.font(Font.body.weight(.thin))
+							.customTextField()
 							.textFieldStyle(PlainTextFieldStyle())
 					}
 					DatePicker(selection: $rearService.airCanServicedDate, in: ...Date(), displayedComponents: .date) {

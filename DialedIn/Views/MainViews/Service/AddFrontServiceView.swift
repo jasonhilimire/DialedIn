@@ -33,7 +33,7 @@ struct AddFrontServiceView: View {
 				HStack {
 					Text("Note:").fontWeight(.thin)
 					TextField("", text: $frontService.serviceNote)
-						.font(Font.body.weight(.thin))
+						.customTextField()
 						.textFieldStyle(PlainTextFieldStyle())
 				}
 				
@@ -46,7 +46,7 @@ struct AddFrontServiceView: View {
 				HStack {
 					Text("Note:").fontWeight(.thin)
 					TextField("", text: $frontService.serviceNote)
-						.font(Font.body.weight(.thin))
+						.customTextField()
 						.textFieldStyle(PlainTextFieldStyle())
 				}
 				DatePicker(selection: $frontService.lowersServiceDate, in: ...Date(), displayedComponents: .date) {
