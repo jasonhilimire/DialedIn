@@ -153,7 +153,6 @@ class BikeViewModel: ObservableObject {
 	
 	func updateBike(bike: Bike, fork: Fork, rearShock: RearShock) {
 		managedObjectContext.performAndWait {
-			print("bikeName: \(self.bikeName)")
 			bike.name = self.bikeName
 			bike.bikeNote = self.bikeNote
 			bike.isDefault = self.isDefault

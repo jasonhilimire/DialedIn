@@ -50,8 +50,6 @@ struct EditBikeDetailView: View {
 
 			} //: FORM
 			Button(action: {
-				print(bikeVM.bikeName)
-				print(forkVM.info)
 				updateBike()
 				withAnimation(.linear(duration: 0.05), {
 					self.saveText = "     SAVED!!     "  // no idea why, but have to add spaces here other wise it builds the word slowly with SA...., annoying as all hell
@@ -72,7 +70,6 @@ struct EditBikeDetailView: View {
 	//MARK: - FUNCTIONS -
 	
 	func updateBike() {
-// TODO: Updates bike correctly if it comes from BikeCards, if from HomeView only updates Toggles??
 		boolModel.bikeName = bikeVM.bikeName ?? "" // republish the BoolModel Name so EditBikeDetail doesnt crash
 		let updatedFork = forkVM.updateFork(fork: bike.frontSetup!)
 		let updatedRear = rearShockVM.updateRearShock(rear: bike.rearSetup!)

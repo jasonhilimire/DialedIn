@@ -297,7 +297,6 @@ class NoteViewModel: ObservableObject {
 	}
 	
 	func updateNote(_ note: Notes) {
-		print("UpdateNote: \(noteText)")
 		managedObjectContext.performAndWait {
 			note.note = self.noteText
 			note.rating = Int16(self.noteRating)

@@ -181,7 +181,6 @@ class NoteFrontSetupViewModel: ObservableObject {
 	func getNoteByID(for noteID: UUID) -> Notes  {
 		let notes = try! managedObjectContext.fetch(Notes.NoteByIDFetchRequest(filter: noteID))
 		if let note = notes.first {
-			print("Note:\(note)")
 			return note
 		} else {
 			return notes[0]

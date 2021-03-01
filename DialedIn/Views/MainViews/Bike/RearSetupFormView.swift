@@ -8,15 +8,12 @@
 
 import SwiftUI
 
-//TODO: FIX rearSetupIndex not functioning until click in a field
 struct RearSetupFormView: View {
 	@ObservedObject var bikeVM = BikeViewModel()
 	@ObservedObject var rearShockVM = RearShockViewModel()
 	@ObservedObject var rearServiceVM = RearServiceViewModel()
 	
 	@Binding var rearSetupIndex: Int
-	@State var rearSetups = ["None", "Air", "Coil"]
-	
 	@Binding var isAdd: Bool
 
     var body: some View {
@@ -34,13 +31,15 @@ struct RearSetupFormView: View {
 					Text(self.bikeVM.rearSetups[index]).tag(index)
 				}
 			}.pickerStyle(SegmentedPickerStyle())
-
-
+			.onChange(of: rearSetupIndex) { _ in
+				rearIndexChange()
+			}
+			
 			
 // TODO: how to pass setup index to ViewModel ?? If using from ViewModel- on edit setup its correct, but changing has no effect same with ADD
 
 			// Display Form based on rear setup from Picker
-
+			
 			if rearSetupIndex == 0 {
 				Text("No Rear Suspension").fontWeight(.thin)
 				
@@ -124,8 +123,6 @@ struct RearSetupFormView: View {
 	func rearIndexChange(){
 		bikeVM.rearSetupIndex = rearSetupIndex
 	}
-	
-
 }
 
 

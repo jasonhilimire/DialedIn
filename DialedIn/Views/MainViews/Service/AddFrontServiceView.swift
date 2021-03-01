@@ -52,7 +52,6 @@ struct AddFrontServiceView: View {
 				DatePicker(selection: $frontService.lowersServiceDate, in: ...Date(), displayedComponents: .date) {
 					Text("Date Serviced").fontWeight(.thin)
 				}
-				
 			}
 		}
     }
