@@ -44,7 +44,7 @@ struct FilteredNoteView: View {
 			orPredicateWithSubpredicates: [predicate1, predicate2, predicate3, predicate4, predicate5]
 		)
 		
-		// filter the array basd on isFavorite - then the searchText
+		// filter the array based on isFavorite - then the searchText
 		let filtered = filter ? array.filter { $0.isFavorite } : array
 		let compoundPredicateResult = filtered.filter { searchText.isEmpty ? true : compoundPredicate.evaluate(with:$0) }
 		let sortedbyDateResults = compoundPredicateResult.sorted(by: {$0.date ?? Date() > $1.date ?? Date()})
@@ -56,7 +56,16 @@ struct FilteredNoteView: View {
     var body: some View {
 		ForEach(filterFavorites(), id: \.self) { bike in
 				let array = bike.notesArray
-			Section(header: Text(bike.wrappedBikeName).italic().underline().font(.system(size: 16))){
+			Section(header: HStack {
+				Text(bike.wrappedBikeName)
+					.font(.headline)
+					.foregroundColor(Color("TextColor"))
+					.padding()
+				Spacer()
+			}
+				.background(Color("TextEditBackgroundColor"))
+			)
+			{
 				ForEach(filterNotes(array: array), id: \.self) { note in
 					NavigationLink(destination: NotesDetailView(note: note)){
 						NotesStyleCardView(note: note)
