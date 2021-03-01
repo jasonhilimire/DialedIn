@@ -14,8 +14,6 @@ struct BikeDetailView: View {
     @Environment(\.managedObjectContext) var moc
     @Environment(\.presentationMode) var presentationMode
 	
-	@State private var bikeName = ""
-
     let bike: Bike
 	
     var body: some View {
@@ -43,7 +41,7 @@ struct BikeDetailView: View {
 			}
 			Spacer(minLength:5)
 
-			FilteredBikeNotesView(filter: self.bikeName)
+			FilteredBikeNotesView(filter: self.bike.name ?? "")
 				.padding(.horizontal)
 			
 		}
