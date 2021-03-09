@@ -70,6 +70,7 @@
 		A3D518332426B50D007DEE9D /* RearShock+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D518312426B50D007DEE9D /* RearShock+CoreDataProperties.swift */; };
 		A3D518352426B558007DEE9D /* RearServiceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D518342426B558007DEE9D /* RearServiceViewModel.swift */; };
 		A3D518372426B565007DEE9D /* FrontServiceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D518362426B565007DEE9D /* FrontServiceViewModel.swift */; };
+		A3DABCCA25F08A520019302A /* CustomSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DABCC925F08A520019302A /* CustomSlider.swift */; };
 		A3DDCC7A23DFEFEB00CD1476 /* Bike+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DDCC7823DFEFEB00CD1476 /* Bike+CoreDataClass.swift */; };
 		A3DDCC7B23DFEFEB00CD1476 /* Bike+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DDCC7923DFEFEB00CD1476 /* Bike+CoreDataProperties.swift */; };
 		A3DDCC7D23DFF21700CD1476 /* NotesDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DDCC7C23DFF21700CD1476 /* NotesDetailView.swift */; };
@@ -182,6 +183,7 @@
 		A3D518312426B50D007DEE9D /* RearShock+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RearShock+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		A3D518342426B558007DEE9D /* RearServiceViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RearServiceViewModel.swift; sourceTree = "<group>"; };
 		A3D518362426B565007DEE9D /* FrontServiceViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FrontServiceViewModel.swift; sourceTree = "<group>"; };
+		A3DABCC925F08A520019302A /* CustomSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSlider.swift; sourceTree = "<group>"; };
 		A3DDCC7823DFEFEB00CD1476 /* Bike+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bike+CoreDataClass.swift"; sourceTree = "<group>"; };
 		A3DDCC7923DFEFEB00CD1476 /* Bike+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bike+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		A3DDCC7C23DFF21700CD1476 /* NotesDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesDetailView.swift; sourceTree = "<group>"; };
@@ -459,6 +461,7 @@
 				A3A1579E25D3917900A6B6A4 /* Note */,
 				A3A1579F25D3918C00A6B6A4 /* Service */,
 				A3F567A124343B1100C769A4 /* Constants.swift */,
+				A3DABCC925F08A520019302A /* CustomSlider.swift */,
 				A3B8B79423F0E66900CE1EF8 /* BikeViewModel.swift */,
 				A3CAFF5A2465F95000B144EA /* KeyboardObserver.swift */,
 				A3655BAF2575E9F6009DACDE /* BoolModel.swift */,
@@ -692,6 +695,7 @@
 				A393F9BD252ACAB700F39E04 /* HomeTabView.swift in Sources */,
 				A3DDCC7A23DFEFEB00CD1476 /* Bike+CoreDataClass.swift in Sources */,
 				A3D5181624268DB6007DEE9D /* RearService+CoreDataClass.swift in Sources */,
+				A3DABCCA25F08A520019302A /* CustomSlider.swift in Sources */,
 				A37A8953257304AA00D301E1 /* NoteViewModel.swift in Sources */,
 				A3B8B79723F0E9EF00CE1EF8 /* BikePickerView.swift in Sources */,
 				A3D5181724268DB6007DEE9D /* RearService+CoreDataProperties.swift in Sources */,

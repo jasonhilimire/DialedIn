@@ -48,10 +48,34 @@ struct NoteFrontSetupView: View {
 			VStack{
 					  // AirPressure
 				HStack{
-					Text("PSI: \(noteVM.fAirVolume, specifier: "%.1f")").fontWeight(.thin)
-					Slider(value: $noteVM.fAirVolume, in: 45...120, step: 1.0)
-					Stepper(value: $noteVM.fAirVolume, in: 45...120, step: 0.5, onEditingChanged: {_ in DispatchQueue.main.async {self.haptic.impactOccurred()}}, label: {Text("PSI: \(self.noteVM.fAirVolume)").fontWeight(.thin)}).labelsHidden()
+//					Text("PSI: \(noteVM.fAirVolume, specifier: "%.1f")").fontWeight(.thin)
+//					Slider(value: $noteVM.fAirVolume, in: 45...120, step: 1.0)
 
+					CustomSlider(value: $noteVM.fAirVolume, range: (0, 100), knobWidth: 1) { modifiers in
+						ZStack {
+//							.background (// = Color(red: 0.07, green: 0.07, blue: 0.12)
+//							LinearGradient(gradient: .init(colors: [background, Color.black.opacity(0.6) ]), startPoint: .bottom, endPoint: .top))
+							
+							Group {
+								LinearGradient(gradient: .init(colors: [Color.yellow, Color.orange, Color.red ]), startPoint: .leading, endPoint: .trailing)
+//								LinearGradient(gradient: .init(colors: [Color.clear, background ]), startPoint: .top, endPoint: .bottom).opacity(0.15)
+							}.modifier(modifiers.barLeft)
+							
+							Text("PSI: \(noteVM.fAirVolume, specifier: "%.1f")").fontWeight(.thin).foregroundColor(Color.white)
+						}
+						.cornerRadius(8)
+					}
+					.frame(height: 25)
+//					.padding(2)
+					.background(
+						// adds shadow border around entire slider (to make it appear inset)
+						LinearGradient(gradient: .init(colors: [Color.gray, Color.black ]), startPoint: .bottom, endPoint: .top)
+							.opacity(0.2)
+							.cornerRadius(9)
+					)
+					
+//					Stepper(value: $noteVM.fAirVolume, in: 45...120, step: 0.5, onEditingChanged: {_ in DispatchQueue.main.async {self.haptic.impactOccurred()}}, label: {Text("PSI: \(self.noteVM.fAirVolume)").fontWeight(.thin)}).labelsHidden()
+//
 					}
 					
 					//Sag
@@ -80,7 +104,7 @@ struct NoteFrontSetupView: View {
 					// Tire Pressure
 					HStack {
 						Text("Tire PSI: \(noteVM.fTirePressure, specifier: "%.1f")").fontWeight(.thin)
-						Slider(value: $noteVM.fTirePressure, in: 0...40, step: 0.5)
+						Slider(value: $noteVM.fTirePressure, in: 0...40, step: 0.5).accentColor(Color.orange)
 						Stepper(value: $noteVM.fTirePressure, in: 0...40, step: 0.1, onEditingChanged: {_ in DispatchQueue.main.async {self.haptic.impactOccurred()}}, label: {Text("PSI: \(self.noteVM.fTirePressure)").fontWeight(.thin)}).labelsHidden()
 					}
 			}
