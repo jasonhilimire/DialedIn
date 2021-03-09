@@ -50,13 +50,13 @@ struct NoteRearSetupView: View {
 					if rearVM.isCoil == false {
 						HStack{
 							Text("PSI: \(self.noteVM.rSpring, specifier: "%.0f")").fontWeight(.thin)
-							Slider(value: $noteVM.rSpring, in: 150...350, step: 1.0)
+							Slider(value: $noteVM.rSpring, in: 150...350, step: 1.0).accentColor(.orange)
 							Stepper(value: $noteVM.rSpring   , in: 150...350, step: 1.0, onEditingChanged: {_ in DispatchQueue.main.async {self.haptic.impactOccurred()}}, label: {Text("Spring: \(self.noteVM.rSpring)")}).labelsHidden()
 						   }
 						} else {
 							HStack{
 								Text("Spring: \(self.noteVM.rSpring, specifier: "%.0f")").fontWeight(.thin)
-								Slider(value: $noteVM.rSpring, in: 300...700, step: 25)
+								Slider(value: $noteVM.rSpring, in: 300...700, step: 25).accentColor(.orange)
 								Stepper(value: $noteVM.rSpring   , in: 300...700, step: 25, onEditingChanged: {_ in DispatchQueue.main.async {self.haptic.impactOccurred()}}, label: {Text("Spring: \(self.noteVM.rSpring)")}).labelsHidden()
 							}
 						}
@@ -88,7 +88,7 @@ struct NoteRearSetupView: View {
 					//Tire Pressure
 					HStack {
 						Text("Tire PSI: \(noteVM.rTirePressure, specifier: "%.1f")").fontWeight(.thin)
-						Slider(value: $noteVM.rTirePressure, in: 0...40, step: 0.5)
+						Slider(value: $noteVM.rTirePressure, in: 0...40, step: 0.5).accentColor(.orange)
 						Stepper(value: $noteVM.rTirePressure, in: 0...40, step: 0.1, onEditingChanged: {_ in DispatchQueue.main.async {self.haptic.impactOccurred()}}, label: {Text("PSI: \(self.noteVM.rTirePressure)").fontWeight(.thin)}).labelsHidden()
 					}
 					
