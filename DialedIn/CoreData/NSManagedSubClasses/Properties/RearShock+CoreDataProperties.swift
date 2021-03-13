@@ -26,6 +26,7 @@ extension RearShock {
 	@NSManaged public var rearTravel: Double
     @NSManaged public var bike: Bike?
     @NSManaged public var rearService: NSSet?
+	@NSManaged public var rearTypeIndex: Int16
 	
 	
 	public var wrappedRearInfo: String {
