@@ -17,10 +17,12 @@ class BikeViewModel: ObservableObject {
 	var rearSetupIndex = 1
 	var rearSetups = ["None", "Air", "Coil"]
 	var duplicateNameAlert = false
+	
     
     
 	init() {
 		bikes = try! managedObjectContext.fetch(Bike.bikesFetchRequest())
+		
     }
 	
 //	var id: UUID

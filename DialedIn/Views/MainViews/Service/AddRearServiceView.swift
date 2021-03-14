@@ -11,10 +11,8 @@ import SwiftUI
 struct AddRearServiceView: View {
 	
 	@ObservedObject var rearService = RearServiceViewModel()
-	@ObservedObject var bikeVM = BikeViewModel()
-	@ObservedObject var rearSetupVM = RearShockViewModel()
 	
-	@State var setupIndex = 1
+	let bike: Bike
 	
     var body: some View {
 		Section(header:
@@ -25,17 +23,19 @@ struct AddRearServiceView: View {
 					.scaledToFit()
 				Text("Rear Service")
 			}
-		){
-			if self.setupIndex == 0 {
+		){ // SETUP FOR REAR YYPES
+
+			if bike.hasRearShock == false {
 				Text("Hardtail").fontWeight(.thin)
-			} else if self.setupIndex == 2 {
+			} else if bike.rearSetup?.isCoil == true { //: COIL
 				Picker("Service Type", selection: $rearService.rearServicedIndex) {
 					ForEach(0..<(rearService.rearServiced.count - 1) ) { index in
 						Text(self.rearService.rearServiced[index]).tag(index)
 					}
 				}.pickerStyle(SegmentedPickerStyle())
-				
-				if rearService.rearServicedIndex == 1 {
+			
+			//: Coil only has 0/1 selection
+				if rearService.rearServicedIndex == 1 { //: AIRCAN
 					HStack {
 						Text("Note:").fontWeight(.thin)
 						TextField("", text: $rearService.serviceNote)
@@ -47,13 +47,14 @@ struct AddRearServiceView: View {
 					}
 					
 				}
-			} else {
+			} else { //: AIR
 				Picker("Service Type", selection: $rearService.rearServicedIndex) {
 					ForEach(0..<rearService.rearServiced.count) { index in
 						Text(self.rearService.rearServiced[index]).tag(index)
 					}
 				}.pickerStyle(SegmentedPickerStyle())
 				
+		// SHOW ITEMS BASED ON PICKER SELECTION FOR AIR & FULL SERVICE
 				if rearService.rearServicedIndex == 1 {
 					Text("Full Service Includes Air Can Service").fontWeight(.thin).italic()
 					HStack {
@@ -79,23 +80,15 @@ struct AddRearServiceView: View {
 					}
 				}
 			}
-		}.onAppear(perform: {self.setup()})
+		}
     }
 	
-	func setup(){
-		if bikeVM.hasRearShock == false {
-			setupIndex = 0
-		} else if rearSetupVM.isCoil == true  {
-			setupIndex = 2
-		} else {
-			setupIndex = 1
-		}
 
-	}
 }
 
-struct AddRearServiceView_Previews: PreviewProvider {
-    static var previews: some View {
-        AddRearServiceView()
-    }
-}
+//struct AddRearServiceView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        AddRearServiceView()
+//    }
+//}
+

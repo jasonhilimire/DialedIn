@@ -32,6 +32,8 @@ struct AddServiceView: View {
 	
 	@Binding var isFromBikeCard: Bool
 	
+	let bike: Bike
+	
 	var body: some View {
 		NavigationView {
 			VStack {
@@ -52,7 +54,7 @@ struct AddServiceView: View {
 						AddFrontServiceView(frontService: frontService)
 						
 						//MARK:- Rear -
-						AddRearServiceView(rearService: rearService, bikeVM: bikeVM, rearSetupVM: rearSetupVM)
+						AddRearServiceView(rearService: rearService, bike: bike)
 					} // end form
 						
 					.onAppear(perform: {self.setup(isFromBikeCard: isFromBikeCard)})

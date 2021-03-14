@@ -66,7 +66,7 @@ struct BikesView: View {
 			})
 			// nested background view to show 2 sheets in same view...
 			.background(EmptyView().sheet(isPresented: $showScreenBool.isShowingService) {
-				AddServiceView(isFromBikeCard: $isFromBikeCard)
+				AddServiceView(isFromBikeCard: $isFromBikeCard, bike: fetchBike(for: showScreenBool.bikeName))
 					.environmentObject(self.showScreenBool)
 					.environment(\.managedObjectContext, self.moc)
 			}

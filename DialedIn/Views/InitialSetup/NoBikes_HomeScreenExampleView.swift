@@ -20,9 +20,7 @@ struct NoBikes_HomeScreenExampleView: View {
 			Button(action: { showingAlert.toggle()}) {
 				Label("Add New Note", systemImage: "note.text.badge.plus")
 			}
-			Button(action: {showingAlert.toggle() }) {
-				Label("Add New Service", systemImage: "wrench")
-			}
+
 			Button(action: {activeSheet = .addBike }) {
 				Label("Add New Bike", systemImage: "bicycle")
 			}
@@ -33,7 +31,7 @@ struct NoBikes_HomeScreenExampleView: View {
 	}
 	
 	enum ActiveSheet: Identifiable {
-		case addNote, addService, addBike
+		case addNote, addBike
 		var id: Int {
 			hashValue
 		}
@@ -66,8 +64,6 @@ struct NoBikes_HomeScreenExampleView: View {
 			switch item {
 				case .addNote:
 					AddNoteView()
-				case .addService:
-					AddServiceView(isFromBikeCard: $isFromBikeCard)
 				case .addBike:
 					AddBikeView()
 			}

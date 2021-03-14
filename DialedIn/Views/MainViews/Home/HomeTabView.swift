@@ -35,9 +35,9 @@ struct HomeTabView: View {
 			Button(action: { activeSheet = .addNote}) {
 				Label("Add New Note", systemImage: "note.text.badge.plus")
 			}
-			Button(action: {activeSheet = .addService }) {
-				Label("Add New Service", systemImage: "wrench")
-			}
+//			Button(action: {activeSheet = .addService }) {
+//				Label("Add New Service", systemImage: "wrench")
+//			}
 			Button(action: {activeSheet = .addBike }) {
 				Label("Add New Bike", systemImage: "bicycle")
 			}
@@ -48,7 +48,9 @@ struct HomeTabView: View {
 	}
 	
 	enum ActiveSheet: Identifiable {
-		case addNote, addService, addBike
+		case addNote,
+//			 addService,
+			 addBike
 		var id: Int {
 			hashValue
 		}
@@ -91,8 +93,9 @@ struct HomeTabView: View {
 			switch item {
 				case .addNote:
 					AddNoteView()
-				case .addService:
-					AddServiceView(isFromBikeCard: $isFromBikeCard)
+//				case .addService:
+					//tODO: FIX
+//					AddServiceView(isFromBikeCard: $isFromBikeCard, bike: bike)
 				case .addBike:
 					AddBikeView()
 			}
