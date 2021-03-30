@@ -62,7 +62,7 @@ struct RearNoteDetailsView: View {
 						if self.note.bike?.rearSetup?.dualCompression == true {
 							HStack {
 								Text("HSC: \(noteModel.rHSCSetting)").customNotesText()
-								Text("LSC: \(noteModel.rHSCSetting)").customNotesText()
+								Text("LSC: \(noteModel.rLSCSetting)").customNotesText()
 								}
 							} else {
 								Text("Compression: \(noteModel.rCompSetting)").customNotesText()
@@ -74,7 +74,7 @@ struct RearNoteDetailsView: View {
 						if self.note.bike?.rearSetup?.dualRebound == true {
 							HStack{
 								Text("HSR: \(noteModel.rHSRSetting)").customNotesText()
-								Text("LSR: \(noteModel.rHSRSetting)").customNotesText()
+								Text("LSR: \(noteModel.rLSRSetting)").customNotesText()
 							}
 						} else {
 							Text("Rebound: \(noteModel.rReboundSetting)").customNotesText()

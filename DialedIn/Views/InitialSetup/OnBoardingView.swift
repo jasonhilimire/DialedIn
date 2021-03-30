@@ -78,6 +78,7 @@ struct OnBoardingView: View {
 							.font(.subheadline)
 							.fontWeight(.semibold)
 							.foregroundColor(.white)
+							.lineLimit(3)
 					}
 					.customTextShadow()
 					.padding()

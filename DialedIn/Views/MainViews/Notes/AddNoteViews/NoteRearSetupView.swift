@@ -72,7 +72,7 @@ struct NoteRearSetupView: View {
 					//Compression
 					if rearVM.dualCompression == true {
 						Stepper(value: $noteVM.rHSCSetting, in: 0...25, onEditingChanged: {_ in DispatchQueue.main.async {self.haptic.impactOccurred()}}, label: {Text("High Sp Comp: \(self.noteVM.rHSCSetting)").fontWeight(.thin)})
-						Stepper(value: $noteVM.rHSCSetting, in: 0...25, onEditingChanged: {_ in DispatchQueue.main.async {self.haptic.impactOccurred()}}, label: {Text("Low Sp Comp: \(self.noteVM.rLSCSetting)").fontWeight(.thin)})
+						Stepper(value: $noteVM.rLSCSetting, in: 0...25, onEditingChanged: {_ in DispatchQueue.main.async {self.haptic.impactOccurred()}}, label: {Text("Low Sp Comp: \(self.noteVM.rLSCSetting)").fontWeight(.thin)})
 						} else {
 							Stepper(value: $noteVM.rCompSetting, in: 0...25, onEditingChanged: {_ in DispatchQueue.main.async {self.haptic.impactOccurred()}}, label: {Text("Compression: \(self.noteVM.rCompSetting)").fontWeight(.thin)})
 						}
