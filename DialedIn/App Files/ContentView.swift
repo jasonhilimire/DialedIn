@@ -40,6 +40,11 @@ struct ContentView: View {
 					Image(systemName: "note.text")
 					Text("Notes")
 				}
+			AddItemsView()
+				.tabItem {
+					Image(systemName: "plus.rectangle.fill").background(Color.orange)
+					Text("Notes")
+				}
 			
 			BikesView()
 				.tabItem {

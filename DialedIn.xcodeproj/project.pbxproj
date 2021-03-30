@@ -33,6 +33,7 @@
 		A35642C225787A5500A5A45B /* PersistentCloudKitContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A35642BF25787A5500A5A45B /* PersistentCloudKitContainer.swift */; };
 		A35642C325787A5500A5A45B /* DialedApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A35642C025787A5500A5A45B /* DialedApp.swift */; };
 		A3655BB02575E9F6009DACDE /* BoolModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3655BAF2575E9F6009DACDE /* BoolModel.swift */; };
+		A367054D260441E4008DBE69 /* AddItemsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A367054C260441E4008DBE69 /* AddItemsView.swift */; };
 		A37A8953257304AA00D301E1 /* NoteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37A8952257304A900D301E1 /* NoteViewModel.swift */; };
 		A37B1EC0252C0D8500147F94 /* GradientButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37B1EBF252C0D8500147F94 /* GradientButtonStyle.swift */; };
 		A3850EB225292700008982D8 /* NotesStyleCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3850EB125292700008982D8 /* NotesStyleCardView.swift */; };
@@ -136,6 +137,7 @@
 		A35642BF25787A5500A5A45B /* PersistentCloudKitContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistentCloudKitContainer.swift; sourceTree = "<group>"; };
 		A35642C025787A5500A5A45B /* DialedApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DialedApp.swift; sourceTree = "<group>"; };
 		A3655BAF2575E9F6009DACDE /* BoolModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoolModel.swift; sourceTree = "<group>"; };
+		A367054C260441E4008DBE69 /* AddItemsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemsView.swift; sourceTree = "<group>"; };
 		A36DF5EE25C8E7BB00393FD7 /* DialedIn v2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "DialedIn v2.xcdatamodel"; sourceTree = "<group>"; };
 		A37A8952257304A900D301E1 /* NoteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteViewModel.swift; sourceTree = "<group>"; };
 		A37B1EBF252C0D8500147F94 /* GradientButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientButtonStyle.swift; sourceTree = "<group>"; };
@@ -312,6 +314,7 @@
 		A3918AD123E3E764002A1D61 /* MainViews */ = {
 			isa = PBXGroup;
 			children = (
+				A367054C260441E4008DBE69 /* AddItemsView.swift */,
 				A393F9BB252ACAA800F39E04 /* Home */,
 				A33E3D8F25239AD100B9F47E /* Notes */,
 				A33E3D9025239AD600B9F47E /* Bike */,
@@ -691,6 +694,7 @@
 				A3FBA8BB240342E7001F3885 /* BikeDetailView.swift in Sources */,
 				A393F9BD252ACAB700F39E04 /* HomeTabView.swift in Sources */,
 				A3DDCC7A23DFEFEB00CD1476 /* Bike+CoreDataClass.swift in Sources */,
+				A367054D260441E4008DBE69 /* AddItemsView.swift in Sources */,
 				A3D5181624268DB6007DEE9D /* RearService+CoreDataClass.swift in Sources */,
 				A37A8953257304AA00D301E1 /* NoteViewModel.swift in Sources */,
 				A3B8B79723F0E9EF00CE1EF8 /* BikePickerView.swift in Sources */,

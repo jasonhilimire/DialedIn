@@ -78,6 +78,7 @@ struct OnBoardingView: View {
 							.font(.subheadline)
 							.fontWeight(.semibold)
 							.foregroundColor(.white)
+							.lineLimit(3)
 					}
 					.customTextShadow()
 					.padding()
@@ -92,6 +93,7 @@ struct OnBoardingView: View {
 							.font(.subheadline)
 							.fontWeight(.semibold)
 							.foregroundColor(.white)
+							
 					}
 					.customTextShadow()
 					.padding()
@@ -142,16 +144,11 @@ struct OnBoardingView: View {
 					}.buttonStyle(OrangeButtonStyle())
 				}
 				.padding()
-				
 			}
 			Spacer()
-			
 		}
 		.frame(minWidth: 0, idealWidth: .infinity, maxWidth: .infinity, minHeight: 0, idealHeight: .infinity, maxHeight: .infinity, alignment: .top)
 		.background(Color.black)
-		
-		
-
     }
 	
 }
@@ -159,5 +156,7 @@ struct OnBoardingView: View {
 struct OnBoardingView_Previews: PreviewProvider {
     static var previews: some View {
         OnBoardingView()
+			.previewDevice(PreviewDevice(rawValue: "iPhone 12"))
+			.previewDisplayName("iPhone 12")
     }
 }
