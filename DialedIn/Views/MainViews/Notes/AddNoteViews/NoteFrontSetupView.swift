@@ -49,7 +49,7 @@ struct NoteFrontSetupView: View {
 					  // AirPressure
 				HStack{
 					Text("PSI: \(noteVM.fAirVolume, specifier: "%.1f")").fontWeight(.thin)
-					Slider(value: $noteVM.fAirVolume, in: 45...120, step: 1.0)
+					Slider(value: $noteVM.fAirVolume, in: 45...120, step: 1.0).accentColor(.orange)
 					Stepper(value: $noteVM.fAirVolume, in: 45...120, step: 0.5, onEditingChanged: {_ in DispatchQueue.main.async {self.haptic.impactOccurred()}}, label: {Text("PSI: \(self.noteVM.fAirVolume)").fontWeight(.thin)}).labelsHidden()
 
 					}
@@ -80,7 +80,7 @@ struct NoteFrontSetupView: View {
 					// Tire Pressure
 					HStack {
 						Text("Tire PSI: \(noteVM.fTirePressure, specifier: "%.1f")").fontWeight(.thin)
-						Slider(value: $noteVM.fTirePressure, in: 0...40, step: 0.5)
+						Slider(value: $noteVM.fTirePressure, in: 0...40, step: 0.5).accentColor(.orange)
 						Stepper(value: $noteVM.fTirePressure, in: 0...40, step: 0.1, onEditingChanged: {_ in DispatchQueue.main.async {self.haptic.impactOccurred()}}, label: {Text("PSI: \(self.noteVM.fTirePressure)").fontWeight(.thin)}).labelsHidden()
 					}
 			}
