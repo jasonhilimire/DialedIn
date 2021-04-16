@@ -34,7 +34,8 @@ struct OrangeButtonStyle: ButtonStyle {
 		configuration.label
 			.multilineTextAlignment(.center)
 			.foregroundColor(Color("TextColor"))
-			.padding().frame(maxWidth: 400)
+			.padding(.all)
+			.frame(maxWidth: 390)
 			.background(Color.orange)
 			.cornerRadius(15)
 			.scaleEffect(configuration.isPressed ? 0.6 : 1.0)

@@ -61,7 +61,7 @@ struct NoteRearSetupView: View {
 							}
 						}
 					//Sag
-					Stepper(value: $noteVM.rSagSetting  , in: 0...50, onEditingChanged: {_ in DispatchQueue.main.async {self.haptic.impactOccurred()}}, label: {Text("Sag (mm): \(self.noteVM.rSagSetting) -- Sag %: \(calcSag(sag: Double(self.noteVM.rSagSetting), travel: rearVM.travel), specifier: "%.1f")").fontWeight(.thin)})
+					Stepper(value: $noteVM.rSagSetting  , in: 0...50, onEditingChanged: {_ in DispatchQueue.main.async {self.haptic.impactOccurred()}}, label: {Text("Sag (mm): \(self.noteVM.rSagSetting) -- Sag %: \(calcSag(sag: Double(self.noteVM.rSagSetting), travel: rearVM.strokeLength), specifier: "%.1f")").fontWeight(.thin)})
 					
 					
 					//Tokens- only if NOT coil

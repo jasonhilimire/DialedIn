@@ -61,8 +61,8 @@ struct EditBikeDetailView: View {
 				}
 			}) {
 				SaveButtonView(buttonText: $saveText)
-			}.buttonStyle(OrangeButtonStyle())
-		.animation(.default)
+			}.buttonStyle(OrangeButtonStyle()).customSaveButton()
+			
 		}
 
 	}

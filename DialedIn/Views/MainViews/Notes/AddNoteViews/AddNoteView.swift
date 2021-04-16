@@ -87,7 +87,7 @@ struct AddNoteView: View {
 					}
 				}) {
 					SaveButtonView(buttonText: $saveText)
-				}.buttonStyle(OrangeButtonStyle()).padding(.horizontal)
+				}.buttonStyle(OrangeButtonStyle()).customSaveButton()
 			} //: VSTACK
         }
 			// Dismisses the keyboard

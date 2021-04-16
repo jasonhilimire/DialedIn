@@ -96,6 +96,17 @@ struct FootnoteBoldTextModifier: ViewModifier {
 	}
 }
 
+struct SaveButtonModifier: ViewModifier {
+	// adds horizontal and bottom padding when button is shown above keyboard outside the form
+	
+	func body(content: Content) -> some View {
+		content
+			.padding(.horizontal)
+			.padding(.bottom, 8)
+			.animation(.default)
+	}
+}
+
 
 extension View {
 	func customTextField() -> some View {
@@ -116,6 +127,10 @@ extension View {
 	
 	func customFootnoteBold() -> some View {
 		return self.modifier(FootnoteBoldTextModifier())
+	}
+	
+	func customSaveButton() -> some View {
+		return self.modifier(SaveButtonModifier())
 	}
 }
 

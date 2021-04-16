@@ -35,10 +35,10 @@ struct AddBikeView: View {
                 Form {
 					BikeDetailFormView(bikeVM: bikeVM)
 
-//					 MARK: - Front Setup -
+// MARK: - Front Setup -
 					ForkSetupFormView(forkVM: forkVM, frontServiceVM: frontServiceVM, isAdd: $isAdd)
                     
-					// MARK: - REAR SETUP -
+// MARK: - REAR SETUP -
 					RearSetupFormView(bikeVM: bikeVM, rearShockVM: rearShockVM, rearServiceVM: rearServiceVM, rearSetupIndex: $rearSetupIndex, isAdd: $isAdd)
 
                 } .navigationBarTitle("Bike Info", displayMode: .inline)
@@ -76,7 +76,7 @@ struct AddBikeView: View {
 					}
                     }) {
 						SaveButtonView(buttonText: $saveText)
-                        }.buttonStyle(OrangeButtonStyle()).padding(.horizontal)
+				}.buttonStyle(OrangeButtonStyle()).customSaveButton()
                     Spacer()
             }
 			.animation(.default)
