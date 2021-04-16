@@ -53,15 +53,7 @@ struct AddBikeView: View {
                 Button(action: {
 					self.checkBikeNameExists()
 					if duplicateNameAlert == false {
-						
-//TODO: Put this is own function -
-						let newFrontService = frontServiceVM.createFrontService()
-						let newRearService = rearServiceVM.createRearService()
-						let newFork = forkVM.createFork(newFrontService)
-						let newRear = rearShockVM.createRearShock(newRearService)
-						bikeVM.saveNewBike(fork: newFork, rearShock: newRear)
-						
-						
+						createNewBike()
 						withAnimation(.linear(duration: 0.05), {
 							self.saveText = "     SAVED!!     "  // no idea why, but have to add spaces here other wise it builds the word slowly with SA...., annoying as all hell
 						})
@@ -92,6 +84,14 @@ struct AddBikeView: View {
 				break
 			}
 		}
+	}
+	
+	func createNewBike(){
+		let newFrontService = frontServiceVM.createFrontService()
+		let newRearService = rearServiceVM.createRearService()
+		let newFork = forkVM.createFork(newFrontService)
+		let newRear = rearShockVM.createRearShock(newRearService)
+		bikeVM.saveNewBike(fork: newFork, rearShock: newRear)
 	}
 
 }

@@ -10,19 +10,22 @@ import SwiftUI
 
 struct FavoritesView: View {
 	@Binding var favorite: Bool
+//	@Binding var isHomeFavorite: Bool
 	
 	var label = "Favorite Note:"
-	var offImage = Image(systemName: "bookmark")
-	var onImage = Image(systemName: "bookmark.fill")
+	var offImage = Image(systemName: "bookmark.circle")
+	var onImage = Image(systemName: "bookmark.circle.fill")
 	
 	var offColor = Color.gray
-	var onColor = Color.orange  // TODO Refactor this to use a boolean from homeview and get rid of Home Favorites view
+	var onColor = Color.orange
+	var homeColor = Color.white// TODO Refactor this to use a boolean from homeview and get rid of Home Favorites view
 	
 	var body: some View {
 		HStack {
 			self.image()
 				.imageScale(.large)
 				.foregroundColor(self.favorite ? self.onColor: self.offColor)
+//				.foregroundColor(self.favorite ? self.isHomeFavorite ? self.homeColor: self.onColor: self.offColor)
 				.onTapGesture {
 					self.favorite.toggle()
 			}
@@ -41,8 +44,8 @@ struct FavoritesView: View {
 struct HomeFavoritesView: View {
 	@Binding var favorite: Bool
 
-	var offImage = Image(systemName: "bookmark")
-	var onImage = Image(systemName: "bookmark.fill")
+	var offImage = Image(systemName: "bookmark.circle")
+	var onImage = Image(systemName: "bookmark.circle.fill")
 	
 	var offColor = Color.gray
 	var onColor = Color.white
