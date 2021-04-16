@@ -21,10 +21,13 @@ struct NotesStyleCardView: View {
 					Text(note.bike?.name ?? "Unknown Bike")
 					Spacer()
 					Text(note.date != nil ? "\(note.date!, formatter: dateFormatter)" : "")
+
+					
+					// this basically hides the favorite icon and adequately spaces the date
 					if note.isFavorite == true {
 						FavoritesView(favorite: .constant(note.isFavorite))
 					} else {
-						Text("   ")
+						Text("    ")
 					}
 				}
 				.customShadow()
@@ -38,6 +41,7 @@ struct NotesStyleCardView: View {
 							}
 							Text(note.note ?? "")
 								.fontWeight(.thin)
+								.lineLimit(1) // keeps notes to one line, will increase to multiple lines without when filtered (favorite or search)
 						}
 						.font(.footnote)
 						Spacer()
