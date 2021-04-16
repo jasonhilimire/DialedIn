@@ -11,19 +11,13 @@ import CoreData
 
 struct LastNoteView: View {
 	@Environment(\.managedObjectContext) var moc
+
+	@FetchRequest(fetchRequest: Notes.LastNoteFetchRequest())
+	var notes: FetchedResults<Notes>
 	
-	var fetchRequest: FetchRequest<Notes>
-	
-	init(){
-		let request: NSFetchRequest<Notes> = Notes.LastNoteFetchRequest()
-		fetchRequest = FetchRequest<Notes>(fetchRequest: request)
-	}
-	
+	// TODO: FIX THIS as shouldnt be hardcoding this - but has fixed issue on the ipad with multiple notes showing up
 	var body: some View {
-		ForEach(fetchRequest.wrappedValue, id: \.self) { note in
-			NotesHomeStyledCardView(note: note)
-				.animation(.default)
-		}
+		NotesHomeStyledCardView(note: notes[0])
 	}
 }
 
