@@ -43,7 +43,7 @@ struct AddBikeView: View {
 
                 } .navigationBarTitle("Bike Info", displayMode: .inline)
 				.alert(isPresented: $duplicateNameAlert) {
-					Alert(title: Text("Duplicate Bike Name"), message: Text("Duplicate Bike Names are not allowed - please change"), primaryButton: .destructive(Text("Clear")) {
+					Alert(title: Text("Duplicate Bike Name"), message: Text("Duplicate Bike Names are not recommended - please change"), primaryButton: .destructive(Text("Clear")) {
 						bikeVM.bikeName = ""
 					}, secondaryButton: .cancel()
 					)

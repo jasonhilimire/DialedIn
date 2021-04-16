@@ -183,16 +183,4 @@ class BikeViewModel: ObservableObject {
 			}
 		}
 	}
-	
-	//TODO: this doesnt seem to work but works in the AddBikeView
-	func checkBikeNameExists() {
-		let filteredBikes = try! managedObjectContext.fetch(Bike.bikesFetchRequest())
-		for bike in filteredBikes {
-			if bike.name?.lowercased() == bikeName!.lowercased() {
-				duplicateNameAlert.toggle()
-				break
-			}
-		}
-	}
-
 }

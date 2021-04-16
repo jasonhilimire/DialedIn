@@ -23,6 +23,8 @@ struct EditBikeDetailView: View {
 	
 	@State private var saveText = "Save"
 	@State private var isAdd = false
+	
+	@State var duplicateNameAlert = false
 
 	let bike: Bike
 
@@ -49,15 +51,30 @@ struct EditBikeDetailView: View {
 				RearSetupFormView(bikeVM: bikeVM, rearShockVM: rearShockVM, rearSetupIndex: $bikeVM.rearSetupIndex, isAdd: $isAdd)
 
 			} //: FORM
+			.alert(isPresented: $duplicateNameAlert) {
+				Alert(title: Text("Duplicate Bike Name"), message: Text("Duplicate Bike Names are not recommended - please change"), primaryButton: .destructive(Text("Clear")) {
+					bikeVM.bikeName = ""
+				}, secondaryButton: .cancel()
+				)
+			}
+			.animation(.spring())
+			
 			Button(action: {
-				updateBike()
-				withAnimation(.linear(duration: 0.05), {
-					self.saveText = "     SAVED!!     "  // no idea why, but have to add spaces here other wise it builds the word slowly with SA...., annoying as all hell
-				})
+				self.checkBikeNameExists()
+				if duplicateNameAlert == false {
+					updateBike()
 				
-				hapticSuccess()
+					withAnimation(.linear(duration: 0.05), {
+						self.saveText = "     SAVED!!     "  // no idea why, but have to add spaces here other wise it builds the word slowly with SA...., annoying as all hell
+					})
+					
+					hapticSuccess()
+				}
 				DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-					self.presentationMode.wrappedValue.dismiss()
+					// prevents the alert from being dismissed automatically
+					if duplicateNameAlert == false {
+						self.presentationMode.wrappedValue.dismiss()
+					}
 				}
 			}) {
 				SaveButtonView(buttonText: $saveText)
@@ -75,6 +92,16 @@ struct EditBikeDetailView: View {
 		let updatedRear = rearShockVM.updateRearShock(rear: bike.rearSetup!)
 		bikeVM.updateBike(bike: bike, fork: updatedFork, rearShock: updatedRear)
 		}
+	
+	func checkBikeNameExists() {
+		let filteredBikes = try! moc.fetch(Bike.bikesFetchRequest())
+		for bike in filteredBikes {
+			if  bikeVM.bikeName!.lowercased() == bike.name?.lowercased(){
+				duplicateNameAlert.toggle()
+				break
+			}
+		}
+	}
 	
 
 }
