@@ -41,14 +41,16 @@ struct AddServiceView: View {
 					CreateBikeView()
 				} else {
 					Form {
-						if bikes.count == 1 {
-							Text("\(bikes[bikeNameIndex].name!)")
-								.fontWeight(.thin)
-						} else if isFromBikeCard  == true {
-							Text("\(boolModel.bikeName)")
-								.fontWeight(.semibold)
-						} else {
-							BikePickerView(bikeNameIndex: $bikeNameIndex)
+						Section{
+							if bikes.count == 1 {
+								Text("\(bikes[bikeNameIndex].name!)")
+									.fontWeight(.thin)
+							} else if isFromBikeCard  == true {
+								Text("\(boolModel.bikeName)")
+									.fontWeight(.semibold)
+							} else {
+								BikePickerView(bikeNameIndex: $bikeNameIndex)
+							}
 						}
 						//MARK:- Front -
 						AddFrontServiceView(frontService: frontService)
@@ -56,7 +58,7 @@ struct AddServiceView: View {
 						//MARK:- Rear -
 						AddRearServiceView(rearService: rearService, bike: bike)
 					} // end form
-						
+					
 					.onAppear(perform: {self.setup(isFromBikeCard: isFromBikeCard)})
 						.navigationBarTitle("Service")
 					
