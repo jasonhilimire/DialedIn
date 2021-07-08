@@ -127,8 +127,9 @@ class BikeViewModel: ObservableObject {
 		let filteredBikes = try! managedObjectContext.fetch(Bike.bikesFetchRequest())
 		for bike in filteredBikes {
 			if bike.name?.lowercased() == bikeName.lowercased() {
-				duplicateNameAlert.toggle()
-				break
+				duplicateNameAlert = true
+			} else {
+				duplicateNameAlert = false
 			}
 		}
 	}
