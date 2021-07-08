@@ -16,11 +16,19 @@ struct BikeDetailFormView: View {
 		Section(header: Text("Bike Details")){
 			HStack {
 				Text("Bike Name:").fontWeight(.thin)
-				TextField("Enter a Name", text: $bikeVM.bikeName ?? "")
-					.customTextField()
-					.textFieldStyle(PlainTextFieldStyle())
-
+				TextField("Enter Bike Name", text: self.$bikeVM.bikeName ?? "" , onEditingChanged: { (changed) in
+					if changed {
+						print("text edit has begun")
+//						bikeVM.checkBikeNameExists(bikeName: bikeVM.bikeName ?? "")
+//						print("duplicateNameAlert = \(bikeVM.duplicateNameAlert)")
+					} else {
+						print("committed the change")
+					}
+					
+				}).customTextField()
+				.textFieldStyle(PlainTextFieldStyle())
 			}
+			
 			HStack {
 				Text("Note:").fontWeight(.thin)
 				TextField("Enter a Note", text: $bikeVM.bikeNote ?? "")

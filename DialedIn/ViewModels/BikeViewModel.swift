@@ -122,6 +122,17 @@ class BikeViewModel: ObservableObject {
 		self.rearSetupIndex = setupIndex
 	}
 	
+	
+	func checkBikeNameExists(bikeName: String) {
+		let filteredBikes = try! managedObjectContext.fetch(Bike.bikesFetchRequest())
+		for bike in filteredBikes {
+			if bike.name?.lowercased() == bikeName.lowercased() {
+				duplicateNameAlert.toggle()
+				break
+			}
+		}
+	}
+	
 	func saveNewBike(fork: Fork, rearShock: RearShock) {
 		let newBike = Bike(context: managedObjectContext)
 		

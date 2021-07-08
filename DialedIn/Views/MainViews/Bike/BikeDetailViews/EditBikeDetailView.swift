@@ -60,7 +60,8 @@ struct EditBikeDetailView: View {
 			.animation(.spring())
 			
 			Button(action: {
-				self.checkBikeNameExists()
+				//TODO: Removed duplicate check on edit as it wasnt allowing any edits - this is likely because we are resaving boolModel.bikeName as bikeVM.bikeName
+//				self.checkBikeNameExists()
 				if duplicateNameAlert == false {
 					updateBike()
 				
