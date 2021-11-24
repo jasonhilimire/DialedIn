@@ -61,6 +61,15 @@ struct AddServiceView: View {
 					
 					.onAppear(perform: {self.setup(isFromBikeCard: isFromBikeCard)})
 						.navigationBarTitle("Service")
+						.navigationBarTitle("Bike Details", displayMode: .inline)
+					// Adds a Toolbar Cancel button in the red color that will dismisses the modal
+						.toolbar{
+							SheetToolBar{
+							cancelAction: do {
+								self.presentationMode.wrappedValue.dismiss()
+								}
+							}
+						}
 					
 				// MARK: - SAVE BUTTON -
 					

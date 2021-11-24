@@ -72,7 +72,16 @@ struct AddNoteView: View {
 					NoteRearSetupView(rear: rearSetup, rearVM: rearVM, noteVM: noteVM, note: nil)
 				} //: FORM
 					.onAppear(perform: {self.setup()}) // change to onReceive??
-					.navigationBarTitle("Dialed In", displayMode: .inline)
+					.navigationBarTitle("Dialed In- New Note", displayMode: .inline)
+					.navigationBarTitle("Bike Details", displayMode: .inline)
+				// Adds a Toolbar Cancel button in the red color that will dismisses the modal
+					.toolbar{
+						SheetToolBar{
+						cancelAction: do {
+							self.presentationMode.wrappedValue.dismiss()
+							}
+						}
+					}
 				
 				Button(action: {
 					self.noteVM.saveNote(bikeName: bikeName)
