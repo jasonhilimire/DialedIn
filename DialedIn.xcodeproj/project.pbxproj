@@ -77,6 +77,7 @@
 		A3DDCC8323DFF97900CD1476 /* AddBikeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DDCC8223DFF97900CD1476 /* AddBikeView.swift */; };
 		A3E04FC2244B9E0000FEB391 /* FavoritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E04FC1244B9E0000FEB391 /* FavoritesView.swift */; };
 		A3E1A6AF2409B78100C4DFD5 /* FilteredBikeNotesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E1A6AE2409B78100C4DFD5 /* FilteredBikeNotesView.swift */; };
+		A3EAEF36274EE29400B562E9 /* ToolbarContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3EAEF35274EE29400B562E9 /* ToolbarContent.swift */; };
 		A3F0CF4C25D99F140001DF5B /* RearShockViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F0CF4B25D99F140001DF5B /* RearShockViewModel.swift */; };
 		A3F3C83D25D9CD41000BE912 /* ForkSetupFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F3C83C25D9CD41000BE912 /* ForkSetupFormView.swift */; };
 		A3F3C84825D9D2AD000BE912 /* RearSetupFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F3C84725D9D2AD000BE912 /* RearSetupFormView.swift */; };
@@ -189,6 +190,7 @@
 		A3DDCC8223DFF97900CD1476 /* AddBikeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBikeView.swift; sourceTree = "<group>"; };
 		A3E04FC1244B9E0000FEB391 /* FavoritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesView.swift; sourceTree = "<group>"; };
 		A3E1A6AE2409B78100C4DFD5 /* FilteredBikeNotesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilteredBikeNotesView.swift; sourceTree = "<group>"; };
+		A3EAEF35274EE29400B562E9 /* ToolbarContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolbarContent.swift; sourceTree = "<group>"; };
 		A3F0CF4B25D99F140001DF5B /* RearShockViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RearShockViewModel.swift; sourceTree = "<group>"; };
 		A3F3C83C25D9CD41000BE912 /* ForkSetupFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForkSetupFormView.swift; sourceTree = "<group>"; };
 		A3F3C84725D9D2AD000BE912 /* RearSetupFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RearSetupFormView.swift; sourceTree = "<group>"; };
@@ -326,6 +328,7 @@
 				A3ED8D582561A474009C66E7 /* Buttons */,
 				A3F8592D2511BFAA00278E7B /* CreateBikeView.swift */,
 				A3077DEA255B8DAD00981486 /* SearchBarView.swift */,
+				A3EAEF35274EE29400B562E9 /* ToolbarContent.swift */,
 			);
 			path = SingleViews;
 			sourceTree = "<group>";
@@ -698,6 +701,7 @@
 				A35642C325787A5500A5A45B /* DialedApp.swift in Sources */,
 				A31605F02523B976009071E9 /* BikeCardView.swift in Sources */,
 				A3E1A6AF2409B78100C4DFD5 /* FilteredBikeNotesView.swift in Sources */,
+				A3EAEF36274EE29400B562E9 /* ToolbarContent.swift in Sources */,
 				A3F0CF4C25D99F140001DF5B /* RearShockViewModel.swift in Sources */,
 				A3D518072425BD63007DEE9D /* AddServiceView.swift in Sources */,
 				A3F61FFB25CE357A004F8EA0 /* FrontNoteDetailsView.swift in Sources */,
@@ -927,7 +931,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "DialedIn/Dialed In.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"DialedIn/Preview Content\"";
 				DEVELOPMENT_TEAM = 55QD8ZCA9C;
 				ENABLE_PREVIEWS = YES;
@@ -952,7 +956,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "DialedIn/Dialed In.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"DialedIn/Preview Content\"";
 				DEVELOPMENT_TEAM = 55QD8ZCA9C;
 				ENABLE_PREVIEWS = YES;
