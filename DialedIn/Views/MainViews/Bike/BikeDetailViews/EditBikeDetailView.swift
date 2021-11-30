@@ -40,49 +40,59 @@ struct EditBikeDetailView: View {
 	//TODO: figure out how to only allow 1 default bike
 	//MARK: - BODY -
 	var body: some View {
-		VStack {
-			Form {
-				BikeDetailFormView(bikeVM: bikeVM)
-				
-				// MARK: - Front Setup -
-				ForkSetupFormView(forkVM: forkVM, isAdd: $isAdd)
-				
-				// MARK: - REAR SETUP -
-				RearSetupFormView(bikeVM: bikeVM, rearShockVM: rearShockVM, rearSetupIndex: $bikeVM.rearSetupIndex, isAdd: $isAdd)
-
-			} //: FORM
-			.alert(isPresented: $duplicateNameAlert) {
-				Alert(title: Text("Duplicate Bike Name"), message: Text("Duplicate Bike Names are not recommended - please change"), primaryButton: .destructive(Text("Clear")) {
-					bikeVM.bikeName = ""
-				}, secondaryButton: .cancel()
-				)
-			}
-			.animation(.spring())
-			
-			Button(action: {
-				//TODO: Removed duplicate check on edit as it wasnt allowing any edits - this is likely because we are resaving boolModel.bikeName as bikeVM.bikeName
-//				self.checkBikeNameExists()
-				if duplicateNameAlert == false {
-					updateBike()
-				
-					withAnimation(.linear(duration: 0.05), {
-						self.saveText = "     SAVED!!     "  // no idea why, but have to add spaces here other wise it builds the word slowly with SA...., annoying as all hell
-					})
+		NavigationView{
+			VStack {
+				Form {
+					BikeDetailFormView(bikeVM: bikeVM)
 					
-					hapticSuccess()
+					// MARK: - Front Setup -
+					ForkSetupFormView(forkVM: forkVM, isAdd: $isAdd)
+					
+					// MARK: - REAR SETUP -
+					RearSetupFormView(bikeVM: bikeVM, rearShockVM: rearShockVM, rearSetupIndex: $bikeVM.rearSetupIndex, isAdd: $isAdd)
+
+				} //: FORM
+				.alert(isPresented: $duplicateNameAlert) {
+					Alert(title: Text("Duplicate Bike Name"), message: Text("Duplicate Bike Names are not recommended - please change"), primaryButton: .destructive(Text("Clear")) {
+						bikeVM.bikeName = ""
+					}, secondaryButton: .cancel()
+					)
 				}
-				DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-					// prevents the alert from being dismissed automatically
+				.animation(.spring())
+				
+				Button(action: {
+					//TODO: Removed duplicate check on edit as it wasnt allowing any edits - this is likely because we are resaving boolModel.bikeName as bikeVM.bikeName
+	//				self.checkBikeNameExists()
 					if duplicateNameAlert == false {
+						updateBike()
+					
+						withAnimation(.linear(duration: 0.05), {
+							self.saveText = "     SAVED!!     "  // no idea why, but have to add spaces here other wise it builds the word slowly with SA...., annoying as all hell
+						})
+						
+						hapticSuccess()
+					}
+					DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+						// prevents the alert from being dismissed automatically
+						if duplicateNameAlert == false {
+							self.presentationMode.wrappedValue.dismiss()
+						}
+					}
+				}) {
+					SaveButtonView(buttonText: $saveText)
+				}.buttonStyle(OrangeButtonStyle()).customSaveButton()
+				
+			}
+			.navigationBarTitle("Edit Bike Details", displayMode: .inline)
+			// Adds a Toolbar Cancel button in the red color that will dismisses the modal
+			.toolbar{
+				SheetToolBar{
+					cancelAction: do {
 						self.presentationMode.wrappedValue.dismiss()
 					}
 				}
-			}) {
-				SaveButtonView(buttonText: $saveText)
-			}.buttonStyle(OrangeButtonStyle()).customSaveButton()
-			
+			}
 		}
-
 	}
 	
 	//MARK: - FUNCTIONS -

@@ -65,8 +65,8 @@ struct AddServiceView: View {
 					// Adds a Toolbar Cancel button in the red color that will dismisses the modal
 						.toolbar{
 							SheetToolBar{
-							cancelAction: do {
-								self.presentationMode.wrappedValue.dismiss()
+								cancelAction: do {
+									self.presentationMode.wrappedValue.dismiss()
 								}
 							}
 						}

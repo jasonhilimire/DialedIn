@@ -73,7 +73,7 @@ struct AddNoteView: View {
 				} //: FORM
 					.onAppear(perform: {self.setup()}) // change to onReceive??
 					.navigationBarTitle("Dialed In- New Note", displayMode: .inline)
-					.navigationBarTitle("Bike Details", displayMode: .inline)
+				
 				// Adds a Toolbar Cancel button in the red color that will dismisses the modal
 					.toolbar{
 						SheetToolBar{

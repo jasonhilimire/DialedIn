@@ -13,7 +13,7 @@ struct BikeDetailFormView: View {
 	@ObservedObject var bikeVM = BikeViewModel()
 	
     var body: some View {
-		Section(header: Text("Bike Details")){
+		Section{
 			HStack {
 				Text("Bike Name:").fontWeight(.thin)
 				TextField("Enter Bike Name", text: self.$bikeVM.bikeName ?? "" )
