@@ -53,6 +53,25 @@ struct ForkSetupFormView: View {
 				}
 			}
 		}
+// Ads a section with service warning in Days for Fork, not fully baked yet, saving not enabled
+		Section(header: Text("Service Warning: In Days").fontWeight(.thin)){
+			HStack {
+				Text("Lowers").fontWeight(.thin)
+				TextField("Days", value: $frontServiceVM.elapsedLowersServiceDays, formatter: NumberFormatter())
+				//					TextField("Days", text: Binding( // get the Binding value as a string and convert to an Integer
+				//						get: { String(frontServiceVM.elapsedLowersServiceDays) },
+				//						set: { frontServiceVM.elapsedLowersServiceDays = Int($0) ?? 90 }
+				//					))
+					.customTextField()
+					.textFieldStyle(PlainTextFieldStyle())
+					.keyboardType(.decimalPad)
+				Text("Full").fontWeight(.thin)
+				TextField("Days", value: $frontServiceVM.elapsedFullServiceDays, formatter: NumberFormatter())
+					.customTextField()
+					.textFieldStyle(PlainTextFieldStyle())
+					.keyboardType(.decimalPad)
+			}
+		}
     }
 
 }
