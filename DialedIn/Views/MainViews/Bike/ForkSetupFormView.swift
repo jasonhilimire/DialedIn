@@ -13,6 +13,9 @@ struct ForkSetupFormView: View {
 	@ObservedObject var frontServiceVM = FrontServiceViewModel()
 
 	@Binding var isAdd: Bool
+	@State var service1text = "Lowers"
+	@State var service2text = "Full"
+	@State var setupIndex = 0
 	
     var body: some View {
 		Section(header:
@@ -52,9 +55,11 @@ struct ForkSetupFormView: View {
 					Text("Last Full Service").fontWeight(.thin)
 				}
 			}
+			
+			ServiceWarningView(service1: $frontServiceVM.elapsedLowersServiceDays, service2: $frontServiceVM.elapsedFullServiceDays, service1text: service1text, service2text: service2text, setupIndex: setupIndex)
 		}
 		
-		ServiceWarningView(service1: $frontServiceVM.elapsedLowersServiceDays, service2: $frontServiceVM.elapsedFullServiceDays, service1text: "Lowers", service2text: "Full")
+		
     }
 
 }

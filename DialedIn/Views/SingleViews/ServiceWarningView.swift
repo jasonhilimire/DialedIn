@@ -13,6 +13,7 @@ struct ServiceWarningView: View {
 	@Binding var service2: Int
 	@State var service1text: String
 	@State var service2text: String
+	@State var setupIndex: Int
 	
 	
 	
@@ -29,11 +30,13 @@ struct ServiceWarningView: View {
 					.customTextField()
 					.textFieldStyle(PlainTextFieldStyle())
 					.keyboardType(.decimalPad)
-				Text(service2text).fontWeight(.thin)
-				TextField("Days", value: $service2, formatter: NumberFormatter())
-					.customTextField()
-					.textFieldStyle(PlainTextFieldStyle())
-					.keyboardType(.decimalPad)
+				if setupIndex < 2 { // used for RearSetupIndex
+					Text(service2text).fontWeight(.thin)
+					TextField("Days", value: $service2, formatter: NumberFormatter())
+						.customTextField()
+						.textFieldStyle(PlainTextFieldStyle())
+						.keyboardType(.decimalPad)
+				}
 			}
 		}
     }

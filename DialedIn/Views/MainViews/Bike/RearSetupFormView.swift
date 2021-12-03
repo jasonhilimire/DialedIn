@@ -15,6 +15,9 @@ struct RearSetupFormView: View {
 	
 	@Binding var rearSetupIndex: Int
 	@Binding var isAdd: Bool
+	
+	@State var service1text = "Air Can"
+	@State var service2text = "Full"
 
     var body: some View {
 		Section(header:
@@ -80,6 +83,9 @@ struct RearSetupFormView: View {
 						Text("Last Rear Full Service").fontWeight(.thin)
 					}
 				}
+				
+				ServiceWarningView(service1: $rearServiceVM.elapsedAirCanServiceDays, service2: $rearServiceVM.elapsedFullServiceDays, service1text: service1text, service2text: service2text, setupIndex: rearSetupIndex)
+				
 			} else if rearSetupIndex == 2 { // COIL SHOCK
 				HStack {
 					Text("Rear Name/Info:").fontWeight(.thin)
@@ -113,6 +119,9 @@ struct RearSetupFormView: View {
 						Text("Last Rear Full Service").fontWeight(.thin)
 					}
 				}
+				
+				ServiceWarningView(service1: $rearServiceVM.elapsedAirCanServiceDays, service2: $rearServiceVM.elapsedFullServiceDays, service1text: service2text, service2text: service2text, setupIndex: rearSetupIndex)
+				
 			}
 		}
 		.onDisappear(perform: {
