@@ -56,7 +56,7 @@ struct ForkSetupFormView: View {
 				}
 			}
 			
-			ServiceWarningView(service1: $frontServiceVM.elapsedLowersServiceDays, service2: $frontServiceVM.elapsedFullServiceDays, service1text: service1text, service2text: service2text, setupIndex: setupIndex)
+			ServiceWarningView(service1: $forkVM.lowersServiceSettingDays, service2: $forkVM.fullServiceSettingDays, service1text: service1text, service2text: service2text, setupIndex: setupIndex)
 		}
 		
 		

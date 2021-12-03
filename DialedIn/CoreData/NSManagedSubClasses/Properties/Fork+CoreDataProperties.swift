@@ -22,6 +22,8 @@ extension Fork {
 	@NSManaged public var dualRebound: Bool
 	@NSManaged public var info: String?
 	@NSManaged public var travel: Double
+	@NSManaged public var fullServiceWarn: Int16
+	@NSManaged public var lowersServiceWarn: Int16
 	@NSManaged public var bike: Bike?
 	@NSManaged public var frontService: NSSet?
 	

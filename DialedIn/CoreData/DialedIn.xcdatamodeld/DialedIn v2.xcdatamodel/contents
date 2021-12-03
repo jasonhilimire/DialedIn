@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17709" systemVersion="20D74" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="19461" systemVersion="21A559" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Bike" representedClassName="Bike" syncable="YES">
         <attribute name="bikeNote" optional="YES" attributeType="String"/>
         <attribute name="hasRearShock" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
@@ -13,8 +13,10 @@
     <entity name="Fork" representedClassName="Fork" syncable="YES">
         <attribute name="dualCompression" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="dualRebound" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="fullServiceWarn" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="info" optional="YES" attributeType="String"/>
+        <attribute name="lowersServiceWarn" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="travel" optional="YES" attributeType="Double" maxValueString="240" defaultValueString="0" usesScalarValueType="YES"/>
         <relationship name="bike" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Bike" inverseName="frontSetup" inverseEntity="Bike"/>
         <relationship name="frontService" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="FrontService" inverseName="service" inverseEntity="FrontService"/>
@@ -75,7 +77,7 @@
     </entity>
     <elements>
         <element name="Bike" positionX="-1295.51171875" positionY="-477.16015625" width="128" height="149"/>
-        <element name="Fork" positionX="-680.84765625" positionY="-601.16796875" width="128" height="134"/>
+        <element name="Fork" positionX="-680.84765625" positionY="-601.16796875" width="128" height="14"/>
         <element name="FrontService" positionX="-440.9609375" positionY="-596.84375" width="128" height="104"/>
         <element name="Notes" positionX="-908.890625" positionY="-180.9140625" width="117.93359375" height="419"/>
         <element name="RearService" positionX="-397.6875" positionY="-359.015625" width="128" height="104"/>

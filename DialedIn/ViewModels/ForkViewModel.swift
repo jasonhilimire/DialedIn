@@ -50,6 +50,18 @@ class ForkViewModel: ObservableObject {
 			didChange.send(self)
 		}
 	}
+	
+	@Published var lowersServiceSettingDays: Int = 90 {
+		didSet {
+			didChange.send(self)
+		}
+	}
+	
+	@Published var fullServiceSettingDays: Int = 90 {
+		didSet {
+			didChange.send(self)
+		}
+	}
 
 	// MARK: - FUNCTIONS -
 	func getFrontSettings(filter: String) -> [Fork] {
@@ -101,12 +113,28 @@ class ForkViewModel: ObservableObject {
 		return filteredBike.last?.info ?? ""
 	}
 	
+	func getLowersServiceSettingDays(bike: String) -> Int {
+		let filtered = getFrontSettings(filter: bike).filter { bikes in
+			bikes.bike?.frontSetup?.bike?.name == bike
+		}
+		return Int(filtered.last?.lowersServiceWarn ?? 365)
+	}
+	
+	func getFullServiceSettingDays(bike: String) -> Int {
+		let filtered = getFrontSettings(filter: bike).filter { bikes in
+			bikes.bike?.frontSetup?.bike?.name == bike
+		}
+		return Int(filtered.last?.fullServiceWarn ?? 365)
+	}
+	
 	func getForkSettings(bikeName: String){
 		dualCompression = getDualComp(bike: bikeName)
 		dualRebound = getDualReb(bike: bikeName)
 		travelString = getTravelString(bike: bikeName)
 		travel = getTravel(bike: bikeName)
 		info = getInfo(bike: bikeName)
+		lowersServiceSettingDays = getLowersServiceSettingDays(bike: bikeName)
+		fullServiceSettingDays = getFullServiceSettingDays(bike: bikeName)
 	}
 	
 	func convertTravel(from travel: String) -> Double {
@@ -121,6 +149,8 @@ class ForkViewModel: ObservableObject {
 		newFork.dualCompression = self.dualCompression
 		newFork.dualRebound = self.dualRebound
 		newFork.travel = convertTravel(from: travelString!)
+		newFork.lowersServiceWarn = Int16(self.lowersServiceSettingDays)
+		newFork.fullServiceWarn = Int16(self.fullServiceSettingDays)
 		
 		if self.info == "" {
 			newFork.info = "Fork"
@@ -138,6 +168,8 @@ class ForkViewModel: ObservableObject {
 		managedObjectContext.performAndWait {
 			fork.dualCompression = self.dualCompression
 			fork.dualRebound = self.dualRebound
+			fork.lowersServiceWarn = Int16(self.lowersServiceSettingDays)
+			fork.fullServiceWarn = Int16(self.fullServiceSettingDays)
 			if self.info == "" {
 				fork.info = "Fork"
 			} else {

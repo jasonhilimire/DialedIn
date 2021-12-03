@@ -85,8 +85,8 @@ class FrontServiceViewModel: ObservableObject {
 		fullServiceDate = getFullDate(bike: bike)
 		elapsedLowersServiceDays = getElapsedLowersServiceDays(lowersServiceDate)
 		elapsedFullServiceDays = getElapsedFullServiceDays(fullServiceDate)
-		elapsedLowersServiceWarning = lowersServiceWarning()
-		elapsedFullServiceWarning = fullServiceWarning()
+		elapsedLowersServiceWarning = lowersServiceWarning(bike: bike)
+		elapsedFullServiceWarning = fullServiceWarning(bike: bike)
 		serviceNote = getFrontServiceNote(bike: bike)
 	}
 	
@@ -95,6 +95,18 @@ class FrontServiceViewModel: ObservableObject {
 		var bikes : [FrontService] = []
 		//		let fetchRequest = FrontService.frontServiceLowersFetchRequest(filter: bikeName) /// maybe need this if multiple service issue due to sorting by full service only
 		let fetchRequest = FrontService.frontServiceFetchRequest()
+		
+		do {
+			bikes = try managedObjectContext.fetch(fetchRequest)
+		} catch let error as NSError {
+			print("Could not fetch. \(error), \(error.userInfo)")
+		}
+		return bikes
+	}
+	
+	func getFrontSettings(filter: String) -> [Fork] {
+		var bikes : [Fork] = []
+		let fetchRequest = Fork.forkFetchRequest()
 		
 		do {
 			bikes = try managedObjectContext.fetch(fetchRequest)
@@ -135,13 +147,22 @@ class FrontServiceViewModel: ObservableObject {
 		return elapsed
 	}
 	
-	func lowersServiceWarning() -> Bool {
-		elapsedLowersServiceDays >= frontLowersServiceSetting ?  true : false
+	func lowersServiceWarning(bike: String) -> Bool {
+		let filtered = getFrontSettings(filter: bike).filter { bikes in
+			bikes.bike?.frontSetup?.bike?.name == bike
+		}
+		let setting = filtered.last?.lowersServiceWarn ?? 365
+		//fetch the bike, get the lowers service setting days and then compare
+		return elapsedLowersServiceDays >= setting ?  true : false
 	}
 
 	
-	func fullServiceWarning() -> Bool {
-		elapsedFullServiceDays >= frontFullServiceSetting ? true : false
+	func fullServiceWarning(bike: String) -> Bool {
+		let filtered = getFrontSettings(filter: bike).filter { bikes in
+			bikes.bike?.frontSetup?.bike?.name == bike
+		}
+		let setting = filtered.last?.fullServiceWarn ?? 365
+		return elapsedFullServiceDays >= setting ? true : false
 	}
 	
 	
