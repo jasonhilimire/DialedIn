@@ -14,10 +14,6 @@ import CoreData
 class FrontServiceViewModel: ObservableObject {
 	
 	let managedObjectContext = PersistentCloudKitContainer.persistentContainer.viewContext
-	//TODO: configure these as published variables in the view model
-	@AppStorage("frontLowersServiceSetting") private var frontLowersServiceSetting: Int = 90
-	@AppStorage("frontFullServiceSetting") private var frontFullServiceSetting: Int = 180
-	
 
 	// MARK: - PUBLISHED VARIABLES -
 	

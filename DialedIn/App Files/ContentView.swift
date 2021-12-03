@@ -17,8 +17,6 @@ struct ContentView: View {
 	
 	
 	// Default settings for user configured Service Warning
-	@AppStorage("frontLowersServiceSetting") private var frontLowersServiceSetting: Int = 90
-	@AppStorage("frontFullServiceSetting") private var frontFullServiceSetting: Int = 180
 	
 	@AppStorage("rearAirCanServiceSetting") private var rearAirCanServiceSetting: Int = 90
 	@AppStorage("rearFullServiceSetting") private var rearFullServiceSetting: Int = 180
