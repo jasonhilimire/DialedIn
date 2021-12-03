@@ -43,7 +43,7 @@ struct ForkSetupFormView: View {
 			
 			Toggle(isOn: $forkVM.dualRebound.animation(), label: {Text("Dual Rebound?").fontWeight(.thin)})
 			Toggle(isOn: $forkVM.dualCompression.animation(), label: {Text("Dual Compression?").fontWeight(.thin)})
-			if isAdd == true {
+			if isAdd == true { //Show Service dates if isAdd == True
 				DatePicker(selection: $frontServiceVM.lowersServiceDate, in: ...Date(), displayedComponents: .date) {
 					Text("Last Lower Service").fontWeight(.thin)
 				}
@@ -53,25 +53,8 @@ struct ForkSetupFormView: View {
 				}
 			}
 		}
-// Ads a section with service warning in Days for Fork, not fully baked yet, saving not enabled
-		Section(header: Text("Service Warning: In Days").fontWeight(.thin)){
-			HStack {
-				Text("Lowers").fontWeight(.thin)
-				TextField("Days", value: $frontServiceVM.elapsedLowersServiceDays, formatter: NumberFormatter())
-				//					TextField("Days", text: Binding( // get the Binding value as a string and convert to an Integer
-				//						get: { String(frontServiceVM.elapsedLowersServiceDays) },
-				//						set: { frontServiceVM.elapsedLowersServiceDays = Int($0) ?? 90 }
-				//					))
-					.customTextField()
-					.textFieldStyle(PlainTextFieldStyle())
-					.keyboardType(.decimalPad)
-				Text("Full").fontWeight(.thin)
-				TextField("Days", value: $frontServiceVM.elapsedFullServiceDays, formatter: NumberFormatter())
-					.customTextField()
-					.textFieldStyle(PlainTextFieldStyle())
-					.keyboardType(.decimalPad)
-			}
-		}
+		
+		ServiceWarningView(service1: $frontServiceVM.elapsedLowersServiceDays, service2: $frontServiceVM.elapsedFullServiceDays, service1text: "Lowers", service2text: "Full")
     }
 
 }
