@@ -67,6 +67,18 @@ class RearShockViewModel: ObservableObject {
 		}
 	}
 	
+	@Published var airCanServiceSettingDays: Int = 180 {
+		didSet {
+			didChange.send(self)
+		}
+	}
+	
+	@Published var fullServiceSettingDays: Int = 180 {
+		didSet {
+			didChange.send(self)
+		}
+	}
+	
 	
 	
 	// MARK: - FUNCTIONS -
@@ -146,6 +158,20 @@ class RearShockViewModel: ObservableObject {
 		return converted
 	}
 	
+	func getAirCanServiceSettingDays(bike: String) -> Int {
+		let filteredBike = getRearSettings(filter: bike).filter { bikes in
+			bikes.bike?.rearSetup?.bike?.name == bike
+		}
+		return Int(filteredBike.last?.airCanServiceWarn ?? 365)
+	}
+	
+	func getFullServiceSettingDays(bike: String) -> Int {
+		let filteredBike = getRearSettings(filter: bike).filter { bikes in
+			bikes.bike?.rearSetup?.bike?.name == bike
+		}
+		return Int(filteredBike.last?.fullServiceWarn ?? 365)
+	}
+	
 	
 	func getRearSetup(bikeName: String){
 		dualRebound = getDualReb(bike: bikeName)
@@ -156,6 +182,8 @@ class RearShockViewModel: ObservableObject {
 		strokeLengthString = getStrokeLengthString(bike: bikeName)
 		travelString = getTravelString(bike: bikeName)
 		info = getRearInfo(bike: bikeName)
+		airCanServiceSettingDays = getAirCanServiceSettingDays(bike: bikeName)
+		fullServiceSettingDays = getFullServiceSettingDays(bike: bikeName)
 	}
 	
 	func createRearShock(_ rearService: RearService) -> RearShock {
@@ -166,6 +194,8 @@ class RearShockViewModel: ObservableObject {
 		rearShock.rearTravel = convertTravel(from: self.travelString!)
 		rearShock.isCoil = self.isCoil
 		rearShock.strokeLength = convertTravel(from: self.strokeLengthString!)
+		rearShock.airCanServiceWarn = Int16(self.airCanServiceSettingDays)
+		rearShock.fullServiceWarn = Int16(self.fullServiceSettingDays)
 		
 		if self.info == "" {
 			rearShock.info = "Rear Shock"
@@ -190,6 +220,8 @@ class RearShockViewModel: ObservableObject {
 			}
 			rear.rearTravel = convertTravel(from: self.travelString!)
 			rear.strokeLength = convertTravel(from: self.strokeLengthString!)
+			rear.airCanServiceWarn = Int16(self.airCanServiceSettingDays)
+			rear.fullServiceWarn = Int16(self.fullServiceSettingDays)
 			
 			if self.managedObjectContext.hasChanges {
 				try? self.managedObjectContext.save()

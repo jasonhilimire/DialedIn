@@ -13,9 +13,7 @@ import Combine
 class RearServiceViewModel: ObservableObject {
 	
 	let managedObjectContext = PersistentCloudKitContainer.persistentContainer.viewContext
-	@AppStorage("rearAirCanServiceSetting") private var rearAirCanServiceSetting: Int = 90
-	@AppStorage("rearFullServiceSetting") private var rearFullServiceSetting: Int = 180
-	
+
 	// MARK: - PUBLISHED VARIABLES -
 	
 	var bikeName: String = ""
@@ -83,8 +81,8 @@ class RearServiceViewModel: ObservableObject {
 		fullServiceDate = getFullDate(bike: bike)
 		elapsedAirCanServiceDays = getElapsedAirCanServiceDays(airCanServicedDate)
 		elapsedFullServiceDays = getElapsedFullServiceDays(fullServiceDate)
-		elapsedAirCanServiceWarning = airCanServiceWarning()
-		elapsedFullServiceWarning = fullServiceWarning()
+		elapsedAirCanServiceWarning = airCanServiceWarning(bike: bike)
+		elapsedFullServiceWarning = fullServiceWarning(bike: bike)
 		serviceNote = getRearServiceNote(bike: bike)
 	}
 	
@@ -93,6 +91,18 @@ class RearServiceViewModel: ObservableObject {
 		var bikes : [RearService] = []
 		// maybe need specific fetch  if multiple service issue due to sorting by full service only
 		let fetchRequest = RearService.rearServiceFetchRequest()
+		
+		do {
+			bikes = try managedObjectContext.fetch(fetchRequest)
+		} catch let error as NSError {
+			print("Could not fetch. \(error), \(error.userInfo)")
+		}
+		return bikes
+	}
+	
+	func getRearSettings(filter: String) -> [RearShock] {
+		var bikes : [RearShock] = []
+		let fetchRequest = RearShock.rearFetchRequest()
 		
 		do {
 			bikes = try managedObjectContext.fetch(fetchRequest)
@@ -133,13 +143,25 @@ class RearServiceViewModel: ObservableObject {
 		return elapsed
 	}
 		
-	func airCanServiceWarning() -> Bool {
-		elapsedAirCanServiceDays >= rearAirCanServiceSetting ?  true : false
+	
+	func airCanServiceWarning(bike: String) -> Bool {
+		let filtered = getRearSettings(filter: bike).filter { bikes in
+			bikes.bike?.rearSetup?.bike?.name == bike
+		}
+		let setting = filtered.last?.airCanServiceWarn ?? 365
+		//fetch the bike, get the lowers service setting days and then compare
+		return elapsedAirCanServiceDays >= setting ?  true : false
 	}
 	
-	func fullServiceWarning() -> Bool {
-		elapsedFullServiceDays >= rearFullServiceSetting ? true : false
+	
+	func fullServiceWarning(bike: String) -> Bool {
+		let filtered = getRearSettings(filter: bike).filter { bikes in
+			bikes.bike?.rearSetup?.bike?.name == bike
+		}
+		let setting = filtered.last?.fullServiceWarn ?? 365
+		return elapsedFullServiceDays >= setting ? true : false
 	}
+	
 	
 	func addRearService(bikeName: String) {
 		 let bike = fetchBike(for: bikeName)

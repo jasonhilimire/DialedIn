@@ -24,6 +24,8 @@ extension RearShock {
     @NSManaged public var isCoil: Bool
 	@NSManaged public var strokeLength: Double
 	@NSManaged public var rearTravel: Double
+	@NSManaged public var fullServiceWarn: Int16
+	@NSManaged public var airCanServiceWarn: Int16
     @NSManaged public var bike: Bike?
     @NSManaged public var rearService: NSSet?
 	@NSManaged public var rearTypeIndex: Int16

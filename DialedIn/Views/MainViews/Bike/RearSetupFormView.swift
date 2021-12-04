@@ -84,7 +84,7 @@ struct RearSetupFormView: View {
 					}
 				}
 				
-				ServiceWarningView(service1: $rearServiceVM.elapsedAirCanServiceDays, service2: $rearServiceVM.elapsedFullServiceDays, service1text: service1text, service2text: service2text, setupIndex: rearSetupIndex)
+				ServiceWarningView(service1: $rearShockVM.airCanServiceSettingDays, service2: $rearShockVM.fullServiceSettingDays, service1text: service1text, service2text: service2text, setupIndex: rearSetupIndex)
 				
 			} else if rearSetupIndex == 2 { // COIL SHOCK
 				HStack {

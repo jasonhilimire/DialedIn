@@ -21,22 +21,22 @@ struct ServiceWarningView: View {
 		// Ads a section with service warning in Days for 2 types of service, not baked in yet
 		Section(header: Text("Service Warning: In Days").fontWeight(.thin)){
 			HStack {
-				Text(service1text).fontWeight(.thin)
-				TextField("Days", value: $service1, formatter: NumberFormatter())
-				//					TextField("Days", text: Binding( // get the Binding value as a string and convert to an Integer
-				//						get: { String(frontServiceVM.elapsedLowersServiceDays) },
-				//						set: { frontServiceVM.elapsedLowersServiceDays = Int($0) ?? 90 }
-				//					))
-					.customTextField()
-					.textFieldStyle(PlainTextFieldStyle())
-					.keyboardType(.decimalPad)
 				if setupIndex < 2 { // used for RearSetupIndex
+					Text(service1text).fontWeight(.thin)
+					TextField("Days", value: $service1, formatter: NumberFormatter())
+					//					TextField("Days", text: Binding( // get the Binding value as a string and convert to an Integer
+					//						get: { String(frontServiceVM.elapsedLowersServiceDays) },
+					//						set: { frontServiceVM.elapsedLowersServiceDays = Int($0) ?? 90 }
+					//					))
+						.customTextField()
+						.textFieldStyle(PlainTextFieldStyle())
+						.keyboardType(.decimalPad)
+				}
 					Text(service2text).fontWeight(.thin)
 					TextField("Days", value: $service2, formatter: NumberFormatter())
 						.customTextField()
 						.textFieldStyle(PlainTextFieldStyle())
 						.keyboardType(.decimalPad)
-				}
 			}
 		}
     }
