@@ -149,7 +149,11 @@ class FrontServiceViewModel: ObservableObject {
 		}
 		let setting = filtered.last?.lowersServiceWarn ?? 365
 		//fetch the bike, get the lowers service setting days and then compare
-		return elapsedLowersServiceDays >= setting ?  true : false
+		if setting == 0 {
+			return false
+		} else {
+			return elapsedLowersServiceDays >= setting ?  true : false
+		}
 	}
 
 	
@@ -158,7 +162,11 @@ class FrontServiceViewModel: ObservableObject {
 			bikes.bike?.frontSetup?.bike?.name == bike
 		}
 		let setting = filtered.last?.fullServiceWarn ?? 365
-		return elapsedFullServiceDays >= setting ? true : false
+		if setting == 0 {
+			return false
+		} else {
+			return elapsedFullServiceDays >= setting ? true : false
+		}
 	}
 	
 	

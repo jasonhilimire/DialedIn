@@ -149,8 +149,12 @@ class RearServiceViewModel: ObservableObject {
 			bikes.bike?.rearSetup?.bike?.name == bike
 		}
 		let setting = filtered.last?.airCanServiceWarn ?? 365
-		//fetch the bike, get the lowers service setting days and then compare
-		return elapsedAirCanServiceDays >= setting ?  true : false
+		if setting == 0 {
+			return false
+		} else {
+			//fetch the bike, get the service setting days and then compare
+			return elapsedAirCanServiceDays >= setting ?  true : false
+		}
 	}
 	
 	
@@ -159,7 +163,11 @@ class RearServiceViewModel: ObservableObject {
 			bikes.bike?.rearSetup?.bike?.name == bike
 		}
 		let setting = filtered.last?.fullServiceWarn ?? 365
-		return elapsedFullServiceDays >= setting ? true : false
+		if setting == 0 {
+			return false
+		} else {
+			return elapsedFullServiceDays >= setting ? true : false
+		}
 	}
 	
 	

@@ -19,7 +19,11 @@ struct ServiceWarningView: View {
 	
     var body: some View {
 		// Ads a section with service warning in Days for 2 types of service, not baked in yet
-		Section(header: Text("Service Warning: In Days").fontWeight(.thin)){
+		Section(header:
+					Text("Service Warning: In Days: 0 for no warning")
+					.fontWeight(.thin)
+				)
+			{
 			HStack {
 				if setupIndex < 2 { // used for RearSetupIndex
 					Text(service1text).fontWeight(.thin)
