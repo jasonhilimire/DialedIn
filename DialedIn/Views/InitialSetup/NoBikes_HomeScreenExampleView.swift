@@ -25,8 +25,7 @@ struct NoBikes_HomeScreenExampleView: View {
 				Label("Add New Bike", systemImage: "bicycle")
 			}
 		} label: {
-			Image(systemName: "plus.circle")
-				.font(.system(size: 35))
+			PlusButtonView()
 		}
 	}
 	
