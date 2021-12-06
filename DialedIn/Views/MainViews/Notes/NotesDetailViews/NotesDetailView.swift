@@ -40,7 +40,6 @@ struct NotesDetailView: View {
 			VStack{
 				VStack {
 					NoteTextFavRatView(noteVM: noteVM)
-					
 					Divider().padding(.bottom, 5)
 
 					// MARK: - FRONT -

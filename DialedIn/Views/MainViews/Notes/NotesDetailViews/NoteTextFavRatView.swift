@@ -15,12 +15,14 @@ struct NoteTextFavRatView: View {
 	
     var body: some View {
 		HStack {
-			Text("\(self.noteVM.noteDate, formatter: dateFormatter)")
-				.fontWeight(.thin)
+			DatePicker(selection: $noteVM.noteDate, in: ...Date(), displayedComponents: .date) {
+				Text("Date:")
+					.fontWeight(.thin)
+			}
 			Spacer()
 			FavoritesView(favorite: self.$noteVM.noteFavorite)
-			
-		}.font(.headline)
+		}
+		
 		TextEditor(text: self.$noteVM.noteText)
 			.font(Font.body.weight(.thin))
 			.frame(height: 155)
@@ -28,7 +30,7 @@ struct NoteTextFavRatView: View {
 			.padding([.leading, .trailing], 4)
 			.cornerRadius(8)
 			.overlay(RoundedRectangle(cornerRadius: 16).stroke(Color.gray))
-			.padding([.leading, .trailing], 24)
+			.padding([.leading, .trailing], 5)
 
 		RatingView(rating: self.$noteVM.noteRating)
 			.font(.headline)
