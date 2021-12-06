@@ -73,9 +73,8 @@ struct NotesListView: View {
 					if bikes.count >= 1 {
 						Image(systemName: "note.text.badge.plus")
 							.foregroundColor(Color("TextColor"))
-							.font(.system(size: 35))
+							.font(.system(size: 30))
 					}
-					
             })
                 .sheet(isPresented: $showingAddScreen)  {
                     AddNoteView().environment(\.managedObjectContext, self.moc)

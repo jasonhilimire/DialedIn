@@ -60,8 +60,7 @@ struct BikesView: View {
 				if bikes.count == 0 {
 					PulsatingPlusButtonView()
 				} else {
-				Image(systemName: "plus.circle").foregroundColor(Color("TextColor"))
-					.font(.system(size: 35))
+					PlusButtonView()
 				}
 			})
 			// nested background view to show 2 sheets in same view...

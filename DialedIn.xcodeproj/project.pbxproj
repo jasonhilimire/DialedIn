@@ -30,6 +30,7 @@
 		A33C7F86254DF741002E6F47 /* BikeCardFlipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33C7F85254DF741002E6F47 /* BikeCardFlipView.swift */; };
 		A33C7FCA254F25AB002E6F47 /* OnBoardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33C7FC9254F25AB002E6F47 /* OnBoardingView.swift */; };
 		A33F02B124062A89005A0A8F /* FilteredNoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33F02B024062A89005A0A8F /* FilteredNoteView.swift */; };
+		A348C259275DACB800404984 /* PlusButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A348C258275DACB800404984 /* PlusButtonView.swift */; };
 		A35642C125787A5500A5A45B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A35642BE25787A5500A5A45B /* ContentView.swift */; };
 		A35642C225787A5500A5A45B /* PersistentCloudKitContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A35642BF25787A5500A5A45B /* PersistentCloudKitContainer.swift */; };
 		A35642C325787A5500A5A45B /* DialedApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A35642C025787A5500A5A45B /* DialedApp.swift */; };
@@ -135,6 +136,7 @@
 		A33C7F85254DF741002E6F47 /* BikeCardFlipView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeCardFlipView.swift; sourceTree = "<group>"; };
 		A33C7FC9254F25AB002E6F47 /* OnBoardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingView.swift; sourceTree = "<group>"; };
 		A33F02B024062A89005A0A8F /* FilteredNoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilteredNoteView.swift; sourceTree = "<group>"; };
+		A348C258275DACB800404984 /* PlusButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlusButtonView.swift; sourceTree = "<group>"; };
 		A35642BE25787A5500A5A45B /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		A35642BF25787A5500A5A45B /* PersistentCloudKitContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistentCloudKitContainer.swift; sourceTree = "<group>"; };
 		A35642C025787A5500A5A45B /* DialedApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DialedApp.swift; sourceTree = "<group>"; };
@@ -542,6 +544,7 @@
 				A37B1EBF252C0D8500147F94 /* GradientButtonStyle.swift */,
 				A39E45F4252436AC004142CE /* CircularButtonView.swift */,
 				A313D5F625539B240073FE33 /* PulsatingPlusButtonView.swift */,
+				A348C258275DACB800404984 /* PlusButtonView.swift */,
 			);
 			path = Buttons;
 			sourceTree = "<group>";
@@ -735,6 +738,7 @@
 				A3072F4625490D9E00C8F385 /* BikeDetailCardView.swift in Sources */,
 				A3C7A1D72401F87D00A741A8 /* NoteFrontSetupView.swift in Sources */,
 				A3D5181B24268E55007DEE9D /* Fork+CoreDataProperties.swift in Sources */,
+				A348C259275DACB800404984 /* PlusButtonView.swift in Sources */,
 				A33C7FCA254F25AB002E6F47 /* OnBoardingView.swift in Sources */,
 				A3D518352426B558007DEE9D /* RearServiceViewModel.swift in Sources */,
 				A3C8F5A3248F3527008DD118 /* EditBikeDetailView.swift in Sources */,
