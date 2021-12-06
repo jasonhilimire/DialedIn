@@ -35,9 +35,9 @@ struct HomeTabView: View {
 			Button(action: { activeSheet = .addNote}) {
 				Label("Add New Note", systemImage: "note.text.badge.plus")
 			}
-//			Button(action: {activeSheet = .addService }) {
-//				Label("Add New Service", systemImage: "wrench")
-//			}
+			Button(action: {activeSheet = .addService }) {
+				Label("Add New Service", systemImage: "wrench")
+			}
 			Button(action: {activeSheet = .addBike }) {
 				Label("Add New Bike", systemImage: "bicycle")
 			}
@@ -49,7 +49,7 @@ struct HomeTabView: View {
 	
 	enum ActiveSheet: Identifiable {
 		case addNote,
-//			 addService,
+			 addService,
 			 addBike
 		var id: Int {
 			hashValue
@@ -94,9 +94,9 @@ struct HomeTabView: View {
 			switch item {
 				case .addNote:
 					AddNoteView()
-//				case .addService:
-					//tODO: FIX
-//					AddServiceView(isFromBikeCard: $isFromBikeCard, bike: bike)
+				case .addService:
+//					Hardcoded to just pass a first Bike found, but since bool is false it will utilize the Picker
+					AddServiceView(isFromBikeCard: $isFromBikeCard, bike: bikes[0])
 				case .addBike:
 					AddBikeView()
 			}
@@ -104,7 +104,7 @@ struct HomeTabView: View {
 	}
 	
 	func setup(){
-		// remove before GoLive /
+		//TODO: remove before GoLive /
 		// add for Services???
 		updateNotes()
 		updateBikes()
@@ -123,7 +123,6 @@ struct HomeTabView: View {
 			bike.id = UUID()
 			bike.frontSetup?.id = UUID()
 			bike.rearSetup?.id = UUID()
-			
 			try? self.moc.save()
 		}
 	}
