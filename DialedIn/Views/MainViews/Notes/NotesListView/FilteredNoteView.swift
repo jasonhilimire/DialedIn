@@ -31,7 +31,7 @@ struct FilteredNoteView: View {
 		return foundBikes
 	}
 	
-	func filterNotes(array : [Notes]) -> [Notes] {
+	func filterNotes(array : [Notes]) -> [Notes] { //TODO: Refactor this into 
 		// list of attributes to be searched bike.name, bike.bikeNote, notes.note, // maybe RearShock.info, Fork.info
 		let predicate1 = NSPredicate(format: "bike.name contains [cd] %@", searchText)
 		let predicate2 = NSPredicate(format: "bike.bikeNote contains [cd] %@", searchText)
@@ -57,14 +57,18 @@ struct FilteredNoteView: View {
 		ForEach(filterFavorites(), id: \.self) { bike in
 				let array = bike.notesArray
 			Section(header: HStack {
-				Text(bike.wrappedBikeName)
-					.font(.headline)
-					.foregroundColor(Color("TextColor"))
-					.padding()
-				Spacer()
-			}
+				if array.count == 0 {
+					// dont show any Section if no notes exist for a bike TODO: Doesnt work though for Searching
+				} else {
+					 Text(bike.wrappedBikeName)
+						.font(.headline)
+						.foregroundColor(Color("TextColor"))
+						.padding()
+					Spacer()
+					}
+				}
 				.background(Color("TextEditBackgroundColor"))
-			)
+				)
 			{
 				ForEach(filterNotes(array: array), id: \.self) { note in
 					NavigationLink(destination: NotesDetailView(note: note)){
