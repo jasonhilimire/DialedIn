@@ -20,6 +20,8 @@ struct FilteredBikeNotesView: View {
 		fetchRequest = FetchRequest<Notes>(fetchRequest: request)
 	}
 	
+	@State private var showingNoteScreen = false
+	
 	// MARK: - BODY -
     var body: some View {
 		GeometryReader { geometry in
@@ -30,7 +32,7 @@ struct FilteredBikeNotesView: View {
 						.fontWeight(.bold)
 						.customTextShadow()
 					ForEach(self.fetchRequest.wrappedValue, id: \.self) { note in
-						NavigationLink(destination: NotesDetailView(note: note)){
+						Button(action: {showingNoteScreen.toggle()}) {
 							HStack{
 								VStack(alignment: .leading){
 									Text("\(note.date!, formatter: dateFormatter)")
@@ -46,13 +48,15 @@ struct FilteredBikeNotesView: View {
 							}
 							Spacer()
 							Image(systemName: "chevron.right")
-							.foregroundColor(Color("ImageColor"))
+								.foregroundColor(Color("ImageColor"))
 						}
+						.sheet(isPresented: $showingNoteScreen) {
+							NotesDetailView(note: note)
+						} //: ForEach
 					}
 				}
 				.frame(width: geometry.size.width, height: geometry.size.height, alignment: .topLeading)
 			}
 		}
-
     }
 }
