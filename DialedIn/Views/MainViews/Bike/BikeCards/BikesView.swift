@@ -35,47 +35,50 @@ struct BikesView: View {
 // MARK: - BODY -
     var body: some View {
 		NavigationView {
-			ScrollView {
-				if bikes.count == 0 {
-					NoBikes_FlipExampleView()
-				} else {
-					ForEach(bikes, id: \.self) { bike in
-						BikeCardFlipView(bike: bike)
-					} //: LOOP
-					// here is the listener for published context event
-					.onReceive(self.didChange) { _ in
-						self.refreshing.toggle()
+			HStack{
+				ScrollView {
+					if bikes.count == 0 {
+						NoBikes_FlipExampleView()
+					} else {
+						ForEach(bikes, id: \.self) { bike in
+							BikeCardFlipView(bike: bike)
+						} //: LOOP
+						// here is the listener for published context event
+						.onReceive(self.didChange) { _ in
+							self.refreshing.toggle()
+						}
 					}
+				} //: SCROLLVIEW
+				
+				.sheet(isPresented: $showingAddScreen)  {
+					AddBikeView().environment(\.managedObjectContext, self.moc)
 				}
-			} //: SCROLLVIEW
-			
-			.sheet(isPresented: $showingAddScreen)  {
-				AddBikeView().environment(\.managedObjectContext, self.moc)
-			}
-			
-			.listStyle(InsetGroupedListStyle())
-			.navigationBarTitle("Dialed In - Bikes")
-			.navigationBarItems(trailing: Button(action: {self.showingAddScreen.toggle()
-			}) {
-				if bikes.count == 0 {
-					PulsatingPlusButtonView()
-				} else {
-					PlusButtonView()
+				
+				.listStyle(InsetGroupedListStyle())
+				.navigationBarTitle("Dialed In - Bikes")
+				.navigationBarItems(trailing: Button(action: {self.showingAddScreen.toggle()
+				}) {
+					if bikes.count == 0 {
+						PulsatingPlusButtonView()
+					} else {
+						PlusButtonView()
+					}
+				})
+				// nested background view to show 2 sheets in same view...
+				.background(EmptyView().sheet(isPresented: $showScreenBool.isShowingService) {
+					AddServiceView(isFromBikeCard: $isFromBikeCard, bike: fetchBike(for: showScreenBool.bikeName))
+						.environmentObject(self.showScreenBool)
+						.environment(\.managedObjectContext, self.moc)
 				}
-			})
-			// nested background view to show 2 sheets in same view...
-			.background(EmptyView().sheet(isPresented: $showScreenBool.isShowingService) {
-				AddServiceView(isFromBikeCard: $isFromBikeCard, bike: fetchBike(for: showScreenBool.bikeName))
-					.environmentObject(self.showScreenBool)
-					.environment(\.managedObjectContext, self.moc)
-			}
-			
-			.background(EmptyView().sheet(isPresented: $showScreenBool.isShowingEdit) {
-				EditBikeDetailView(bike: fetchBike(for: showScreenBool.bikeName))
-					.environmentObject(self.showScreenBool)
-					.environment(\.managedObjectContext, self.moc)
-			}))
+				
+				.background(EmptyView().sheet(isPresented: $showScreenBool.isShowingEdit) {
+					EditBikeDetailView(bike: fetchBike(for: showScreenBool.bikeName))
+						.environmentObject(self.showScreenBool)
+						.environment(\.managedObjectContext, self.moc)
+					}))
+				}
 		}
+		.navigationViewStyle(StackNavigationViewStyle()) // Creates a single view page on the ipad
 	}
 }
 

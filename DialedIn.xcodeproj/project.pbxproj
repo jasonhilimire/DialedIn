@@ -517,11 +517,11 @@
 			isa = PBXGroup;
 			children = (
 				A3DDCC7C23DFF21700CD1476 /* NotesDetailView.swift */,
-				A3F61FF525CE330F004F8EA0 /* NoteTextFavRatView.swift */,
 				A3F61FFA25CE357A004F8EA0 /* FrontNoteDetailsView.swift */,
 				A3F61FFF25CE38F3004F8EA0 /* RearNoteDetailsView.swift */,
 				A3C76CA323EF66450047BBCC /* RatingView.swift */,
 				A3E04FC1244B9E0000FEB391 /* FavoritesView.swift */,
+				A3F61FF525CE330F004F8EA0 /* NoteTextFavRatView.swift */,
 			);
 			path = NotesDetailViews;
 			sourceTree = "<group>";

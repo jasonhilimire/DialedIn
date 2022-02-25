@@ -80,6 +80,7 @@ struct NotesListView: View {
                     AddNoteView().environment(\.managedObjectContext, self.moc)
 			}
         }
+		.navigationViewStyle(StackNavigationViewStyle()) // Creates a single view page on the ipad
     }
 	
 	func checkBikesExist() {
