@@ -52,6 +52,7 @@ struct OnBoardingView: View {
 					}
 					.customTextShadow()
 					.padding()
+					.fixedSize(horizontal: false, vertical: true)
 					HStack {
 						Image(systemName: "note.text.badge.plus")
 							.resizable()
@@ -66,6 +67,7 @@ struct OnBoardingView: View {
 					}
 					.customTextShadow()
 					.padding()
+					.fixedSize(horizontal: false, vertical: true)
 					
 					HStack {
 						Image(systemName: "dial.max.fill")
@@ -82,6 +84,8 @@ struct OnBoardingView: View {
 					}
 					.customTextShadow()
 					.padding()
+					.fixedSize(horizontal: false, vertical: true)
+					
 					HStack {
 						Image(systemName: "bookmark.circle.fill")
 							.resizable()
@@ -96,6 +100,8 @@ struct OnBoardingView: View {
 					}
 					.customTextShadow()
 					.padding()
+					.fixedSize(horizontal: false, vertical: true)
+					
 					HStack {
 						Image(systemName: "wrench.fill")
 							.resizable()
@@ -110,6 +116,7 @@ struct OnBoardingView: View {
 					}
 //					.customTextShadow()
 					.padding()
+					.fixedSize(horizontal: false, vertical: true)
 					
 					HStack {
 						Image(systemName: "house.fill")
@@ -125,6 +132,7 @@ struct OnBoardingView: View {
 					}
 //					.customTextShadow()
 					.padding()
+					.fixedSize(horizontal: false, vertical: true)
 					
 					HStack {
 						Image(systemName: "checkmark.icloud.fill")
@@ -140,6 +148,7 @@ struct OnBoardingView: View {
 					}
 					//					.customTextShadow()
 					.padding()
+					.fixedSize(horizontal: false, vertical: true)
 					
 				}
 				Spacer()
@@ -158,7 +167,7 @@ struct OnBoardingView: View {
 					}.buttonStyle(OrangeButtonStyle())
 				}
 				.padding()
-				.padding(.bottom, 30)
+//				.padding(.bottom, 30)
 				
 			}
 			Spacer()
