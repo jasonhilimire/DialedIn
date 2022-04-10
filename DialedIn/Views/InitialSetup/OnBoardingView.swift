@@ -51,7 +51,8 @@ struct OnBoardingView: View {
 							.foregroundColor(.white)
 					}
 					.customTextShadow()
-					.padding()
+					.padding(.bottom, 5)
+					.padding(.horizontal, 5)
 					.fixedSize(horizontal: false, vertical: true)
 					HStack {
 						Image(systemName: "note.text.badge.plus")
@@ -66,7 +67,8 @@ struct OnBoardingView: View {
 							.foregroundColor(.white)
 					}
 					.customTextShadow()
-					.padding()
+					.padding(.bottom, 5)
+					.padding(.horizontal, 5)
 					.fixedSize(horizontal: false, vertical: true)
 					
 					HStack {
@@ -83,7 +85,8 @@ struct OnBoardingView: View {
 							.lineLimit(3)
 					}
 					.customTextShadow()
-					.padding()
+					.padding(.bottom, 5)
+					.padding(.horizontal, 5)
 					.fixedSize(horizontal: false, vertical: true)
 					
 					HStack {
@@ -99,7 +102,8 @@ struct OnBoardingView: View {
 							.foregroundColor(.white)
 					}
 					.customTextShadow()
-					.padding()
+					.padding(.bottom, 5)
+					.padding(.horizontal, 5)
 					.fixedSize(horizontal: false, vertical: true)
 					
 					HStack {
@@ -115,7 +119,8 @@ struct OnBoardingView: View {
 							.foregroundColor(.white)
 					}
 //					.customTextShadow()
-					.padding()
+					.padding(.bottom, 5)
+					.padding(.horizontal, 5)
 					.fixedSize(horizontal: false, vertical: true)
 					
 					HStack {
@@ -131,7 +136,8 @@ struct OnBoardingView: View {
 							.foregroundColor(.white)
 					}
 //					.customTextShadow()
-					.padding()
+					.padding(.bottom, 5)
+					.padding(.horizontal, 5)
 					.fixedSize(horizontal: false, vertical: true)
 					
 					HStack {
@@ -147,7 +153,8 @@ struct OnBoardingView: View {
 							.foregroundColor(.white)
 					}
 					//					.customTextShadow()
-					.padding()
+					.padding(.bottom, 5)
+					.padding(.horizontal, 5)
 					.fixedSize(horizontal: false, vertical: true)
 					
 				}
@@ -166,8 +173,8 @@ struct OnBoardingView: View {
 						SaveButtonView(buttonText: $buttonText)
 					}.buttonStyle(OrangeButtonStyle())
 				}
-				.padding()
-//				.padding(.bottom, 30)
+//				.padding()
+				.padding(.bottom, 30)
 				
 			}
 			Spacer()
