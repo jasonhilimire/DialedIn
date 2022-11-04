@@ -35,7 +35,7 @@ struct FilteredNoteView: View {
 		// list of attributes to be searched bike.name, bike.bikeNote, notes.note, // maybe RearShock.info, Fork.info
 		let predicate1 = NSPredicate(format: "bike.name contains [cd] %@", searchText)
 		let predicate2 = NSPredicate(format: "bike.bikeNote contains [cd] %@", searchText)
-		let predicate3 =  NSPredicate(format: "note contains [cd] %@", searchText)
+		let predicate3 = NSPredicate(format: "note contains [cd] %@", searchText)
 		let predicate4 = NSPredicate(format: "bike.frontSetup.info contains [cd] %@", searchText)
 		let predicate5 = NSPredicate(format: "bike.rearSetup.info contains [cd] %@", searchText)
 		

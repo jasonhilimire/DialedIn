@@ -12,7 +12,7 @@ struct NoteTextFavRatView: View {
 	
 	@ObservedObject var noteVM = NoteViewModel()
 	
-	
+
     var body: some View {
 		HStack {
 			DatePicker(selection: $noteVM.noteDate, in: ...Date(), displayedComponents: .date) {
@@ -31,6 +31,9 @@ struct NoteTextFavRatView: View {
 			.cornerRadius(8)
 			.overlay(RoundedRectangle(cornerRadius: 16).stroke(Color.gray))
 			.padding([.leading, .trailing], 5)
+            .foregroundColor(Color("TextColor"))
+            .multilineTextAlignment(.leading)
+            
 
 		RatingView(rating: self.$noteVM.noteRating)
 			.font(.headline)
