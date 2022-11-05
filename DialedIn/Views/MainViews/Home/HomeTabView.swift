@@ -74,9 +74,14 @@ struct HomeTabView: View {
 						.navigationBarTitle("Dialed In")
 					} else {
 						VStack{
-							LastNoteView() // if notes break and not updating was using HomeNoteViewHere() and note the above check for bikes
-//							HomeNoteView()
-								.frame(height: geo.size.height / 2.5 )
+                            HStack{
+                                LastNoteView()
+                                    .frame(width: (geo.size.width / 2.1),   height: geo.size.height / 2.5 )
+                                Spacer()
+                                // TODO: Replace with new view
+                                LastNoteView()
+                                    .frame(width: (geo.size.width / 2),   height: geo.size.height / 2.5 )
+                            }
 							HomeServiceView()
 								.frame(width: .infinity, height: geo.size.height / 2 )
 						}
