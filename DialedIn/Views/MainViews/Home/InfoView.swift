@@ -11,7 +11,7 @@ struct InfoView: View {
     @Environment(\.managedObjectContext) var moc
     @FetchRequest(fetchRequest: Notes.notesFetchRequest())
     var notes: FetchedResults<Notes>
-
+    
     var body: some View {
         VStack(alignment: .leading) {
             HStack(alignment: .top) {
@@ -31,9 +31,11 @@ struct InfoView: View {
                     }
                 }
             }
-            Spacer()
-            //TODO: Make this a button:
-            Text("See All Notes")
+            //TODO: Make this a button that jsut changes views when removing tab bar : https://blckbirds.com/post/how-to-navigate-between-views-in-swiftui-by-using-an-observableobject/
+            NavigationLink("See All Notes") {
+                NotesListView()
+            }
+            
         }
         .padding()
         .foregroundColor(Color.white)

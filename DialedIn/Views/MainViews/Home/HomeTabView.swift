@@ -30,21 +30,21 @@ struct HomeTabView: View {
 	@State var activeSheet: ActiveSheet?
 	@State var flipHorizontally = true
 	
-	var trailingBarItems: some View {
-		Menu {
-			Button(action: { activeSheet = .addNote}) {
-				Label("Add New Note", systemImage: "note.text.badge.plus")
-			}
-			Button(action: {activeSheet = .addService }) {
-				Label("Add New Service", systemImage: "wrench")
-			}
-			Button(action: {activeSheet = .addBike }) {
-				Label("Add New Bike", systemImage: "bicycle")
-			}
-		} label: {
-			PlusButtonView()
-		}
-	}
+//	var trailingBarItems: some View {
+//		Menu {
+//			Button(action: { activeSheet = .addNote}) {
+//				Label("Add New Note", systemImage: "note.text.badge.plus")
+//			}
+//			Button(action: {activeSheet = .addService }) {
+//				Label("Add New Service", systemImage: "wrench")
+//			}
+//			Button(action: {activeSheet = .addBike }) {
+//				Label("Add New Bike", systemImage: "bicycle")
+//			}
+//		} label: {
+//			PlusButtonView()
+//		}
+//	}
 	
 	enum ActiveSheet: Identifiable {
 		case addNote,
@@ -82,15 +82,39 @@ struct HomeTabView: View {
                                 VStack {
                                     InfoView()
                                         .frame(width: (geo.size.width / 2),   height: geo.size.height / 4 )
-                                    Spacer()
+                                    
                                 }
                             }
+                            
+                            HStack {
+                                Button(action: { activeSheet = .addNote}) {
+                                    Label("Add New Note", systemImage: "note.text.badge.plus")
+                                }
+                                .buttonStyle(Nav_Button())
+                                
+                                Spacer()
+                                
+                                Button(action: {activeSheet = .addService }) {
+                                    Label("Add New Service", systemImage: "wrench")
+                                }
+                                .buttonStyle(Nav_Button())
+                                
+                                Spacer()
+                                
+                                Button(action: {activeSheet = .addBike }) {
+                                    Label("Add New Bike", systemImage: "bicycle")
+                                }
+                                .buttonStyle(Nav_Button())
+                                
+                            }
+                            .padding()
+                            
 							HomeServiceView()
 								.frame(width: .infinity, height: geo.size.height / 2 )
 						}
-						.padding()
+//						.padding()
 						.navigationBarTitle("Dialed In")
-						.navigationBarItems(trailing: trailingBarItems)
+//						.navigationBarItems(trailing: trailingBarItems)
 					}
 				}//: END Main ZSTACK
 			} //: END GEOREADER
