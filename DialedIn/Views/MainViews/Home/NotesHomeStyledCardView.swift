@@ -52,77 +52,6 @@ struct NotesHomeStyledCardView: View {
 						Spacer()
 					}
 				}
-				
-				Divider()
-				
-//				HStack {
-//					VStack {
-//						HStack {
-//							Text("F")
-//							Text("\(note.fAirVolume, specifier: "%.1f")")
-//						}
-//						.lineLimit(1)
-//						.padding([.top, .bottom, .trailing])
-//						.font(.body)
-//
-//						HStack {
-//							Text("R")
-//							Text("\(note.rAirSpring, specifier: "%.0f")")
-//						}
-//						.lineLimit(1)
-//						.padding([.top, .bottom, .trailing])
-//						.font(.body)
-//					}
-//					// TODO: the width shouldnt be fixed, but if you have 5 characters its being truncated
-//					.frame(width: 110, alignment: .leading)
-//					.customShadow()
-//
-//					Spacer()
-//
-//					VStack(alignment: .leading) {
-//						if note.bike?.frontSetup?.dualCompression == true {
-//							Text("HSC: \(note.fHSC)")
-//							Text("LSC: \(note.fLSC)")
-//						} else {
-//							Text("Comp: \(note.fCompression)")
-//						}
-//						Text("Tokens: \(note.fTokens)")
-//						Divider()
-//						if note.bike?.rearSetup?.dualCompression == true {
-//							Text("HSC: \(note.rHSC)")
-//							Text("LSC: \(note.rLSC)")
-//						} else {
-//							Text("Comp: \(note.rCompression)")
-//						}
-//						if note.bike?.rearSetup?.isCoil == false {
-//							Text("Tokens: \(note.rTokens)")
-//						} else {
-//							Text("")
-//						}
-//					}.font(.caption)
-//
-//					Spacer()
-//
-//					VStack(alignment: .leading) {
-//						if note.bike?.frontSetup?.dualRebound == true {
-//							Text("HSR: \(note.fHSR)")
-//							Text("LSR: \(note.fLSR)")
-//						} else {
-//							Text("Reb: \(note.fRebound)")
-//
-//						}
-//						Text("Sag %: \(calcSag(sag: Double(note.fSag), travel: note.bike?.frontSetup?.travel ?? 0.0), specifier: "%.1f")")
-//						Divider()
-//						if note.bike?.rearSetup?.dualRebound == true {
-//							Text("HSR: \(note.rHSR)")
-//							Text("LSR: \(note.rLSR)")
-//						} else {
-//							Text("Reb: \(note.rRebound)")
-//						}
-//						Text("Sag %: \(calcSag(sag: Double(note.rSag), travel: note.bike?.rearSetup?.strokeLength ?? 0.0), specifier: "%.1f")")
-//					}.font(.caption)
-//
-//				} // end HSTack Settings
 			} //: END VSTACK
 
 			.padding()
@@ -158,9 +87,7 @@ struct NotesHomeStyledCardView: View {
 							Text("Edit")
 							Image(systemName: "square.and.pencil")
 						}
-
 					}
-						
 					Divider()
 					Button(action: {deleteNote()}) {
 						HStack {

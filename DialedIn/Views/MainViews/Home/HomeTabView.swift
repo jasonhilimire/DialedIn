@@ -74,13 +74,16 @@ struct HomeTabView: View {
 						.navigationBarTitle("Dialed In")
 					} else {
 						VStack{
-                            HStack{
+                            HStack(alignment: .top){
                                 LastNoteView()
                                     .frame(width: (geo.size.width / 2.1),   height: geo.size.height / 2.5 )
-                                Spacer()
+//                                Spacer()
                                 // TODO: Replace with new view
-                                LastNoteView()
-                                    .frame(width: (geo.size.width / 2),   height: geo.size.height / 2.5 )
+                                VStack {
+                                    InfoView()
+                                        .frame(width: (geo.size.width / 2),   height: geo.size.height / 4 )
+                                    Spacer()
+                                }
                             }
 							HomeServiceView()
 								.frame(width: .infinity, height: geo.size.height / 2 )
