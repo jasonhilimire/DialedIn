@@ -27,32 +27,20 @@ struct HomeServiceView: View {
 	
 	// MARK: - BODY -
 	var body: some View {
-		if bikes.count == 0 {
-			EmptyView() // Create a view here
-		}
-		GeometryReader { fullView in
-			ScrollView(.horizontal, showsIndicators: false) {
-				HStack {
-					ForEach(bikes, id: \.self) { bike in
-						GeometryReader { geo in
-							if bikes.count == 1 {
-								HomeStyledCardView(bike: bike)
-							} else {
-								HomeStyledCardView(bike: bike)
-								.rotation3DEffect(.degrees(-Double(geo.frame(in: .global).midX - fullView.size.width / 2) / 10), axis: (x: 0, y: 1, z: 0))
-							}
-						}
-						.frame(width: 270) // used a smaller width than the 300 for the card so can see the edge
-					}
-				}
-				.padding(.top)
-				.padding(.horizontal, (fullView.size.width - 270) / 2)
-				.customShadow()
-			}
-		}
-		.edgesIgnoringSafeArea(.all)
-	}
-}
+        ScrollView(.vertical, showsIndicators: true) {
+            VStack {
+                ForEach(bikes, id: \.self) { bike in
+                    HomeStyledCardView(bike: bike)
+                }
+                .padding(5)
+            }
+            .padding(20)
+            .customShadow()
+            }
+        }
+    }
+
+
 
 
 // MARK: - HomeStyledCardView -
@@ -68,30 +56,40 @@ struct HomeStyledCardView: View {
 	@State private var showEditBikeDetailView = false
 	
 	let bike: Bike
+    @State var frontTravel = 0.0
+    @State var rearTravel = 0.0
+    @State var strokeLength = 0.0
 
 	var body: some View {
-		VStack {
-			Text(self.bike.name ?? "Unknown Bike")
-				.fontWeight(.heavy)
-				.customTextShadow()
-			Text("Info: \(self.bike.bikeNote ?? "")" )
-				.font(.subheadline)
-				.fontWeight(.thin)
-			VStack {
-				Section {
-					ForkLastServicedView(bike: self.bike)
-				}
-				Divider()
-				Section{
-					if self.bike.hasRearShock == false {
-						Text("HardTail")
-					} else {
-						RearShockLastServicedView(bike: self.bike)
-					}
-				}
-			}
-		} //: END VSTACK
-		.frame(width: 300, height: 275)
+        HStack{
+            Image("bike")
+                .resizable()
+                .scaledToFit()
+                .customTextShadow()
+                .frame(width: 50, height: 50, alignment: .center)
+                .padding(.horizontal, 10)
+            VStack(alignment: .leading){
+                HStack{
+                    Text(self.bike.name ?? "Unknown Bike")
+                        .fontWeight(.heavy)
+                    Spacer()
+                }//: END HSTACK
+                HStack{
+                    Text(self.bike.frontSetup?.info ?? "")
+                    Text("\(frontTravel, specifier: "%.0f")mm")
+                }
+                
+                if self.bike.hasRearShock == true {
+                    HStack {
+                        Text(self.bike.rearSetup?.info ?? "")
+                        Text("\(rearTravel, specifier: "%.2f")mm")
+                    }
+                    Text("Stroke Length : \(strokeLength, specifier: "%.2f")mm")
+                }
+            }
+        }//: END VSTACK
+        .padding(10)
+        .frame(width: 350, height: 100)
 		.foregroundColor(Color("TextColor"))
 		.background(Color("BackgroundColor"))
 		.cornerRadius(20)

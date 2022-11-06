@@ -48,8 +48,8 @@ struct BikeCardView: View {
 						.scaledToFit()
 						.customTextShadow()
 						.scaleEffect(isAnimating ? 1.0 : 0.6)
-						.frame(width: .infinity, height: 310, alignment: .center)
-						.padding(.horizontal, 10)
+						
+                    
 					
 					// BIKE: NAME
 					Text(self.bike.name ?? "Unknown")

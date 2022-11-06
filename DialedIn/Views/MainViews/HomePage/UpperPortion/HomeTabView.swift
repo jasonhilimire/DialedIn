@@ -30,22 +30,6 @@ struct HomeTabView: View {
 	@State var activeSheet: ActiveSheet?
 	@State var flipHorizontally = true
 	
-//	var trailingBarItems: some View {
-//		Menu {
-//			Button(action: { activeSheet = .addNote}) {
-//				Label("Add New Note", systemImage: "note.text.badge.plus")
-//			}
-//			Button(action: {activeSheet = .addService }) {
-//				Label("Add New Service", systemImage: "wrench")
-//			}
-//			Button(action: {activeSheet = .addBike }) {
-//				Label("Add New Bike", systemImage: "bicycle")
-//			}
-//		} label: {
-//			PlusButtonView()
-//		}
-//	}
-	
 	enum ActiveSheet: Identifiable {
 		case addNote,
 			 addService,
@@ -60,6 +44,7 @@ struct HomeTabView: View {
 		NavigationView() {
 			GeometryReader { geo in
 				ZStack {
+                    //TODO: REMOVE NO BIKES
 					if bikes.count == 0 && notes.count == 0 {
 						NoBikes_HomeScreenExampleView()
 					} else if notes.count == 0 {
@@ -77,12 +62,9 @@ struct HomeTabView: View {
                             HStack(alignment: .top){
                                 LastNoteView()
                                     .frame(width: (geo.size.width / 2.1),   height: geo.size.height / 2.5 )
-//                                Spacer()
-                                // TODO: Replace with new view
                                 VStack {
                                     InfoView()
                                         .frame(width: (geo.size.width / 2),   height: geo.size.height / 4 )
-                                    
                                 }
                             }
                             
@@ -108,9 +90,9 @@ struct HomeTabView: View {
                                 
                             }
                             .padding()
-                            
+                            // Bike Short View
 							HomeServiceView()
-								.frame(width: .infinity, height: geo.size.height / 2 )
+//								.frame(width: .infinity, height: geo.size.height )
 						}
 //						.padding()
 						.navigationBarTitle("Dialed In")

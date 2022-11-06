@@ -31,21 +31,19 @@ struct InfoView: View {
                     }
                 }
             }
-            //TODO: Make this a button that jsut changes views when removing tab bar : https://blckbirds.com/post/how-to-navigate-between-views-in-swiftui-by-using-an-observableobject/
+            //TODO: Make this a button that just changes views when removing tab bar : https://blckbirds.com/post/how-to-navigate-between-views-in-swiftui-by-using-an-observableobject/
             NavigationLink("See All Notes") {
                 NotesListView()
             }
-            
         }
         .padding()
         .foregroundColor(Color.white)
         .background(Color.clear)
         .cornerRadius(20)
-//        .overlay(
-//            RoundedRectangle(cornerRadius: 20)
-//                .stroke(Color.gray, lineWidth: 2))
+        .overlay(
+            RoundedRectangle(cornerRadius: 20)
+                .stroke(Color.gray, lineWidth: 2))
     }
-        
 }
 
 struct InfoView_Previews: PreviewProvider {

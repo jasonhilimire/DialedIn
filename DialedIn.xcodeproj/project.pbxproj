@@ -311,6 +311,24 @@
 			path = Service;
 			sourceTree = "<group>";
 		};
+		A343916429186A8A00A6186C /* Bikes */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Bikes;
+			sourceTree = "<group>";
+		};
+		A343916529186AB400A6186C /* UpperPortion */ = {
+			isa = PBXGroup;
+			children = (
+				A393F9CD252ACBC800F39E04 /* LastNoteView.swift */,
+				A393F9BC252ACAB700F39E04 /* HomeTabView.swift */,
+				A30D9667253549840094CE90 /* NotesHomeStyledCardView.swift */,
+				A3C5F1F22916FC8A00436AF9 /* InfoView.swift */,
+			);
+			path = UpperPortion;
+			sourceTree = "<group>";
+		};
 		A38D56B025609ACF00E83041 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -322,7 +340,7 @@
 		A3918AD123E3E764002A1D61 /* MainViews */ = {
 			isa = PBXGroup;
 			children = (
-				A393F9BB252ACAA800F39E04 /* Home */,
+				A393F9BB252ACAA800F39E04 /* HomePage */,
 				A33E3D8F25239AD100B9F47E /* Notes */,
 				A33E3D9025239AD600B9F47E /* Bike */,
 				A33E3D9125239ADB00B9F47E /* Service */,
@@ -342,18 +360,16 @@
 			path = SingleViews;
 			sourceTree = "<group>";
 		};
-		A393F9BB252ACAA800F39E04 /* Home */ = {
+		A393F9BB252ACAA800F39E04 /* HomePage */ = {
 			isa = PBXGroup;
 			children = (
-				A393F9BC252ACAB700F39E04 /* HomeTabView.swift */,
+				A343916529186AB400A6186C /* UpperPortion */,
+				A343916429186A8A00A6186C /* Bikes */,
 				A393F9C5252ACB1B00F39E04 /* HomeBikeView.swift */,
 				A393F9C6252ACB1B00F39E04 /* HomeNoteView.swift */,
-				A393F9CD252ACBC800F39E04 /* LastNoteView.swift */,
-				A30D9667253549840094CE90 /* NotesHomeStyledCardView.swift */,
 				A393F9C4252ACB1B00F39E04 /* HomeServiceView.swift */,
-				A3C5F1F22916FC8A00436AF9 /* InfoView.swift */,
 			);
-			path = Home;
+			path = HomePage;
 			sourceTree = "<group>";
 		};
 		A3A1579E25D3917900A6B6A4 /* Note */ = {
@@ -969,7 +985,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = "DialedIn/Dialed In.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 104;
+				CURRENT_PROJECT_VERSION = 139;
 				DEVELOPMENT_ASSET_PATHS = "\"DialedIn/Preview Content\"";
 				DEVELOPMENT_TEAM = 55QD8ZCA9C;
 				ENABLE_PREVIEWS = YES;
@@ -997,7 +1013,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = "DialedIn/Dialed In.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 104;
+				CURRENT_PROJECT_VERSION = 139;
 				DEVELOPMENT_ASSET_PATHS = "\"DialedIn/Preview Content\"";
 				DEVELOPMENT_TEAM = 55QD8ZCA9C;
 				ENABLE_PREVIEWS = YES;
