@@ -30,7 +30,9 @@ struct HomeServiceView: View {
         ScrollView(.vertical, showsIndicators: true) {
             VStack {
                 ForEach(bikes, id: \.self) { bike in
-                    HomeStyledCardView(bike: bike)
+                    NavigationLink(destination: BikeDetailView(bike: bike)){
+                        HomeStyledCardView(bike: bike)
+                    }
                 }
                 .padding(5)
             }
@@ -89,7 +91,7 @@ struct HomeStyledCardView: View {
             }
         }//: END VSTACK
         .padding(10)
-        .frame(width: 350, height: 100)
+        .frame(minWidth: 300, maxWidth: .infinity, minHeight: 100, alignment: .leading)
 		.foregroundColor(Color("TextColor"))
 		.background(Color("BackgroundColor"))
 		.cornerRadius(20)
