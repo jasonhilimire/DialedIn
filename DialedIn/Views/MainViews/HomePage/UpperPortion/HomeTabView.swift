@@ -10,7 +10,6 @@ import SwiftUI
 
 struct HomeTabView: View {
 	// MARK: - PROPERTIES -
-	@AppStorage("addUUIDS") private var addUUID: Bool = true
 	
 	// Create the MOC
 	@Environment(\.managedObjectContext) var moc
@@ -44,20 +43,6 @@ struct HomeTabView: View {
 		NavigationView() {
 			GeometryReader { geo in
 				ZStack {
-                    //TODO: REMOVE NO BIKES
-					if bikes.count == 0 && notes.count == 0 {
-						NoBikes_HomeScreenExampleView()
-					} else if notes.count == 0 {
-						VStack{
-							NoBikes_NoteExampleView()
-								.frame(height: geo.size.height / 2 )
-
-							HomeServiceView()
-								.frame(width: .infinity, height: geo.size.height / 2 )
-						}
-						.padding()
-						.navigationBarTitle("Dialed In")
-					} else {
 						VStack{
                             HStack(alignment: .top){
                                 LastNoteView()
@@ -98,10 +83,8 @@ struct HomeTabView: View {
 						.navigationBarTitle("Dialed In")
 //						.navigationBarItems(trailing: trailingBarItems)
 					}
-				}//: END Main ZSTACK
-			} //: END GEOREADER
-		} //: END NAV VIEW
-		.onAppear(perform: {self.setup()})
+				}//: END GoREader 
+			} //: END NAv
 		.navigationViewStyle(StackNavigationViewStyle())
 		.sheet(item: $activeSheet) { item in
 			switch item {
@@ -115,30 +98,5 @@ struct HomeTabView: View {
 			}
 		}
 	}
-	
-	func setup(){
-		//TODO: remove before GoLive /
-		// add for Services???
-		updateNotes()
-		updateBikes()
-		addUUID = false
-	}
-	
-	func updateNotes() {
-		for note in notes {
-			note.id = UUID()
-			try? self.moc.save()
-		}
-	}
-	
-	func updateBikes() {
-		for bike in bikes {
-			bike.id = UUID()
-			bike.frontSetup?.id = UUID()
-			bike.rearSetup?.id = UUID()
-			try? self.moc.save()
-		}
-	}
-	
 	
 }

@@ -30,7 +30,7 @@ struct NotesListView: View {
 	
     var body: some View {
 // MARK: - BODY -
-		NavigationView {
+//		NavigationView {
 			VStack {
 				VStack{
 					
@@ -79,8 +79,8 @@ struct NotesListView: View {
                 .sheet(isPresented: $showingAddScreen)  {
                     AddNoteView().environment(\.managedObjectContext, self.moc)
 			}
-        }
-		.navigationViewStyle(StackNavigationViewStyle()) // Creates a single view page on the ipad
+//        } //:End Nav View
+//		.navigationViewStyle(StackNavigationViewStyle()) // Creates a single view page on the ipad
     }
 	
 	func checkBikesExist() {
