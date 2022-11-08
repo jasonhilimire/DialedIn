@@ -34,9 +34,8 @@ struct HomeServiceView: View {
                         HomeStyledCardView(bike: bike)
                     }
                 }
-                .padding(5)
+                .padding(.top, 5)
             }
-            .padding(20)
             .customShadow()
             }
         }
@@ -88,10 +87,10 @@ struct HomeStyledCardView: View {
                     }
                     Text("Stroke Length : \(strokeLength, specifier: "%.2f")mm")
                 }
-            }
-        }//: END VSTACK
+            }//:END VSTACK
+            Spacer()
+        }//: END HSTACK
         .padding(10)
-//        .frame(minWidth: 300, maxWidth: .infinity, minHeight: 100, alignment: .leading)
 		.foregroundColor(Color("TextColor"))
 		.background(Color("BackgroundColor"))
 		.cornerRadius(20)
