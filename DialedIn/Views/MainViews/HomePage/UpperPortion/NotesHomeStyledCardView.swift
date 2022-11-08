@@ -22,38 +22,42 @@ struct NotesHomeStyledCardView: View {
 	var body: some View {
 		ZStack {
             VStack(alignment: .leading) {
-				Text("Last Note:")
-                    .font(.title3)
-					.bold()
-					.customTextShadow()
-                Text(note.bike?.name ?? "No Bike")
-				HStack {
-                    Text(note.date != nil ? "\(note.date!, formatter: dateFormatter)" : "")
+                HStack{
+                    Text("Last Note")
+                        .font(.title2)
+                        .bold()
+                        .underline()
+                        .customTextShadow()
                     Spacer()
-					if note.isFavorite == true {
-						HomeFavoritesView(favorite: .constant(note.isFavorite))
-					} else {
-						Text("   ")
-					}
-				}
+                    if note.isFavorite == true {
+                        HomeFavoritesView(favorite: .constant(note.isFavorite))
+                    } else {
+                        Text("   ")
+                    }
+                }//: END HSTACK
+                .customShadow()
+                Spacer()
+                Text(note.bike?.name ?? "No Bike")
+                    .bold()
+                Text(note.date != nil ? "\(note.date!, formatter: dateFormatter)" : "")
 				Spacer()
-				.customShadow()
-				
 				VStack(alignment: .leading) {
 					HStack {
 						VStack(alignment: .leading) {
 							if note.rating > 0 {
 								HomeRatingView(rating: .constant(Int(note.rating)))
+                                    .customShadow()
 							}
                             Spacer()
 							Text(note.note ?? "")
+                            Spacer()
+                            Spacer()
 						}
 						.font(.footnote)
 						Spacer()
 					}
-				}
+				}//: END VSTACK
 			} //: END VSTACK
-
 			.padding()
 			.foregroundColor(Color.white)
 			.background((LinearGradient(gradient: Gradient(colors: [Color.orange, Color.red
@@ -64,7 +68,6 @@ struct NotesHomeStyledCardView: View {
 			// CardAnimation
 			.rotationEffect(Angle.degrees(cardAnimation ? 360 : 0))
 			.animation(Animation.easeOut(duration: 1.5))
-			
 			
 			//: CONTEXT MENU
 			.contextMenu {
