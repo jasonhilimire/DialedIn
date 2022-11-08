@@ -91,7 +91,7 @@ struct HomeStyledCardView: View {
             }
         }//: END VSTACK
         .padding(10)
-        .frame(minWidth: 300, maxWidth: .infinity, minHeight: 100, alignment: .leading)
+//        .frame(minWidth: 300, maxWidth: .infinity, minHeight: 100, alignment: .leading)
 		.foregroundColor(Color("TextColor"))
 		.background(Color("BackgroundColor"))
 		.cornerRadius(20)

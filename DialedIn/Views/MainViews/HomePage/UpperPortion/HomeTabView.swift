@@ -44,47 +44,50 @@ struct HomeTabView: View {
 			GeometryReader { geo in
 				ZStack {
 						VStack{
-                            HStack(alignment: .top){
-                                LastNoteView()
-                                    .frame(width: (geo.size.width / 2.1),   height: geo.size.height / 2.5 )
-                                VStack {
+                            VStack {
+                                HStack(alignment: .top){
+                                    LastNoteView()
+                                        .frame(width: (geo.size.width / 2),   height: geo.size.height / 2.5 )
+                                    Spacer()
                                     InfoView()
                                         .frame(width: (geo.size.width / 2),   height: geo.size.height / 4 )
-                                }
-                            }
-                            
-                            HStack {
-                                Button(action: { activeSheet = .addNote}) {
-                                    Label("Add New Note", systemImage: "note.text.badge.plus")
-                                }
-                                .buttonStyle(Nav_Button())
+                                }//: END HSTACK
+                                .overlay(RoundedRectangle(cornerRadius: 20).stroke(Color.gray, lineWidth: 2))
                                 
-                                Spacer()
-                                
-                                Button(action: {activeSheet = .addService }) {
-                                    Label("Add New Service", systemImage: "wrench")
-                                }
-                                .buttonStyle(Nav_Button())
-                                
-                                Spacer()
-                                
-                                Button(action: {activeSheet = .addBike }) {
-                                    Label("Add New Bike", systemImage: "bicycle")
-                                }
-                                .buttonStyle(Nav_Button())
-                                
-                            }
-                            .padding()
-                            // Bike Short View
+                                HStack{
+                                    Button(action: { activeSheet = .addNote}) {
+                                        Label("Add New Note", systemImage: "note.text.badge.plus")
+                                    }
+                                    .buttonStyle(Nav_Button())
+                                    
+                                    Spacer()
+                                    
+                                    Button(action: {activeSheet = .addService }) {
+                                        Label("Add New Service", systemImage: "wrench")
+                                    }
+                                    .buttonStyle(Nav_Button())
+                                    
+                                    Spacer()
+                                    
+                                    Button(action: {activeSheet = .addBike }) {
+                                        Label("Add New Bike", systemImage: "bicycle")
+                                    }
+                                    .buttonStyle(Nav_Button())
+                                    
+                                }//: END HSTACK
+                                .frame(width: geo.size.width)
+                                .overlay(RoundedRectangle(cornerRadius: 20).stroke(Color.gray, lineWidth: 2))
+                            }//: END VSTACK
+                            .overlay(RoundedRectangle(cornerRadius: 20).stroke(Color.gray, lineWidth: 2))
 							HomeServiceView()
-//								.frame(width: .infinity, height: geo.size.height )
-						}
-//						.padding()
+                                .overlay(RoundedRectangle(cornerRadius: 20).stroke(Color.gray, lineWidth: 2))
+						}//: END VSTACK
 						.navigationBarTitle("Dialed In")
-//						.navigationBarItems(trailing: trailingBarItems)
-					}
-				}//: END GoREader 
-			} //: END NAv
+					}//: END ZSTACK
+                .overlay(RoundedRectangle(cornerRadius: 20).stroke(Color.gray, lineWidth: 2))
+                .padding(.horizontal)
+				}//: END GeoREader
+			} //: END NavView
 		.navigationViewStyle(StackNavigationViewStyle())
 		.sheet(item: $activeSheet) { item in
 			switch item {
@@ -100,3 +103,6 @@ struct HomeTabView: View {
 	}
 	
 }
+
+
+

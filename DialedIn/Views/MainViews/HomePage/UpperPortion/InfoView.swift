@@ -31,12 +31,16 @@ struct InfoView: View {
                     }
                 }
             }
-            //TODO: Make this a button that just changes views when removing tab bar : https://blckbirds.com/post/how-to-navigate-between-views-in-swiftui-by-using-an-observableobject/
+            .foregroundColor(Color("TextColor"))
+            Spacer()
             NavigationLink("See All Notes") {
                 NotesListView()
             }
+            .font(.footnote)
+            .foregroundColor(Color("TextColor"))
+
         }
-        .padding()
+        .padding(20)
         .foregroundColor(Color.white)
         .background(Color.clear)
         .cornerRadius(20)
