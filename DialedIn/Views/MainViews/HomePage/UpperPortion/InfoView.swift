@@ -37,16 +37,16 @@ struct InfoView: View {
                 NotesListView()
             }
             .font(.footnote)
-            .foregroundColor(Color("TextColor"))
+            .foregroundColor(Color.gray)
 
         }
         .padding(20)
         .foregroundColor(Color.white)
         .background(Color.clear)
         .cornerRadius(20)
-        .overlay(
-            RoundedRectangle(cornerRadius: 20)
-                .stroke(Color.gray, lineWidth: 2))
+//        .overlay(
+//            RoundedRectangle(cornerRadius: 20)
+//                .stroke(Color.gray, lineWidth: 2))
     }
 }
 
