@@ -42,50 +42,46 @@ struct HomeTabView: View {
     var body: some View {
 		NavigationView() {
 			GeometryReader { geo in
-				ZStack {
-						VStack{
-                            VStack {
-                                HStack(alignment: .top){
-                                    LastNoteView()
-                                        .frame(width: (geo.size.width / 2),   height: geo.size.height / 2.5 )
-                                    Spacer()
-                                    InfoView()
-                                        .frame(width: (geo.size.width / 2),   height: geo.size.height / 4 )
-                                }//: END HSTACK
-                                .overlay(RoundedRectangle(cornerRadius: 20).stroke(Color.gray, lineWidth: 2))
-                                
-                                HStack{
-                                    Button(action: { activeSheet = .addNote}) {
-                                        Label("Add New Note", systemImage: "note.text.badge.plus")
-                                    }
-                                    .buttonStyle(Nav_Button())
-                                    
-                                    Spacer()
-                                    
-                                    Button(action: {activeSheet = .addService }) {
-                                        Label("Add New Service", systemImage: "wrench")
-                                    }
-                                    .buttonStyle(Nav_Button())
-                                    
-                                    Spacer()
-                                    
-                                    Button(action: {activeSheet = .addBike }) {
-                                        Label("Add New Bike", systemImage: "bicycle")
-                                    }
-                                    .buttonStyle(Nav_Button())
-                                    
-                                }//: END HSTACK
-                                .frame(width: geo.size.width)
-                                .overlay(RoundedRectangle(cornerRadius: 20).stroke(Color.gray, lineWidth: 2))
-                            }//: END VSTACK
-                            .overlay(RoundedRectangle(cornerRadius: 20).stroke(Color.gray, lineWidth: 2))
-							HomeServiceView()
-                                .overlay(RoundedRectangle(cornerRadius: 20).stroke(Color.gray, lineWidth: 2))
-						}//: END VSTACK
-						.navigationBarTitle("Dialed In")
-					}//: END ZSTACK
-                .overlay(RoundedRectangle(cornerRadius: 20).stroke(Color.gray, lineWidth: 2))
-                .padding(.horizontal)
+                VStack{
+                    VStack {
+                        HStack(alignment: .top){
+                            LastNoteView()
+                                .frame(width: (geo.size.width / 2),   height: geo.size.height / 2.5 )
+                            Spacer()
+                            InfoView()
+                                .frame(width: (geo.size.width / 2),   height: geo.size.height / 4 )
+                        }//: END HSTACK
+                        .overlay(RoundedRectangle(cornerRadius: 20).stroke(Color.gray, lineWidth: 2))
+                        
+                        HStack{
+                            Button(action: { activeSheet = .addNote}) {
+                                Label("Add New Note", systemImage: "note.text.badge.plus")
+                            }
+                            .buttonStyle(Nav_Button())
+                            
+                            Spacer()
+                            
+                            Button(action: {activeSheet = .addService }) {
+                                Label("Add New Service", systemImage: "wrench")
+                            }
+                            .buttonStyle(Nav_Button())
+                            
+                            Spacer()
+                            
+                            Button(action: {activeSheet = .addBike }) {
+                                Label("Add New Bike", systemImage: "bicycle")
+                            }
+                            .buttonStyle(Nav_Button())
+                            
+                        }//: END HSTACK
+                        .frame(width: geo.size.width)
+                        .overlay(RoundedRectangle(cornerRadius: 20).stroke(Color.gray, lineWidth: 2))
+                    }//: END VSTACK
+                    .overlay(RoundedRectangle(cornerRadius: 20).stroke(Color.blue, lineWidth: 2))
+                    HomeServiceView()
+                        .overlay(RoundedRectangle(cornerRadius: 20).stroke(Color.gray, lineWidth: 2))
+                }//: END VSTACK
+                .navigationBarTitle("Dialed In")
 				}//: END GeoREader
 			} //: END NavView
 		.navigationViewStyle(StackNavigationViewStyle())
