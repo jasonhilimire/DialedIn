@@ -42,7 +42,7 @@ struct NotesListView: View {
 						.padding(.top, 5)
 					
 					Picker("Service Type", selection: $pickerChoiceIndex) {
-						ForEach(0..<pickerChoice.count) { index in
+						ForEach(0..<pickerChoice.count, id: \.self) { index in
 							Text(self.pickerChoice[index]).tag(index)
 						}
 					}.pickerStyle(SegmentedPickerStyle())
