@@ -23,6 +23,8 @@ struct HomePageBikeCardListView: View {
 	@FetchRequest(entity: Bike.entity(), sortDescriptors: [
 		NSSortDescriptor(keyPath: \Bike.name, ascending: true)
 	]) var bikes: FetchedResults<Bike>
+    
+    @State private var showingBikeScreen = false
 	
 	
 	// MARK: - BODY -
@@ -30,8 +32,12 @@ struct HomePageBikeCardListView: View {
         ScrollView(.vertical, showsIndicators: true) {
             VStack {
                 ForEach(bikes, id: \.self) { bike in
-                    NavigationLink(destination: BikeDetailCardView(bike: bike)){
+//                    NavigationLink(destination: BikesDetailView(bike: bike)){
+                    Button(action: {showingBikeScreen.toggle()}) {
                         HomePageStyledBikeCardView(bike: bike)
+                    }
+                    .sheet(isPresented: $showingBikeScreen) {
+                        BikesDetailView(bike: bike)
                     }
                 }
                 .padding(.top, 5)

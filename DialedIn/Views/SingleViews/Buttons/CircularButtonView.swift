@@ -15,17 +15,17 @@ struct CircularButtonView: View {
 		HStack(spacing: 8) {
 			Image(systemName: symbolImage)
 				.imageScale(.large)
-				.foregroundColor(.white)
+				.foregroundColor(.gray)
 				.frame(width: 28.5, height: 28.5, alignment: .center) // frame allows for constant sizing otherwize SF Symbol images are not same :/
 
 		}
 		.padding(.horizontal, 16)
 		.padding(.vertical, 10)
 		.background(
-			Circle().strokeBorder(Color.white, lineWidth: 1.25)
+			Circle().strokeBorder(Color.gray, lineWidth: 1.25)
 		)
 		//: Button
-		.accentColor(Color.white)
+		.accentColor(Color.gray)
 		.customTextShadow()
     }
 }

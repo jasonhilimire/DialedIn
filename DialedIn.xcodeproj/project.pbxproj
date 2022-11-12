@@ -75,6 +75,7 @@
 		A3D518352426B558007DEE9D /* RearServiceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D518342426B558007DEE9D /* RearServiceViewModel.swift */; };
 		A3D518372426B565007DEE9D /* FrontServiceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D518362426B565007DEE9D /* FrontServiceViewModel.swift */; };
 		A3D533C7291F3B8D00C1164B /* BikeNameCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D533C6291F3B8D00C1164B /* BikeNameCircle.swift */; };
+		A3D533C929205FF800C1164B /* BikesDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D533C829205FF800C1164B /* BikesDetailView.swift */; };
 		A3DDCC7A23DFEFEB00CD1476 /* Bike+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DDCC7823DFEFEB00CD1476 /* Bike+CoreDataClass.swift */; };
 		A3DDCC7B23DFEFEB00CD1476 /* Bike+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DDCC7923DFEFEB00CD1476 /* Bike+CoreDataProperties.swift */; };
 		A3DDCC7D23DFF21700CD1476 /* NotesDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DDCC7C23DFF21700CD1476 /* NotesDetailView.swift */; };
@@ -193,6 +194,7 @@
 		A3D518342426B558007DEE9D /* RearServiceViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RearServiceViewModel.swift; sourceTree = "<group>"; };
 		A3D518362426B565007DEE9D /* FrontServiceViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FrontServiceViewModel.swift; sourceTree = "<group>"; };
 		A3D533C6291F3B8D00C1164B /* BikeNameCircle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeNameCircle.swift; sourceTree = "<group>"; };
+		A3D533C829205FF800C1164B /* BikesDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BikesDetailView.swift; path = BikeDetailViews/BikesDetailView.swift; sourceTree = "<group>"; };
 		A3DDCC7823DFEFEB00CD1476 /* Bike+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bike+CoreDataClass.swift"; sourceTree = "<group>"; };
 		A3DDCC7923DFEFEB00CD1476 /* Bike+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bike+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		A3DDCC7C23DFF21700CD1476 /* NotesDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesDetailView.swift; sourceTree = "<group>"; };
@@ -290,6 +292,7 @@
 		A33E3D9025239AD600B9F47E /* Bike */ = {
 			isa = PBXGroup;
 			children = (
+				A3D533C829205FF800C1164B /* BikesDetailView.swift */,
 				A3DDCC8223DFF97900CD1476 /* AddBikeView.swift */,
 				A3F3C84C25D9D694000BE912 /* BikeDetailFormView.swift */,
 				A3F3C83C25D9CD41000BE912 /* ForkSetupFormView.swift */,
@@ -746,6 +749,7 @@
 				A31605F02523B976009071E9 /* BikeCardView.swift in Sources */,
 				A3E1A6AF2409B78100C4DFD5 /* FilteredBikeNotesView.swift in Sources */,
 				A3EAEF36274EE29400B562E9 /* ToolbarContent.swift in Sources */,
+				A3D533C929205FF800C1164B /* BikesDetailView.swift in Sources */,
 				A3F0CF4C25D99F140001DF5B /* RearShockViewModel.swift in Sources */,
 				A3D518072425BD63007DEE9D /* AddServiceView.swift in Sources */,
 				A3F61FFB25CE357A004F8EA0 /* FrontNoteDetailsView.swift in Sources */,
@@ -981,7 +985,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = "DialedIn/Dialed In.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 58;
+				CURRENT_PROJECT_VERSION = 67;
 				DEVELOPMENT_ASSET_PATHS = "\"DialedIn/Preview Content\"";
 				DEVELOPMENT_TEAM = 55QD8ZCA9C;
 				ENABLE_PREVIEWS = YES;
@@ -1009,7 +1013,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = "DialedIn/Dialed In.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 58;
+				CURRENT_PROJECT_VERSION = 67;
 				DEVELOPMENT_ASSET_PATHS = "\"DialedIn/Preview Content\"";
 				DEVELOPMENT_TEAM = 55QD8ZCA9C;
 				ENABLE_PREVIEWS = YES;
