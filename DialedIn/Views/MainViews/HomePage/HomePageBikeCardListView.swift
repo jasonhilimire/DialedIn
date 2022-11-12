@@ -30,7 +30,7 @@ struct HomePageBikeCardListView: View {
         ScrollView(.vertical, showsIndicators: true) {
             VStack {
                 ForEach(bikes, id: \.self) { bike in
-                    NavigationLink(destination: BikeDetailView(bike: bike)){
+                    NavigationLink(destination: BikeDetailCardView(bike: bike)){
                         HomePageStyledBikeCardView(bike: bike)
                     }
                 }
@@ -74,7 +74,7 @@ struct HomePageStyledBikeCardView: View {
 	var body: some View {
         HStack{
             BikeNameCircle(buttonText: $buttonText)
-                .customTextShadow()
+                .padding()
             VStack(alignment: .leading){
                 HStack{
                     Text(self.bike.name ?? "Unknown Bike")
@@ -100,8 +100,6 @@ struct HomePageStyledBikeCardView: View {
                 }
             }//:END VSTACK
             Spacer()
-            // TODO: ADD logic here for elapsed service (Any) and show a service icon - far right and uppper portion
-            
             VStack {
                 if serviceDue() {
                     Image("wrench.and.screwdriver.fill")
@@ -125,7 +123,7 @@ struct HomePageStyledBikeCardView: View {
 		.cornerRadius(20)
 		.overlay(
 			RoundedRectangle(cornerRadius: 20)
-				.stroke(Color.orange, lineWidth: 2))
+				.stroke((LinearGradient(gradient: Gradient(colors: [Color.orange, Color.red]) , startPoint: .top, endPoint: .bottom)), lineWidth: 2))
 		.customShadow()
 		.contextMenu {
 			VStack {

@@ -15,14 +15,12 @@ struct BikeNameCircle: View {
         Text("\(buttonText)")
             .font(.largeTitle)
             .fontWeight(.semibold)
-            .foregroundColor(Color.orange)
-            .frame(width: 50, height: 50, alignment: .center)
+            .foregroundColor(Color.white)
             .padding()
-            .overlay(
-                Circle()
-                .stroke(Color.orange, lineWidth: 6)
-                .padding(6)
-            )
+            .background((LinearGradient(gradient: Gradient(colors: [Color.orange, Color.red]), startPoint: .top, endPoint: .bottom)))
+            .clipShape(Circle())
+            .frame(width: 50, height: 50, alignment: .center)
+            .customTextShadow()
     }
 }
 
