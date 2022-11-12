@@ -77,16 +77,21 @@ struct HomeStyledCardView: View {
                     Spacer()
                 }//: END HSTACK
                 HStack{
-                    Text(self.bike.frontSetup?.info ?? "")
+                    Text("\(self.bike.frontSetup?.info ?? ""):")
+                        .fontWeight(.thin)
                     Text("\(frontTravel, specifier: "%.0f")mm")
+                        .fontWeight(.thin)
                 }
                 
                 if self.bike.hasRearShock == true {
                     HStack {
-                        Text(self.bike.rearSetup?.info ?? "")
+                        Text("\(self.bike.rearSetup?.info ?? ""):")
+                            .fontWeight(.thin)
                         Text("\(rearTravel, specifier: "%.2f")mm")
+                            .fontWeight(.thin)
                     }
-                    Text("Stroke Length : \(strokeLength, specifier: "%.2f")mm")
+                    Text("Stroke Length: \(strokeLength, specifier: "%.2f")mm")
+                        .fontWeight(.thin)
                 }
             }//:END VSTACK
             Spacer()
