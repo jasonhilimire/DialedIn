@@ -7,7 +7,7 @@
 //
 
 import SwiftUI
-struct InfoView: View {
+struct HomePageNotesInfoView: View {
     @Environment(\.managedObjectContext) var moc
     @FetchRequest(fetchRequest: Notes.notesFetchRequest())
     var notes: FetchedResults<Notes>
@@ -51,6 +51,6 @@ struct InfoView: View {
 
 struct InfoView_Previews: PreviewProvider {
     static var previews: some View {
-        InfoView()
+        HomePageNotesInfoView()
     }
 }

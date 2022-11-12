@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct NotesHomeStyledCardView: View {
+struct NotesHomePageStyledCardView: View {
 	// MARK: - PROPERTIES -
 	// Create the MOC
 	@Environment(\.managedObjectContext) var moc

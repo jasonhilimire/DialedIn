@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct HomeTabView: View {
+struct HomePageMainView: View {
 	// MARK: - PROPERTIES -
 	
 	// Create the MOC
@@ -45,34 +45,34 @@ struct HomeTabView: View {
                 VStack{
                     VStack {
                         HStack(alignment: .top){
-                            LastNoteView()
+                            HomePageLastNoteView()
                             Spacer()
-                            InfoView()
+                            HomePageNotesInfoView()
                         }//: END HSTACK
                         HStack{
                             Button(action: { activeSheet = .addNote}) {
-                                Label("Add New Note", systemImage: "note.text.badge.plus")
+                                Label("Add New Note", systemImage: "note.text.badge.plus").scaleEffect(1.5)
                             }
                             .buttonStyle(Nav_Button())
                             
                             Spacer()
                             
                             Button(action: {activeSheet = .addService }) {
-                                Label("Add New Service", systemImage: "wrench")
+                                Label("Add New Service", systemImage: "wrench").scaleEffect(1.5)
                             }
                             .buttonStyle(Nav_Button())
                             
                             Spacer()
                             
                             Button(action: {activeSheet = .addBike }) {
-                                Label("Add New Bike", systemImage: "bicycle")
+                                Label("Add New Bike", systemImage: "bicycle").scaleEffect(1.5)
                             }
                             .buttonStyle(Nav_Button())
                             
                         }//: END HSTACK
                     }//: END VSTACK
                     .padding(.horizontal, 10)
-                    HomeServiceView()
+                    HomePageBikeCardListView()
                 }//: END VSTACK
                 .navigationBarTitle("Dialed In")
                 

@@ -18,5 +18,6 @@ struct Nav_Button: ButtonStyle {
                 .animation(.spring())
                 .customShadow()
                 .labelStyle(.iconOnly)
+                .scaledToFill()
         }
 }

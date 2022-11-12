@@ -15,7 +15,7 @@ import CoreData
 // could also use side scrollable cards sorted by name for bikes on the bottom list?
 
 
-struct HomeServiceView: View {
+struct HomePageBikeCardListView: View {
 	//MARK: - PROPERTIES -
 	@Environment(\.managedObjectContext) var moc
 	
@@ -31,7 +31,7 @@ struct HomeServiceView: View {
             VStack {
                 ForEach(bikes, id: \.self) { bike in
                     NavigationLink(destination: BikeDetailView(bike: bike)){
-                        HomeStyledCardView(bike: bike)
+                        HomePageStyledBikeCardView(bike: bike)
                     }
                 }
                 .padding(.top, 5)
@@ -46,7 +46,7 @@ struct HomeServiceView: View {
 
 
 // MARK: - HomeStyledCardView -
-struct HomeStyledCardView: View {
+struct HomePageStyledBikeCardView: View {
 	@Environment(\.managedObjectContext) var moc
 	@Environment(\.presentationMode) var presentationMode
 	@EnvironmentObject var showScreenBool: BoolModel
@@ -91,6 +91,7 @@ struct HomeStyledCardView: View {
                 }
             }//:END VSTACK
             Spacer()
+            // TODO: ADD logic here for elapsed service (Any) and show a service icon - far right and uppper portion
         }//: END HSTACK
         .onAppear(){
             self.getButtonLetter(bikeName: bike.wrappedBikeName)

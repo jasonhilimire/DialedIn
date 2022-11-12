@@ -26,7 +26,7 @@ struct HomeNoteView: View {
 			if bikes.count == 0 {
 				CreateBikeView() // Create a view here
 			}
-				LastNoteView()
+				HomePageLastNoteView()
 		}
 	}
 }

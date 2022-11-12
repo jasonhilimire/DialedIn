@@ -9,7 +9,7 @@
 import SwiftUI
 import CoreData
 
-struct LastNoteView: View {
+struct HomePageLastNoteView: View {
 	@Environment(\.managedObjectContext) var moc
 
 	@FetchRequest(fetchRequest: Notes.LastNoteFetchRequest())
@@ -17,7 +17,7 @@ struct LastNoteView: View {
 	
 	// TODO: FIX THIS as shouldnt be hardcoding this - as wont work when no notes
 	var body: some View {
-		NotesHomeStyledCardView(note: notes[0])
+		NotesHomePageStyledCardView(note: notes[0])
 	}
 }
 
