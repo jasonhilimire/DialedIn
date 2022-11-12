@@ -46,10 +46,8 @@ struct HomeTabView: View {
                     VStack {
                         HStack(alignment: .top){
                             LastNoteView()
-//                                .frame(width: (geo.size.width / 2),   height: geo.size.height / 2.5 )
                             Spacer()
                             InfoView()
-//                                .frame(width: (geo.size.width / 2),   height: geo.size.height / 4 )
                         }//: END HSTACK
                         HStack{
                             Button(action: { activeSheet = .addNote}) {

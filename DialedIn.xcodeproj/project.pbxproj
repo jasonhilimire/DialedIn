@@ -74,6 +74,7 @@
 		A3D518332426B50D007DEE9D /* RearShock+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D518312426B50D007DEE9D /* RearShock+CoreDataProperties.swift */; };
 		A3D518352426B558007DEE9D /* RearServiceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D518342426B558007DEE9D /* RearServiceViewModel.swift */; };
 		A3D518372426B565007DEE9D /* FrontServiceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D518362426B565007DEE9D /* FrontServiceViewModel.swift */; };
+		A3D533C7291F3B8D00C1164B /* BikeNameCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D533C6291F3B8D00C1164B /* BikeNameCircle.swift */; };
 		A3DDCC7A23DFEFEB00CD1476 /* Bike+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DDCC7823DFEFEB00CD1476 /* Bike+CoreDataClass.swift */; };
 		A3DDCC7B23DFEFEB00CD1476 /* Bike+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DDCC7923DFEFEB00CD1476 /* Bike+CoreDataProperties.swift */; };
 		A3DDCC7D23DFF21700CD1476 /* NotesDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DDCC7C23DFF21700CD1476 /* NotesDetailView.swift */; };
@@ -191,6 +192,7 @@
 		A3D518312426B50D007DEE9D /* RearShock+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RearShock+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		A3D518342426B558007DEE9D /* RearServiceViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RearServiceViewModel.swift; sourceTree = "<group>"; };
 		A3D518362426B565007DEE9D /* FrontServiceViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FrontServiceViewModel.swift; sourceTree = "<group>"; };
+		A3D533C6291F3B8D00C1164B /* BikeNameCircle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeNameCircle.swift; sourceTree = "<group>"; };
 		A3DDCC7823DFEFEB00CD1476 /* Bike+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bike+CoreDataClass.swift"; sourceTree = "<group>"; };
 		A3DDCC7923DFEFEB00CD1476 /* Bike+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bike+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		A3DDCC7C23DFF21700CD1476 /* NotesDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesDetailView.swift; sourceTree = "<group>"; };
@@ -567,6 +569,7 @@
 				A313D5F625539B240073FE33 /* PulsatingPlusButtonView.swift */,
 				A348C258275DACB800404984 /* PlusButtonView.swift */,
 				A3C5F1F6291709FF00436AF9 /* Nav_Button.swift */,
+				A3D533C6291F3B8D00C1164B /* BikeNameCircle.swift */,
 			);
 			path = Buttons;
 			sourceTree = "<group>";
@@ -756,6 +759,7 @@
 				A3F61FFB25CE357A004F8EA0 /* FrontNoteDetailsView.swift in Sources */,
 				A3F8592E2511BFAA00278E7B /* CreateBikeView.swift in Sources */,
 				A3CAFF5B2465F95000B144EA /* KeyboardObserver.swift in Sources */,
+				A3D533C7291F3B8D00C1164B /* BikeNameCircle.swift in Sources */,
 				A32F65B1254F7674005827A7 /* NoBikes_NoteExampleView.swift in Sources */,
 				A35642C125787A5500A5A45B /* ContentView.swift in Sources */,
 				A3F3C83D25D9CD41000BE912 /* ForkSetupFormView.swift in Sources */,
@@ -985,7 +989,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = "DialedIn/Dialed In.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 16;
 				DEVELOPMENT_ASSET_PATHS = "\"DialedIn/Preview Content\"";
 				DEVELOPMENT_TEAM = 55QD8ZCA9C;
 				ENABLE_PREVIEWS = YES;
@@ -1013,7 +1017,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = "DialedIn/Dialed In.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 16;
 				DEVELOPMENT_ASSET_PATHS = "\"DialedIn/Preview Content\"";
 				DEVELOPMENT_TEAM = 55QD8ZCA9C;
 				ENABLE_PREVIEWS = YES;

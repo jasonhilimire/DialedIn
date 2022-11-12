@@ -61,15 +61,11 @@ struct HomeStyledCardView: View {
     @State var frontTravel = 0.0
     @State var rearTravel = 0.0
     @State var strokeLength = 0.0
+    @State var buttonText = ""
 
 	var body: some View {
         HStack{
-            Image("bike")
-                .resizable()
-                .scaledToFit()
-                .customTextShadow()
-                .frame(width: 50, height: 50, alignment: .center)
-                .padding(.horizontal, 10)
+            BikeNameCircle(buttonText: $buttonText)
             VStack(alignment: .leading){
                 HStack{
                     Text(self.bike.name ?? "Unknown Bike")
@@ -96,6 +92,9 @@ struct HomeStyledCardView: View {
             }//:END VSTACK
             Spacer()
         }//: END HSTACK
+        .onAppear(){
+            self.getButtonLetter(bikeName: bike.wrappedBikeName)
+        }
         .padding(10)
 		.foregroundColor(Color("TextColor"))
 		.background(Color("BackgroundColor"))
@@ -139,12 +138,17 @@ struct HomeStyledCardView: View {
 				.environmentObject(self.showScreenBool)
 				.environment(\.managedObjectContext, self.moc)
 		}))
-	} //: END VIEW
+    }//: END VIEW
+        
 	
 	func publishBikeName() {
 		self.showScreenBool.bikeName = bike.name ?? "Unknown"
 		bikeVM.getBike(for: showScreenBool.bikeName)
 	}
+    
+    func getButtonLetter(bikeName: String){
+        buttonText = bikeName.first?.uppercased() ?? "U"
+    }
 }
 
 
