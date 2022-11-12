@@ -52,6 +52,8 @@ struct HomePageStyledBikeCardView: View {
 	@EnvironmentObject var showScreenBool: BoolModel
 	
 	@StateObject var bikeVM = BikeViewModel()
+    @ObservedObject var frontService = FrontServiceViewModel()
+    @ObservedObject var rearService = RearServiceViewModel()
 	
 	@State private var isFromBikeCard = true
 	@State private var showServiceView = false
@@ -62,10 +64,17 @@ struct HomePageStyledBikeCardView: View {
     @State var rearTravel = 0.0
     @State var strokeLength = 0.0
     @State var buttonText = ""
+    
+    init(bike: Bike){
+        self.bike = bike
+        frontService.getLastServicedDates(bike: bike.wrappedBikeName)
+        rearService.getLastServicedDates(bike: bike.wrappedBikeName)
+    }
 
 	var body: some View {
         HStack{
             BikeNameCircle(buttonText: $buttonText)
+                .customTextShadow()
             VStack(alignment: .leading){
                 HStack{
                     Text(self.bike.name ?? "Unknown Bike")
@@ -92,6 +101,20 @@ struct HomePageStyledBikeCardView: View {
             }//:END VSTACK
             Spacer()
             // TODO: ADD logic here for elapsed service (Any) and show a service icon - far right and uppper portion
+            
+            VStack {
+                if serviceDue() {
+                    Image("wrench.and.screwdriver.fill")
+                        .foregroundColor(.red)
+                        .scaledToFit()
+                        .customTextShadow()
+                        .frame(width: 25, height: 25, alignment: .center)
+                        .padding(.horizontal, 10)
+                        .customTextShadow()
+                }
+                Spacer()
+            }
+
         }//: END HSTACK
         .onAppear(){
             self.getButtonLetter(bikeName: bike.wrappedBikeName)
@@ -149,6 +172,15 @@ struct HomePageStyledBikeCardView: View {
     
     func getButtonLetter(bikeName: String){
         buttonText = bikeName.first?.uppercased() ?? "U"
+    }
+    
+    func serviceDue() -> Bool {
+        if frontService.elapsedLowersServiceWarning || frontService.elapsedFullServiceWarning
+            || rearService.elapsedFullServiceWarning || rearService.elapsedAirCanServiceWarning {
+            return true
+        } else {
+            return false
+        }
     }
 }
 
