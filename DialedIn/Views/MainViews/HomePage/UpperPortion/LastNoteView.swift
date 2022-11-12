@@ -15,7 +15,7 @@ struct LastNoteView: View {
 	@FetchRequest(fetchRequest: Notes.LastNoteFetchRequest())
 	var notes: FetchedResults<Notes>
 	
-	// TODO: FIX THIS as shouldnt be hardcoding this - but has fixed issue on the ipad with multiple notes showing up
+	// TODO: FIX THIS as shouldnt be hardcoding this - as wont work when no notes
 	var body: some View {
 		NotesHomeStyledCardView(note: notes[0])
 	}
