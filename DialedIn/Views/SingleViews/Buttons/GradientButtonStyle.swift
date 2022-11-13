@@ -13,7 +13,7 @@ struct GradientButtonStyle: ButtonStyle {
 		configuration.label
 			.foregroundColor(Color.white)
 			.padding()
-			.background(LinearGradient(gradient: Gradient(colors: [Color.red, Color.orange]), startPoint: .leading, endPoint: .trailing))
+            .customBackgroundGradient()
 			.cornerRadius(15.0)
 			.scaleEffect(configuration.isPressed ? 0.6 : 1.0)
 			.customTextShadow()

@@ -20,6 +20,12 @@ struct BikesDetailView: View {
     @State var isFromBikeCard = true
     @State var isShowingService = false
     @State var isShowingEdit = false
+    @State var deleteImage = "square.and.pencil"
+    @State var showingDeleteAlert = false
+     var deleteText = """
+    Are you sure?
+    - this will delete all related notes -
+    """
     
     var body: some View {
         VStack{
@@ -29,6 +35,17 @@ struct BikesDetailView: View {
                 }) {
                     CircularButtonView(symbolImage: $wrenchImage)
                 }
+                Spacer()
+                //TODO: MOVE THIS TO ANOTHER?
+                Button(action: {
+                    self.showingDeleteAlert.toggle()
+                    
+                }) {
+                    CircularButtonView(symbolImage: $deleteImage)
+                }
+            .padding(8)
+            .customTextShadow()
+                
                 Spacer()
                 Button(action: {
                     isShowingEdit.toggle()
@@ -70,7 +87,20 @@ struct BikesDetailView: View {
         .background(EmptyView().sheet(isPresented: $isShowingEdit) {
             EditBikeDetailView(bike: self.bike)
             }))
+        // Show the Alert to delete the Bike
+        .alert(isPresented: $showingDeleteAlert) {
+            Alert(title: Text("Delete Bike"), message: Text("\(deleteText)"), primaryButton: .destructive(Text("Delete")) {
+                self.deleteBike()
+            }, secondaryButton: .cancel())
+        }
     }
+
+    func deleteBike() {
+        moc.delete(self.bike)
+        try? self.moc.save()
+        hapticSuccess()
+    }
+
 }
 
 

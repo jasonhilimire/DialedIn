@@ -13,7 +13,7 @@ struct Nav_Button: ButtonStyle {
             configuration.label
                 .padding()
                 .foregroundColor(.white)
-                .background((LinearGradient(gradient: Gradient(colors: [Color.orange, Color.red]) , startPoint: .top, endPoint: .bottom)))
+                .customBackgroundGradient()
                 .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
                 .animation(.spring())
                 .customShadow()

@@ -28,7 +28,7 @@ struct OrangeButtonStyle: ButtonStyle {
 			.foregroundColor(Color("TextColor"))
 			.padding(.all)
 			.frame(maxWidth: 390)
-			.background(Color.orange)
+            .customBackgroundGradient()
 			.cornerRadius(15)
 			.scaleEffect(configuration.isPressed ? 0.6 : 1.0)
 			.animation(.spring())

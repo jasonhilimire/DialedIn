@@ -17,7 +17,7 @@ struct BikeNameCircle: View {
             .fontWeight(.semibold)
             .foregroundColor(Color.white)
             .padding()
-            .background((LinearGradient(gradient: Gradient(colors: [Color.orange, Color.red]), startPoint: .top, endPoint: .bottom)))
+            .customBackgroundGradient()
             .clipShape(Circle())
             .frame(width: 50, height: 50, alignment: .center)
             .customTextShadow()

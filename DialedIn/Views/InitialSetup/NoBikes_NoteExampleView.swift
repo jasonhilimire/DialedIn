@@ -84,8 +84,7 @@ struct NoBikes_NoteExampleView: View {
 			} //: END VSTACK
 			.padding()
 			.foregroundColor(Color.white)
-			.background((LinearGradient(gradient: Gradient(colors: [Color.orange, Color.red
-			]) , startPoint: .top, endPoint: .bottom)))
+            .customBackgroundGradient()
 			.cornerRadius(20)
 			// Shadow for left & Bottom
 			.customShadow()

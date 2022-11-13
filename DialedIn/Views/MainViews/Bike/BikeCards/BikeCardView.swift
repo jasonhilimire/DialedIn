@@ -98,8 +98,7 @@ struct BikeCardView: View {
 				}
 			}
 			.onAppear(perform: {self.setup()})
-			.background((LinearGradient(gradient: Gradient(colors: [Color.orange, Color.red
-			]) , startPoint: .top, endPoint: .bottom)))
+            .customBackgroundGradient()
 			.cornerRadius(20)
 			.padding(.horizontal, 20)
 			.customShadow()
