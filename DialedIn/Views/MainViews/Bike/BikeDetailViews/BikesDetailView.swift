@@ -20,7 +20,7 @@ struct BikesDetailView: View {
     @State var isFromBikeCard = true
     @State var isShowingService = false
     @State var isShowingEdit = false
-    @State var deleteImage = "square.and.pencil"
+    @State var deleteImage = "trash"
     @State var showingDeleteAlert = false
      var deleteText = """
     Are you sure?
