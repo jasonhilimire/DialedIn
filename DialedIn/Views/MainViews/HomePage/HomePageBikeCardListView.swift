@@ -104,13 +104,7 @@ struct HomePageStyledBikeCardView: View {
             Spacer()
             VStack {
                 if serviceDue() {
-                    Image("wrench.and.screwdriver.fill")
-                        .foregroundColor(.red)
-                        .scaledToFit()
-                        .customTextShadow()
-                        .frame(width: 25, height: 25, alignment: .center)
-                        .padding(.horizontal, 10)
-                        .customTextShadow()
+                    ServiceDueWrenchIconView()
                 }
                 Spacer()
             }

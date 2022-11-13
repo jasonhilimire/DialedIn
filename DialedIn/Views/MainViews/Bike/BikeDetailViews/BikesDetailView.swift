@@ -63,15 +63,12 @@ struct BikesDetailView: View {
             FilteredBikeNotesView(filter: self.bike.name ?? "")
                 .padding(.horizontal)
         }//: END VSTACK
-        .navigationBarTitle(Text(bike.name ?? "Unknown Note"), displayMode: .inline)
+        .navigationBarTitle(Text(self.bike.name ?? "Unknown Note"), displayMode: .inline)
         .background(EmptyView().sheet(isPresented: $isShowingService) {
-            AddServiceView(isFromBikeCard: $isFromBikeCard, bike: bike)
-                .environment(\.managedObjectContext, self.moc)
+            AddServiceView(isFromBikeCard: $isFromBikeCard, bike: self.bike)
         }
-        
         .background(EmptyView().sheet(isPresented: $isShowingEdit) {
-            EditBikeDetailView(bike: bike)
-                .environment(\.managedObjectContext, self.moc)
+            EditBikeDetailView(bike: self.bike)
             }))
     }
 }
