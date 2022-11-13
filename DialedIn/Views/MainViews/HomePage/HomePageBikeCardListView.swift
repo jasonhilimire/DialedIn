@@ -32,12 +32,8 @@ struct HomePageBikeCardListView: View {
         ScrollView(.vertical, showsIndicators: true) {
             VStack {
                 ForEach(bikes, id: \.self) { bike in
-//                    NavigationLink(destination: BikesDetailView(bike: bike)){
-                    Button(action: {showingBikeScreen.toggle()}) {
+                    NavigationLink(destination: BikesDetailView(bike: bike)){
                         HomePageStyledBikeCardView(bike: bike)
-                    }
-                    .sheet(isPresented: $showingBikeScreen) {
-                        BikesDetailView(bike: bike)
                     }
                 }
                 .padding(.top, 5)

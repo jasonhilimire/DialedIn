@@ -43,7 +43,7 @@ struct BikesDetailView: View {
                 }) {
                     CircularButtonView(symbolImage: $symbolImage)
                 }
-            }
+            } //: END HSTACK
             .padding(8)
             .customTextShadow()
             VStack {
@@ -80,7 +80,6 @@ struct BikesDetailView: View {
             EditBikeDetailView(bike: fetchBike(for: bike.wrappedBikeName))
                 .environment(\.managedObjectContext, self.moc)
             }))
-    
     }
 }
 
