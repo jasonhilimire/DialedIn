@@ -36,7 +36,7 @@ struct AddServiceView: View {
 	
 	var body: some View {
 		NavigationView {
-			VStack {
+			VStack { //remove create bike view
 				if bikes.count == 0 {
 					CreateBikeView()
 				} else {
@@ -46,7 +46,7 @@ struct AddServiceView: View {
 								Text("\(bikes[bikeNameIndex].name!)")
 									.fontWeight(.thin)
 							} else if isFromBikeCard  == true {
-								Text("\(boolModel.bikeName)")
+                                Text("\(bike.wrappedBikeName)")
 									.fontWeight(.semibold)
 							} else {
 								BikePickerView(bikeNameIndex: $bikeNameIndex)
@@ -103,29 +103,25 @@ struct AddServiceView: View {
 		.animation(.spring())
 	}
 
-	
 	//MARK:- Functions
 	func setup(isFromBikeCard: Bool) {
-		let bikeName = isFromBikeCard ? boolModel.bikeName : bikes[bikeNameIndex].name ?? "Unknown"
+        let bikeName = isFromBikeCard ? bike.wrappedBikeName : bikes[bikeNameIndex].name ?? "Unknown"
 			bikeVM.getBike(for: bikeName)
 			frontService.bikeName = bikeName
 			rearService.bikeName = bikeName
 			rearSetupVM.getRearSetup(bikeName: bikeName)
 	}
 	
-	
 	func addService() {
 		if isFromBikeCard == true {
-			bikeVM.bikeName = boolModel.bikeName
+            bikeVM.bikeName = bike.wrappedBikeName
 		}
 		if frontService.frontServicedIndex != 0 {
 			frontService.addFrontService(bikeName: bikeVM.bikeName ?? "" )
 		}
-		
 		if rearService.rearServicedIndex != 0 {
 			rearService.addRearService(bikeName: bikeVM.bikeName ?? "" )
 		}
-
 	}
 	
 }

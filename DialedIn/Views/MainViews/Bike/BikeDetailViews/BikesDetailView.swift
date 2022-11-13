@@ -29,17 +29,9 @@ struct BikesDetailView: View {
                 }) {
                     CircularButtonView(symbolImage: $wrenchImage)
                 }
-                
                 Spacer()
-                Text(bike.name ?? "")
-                    .fontWeight(.bold)
-                    .customTextShadow()
-                    .foregroundColor(Color.gray)
-                Spacer()
-                
                 Button(action: {
                     isShowingEdit.toggle()
-                    
                 }) {
                     CircularButtonView(symbolImage: $symbolImage)
                 }
@@ -71,13 +63,14 @@ struct BikesDetailView: View {
             FilteredBikeNotesView(filter: self.bike.name ?? "")
                 .padding(.horizontal)
         }//: END VSTACK
+        .navigationBarTitle(Text(bike.name ?? "Unknown Note"), displayMode: .inline)
         .background(EmptyView().sheet(isPresented: $isShowingService) {
-            AddServiceView(isFromBikeCard: $isFromBikeCard, bike: fetchBike(for: bike.wrappedBikeName))
+            AddServiceView(isFromBikeCard: $isFromBikeCard, bike: bike)
                 .environment(\.managedObjectContext, self.moc)
         }
         
         .background(EmptyView().sheet(isPresented: $isShowingEdit) {
-            EditBikeDetailView(bike: fetchBike(for: bike.wrappedBikeName))
+            EditBikeDetailView(bike: bike)
                 .environment(\.managedObjectContext, self.moc)
             }))
     }
