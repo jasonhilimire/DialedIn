@@ -28,6 +28,7 @@ struct BikesDetailView: View {
     """
     
     var body: some View {
+//        Form {
         VStack{
             HStack {
                 Button(action: {
@@ -43,8 +44,8 @@ struct BikesDetailView: View {
                 }) {
                     CircularButtonView(symbolImage: $deleteImage)
                 }
-            .padding(8)
-            .customTextShadow()
+                .padding(8)
+                .customTextShadow()
                 
                 Spacer()
                 Button(action: {
@@ -66,7 +67,7 @@ struct BikesDetailView: View {
                         ForkLastServicedView(bike: self.bike)
                     }
                     Divider()
-                    Section{
+                    Section {
                         if self.bike.hasRearShock == false {
                             Text("HardTail")
                         } else {
@@ -76,6 +77,7 @@ struct BikesDetailView: View {
                     Divider()
                 } //: END VSTACK
             }//: END VSTACK
+//        }
             Spacer(minLength:5)
             FilteredBikeNotesView(filter: self.bike.name ?? "")
                 .padding(.horizontal)

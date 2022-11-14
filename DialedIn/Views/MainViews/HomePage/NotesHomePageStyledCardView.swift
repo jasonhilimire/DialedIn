@@ -39,7 +39,9 @@ struct NotesHomePageStyledCardView: View {
                 Spacer()
                 Text(note.bike?.name ?? "No Bike")
                     .bold()
+                Spacer()
                 Text(note.date != nil ? "\(note.date!, formatter: dateFormatter)" : "")
+                    .italic()
 				Spacer()
 				VStack(alignment: .leading) {
 					HStack {

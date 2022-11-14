@@ -362,11 +362,11 @@
 		A393F9BB252ACAA800F39E04 /* HomePage */ = {
 			isa = PBXGroup;
 			children = (
-				A393F9C4252ACB1B00F39E04 /* HomePageBikeCardListView.swift */,
-				A393F9CD252ACBC800F39E04 /* HomePageLastNoteView.swift */,
 				A393F9BC252ACAB700F39E04 /* HomePageMainView.swift */,
 				A30D9667253549840094CE90 /* NotesHomePageStyledCardView.swift */,
+				A393F9CD252ACBC800F39E04 /* HomePageLastNoteView.swift */,
 				A3C5F1F22916FC8A00436AF9 /* HomePageNotesInfoView.swift */,
+				A393F9C4252ACB1B00F39E04 /* HomePageBikeCardListView.swift */,
 				A343916429186A8A00A6186C /* Bikes */,
 			);
 			path = HomePage;
@@ -989,13 +989,14 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = "DialedIn/Dialed In.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 83;
+				CURRENT_PROJECT_VERSION = 104;
 				DEVELOPMENT_ASSET_PATHS = "\"DialedIn/Preview Content\"";
 				DEVELOPMENT_TEAM = 55QD8ZCA9C;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = DialedIn/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Dialed In-Mtb";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.sports";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1017,13 +1018,14 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = "DialedIn/Dialed In.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 83;
+				CURRENT_PROJECT_VERSION = 104;
 				DEVELOPMENT_ASSET_PATHS = "\"DialedIn/Preview Content\"";
 				DEVELOPMENT_TEAM = 55QD8ZCA9C;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = DialedIn/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Dialed In-Mtb";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.sports";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

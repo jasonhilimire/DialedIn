@@ -26,26 +26,27 @@ struct ContentView: View {
 	@Environment(\.managedObjectContext) var moc
 	
 	var body: some View {
-		TabView {
-			HomePageMainView()
-				.tabItem {
-					Image(systemName: "house")
-					Text("Home")
-				}
-			
-			NotesListView()
-				.tabItem {
-					Image(systemName: "note.text")
-					Text("Notes")
-				}
-			
-			BikesView()
-				.tabItem {
-					Image(systemName: "bicycle")
-					Text("Bikes")
-				}
-		}
-		.animation(.default)
+        HomePageMainView()
+//		TabView {
+//			HomePageMainView()
+//				.tabItem {
+//					Image(systemName: "house")
+//					Text("Home")
+//				}
+//
+//			NotesListView()
+//				.tabItem {
+//					Image(systemName: "note.text")
+//					Text("Notes")
+//				}
+//
+//			BikesView()
+//				.tabItem {
+//					Image(systemName: "bicycle")
+//					Text("Bikes")
+//				}
+//		}
+//		.animation(.default)
 		.accentColor(Color("TextColor"))
 		
 		// shows the OnBoarding View

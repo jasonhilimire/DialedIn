@@ -47,7 +47,7 @@ struct HomePageBikeCardListView: View {
 
 
 
-// MARK: - HomeStyledCardView -
+// MARK: - HomeStyledBikeCardView -
 struct HomePageStyledBikeCardView: View {
 	@Environment(\.managedObjectContext) var moc
 	@Environment(\.presentationMode) var presentationMode

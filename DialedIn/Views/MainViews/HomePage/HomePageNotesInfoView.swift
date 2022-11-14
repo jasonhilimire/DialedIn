@@ -34,7 +34,29 @@ struct HomePageNotesInfoView: View {
                     }
                 }
             }
-            .foregroundColor(Color("TextColor"))
+                .foregroundColor(Color("TextColor"))
+//            Spacer()
+//            HStack {
+//                Text("2")
+//                    .font(.largeTitle)
+//                    .bold()
+//                Text("Bikes")
+//                    .fontWeight(.thin)
+//            }
+//                .foregroundColor(Color("TextColor"))
+//            Spacer()
+//            HStack {
+//                Text("1")
+//                    .font(.largeTitle)
+//                    .bold()
+//                VStack {
+//                    Text("Service")
+//                        .fontWeight(.thin)
+//                    Text("Overdue")
+//                        .fontWeight(.thin)
+//                }
+//            }
+//                .foregroundColor(.red)
             Spacer()
             NavigationLink("See All Notes") {
                 NotesListView()
