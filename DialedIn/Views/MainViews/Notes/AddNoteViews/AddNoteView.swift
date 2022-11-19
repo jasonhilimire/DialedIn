@@ -24,7 +24,6 @@ struct AddNoteView: View {
 	@ObservedObject var rearVM = RearShockViewModel()
 	@ObservedObject var noteVM = NoteViewModel()
 	
-
     @State private var createdInitialBike = false
     @State private var bikeNameIndex = 0
     @State var bikeName = ""
@@ -32,8 +31,6 @@ struct AddNoteView: View {
 	@State private var saveText = "Save"
     @State private var notePickerIndex = 0
     var notePickerText = ["RIDE DETAILS", "FRONT", "REAR"]
-    @State private var selectedPickerText = "RIDE DETAILS"
-
     
     var body: some View {
         NavigationView {

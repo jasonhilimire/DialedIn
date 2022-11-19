@@ -22,7 +22,7 @@ struct BikesDetailView: View {
     @State var isShowingEdit = false
     @State var deleteImage = "trash"
     @State var showingDeleteAlert = false
-     var deleteText = """
+    var deleteText = """
     Are you sure?
     - this will delete all related notes -
     """
