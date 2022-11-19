@@ -50,8 +50,9 @@ struct HomePageMainView: View {
                             HomePageNotesInfoView()
                         }//: END HSTACK
                         HStack{
-                            Button(action: { activeSheet = .addNote}) {
-                                Label("Add New Note", systemImage: "note.text.badge.plus").scaleEffect(1.5)
+                            
+                            Button(action: {activeSheet = .addBike }) {
+                                Label("Add New Bike", systemImage: "bicycle").scaleEffect(1.5)
                             }
                             .buttonStyle(Nav_Button())
                             
@@ -64,11 +65,10 @@ struct HomePageMainView: View {
                             
                             Spacer()
                             
-                            Button(action: {activeSheet = .addBike }) {
-                                Label("Add New Bike", systemImage: "bicycle").scaleEffect(1.5)
+                            Button(action: { activeSheet = .addNote}) {
+                                Label("Add New Note", systemImage: "note.text.badge.plus").scaleEffect(1.5)
                             }
                             .buttonStyle(Nav_Button())
-                            
                         }//: END HSTACK
                     }//: END VSTACK
                     .padding(.horizontal, 10)
