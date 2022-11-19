@@ -57,23 +57,23 @@ struct AddNoteView: View {
                                 Text("Select a date:")
                                 .fontWeight(.thin)
                             }
-                            Toggle(isOn: $toggleNoteDetail.animation(), label: {Text("Add Note Details").fontWeight(.thin)})
-                            if toggleNoteDetail == true {
-                                HStack {
-                                    Text("Note:").fontWeight(.thin)
-                                    TextEditor(text: self.$noteVM.noteText)
-                                        .foregroundColor(.gray)
-                                        .background(Color("TextEditBackgroundColor"))
-                                        .cornerRadius(8)
-                                }
-                                HStack {
-                                    RatingView(rating: $noteVM.noteRating)
-                                    Spacer()
-                                    Text("Favorite:").fontWeight(.thin)
-                                    FavoritesView(favorite: self.$noteVM.noteFavorite)
+                            HStack {
+                                RatingView(rating: $noteVM.noteRating)
+                                Spacer()
+                                Text("Favorite:").fontWeight(.thin)
+                                FavoritesView(favorite: self.$noteVM.noteFavorite)
+                            }
+                            HStack(alignment: .top) {
+                                Text("Note:").fontWeight(.thin)
+                                TextEditor(text: self.$noteVM.noteText)
+                                    .foregroundColor(.gray)
+                                    .background(Color("TextEditBackgroundColor"))
+                                    .frame(height: 300)
+                                    .textFieldStyle(PlainTextFieldStyle())
+                                    .cornerRadius(8)
+                                    .multilineTextAlignment(.leading)
                                 }
                             }
-                        }
                     } else if notePickerIndex == 1 { //: SHOW FRONT VIEW
                         // MARK: - FRONT SETUP -
                         NoteFrontSetupView(front: frontSetup, noteVM: noteVM, forkVM: forkVM, note: nil)
@@ -114,7 +114,6 @@ struct AddNoteView: View {
 			// Dismisses the keyboard
 //		.gesture(tap, including: keyboard.keyBoardShown ? .all : .none)
     }
-    
     // MARK: - FUNCTIONS -
 	
     func setup() {
@@ -128,9 +127,7 @@ struct AddNoteView: View {
         rearSetup.getLastRearSettings()
 		noteVM.getLastRearNote(front: rearSetup)
 		rearVM.getRearSetup(bikeName: bikeName)
-
     }
-    
 }
 
 
