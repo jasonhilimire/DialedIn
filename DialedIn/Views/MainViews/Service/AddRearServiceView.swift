@@ -29,7 +29,7 @@ struct AddRearServiceView: View {
 				Text("Hardtail").fontWeight(.thin)
 			} else if bike.rearSetup?.isCoil == true { //: COIL
 				Picker("Service Type", selection: $rearService.rearServicedIndex) {
-					ForEach(0..<(rearService.rearServiced.count - 1) ) { index in
+                    ForEach(0..<(rearService.rearServiced.count - 1), id: \.self ) { index in
 						Text(self.rearService.rearServiced[index]).tag(index)
 					}
 				}.pickerStyle(SegmentedPickerStyle())
@@ -49,7 +49,7 @@ struct AddRearServiceView: View {
 				}
 			} else { //: AIR
 				Picker("Service Type", selection: $rearService.rearServicedIndex) {
-					ForEach(0..<rearService.rearServiced.count) { index in
+                    ForEach(0..<rearService.rearServiced.count, id: \.self) { index in
 						Text(self.rearService.rearServiced[index]).tag(index)
 					}
 				}.pickerStyle(SegmentedPickerStyle())

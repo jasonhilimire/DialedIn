@@ -30,46 +30,58 @@ struct AddNoteView: View {
     @State var bikeName = ""
 	@State private var toggleNoteDetail = false
 	@State private var saveText = "Save"
+    @State private var notePickerIndex = 0
+    var notePickerText = ["RIDE DETAILS", "FRONT", "REAR"]
+    @State private var selectedPickerText = "RIDE DETAILS"
 
     
     var body: some View {
         NavigationView {
 			VStack {
-				Form{
-					Section(header: Text("Ride Details")){
-						if bikes.count == 1 {
-							Text("\(self.bikes[bikeNameIndex].name!)")
-							.fontWeight(.thin)
-						} else {
-							BikePickerView(bikeNameIndex: $bikeNameIndex)
-						}
-						DatePicker(selection: $noteVM.noteDate, in: ...Date(), displayedComponents: .date) {
-							Text("Select a date:")
-							.fontWeight(.thin)
-						}
-						Toggle(isOn: $toggleNoteDetail.animation(), label: {Text("Add Note Details").fontWeight(.thin)})
-						if toggleNoteDetail == true {
-							HStack {
-								Text("Note:").fontWeight(.thin)
-								TextEditor(text: self.$noteVM.noteText)
-									.foregroundColor(.gray)
-									.background(Color("TextEditBackgroundColor"))
-									.cornerRadius(8)
-							}
-							HStack {
-								RatingView(rating: $noteVM.noteRating)
-								Spacer()
-								Text("Favorite:").fontWeight(.thin)
-								FavoritesView(favorite: self.$noteVM.noteFavorite)
-							}
-						}
-					}
-					
-			// MARK: - FRONT SETUP -
-					NoteFrontSetupView(front: frontSetup, noteVM: noteVM, forkVM: forkVM, note: nil)
-					
-			// MARK: - Rear Setup -
-					NoteRearSetupView(rear: rearSetup, rearVM: rearVM, noteVM: noteVM, note: nil)
+                    Picker("NOTE DETAILS", selection: $notePickerIndex){
+                        ForEach(0..<notePickerText.count, id: \.self) { index in
+                            Text(self.notePickerText[index]).tag(index)
+                        }
+                    }.pickerStyle(.segmented)
+                    .padding()
+                Form{
+                    if notePickerIndex == 0 { //: SHOW DETAILS VIEW
+                        Section(header: Text("Ride Details")){
+                            if bikes.count == 1 {
+                                Text("\(self.bikes[bikeNameIndex].name!)")
+                                .fontWeight(.thin)
+                            } else {
+                                BikePickerView(bikeNameIndex: $bikeNameIndex)
+                            }
+                            DatePicker(selection: $noteVM.noteDate, in: ...Date(), displayedComponents: .date) {
+                                Text("Select a date:")
+                                .fontWeight(.thin)
+                            }
+                            Toggle(isOn: $toggleNoteDetail.animation(), label: {Text("Add Note Details").fontWeight(.thin)})
+                            if toggleNoteDetail == true {
+                                HStack {
+                                    Text("Note:").fontWeight(.thin)
+                                    TextEditor(text: self.$noteVM.noteText)
+                                        .foregroundColor(.gray)
+                                        .background(Color("TextEditBackgroundColor"))
+                                        .cornerRadius(8)
+                                }
+                                HStack {
+                                    RatingView(rating: $noteVM.noteRating)
+                                    Spacer()
+                                    Text("Favorite:").fontWeight(.thin)
+                                    FavoritesView(favorite: self.$noteVM.noteFavorite)
+                                }
+                            }
+                        }
+                    } else if notePickerIndex == 1 { //: SHOW FRONT VIEW
+                        // MARK: - FRONT SETUP -
+                        NoteFrontSetupView(front: frontSetup, noteVM: noteVM, forkVM: forkVM, note: nil)
+                        
+                    } else if notePickerIndex == 2 { //: SHOW REAR VIEW
+                        // MARK: - Rear Setup -
+                            NoteRearSetupView(rear: rearSetup, rearVM: rearVM, noteVM: noteVM, note: nil)
+                    }
 				} //: FORM
 					.onAppear(perform: {self.setup()}) // change to onReceive??
 					.navigationBarTitle("Dialed In- New Note", displayMode: .inline)
