@@ -77,7 +77,7 @@ struct AddNoteView: View {
                         // MARK: - FRONT SETUP -
                         NoteFrontSetupView(front: frontSetup, noteVM: noteVM, forkVM: forkVM, note: nil)
                             .padding()
-                        
+                            
                     } else if notePickerIndex == 2 { //: SHOW REAR VIEW
                         // MARK: - Rear Setup -
                         NoteRearSetupView(rear: rearSetup, rearVM: rearVM, noteVM: noteVM, note: nil)

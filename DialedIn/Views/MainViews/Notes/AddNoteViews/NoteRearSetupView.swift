@@ -95,6 +95,7 @@ struct NoteRearSetupView: View {
 				}
 			}
 		}
+
     }
 	
 }
