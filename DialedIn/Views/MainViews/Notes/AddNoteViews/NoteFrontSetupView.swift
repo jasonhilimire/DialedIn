@@ -17,6 +17,8 @@ struct NoteFrontSetupView: View {
 	var isDetailEdit: Binding<Bool>?
 	
 	let note : Notes?
+    @State var maxSliderValue = 200.0
+    @State var circleText = " PSI"
 	
 // MARK: - BODY -
     var body: some View {
@@ -47,10 +49,17 @@ struct NoteFrontSetupView: View {
 		) {
 			VStack{
 					  // AirPressure
-				HStack{
-					Text("PSI: \(noteVM.fAirVolume, specifier: "%.1f")").fontWeight(.thin)
-					Slider(value: $noteVM.fAirVolume, in: 45...120, step: 1.0).accentColor(.orange)
-					Stepper(value: $noteVM.fAirVolume, in: 45...120, step: 0.5, onEditingChanged: {_ in DispatchQueue.main.async {self.haptic.impactOccurred()}}, label: {Text("PSI: \(self.noteVM.fAirVolume)").fontWeight(.thin)}).labelsHidden()
+                HStack{
+                    Text("AIR").fontWeight(.thin)
+                    Spacer()
+                }
+                HStack(alignment: .top){
+                    
+                    CircularSliderView(sliderVal: $noteVM.fAirVolume, maxSliderValue: $maxSliderValue,circleText: $circleText)
+                    
+//					Text("PSI: \(noteVM.fAirVolume, specifier: "%.1f")").fontWeight(.thin)
+//					Slider(value: $noteVM.fAirVolume, in: 45...120, step: 1.0).accentColor(.orange)
+//					Stepper(value: $noteVM.fAirVolume, in: 45...120, step: 0.5, onEditingChanged: {_ in DispatchQueue.main.async {self.haptic.impactOccurred()}}, label: {Text("PSI: \(self.noteVM.fAirVolume)").fontWeight(.thin)}).labelsHidden()
 
 					}
 					

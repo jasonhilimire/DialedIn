@@ -32,7 +32,7 @@ struct FrontNoteDetailsView: View {
 		
 				VStack {
 					HStack {
-						Text("Fork PSI: \(noteVM.fAirVolume, specifier: "%.1f")").customNotesText()
+						Text("Fork PSI: \(noteVM.fAirVolume, specifier: "%.0f")").customNotesText()
 						Text("Tokens: \(self.note.fTokens)").customNotesText()
 						}
 					}
