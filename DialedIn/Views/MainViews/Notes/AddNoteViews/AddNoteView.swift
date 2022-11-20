@@ -41,47 +41,53 @@ struct AddNoteView: View {
                         }
                     }.pickerStyle(.segmented)
                     .padding()
-                Form{
+                VStack{
                     if notePickerIndex == 0 { //: SHOW DETAILS VIEW
-                        Section(header: Text("Ride Details")){
-                            if bikes.count == 1 {
-                                Text("\(self.bikes[bikeNameIndex].name!)")
-                                .fontWeight(.thin)
-                            } else {
-                                BikePickerView(bikeNameIndex: $bikeNameIndex)
-                            }
-                            DatePicker(selection: $noteVM.noteDate, in: ...Date(), displayedComponents: .date) {
-                                Text("Select a date:")
-                                .fontWeight(.thin)
-                            }
-                            HStack {
-                                RatingView(rating: $noteVM.noteRating)
-                                Spacer()
-                                Text("Favorite:").fontWeight(.thin)
-                                FavoritesView(favorite: self.$noteVM.noteFavorite)
-                            }
-                            HStack(alignment: .top) {
-                                Text("Note:").fontWeight(.thin)
-                                TextEditor(text: self.$noteVM.noteText)
-                                    .foregroundColor(.gray)
-                                    .background(Color("TextEditBackgroundColor"))
-                                    .frame(height: 300)
-                                    .textFieldStyle(PlainTextFieldStyle())
-                                    .cornerRadius(8)
-                                    .multilineTextAlignment(.leading)
+                        Form{
+                            Section(header: Text("Ride Details")){
+                                if bikes.count == 1 {
+                                    Text("\(self.bikes[bikeNameIndex].name!)")
+                                        .fontWeight(.thin)
+                                } else {
+                                    BikePickerView(bikeNameIndex: $bikeNameIndex)
+                                }
+                                DatePicker(selection: $noteVM.noteDate, in: ...Date(), displayedComponents: .date) {
+                                    Text("Select a date:")
+                                        .fontWeight(.thin)
+                                }
+                                HStack {
+                                    RatingView(rating: $noteVM.noteRating)
+                                    Spacer()
+                                    Text("Favorite:").fontWeight(.thin)
+                                    FavoritesView(favorite: self.$noteVM.noteFavorite)
+                                }
+                                HStack(alignment: .top) {
+                                    Text("Note:").fontWeight(.thin)
+                                    TextEditor(text: self.$noteVM.noteText)
+                                        .foregroundColor(.gray)
+                                        .background(Color("TextEditBackgroundColor"))
+                                        .frame(height: 300)
+                                        .textFieldStyle(PlainTextFieldStyle())
+                                        .cornerRadius(8)
+                                        .multilineTextAlignment(.leading)
                                 }
                             }
+                        }
                     } else if notePickerIndex == 1 { //: SHOW FRONT VIEW
                         // MARK: - FRONT SETUP -
                         NoteFrontSetupView(front: frontSetup, noteVM: noteVM, forkVM: forkVM, note: nil)
+                            .padding()
                         
                     } else if notePickerIndex == 2 { //: SHOW REAR VIEW
                         // MARK: - Rear Setup -
-                            NoteRearSetupView(rear: rearSetup, rearVM: rearVM, noteVM: noteVM, note: nil)
+                        NoteRearSetupView(rear: rearSetup, rearVM: rearVM, noteVM: noteVM, note: nil)
+                            .padding()
                     }
+                    Spacer()
 				} //: FORM
 					.onAppear(perform: {self.setup()}) // change to onReceive??
 					.navigationBarTitle("Dialed In- New Note", displayMode: .inline)
+                    
 				
 				// Adds a Toolbar Cancel button in the red color that will dismisses the modal
 					.toolbar{

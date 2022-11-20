@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import TextFieldStepper
 
 struct NoteFrontSetupView: View {
     @ObservedObject var front = NoteFrontSetupViewModel()
@@ -20,6 +21,7 @@ struct NoteFrontSetupView: View {
 	
 // MARK: - BODY -
     var body: some View {
+        
 		Section(header:
 					HStack {
 						if (isDetailEdit != nil) {
@@ -47,12 +49,21 @@ struct NoteFrontSetupView: View {
 		) {
 			VStack{
 					  // AirPressure
-				HStack{
-					Text("PSI: \(noteVM.fAirVolume, specifier: "%.1f")").fontWeight(.thin)
-					Slider(value: $noteVM.fAirVolume, in: 45...120, step: 1.0).accentColor(.orange)
-					Stepper(value: $noteVM.fAirVolume, in: 45...120, step: 0.5, onEditingChanged: {_ in DispatchQueue.main.async {self.haptic.impactOccurred()}}, label: {Text("PSI: \(self.noteVM.fAirVolume)").fontWeight(.thin)}).labelsHidden()
+                
+                TextFieldStepper(
+                    doubleValue: $noteVM.fAirVolume,
+                    unit: " - PSI",
+                    label: "Air volume",
+//                    increment: 0.5,
+                    minimum: 1.0,
+                    maximum: 200.0
+//                    labelColor: Color("TextColor"),
+//                    valueColor: Color("TextColor")
+                )
+//					Text("PSI: \(noteVM.fAirVolume, specifier: "%.1f")").fontWeight(.thin)
+//					Slider(value: $noteVM.fAirVolume, in: 45...120, step: 1.0).accentColor(.orange)
+//					Stepper(value: $noteVM.fAirVolume, in: 45...120, step: 0.5, onEditingChanged: {_ in DispatchQueue.main.async {self.haptic.impactOccurred()}}, label: {Text("PSI: \(self.noteVM.fAirVolume)").fontWeight(.thin)}).labelsHidden()
 
-					}
 					
 					//Sag
 				Stepper(value: $noteVM.fSagSetting , in: 0...70, onEditingChanged: {_ in DispatchQueue.main.async {self.haptic.impactOccurred()}}, label: {Text("Sag (mm): \(self.noteVM.fSagSetting) -- Sag %: \(calcSag(sag: Double(self.noteVM.fSagSetting), travel: forkVM.travel), specifier: "%.1f")").fontWeight(.thin)})

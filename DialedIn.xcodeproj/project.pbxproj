@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -25,6 +25,7 @@
 		A32F65B6254F769B005827A7 /* NoBikes_BikeCardExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32F65B5254F769B005827A7 /* NoBikes_BikeCardExampleView.swift */; };
 		A32F65BB254F76C9005827A7 /* NoBikes_ServiceExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32F65BA254F76C9005827A7 /* NoBikes_ServiceExampleView.swift */; };
 		A32F65C0254F7A91005827A7 /* NoBikes_FlipExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32F65BF254F7A91005827A7 /* NoBikes_FlipExampleView.swift */; };
+		A334BA562929B7B9004546DB /* TextFieldStepper in Frameworks */ = {isa = PBXBuildFile; productRef = A334BA552929B7B9004546DB /* TextFieldStepper */; };
 		A33A854F25E4AEF500CD0059 /* AddFrontServiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33A854E25E4AEF500CD0059 /* AddFrontServiceView.swift */; };
 		A33A855725E4AFD800CD0059 /* AddRearServiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33A855625E4AFD800CD0059 /* AddRearServiceView.swift */; };
 		A33C7F86254DF741002E6F47 /* BikeCardFlipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33C7F85254DF741002E6F47 /* BikeCardFlipView.swift */; };
@@ -225,6 +226,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A334BA562929B7B9004546DB /* TextFieldStepper in Frameworks */,
 				A38D56B225609ACF00E83041 /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -600,6 +602,9 @@
 			dependencies = (
 			);
 			name = DialedIn;
+			packageProductDependencies = (
+				A334BA552929B7B9004546DB /* TextFieldStepper */,
+			);
 			productName = DialedIn;
 			productReference = A3C16E6423DE9EC4005BFA14 /* Dialed In.app */;
 			productType = "com.apple.product-type.application";
@@ -672,6 +677,9 @@
 				Base,
 			);
 			mainGroup = A3C16E5B23DE9EC4005BFA14;
+			packageReferences = (
+				A334BA542929B7B9004546DB /* XCRemoteSwiftPackageReference "TextFieldStepper" */,
+			);
 			productRefGroup = A3C16E6523DE9EC4005BFA14 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -989,7 +997,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = "DialedIn/Dialed In.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 132;
+				CURRENT_PROJECT_VERSION = 160;
 				DEVELOPMENT_ASSET_PATHS = "\"DialedIn/Preview Content\"";
 				DEVELOPMENT_TEAM = 55QD8ZCA9C;
 				ENABLE_PREVIEWS = YES;
@@ -1018,7 +1026,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = "DialedIn/Dialed In.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 132;
+				CURRENT_PROJECT_VERSION = 160;
 				DEVELOPMENT_ASSET_PATHS = "\"DialedIn/Preview Content\"";
 				DEVELOPMENT_TEAM = 55QD8ZCA9C;
 				ENABLE_PREVIEWS = YES;
@@ -1164,6 +1172,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		A334BA542929B7B9004546DB /* XCRemoteSwiftPackageReference "TextFieldStepper" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/joe-scotto/TextFieldStepper";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		A334BA552929B7B9004546DB /* TextFieldStepper */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A334BA542929B7B9004546DB /* XCRemoteSwiftPackageReference "TextFieldStepper" */;
+			productName = TextFieldStepper;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		A3C16E6B23DE9EC4005BFA14 /* DialedIn.xcdatamodeld */ = {
