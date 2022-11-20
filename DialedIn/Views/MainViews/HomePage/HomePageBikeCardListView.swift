@@ -62,9 +62,7 @@ struct HomePageStyledBikeCardView: View {
 	@State private var showEditBikeDetailView = false
 	
 	let bike: Bike
-    @State var frontTravel = 0.0
-    @State var rearTravel = 0.0
-    @State var strokeLength = 0.0
+
     @State var buttonText = ""
     
     init(bike: Bike){
@@ -86,7 +84,7 @@ struct HomePageStyledBikeCardView: View {
                 HStack{
                     Text("\(self.bike.frontSetup?.info ?? ""):")
                         .fontWeight(.thin)
-                    Text("\(frontTravel, specifier: "%.0f")mm")
+                    Text("\(self.bike.frontSetup?.travel ?? 0.0, specifier: "%.0f")mm")
                         .fontWeight(.thin)
                 }
                 
@@ -94,10 +92,10 @@ struct HomePageStyledBikeCardView: View {
                     HStack {
                         Text("\(self.bike.rearSetup?.info ?? ""):")
                             .fontWeight(.thin)
-                        Text("\(rearTravel, specifier: "%.2f")mm")
+                        Text("\(self.bike.rearSetup?.rearTravel ?? 0.00, specifier: "%.2f")mm")
                             .fontWeight(.thin)
                     }
-                    Text("Stroke Length: \(strokeLength, specifier: "%.2f")mm")
+                    Text("Stroke Length: \(self.bike.rearSetup?.strokeLength ?? 0.00, specifier: "%.2f")mm")
                         .fontWeight(.thin)
                 }
             }//:END VSTACK
