@@ -30,8 +30,12 @@ var dateFormatter: DateFormatter {
 
 func calcSag(sag: Double, travel: Double) -> Double {
 	let calculatedTravel = (sag / travel) * 100.0
-	
 	return calculatedTravel
+}
+
+func calcSagString(sag: Double, travel: Double) -> String {
+    let sag = calcSag(sag: sag, travel: travel)
+    return "Sag %: \(sag.rounded())"
 }
 
 // haptic vibration for Save button

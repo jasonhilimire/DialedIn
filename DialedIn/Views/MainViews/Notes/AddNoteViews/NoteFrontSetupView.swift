@@ -53,7 +53,7 @@ struct NoteFrontSetupView: View {
                 Divider()
 
 					//Sag
-                TextFieldStepper(doubleValue: $noteVM.fSagSetting.dbl, label: calcSagString(), config: sagConfig)
+                TextFieldStepper(doubleValue: $noteVM.fSagSetting.dbl, label: calcSagString(sag: Double(self.noteVM.fSagSetting), travel: forkVM.travel), config: sagConfig)
                 Divider()
 
 					// Tokens
@@ -73,7 +73,7 @@ struct NoteFrontSetupView: View {
 					// Rebound
 				if forkVM.dualRebound == true {
                     TextFieldStepper(doubleValue: $noteVM.fHSRSetting.dbl, unit: " - HSR", label: "High Speed Rebound", config: clickConfig2)
-                    TextFieldStepper(doubleValue: $noteVM.fLSRSetting.dbl, unit: " - LSR", label: "Low Soeed Rebound", config: clickConfig)
+                    TextFieldStepper(doubleValue: $noteVM.fLSRSetting.dbl, unit: " - LSR", label: "Low Speed Rebound", config: clickConfig)
                     Divider()
 					} else {
                         TextFieldStepper(doubleValue: $noteVM.fReboundSetting.dbl, label: "Rebound", config: clickConfig)
@@ -86,12 +86,6 @@ struct NoteFrontSetupView: View {
 		}
         .ignoresSafeArea(.keyboard)
 	}
-    
-    func calcSagString() -> String{
-        let sag = calcSag(sag: Double(self.noteVM.fSagSetting), travel: forkVM.travel)
-        return "Sag %: \(sag.rounded())"
-        
-    }
 }
 
 
