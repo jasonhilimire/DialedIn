@@ -38,16 +38,14 @@ struct NoteFrontSetupView: View {
 									.foregroundColor(.gray)
 							}
 						}
-						
 						Spacer()
 						Image("bicycle-fork")
 							.resizable()
-							.frame(width: 50, height: 50)
+							.frame(width: 45, height: 45)
 							.scaledToFit()
-						Text("Front Suspension Details")
+                        Text("Front Suspension Details").font(.title2)
 						Spacer()
 					} //: HSTACK
-				
 		) {
 			VStack {
 					  // AirPressure
@@ -59,30 +57,28 @@ struct NoteFrontSetupView: View {
                 Divider()
 
 					// Tokens
-                TextFieldStepper(doubleValue: $noteVM.fTokenSetting.dbl, config: tokenConfig)
+                TextFieldStepper(doubleValue: $noteVM.fTokenSetting.dbl, label: "Tokens", config: clickConfig)
                 Divider()
-                
+            
 					//Compression
 				if forkVM.dualCompression == true {
-                    TextFieldStepper(doubleValue: $noteVM.fHSCSetting.dbl, config: hscConfig)
-                    TextFieldStepper(doubleValue: $noteVM.fLSCSetting.dbl, config: lscConfig)
+                    TextFieldStepper(doubleValue: $noteVM.fHSCSetting.dbl, unit: " - HSC", label: "High Speed Compression", config: clickConfig2)
+                    TextFieldStepper(doubleValue: $noteVM.fLSCSetting.dbl, unit: " - LSC", label: "Low Speed Compression", config: clickConfig)
                     Divider()
 					} else {
-                        TextFieldStepper(doubleValue: $noteVM.fCompSetting.dbl, config: compressionConfig)
+                        TextFieldStepper(doubleValue: $noteVM.fCompSetting.dbl, label: "Compression", config: clickConfig)
                         Divider()
 					}
 
 					// Rebound
 				if forkVM.dualRebound == true {
-                    TextFieldStepper(doubleValue: $noteVM.fHSRSetting.dbl, config: hsrConfig)
-                    TextFieldStepper(doubleValue: $noteVM.fLSRSetting.dbl, config: lsrConfig)
+                    TextFieldStepper(doubleValue: $noteVM.fHSRSetting.dbl, unit: " - HSR", label: "High Speed Rebound", config: clickConfig2)
+                    TextFieldStepper(doubleValue: $noteVM.fLSRSetting.dbl, unit: " - LSR", label: "Low Soeed Rebound", config: clickConfig)
                     Divider()
 					} else {
-                        TextFieldStepper(doubleValue: $noteVM.fReboundSetting.dbl, config: reboundConfig)
+                        TextFieldStepper(doubleValue: $noteVM.fReboundSetting.dbl, label: "Rebound", config: clickConfig)
                         Divider()
-
 					}
-
 					// Tire Pressure
                 TextFieldStepper(doubleValue: $noteVM.fTirePressure, config: tireConfig)
                 Divider()

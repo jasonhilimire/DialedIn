@@ -65,20 +65,9 @@ var sagConfig = TextFieldStepperConfig(
     minimumDecimalPlaces: 0,
     maximumDecimalPlaces: 0)
 
-var tokenConfig = TextFieldStepperConfig(
+var clickConfig = TextFieldStepperConfig(
     unit: "",
-    label: "TOKENS",
-    increment: 1.0,
-    minimum: 0.0,
-    maximum: 10.0,
-    decrementImage: decImage,
-    incrementImage: incImage,
-    minimumDecimalPlaces: 0,
-    maximumDecimalPlaces: 0)
-
-var compressionConfig = TextFieldStepperConfig(
-    unit: "",
-    label: "COMPRESSION",
+    label: "CLICKS",
     increment: 1.0,
     minimum: 0.0,
     maximum: 25.0,
@@ -87,58 +76,14 @@ var compressionConfig = TextFieldStepperConfig(
     minimumDecimalPlaces: 0,
     maximumDecimalPlaces: 0)
 
-var hscConfig = TextFieldStepperConfig(
-    unit: " - HSC",
-    label: "High Speed Compression",
+var clickConfig2 = TextFieldStepperConfig(
+    unit: "",
+    label: "CLICKS",
     increment: 1.0,
     minimum: 0.0,
     maximum: 25.0,
     decrementImage: decImageFill,
     incrementImage: incImageFill,
-    minimumDecimalPlaces: 0,
-    maximumDecimalPlaces: 0)
-
-var lscConfig = TextFieldStepperConfig(
-    unit: " - LSC",
-    label: "Low Speed Compression",
-    increment: 1.0,
-    minimum: 0.0,
-    maximum: 25.0,
-    decrementImage: decImage,
-    incrementImage: incImage,
-    minimumDecimalPlaces: 0,
-    maximumDecimalPlaces: 0)
-
-var reboundConfig = TextFieldStepperConfig(
-    unit: "",
-    label: "REBOUND",
-    increment: 1.0,
-    minimum: 0.0,
-    maximum: 25.0,
-    decrementImage: decImage,
-    incrementImage: incImage,
-    minimumDecimalPlaces: 0,
-    maximumDecimalPlaces: 0)
-
-var hsrConfig = TextFieldStepperConfig(
-    unit: " - HSR",
-    label: "High Speed Rebound",
-    increment: 1.0,
-    minimum: 0.0,
-    maximum: 25.0,
-    decrementImage: decImageFill,
-    incrementImage: incImageFill,
-    minimumDecimalPlaces: 0,
-    maximumDecimalPlaces: 0)
-
-var lsrConfig = TextFieldStepperConfig(
-    unit: " - LSR",
-    label: "Low Speed Rebound",
-    increment: 1.0,
-    minimum: 0.0,
-    maximum: 25.0,
-    decrementImage: decImage,
-    incrementImage: incImage,
     minimumDecimalPlaces: 0,
     maximumDecimalPlaces: 0)
 
