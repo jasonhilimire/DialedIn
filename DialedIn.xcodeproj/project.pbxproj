@@ -46,6 +46,7 @@
 		A393F9C8252ACB1B00F39E04 /* HomeBikeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A393F9C5252ACB1B00F39E04 /* HomeBikeView.swift */; };
 		A393F9C9252ACB1B00F39E04 /* HomeNoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A393F9C6252ACB1B00F39E04 /* HomeNoteView.swift */; };
 		A393F9CE252ACBC800F39E04 /* HomePageLastNoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A393F9CD252ACBC800F39E04 /* HomePageLastNoteView.swift */; };
+		A3942D23292C5BB700C154F1 /* TextStepperConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3942D22292C5BB700C154F1 /* TextStepperConfig.swift */; };
 		A39E45F5252436AC004142CE /* CircularButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A39E45F4252436AC004142CE /* CircularButtonView.swift */; };
 		A3A1297023FB9AC50014EC8A /* NoteRearSetupModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3A1296F23FB9AC50014EC8A /* NoteRearSetupModel.swift */; };
 		A3A157A125D391C000A6B6A4 /* ForkViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3A157A025D391C000A6B6A4 /* ForkViewModel.swift */; };
@@ -159,6 +160,7 @@
 		A393F9C5252ACB1B00F39E04 /* HomeBikeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeBikeView.swift; sourceTree = "<group>"; };
 		A393F9C6252ACB1B00F39E04 /* HomeNoteView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeNoteView.swift; sourceTree = "<group>"; };
 		A393F9CD252ACBC800F39E04 /* HomePageLastNoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageLastNoteView.swift; sourceTree = "<group>"; };
+		A3942D22292C5BB700C154F1 /* TextStepperConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextStepperConfig.swift; sourceTree = "<group>"; };
 		A39E45F4252436AC004142CE /* CircularButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularButtonView.swift; sourceTree = "<group>"; };
 		A3A1296F23FB9AC50014EC8A /* NoteRearSetupModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteRearSetupModel.swift; sourceTree = "<group>"; };
 		A3A157A025D391C000A6B6A4 /* ForkViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForkViewModel.swift; sourceTree = "<group>"; };
@@ -435,6 +437,7 @@
 				A3C16EAC23DEA461005BFA14 /* ViewModels */,
 				A3C16EAB23DEA454005BFA14 /* Views */,
 				A3C16E7223DE9EC5005BFA14 /* Preview Content */,
+				A3942D22292C5BB700C154F1 /* TextStepperConfig.swift */,
 			);
 			path = DialedIn;
 			sourceTree = "<group>";
@@ -789,6 +792,7 @@
 				A393F9C9252ACB1B00F39E04 /* HomeNoteView.swift in Sources */,
 				A3FBA8BC240342E7001F3885 /* ForkLastServicedView.swift in Sources */,
 				A3077DEB255B8DAD00981486 /* SearchBarView.swift in Sources */,
+				A3942D23292C5BB700C154F1 /* TextStepperConfig.swift in Sources */,
 				A3072F4625490D9E00C8F385 /* BikeDetailCardView.swift in Sources */,
 				A3C7A1D72401F87D00A741A8 /* NoteFrontSetupView.swift in Sources */,
 				A3D5181B24268E55007DEE9D /* Fork+CoreDataProperties.swift in Sources */,
@@ -997,7 +1001,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = "DialedIn/Dialed In.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 183;
+				CURRENT_PROJECT_VERSION = 192;
 				DEVELOPMENT_ASSET_PATHS = "\"DialedIn/Preview Content\"";
 				DEVELOPMENT_TEAM = 55QD8ZCA9C;
 				ENABLE_PREVIEWS = YES;
@@ -1026,7 +1030,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = "DialedIn/Dialed In.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 183;
+				CURRENT_PROJECT_VERSION = 192;
 				DEVELOPMENT_ASSET_PATHS = "\"DialedIn/Preview Content\"";
 				DEVELOPMENT_TEAM = 55QD8ZCA9C;
 				ENABLE_PREVIEWS = YES;
