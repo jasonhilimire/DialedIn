@@ -29,6 +29,11 @@ let decImage = TextFieldStepperImage(image: Image(systemName: "minus.square"), c
 let incImage = TextFieldStepperImage(image: Image(systemName: "plus.square"), color: Color.orange )
 let gaugelow = TextFieldStepperImage(image: Image(systemName: "gauge.low"), color: Color.orange)
 let gaugehigh = TextFieldStepperImage(image: Image(systemName: "gauge.high"), color: Color.orange )
+let diallow = TextFieldStepperImage(image: Image(systemName: "dial.low"), color: Color.orange)
+let dialhigh = TextFieldStepperImage(image: Image(systemName: "dial.high"), color: Color.orange )
+let diallowfill = TextFieldStepperImage(image: Image(systemName: "dial.low.fill"), color: Color.orange)
+let dialhighfill = TextFieldStepperImage(image: Image(systemName: "dial.high.fill"), color: Color.orange )
+
 
 // MARK: - CONFIGS -
 
@@ -65,14 +70,25 @@ var sagConfig = TextFieldStepperConfig(
     minimumDecimalPlaces: 0,
     maximumDecimalPlaces: 0)
 
+var tokenConfig = TextFieldStepperConfig(
+    unit: "",
+    label: "Tokens",
+    increment: 1.0,
+    minimum: 0.0,
+    maximum: 10.0,
+    decrementImage: decImage,
+    incrementImage: incImage,
+    minimumDecimalPlaces: 0,
+    maximumDecimalPlaces: 0)
+
 var clickConfig = TextFieldStepperConfig(
     unit: "",
     label: "CLICKS",
     increment: 1.0,
     minimum: 0.0,
     maximum: 25.0,
-    decrementImage: decImage,
-    incrementImage: incImage,
+    decrementImage: diallow,
+    incrementImage: dialhigh,
     minimumDecimalPlaces: 0,
     maximumDecimalPlaces: 0)
 
@@ -82,14 +98,14 @@ var clickConfig2 = TextFieldStepperConfig(
     increment: 1.0,
     minimum: 0.0,
     maximum: 25.0,
-    decrementImage: decImageFill,
-    incrementImage: incImageFill,
+    decrementImage: diallowfill,
+    incrementImage: dialhighfill,
     minimumDecimalPlaces: 0,
     maximumDecimalPlaces: 0)
 
 var tireConfig = TextFieldStepperConfig(
     unit: " - PSI",
-    label: "Air Pressure",
+    label: "Front Tire Pressure",
     increment: 0.1,
     minimum: 0.0,
     maximum: 100.0,

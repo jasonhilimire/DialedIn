@@ -57,7 +57,7 @@ struct NoteFrontSetupView: View {
                 Divider()
 
 					// Tokens
-                TextFieldStepper(doubleValue: $noteVM.fTokenSetting.dbl, label: "Tokens", config: clickConfig)
+                TextFieldStepper(doubleValue: $noteVM.fTokenSetting.dbl, config: tokenConfig)
                 Divider()
             
 					//Compression
