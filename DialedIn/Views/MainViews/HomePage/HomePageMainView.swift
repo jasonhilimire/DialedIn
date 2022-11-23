@@ -74,11 +74,11 @@ struct HomePageMainView: View {
                     .padding(.horizontal, 10)
                     HomePageBikeCardListView()
                 }//: END VSTACK
-                .navigationBarTitle("Dialed In")
-                
-				}//: END GeoREader
-			} //: END NavView
+            }//: END GeoREader
+            .navigationBarTitle("Dialed In", displayMode: .inline)
+        } //: END NavView
 		.navigationViewStyle(StackNavigationViewStyle())
+        
 		.sheet(item: $activeSheet) { item in
 			switch item {
 				case .addNote:
