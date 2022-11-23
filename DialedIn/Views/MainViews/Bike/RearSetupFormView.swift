@@ -30,7 +30,7 @@ struct RearSetupFormView: View {
 					}
 		){
 			Picker("Rear Setup", selection: $rearSetupIndex) {
-				ForEach(0..<bikeVM.rearSetups.count) { index in
+				ForEach(0..<bikeVM.rearSetups.count, id: \.self) { index in
 					Text(self.bikeVM.rearSetups[index]).tag(index)
 				}
 			}.pickerStyle(SegmentedPickerStyle())

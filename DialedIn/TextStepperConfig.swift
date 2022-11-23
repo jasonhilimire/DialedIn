@@ -41,7 +41,7 @@ var frontAirConfig = TextFieldStepperConfig(
     unit: " - PSI",
     label: "Air Volume",
     increment: 0.5,
-    minimum: 1.0,
+    minimum: 0.0,
     maximum: 200.0,
     decrementImage: decImage,
     incrementImage: incImage,
@@ -50,7 +50,7 @@ var frontAirConfig = TextFieldStepperConfig(
 
 var coilConfig = TextFieldStepperConfig(
     unit: "",
-    label: "Spring",
+    label: "Spring Rate",
     increment: 25,
     minimum: 0.0,
     maximum: 800.0,
