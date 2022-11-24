@@ -48,6 +48,7 @@ var frontAirConfig = TextFieldStepperConfig(
     minimumDecimalPlaces: 1,
     maximumDecimalPlaces: 1)
 
+
 var coilConfig = TextFieldStepperConfig(
     unit: "",
     label: "Spring Rate",
