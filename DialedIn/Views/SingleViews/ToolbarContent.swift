@@ -14,23 +14,7 @@ struct SheetToolBar: ToolbarContent{
 //	var destructAction: () -> Void
 	
     var body: some ToolbarContent {
-//		ToolbarItem(placement: .destructiveAction) {
-//			Button(action: {
-//				destructAction()
-//			}, label: {
-//				Image(systemName: "trash.circle")
-//			})
-//		}
-		
-//		ToolbarItem(placement: .confirmationAction) {
-//			Button(action: {
-//				confirmAction()
-//			}, label: {
-//				Image(systemName: "checkmark.circle")
-//			})
-//		}
-		
-		ToolbarItem(placement: .cancellationAction) {
+        ToolbarItem(placement: .cancellationAction) {
 			Button(action: {
 				cancelAction()
 			}, label: {
@@ -40,4 +24,32 @@ struct SheetToolBar: ToolbarContent{
     }
 }
 
+struct NoteToolBar: ToolbarContent{
+    @Binding var indx: Int
+    var body: some ToolbarContent {
+        ToolbarItem(placement: .principal) {
+            if indx == 1 {
+                HStack {
+                    HStack {
+                        Image("bicycle-fork")
+                            .resizable()
+                            .frame(width: 25, height: 25)
+                            .scaledToFit()
+                        Text("Front Suspension Details")
+                    }
+                }
+            } else if indx == 2 {
+                HStack {
+                    Image("shock-absorber")
+                        .resizable()
+                        .frame(width: 25, height: 25)
+                        .scaledToFit()
+                    Text("Rear Suspension Details")
+                }
+            } else {
+                Text("Add New Note")
+            }
+        }
+    }
+}
 

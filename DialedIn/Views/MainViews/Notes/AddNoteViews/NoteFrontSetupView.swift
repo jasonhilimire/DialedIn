@@ -24,28 +24,27 @@ struct NoteFrontSetupView: View {
 // MARK: - BODY -
     var body: some View {
         
-		Section(header:
-					HStack {
-						if (isDetailEdit != nil) {
-							Button(action: {
-								noteVM.isFrontEdit.toggle()
-								noteVM.getNoteFront(note: note!)
-							}) {
-								Image(systemName: "xmark.circle.fill")
-									.resizable()
-									.frame(width: 15, height: 15)
-									.scaledToFit()
-									.foregroundColor(.gray)
-							}
-						}
-						Spacer()
-						Image("bicycle-fork")
-							.resizable()
-							.frame(width: 45, height: 45)
-							.scaledToFit()
-                        Text("Front Suspension Details").font(.title2)
-						Spacer()
-					} //: HSTACK
+		Section(header: HStack {
+            if (isDetailEdit != nil) {
+                Button(action: {
+                    noteVM.isFrontEdit.toggle()
+                    noteVM.getNoteFront(note: note!)
+                }) {
+                    Image(systemName: "xmark.circle.fill")
+                        .resizable()
+                        .frame(width: 15, height: 15)
+                        .scaledToFit()
+                        .foregroundColor(.gray)
+                }
+                Spacer()
+                Image("bicycle-fork")
+                    .resizable()
+                    .frame(width: 45, height: 45)
+                    .scaledToFit()
+                Text("Front Suspension Details").font(.title2)
+                Spacer()
+            } //: HSTACK
+            }
 		) {
 			VStack {
 					  // AirPressure
