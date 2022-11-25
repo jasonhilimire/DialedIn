@@ -11,9 +11,7 @@
 		A3077DEB255B8DAD00981486 /* SearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3077DEA255B8DAD00981486 /* SearchBarView.swift */; };
 		A30D9668253549840094CE90 /* NotesHomePageStyledCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30D9667253549840094CE90 /* NotesHomePageStyledCardView.swift */; };
 		A313D5F725539B240073FE33 /* PulsatingPlusButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A313D5F625539B240073FE33 /* PulsatingPlusButtonView.swift */; };
-		A31605F02523B976009071E9 /* BikeCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A31605EF2523B976009071E9 /* BikeCardView.swift */; };
 		A31605FA2523BAA1009071E9 /* ArrowButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A31605F92523BAA1009071E9 /* ArrowButtonView.swift */; };
-		A31606022523BF3E009071E9 /* BikesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A31606012523BF3E009071E9 /* BikesView.swift */; };
 		A3224EA12759C56E004EFDDA /* ServiceWarningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3224EA02759C56E004EFDDA /* ServiceWarningView.swift */; };
 		A326FAC723F3BC6E002490E2 /* CoreData Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A326FAC623F3BC6E002490E2 /* CoreData Extensions.swift */; };
 		A3273B7223EF8F6F007A3792 /* NoteFrontSetupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3273B7123EF8F6F007A3792 /* NoteFrontSetupViewModel.swift */; };
@@ -22,7 +20,6 @@
 		A334BA562929B7B9004546DB /* TextFieldStepper in Frameworks */ = {isa = PBXBuildFile; productRef = A334BA552929B7B9004546DB /* TextFieldStepper */; };
 		A33A854F25E4AEF500CD0059 /* AddFrontServiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33A854E25E4AEF500CD0059 /* AddFrontServiceView.swift */; };
 		A33A855725E4AFD800CD0059 /* AddRearServiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33A855625E4AFD800CD0059 /* AddRearServiceView.swift */; };
-		A33C7F86254DF741002E6F47 /* BikeCardFlipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33C7F85254DF741002E6F47 /* BikeCardFlipView.swift */; };
 		A33C7FCA254F25AB002E6F47 /* OnBoardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33C7FC9254F25AB002E6F47 /* OnBoardingView.swift */; };
 		A33F02B124062A89005A0A8F /* FilteredNoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33F02B024062A89005A0A8F /* FilteredNoteView.swift */; };
 		A348C259275DACB800404984 /* PlusButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A348C258275DACB800404984 /* PlusButtonView.swift */; };
@@ -118,9 +115,7 @@
 		A3077DEA255B8DAD00981486 /* SearchBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarView.swift; sourceTree = "<group>"; };
 		A30D9667253549840094CE90 /* NotesHomePageStyledCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesHomePageStyledCardView.swift; sourceTree = "<group>"; };
 		A313D5F625539B240073FE33 /* PulsatingPlusButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PulsatingPlusButtonView.swift; sourceTree = "<group>"; };
-		A31605EF2523B976009071E9 /* BikeCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeCardView.swift; sourceTree = "<group>"; };
 		A31605F92523BAA1009071E9 /* ArrowButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrowButtonView.swift; sourceTree = "<group>"; };
-		A31606012523BF3E009071E9 /* BikesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikesView.swift; sourceTree = "<group>"; };
 		A3224EA02759C56E004EFDDA /* ServiceWarningView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceWarningView.swift; sourceTree = "<group>"; };
 		A326FAC623F3BC6E002490E2 /* CoreData Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoreData Extensions.swift"; sourceTree = "<group>"; };
 		A3273B7123EF8F6F007A3792 /* NoteFrontSetupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteFrontSetupViewModel.swift; sourceTree = "<group>"; };
@@ -128,7 +123,6 @@
 		A3273B7423EF998B007A3792 /* Notes+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notes+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		A33A854E25E4AEF500CD0059 /* AddFrontServiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFrontServiceView.swift; sourceTree = "<group>"; };
 		A33A855625E4AFD800CD0059 /* AddRearServiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRearServiceView.swift; sourceTree = "<group>"; };
-		A33C7F85254DF741002E6F47 /* BikeCardFlipView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeCardFlipView.swift; sourceTree = "<group>"; };
 		A33C7FC9254F25AB002E6F47 /* OnBoardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingView.swift; sourceTree = "<group>"; };
 		A33F02B024062A89005A0A8F /* FilteredNoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilteredNoteView.swift; sourceTree = "<group>"; };
 		A348C258275DACB800404984 /* PlusButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlusButtonView.swift; sourceTree = "<group>"; };
@@ -238,16 +232,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		A31605EE2523B950009071E9 /* BikeCards */ = {
-			isa = PBXGroup;
-			children = (
-				A31606012523BF3E009071E9 /* BikesView.swift */,
-				A33C7F85254DF741002E6F47 /* BikeCardFlipView.swift */,
-				A31605EF2523B976009071E9 /* BikeCardView.swift */,
-			);
-			path = BikeCards;
-			sourceTree = "<group>";
-		};
 		A326FAC823F3BC80002490E2 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
@@ -286,7 +270,6 @@
 				A3F3C83C25D9CD41000BE912 /* ForkSetupFormView.swift */,
 				A3F3C84725D9D2AD000BE912 /* RearSetupFormView.swift */,
 				A3B8B79623F0E9EF00CE1EF8 /* BikePickerView.swift */,
-				A31605EE2523B950009071E9 /* BikeCards */,
 				A3FBA8BE24034623001F3885 /* BikeDetailViews */,
 			);
 			path = Bike;
@@ -741,7 +724,6 @@
 				A3B8B79723F0E9EF00CE1EF8 /* BikePickerView.swift in Sources */,
 				A3D5181724268DB6007DEE9D /* RearService+CoreDataProperties.swift in Sources */,
 				A35642C325787A5500A5A45B /* DialedApp.swift in Sources */,
-				A31605F02523B976009071E9 /* BikeCardView.swift in Sources */,
 				A3E1A6AF2409B78100C4DFD5 /* FilteredBikeNotesView.swift in Sources */,
 				A3EAEF36274EE29400B562E9 /* ToolbarContent.swift in Sources */,
 				A3D533C929205FF800C1164B /* BikesDetailView.swift in Sources */,
@@ -767,7 +749,6 @@
 				A37B1EC0252C0D8500147F94 /* GradientButtonStyle.swift in Sources */,
 				A3A157A125D391C000A6B6A4 /* ForkViewModel.swift in Sources */,
 				A3D518372426B565007DEE9D /* FrontServiceViewModel.swift in Sources */,
-				A31606022523BF3E009071E9 /* BikesView.swift in Sources */,
 				A393F9CE252ACBC800F39E04 /* HomePageLastNoteView.swift in Sources */,
 				A393F9C9252ACB1B00F39E04 /* HomeNoteView.swift in Sources */,
 				A3FBA8BC240342E7001F3885 /* ForkLastServicedView.swift in Sources */,
@@ -782,7 +763,6 @@
 				A3D518352426B558007DEE9D /* RearServiceViewModel.swift in Sources */,
 				A3C8F5A3248F3527008DD118 /* EditBikeDetailView.swift in Sources */,
 				A3C5F1F7291709FF00436AF9 /* Nav_Button.swift in Sources */,
-				A33C7F86254DF741002E6F47 /* BikeCardFlipView.swift in Sources */,
 				A3D5181324268DB6007DEE9D /* FrontService+CoreDataProperties.swift in Sources */,
 				A3A1297023FB9AC50014EC8A /* NoteRearSetupModel.swift in Sources */,
 				A3D533CB2920842100C1164B /* ServiceDueWrenchIconView.swift in Sources */,
@@ -977,7 +957,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = "DialedIn/Dialed In.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 294;
+				CURRENT_PROJECT_VERSION = 295;
 				DEVELOPMENT_ASSET_PATHS = "\"DialedIn/Preview Content\"";
 				DEVELOPMENT_TEAM = 55QD8ZCA9C;
 				ENABLE_PREVIEWS = YES;
@@ -1006,7 +986,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = "DialedIn/Dialed In.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 294;
+				CURRENT_PROJECT_VERSION = 295;
 				DEVELOPMENT_ASSET_PATHS = "\"DialedIn/Preview Content\"";
 				DEVELOPMENT_TEAM = 55QD8ZCA9C;
 				ENABLE_PREVIEWS = YES;
