@@ -56,7 +56,7 @@ struct AddBikeView: View {
 					}, secondaryButton: .cancel()
 					)
 				}
-				.animation(.spring())
+				.animation(.spring(), value: 1)
 				// Adds a Toolbar Cancel button in the red color that will dismisses the modal
 				.toolbar{
 					SheetToolBar{
@@ -87,7 +87,7 @@ struct AddBikeView: View {
 				}.buttonStyle(OrangeButtonStyle()).customSaveButton()
                     Spacer()
             }
-			.animation(.default)
+            .animation(.default, value: 1)
         }
     }
 	

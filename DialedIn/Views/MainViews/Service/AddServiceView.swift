@@ -100,7 +100,7 @@ struct AddServiceView: View {
 			}
 			.padding()
 		}
-		.animation(.spring())
+		.animation(.spring(), value: 1)
 	}
 
 	//MARK:- Functions
