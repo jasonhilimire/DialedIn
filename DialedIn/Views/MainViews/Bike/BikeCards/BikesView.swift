@@ -38,7 +38,7 @@ struct BikesView: View {
 			HStack{
 				ScrollView {
 					if bikes.count == 0 {
-						NoBikes_FlipExampleView()
+						EmptyView()
 					} else {
 						ForEach(bikes, id: \.self) { bike in
 							BikeCardFlipView(bike: bike)
