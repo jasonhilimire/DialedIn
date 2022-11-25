@@ -17,11 +17,7 @@ struct HomePageLastNoteView: View {
 	
 	// TODO: FIX THIS as shouldnt be hardcoding this - as wont work when no notes
 	var body: some View {
-        if notes.count == 0 {
-            EmptyView()
-        } else {
             NotesHomePageStyledCardView(note: notes[0])
         }
 	}
-}
 

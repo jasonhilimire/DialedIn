@@ -30,6 +30,7 @@ struct HomePageMainView: View {
 	@State var flipHorizontally = true
     @State private var showingAlert: Bool = false
     private var alertText = "You must create a bike before adding notes or services"
+    @State var createText = "Tap to create a Bike to begin using Dialed In!"
 	
 	enum ActiveSheet: Identifiable {
 		case addNote,
@@ -47,7 +48,21 @@ struct HomePageMainView: View {
                 VStack{
                     VStack {
                         HStack(alignment: .top){
-                            HomePageLastNoteView()
+                            if bikes.count == 0 {
+                                VStack {
+                                    Button(action: {activeSheet = .addBike }) {
+                                    Label: do {
+                                        CreateBikeView(createText: $createText)
+                                        }
+                                    }
+                                    .padding()
+                                    .customBackgroundGradient()
+                                    .cornerRadius(20)
+                                    .customShadow()
+                                }
+                            } else {
+                                HomePageLastNoteView()
+                            }
                             Spacer()
                             HomePageNotesInfoView()
                         }//: END HSTACK

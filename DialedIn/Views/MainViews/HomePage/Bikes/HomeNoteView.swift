@@ -18,13 +18,15 @@ struct HomeNoteView: View {
 	@FetchRequest(entity: Bike.entity(), sortDescriptors: [
 		NSSortDescriptor(keyPath: \Bike.name, ascending: true)
 	]) var bikes: FetchedResults<Bike>
+    
+    @State var createText = "Please create a Bike to begin using Dialed In!"
 
 	// MARK: - BODY -
 	var body: some View {
 		VStack {
 			// dont delete this?? no idea why but it keeps from having 2 notes in the same view
 			if bikes.count == 0 {
-				CreateBikeView() // Create a view here
+				CreateBikeView(createText: $createText) // Create a view here
 			}
 				HomePageLastNoteView()
 		}
