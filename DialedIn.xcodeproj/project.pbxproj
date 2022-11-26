@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A3072F4625490D9E00C8F385 /* BikeDetailCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3072F4525490D9E00C8F385 /* BikeDetailCardView.swift */; };
 		A3077DEB255B8DAD00981486 /* SearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3077DEA255B8DAD00981486 /* SearchBarView.swift */; };
 		A30D9668253549840094CE90 /* NotesHomePageStyledCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30D9667253549840094CE90 /* NotesHomePageStyledCardView.swift */; };
 		A313D5F725539B240073FE33 /* PulsatingPlusButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A313D5F625539B240073FE33 /* PulsatingPlusButtonView.swift */; };
@@ -34,8 +33,6 @@
 		A3918AD023E3E446002A1D61 /* SaveButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3918ACF23E3E446002A1D61 /* SaveButtonView.swift */; };
 		A393F9BD252ACAB700F39E04 /* HomePageMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A393F9BC252ACAB700F39E04 /* HomePageMainView.swift */; };
 		A393F9C7252ACB1B00F39E04 /* HomePageBikeCardListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A393F9C4252ACB1B00F39E04 /* HomePageBikeCardListView.swift */; };
-		A393F9C8252ACB1B00F39E04 /* HomeBikeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A393F9C5252ACB1B00F39E04 /* HomeBikeView.swift */; };
-		A393F9C9252ACB1B00F39E04 /* HomeNoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A393F9C6252ACB1B00F39E04 /* HomeNoteView.swift */; };
 		A393F9CE252ACBC800F39E04 /* HomePageLastNoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A393F9CD252ACBC800F39E04 /* HomePageLastNoteView.swift */; };
 		A3942D23292C5BB700C154F1 /* TextStepperConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3942D22292C5BB700C154F1 /* TextStepperConfig.swift */; };
 		A39E45F5252436AC004142CE /* CircularButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A39E45F4252436AC004142CE /* CircularButtonView.swift */; };
@@ -111,7 +108,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		A3072F4525490D9E00C8F385 /* BikeDetailCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeDetailCardView.swift; sourceTree = "<group>"; };
 		A3077DEA255B8DAD00981486 /* SearchBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarView.swift; sourceTree = "<group>"; };
 		A30D9667253549840094CE90 /* NotesHomePageStyledCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesHomePageStyledCardView.swift; sourceTree = "<group>"; };
 		A313D5F625539B240073FE33 /* PulsatingPlusButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PulsatingPlusButtonView.swift; sourceTree = "<group>"; };
@@ -139,8 +135,6 @@
 		A3918ACF23E3E446002A1D61 /* SaveButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveButtonView.swift; sourceTree = "<group>"; };
 		A393F9BC252ACAB700F39E04 /* HomePageMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageMainView.swift; sourceTree = "<group>"; };
 		A393F9C4252ACB1B00F39E04 /* HomePageBikeCardListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomePageBikeCardListView.swift; sourceTree = "<group>"; };
-		A393F9C5252ACB1B00F39E04 /* HomeBikeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeBikeView.swift; sourceTree = "<group>"; };
-		A393F9C6252ACB1B00F39E04 /* HomeNoteView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeNoteView.swift; sourceTree = "<group>"; };
 		A393F9CD252ACBC800F39E04 /* HomePageLastNoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageLastNoteView.swift; sourceTree = "<group>"; };
 		A3942D22292C5BB700C154F1 /* TextStepperConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextStepperConfig.swift; sourceTree = "<group>"; };
 		A39E45F4252436AC004142CE /* CircularButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularButtonView.swift; sourceTree = "<group>"; };
@@ -287,15 +281,6 @@
 			path = Service;
 			sourceTree = "<group>";
 		};
-		A343916429186A8A00A6186C /* Bikes */ = {
-			isa = PBXGroup;
-			children = (
-				A393F9C6252ACB1B00F39E04 /* HomeNoteView.swift */,
-				A393F9C5252ACB1B00F39E04 /* HomeBikeView.swift */,
-			);
-			path = Bikes;
-			sourceTree = "<group>";
-		};
 		A38D56B025609ACF00E83041 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -336,7 +321,6 @@
 				A393F9CD252ACBC800F39E04 /* HomePageLastNoteView.swift */,
 				A3C5F1F22916FC8A00436AF9 /* HomePageNotesInfoView.swift */,
 				A393F9C4252ACB1B00F39E04 /* HomePageBikeCardListView.swift */,
-				A343916429186A8A00A6186C /* Bikes */,
 			);
 			path = HomePage;
 			sourceTree = "<group>";
@@ -545,7 +529,6 @@
 		A3FBA8BE24034623001F3885 /* BikeDetailViews */ = {
 			isa = PBXGroup;
 			children = (
-				A3072F4525490D9E00C8F385 /* BikeDetailCardView.swift */,
 				A3FBA8B8240342E6001F3885 /* BikeDetailView.swift */,
 				A3E1A6AE2409B78100C4DFD5 /* FilteredBikeNotesView.swift */,
 				A3C8F5A2248F3527008DD118 /* EditBikeDetailView.swift */,
@@ -742,7 +725,6 @@
 				A3D518332426B50D007DEE9D /* RearShock+CoreDataProperties.swift in Sources */,
 				A3F3C84D25D9D694000BE912 /* BikeDetailFormView.swift in Sources */,
 				A3C16EB723DEA582005BFA14 /* RearShock+CoreDataClass.swift in Sources */,
-				A393F9C8252ACB1B00F39E04 /* HomeBikeView.swift in Sources */,
 				A3C16E6F23DE9EC4005BFA14 /* NotesListView.swift in Sources */,
 				A3FBA8BD240342E7001F3885 /* RearShockLastServicedView.swift in Sources */,
 				A33A854F25E4AEF500CD0059 /* AddFrontServiceView.swift in Sources */,
@@ -750,11 +732,9 @@
 				A3A157A125D391C000A6B6A4 /* ForkViewModel.swift in Sources */,
 				A3D518372426B565007DEE9D /* FrontServiceViewModel.swift in Sources */,
 				A393F9CE252ACBC800F39E04 /* HomePageLastNoteView.swift in Sources */,
-				A393F9C9252ACB1B00F39E04 /* HomeNoteView.swift in Sources */,
 				A3FBA8BC240342E7001F3885 /* ForkLastServicedView.swift in Sources */,
 				A3077DEB255B8DAD00981486 /* SearchBarView.swift in Sources */,
 				A3942D23292C5BB700C154F1 /* TextStepperConfig.swift in Sources */,
-				A3072F4625490D9E00C8F385 /* BikeDetailCardView.swift in Sources */,
 				A3C7A1D72401F87D00A741A8 /* NoteFrontSetupView.swift in Sources */,
 				A3D5181B24268E55007DEE9D /* Fork+CoreDataProperties.swift in Sources */,
 				A348C259275DACB800404984 /* PlusButtonView.swift in Sources */,
@@ -957,7 +937,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = "DialedIn/Dialed In.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 295;
+				CURRENT_PROJECT_VERSION = 296;
 				DEVELOPMENT_ASSET_PATHS = "\"DialedIn/Preview Content\"";
 				DEVELOPMENT_TEAM = 55QD8ZCA9C;
 				ENABLE_PREVIEWS = YES;
@@ -986,7 +966,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = "DialedIn/Dialed In.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 295;
+				CURRENT_PROJECT_VERSION = 296;
 				DEVELOPMENT_ASSET_PATHS = "\"DialedIn/Preview Content\"";
 				DEVELOPMENT_TEAM = 55QD8ZCA9C;
 				ENABLE_PREVIEWS = YES;

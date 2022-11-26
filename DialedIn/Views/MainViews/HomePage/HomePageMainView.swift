@@ -30,7 +30,7 @@ struct HomePageMainView: View {
 	@State var flipHorizontally = true
     @State private var showingAlert: Bool = false
     private var alertText = "You must create a bike before adding notes or services"
-    @State var createText = "Tap to create a Bike to begin using Dialed In!"
+    @State var createText = "Tap to create a Bike & begin using Dialed In!"
 	
 	enum ActiveSheet: Identifiable {
 		case addNote,
