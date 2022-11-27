@@ -28,6 +28,9 @@ struct HomePageMainView: View {
 	@State var isFromBikeCard = false
 	@State var activeSheet: ActiveSheet?
 	@State var flipHorizontally = true
+    @State private var showingAlert: Bool = false
+    private var alertText = "You must create a bike before adding notes or services"
+    @State var createText = "Tap to create a Bike & begin using Dialed In!"
 	
 	enum ActiveSheet: Identifiable {
 		case addNote,
@@ -45,7 +48,21 @@ struct HomePageMainView: View {
                 VStack{
                     VStack {
                         HStack(alignment: .top){
-                            HomePageLastNoteView()
+                            if bikes.count == 0 {
+                                VStack {
+                                    Button(action: {activeSheet = .addBike }) {
+                                    Label: do {
+                                        CreateBikeView(createText: $createText)
+                                        }
+                                    }
+                                    .padding()
+                                    .customBackgroundGradient()
+                                    .cornerRadius(20)
+                                    .customShadow()
+                                }
+                            } else {
+                                HomePageLastNoteView()
+                            }
                             Spacer()
                             HomePageNotesInfoView()
                         }//: END HSTACK
@@ -57,18 +74,32 @@ struct HomePageMainView: View {
                             .buttonStyle(Nav_Button())
                             
                             Spacer()
-                            
-                            Button(action: {activeSheet = .addService }) {
-                                Label("Add New Service", systemImage: "wrench").scaleEffect(1.5)
+                            if bikes.count == 0 {
+                                Button(action: { showingAlert.toggle()}) {
+                                    Label("Add New Service", systemImage: "wrench").scaleEffect(1.5)
+                                }
+                                .buttonStyle(Nav_Button())
+                                
+                                Spacer()
+                                
+                                Button(action: { showingAlert.toggle()}) {
+                                    Label("Add New Note", systemImage: "note.text.badge.plus").scaleEffect(1.5)
+                                }
+                                .buttonStyle(Nav_Button())
+                                
+                            } else {
+                                Button(action: {activeSheet = .addService }) {
+                                    Label("Add New Service", systemImage: "wrench").scaleEffect(1.5)
+                                }
+                                .buttonStyle(Nav_Button())
+                                
+                                Spacer()
+                                
+                                Button(action: { activeSheet = .addNote}) {
+                                    Label("Add New Note", systemImage: "note.text.badge.plus").scaleEffect(1.5)
+                                }
+                                .buttonStyle(Nav_Button())
                             }
-                            .buttonStyle(Nav_Button())
-                            
-                            Spacer()
-                            
-                            Button(action: { activeSheet = .addNote}) {
-                                Label("Add New Note", systemImage: "note.text.badge.plus").scaleEffect(1.5)
-                            }
-                            .buttonStyle(Nav_Button())
                         }//: END HSTACK
                     }//: END VSTACK
                     .padding(.horizontal, 10)
@@ -76,6 +107,11 @@ struct HomePageMainView: View {
                 }//: END VSTACK
             }//: END GeoREader
             .navigationBarTitle("Dialed In", displayMode: .inline)
+            .alert(isPresented: $showingAlert) {
+                Alert(title: Text("Please Create a Bike"), message: Text("\(alertText)"), primaryButton: .default(Text("OK")) {
+                    //
+                }, secondaryButton: .cancel())
+            }
         } //: END NavView
 		.navigationViewStyle(StackNavigationViewStyle())
         

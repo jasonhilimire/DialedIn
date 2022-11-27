@@ -8,17 +8,18 @@
 
 import SwiftUI
 
+
 struct CreateBikeView: View {
+    @Binding var createText: String
     var body: some View {
 			VStack{
 				Image("bike")
 					.resizable()
 					.scaledToFit()
 					.customTextShadow()
-					.background(Color("BackgroundColor"))
 					.cornerRadius(8)
 					.padding(.horizontal, 10)
-				Text("Please Create a Bike!")
+				Text(createText)
 					.foregroundColor(Color("TextColor"))
 					.font(.largeTitle)
 					.fontWeight(.thin)
@@ -27,8 +28,3 @@ struct CreateBikeView: View {
 		}
 }
 
-struct CreateBikeView_Previews: PreviewProvider {
-    static var previews: some View {
-        CreateBikeView()
-    }
-}

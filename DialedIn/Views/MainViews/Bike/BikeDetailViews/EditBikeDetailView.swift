@@ -66,7 +66,7 @@ struct EditBikeDetailView: View {
 					}, secondaryButton: .cancel()
 					)
 				}
-				.animation(.spring())
+                .animation(.spring(), value: 1)
 				
 				Button(action: {
 					//TODO: Removed duplicate check on edit as it wasnt allowing any edits - this is likely because we are resaving boolModel.bikeName as bikeVM.bikeName

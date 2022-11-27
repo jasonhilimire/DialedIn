@@ -17,7 +17,7 @@ struct HomePageLastNoteView: View {
 	
 	// TODO: FIX THIS as shouldnt be hardcoding this - as wont work when no notes
 	var body: some View {
-		NotesHomePageStyledCardView(note: notes[0])
+            NotesHomePageStyledCardView(note: notes[0])
+        }
 	}
-}
 

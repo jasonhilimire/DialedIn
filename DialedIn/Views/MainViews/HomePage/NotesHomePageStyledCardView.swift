@@ -49,10 +49,18 @@ struct NotesHomePageStyledCardView: View {
 							if note.rating > 0 {
 								HomeRatingView(rating: .constant(Int(note.rating)))
                                     .customShadow()
+                                    .padding(.bottom, 2)
 							}
-                            Spacer()
+                            HStack {
+                                Text("F:")
+                                Text("\(note.fAirVolume, specifier: "%.1f")")
+                                Spacer()
+                                if note.bike?.hasRearShock == true {
+                                    Text("R:")
+                                    Text("\(note.rAirSpring, specifier: "%.0f")")
+                                }
+                            }
 							Text(note.note ?? "")
-                            Spacer()
                             Spacer()
 						}
 						.font(.footnote)

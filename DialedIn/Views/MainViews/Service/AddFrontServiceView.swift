@@ -24,7 +24,7 @@ struct AddFrontServiceView: View {
 		){
 			
 			Picker("Service Type", selection: $frontService.frontServicedIndex) {
-				ForEach(0..<frontService.frontServiced.count) { index in
+                ForEach(0..<frontService.frontServiced.count, id: \.self) { index in
 					Text(self.frontService.frontServiced[index]).tag(index)
 				}
 			}.pickerStyle(SegmentedPickerStyle())
