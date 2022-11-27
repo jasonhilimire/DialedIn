@@ -226,6 +226,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A31F540A2932E57300443CB5 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				A3F567A124343B1100C769A4 /* Constants.swift */,
+				A3CAFF5A2465F95000B144EA /* KeyboardObserver.swift */,
+				A3942D22292C5BB700C154F1 /* TextStepperConfig.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		A326FAC823F3BC80002490E2 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
@@ -385,8 +395,8 @@
 				A326FAC823F3BC80002490E2 /* CoreData */,
 				A3C16EAC23DEA461005BFA14 /* ViewModels */,
 				A3C16EAB23DEA454005BFA14 /* Views */,
+				A31F540A2932E57300443CB5 /* Helpers */,
 				A3C16E7223DE9EC5005BFA14 /* Preview Content */,
-				A3942D22292C5BB700C154F1 /* TextStepperConfig.swift */,
 			);
 			path = DialedIn;
 			sourceTree = "<group>";
@@ -441,9 +451,7 @@
 			children = (
 				A3A1579E25D3917900A6B6A4 /* Note */,
 				A3A1579F25D3918C00A6B6A4 /* Service */,
-				A3F567A124343B1100C769A4 /* Constants.swift */,
 				A3B8B79423F0E66900CE1EF8 /* BikeViewModel.swift */,
-				A3CAFF5A2465F95000B144EA /* KeyboardObserver.swift */,
 				A3655BAF2575E9F6009DACDE /* BoolModel.swift */,
 				A3A157A025D391C000A6B6A4 /* ForkViewModel.swift */,
 				A3F0CF4B25D99F140001DF5B /* RearShockViewModel.swift */,
