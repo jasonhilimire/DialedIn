@@ -66,6 +66,8 @@ struct NoteRearSetupView: View {
                         TextFieldStepper(doubleValue: $noteVM.rTokenSetting.dbl, config: tokenConfig)
 					}
 					
+                    Divider()
+                    
 					//Compression
 					if rearVM.dualCompression == true {
                         TextFieldStepper(doubleValue: $noteVM.rHSCSetting.dbl, unit: " - HSC", label: "High Speed Compression", config: clickConfig)

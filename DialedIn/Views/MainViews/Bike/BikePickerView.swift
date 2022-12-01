@@ -27,9 +27,3 @@ struct BikePickerView: View {
         }
     }
 }
-
-//struct BikePickerView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        BikePickerView(bikeName: "the bike")
-//    }
-//}

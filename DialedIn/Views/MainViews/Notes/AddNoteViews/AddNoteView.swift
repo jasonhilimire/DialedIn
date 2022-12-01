@@ -35,69 +35,65 @@ struct AddNoteView: View {
     var body: some View {
         NavigationView {
             VStack {
-                Picker("NOTE DETAILS", selection: $notePickerIndex){
+                Picker("", selection: $notePickerIndex){
                     ForEach(0..<notePickerText.count, id: \.self) { index in
                         Text(self.notePickerText[index]).tag(index)
                     }
                 }.pickerStyle(.segmented)
                     .padding(.horizontal)
                 ScrollView {
-                VStack{
-                    if notePickerIndex == 0 { //: SHOW DETAILS VIEW
-//                        Form{
-//                            Section(header: Text("Ride Details")){
-                                if bikes.count == 1 {
-                                    Text("\(self.bikes[bikeNameIndex].name!)")
-                                        .fontWeight(.thin)
-                                } else {
+                    VStack{
+                        if notePickerIndex == 0 { //: SHOW DETAILS VIEW
+                            if bikes.count == 1 {
+                                Text("\(self.bikes[bikeNameIndex].name!)")
+                                    .fontWeight(.thin)
+                            } else {
+                                HStack {
+                                    Text("Bike: ")
                                     BikePickerView(bikeNameIndex: $bikeNameIndex)
                                 }
-                                DatePicker(selection: $noteVM.noteDate, in: ...Date(), displayedComponents: .date) {
-                                    Text("Select a date:")
-                                        .fontWeight(.thin)
-                                }
-                                HStack {
-                                    RatingView(rating: $noteVM.noteRating)
-                                    Spacer()
-                                    Text("Favorite:").fontWeight(.thin)
-                                    FavoritesView(favorite: self.$noteVM.noteFavorite)
-                                }
-                                HStack(alignment: .top) {
-                                    Text("Note:").fontWeight(.thin)
-                                    TextEditor(text: self.$noteVM.noteText)
-                                        .frame(height: 300)
-                                        .textFieldStyle(PlainTextFieldStyle())
-                                        .cornerRadius(8)
-                                        .multilineTextAlignment(.leading)
-                                        .overlay(RoundedRectangle(cornerRadius: 16).stroke(Color.gray))
-                                }
-//                            }
-//                        }
-                    } else if notePickerIndex == 1 { //: SHOW FRONT VIEW
-                        // MARK: - FRONT SETUP -
-                        NoteFrontSetupView(front: frontSetup, noteVM: noteVM, forkVM: forkVM, note: nil)
-                            .padding()
-                        
-                    } else if notePickerIndex == 2 { //: SHOW REAR VIEW
-                        // MARK: - Rear Setup -
-                        NoteRearSetupView(rear: rearSetup, rearVM: rearVM, noteVM: noteVM, note: nil)
-                            .padding()
-                    }
-//                    Spacer()
-                } //: FORM
+                            }
+                            DatePicker(selection: $noteVM.noteDate, in: ...Date(), displayedComponents: .date) {
+                                Text("Select a date:")
+                                    .fontWeight(.thin)
+                            } .padding(.bottom)
+                            HStack {
+                                RatingView(rating: $noteVM.noteRating)
+                                Spacer()
+                                Text("Favorite:").fontWeight(.thin)
+                                FavoritesView(favorite: self.$noteVM.noteFavorite)
+                            } .padding(.bottom)
+                            HStack(alignment: .top) {
+                                Text("Note:").fontWeight(.thin)
+                                TextEditor(text: self.$noteVM.noteText)
+                                    .frame(height: 300)
+                                    .textFieldStyle(PlainTextFieldStyle())
+                                    .cornerRadius(8)
+                                    .multilineTextAlignment(.leading)
+                                    .overlay(RoundedRectangle(cornerRadius: 16).stroke(Color.gray))
+                            }
+                        } else if notePickerIndex == 1 { //: SHOW FRONT VIEW
+                            // MARK: - FRONT SETUP -
+                            NoteFrontSetupView(front: frontSetup, noteVM: noteVM, forkVM: forkVM, note: nil)
+                                .padding()
+                            
+                        } else if notePickerIndex == 2 { //: SHOW REAR VIEW
+                            // MARK: - Rear Setup -
+                            NoteRearSetupView(rear: rearSetup, rearVM: rearVM, noteVM: noteVM, note: nil)
+                                .padding()
+                        }
+    //                    Spacer()
+                    } //: VSTACK
                 .onAppear(perform: {self.setup()}) // change to onReceive??
-                //					.navigationBarTitle("Dialed In- New Note", displayMode: .inline)
                 // Adds a Toolbar Cancel button in the red color that will dismisses the modal
                 .toolbar{
-                    SheetToolBar{
-                    cancelAction: do {
-                        self.presentationMode.wrappedValue.dismiss()
-                    }
+                    SheetToolBar{ cancelAction: do {
+                        self.presentationMode.wrappedValue.dismiss()}
                     }
                     NoteToolBar(indx: $notePickerIndex)
                 }
                 .padding()
-            } //: VSTACK
+            } //: SCROLLVIEW
         }
     }
         Button(action: {
