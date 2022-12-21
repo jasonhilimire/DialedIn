@@ -19,7 +19,7 @@ struct AddNoteView: View {
     var bikes: FetchedResults<Bike>
     
     @ObservedObject var frontSetup = NoteFrontSetupViewModel()
-    @ObservedObject var rearSetup = NoteRearSetupModel()
+    @ObservedObject var rearSetup = NoteRearSetupViewModel()
 	@ObservedObject var forkVM = ForkViewModel()
 	@ObservedObject var rearVM = RearShockViewModel()
 	@ObservedObject var noteVM = NoteViewModel()

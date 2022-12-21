@@ -36,7 +36,7 @@
 		A393F9CE252ACBC800F39E04 /* HomePageLastNoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A393F9CD252ACBC800F39E04 /* HomePageLastNoteView.swift */; };
 		A3942D23292C5BB700C154F1 /* TextStepperConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3942D22292C5BB700C154F1 /* TextStepperConfig.swift */; };
 		A39E45F5252436AC004142CE /* CircularButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A39E45F4252436AC004142CE /* CircularButtonView.swift */; };
-		A3A1297023FB9AC50014EC8A /* NoteRearSetupModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3A1296F23FB9AC50014EC8A /* NoteRearSetupModel.swift */; };
+		A3A1297023FB9AC50014EC8A /* NoteRearSetupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3A1296F23FB9AC50014EC8A /* NoteRearSetupViewModel.swift */; };
 		A3A157A125D391C000A6B6A4 /* ForkViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3A157A025D391C000A6B6A4 /* ForkViewModel.swift */; };
 		A3B8B79523F0E66900CE1EF8 /* BikeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B8B79423F0E66900CE1EF8 /* BikeViewModel.swift */; };
 		A3B8B79723F0E9EF00CE1EF8 /* BikePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B8B79623F0E9EF00CE1EF8 /* BikePickerView.swift */; };
@@ -138,7 +138,7 @@
 		A393F9CD252ACBC800F39E04 /* HomePageLastNoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageLastNoteView.swift; sourceTree = "<group>"; };
 		A3942D22292C5BB700C154F1 /* TextStepperConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextStepperConfig.swift; sourceTree = "<group>"; };
 		A39E45F4252436AC004142CE /* CircularButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularButtonView.swift; sourceTree = "<group>"; };
-		A3A1296F23FB9AC50014EC8A /* NoteRearSetupModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteRearSetupModel.swift; sourceTree = "<group>"; };
+		A3A1296F23FB9AC50014EC8A /* NoteRearSetupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteRearSetupViewModel.swift; sourceTree = "<group>"; };
 		A3A157A025D391C000A6B6A4 /* ForkViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForkViewModel.swift; sourceTree = "<group>"; };
 		A3B8B79423F0E66900CE1EF8 /* BikeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeViewModel.swift; sourceTree = "<group>"; };
 		A3B8B79623F0E9EF00CE1EF8 /* BikePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikePickerView.swift; sourceTree = "<group>"; };
@@ -339,7 +339,7 @@
 			isa = PBXGroup;
 			children = (
 				A37A8952257304A900D301E1 /* NoteViewModel.swift */,
-				A3A1296F23FB9AC50014EC8A /* NoteRearSetupModel.swift */,
+				A3A1296F23FB9AC50014EC8A /* NoteRearSetupViewModel.swift */,
 				A3273B7123EF8F6F007A3792 /* NoteFrontSetupViewModel.swift */,
 			);
 			path = Note;
@@ -752,7 +752,7 @@
 				A3C8F5A3248F3527008DD118 /* EditBikeDetailView.swift in Sources */,
 				A3C5F1F7291709FF00436AF9 /* Nav_Button.swift in Sources */,
 				A3D5181324268DB6007DEE9D /* FrontService+CoreDataProperties.swift in Sources */,
-				A3A1297023FB9AC50014EC8A /* NoteRearSetupModel.swift in Sources */,
+				A3A1297023FB9AC50014EC8A /* NoteRearSetupViewModel.swift in Sources */,
 				A3D533CB2920842100C1164B /* ServiceDueWrenchIconView.swift in Sources */,
 				A33F02B124062A89005A0A8F /* FilteredNoteView.swift in Sources */,
 				A3F61FF625CE330F004F8EA0 /* NoteTextFavRatView.swift in Sources */,
@@ -945,7 +945,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = "DialedIn/Dialed In.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 304;
+				CURRENT_PROJECT_VERSION = 316;
 				DEVELOPMENT_ASSET_PATHS = "\"DialedIn/Preview Content\"";
 				DEVELOPMENT_TEAM = 55QD8ZCA9C;
 				ENABLE_PREVIEWS = YES;
@@ -974,7 +974,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = "DialedIn/Dialed In.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 304;
+				CURRENT_PROJECT_VERSION = 316;
 				DEVELOPMENT_ASSET_PATHS = "\"DialedIn/Preview Content\"";
 				DEVELOPMENT_TEAM = 55QD8ZCA9C;
 				ENABLE_PREVIEWS = YES;

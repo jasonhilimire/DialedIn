@@ -56,6 +56,8 @@ struct HomePageStyledBikeCardView: View {
 	@StateObject var bikeVM = BikeViewModel()
     @ObservedObject var frontService = FrontServiceViewModel()
     @ObservedObject var rearService = RearServiceViewModel()
+    @ObservedObject var frontVM = NoteFrontSetupViewModel()
+    @ObservedObject var rearVM = NoteRearSetupViewModel()
 	
 	@State private var isFromBikeCard = true
 	@State private var showServiceView = false
@@ -86,6 +88,8 @@ struct HomePageStyledBikeCardView: View {
                         .fontWeight(.thin)
                     Text("\(self.bike.frontSetup?.travel ?? 0.0, specifier: "%.0f")mm")
                         .fontWeight(.thin)
+                    Spacer()
+                    Text("PSI: \(frontVM.getAirforBikeCard(bike: self.bike.name ?? "N/A"), specifier: "%.1f")")
                 }
                 
                 if self.bike.hasRearShock == true {
@@ -94,6 +98,8 @@ struct HomePageStyledBikeCardView: View {
                             .fontWeight(.thin)
                         Text("\(self.bike.rearSetup?.rearTravel ?? 0.00, specifier: "%.2f")mm")
                             .fontWeight(.thin)
+                        Spacer()
+                        Text("PSI: \(rearVM.getLastAirForBikeCard(bike: self.bike.name ?? "N/A"), specifier: "%.0f")")
                     }
                     Text("Stroke Length: \(self.bike.rearSetup?.strokeLength ?? 0.00, specifier: "%.2f")mm")
                         .fontWeight(.thin)

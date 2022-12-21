@@ -10,7 +10,7 @@ import Foundation
 import SwiftUI
 import Combine
 
-class NoteRearSetupModel: ObservableObject {
+class NoteRearSetupViewModel: ObservableObject {
 	let managedObjectContext = PersistentCloudKitContainer.persistentContainer.viewContext
 	
 
@@ -117,7 +117,7 @@ class NoteRearSetupModel: ObservableObject {
 		}
 	
 
-       let didChange = PassthroughSubject<NoteRearSetupModel, Never>()
+       let didChange = PassthroughSubject<NoteRearSetupViewModel, Never>()
        
        // MARK: - Functions
        // get Last Settings
@@ -127,6 +127,12 @@ class NoteRearSetupModel: ObservableObject {
             let lastAirSetting = lastRecord.last?.rAirSpring
             return lastAirSetting ?? 200.0
        }
+    
+        func getLastAirForBikeCard(bike: String) -> Double {
+            let lastRecord = filterNote(for: bike)
+            let lastAirSetting = lastRecord.last?.rAirSpring
+            return lastAirSetting ?? 0.0
+        }
 	
 		func getLastTirePSI() -> Double {
 			let lastRecord = filterNote(for: bikeName)

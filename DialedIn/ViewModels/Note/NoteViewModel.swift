@@ -244,7 +244,7 @@ class NoteViewModel: ObservableObject {
 		fTirePressure = front.lastFTirePressure
 	}
 	
-	func getLastRearNote(front: NoteRearSetupModel) {
+	func getLastRearNote(front: NoteRearSetupViewModel) {
 		rSpring = front.lastRAirSpringSetting
 		rCompSetting = front.lastRCompSetting
 		rHSCSetting = front.lastRHSCSetting

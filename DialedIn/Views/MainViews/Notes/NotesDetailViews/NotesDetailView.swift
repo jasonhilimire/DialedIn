@@ -16,7 +16,7 @@ struct NotesDetailView: View {
 
 	@ObservedObject var noteVM = NoteViewModel()
 	@ObservedObject var front = NoteFrontSetupViewModel()
-	@ObservedObject var rear = NoteRearSetupModel()
+	@ObservedObject var rear = NoteRearSetupViewModel()
 	@ObservedObject var forkVM = ForkViewModel()
 	@ObservedObject var rearVM = RearShockViewModel()
 	

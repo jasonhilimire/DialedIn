@@ -10,7 +10,7 @@ import SwiftUI
 import TextFieldStepper
 
 struct NoteRearSetupView: View {
-    @ObservedObject var rear = NoteRearSetupModel()
+    @ObservedObject var rear = NoteRearSetupViewModel()
 	@ObservedObject var rearVM = RearShockViewModel()
 	@ObservedObject var noteVM = NoteViewModel()
 	
