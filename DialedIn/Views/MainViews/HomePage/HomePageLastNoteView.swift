@@ -10,14 +10,18 @@ import SwiftUI
 import CoreData
 
 struct HomePageLastNoteView: View {
-	@Environment(\.managedObjectContext) var moc
-
-	@FetchRequest(fetchRequest: Notes.LastNoteFetchRequest())
-	var notes: FetchedResults<Notes>
-	
-	// TODO: FIX THIS as shouldnt be hardcoding this - as wont work when no notes
-	var body: some View {
+    @Environment(\.managedObjectContext) var moc
+    
+    @FetchRequest(fetchRequest: Notes.LastNoteFetchRequest())
+    var notes: FetchedResults<Notes>
+    
+    // TODO: FIX THIS as shouldnt be hardcoding this - as wont work when no notes
+    var body: some View {
+        if notes.count > 0 {
             NotesHomePageStyledCardView(note: notes[0])
+        } else {
+            Text("Please Create a note")
         }
-	}
+    }
+}
 

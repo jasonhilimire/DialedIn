@@ -97,7 +97,7 @@ struct AddNoteView: View {
         }
     }
         Button(action: {
-            self.noteVM.saveNote(bikeName: bikeName)
+            self.noteVM.saveNote(bikeName: self.bikes[bikeNameIndex].name!)
             withAnimation(.linear(duration: 0.05), {
                 self.saveText = "     SAVED!!     "  // no idea why, but have to add spaces here other wise it builds the word slowly with SA...., annoying as all hell
             })
