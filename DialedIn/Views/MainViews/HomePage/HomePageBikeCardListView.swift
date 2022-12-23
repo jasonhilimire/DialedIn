@@ -66,6 +66,7 @@ struct HomePageStyledBikeCardView: View {
 	let bike: Bike
 
     @State var buttonText = ""
+    @State var rearText = ""
     
     init(bike: Bike){
         self.bike = bike
@@ -99,7 +100,7 @@ struct HomePageStyledBikeCardView: View {
                         Text("\(self.bike.rearSetup?.rearTravel ?? 0.00, specifier: "%.2f")mm")
                             .fontWeight(.thin)
                         Spacer()
-                        Text("PSI: \(rearVM.getLastAirForBikeCard(bike: self.bike.name ?? "N/A"), specifier: "%.0f")")
+                        Text("\(rearText) \(rearVM.getLastAirForBikeCard(bike: self.bike.name ?? "N/A"), specifier: "%.0f")")
                     }
                     Text("Stroke Length: \(self.bike.rearSetup?.strokeLength ?? 0.00, specifier: "%.2f")mm")
                         .fontWeight(.thin)
@@ -116,6 +117,7 @@ struct HomePageStyledBikeCardView: View {
         }//: END HSTACK
         .onAppear(){
             self.getButtonLetter(bikeName: bike.wrappedBikeName)
+            self.setrearText()
         }
         .padding(10)
 		.foregroundColor(Color("TextColor"))
@@ -170,6 +172,10 @@ struct HomePageStyledBikeCardView: View {
     
     func getButtonLetter(bikeName: String){
         buttonText = bikeName.first?.uppercased() ?? "U"
+    }
+    
+    func setrearText() {
+        rearText = bike.rearSetup?.isCoil ?? false ? "Coil:" : "PSI:"
     }
     
     func serviceDue() -> Bool {

@@ -31,6 +31,7 @@ struct HomePageMainView: View {
     @State private var showingAlert: Bool = false
     private var alertText = "You must create a bike before adding notes or services"
     @State var createText = "Tap to create a Bike & begin using Dialed In!"
+    @State var createNoteText = "Tap to create your first Note!"
 	
 	enum ActiveSheet: Identifiable {
 		case addNote,
@@ -53,6 +54,18 @@ struct HomePageMainView: View {
                                     Button(action: {activeSheet = .addBike }) {
                                     Label: do {
                                         CreateBikeView(createText: $createText)
+                                        }
+                                    }
+                                    .padding()
+                                    .customBackgroundGradient()
+                                    .cornerRadius(20)
+                                    .customShadow()
+                                }
+                            } else if bikes.count >= 1 && notes.count == 0 {
+                                VStack {
+                                    Button(action: {activeSheet = .addNote }) {
+                                    Label: do {
+                                        CreateBikeView(createText: $createNoteText)
                                         }
                                     }
                                     .padding()
