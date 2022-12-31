@@ -11,9 +11,9 @@ import SwiftUI
 struct BikePickerView: View {
     
     // Create the MOC
-       @Environment(\.managedObjectContext) var moc
+    @Environment(\.managedObjectContext) var moc
        
-       // Get All the bikes for the PickerView
+    // Get All the bikes for the PickerView
     @FetchRequest(fetchRequest: Bike.bikesFetchRequest()) var bikes: FetchedResults<Bike>
        
     @Binding var bikeNameIndex: Int

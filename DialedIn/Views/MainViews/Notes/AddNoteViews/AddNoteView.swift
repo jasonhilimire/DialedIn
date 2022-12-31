@@ -51,6 +51,9 @@ struct AddNoteView: View {
                                 HStack {
                                     Text("Bike: ")
                                     BikePickerView(bikeNameIndex: $bikeNameIndex)
+                                        .onTapGesture {
+                                            self.setup()
+                                        }
                                 }
                             }
                             DatePicker(selection: $noteVM.noteDate, in: ...Date(), displayedComponents: .date) {
@@ -114,7 +117,7 @@ struct AddNoteView: View {
     }
     // MARK: - FUNCTIONS -
 	
-    func setup() {
+    func setup() { // SETS UP PREVIOUS SETTINGS FOR F/R 
         bikeName = bikes[bikeNameIndex].name ?? "Unknown"
         frontSetup.bikeName = bikeName
         frontSetup.getLastFrontSettings()
