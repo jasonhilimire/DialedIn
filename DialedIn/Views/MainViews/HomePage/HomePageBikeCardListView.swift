@@ -83,6 +83,9 @@ struct HomePageStyledBikeCardView: View {
                     Text(self.bike.name ?? "Unknown Bike")
                         .fontWeight(.heavy)
                     Spacer()
+                    if serviceDue() {
+                        ServiceDueWrenchIconView()
+                    }
                 }//: END HSTACK
                 HStack{
                     Text("\(self.bike.frontSetup?.info ?? ""):")
@@ -106,14 +109,6 @@ struct HomePageStyledBikeCardView: View {
                         .fontWeight(.thin)
                 }
             }//:END VSTACK
-            Spacer()
-            VStack {
-                if serviceDue() {
-                    ServiceDueWrenchIconView()
-                }
-                Spacer()
-            }
-
         }//: END HSTACK
         .onAppear(){
             self.getButtonLetter(bikeName: bike.wrappedBikeName)
