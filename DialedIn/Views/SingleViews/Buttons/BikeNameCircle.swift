@@ -12,20 +12,22 @@ struct BikeNameCircle: View {
     @Binding var buttonText: String
     
     var body: some View {
-        Text("\(buttonText)")
-            .font(.largeTitle)
-            .fontWeight(.semibold)
-            .foregroundColor(Color.white)
-            .padding()
-            .customBackgroundGradient()
-            .clipShape(Circle())
-            .frame(width: 50, height: 50, alignment: .center)
-            .customTextShadow()
+        ZStack {
+            Circle()
+                .fill(Color.customGradient)
+                .frame(width: 50, height: 50)
+            Text(buttonText)
+                .font(.largeTitle)
+                .fontWeight(.semibold)
+                .foregroundColor(Color.white)
+            }
+                .clipShape(Circle())
+                .customTextShadow()
     }
 }
 
 struct BikeNameCircle_Previews: PreviewProvider {
     static var previews: some View {
-        BikeNameCircle(buttonText: .constant("T"))
+        BikeNameCircle(buttonText: .constant("M"))
     }
 }

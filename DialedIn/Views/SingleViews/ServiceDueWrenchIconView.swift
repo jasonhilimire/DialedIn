@@ -11,14 +11,16 @@ import SwiftUI
 struct ServiceDueWrenchIconView: View {
     var body: some View {
         Image("wrench.and.screwdriver.fill")
+            .resizable()
+            .aspectRatio(contentMode: .fit)
             .foregroundColor(.red)
-            .scaledToFit()
             .customTextShadow()
-            .frame(width: 25, height: 25, alignment: .center)
-            .padding(.horizontal, 10)
+            .frame(width: 40, height: 40)
+            .padding(.horizontal, 15)
             .customTextShadow()
     }
 }
+
 
 struct ServiceDueWrenchIconView_Previews: PreviewProvider {
     static var previews: some View {
