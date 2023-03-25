@@ -47,76 +47,73 @@ struct HomePageMainView: View {
 		NavigationView() {
 			GeometryReader { geo in //TODO: remove GEO Reader?
                 VStack{
-                    VStack {
-                        HStack(alignment: .top){
-                            if bikes.count == 0 {
-                                VStack {
-                                    Button(action: {activeSheet = .addBike }) {
-                                    Label: do {
-                                        CreateBikeView(createText: $createText)
-                                        }
+                    HStack(alignment: .top){
+                        if bikes.count == 0 {
+                            VStack {
+                                Button(action: {activeSheet = .addBike }) {
+                                Label: do {
+                                    CreateBikeView(createText: $createText)
                                     }
-                                    .padding()
-                                    .customBackgroundGradient()
-                                    .cornerRadius(20)
-                                    .customShadow()
                                 }
-                            } else if bikes.count >= 1 && notes.count == 0 {
-                                VStack {
-                                    Button(action: {activeSheet = .addNote }) {
-                                    Label: do {
-                                        CreateBikeView(createText: $createNoteText)
-                                        }
-                                    }
-                                    .padding()
-                                    .customBackgroundGradient()
-                                    .cornerRadius(20)
-                                    .customShadow()
-                                }
-                            } else {
-                                HomePageLastNoteView()
+                                .padding()
+                                .customBackgroundGradient()
+                                .cornerRadius(20)
+                                .customShadow()
                             }
-                            Spacer()
-                            HomePageNotesInfoView()
-                        }//: END HSTACK
-                        HStack{
-                            
-                            Button(action: {activeSheet = .addBike }) {
-                                Label("Add New Bike", systemImage: "bicycle").scaleEffect(1.5)
+                        } else if bikes.count >= 1 && notes.count == 0 {
+                            VStack {
+                                Button(action: {activeSheet = .addNote }) {
+                                Label: do {
+                                    CreateBikeView(createText: $createNoteText)
+                                    }
+                                }
+                                .padding()
+                                .customBackgroundGradient()
+                                .cornerRadius(20)
+                                .customShadow()
+                            }
+                        } else {
+                            HomePageLastNoteView()
+                        }
+                        Spacer()
+                        HomePageNotesInfoView()
+                    }//: END HSTACK
+                    HomePageBikeCardListView()
+                    HStack{
+                        
+                        Button(action: {activeSheet = .addBike }) {
+                            Label("Add New Bike", systemImage: "bicycle").scaleEffect(1.5)
+                        }
+                        .buttonStyle(Nav_Button())
+                        
+                        Spacer()
+                        if bikes.count == 0 {
+                            Button(action: { showingAlert.toggle()}) {
+                                Label("Add New Service", systemImage: "wrench").scaleEffect(1.5)
                             }
                             .buttonStyle(Nav_Button())
                             
                             Spacer()
-                            if bikes.count == 0 {
-                                Button(action: { showingAlert.toggle()}) {
-                                    Label("Add New Service", systemImage: "wrench").scaleEffect(1.5)
-                                }
-                                .buttonStyle(Nav_Button())
-                                
-                                Spacer()
-                                
-                                Button(action: { showingAlert.toggle()}) {
-                                    Label("Add New Note", systemImage: "note.text.badge.plus").scaleEffect(1.5)
-                                }
-                                .buttonStyle(Nav_Button())
-                                
-                            } else {
-                                Button(action: {activeSheet = .addService }) {
-                                    Label("Add New Service", systemImage: "wrench").scaleEffect(1.5)
-                                }
-                                .buttonStyle(Nav_Button())
-                                
-                                Spacer()
-                                
-                                Button(action: { activeSheet = .addNote}) {
-                                    Label("Add New Note", systemImage: "note.text.badge.plus").scaleEffect(1.5)
-                                }
-                                .buttonStyle(Nav_Button())
+                            
+                            Button(action: { showingAlert.toggle()}) {
+                                Label("Add New Note", systemImage: "note.text.badge.plus").scaleEffect(1.5)
                             }
-                        }//: END HSTACK
-                    }//: END VSTACK
-                    .padding(.horizontal, 10)
-                    HomePageBikeCardListView()
+                            .buttonStyle(Nav_Button())
+                            
+                        } else {
+                            Button(action: {activeSheet = .addService }) {
+                                Label("Add New Service", systemImage: "wrench").scaleEffect(1.5)
+                            }
+                            .buttonStyle(Nav_Button())
+                            
+                            Spacer()
+                            
+                            Button(action: { activeSheet = .addNote}) {
+                                Label("Add New Note", systemImage: "note.text.badge.plus").scaleEffect(1.5)
+                            }
+                            .buttonStyle(Nav_Button())
+                        }
+                    }//: END HSTACK
                 }//: END VSTACK
             }//: END GeoREader
             .navigationBarTitle("Dialed In", displayMode: .inline)
@@ -127,7 +124,7 @@ struct HomePageMainView: View {
             }
         } //: END NavView
 		.navigationViewStyle(StackNavigationViewStyle())
-        
+    
 		.sheet(item: $activeSheet) { item in
 			switch item {
 				case .addNote:

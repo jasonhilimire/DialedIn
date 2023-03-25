@@ -66,9 +66,9 @@ struct FilteredNoteView: View {
                             .padding()
                         Spacer()
                         Text("\(filteredArray.count)")
-                            .font(.footnote)
+                            .font(.headline)
                             .foregroundColor(Color("TextColor"))
-                            .padding(5)
+                            .padding(10)
                     }
                     .background(Color("TextEditBackgroundColor"))) {
                         ForEach(filteredArray, id: \.self) { note in

@@ -37,7 +37,6 @@ struct HomePageBikeCardListView: View {
                     }
                 }
                 .padding(.top, 5)
-                .padding(.horizontal, 10)
             }
             .customShadow()
             }
