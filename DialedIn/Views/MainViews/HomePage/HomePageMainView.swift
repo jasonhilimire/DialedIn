@@ -47,6 +47,7 @@ struct HomePageMainView: View {
 		NavigationView() {
 			GeometryReader { geo in //TODO: remove GEO Reader?
                 VStack{
+                    CustomNavBarView()
                     HStack(alignment: .top){
                         if bikes.count == 0 {
                             VStack {
@@ -118,7 +119,7 @@ struct HomePageMainView: View {
                     .padding(.horizontal, 10)
                 }//: END VSTACK
             }//: END GeoREader
-            .navigationBarTitle("Dialed In", displayMode: .inline)
+//            .navigationBarTitle("Dialed In", displayMode: .inline)
             .alert(isPresented: $showingAlert) {
                 Alert(title: Text("Please Create a Bike"), message: Text("\(alertText)"), primaryButton: .default(Text("OK")) {
                     //

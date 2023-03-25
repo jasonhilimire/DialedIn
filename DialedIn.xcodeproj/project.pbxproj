@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A3036E9929CF9FD300E9645D /* CustomNavBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3036E9829CF9FD300E9645D /* CustomNavBarView.swift */; };
 		A3077DEB255B8DAD00981486 /* SearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3077DEA255B8DAD00981486 /* SearchBarView.swift */; };
 		A30D9668253549840094CE90 /* NotesHomePageStyledCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30D9667253549840094CE90 /* NotesHomePageStyledCardView.swift */; };
 		A313D5F725539B240073FE33 /* PulsatingPlusButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A313D5F625539B240073FE33 /* PulsatingPlusButtonView.swift */; };
@@ -108,6 +109,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A3036E9829CF9FD300E9645D /* CustomNavBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavBarView.swift; sourceTree = "<group>"; };
 		A3077DEA255B8DAD00981486 /* SearchBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarView.swift; sourceTree = "<group>"; };
 		A30D9667253549840094CE90 /* NotesHomePageStyledCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesHomePageStyledCardView.swift; sourceTree = "<group>"; };
 		A313D5F625539B240073FE33 /* PulsatingPlusButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PulsatingPlusButtonView.swift; sourceTree = "<group>"; };
@@ -319,6 +321,7 @@
 				A3EAEF35274EE29400B562E9 /* ToolbarContent.swift */,
 				A3224EA02759C56E004EFDDA /* ServiceWarningView.swift */,
 				A3D533CA2920842100C1164B /* ServiceDueWrenchIconView.swift */,
+				A3036E9829CF9FD300E9645D /* CustomNavBarView.swift */,
 			);
 			path = SingleViews;
 			sourceTree = "<group>";
@@ -728,6 +731,7 @@
 				A3F3C83D25D9CD41000BE912 /* ForkSetupFormView.swift in Sources */,
 				A31605FA2523BAA1009071E9 /* ArrowButtonView.swift in Sources */,
 				A3C76CA423EF66450047BBCC /* RatingView.swift in Sources */,
+				A3036E9929CF9FD300E9645D /* CustomNavBarView.swift in Sources */,
 				A3F567A224343B1100C769A4 /* Constants.swift in Sources */,
 				A3224EA12759C56E004EFDDA /* ServiceWarningView.swift in Sources */,
 				A3D518332426B50D007DEE9D /* RearShock+CoreDataProperties.swift in Sources */,
@@ -945,7 +949,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = "DialedIn/Dialed In.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 15;
+				CURRENT_PROJECT_VERSION = 26;
 				DEVELOPMENT_ASSET_PATHS = "\"DialedIn/Preview Content\"";
 				DEVELOPMENT_TEAM = 55QD8ZCA9C;
 				ENABLE_PREVIEWS = YES;
@@ -976,7 +980,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = "DialedIn/Dialed In.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 15;
+				CURRENT_PROJECT_VERSION = 26;
 				DEVELOPMENT_ASSET_PATHS = "\"DialedIn/Preview Content\"";
 				DEVELOPMENT_TEAM = 55QD8ZCA9C;
 				ENABLE_PREVIEWS = YES;
