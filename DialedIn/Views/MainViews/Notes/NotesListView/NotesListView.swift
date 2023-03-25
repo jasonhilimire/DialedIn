@@ -25,8 +25,10 @@ struct NotesListView: View {
     @State private var showingAddScreen = false
 	@State private var showFavorites = false
 	@State private var pickerChoice = ["All", "Favorites"]
-	@State private var pickerChoiceIndex = 0
-	@State private var searchText = ""
+//	@State private var pickerChoiceIndex = 0
+    @Binding var pickerChoiceIndex: Int
+//	@State private var searchText = ""
+    @Binding var searchText: String
     @State var createText = "Please create a Bike to begin using Dialed In!"
 	
     var body: some View {

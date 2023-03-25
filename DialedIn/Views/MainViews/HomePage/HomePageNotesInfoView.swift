@@ -15,6 +15,10 @@ struct HomePageNotesInfoView: View {
     @FetchRequest(fetchRequest: Notes.favoritedNotesFetchRequest(filter: true))
     var fav_notes: FetchedResults<Notes>
     
+    @State private var searchText = ""
+    @State private var pickerChoiceIndex = 0
+    @State private var pickerChoiceIndex1 = 1
+    
     var body: some View {
         VStack(alignment: .leading) {
             HStack(alignment: .top) {
@@ -25,15 +29,18 @@ struct HomePageNotesInfoView: View {
                     Text("Notes")
                         .fontWeight(.thin)
                 } else {
-                    Text("\(notes.count)")
-                        .font(.largeTitle)
-                        .bold()
-                    if notes.count == 1 {
-                        Text("Note")
-                            .fontWeight(.thin)
-                    } else {
-                        Text("Notes")
-                            .fontWeight(.thin)
+                    NavigationLink(destination: NotesListView(pickerChoiceIndex: $pickerChoiceIndex, searchText: $searchText))
+                    {
+                        Text("\(notes.count)")
+                            .font(.largeTitle)
+                            .bold()
+                        if notes.count == 1 {
+                            Text("Note")
+                                .fontWeight(.thin)
+                        } else {
+                            Text("Notes")
+                                .fontWeight(.thin)
+                        }
                     }
                 }
             }
@@ -41,17 +48,19 @@ struct HomePageNotesInfoView: View {
             Spacer()
             HStack {
                 if fav_notes.count >= 1 {
-                    Text("\(fav_notes.count)")
-                        .font(.largeTitle)
-                        .bold()
-                    Text("Favorites")
-                        .fontWeight(.thin)
+                    NavigationLink(destination: NotesListView(pickerChoiceIndex: $pickerChoiceIndex1, searchText: $searchText)) {
+                        Text("\(fav_notes.count)")
+                            .font(.largeTitle)
+                            .bold()
+                        Text("Favorites")
+                            .fontWeight(.thin)
+                    }
                 }
             }
                 .foregroundColor(Color("TextColor"))
             Spacer()
             NavigationLink("See All Notes") {
-                NotesListView()
+                NotesListView(pickerChoiceIndex: $pickerChoiceIndex, searchText: $searchText)
             }
             .font(.footnote)
             .foregroundColor(Color.gray)
