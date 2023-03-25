@@ -66,8 +66,11 @@ struct AddNoteView: View {
                                 Text("Favorite:").fontWeight(.thin)
                                 FavoritesView(favorite: self.$noteVM.noteFavorite)
                             } .padding(.bottom)
-                            HStack(alignment: .top) {
-                                Text("Note:").fontWeight(.thin)
+                            VStack {
+                                HStack(alignment: .top) {
+                                    Text("Note:").fontWeight(.thin)
+                                    Spacer()
+                                }
                                 TextEditor(text: self.$noteVM.noteText)
                                     .frame(height: 300)
                                     .textFieldStyle(PlainTextFieldStyle())
@@ -75,6 +78,7 @@ struct AddNoteView: View {
                                     .multilineTextAlignment(.leading)
                                     .overlay(RoundedRectangle(cornerRadius: 16).stroke(Color.gray))
                             }
+                            
                         } else if notePickerIndex == 1 { //: SHOW FRONT VIEW
                             // MARK: - FRONT SETUP -
                             NoteFrontSetupView(front: frontSetup, noteVM: noteVM, forkVM: forkVM, note: nil)

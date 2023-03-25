@@ -13,28 +13,31 @@ struct BikeDetailFormView: View {
 	@ObservedObject var bikeVM = BikeViewModel()
 	
     var body: some View {
-		Section{
-			HStack {
-				Text("Bike Name:").fontWeight(.thin)
-				TextField("Enter Bike Name", text: self.$bikeVM.bikeName ?? "" )
-					.onChange(of: bikeVM.bikeName) { newValue in
-						bikeVM.checkBikeNameExists(bikeName: bikeVM.bikeName ?? "")
-						print("DuplicateNameAlert = \(bikeVM.duplicateNameAlert)")
-					}
-					
-				.customTextField()
-				.textFieldStyle(PlainTextFieldStyle())
-			}
-			
-			HStack {
-				Text("Note:").fontWeight(.thin)
-				TextField("Enter a Note", text: $bikeVM.bikeNote ?? "")
-					.customTextField()
-					.textFieldStyle(PlainTextFieldStyle())
+        HStack {
+            Text("Bike Name:").fontWeight(.thin)
+            TextField("Enter Bike Name", text: self.$bikeVM.bikeName ?? "" )
+                .onChange(of: bikeVM.bikeName) { newValue in
+                    bikeVM.checkBikeNameExists(bikeName: bikeVM.bikeName ?? "")
+                    print("DuplicateNameAlert = \(bikeVM.duplicateNameAlert)")
+                }
+                
+            .customTextField()
+            .textFieldStyle(PlainTextFieldStyle())
+        } //: END HSTACK
 
-			}
-//                        Toggle(isOn: $bikeVM.isDefault.animation(), label: {Text("Set as Default Bike?")})
-		}
+        VStack {
+            HStack {
+                Text("Note:").fontWeight(.thin)
+                Spacer()
+            }
+            TextEditor(text: $bikeVM.bikeNote ?? "")
+                .frame(height: 300)
+                .textFieldStyle(PlainTextFieldStyle())
+                .cornerRadius(8)
+                .multilineTextAlignment(.leading)
+                .overlay(RoundedRectangle(cornerRadius: 16).stroke(Color.gray))
+        } //: END VSTACK
+//           Toggle(isOn: $bikeVM.isDefault.animation(), label: {Text("Set as Default Bike?")})
     }
 }
 
