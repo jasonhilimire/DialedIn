@@ -78,6 +78,7 @@ struct HomePageMainView: View {
                         Spacer()
                         HomePageNotesInfoView()
                     }//: END HSTACK
+                    .padding(.horizontal, 10)
                     HomePageBikeCardListView()
                     HStack{
                         
@@ -114,6 +115,7 @@ struct HomePageMainView: View {
                             .buttonStyle(Nav_Button())
                         }
                     }//: END HSTACK
+                    .padding(.horizontal, 10)
                 }//: END VSTACK
             }//: END GeoREader
             .navigationBarTitle("Dialed In", displayMode: .inline)
