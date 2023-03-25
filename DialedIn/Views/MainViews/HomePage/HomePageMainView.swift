@@ -74,7 +74,9 @@ struct HomePageMainView: View {
                                 .customShadow()
                             }
                         } else {
-                            HomePageLastNoteView()
+                            NavigationLink(destination: NotesDetailView(note: notes.last ?? notes[0])) {
+                                   HomePageLastNoteView()
+                               }
                         }
                         Spacer()
                         HomePageNotesInfoView()

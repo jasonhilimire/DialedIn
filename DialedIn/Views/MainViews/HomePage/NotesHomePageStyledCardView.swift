@@ -87,12 +87,12 @@ struct NotesHomePageStyledCardView: View {
 							}
 						}
 					}
-					Button(action: {self.showingEditScreen.toggle()}) {
-						HStack {
-							Text("Edit")
-							Image(systemName: "square.and.pencil")
-						}
-					}
+//					Button(action: {self.showingEditScreen.toggle()}) {
+//						HStack {
+//							Text("Edit")
+//							Image(systemName: "square.and.pencil")
+//						}
+//					}
 					Divider()
 					Button(action: {deleteNote()}) {
 						HStack {
