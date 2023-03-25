@@ -23,11 +23,9 @@ struct NotesHomePageStyledCardView: View {
 		ZStack {
             VStack(alignment: .leading) {
                 HStack{
-                    Text("Last Note")
+                    Text(note.date != nil ? "\(note.date!, formatter: dateFormatter)" : "")
                         .font(.title2)
                         .bold()
-                        .underline()
-                        .customTextShadow()
                     Spacer()
                     if note.isFavorite == true {
                         HomeFavoritesView(favorite: .constant(note.isFavorite))
@@ -35,37 +33,32 @@ struct NotesHomePageStyledCardView: View {
                         Text("   ")
                     }
                 }//: END HSTACK
-                .customShadow()
+                    .customTextShadow()
                 Spacer()
                 Text(note.bike?.name ?? "No Bike")
-                    .bold()
-                Spacer()
-                Text(note.date != nil ? "\(note.date!, formatter: dateFormatter)" : "")
-                    .italic()
+                    .font(.title3)
 				Spacer()
+                if note.rating > 0 {
+                    HomeRatingView(rating: .constant(Int(note.rating)))
+                        .customShadow()
+                        .padding(.bottom, 2)
+                }
+                Spacer()
+                
 				VStack(alignment: .leading) {
-					HStack {
-						VStack(alignment: .leading) {
-							if note.rating > 0 {
-								HomeRatingView(rating: .constant(Int(note.rating)))
-                                    .customShadow()
-                                    .padding(.bottom, 2)
-							}
-                            HStack {
-                                Text("F:")
-                                Text("\(note.fAirVolume, specifier: "%.1f")")
-                                Spacer()
-                                if note.bike?.hasRearShock == true {
-                                    Text("R:")
-                                    Text("\(note.rAirSpring, specifier: "%.0f")")
-                                }
-                            }
-							Text(note.note ?? "")
-                            Spacer()
-						}
-						.font(.footnote)
-						Spacer()
-					}
+                    HStack {
+                        Text("F:")
+                        Text("\(note.fAirVolume, specifier: "%.1f")")
+                        Spacer()
+                        if note.bike?.hasRearShock == true {
+                            Text("R:")
+                            Text("\(note.rAirSpring, specifier: "%.0f")")
+                        }
+                    }
+                    .padding(.bottom, 5)
+                    Text(note.note ?? "")
+                        .font(.footnote)
+                Spacer()
 				}//: END VSTACK
 			} //: END VSTACK
 			.padding()
