@@ -12,6 +12,9 @@ struct HomePageNotesInfoView: View {
     @FetchRequest(fetchRequest: Notes.notesFetchRequest())
     var notes: FetchedResults<Notes>
     
+    @FetchRequest(fetchRequest: Notes.favoritedNotesFetchRequest(filter: true))
+    var fav_notes: FetchedResults<Notes>
+    
     var body: some View {
         VStack(alignment: .leading) {
             HStack(alignment: .top) {
@@ -35,28 +38,17 @@ struct HomePageNotesInfoView: View {
                 }
             }
                 .foregroundColor(Color("TextColor"))
-//            Spacer()
-//            HStack {
-//                Text("2")
-//                    .font(.largeTitle)
-//                    .bold()
-//                Text("Bikes")
-//                    .fontWeight(.thin)
-//            }
-//                .foregroundColor(Color("TextColor"))
-//            Spacer()
-//            HStack {
-//                Text("1")
-//                    .font(.largeTitle)
-//                    .bold()
-//                VStack {
-//                    Text("Service")
-//                        .fontWeight(.thin)
-//                    Text("Overdue")
-//                        .fontWeight(.thin)
-//                }
-//            }
-//                .foregroundColor(.red)
+            Spacer()
+            HStack {
+                if fav_notes.count >= 1 {
+                    Text("\(fav_notes.count)")
+                        .font(.largeTitle)
+                        .bold()
+                    Text("Favorites")
+                        .fontWeight(.thin)
+                }
+            }
+                .foregroundColor(Color("TextColor"))
             Spacer()
             NavigationLink("See All Notes") {
                 NotesListView()

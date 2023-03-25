@@ -83,45 +83,38 @@ struct HomePageStyledBikeCardView: View {
                     Text(self.bike.name ?? "Unknown Bike")
                         .fontWeight(.heavy)
                     Spacer()
-                    if serviceDue() {
-                        ServiceDueWrenchIconView()
-                    }
+                    
                 }//: END HSTACK
                 HStack{
-                    Text("\(self.bike.frontSetup?.info ?? ""):")
-                        .fontWeight(.thin)
-                    Text("\(self.bike.frontSetup?.travel ?? 0.0, specifier: "%.0f")mm")
-                        .fontWeight(.thin)
-                    Spacer()
+                    Text("Front -")
                     Text("PSI: \(frontVM.getAirforBikeCard(bike: self.bike.name ?? "N/A"), specifier: "%.1f")")
                 }
                 
                 if self.bike.hasRearShock == true {
                     HStack {
-                        Text("\(self.bike.rearSetup?.info ?? ""):")
-                            .fontWeight(.thin)
-                        Text("\(self.bike.rearSetup?.rearTravel ?? 0.00, specifier: "%.2f")mm")
-                            .fontWeight(.thin)
-                        Spacer()
+                        Text("Rear  -")
+
                         Text("\(rearText) \(rearVM.getLastAirForBikeCard(bike: self.bike.name ?? "N/A"), specifier: "%.0f")")
                     }
-                    Text("Stroke Length: \(self.bike.rearSetup?.strokeLength ?? 0.00, specifier: "%.2f")mm")
-                        .fontWeight(.thin)
                 }
             }//:END VSTACK
+
+            if serviceDue() {
+                ServiceDueWrenchIconView().padding()
+            }
+                
+            Spacer()
         }//: END HSTACK
         .onAppear(){
             self.getButtonLetter(bikeName: bike.wrappedBikeName)
             self.setrearText()
         }
-        .padding(10)
 		.foregroundColor(Color("TextColor"))
 		.background(Color("BackgroundColor"))
 		.cornerRadius(20)
-		.overlay(
-			RoundedRectangle(cornerRadius: 20)
-				.stroke((LinearGradient(gradient: Gradient(colors: [Color.orange, Color.red]) , startPoint: .top, endPoint: .bottom)), lineWidth: 2))
-		.customShadow()
+//		.overlay(
+//			RoundedRectangle(cornerRadius: 20)
+//				.stroke((LinearGradient(gradient: Gradient(colors: [Color.orange, Color.red]) , startPoint: .top, endPoint: .bottom)), lineWidth: 2))
 		.contextMenu {
 			VStack {
 				Button(action: {
