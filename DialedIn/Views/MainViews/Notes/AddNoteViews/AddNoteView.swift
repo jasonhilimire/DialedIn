@@ -42,21 +42,26 @@ struct AddNoteView: View {
                     ForEach(0..<notePickerText.count, id: \.self) { index in
                         Text(self.notePickerText[index]).tag(index)
                     }
-                }.pickerStyle(.segmented)
+                }
+                    .pickerStyle(.segmented)
                     .padding(.horizontal)
+                
                 ScrollView {
                     VStack{
                         if notePickerIndex == 0 { //: SHOW DETAILS VIEW
                             if bikes.count == 1 {
                                 Text("\(self.bikes[bikeNameIndex].name!)")
                                     .fontWeight(.thin)
+                            } else if isFromBikeCard  == true {
+                                Text("\(bike.wrappedBikeName)")
+                                    .fontWeight(.semibold)
                             } else {
                                 HStack {
                                     Text("Bike: ")
                                     BikePickerView(bikeNameIndex: $bikeNameIndex)
-                                        .onTapGesture {
+                                        .onChange(of: bikeNameIndex) { _ in
                                             self.setup(isFromBikeCard: isFromBikeCard)
-                                        }
+                                    }
                                 }
                             }
                             DatePicker(selection: $noteVM.noteDate, in: ...Date(), displayedComponents: .date) {
@@ -80,23 +85,18 @@ struct AddNoteView: View {
                                     .cornerRadius(8)
                                     .multilineTextAlignment(.leading)
                                     .overlay(RoundedRectangle(cornerRadius: 16).stroke(Color.gray))
-                            }
-                            
+                            } //: VSTACK
                         } else if notePickerIndex == 1 { //: SHOW FRONT VIEW
                             // MARK: - FRONT SETUP -
                             NoteFrontSetupView(front: frontSetup, noteVM: noteVM, forkVM: forkVM, note: nil)
                                 .padding()
-                                .onAppear(perform: {self.setup(isFromBikeCard: isFromBikeCard)})
-                            
                         } else if notePickerIndex == 2 { //: SHOW REAR VIEW
                             // MARK: - Rear Setup -
                             NoteRearSetupView(rear: rearSetup, rearVM: rearVM, noteVM: noteVM, note: nil)
                                 .padding()
-                                .onAppear(perform: {self.setup(isFromBikeCard: isFromBikeCard)})
                         }
-    //                    Spacer()
                     } //: VSTACK
-//                .onAppear(perform: {self.setup()}) // change to onReceive??
+                .onAppear(perform: {self.setup(isFromBikeCard: isFromBikeCard)}) // change to onReceive??
                 // Adds a Toolbar Cancel button in the red color that will dismisses the modal
                 .toolbar{
                     SheetToolBar{ cancelAction: do {
@@ -139,6 +139,3 @@ struct AddNoteView: View {
 		rearVM.getRearSetup(bikeName: bikeName)
     }
 }
-
-
-
