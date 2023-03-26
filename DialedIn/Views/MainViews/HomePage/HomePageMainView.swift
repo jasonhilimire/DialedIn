@@ -133,7 +133,7 @@ struct HomePageMainView: View {
 		.sheet(item: $activeSheet) { item in
 			switch item {
 				case .addNote:
-					AddNoteView()
+                    AddNoteView(isFromBikeCard: $isFromBikeCard, bike: bikes[0])
 				case .addService:
 //					Hardcoded to just pass a first Bike found, but since bool is false it will utilize the Picker
 					AddServiceView(isFromBikeCard: $isFromBikeCard, bike: bikes[0])

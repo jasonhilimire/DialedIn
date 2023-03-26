@@ -30,6 +30,9 @@ struct AddNoteView: View {
 	@State private var toggleNoteDetail = false
 	@State private var saveText = "Save"
     @State private var notePickerIndex = 0
+    @Binding var isFromBikeCard: Bool
+    
+    let bike: Bike
     var notePickerText = ["RIDE DETAILS", "FRONT", "REAR"]
     
     var body: some View {
@@ -52,7 +55,7 @@ struct AddNoteView: View {
                                     Text("Bike: ")
                                     BikePickerView(bikeNameIndex: $bikeNameIndex)
                                         .onTapGesture {
-                                            self.setup()
+                                            self.setup(isFromBikeCard: isFromBikeCard)
                                         }
                                 }
                             }
@@ -83,13 +86,13 @@ struct AddNoteView: View {
                             // MARK: - FRONT SETUP -
                             NoteFrontSetupView(front: frontSetup, noteVM: noteVM, forkVM: forkVM, note: nil)
                                 .padding()
-                                .onAppear(perform: {self.setup()})
+                                .onAppear(perform: {self.setup(isFromBikeCard: isFromBikeCard)})
                             
                         } else if notePickerIndex == 2 { //: SHOW REAR VIEW
                             // MARK: - Rear Setup -
                             NoteRearSetupView(rear: rearSetup, rearVM: rearVM, noteVM: noteVM, note: nil)
                                 .padding()
-                                .onAppear(perform: {self.setup()})
+                                .onAppear(perform: {self.setup(isFromBikeCard: isFromBikeCard)})
                         }
     //                    Spacer()
                     } //: VSTACK
@@ -123,8 +126,8 @@ struct AddNoteView: View {
     }
     // MARK: - FUNCTIONS -
 	
-    func setup() { // SETS UP PREVIOUS SETTINGS FOR F/R 
-        bikeName = bikes[bikeNameIndex].name ?? "Unknown"
+    func setup(isFromBikeCard: Bool) { // SETS UP PREVIOUS SETTINGS FOR F/R
+        bikeName = isFromBikeCard ? bike.wrappedBikeName : bikes[bikeNameIndex].name ?? "Unknown"
         frontSetup.bikeName = bikeName
         frontSetup.getLastFrontSettings()
 		noteVM.getLastFrontNote(front: frontSetup)

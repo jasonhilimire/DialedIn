@@ -26,7 +26,6 @@ struct HomePageBikeCardListView: View {
     
     @State private var showingBikeScreen = false
 	
-	
 	// MARK: - BODY -
 	var body: some View {
         ScrollView(.vertical, showsIndicators: true) {
@@ -63,6 +62,7 @@ struct HomePageStyledBikeCardView: View {
 	@State private var showServiceView = false
 	@State private var showEditBikeDetailView = false
     @State private var showBikeNotes = false
+    @State private var showAddNote = false
 	
 	let bike: Bike
 
@@ -121,9 +121,7 @@ struct HomePageStyledBikeCardView: View {
 		.foregroundColor(Color("TextColor"))
 		.background(Color("BackgroundColor"))
 		.cornerRadius(20)
-//		.overlay(
-//			RoundedRectangle(cornerRadius: 20)
-//				.stroke((LinearGradient(gradient: Gradient(colors: [Color.orange, Color.red]) , startPoint: .top, endPoint: .bottom)), lineWidth: 2))
+        
 		.contextMenu {
 			VStack {
 				Button(action: {
@@ -153,6 +151,15 @@ struct HomePageStyledBikeCardView: View {
                         Image(systemName: "note.text")
                         }
                     }
+                Button(action: {
+                    publishBikeName()
+                    self.showAddNote.toggle()
+                }) {
+                    HStack {
+                        Text("Add New Note")
+                        Image(systemName: "doc.badge.plus")
+                        }
+                    }
 			}  //: END VSTACK
 		} //: END CONTEXT
 
@@ -170,6 +177,9 @@ struct HomePageStyledBikeCardView: View {
 		})
         .background(EmptyView().sheet(isPresented: $showBikeNotes) {
             NotesListView(pickerChoiceIndex: $pickerChoiceIndex, searchText: $bikeSearchName)
+        })
+        .background(EmptyView().sheet(isPresented: $showAddNote) {
+            AddNoteView(isFromBikeCard: $isFromBikeCard, bike: bike)
         })
     }//: END VIEW
         

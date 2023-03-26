@@ -30,6 +30,7 @@ struct NotesListView: View {
 //	@State private var searchText = ""
     @Binding var searchText: String
     @State var createText = "Please create a Bike to begin using Dialed In!"
+    @State var isFromBikeCard = false
 	
     var body: some View {
 // MARK: - BODY -
@@ -78,9 +79,8 @@ struct NotesListView: View {
                 }
         })
             .sheet(isPresented: $showingAddScreen)  {
-                AddNoteView().environment(\.managedObjectContext, self.moc)
+                AddNoteView(isFromBikeCard: $isFromBikeCard, bike: bikes[0]).environment(\.managedObjectContext, self.moc)
         }
-
     }
 	
 	func checkBikesExist() {
