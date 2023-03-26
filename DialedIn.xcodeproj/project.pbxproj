@@ -949,7 +949,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = "DialedIn/Dialed In.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 103;
+				CURRENT_PROJECT_VERSION = 109;
 				DEVELOPMENT_ASSET_PATHS = "\"DialedIn/Preview Content\"";
 				DEVELOPMENT_TEAM = 55QD8ZCA9C;
 				ENABLE_PREVIEWS = YES;
@@ -980,7 +980,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = "DialedIn/Dialed In.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 103;
+				CURRENT_PROJECT_VERSION = 109;
 				DEVELOPMENT_ASSET_PATHS = "\"DialedIn/Preview Content\"";
 				DEVELOPMENT_TEAM = 55QD8ZCA9C;
 				ENABLE_PREVIEWS = YES;
@@ -1012,7 +1012,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8B96WPVX2B;
 				INFOPLIST_FILE = DialedInTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1022,7 +1022,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DialedIn.app/DialedIn";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Dialed In.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Dialed In";
 			};
 			name = Debug;
 		};
@@ -1034,7 +1034,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8B96WPVX2B;
 				INFOPLIST_FILE = DialedInTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1044,7 +1044,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DialedIn.app/DialedIn";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Dialed In.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Dialed In";
 			};
 			name = Release;
 		};

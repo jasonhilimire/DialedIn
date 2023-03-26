@@ -6,12 +6,11 @@
 //  Copyright © 2020 Jason Hilimire. All rights reserved.
 //
 
-/*
+
 import XCTest
-@testable import DialedIn
+@testable import Dialed_In
 
 class DialedInTests: XCTestCase {
-
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
@@ -20,7 +19,12 @@ class DialedInTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testExample() {
+    func testCalcSag() {
+        let sag = 25.0
+        let travel = 100.0
+        let sut = calcSag(sag: sag, travel: travel)
+        XCTAssertEqual(sut, 25.0)
+
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
     }
@@ -33,4 +37,4 @@ class DialedInTests: XCTestCase {
     }
 
 }
- */
+ 
