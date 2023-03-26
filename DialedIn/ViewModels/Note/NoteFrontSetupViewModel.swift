@@ -117,7 +117,7 @@ class NoteFrontSetupViewModel: ObservableObject {
         return lastAirSetting ?? 00.0
     }
 
-    func getAir2orBikeCard(bike: String) -> Double {
+    func getAir2forBikeCard(bike: String) -> Double {
         let lastRecord = filterBikes(for: bike)
         let lastAirSetting = lastRecord.last?.fAirVolume2
         return lastAirSetting ?? 00.0

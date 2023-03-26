@@ -92,6 +92,12 @@ struct HomePageStyledBikeCardView: View {
                     Text("Front -")
                     Text("PSI: \(frontVM.getAirforBikeCard(bike: self.bike.name ?? "N/A"), specifier: "%.1f")")
                 }
+                if self.bike.frontSetup?.dualAir == true {
+                    HStack {
+                        Text("Secondary -")
+                        Text("PSI: \(frontVM.getAir2forBikeCard(bike: self.bike.name ?? "N/A"), specifier: "%.1f")")
+                    }
+                }
                 
                 if self.bike.hasRearShock == true {
                     HStack {
@@ -101,13 +107,13 @@ struct HomePageStyledBikeCardView: View {
                     }
                 }
             }//:END VSTACK
-
             if serviceDue() {
                 ServiceDueWrenchIconView().padding()
             }
                 
             Spacer()
         }//: END HSTACK
+        .padding(.vertical)
         .onAppear(){
             self.getButtonLetter(bikeName: bike.wrappedBikeName)
             self.setrearText()

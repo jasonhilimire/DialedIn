@@ -51,26 +51,29 @@ struct NotesStyleCardView: View {
 				Divider()
 				
 				HStack {
-					VStack {
+					VStack(alignment: .leading) {
                         if note.bike?.frontSetup?.dualAir == true {
                             VStack {
-                                HStack {
+                                Spacer()
+                                HStack(alignment: .bottom) {
                                     Text("F")
                                     Text("\(note.fAirVolume, specifier: "%.1f")")
                                 }
                                 .lineLimit(1)
-                                .padding([.top, .bottom, .trailing])
+                                .padding(.trailing)
                                 .font(.body)
                                 .customShadow()
-                                HStack {
+                                
+                                HStack(alignment: .bottom) {
                                     Text("F2")
                                     Text("\(note.fAirVolume2, specifier: "%.1f")")
                                 }
                                 .lineLimit(1)
-                                .padding([.top, .bottom, .trailing])
+                                .padding(.trailing)
                                 .font(.body)
                                 .customShadow()
                             }
+
                         } else {
                             HStack {
                                 Text("F")
