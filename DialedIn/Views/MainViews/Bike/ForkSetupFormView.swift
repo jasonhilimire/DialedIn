@@ -43,7 +43,7 @@ struct ForkSetupFormView: View {
 					.textFieldStyle(PlainTextFieldStyle())
 					.keyboardType(.decimalPad)
 			}
-			
+            Toggle(isOn: $forkVM.dualAir.animation(), label: {Text("Dual Air?").fontWeight(.thin)})
 			Toggle(isOn: $forkVM.dualRebound.animation(), label: {Text("Dual Rebound?").fontWeight(.thin)})
 			Toggle(isOn: $forkVM.dualCompression.animation(), label: {Text("Dual Compression?").fontWeight(.thin)})
 			if isAdd == true { //Show Service dates if isAdd == True
@@ -58,9 +58,7 @@ struct ForkSetupFormView: View {
 			
 			ServiceWarningView(service1: $forkVM.lowersServiceSettingDays, service2: $forkVM.fullServiceSettingDays, service1text: service1text, service2text: service2text, setupIndex: setupIndex)
 		}
-		
-		
+	
     }
-
 }
 

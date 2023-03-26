@@ -32,6 +32,12 @@ class ForkViewModel: ObservableObject {
 			didChange.send(self)
 		}
 	}
+    
+    @Published var dualAir: Bool = false {
+        didSet {
+            didChange.send(self)
+        }
+    }
 	
 	@Published var info: String? = "" {
 		didSet {
@@ -90,6 +96,13 @@ class ForkViewModel: ObservableObject {
 		}
 		return filteredBike.last?.dualRebound ?? true
 	}
+    
+    func getDualAir(bike: String) -> Bool {
+        let filteredBike = getFrontSettings(filter: bike).filter { bikes in
+            bikes.bike?.frontSetup?.bike?.name == bike
+        }
+        return filteredBike.last?.dualAir ?? true
+    }
 	
 	func getTravel(bike: String) -> Double {
 		let filteredBike = getFrontSettings(filter: bike).filter { bikes in
@@ -130,6 +143,7 @@ class ForkViewModel: ObservableObject {
 	func getForkSettings(bikeName: String){
 		dualCompression = getDualComp(bike: bikeName)
 		dualRebound = getDualReb(bike: bikeName)
+        dualAir = getDualAir(bike: bikeName)
 		travelString = getTravelString(bike: bikeName)
 		travel = getTravel(bike: bikeName)
 		info = getInfo(bike: bikeName)
@@ -148,6 +162,7 @@ class ForkViewModel: ObservableObject {
 		newFork.id = UUID()
 		newFork.dualCompression = self.dualCompression
 		newFork.dualRebound = self.dualRebound
+        newFork.dualAir = self.dualAir
 		newFork.travel = convertTravel(from: travelString!)
 		newFork.lowersServiceWarn = Int16(self.lowersServiceSettingDays)
 		newFork.fullServiceWarn = Int16(self.fullServiceSettingDays)
@@ -168,6 +183,7 @@ class ForkViewModel: ObservableObject {
 		managedObjectContext.performAndWait {
 			fork.dualCompression = self.dualCompression
 			fork.dualRebound = self.dualRebound
+            fork.dualAir = self.dualAir
 			fork.lowersServiceWarn = Int16(self.lowersServiceSettingDays)
 			fork.fullServiceWarn = Int16(self.fullServiceSettingDays)
 			if self.info == "" {

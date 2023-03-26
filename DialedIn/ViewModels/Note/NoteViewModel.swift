@@ -50,6 +50,12 @@ class NoteViewModel: ObservableObject {
 			didChange.send(self)
 		}
 	}
+    
+    @Published var fAirVolume2: Double = 45.5 {
+        didSet {
+            didChange.send(self)
+        }
+    }
 	
 	
 	@Published var fCompSetting: Int16 = 0 {
@@ -207,6 +213,7 @@ class NoteViewModel: ObservableObject {
 	
 	func getNoteFront(note: Notes) {
 		fAirVolume = note.fAirVolume
+        fAirVolume2 = note.fAirVolume2
 		fCompSetting = note.fCompression
 		fHSCSetting = note.fHSC
 		fLSCSetting = note.fLSC
@@ -233,6 +240,7 @@ class NoteViewModel: ObservableObject {
 	
 	func getLastFrontNote(front: NoteFrontSetupViewModel) {
 		fAirVolume = front.lastFAirSetting
+        fAirVolume2 = front.lastFAirSetting2
 		fCompSetting = front.lastFCompSetting
 		fHSCSetting = front.lastFHSCSetting
 		fLSCSetting = front.lastFLSCSetting
@@ -269,6 +277,7 @@ class NoteViewModel: ObservableObject {
 		
 		// FRONT
 		newNote.fAirVolume = Double(self.fAirVolume)
+        newNote.fAirVolume2 = Double(self.fAirVolume2)
 		newNote.fCompression = self.fCompSetting
 		newNote.fHSC = self.fHSCSetting
 		newNote.fLSC = self.fLSCSetting
@@ -305,6 +314,7 @@ class NoteViewModel: ObservableObject {
 			
 			// FRONT
 			note.fAirVolume = Double(self.fAirVolume)
+            note.fAirVolume2 = Double(self.fAirVolume2)
 			note.fCompression = self.fCompSetting
 			note.fHSC = self.fHSCSetting
 			note.fLSC = self.fLSCSetting

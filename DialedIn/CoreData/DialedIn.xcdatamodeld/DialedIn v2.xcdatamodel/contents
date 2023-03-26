@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="19461" systemVersion="21A559" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21513" systemVersion="22D68" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Bike" representedClassName="Bike" syncable="YES">
         <attribute name="bikeNote" optional="YES" attributeType="String"/>
         <attribute name="hasRearShock" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
@@ -11,6 +11,7 @@
         <relationship name="setupNotes" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Notes" inverseName="bike" inverseEntity="Notes"/>
     </entity>
     <entity name="Fork" representedClassName="Fork" syncable="YES">
+        <attribute name="dualAir" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="dualCompression" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="dualRebound" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="fullServiceWarn" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
@@ -30,7 +31,8 @@
     </entity>
     <entity name="Notes" representedClassName="Notes" syncable="YES">
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="fAirVolume" optional="YES" attributeType="Double" maxValueString="400" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="fAirVolume" optional="YES" attributeType="Double" maxValueString="999" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="fAirVolume2" optional="YES" attributeType="Double" minValueString="0" maxValueString="999" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="fCompression" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="fHSC" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="fHSR" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
@@ -77,12 +79,4 @@
         <relationship name="bike" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Bike" inverseName="rearSetup" inverseEntity="Bike"/>
         <relationship name="rearService" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="RearService" inverseName="service" inverseEntity="RearService"/>
     </entity>
-    <elements>
-        <element name="Bike" positionX="-1295.51171875" positionY="-477.16015625" width="128" height="149"/>
-        <element name="Fork" positionX="-680.84765625" positionY="-601.16796875" width="128" height="14"/>
-        <element name="FrontService" positionX="-440.9609375" positionY="-596.84375" width="128" height="104"/>
-        <element name="Notes" positionX="-908.890625" positionY="-180.9140625" width="117.93359375" height="419"/>
-        <element name="RearService" positionX="-397.6875" positionY="-359.015625" width="128" height="104"/>
-        <element name="RearShock" positionX="-686.94921875" positionY="-388.828125" width="128" height="209"/>
-    </elements>
 </model>
