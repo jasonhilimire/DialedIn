@@ -83,15 +83,17 @@ struct AddNoteView: View {
                             // MARK: - FRONT SETUP -
                             NoteFrontSetupView(front: frontSetup, noteVM: noteVM, forkVM: forkVM, note: nil)
                                 .padding()
+                                .onAppear(perform: {self.setup()})
                             
                         } else if notePickerIndex == 2 { //: SHOW REAR VIEW
                             // MARK: - Rear Setup -
                             NoteRearSetupView(rear: rearSetup, rearVM: rearVM, noteVM: noteVM, note: nil)
                                 .padding()
+                                .onAppear(perform: {self.setup()})
                         }
     //                    Spacer()
                     } //: VSTACK
-                .onAppear(perform: {self.setup()}) // change to onReceive??
+//                .onAppear(perform: {self.setup()}) // change to onReceive??
                 // Adds a Toolbar Cancel button in the red color that will dismisses the modal
                 .toolbar{
                     SheetToolBar{ cancelAction: do {
