@@ -49,7 +49,8 @@ struct AddBikeView: View {
                         // MARK: - REAR SETUP -
                         RearSetupFormView(bikeVM: bikeVM, rearShockVM: rearShockVM, rearServiceVM: rearServiceVM, rearSetupIndex: $rearSetupIndex, isAdd: $isAdd)
                     }
-                } .navigationBarTitle("Enter New Bike Info", displayMode: .inline)
+                }
+                .navigationBarTitle("Enter New Bike Info", displayMode: .inline)
 				.alert(isPresented: $duplicateNameAlert) {
 					Alert(title: Text("Duplicate Bike Name"), message: Text("Duplicate Bike Names are not recommended - please change"), primaryButton: .destructive(Text("Clear")) {
 						bikeVM.bikeName = ""

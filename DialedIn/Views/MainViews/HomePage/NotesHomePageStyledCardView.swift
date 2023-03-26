@@ -58,6 +58,8 @@ struct NotesHomePageStyledCardView: View {
                     .padding(.bottom, 5)
                     Text(note.note ?? "")
                         .font(.footnote)
+                        .multilineTextAlignment(.leading)
+                        
                 Spacer()
 				}//: END VSTACK
 			} //: END VSTACK

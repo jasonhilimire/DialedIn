@@ -62,11 +62,14 @@ struct HomePageStyledBikeCardView: View {
 	@State private var isFromBikeCard = true
 	@State private var showServiceView = false
 	@State private var showEditBikeDetailView = false
+    @State private var showBikeNotes = false
 	
 	let bike: Bike
 
     @State var buttonText = ""
     @State var rearText = ""
+    @State var pickerChoiceIndex = 0
+    @State var bikeSearchName = ""
     
     init(bike: Bike){
         self.bike = bike
@@ -132,9 +135,18 @@ struct HomePageStyledBikeCardView: View {
 				}) {
 					HStack {
 						Text("Edit Bike")
-						Image(systemName: "doc.badge.gearshape")
+						Image(systemName: "bicycle")
 					}
 				}
+                Button(action: {
+                    publishBikeName()
+                    self.showBikeNotes.toggle()
+                }) {
+                    HStack {
+                        Text("View Notes")
+                        Image(systemName: "note.text")
+                        }
+                    }
 			}  //: END VSTACK
 		} //: END CONTEXT
 
@@ -143,18 +155,22 @@ struct HomePageStyledBikeCardView: View {
 			AddServiceView(isFromBikeCard: $isFromBikeCard, bike: bike)
 				.environmentObject(self.showScreenBool)
 				.environment(\.managedObjectContext, self.moc)
-		}
+		})
 		
 		.background(EmptyView().sheet(isPresented: $showEditBikeDetailView) {
 			EditBikeDetailView(bike: bike)
 				.environmentObject(self.showScreenBool)
 				.environment(\.managedObjectContext, self.moc)
-		}))
+		})
+        .background(EmptyView().sheet(isPresented: $showBikeNotes) {
+            NotesListView(pickerChoiceIndex: $pickerChoiceIndex, searchText: $bikeSearchName)
+        })
     }//: END VIEW
         
 	
 	func publishBikeName() {
 		self.showScreenBool.bikeName = bike.name ?? "Unknown"
+        bikeSearchName = bike.name ?? ""
 		bikeVM.getBike(for: showScreenBool.bikeName)
 	}
     
