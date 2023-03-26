@@ -55,12 +55,15 @@ struct NotesHomePageStyledCardView: View {
                             Text("\(note.fAirVolume2, specifier: "%.1f")")
                         }
                         Spacer()
-                        if note.bike?.hasRearShock == true {
+                    }
+                    
+                    if note.bike?.hasRearShock == true {
+                        HStack {
                             Text("R:")
                             Text("\(note.rAirSpring, specifier: "%.0f")")
-                        }
+                        } .padding(.bottom, 5)
                     }
-                    .padding(.bottom, 5)
+                    
                     Text(note.note ?? "")
                         .font(.footnote)
                         .multilineTextAlignment(.leading)
