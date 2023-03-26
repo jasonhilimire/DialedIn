@@ -52,15 +52,36 @@ struct NotesStyleCardView: View {
 				
 				HStack {
 					VStack {
-						HStack {
-							Text("F")
-							Text("\(note.fAirVolume, specifier: "%.1f")")
-						}
-						.lineLimit(1)
-						.padding([.top, .bottom, .trailing])
-						.font(.body)
-						.customShadow()
-						
+                        if note.bike?.frontSetup?.dualAir == true {
+                            VStack {
+                                HStack {
+                                    Text("F")
+                                    Text("\(note.fAirVolume, specifier: "%.1f")")
+                                }
+                                .lineLimit(1)
+                                .padding([.top, .bottom, .trailing])
+                                .font(.body)
+                                .customShadow()
+                                HStack {
+                                    Text("F2")
+                                    Text("\(note.fAirVolume2, specifier: "%.1f")")
+                                }
+                                .lineLimit(1)
+                                .padding([.top, .bottom, .trailing])
+                                .font(.body)
+                                .customShadow()
+                            }
+                        } else {
+                            HStack {
+                                Text("F")
+                                Text("\(note.fAirVolume, specifier: "%.1f")")
+                            }
+                            .lineLimit(1)
+                            .padding([.top, .bottom, .trailing])
+                            .font(.body)
+                            .customShadow()
+                        }
+                        
 						
 						HStack {
 							Text("R")

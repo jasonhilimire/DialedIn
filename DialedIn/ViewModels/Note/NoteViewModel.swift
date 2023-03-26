@@ -278,6 +278,7 @@ class NoteViewModel: ObservableObject {
 		// FRONT
 		newNote.fAirVolume = Double(self.fAirVolume)
         newNote.fAirVolume2 = Double(self.fAirVolume2)
+        print(fAirVolume2)
 		newNote.fCompression = self.fCompSetting
 		newNote.fHSC = self.fHSCSetting
 		newNote.fLSC = self.fLSCSetting
@@ -315,6 +316,7 @@ class NoteViewModel: ObservableObject {
 			// FRONT
 			note.fAirVolume = Double(self.fAirVolume)
             note.fAirVolume2 = Double(self.fAirVolume2)
+            print(fAirVolume2)
 			note.fCompression = self.fCompSetting
 			note.fHSC = self.fHSCSetting
 			note.fLSC = self.fLSCSetting

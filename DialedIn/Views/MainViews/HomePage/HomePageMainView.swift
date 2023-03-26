@@ -45,7 +45,7 @@ struct HomePageMainView: View {
 	// MARK: - BODY -
     var body: some View {
 		NavigationView() {
-			GeometryReader { geo in //TODO: remove GEO Reader?
+			GeometryReader { geo in
                 VStack{
                     CustomNavBarView()
                     HStack(alignment: .top){

@@ -49,6 +49,11 @@ struct NotesHomePageStyledCardView: View {
                     HStack {
                         Text("F:")
                         Text("\(note.fAirVolume, specifier: "%.1f")")
+                        if note.bike?.frontSetup?.dualAir == true {
+                            Spacer()
+                            Text("F2:")
+                            Text("\(note.fAirVolume2, specifier: "%.1f")")
+                        }
                         Spacer()
                         if note.bike?.hasRearShock == true {
                             Text("R:")
@@ -89,12 +94,6 @@ struct NotesHomePageStyledCardView: View {
 							}
 						}
 					}
-//					Button(action: {self.showingEditScreen.toggle()}) {
-//						HStack {
-//							Text("Edit")
-//							Image(systemName: "square.and.pencil")
-//						}
-//					}
 					Divider()
 					Button(action: {deleteNote()}) {
 						HStack {

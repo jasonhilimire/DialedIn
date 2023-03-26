@@ -35,6 +35,9 @@ struct FrontNoteDetailsView: View {
 						Text("Fork PSI: \(noteVM.fAirVolume, specifier: "%.1f")").customNotesText()
 						Text("Tokens: \(self.note.fTokens)").customNotesText()
 						}
+                    if self.note.bike?.frontSetup?.dualAir == true {
+                        Text("Secondary PSI: \(noteVM.fAirVolume2, specifier: "%.1f")").customNotesText()
+                        }
 					}
 					Spacer()
 				VStack{

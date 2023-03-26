@@ -48,15 +48,11 @@ struct NoteFrontSetupView: View {
 		) {
 			VStack {
 					  // AirPressure
+                TextFieldStepper(doubleValue: $noteVM.fAirVolume, config: frontAirConfig)
                 if forkVM.dualAir == true {
-                    TextFieldStepper(doubleValue: $noteVM.fAirVolume, config: frontAirConfig)
                     TextFieldStepper(doubleValue: $noteVM.fAirVolume2, label: "Secondary Air", config: frontAirConfig)
-                    Divider()
-                } else {
-                    TextFieldStepper(doubleValue: $noteVM.fAirVolume, config: frontAirConfig)
-                    Divider()
                 }
-
+                Divider()
 					//Sag
                 TextFieldStepper(doubleValue: $noteVM.fSagSetting.dbl, label: calcSagString(sag: Double(self.noteVM.fSagSetting), travel: forkVM.travel), config: sagConfig)
                 Divider()
@@ -86,7 +82,7 @@ struct NoteFrontSetupView: View {
 					}
 					// Tire Pressure
                 TextFieldStepper(doubleValue: $noteVM.fTirePressure, config: tireConfig)
-                Divider()
+//                Divider()
 			}
 		}
         .ignoresSafeArea(.keyboard)

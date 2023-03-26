@@ -42,7 +42,7 @@ var frontAirConfig = TextFieldStepperConfig(
     label: "Air Volume",
     increment: 0.5,
     minimum: 0.0,
-    maximum: 200.0,
+    maximum: 999.0,
     decrementImage: decImage,
     incrementImage: incImage,
     minimumDecimalPlaces: 1,
