@@ -60,13 +60,13 @@ struct FrontNoteDetailsView: View {
 				Spacer()
 		
 				VStack {
-						if self.note.bike?.frontSetup?.dualCompression == true {
+						if self.note.bike?.frontSetup?.dualRebound == true {
 					HStack{
 						Text("HSR: \(noteVM.fHSRSetting)").customNotesText()
-						Text("LSR \(noteVM.fHSCSetting)").customNotesText()
+                        Text("LSR \(noteVM.fLSRSetting)").customNotesText()
 						}
 					} else {
-						Text("Rebound: \(noteVM.fReboundSetting)").customNotesText()
+                        Text("Rebound: \(noteVM.fReboundSetting)").customNotesText()
 					}
 				}
 			}
