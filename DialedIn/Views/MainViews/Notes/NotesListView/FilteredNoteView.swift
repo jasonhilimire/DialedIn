@@ -26,7 +26,7 @@ struct FilteredNoteView: View {
 
 	func filterFavorites() -> [Bike] {
 		// this filters to only show bikes if they have a favorite prevents showing a section header when there is no favorite for that bike
-		let filteredBikes = try! moc.fetch(Bike.bikesFetchRequest())
+		let filteredBikes = try! moc.fetch(Bike.bikesDefaultFirstFetchRequest())
 		let foundBikes = filter ? filteredBikes.filter {$0.notesArray.contains {$0.isFavorite}} : filteredBikes
 		return foundBikes
 	}

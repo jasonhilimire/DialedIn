@@ -37,7 +37,17 @@ struct BikeDetailFormView: View {
                 .multilineTextAlignment(.leading)
                 .overlay(RoundedRectangle(cornerRadius: 16).stroke(Color.gray))
         } //: END VSTACK
-//           Toggle(isOn: $bikeVM.isDefault.animation(), label: {Text("Set as Default Bike?")})
+        VStack {
+            Toggle(isOn: $bikeVM.isDefault.animation(), label: {Text("Set as Default Bike?")})
+            HStack{
+                Text("This moves the bike to the top of lists")
+                    .font(.caption2)
+                    .italic()
+                    .foregroundColor(Color.gray)
+                    
+                Spacer()
+            }
+        }
     }
 }
 

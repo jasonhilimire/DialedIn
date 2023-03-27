@@ -19,10 +19,14 @@ struct HomePageBikeCardListView: View {
 	//MARK: - PROPERTIES -
 	@Environment(\.managedObjectContext) var moc
 	
-	// create a Fetch request for Bike
-	@FetchRequest(entity: Bike.entity(), sortDescriptors: [
-		NSSortDescriptor(keyPath: \Bike.name, ascending: true)
-	]) var bikes: FetchedResults<Bike>
+	// create a Fetch request for Bike and sort Default Bikes to the top
+//	@FetchRequest(entity: Bike.entity(), sortDescriptors: [
+//        NSSortDescriptor(keyPath: \Bike.isDefault, ascending: false),
+//		NSSortDescriptor(keyPath: \Bike.name, ascending: true)
+//	]) var bikes: FetchedResults<Bike>
+    
+    @FetchRequest(fetchRequest: Bike.bikesDefaultFirstFetchRequest())
+    var bikes: FetchedResults<Bike>
     
     @State private var showingBikeScreen = false
 	

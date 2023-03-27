@@ -27,7 +27,17 @@ extension Bike{
         request.predicate = NSPredicate(format: "name == %@", filter)
 		request.fetchLimit = 1
         return request
-    }    
+    }
+    
+    /// FetchRequest for all bikes, sorted by name
+    static func bikesDefaultFirstFetchRequest() -> NSFetchRequest<Bike> {
+        let request: NSFetchRequest<Bike> = Bike.fetchRequest()
+        request.sortDescriptors = [
+            NSSortDescriptor(keyPath: \Bike.isDefault, ascending: false),
+            NSSortDescriptor(keyPath: \Bike.name, ascending: true)
+            ]
+        return request
+    }
 }
 
 extension Notes{
