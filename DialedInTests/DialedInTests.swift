@@ -44,5 +44,21 @@ class DialedInTests: XCTestCase {
         XCTAssertEqual(sut, "Sag %: 25.0")
     }
     
+    func testCalcSag_stringConversion_noSetup() {
+        let sag = 25.0
+        let travel = 0.0
+        let sut = calcSagString(sag: sag, travel: travel)
+        XCTAssertEqual(sut, "Sag %: N/A")
+    }
+    
+    func testCalcSag_stringConversion_badValue() {
+        let sag = 25.0
+        let travel = 10000.0
+        let sut = calcSagString(sag: sag, travel: travel)
+        XCTAssertEqual(sut, "Sag %: N/A")
+    }
+    
+    
+    
 }
  

@@ -34,8 +34,12 @@ func calcSag(sag: Double, travel: Double) -> Double {
 }
 
 func calcSagString(sag: Double, travel: Double) -> String {
-    let sag = calcSag(sag: sag, travel: travel)
-    return "Sag %: \(sag.rounded())"
+    let sagCalc = calcSag(sag: sag, travel: travel)
+    if !(1...100).contains(sagCalc) {
+        return "Sag %: N/A"
+    } else {
+        return "Sag %: \(sagCalc.rounded())"
+    }
 }
 
 // haptic vibration for Save button
