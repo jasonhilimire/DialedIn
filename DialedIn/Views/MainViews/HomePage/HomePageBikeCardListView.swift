@@ -18,13 +18,7 @@ import CoreData
 struct HomePageBikeCardListView: View {
 	//MARK: - PROPERTIES -
 	@Environment(\.managedObjectContext) var moc
-	
-	// create a Fetch request for Bike and sort Default Bikes to the top
-//	@FetchRequest(entity: Bike.entity(), sortDescriptors: [
-//        NSSortDescriptor(keyPath: \Bike.isDefault, ascending: false),
-//		NSSortDescriptor(keyPath: \Bike.name, ascending: true)
-//	]) var bikes: FetchedResults<Bike>
-    
+
     @FetchRequest(fetchRequest: Bike.bikesDefaultFirstFetchRequest())
     var bikes: FetchedResults<Bike>
     
@@ -173,7 +167,6 @@ struct HomePageStyledBikeCardView: View {
 				.environmentObject(self.showScreenBool)
 				.environment(\.managedObjectContext, self.moc)
 		})
-		
 		.background(EmptyView().sheet(isPresented: $showEditBikeDetailView) {
 			EditBikeDetailView(bike: bike)
 				.environmentObject(self.showScreenBool)

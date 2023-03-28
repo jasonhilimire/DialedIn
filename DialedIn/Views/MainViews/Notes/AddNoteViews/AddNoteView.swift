@@ -45,6 +45,10 @@ struct AddNoteView: View {
                 }
                     .pickerStyle(.segmented)
                     .padding(.horizontal)
+                    .onChange(of: notePickerIndex) { _ in
+                        self.setup(isFromBikeCard: isFromBikeCard)
+                }
+                    
                 
                 ScrollView {
                     VStack{
@@ -64,16 +68,20 @@ struct AddNoteView: View {
                                     }
                                 }
                             }
+                            
                             DatePicker(selection: $noteVM.noteDate, in: ...Date(), displayedComponents: .date) {
                                 Text("Select a date:")
                                     .fontWeight(.thin)
-                            } .padding(.bottom)
+                            }
+                                .padding(.bottom)
                             HStack {
                                 RatingView(rating: $noteVM.noteRating)
                                 Spacer()
                                 Text("Favorite:").fontWeight(.thin)
                                 FavoritesView(favorite: self.$noteVM.noteFavorite)
-                            } .padding(.bottom)
+                            }
+                                .padding(.bottom)
+                            
                             VStack {
                                 HStack(alignment: .top) {
                                     Text("Note:").fontWeight(.thin)
@@ -96,7 +104,7 @@ struct AddNoteView: View {
                                 .padding()
                         }
                     } //: VSTACK
-                .onAppear(perform: {self.setup(isFromBikeCard: isFromBikeCard)}) // change to onReceive??
+                
                 // Adds a Toolbar Cancel button in the red color that will dismisses the modal
                 .toolbar{
                     SheetToolBar{ cancelAction: do {
@@ -108,6 +116,7 @@ struct AddNoteView: View {
             } //: SCROLLVIEW
         }
     }
+            .onAppear(perform: {self.setup(isFromBikeCard: isFromBikeCard)}) // change to onReceive??
         Button(action: {
             self.noteVM.saveNote(bikeName: self.bikes[bikeNameIndex].name!)
             withAnimation(.linear(duration: 0.05), {

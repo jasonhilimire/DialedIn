@@ -17,20 +17,18 @@ struct NotesListView: View {
        // Create the MOC
     @Environment(\.managedObjectContext) var moc
 	
-	// create a Fetch request for Bike
-	@FetchRequest(entity: Bike.entity(), sortDescriptors: [
-		NSSortDescriptor(keyPath: \Bike.name, ascending: true)
-	]) var bikes: FetchedResults<Bike>
+	// create a Fetch request for Bike sorting by Defaults
+    @FetchRequest(fetchRequest: Bike.bikesDefaultFirstFetchRequest())
+    var bikes: FetchedResults<Bike>
 
     @State private var showingAddScreen = false
 	@State private var showFavorites = false
 	@State private var pickerChoice = ["All", "Favorites"]
-//	@State private var pickerChoiceIndex = 0
-    @Binding var pickerChoiceIndex: Int
-//	@State private var searchText = ""
-    @Binding var searchText: String
     @State var createText = "Please create a Bike to begin using Dialed In!"
     @State var isFromBikeCard = false
+    
+    @Binding var pickerChoiceIndex: Int
+    @Binding var searchText: String
 	
     var body: some View {
 // MARK: - BODY -
