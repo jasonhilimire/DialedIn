@@ -34,7 +34,7 @@ struct RearShockLastServicedView: View {
 						.resizable()
 						.frame(width: 25, height: 25)
 						.scaledToFit()
-					VStack {
+                    VStack(alignment: .leading) {
 						Text("\(self.bike.rearSetup?.info ?? "") - \(self.bike.rearSetup?.rearTravel ?? 0.0 , specifier: "%.2f")mm")
 							.font(.headline)
 							.fontWeight(.semibold)

@@ -15,53 +15,25 @@ struct BikesDetailView: View {
     
     let bike: Bike
     
-    @State var wrenchImage = "wrench"
-    @State var symbolImage = "square.and.pencil"
     @State var isFromBikeCard = true
     @State var isShowingService = false
     @State var isShowingEdit = false
     @State var deleteImage = "trash"
     @State var showingDeleteAlert = false
+    @State var isShowingAddNote = false
     var deleteText = """
     Are you sure?
     - this will delete all related notes -
     """
     
     var body: some View {
-//        Form {
         VStack{
-            HStack {
-                Button(action: {
-                    isShowingService.toggle()
-                }) {
-                    CircularButtonView(symbolImage: $wrenchImage)
-                }
-                Spacer()
-                //TODO: MOVE THIS TO ANOTHER?
-                Button(action: {
-                    self.showingDeleteAlert.toggle()
-                    
-                }) {
-                    CircularButtonView(symbolImage: $deleteImage)
-                }
-                .padding(8)
-                .customTextShadow()
-                
-                Spacer()
-                Button(action: {
-                    isShowingEdit.toggle()
-                }) {
-                    CircularButtonView(symbolImage: $symbolImage)
-                }
-            } //: END HSTACK
-            .padding(8)
-            .customTextShadow()
-            VStack {
+            VStack(alignment: .leading) {
                 Text("Note: \(self.bike.bikeNote ?? "")" )
                     .font(.subheadline)
                     .customTextShadow()
                     .fixedSize(horizontal: false, vertical: true)
-                    .padding(2)
+                    .lineLimit(5)
                 VStack {
                     Section {
                         ForkLastServicedView(bike: self.bike)
@@ -76,25 +48,63 @@ struct BikesDetailView: View {
                     }
                     Divider()
                 } //: END VSTACK
+                .customBackgroundGradient()
+                .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
             }//: END VSTACK
-//        }
-            Spacer(minLength:5)
+            .padding(5)
+            Spacer(minLength:10)
             FilteredBikeNotesView(filter: self.bike.name ?? "")
                 .padding(.horizontal)
         }//: END VSTACK
-        .navigationBarTitle(Text(self.bike.name ?? "Unknown Note"), displayMode: .inline)
+        
+        .navigationBarTitle(Text(self.bike.name ?? "Unknown Note"), displayMode: .large)
+        .navigationBarItems(
+            trailing:
+                Button(action: {self.showingDeleteAlert.toggle()
+                   }) {
+                       CircularButtonView(symbolImage: $deleteImage)
+                   })
+                   .padding(5)
+                   .customTextShadow()
+
         .background(EmptyView().sheet(isPresented: $isShowingService) {
             AddServiceView(isFromBikeCard: $isFromBikeCard, bike: self.bike)
-        }
+        })
+        .background(EmptyView().sheet(isPresented: $isShowingAddNote) {
+            AddNoteView(isFromBikeCard: $isFromBikeCard, bike: self.bike)
+        })
         .background(EmptyView().sheet(isPresented: $isShowingEdit) {
             EditBikeDetailView(bike: self.bike)
-            }))
+        })
         // Show the Alert to delete the Bike
         .alert(isPresented: $showingDeleteAlert) {
             Alert(title: Text("Delete Bike"), message: Text("\(deleteText)"), primaryButton: .destructive(Text("Delete")) {
                 self.deleteBike()
             }, secondaryButton: .cancel())
         }
+        
+        HStack {
+            Button(action: { isShowingEdit.toggle()}) {
+                Label("Edit Bike", systemImage: "square.and.pencil").scaleEffect(1.5)
+            }
+                .buttonStyle(Nav_Button())
+            Spacer()
+            Button(action: { isShowingService.toggle()}) {
+                Label("Add Service", systemImage: "wrench").scaleEffect(1.5)
+            }
+                .buttonStyle(Nav_Button())
+            Spacer()
+
+            Button(action: { isShowingAddNote.toggle()}) {
+                Label("Add Note", systemImage: "note.text.badge.plus").scaleEffect(1.5)
+            }
+                .buttonStyle(Nav_Button())
+            
+            
+        } //: END HSTACK
+        .padding(10)
+
+        .customTextShadow()
     }
 
     func deleteBike() {
