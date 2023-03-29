@@ -70,9 +70,13 @@ struct RearSetupFormView: View {
 						.keyboardType(.decimalPad)
 				}
 				
-				Toggle(isOn: $rearShockVM.dualRebound.animation(), label: {Text("Dual Rebound?").fontWeight(.thin)})
+				Toggle(isOn: $rearShockVM.dualRebound.animation(), label: {Text("Dual Rebound?")
+                    .fontWeight(.thin)})
+                    .toggleStyle(OrangeToggleStyle())
 				
-				Toggle(isOn: $rearShockVM.dualCompression.animation(), label: {Text("Dual Compression?").fontWeight(.thin)})
+				Toggle(isOn: $rearShockVM.dualCompression.animation(), label: {Text("Dual Compression?")
+                    .fontWeight(.thin)})
+                    .toggleStyle(OrangeToggleStyle())
 				
 				if isAdd == true {
 					DatePicker(selection: $rearServiceVM.airCanServicedDate, in: ...Date(), displayedComponents: .date) {
@@ -110,9 +114,13 @@ struct RearSetupFormView: View {
 						.keyboardType(.decimalPad)
 				}
 				
-				Toggle(isOn: $rearShockVM.dualCompression.animation(), label: {Text("Dual Rebound?").fontWeight(.thin)})
+				Toggle(isOn: $rearShockVM.dualCompression.animation(), label: {Text("Dual Rebound?")
+                    .fontWeight(.thin)})
+                    .toggleStyle(OrangeToggleStyle())
 				
-				Toggle(isOn: $rearShockVM.dualRebound.animation(), label: {Text("Dual Compression?").fontWeight(.thin)})
+				Toggle(isOn: $rearShockVM.dualRebound.animation(), label: {Text("Dual Compression?")
+                    .fontWeight(.thin)})
+                    .toggleStyle(OrangeToggleStyle())
 				
 				if isAdd == true {
 					DatePicker(selection: $rearServiceVM.fullServiceDate, in: ...Date(), displayedComponents: .date) {

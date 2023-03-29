@@ -33,18 +33,18 @@ struct BikeDetailFormView: View {
             TextEditor(text: $bikeVM.bikeNote ?? "")
                 .frame(height: 300)
                 .textFieldStyle(PlainTextFieldStyle())
+                .font(Font.body.weight(.thin))
                 .cornerRadius(8)
                 .multilineTextAlignment(.leading)
                 .overlay(RoundedRectangle(cornerRadius: 16).stroke(Color.gray))
         } //: END VSTACK
         VStack {
-            Toggle(isOn: $bikeVM.isDefault.animation(), label: {Text("Set as Default Bike?")})
+            Toggle(isOn: $bikeVM.isDefault.animation(), label: {Text("Set as Default Bike?").fontWeight(.thin)}).toggleStyle(OrangeToggleStyle())
             HStack{
                 Text("This moves the bike to the top of lists")
                     .font(.caption2)
                     .italic()
                     .foregroundColor(Color.gray)
-                    
                 Spacer()
             }
         }

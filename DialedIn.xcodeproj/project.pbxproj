@@ -37,6 +37,7 @@
 		A393F9CE252ACBC800F39E04 /* HomePageLastNoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A393F9CD252ACBC800F39E04 /* HomePageLastNoteView.swift */; };
 		A3942D23292C5BB700C154F1 /* TextStepperConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3942D22292C5BB700C154F1 /* TextStepperConfig.swift */; };
 		A39E45F5252436AC004142CE /* CircularButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A39E45F4252436AC004142CE /* CircularButtonView.swift */; };
+		A39EA02829D3D99C00BF2041 /* OrangeToggleStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A39EA02729D3D99C00BF2041 /* OrangeToggleStyle.swift */; };
 		A3A1297023FB9AC50014EC8A /* NoteRearSetupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3A1296F23FB9AC50014EC8A /* NoteRearSetupViewModel.swift */; };
 		A3A157A125D391C000A6B6A4 /* ForkViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3A157A025D391C000A6B6A4 /* ForkViewModel.swift */; };
 		A3B8B79523F0E66900CE1EF8 /* BikeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B8B79423F0E66900CE1EF8 /* BikeViewModel.swift */; };
@@ -140,6 +141,7 @@
 		A393F9CD252ACBC800F39E04 /* HomePageLastNoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageLastNoteView.swift; sourceTree = "<group>"; };
 		A3942D22292C5BB700C154F1 /* TextStepperConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextStepperConfig.swift; sourceTree = "<group>"; };
 		A39E45F4252436AC004142CE /* CircularButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularButtonView.swift; sourceTree = "<group>"; };
+		A39EA02729D3D99C00BF2041 /* OrangeToggleStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrangeToggleStyle.swift; sourceTree = "<group>"; };
 		A3A1296F23FB9AC50014EC8A /* NoteRearSetupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteRearSetupViewModel.swift; sourceTree = "<group>"; };
 		A3A157A025D391C000A6B6A4 /* ForkViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForkViewModel.swift; sourceTree = "<group>"; };
 		A3B8B79423F0E66900CE1EF8 /* BikeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeViewModel.swift; sourceTree = "<group>"; };
@@ -322,6 +324,7 @@
 				A3224EA02759C56E004EFDDA /* ServiceWarningView.swift */,
 				A3D533CA2920842100C1164B /* ServiceDueWrenchIconView.swift */,
 				A3036E9829CF9FD300E9645D /* CustomNavBarView.swift */,
+				A39EA02729D3D99C00BF2041 /* OrangeToggleStyle.swift */,
 			);
 			path = SingleViews;
 			sourceTree = "<group>";
@@ -748,6 +751,7 @@
 				A3077DEB255B8DAD00981486 /* SearchBarView.swift in Sources */,
 				A3942D23292C5BB700C154F1 /* TextStepperConfig.swift in Sources */,
 				A3C7A1D72401F87D00A741A8 /* NoteFrontSetupView.swift in Sources */,
+				A39EA02829D3D99C00BF2041 /* OrangeToggleStyle.swift in Sources */,
 				A3D5181B24268E55007DEE9D /* Fork+CoreDataProperties.swift in Sources */,
 				A348C259275DACB800404984 /* PlusButtonView.swift in Sources */,
 				A33C7FCA254F25AB002E6F47 /* OnBoardingView.swift in Sources */,
@@ -949,7 +953,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = "DialedIn/Dialed In.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 187;
+				CURRENT_PROJECT_VERSION = 213;
 				DEVELOPMENT_ASSET_PATHS = "\"DialedIn/Preview Content\"";
 				DEVELOPMENT_TEAM = 55QD8ZCA9C;
 				ENABLE_PREVIEWS = YES;
@@ -980,7 +984,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = "DialedIn/Dialed In.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 187;
+				CURRENT_PROJECT_VERSION = 213;
 				DEVELOPMENT_ASSET_PATHS = "\"DialedIn/Preview Content\"";
 				DEVELOPMENT_TEAM = 55QD8ZCA9C;
 				ENABLE_PREVIEWS = YES;

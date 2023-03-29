@@ -43,9 +43,15 @@ struct ForkSetupFormView: View {
 					.textFieldStyle(PlainTextFieldStyle())
 					.keyboardType(.decimalPad)
 			}
-            Toggle(isOn: $forkVM.dualAir.animation(), label: {Text("Dual Air?").fontWeight(.thin)})
-			Toggle(isOn: $forkVM.dualRebound.animation(), label: {Text("Dual Rebound?").fontWeight(.thin)})
-			Toggle(isOn: $forkVM.dualCompression.animation(), label: {Text("Dual Compression?").fontWeight(.thin)})
+            Toggle(isOn: $forkVM.dualAir.animation(), label: {Text("Dual Air?")
+                .fontWeight(.thin)})
+                .toggleStyle(OrangeToggleStyle())
+			Toggle(isOn: $forkVM.dualRebound.animation(), label: {Text("Dual Rebound?")
+                .fontWeight(.thin)})
+                .toggleStyle(OrangeToggleStyle())
+			Toggle(isOn: $forkVM.dualCompression.animation(), label: {Text("Dual Compression?")
+                .fontWeight(.thin)})
+                .toggleStyle(OrangeToggleStyle())
 			if isAdd == true { //Show Service dates if isAdd == True
 				DatePicker(selection: $frontServiceVM.lowersServiceDate, in: ...Date(), displayedComponents: .date) {
 					Text("Last Lower Service").fontWeight(.thin)
