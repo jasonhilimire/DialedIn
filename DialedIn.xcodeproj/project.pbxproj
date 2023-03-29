@@ -965,7 +965,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.2;
+				MARKETING_VERSION = 2.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.peanutApps.DialedIn;
 				PRODUCT_NAME = "Dialed In";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -996,7 +996,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.2;
+				MARKETING_VERSION = 2.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.peanutApps.DialedIn;
 				PRODUCT_NAME = "Dialed In";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
