@@ -114,11 +114,11 @@ struct RearSetupFormView: View {
 						.keyboardType(.decimalPad)
 				}
 				
-				Toggle(isOn: $rearShockVM.dualCompression.animation(), label: {Text("Dual Rebound?")
+                Toggle(isOn: $rearShockVM.dualRebound.animation(), label: {Text("Dual Rebound?")
                     .fontWeight(.thin)})
                     .toggleStyle(OrangeToggleStyle())
-				
-				Toggle(isOn: $rearShockVM.dualRebound.animation(), label: {Text("Dual Compression?")
+                
+                Toggle(isOn: $rearShockVM.dualCompression.animation(), label: {Text("Dual Compression?")
                     .fontWeight(.thin)})
                     .toggleStyle(OrangeToggleStyle())
 				
