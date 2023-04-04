@@ -270,6 +270,13 @@ class NoteViewModel: ObservableObject {
 		rSagSetting = front.lastRSagSetting
 		rTirePressure = front.lastRTirePressure
 	}
+    
+    func createMessage(note: Notes){
+        return messageText =
+        """
+        \(note.description)
+        """
+    }
 	
 	func saveNote(bikeName: String) {
 		let bike = fetchBike(for: bikeName)

@@ -131,7 +131,8 @@ struct NotesDetailView: View {
 	}
     
     func setup() {
-        textMessage = "\(note.description)"
+        noteVM.createMessage(note: self.note)
+        textMessage = noteVM.messageText
     }
 }
 
