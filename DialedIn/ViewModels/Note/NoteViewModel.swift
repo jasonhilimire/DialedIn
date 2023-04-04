@@ -185,6 +185,12 @@ class NoteViewModel: ObservableObject {
 			didChange.send(self)
 		}
 	}
+    
+    @Published var messageText: String = "" {
+        didSet {
+            didChange.send(self)
+        }
+    }
 	
 	
 	init() {

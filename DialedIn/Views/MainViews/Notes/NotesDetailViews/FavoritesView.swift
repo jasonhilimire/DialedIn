@@ -13,8 +13,8 @@ struct FavoritesView: View {
 //	@Binding var isHomeFavorite: Bool
 	
 	var label = "Favorite Note:"
-	var offImage = Image(systemName: "bookmark.circle")
-	var onImage = Image(systemName: "flag.filled.and.flag.crossed")
+	var offImage = Image(systemName: "flag.2.crossed")
+	var onImage = Image(systemName: "flag.2.crossed.fill")
 	
 	var offColor = Color.gray
 	var onColor = Color.orange

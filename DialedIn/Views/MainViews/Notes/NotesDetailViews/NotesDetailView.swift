@@ -26,7 +26,7 @@ struct NotesDetailView: View {
 	@State private var saveText = "Save"
 	@State private var isDetailEdit = true
     @State private var showingMessageView = false
-    @State private var textMessage = "some text"
+    @State private var textMessage = ""
 		
     let note: Notes
 	
@@ -96,13 +96,11 @@ struct NotesDetailView: View {
 		}) {
 			SaveButtonView(buttonText: $saveText)
 		}.buttonStyle(OrangeButtonStyle())
-		.padding()
+            .padding()
 		
-			
 		// MARK: - MODIFIERS -
 			// This keeps the keyboard from pushing the view up in iOS14
 //			.ignoresSafeArea(.keyboard)
-
 			.navigationBarTitle(Text(note.bike?.name ?? "Unknown Note"), displayMode: .inline)
 		// ALERT
 			.alert(isPresented: $showingDeleteAlert) {
@@ -128,9 +126,13 @@ struct NotesDetailView: View {
                     print("MessageComposeView with message sent? \(messageSent)")
                 }
             }
-        
+            .onAppear(perform: {self.setup()})
         
 	}
+    
+    func setup() {
+        textMessage = "\(note.description)"
+    }
 }
 
 
