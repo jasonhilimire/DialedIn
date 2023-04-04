@@ -8,6 +8,7 @@
 
 import SwiftUI
 import CoreData
+import MessageUI
 
 struct NotesDetailView: View {
     
@@ -24,6 +25,8 @@ struct NotesDetailView: View {
 	@State private var savePressed = false
 	@State private var saveText = "Save"
 	@State private var isDetailEdit = true
+    @State private var showingMessageView = false
+    @State private var textMessage = "some text"
 		
     let note: Notes
 	
@@ -56,9 +59,6 @@ struct NotesDetailView: View {
                         }
                             .animation(.linear(duration: 0.3))
                     }
-                    
-
-					
 					Divider().padding(.bottom, 5)
 						
 					// MARK: - REAR -
@@ -75,15 +75,10 @@ struct NotesDetailView: View {
 								self.noteVM.isRearEdit.toggle()
                         }
 					}
-					
 					Divider().padding(.bottom, 5)
 				}
-				
 				.padding()
-//				Spacer()
-				
 			} //: VSTACK
-			
 		} //: SCROLLVIEW
 		
 		// Keeps the button in a fixed position at the bottom of the view
@@ -116,15 +111,28 @@ struct NotesDetailView: View {
 					presentationMode.wrappedValue.dismiss()
 				}, secondaryButton: .cancel())
 			}
-			.navigationBarItems(trailing:
-				Button(action: {
-					self.showingDeleteAlert = true
+            .navigationBarItems(
+                leading: Button(action: {
+                    showingMessageView.toggle()
+            }) {
+                Image(systemName: "arrow.up.message")
+            },
+                trailing: Button(action: {
+                self.showingDeleteAlert = true
 				}) {
-					Image(systemName: "trash")
+                Image(systemName: "trash")
 				}
-			)
+            )
+            .sheet(isPresented: self.$showingMessageView) {
+                MessageComposeView(recipients: [], body: textMessage) { messageSent in
+                    print("MessageComposeView with message sent? \(messageSent)")
+                }
+            }
+        
+        
 	}
 }
+
 
 
 
