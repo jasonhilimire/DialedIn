@@ -21,8 +21,6 @@ struct NotesStyleCardView: View {
 					Text(note.bike?.name ?? "Unknown Bike")
 					Spacer()
 					Text(note.date != nil ? "\(note.date!, formatter: dateFormatter)" : "")
-
-					
 					// this basically hides the favorite icon and adequately spaces the date
 					if note.isFavorite == true {
 						FavoritesView(favorite: .constant(note.isFavorite))
@@ -105,6 +103,7 @@ struct NotesStyleCardView: View {
 							Text("LSC: \(note.fLSC)").fontWeight(.thin)
 						} else {
 							Text("Comp: \(note.fCompression)").fontWeight(.thin)
+                            Text("")
 						}
 						Text("Tokens: \(note.fTokens)").fontWeight(.thin)
 						Divider()
@@ -113,6 +112,7 @@ struct NotesStyleCardView: View {
 							Text("LSC: \(note.rLSC)").fontWeight(.thin)
 						} else {
 							Text("Comp: \(note.rCompression)").fontWeight(.thin)
+                            Text("")
 						}
 						if note.bike?.rearSetup?.isCoil == false {
 							Text("Tokens: \(note.rTokens)").fontWeight(.thin)
@@ -128,6 +128,7 @@ struct NotesStyleCardView: View {
 							Text("LSR: \(note.fLSR)").fontWeight(.thin)
 						} else {
 							Text("Reb: \(note.fRebound)").fontWeight(.thin)
+                            Text("")
 							
 						}
 						Text("Sag %: \(calcSag(sag: Double(note.fSag), travel: note.bike?.frontSetup?.travel ?? 0.0), specifier: "%.1f")").fontWeight(.thin)
@@ -137,6 +138,7 @@ struct NotesStyleCardView: View {
 							Text("LSR: \(note.rLSR)").fontWeight(.thin)
 						} else {
 							Text("Reb: \(note.rRebound)").fontWeight(.thin)
+                            Text("")
 						}
 						Text("Sag %: \(calcSag(sag: Double(note.rSag), travel: note.bike?.rearSetup?.strokeLength ?? 0.0), specifier: "%.1f")").fontWeight(.thin)
 					}.font(.caption)

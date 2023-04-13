@@ -56,9 +56,6 @@ struct NotesDetailView: View {
                         }
                             .animation(.linear(duration: 0.3))
                     }
-                    
-
-					
 					Divider().padding(.bottom, 5)
 						
 					// MARK: - REAR -
