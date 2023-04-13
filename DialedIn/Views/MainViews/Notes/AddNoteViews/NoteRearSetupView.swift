@@ -84,7 +84,7 @@ struct NoteRearSetupView: View {
                         TextFieldStepper(doubleValue: $noteVM.rLSRSetting.dbl, unit: " - LSR", label: "Low Speed Rebound", config: clickConfig2)
                         Divider()
 						} else {
-                            TextFieldStepper(doubleValue: $noteVM.rHSCSetting.dbl, label: "Rebound", config: clickConfig)
+                            TextFieldStepper(doubleValue: $noteVM.rReboundSetting.dbl, label: "Rebound", config: clickConfig)
                             Divider()
 						}
 					
