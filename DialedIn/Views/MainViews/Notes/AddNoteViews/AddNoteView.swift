@@ -118,7 +118,7 @@ struct AddNoteView: View {
     }
             .onAppear(perform: {self.setup(isFromBikeCard: isFromBikeCard)}) // change to onReceive??
         Button(action: {
-            self.noteVM.saveNote(bikeName: self.bikes[bikeNameIndex].name!)
+            self.noteVM.saveNote(bikeName: self.bikeName)
             withAnimation(.linear(duration: 0.05), {
                 self.saveText = "     SAVED!!     "  // no idea why, but have to add spaces here other wise it builds the word slowly with SA...., annoying as all hell
             })
