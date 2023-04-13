@@ -47,6 +47,10 @@ struct AddServiceView: View {
                                 .fontWeight(.semibold)
                         } else {
                             BikePickerView(bikeNameIndex: $bikeNameIndex)
+                                .onChange(of: bikeNameIndex) { _ in
+                                    self.setup(isFromBikeCard: isFromBikeCard)
+                                }
+                            
                         }
                     }
                     //MARK:- Front -
@@ -102,21 +106,20 @@ struct AddServiceView: View {
 	//MARK:- Functions
 	func setup(isFromBikeCard: Bool) {
         let bikeName = isFromBikeCard ? bike.wrappedBikeName : bikes[bikeNameIndex].name ?? "Unknown"
-			bikeVM.getBike(for: bikeName)
-			frontService.bikeName = bikeName
-			rearService.bikeName = bikeName
-			rearSetupVM.getRearSetup(bikeName: bikeName)
+        bikeVM.getBike(for: bikeName)
+        frontService.bikeName = bikeName
+        rearService.bikeName = bikeName
+        rearSetupVM.getRearSetup(bikeName: bikeName)
 	}
 	
 	func addService() {
-		if isFromBikeCard == true {
-            bikeVM.bikeName = bike.wrappedBikeName
-		}
+        let bikeName = isFromBikeCard ? bike.wrappedBikeName : bikes[bikeNameIndex].name ?? "Unknown"
+
 		if frontService.frontServicedIndex != 0 {
-			frontService.addFrontService(bikeName: bikeVM.bikeName ?? "" )
+			frontService.addFrontService(bikeName: bikeName )
 		}
 		if rearService.rearServicedIndex != 0 {
-			rearService.addRearService(bikeName: bikeVM.bikeName ?? "" )
+			rearService.addRearService(bikeName: bikeName )
 		}
 	}
 	
