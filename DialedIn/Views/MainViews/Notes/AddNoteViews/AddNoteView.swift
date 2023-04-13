@@ -30,6 +30,7 @@ struct AddNoteView: View {
 	@State private var toggleNoteDetail = false
 	@State private var saveText = "Save"
     @State private var notePickerIndex = 0
+    @State private var tappedPicker = false
     @Binding var isFromBikeCard: Bool
     
     let bike: Bike
@@ -46,7 +47,10 @@ struct AddNoteView: View {
                     .pickerStyle(.segmented)
                     .padding(.horizontal)
                     .onChange(of: notePickerIndex) { _ in
-                        self.setup(isFromBikeCard: isFromBikeCard)
+                        if !tappedPicker {
+                            self.setup(isFromBikeCard: isFromBikeCard)
+                            tappedPicker = true
+                        }
                 }
                     
                 
@@ -146,5 +150,6 @@ struct AddNoteView: View {
         rearSetup.getLastRearSettings()
 		noteVM.getLastRearNote(front: rearSetup)
 		rearVM.getRearSetup(bikeName: bikeName)
+
     }
 }
