@@ -146,7 +146,7 @@ struct NotesStyleCardView: View {
 			}
 			.padding()
 			.foregroundColor(Color("TextColor"))
-			.background(Color("BackgroundColor"))
+			.background(Color("TextEditBackgroundColor"))
 			.cornerRadius(20)
 			// Shadow for left & Bottom
 			.customShadow()
