@@ -22,11 +22,13 @@ struct BikesDetailView: View {
     @State var showingDeleteAlert = false
     @State var isShowingAddNote = false
     @State var isShowingAllNotes = false
-    @State var noteCount = 0
-    @State var buttonText = "All"
+    @State var allNoteCount = 0
+    @State var favNoteCount = 0
+    @State var allText = "All Notes"
+    @State var favText = "Favorites"
     @State var bikeName = ""
     @State var allNotes = 0
-    @State var Favorites = 1
+    @State var favorites = 1
     var deleteText = """
     Are you sure?
     - this will delete all related notes -
@@ -58,18 +60,21 @@ struct BikesDetailView: View {
                 .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
             }//: END VSTACK
             .padding(5)
-            
-//            Spacer(minLength:10)
-            // Create view that holds a handful of buttons
-            // button is a capsule with count of notes
-            
-            Button(action: {self.isShowingAllNotes.toggle()
-               }) {
-                   FilteredNoteButton(buttonText: $buttonText, noteCount: $noteCount)
-               }
-               .padding(5)
-               .customTextShadow()
-            
+
+            HStack{
+                NavigationLink(destination: NotesListView(pickerChoiceIndex: $allNotes, searchText: $bikeName)) {
+                    FilteredNoteButton(buttonText: $allText, noteCount: $allNoteCount)
+                        .padding(5)
+                        .customTextShadow()
+                }
+
+//                Spacer()
+                NavigationLink(destination: NotesListView(pickerChoiceIndex: $favorites, searchText: $bikeName)) {
+                    FilteredNoteButton(buttonText: $favText, noteCount: $favNoteCount)
+                        .padding(5)
+                        .customTextShadow()
+                }
+            }
             Spacer()
             FilteredBikeNotesView(filter: self.bike.name ?? "")
                 .padding(.horizontal)
@@ -80,10 +85,8 @@ struct BikesDetailView: View {
             trailing:
                 Button(action: {self.showingDeleteAlert.toggle()
                    }) {
-                       CircularButtonView(symbolImage: $deleteImage)
+                       Image(systemName: "trash")
                    })
-                   .padding(5)
-                   .customTextShadow()
 
         .background(EmptyView().sheet(isPresented: $isShowingService) {
             AddServiceView(isFromBikeCard: $isFromBikeCard, bike: self.bike)
@@ -121,8 +124,6 @@ struct BikesDetailView: View {
                 Label("Add Note", systemImage: "note.text.badge.plus").scaleEffect(1.5)
             }
                 .buttonStyle(Nav_Button())
-            
-            
         } //: END HSTACK
         .padding(10)
         .customTextShadow()
@@ -135,8 +136,14 @@ struct BikesDetailView: View {
     }
     
     func setup() {
-        noteCount = self.bike.notesArray.count
         bikeName = self.bike.wrappedBikeName
+        allNoteCount = self.bike.notesArray.count
+        favNoteCount = getFavCount(filter: bikeName)
+    }
+    
+    func getFavCount(filter:String) -> Int {
+        let notes = try! moc.fetch(Notes.favoritesByBikeFetchRequest(filter: bikeName))
+        return notes.count
     }
 
 }

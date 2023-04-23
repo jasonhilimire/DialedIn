@@ -42,6 +42,11 @@ struct HomePageNotesInfoView: View {
                                 .fontWeight(.thin)
                         }
                     }
+                    .padding()
+//                    .background(
+//                        Capsule().strokeBorder(Color.gray, lineWidth: 0.75)
+//                    )
+                    .customShadow()
                 }
             }
                 .foregroundColor(Color("TextColor"))
@@ -55,6 +60,10 @@ struct HomePageNotesInfoView: View {
                         Text("Favorites")
                             .fontWeight(.thin)
                     }
+                    .padding()
+//                    .background(
+//                        Capsule().strokeBorder(Color.gray, lineWidth: 0.75)
+//                    )
                 }
             }
                 .foregroundColor(Color("TextColor"))
@@ -64,6 +73,10 @@ struct HomePageNotesInfoView: View {
             }
             .font(.footnote)
             .foregroundColor(Color.gray)
+            .padding()
+//            .background(
+//                Capsule().strokeBorder(Color.gray, lineWidth: 0.50)
+//            )
         }
         .padding(20)
         .foregroundColor(Color.white)

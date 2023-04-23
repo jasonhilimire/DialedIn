@@ -85,6 +85,16 @@ extension Notes{
 //		request.fetchLimit = 1
 		return request
 	}
+    
+    static func favoritesByBikeFetchRequest(filter: String) -> NSFetchRequest<Notes> {
+        let request: NSFetchRequest<Notes> = Notes.fetchRequest()
+        request.sortDescriptors = [NSSortDescriptor(keyPath: \Notes.date, ascending: false)]
+        let isFavoritePredicate = NSPredicate(format: "isFavorite == TRUE")
+        let bikeNamePredicate = NSPredicate(format: "bike.name == %@", filter)
+        let compoundPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [isFavoritePredicate, bikeNamePredicate])
+        request.predicate = compoundPredicate
+        return request
+    }
 
 
 }
