@@ -92,7 +92,7 @@ struct AddNoteView: View {
                                     Spacer()
                                 }
                                 TextEditor(text: self.$noteVM.noteText)
-                                    .frame(height: 300)
+                                    .frame(height: 250)
                                     .textFieldStyle(PlainTextFieldStyle())
                                     .cornerRadius(8)
                                     .multilineTextAlignment(.leading)
