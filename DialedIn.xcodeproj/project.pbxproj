@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 54;
+	objectVersion = 60;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -19,12 +19,12 @@
 		A3273B7623EF998B007A3792 /* Notes+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3273B7423EF998B007A3792 /* Notes+CoreDataProperties.swift */; };
 		A32AA0FB29F446400053742E /* NoteCountCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32AA0FA29F446400053742E /* NoteCountCircle.swift */; };
 		A32AA0FD29F447300053742E /* FilteredNoteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32AA0FC29F447300053742E /* FilteredNoteButton.swift */; };
-		A334BA562929B7B9004546DB /* TextFieldStepper in Frameworks */ = {isa = PBXBuildFile; productRef = A334BA552929B7B9004546DB /* TextFieldStepper */; };
 		A33A854F25E4AEF500CD0059 /* AddFrontServiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33A854E25E4AEF500CD0059 /* AddFrontServiceView.swift */; };
 		A33A855725E4AFD800CD0059 /* AddRearServiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33A855625E4AFD800CD0059 /* AddRearServiceView.swift */; };
 		A33C7FCA254F25AB002E6F47 /* OnBoardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33C7FC9254F25AB002E6F47 /* OnBoardingView.swift */; };
 		A33F02B124062A89005A0A8F /* FilteredNoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33F02B024062A89005A0A8F /* FilteredNoteView.swift */; };
 		A348C259275DACB800404984 /* PlusButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A348C258275DACB800404984 /* PlusButtonView.swift */; };
+		A34E0DCC2B57789A00755480 /* TextFieldStepper in Frameworks */ = {isa = PBXBuildFile; productRef = A34E0DCB2B57789A00755480 /* TextFieldStepper */; };
 		A35642C125787A5500A5A45B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A35642BE25787A5500A5A45B /* ContentView.swift */; };
 		A35642C225787A5500A5A45B /* PersistentCloudKitContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A35642BF25787A5500A5A45B /* PersistentCloudKitContainer.swift */; };
 		A35642C325787A5500A5A45B /* DialedApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A35642C025787A5500A5A45B /* DialedApp.swift */; };
@@ -210,7 +210,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A334BA562929B7B9004546DB /* TextFieldStepper in Frameworks */,
+				A34E0DCC2B57789A00755480 /* TextFieldStepper in Frameworks */,
 				A38D56B225609ACF00E83041 /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -571,7 +571,7 @@
 			);
 			name = DialedIn;
 			packageProductDependencies = (
-				A334BA552929B7B9004546DB /* TextFieldStepper */,
+				A34E0DCB2B57789A00755480 /* TextFieldStepper */,
 			);
 			productName = DialedIn;
 			productReference = A3C16E6423DE9EC4005BFA14 /* Dialed In.app */;
@@ -647,7 +647,7 @@
 			);
 			mainGroup = A3C16E5B23DE9EC4005BFA14;
 			packageReferences = (
-				A334BA542929B7B9004546DB /* XCRemoteSwiftPackageReference "TextFieldStepper" */,
+				A34E0DCA2B57789A00755480 /* XCLocalSwiftPackageReference "../TextFieldStepper" */,
 			);
 			productRefGroup = A3C16E6523DE9EC4005BFA14 /* Products */;
 			projectDirPath = "";
@@ -960,7 +960,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = "DialedIn/Dialed In.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 10;
+				CURRENT_PROJECT_VERSION = 11;
 				DEVELOPMENT_ASSET_PATHS = "\"DialedIn/Preview Content\"";
 				DEVELOPMENT_TEAM = 55QD8ZCA9C;
 				ENABLE_PREVIEWS = YES;
@@ -991,7 +991,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = "DialedIn/Dialed In.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 10;
+				CURRENT_PROJECT_VERSION = 11;
 				DEVELOPMENT_ASSET_PATHS = "\"DialedIn/Preview Content\"";
 				DEVELOPMENT_TEAM = 55QD8ZCA9C;
 				ENABLE_PREVIEWS = YES;
@@ -1140,21 +1140,16 @@
 		};
 /* End XCConfigurationList section */
 
-/* Begin XCRemoteSwiftPackageReference section */
-		A334BA542929B7B9004546DB /* XCRemoteSwiftPackageReference "TextFieldStepper" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/joe-scotto/TextFieldStepper";
-			requirement = {
-				branch = main;
-				kind = branch;
-			};
+/* Begin XCLocalSwiftPackageReference section */
+		A34E0DCA2B57789A00755480 /* XCLocalSwiftPackageReference "../TextFieldStepper" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../TextFieldStepper;
 		};
-/* End XCRemoteSwiftPackageReference section */
+/* End XCLocalSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		A334BA552929B7B9004546DB /* TextFieldStepper */ = {
+		A34E0DCB2B57789A00755480 /* TextFieldStepper */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = A334BA542929B7B9004546DB /* XCRemoteSwiftPackageReference "TextFieldStepper" */;
 			productName = TextFieldStepper;
 		};
 /* End XCSwiftPackageProductDependency section */

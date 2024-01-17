@@ -20,7 +20,7 @@ extension Int16 {
      }
  }
 
-// MARK:  - IMAGE - Setups
+// MARK:  - IMAGE - Setups -
 
 
 let decImageFill = TextFieldStepperImage(image: Image(systemName: "minus.square.fill"), color: Color.orange)
