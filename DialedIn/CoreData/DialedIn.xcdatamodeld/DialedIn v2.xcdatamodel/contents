@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21513" systemVersion="22D68" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="22522" systemVersion="23B92" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Bike" representedClassName="Bike" syncable="YES">
         <attribute name="bikeNote" optional="YES" attributeType="String"/>
         <attribute name="hasRearShock" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
@@ -18,7 +18,7 @@
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="info" optional="YES" attributeType="String"/>
         <attribute name="lowersServiceWarn" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="travel" optional="YES" attributeType="Double" maxValueString="240" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="travel" optional="YES" attributeType="Double" maxValueString="999" defaultValueString="0" usesScalarValueType="YES"/>
         <relationship name="bike" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Bike" inverseName="frontSetup" inverseEntity="Bike"/>
         <relationship name="frontService" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="FrontService" inverseName="service" inverseEntity="FrontService"/>
     </entity>
@@ -40,7 +40,7 @@
         <attribute name="fLSR" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="fRebound" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="fSag" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="fTirePressure" optional="YES" attributeType="Double" maxValueString="50" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="fTirePressure" optional="YES" attributeType="Double" maxValueString="100" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="fTokens" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="isFavorite" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
@@ -54,7 +54,7 @@
         <attribute name="rLSR" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="rRebound" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="rSag" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="rTirePressure" optional="YES" attributeType="Double" maxValueString="50" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="rTirePressure" optional="YES" attributeType="Double" maxValueString="99" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="rTokens" optional="YES" attributeType="Integer 16" maxValueString="8" defaultValueString="0" usesScalarValueType="YES"/>
         <relationship name="bike" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Bike" inverseName="setupNotes" inverseEntity="Bike"/>
     </entity>
@@ -73,9 +73,9 @@
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="info" optional="YES" attributeType="String"/>
         <attribute name="isCoil" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
-        <attribute name="rearTravel" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="rearTravel" optional="YES" attributeType="Double" maxValueString="999" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="rearTypeIndex" attributeType="Integer 16" minValueString="0" maxValueString="2" defaultValueString="1" usesScalarValueType="YES"/>
-        <attribute name="strokeLength" optional="YES" attributeType="Double" maxValueString="200" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="strokeLength" optional="YES" attributeType="Double" maxValueString="999" defaultValueString="0" usesScalarValueType="YES"/>
         <relationship name="bike" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Bike" inverseName="rearSetup" inverseEntity="Bike"/>
         <relationship name="rearService" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="RearService" inverseName="service" inverseEntity="RearService"/>
     </entity>
