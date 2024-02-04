@@ -24,3 +24,5 @@ DerivedData
 *.xcuserstate
 
 
+*.xcuserstate
+.DS_Store

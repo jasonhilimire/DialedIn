@@ -42,6 +42,8 @@
 		A39EA02829D3D99C00BF2041 /* OrangeToggleStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A39EA02729D3D99C00BF2041 /* OrangeToggleStyle.swift */; };
 		A3A1297023FB9AC50014EC8A /* NoteRearSetupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3A1296F23FB9AC50014EC8A /* NoteRearSetupViewModel.swift */; };
 		A3A157A125D391C000A6B6A4 /* ForkViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3A157A025D391C000A6B6A4 /* ForkViewModel.swift */; };
+		A3A708432B70556700176FCC /* TextFieldStepper in Frameworks */ = {isa = PBXBuildFile; productRef = A3A708422B70556700176FCC /* TextFieldStepper */; };
+		A3A708452B70563400176FCC /* TextFieldStepper in Frameworks */ = {isa = PBXBuildFile; productRef = A3A708442B70563400176FCC /* TextFieldStepper */; };
 		A3B8B79523F0E66900CE1EF8 /* BikeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B8B79423F0E66900CE1EF8 /* BikeViewModel.swift */; };
 		A3B8B79723F0E9EF00CE1EF8 /* BikePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B8B79623F0E9EF00CE1EF8 /* BikePickerView.swift */; };
 		A3C16E6F23DE9EC4005BFA14 /* NotesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C16E6E23DE9EC4005BFA14 /* NotesListView.swift */; };
@@ -210,8 +212,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A3A708452B70563400176FCC /* TextFieldStepper in Frameworks */,
 				A34E0DCC2B57789A00755480 /* TextFieldStepper in Frameworks */,
 				A38D56B225609ACF00E83041 /* CloudKit.framework in Frameworks */,
+				A3A708432B70556700176FCC /* TextFieldStepper in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -572,6 +576,8 @@
 			name = DialedIn;
 			packageProductDependencies = (
 				A34E0DCB2B57789A00755480 /* TextFieldStepper */,
+				A3A708422B70556700176FCC /* TextFieldStepper */,
+				A3A708442B70563400176FCC /* TextFieldStepper */,
 			);
 			productName = DialedIn;
 			productReference = A3C16E6423DE9EC4005BFA14 /* Dialed In.app */;
@@ -621,7 +627,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
 				LastSwiftUpdateCheck = 1130;
-				LastUpgradeCheck = 1500;
+				LastUpgradeCheck = 1520;
 				ORGANIZATIONNAME = "Jason Hilimire";
 				TargetAttributes = {
 					A3C16E6323DE9EC4005BFA14 = {
@@ -647,7 +653,7 @@
 			);
 			mainGroup = A3C16E5B23DE9EC4005BFA14;
 			packageReferences = (
-				A34E0DCA2B57789A00755480 /* XCLocalSwiftPackageReference "../TextFieldStepper" */,
+				A3A708412B70556700176FCC /* XCLocalSwiftPackageReference "../TextFieldStepper" */,
 			);
 			productRefGroup = A3C16E6523DE9EC4005BFA14 /* Products */;
 			projectDirPath = "";
@@ -839,6 +845,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -901,6 +908,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -960,7 +968,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = "DialedIn/Dialed In.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 11;
+				CURRENT_PROJECT_VERSION = 13;
 				DEVELOPMENT_ASSET_PATHS = "\"DialedIn/Preview Content\"";
 				DEVELOPMENT_TEAM = 55QD8ZCA9C;
 				ENABLE_PREVIEWS = YES;
@@ -991,7 +999,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = "DialedIn/Dialed In.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 11;
+				CURRENT_PROJECT_VERSION = 13;
 				DEVELOPMENT_ASSET_PATHS = "\"DialedIn/Preview Content\"";
 				DEVELOPMENT_TEAM = 55QD8ZCA9C;
 				ENABLE_PREVIEWS = YES;
@@ -1141,7 +1149,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCLocalSwiftPackageReference section */
-		A34E0DCA2B57789A00755480 /* XCLocalSwiftPackageReference "../TextFieldStepper" */ = {
+		A3A708412B70556700176FCC /* XCLocalSwiftPackageReference "../TextFieldStepper" */ = {
 			isa = XCLocalSwiftPackageReference;
 			relativePath = ../TextFieldStepper;
 		};
@@ -1149,6 +1157,14 @@
 
 /* Begin XCSwiftPackageProductDependency section */
 		A34E0DCB2B57789A00755480 /* TextFieldStepper */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = TextFieldStepper;
+		};
+		A3A708422B70556700176FCC /* TextFieldStepper */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = TextFieldStepper;
+		};
+		A3A708442B70563400176FCC /* TextFieldStepper */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = TextFieldStepper;
 		};
