@@ -7,6 +7,8 @@
 //
 
 import SwiftUI
+import TextFieldStepper
+
 
 struct NoteFrontSetupView: View {
     @ObservedObject var front = NoteFrontSetupViewModel()
@@ -17,74 +19,73 @@ struct NoteFrontSetupView: View {
 	var isDetailEdit: Binding<Bool>?
 	
 	let note : Notes?
+   
 	
 // MARK: - BODY -
     var body: some View {
-		Section(header:
-					HStack {
-						if (isDetailEdit != nil) {
-							Button(action: {
-								noteVM.isFrontEdit.toggle()
-								noteVM.getNoteFront(note: note!)
-							}) {
-								Image(systemName: "xmark.circle.fill")
-									.resizable()
-									.frame(width: 15, height: 15)
-									.scaledToFit()
-									.foregroundColor(.gray)
-							}
-						}
-						
-						Spacer()
-						Image("bicycle-fork")
-							.resizable()
-							.frame(width: 50, height: 50)
-							.scaledToFit()
-						Text("Front Suspension Details")
-						Spacer()
-					} //: HSTACK
-				
+        
+		Section(header: HStack {
+            if (isDetailEdit != nil) {
+                Button(action: {
+                    noteVM.isFrontEdit.toggle()
+                    noteVM.getNoteFront(note: note!)
+                }) {
+                    Image(systemName: "xmark.circle.fill")
+                        .resizable()
+                        .frame(width: 15, height: 15)
+                        .scaledToFit()
+                        .foregroundColor(.gray)
+                }
+                Spacer()
+                Image("bicycle-fork")
+                    .resizable()
+                    .frame(width: 45, height: 45)
+                    .scaledToFit()
+                Text("Front Suspension Details").font(.title2)
+                Spacer()
+            } //: HSTACK
+            }
 		) {
-			VStack{
+			VStack {
 					  // AirPressure
-				HStack{
-					Text("PSI: \(noteVM.fAirVolume, specifier: "%.1f")").fontWeight(.thin)
-					Slider(value: $noteVM.fAirVolume, in: 45...120, step: 1.0).accentColor(.orange)
-					Stepper(value: $noteVM.fAirVolume, in: 45...120, step: 0.5, onEditingChanged: {_ in DispatchQueue.main.async {self.haptic.impactOccurred()}}, label: {Text("PSI: \(self.noteVM.fAirVolume)").fontWeight(.thin)}).labelsHidden()
-
-					}
-					
+                TextFieldStepper(doubleValue: $noteVM.fAirVolume, config: frontAirConfig)
+                if forkVM.dualAir == true {
+                    TextFieldStepper(doubleValue: $noteVM.fAirVolume2, label: "Secondary Air", config: frontAirConfig)
+                }
+                Divider()
 					//Sag
-				Stepper(value: $noteVM.fSagSetting , in: 0...70, onEditingChanged: {_ in DispatchQueue.main.async {self.haptic.impactOccurred()}}, label: {Text("Sag (mm): \(self.noteVM.fSagSetting) -- Sag %: \(calcSag(sag: Double(self.noteVM.fSagSetting), travel: forkVM.travel), specifier: "%.1f")").fontWeight(.thin)})
-				
-					// Tokens
-				Stepper(value: $noteVM.fTokenSetting , in: 0...6, onEditingChanged: {_ in DispatchQueue.main.async {self.haptic.impactOccurred()}}, label: {Text("Tokens: \(self.noteVM.fTokenSetting )").fontWeight(.thin)})
+                TextFieldStepper(doubleValue: $noteVM.fSagSetting.dbl, label: calcSagString(sag: Double(self.noteVM.fSagSetting), travel: forkVM.travel), config: sagConfig)
+                Divider()
 
-					
+					// Tokens
+                TextFieldStepper(doubleValue: $noteVM.fTokenSetting.dbl, config: tokenConfig)
+                Divider()
+            
 					//Compression
 				if forkVM.dualCompression == true {
-						Stepper(value: $noteVM.fHSCSetting, in: 0...25, onEditingChanged: {_ in DispatchQueue.main.async {self.haptic.impactOccurred()}}, label: {Text("High Sp Comp: \(self.noteVM.fHSCSetting)").fontWeight(.thin)})
-						Stepper(value: $noteVM.fLSCSetting, in: 0...25, onEditingChanged: {_ in DispatchQueue.main.async {self.haptic.impactOccurred()}}, label: {Text("Low Sp Comp: \(self.noteVM.fLSCSetting)").fontWeight(.thin)})
+                    TextFieldStepper(doubleValue: $noteVM.fHSCSetting.dbl, unit: " - HSC", label: "High Speed Compression", config: clickConfig2)
+                    TextFieldStepper(doubleValue: $noteVM.fLSCSetting.dbl, unit: " - LSC", label: "Low Speed Compression", config: clickConfig)
+                    Divider()
 					} else {
-						Stepper(value: $noteVM.fCompSetting, in: 0...25, onEditingChanged: {_ in DispatchQueue.main.async {self.haptic.impactOccurred()}}, label: {Text("Compression: \(self.noteVM.fCompSetting)").fontWeight(.thin)})
+                        TextFieldStepper(doubleValue: $noteVM.fCompSetting.dbl, label: "Compression", config: clickConfig)
+                        Divider()
 					}
 
 					// Rebound
 				if forkVM.dualRebound == true {
-						Stepper(value: $noteVM.fHSRSetting, in: 0...25, onEditingChanged: {_ in DispatchQueue.main.async {self.haptic.impactOccurred()}}, label: {Text("High Sp Rebound: \(self.noteVM.fHSRSetting)").fontWeight(.thin)})
-						Stepper(value: $noteVM.fLSRSetting, in: 0...25, onEditingChanged: {_ in DispatchQueue.main.async {self.haptic.impactOccurred()}}, label: {Text("Low Sp Rebound: \(self.noteVM.fLSRSetting)").fontWeight(.thin)})
+                    TextFieldStepper(doubleValue: $noteVM.fHSRSetting.dbl, unit: " - HSR", label: "High Speed Rebound", config: clickConfig2)
+                    TextFieldStepper(doubleValue: $noteVM.fLSRSetting.dbl, unit: " - LSR", label: "Low Speed Rebound", config: clickConfig)
+                    Divider()
 					} else {
-						Stepper(value: $noteVM.fReboundSetting, in: 0...25, onEditingChanged: {_ in DispatchQueue.main.async {self.haptic.impactOccurred()}}, label: {Text("Rebound: \(self.noteVM.fReboundSetting)").fontWeight(.thin)})
+                        TextFieldStepper(doubleValue: $noteVM.fReboundSetting.dbl, label: "Rebound", config: clickConfig)
+                        Divider()
 					}
-					
 					// Tire Pressure
-					HStack {
-						Text("Tire PSI: \(noteVM.fTirePressure, specifier: "%.1f")").fontWeight(.thin)
-						Slider(value: $noteVM.fTirePressure, in: 0...40, step: 0.5).accentColor(.orange)
-						Stepper(value: $noteVM.fTirePressure, in: 0...40, step: 0.1, onEditingChanged: {_ in DispatchQueue.main.async {self.haptic.impactOccurred()}}, label: {Text("PSI: \(self.noteVM.fTirePressure)").fontWeight(.thin)}).labelsHidden()
-					}
+                TextFieldStepper(doubleValue: $noteVM.fTirePressure, config: tireConfig)
+//                Divider()
 			}
 		}
+        .ignoresSafeArea(.keyboard)
 	}
 }
 

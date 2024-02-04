@@ -23,8 +23,9 @@ struct EditBikeDetailView: View {
 	
 	@State private var saveText = "Save"
 	@State private var isAdd = false
-	
 	@State var duplicateNameAlert = false
+    @State private var bikePickerIndex = 0
+    var bikePickerText = ["DETAILS", "FRONT", "REAR"]
 
 	let bike: Bike
 
@@ -42,15 +43,22 @@ struct EditBikeDetailView: View {
 	var body: some View {
 		NavigationView{
 			VStack {
+                Picker("NOTE DETAILS", selection: $bikePickerIndex){
+                    ForEach(0..<bikePickerText.count, id: \.self) { index in
+                        Text(self.bikePickerText[index]).tag(index)
+                    }
+                }.pickerStyle(.segmented)
+                .padding()
 				Form {
-					BikeDetailFormView(bikeVM: bikeVM)
-					
-					// MARK: - Front Setup -
-					ForkSetupFormView(forkVM: forkVM, isAdd: $isAdd)
-					
-					// MARK: - REAR SETUP -
-					RearSetupFormView(bikeVM: bikeVM, rearShockVM: rearShockVM, rearSetupIndex: $bikeVM.rearSetupIndex, isAdd: $isAdd)
-
+                    if bikePickerIndex == 0 {
+                        BikeDetailFormView(bikeVM: bikeVM)
+                    } else if bikePickerIndex == 1 {
+                        // MARK: - Front Setup -
+                        ForkSetupFormView(forkVM: forkVM, isAdd: $isAdd)
+                    } else if bikePickerIndex == 2 {
+                        // MARK: - REAR SETUP -
+                        RearSetupFormView(bikeVM: bikeVM, rearShockVM: rearShockVM, rearSetupIndex: $bikeVM.rearSetupIndex, isAdd: $isAdd)
+                    }
 				} //: FORM
 				.alert(isPresented: $duplicateNameAlert) {
 					Alert(title: Text("Duplicate Bike Name"), message: Text("Duplicate Bike Names are not recommended - please change"), primaryButton: .destructive(Text("Clear")) {
@@ -58,7 +66,7 @@ struct EditBikeDetailView: View {
 					}, secondaryButton: .cancel()
 					)
 				}
-				.animation(.spring())
+                .animation(.spring(), value: 1)
 				
 				Button(action: {
 					//TODO: Removed duplicate check on edit as it wasnt allowing any edits - this is likely because we are resaving boolModel.bikeName as bikeVM.bikeName

@@ -13,7 +13,6 @@ struct DialedInApp: App {
 	
     let context = PersistentCloudKitContainer.persistentContainer.viewContext
 	
-
     var body: some Scene {
         WindowGroup {
             ContentView()

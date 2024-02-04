@@ -27,7 +27,17 @@ extension Bike{
         request.predicate = NSPredicate(format: "name == %@", filter)
 		request.fetchLimit = 1
         return request
-    }    
+    }
+    
+    /// FetchRequest for all bikes, sorted by name
+    static func bikesDefaultFirstFetchRequest() -> NSFetchRequest<Bike> {
+        let request: NSFetchRequest<Bike> = Bike.fetchRequest()
+        request.sortDescriptors = [
+            NSSortDescriptor(keyPath: \Bike.isDefault, ascending: false),
+            NSSortDescriptor(keyPath: \Bike.name, ascending: true)
+            ]
+        return request
+    }
 }
 
 extension Notes{
@@ -75,6 +85,16 @@ extension Notes{
 //		request.fetchLimit = 1
 		return request
 	}
+    
+    static func favoritesByBikeFetchRequest(filter: String) -> NSFetchRequest<Notes> {
+        let request: NSFetchRequest<Notes> = Notes.fetchRequest()
+        request.sortDescriptors = [NSSortDescriptor(keyPath: \Notes.date, ascending: false)]
+        let isFavoritePredicate = NSPredicate(format: "isFavorite == TRUE")
+        let bikeNamePredicate = NSPredicate(format: "bike.name == %@", filter)
+        let compoundPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [isFavoritePredicate, bikeNamePredicate])
+        request.predicate = compoundPredicate
+        return request
+    }
 
 
 }

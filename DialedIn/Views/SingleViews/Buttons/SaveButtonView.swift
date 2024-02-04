@@ -12,22 +12,14 @@ import SwiftUI
 struct SaveButtonView: View {
 	@Binding var buttonText: String
    
-	
 	var body: some View {
          HStack {
                Image(systemName: "checkmark.circle")
                Text("\(buttonText)")
 				.fontWeight(.regular)
 			}
-			
     }
 }
-
-//struct SaveButtonView_Previews: PreviewProvider {
-//    static var previews: some View {
-//		SaveButtonView(saveText: "Save")
-//    }
-//}
 
 struct OrangeButtonStyle: ButtonStyle {
 	func makeBody(configuration: Self.Configuration) -> some View {
@@ -36,7 +28,7 @@ struct OrangeButtonStyle: ButtonStyle {
 			.foregroundColor(Color("TextColor"))
 			.padding(.all)
 			.frame(maxWidth: 390)
-			.background(Color.orange)
+            .customBackgroundGradient()
 			.cornerRadius(15)
 			.scaleEffect(configuration.isPressed ? 0.6 : 1.0)
 			.animation(.spring())

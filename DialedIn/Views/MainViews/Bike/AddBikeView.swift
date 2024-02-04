@@ -22,33 +22,42 @@ struct AddBikeView: View {
 	
 
     @State private var rearSetupIndex = 1
-
 	@State private var saveText = "Save"
 	@State private var isAdd = true
-	
 	@State var duplicateNameAlert = false
+    @State private var bikePickerIndex = 0
+    var bikePickerText = ["DETAILS", "FRONT", "REAR"]
     
 //TODO: figure out how to only allow 1 default bike
     var body: some View {
         NavigationView {
             VStack {
+                Picker("NOTE DETAILS", selection: $bikePickerIndex){
+                    ForEach(0..<bikePickerText.count, id: \.self) { index in
+                        Text(self.bikePickerText[index]).tag(index)
+                    }
+                }.pickerStyle(.segmented)
+                .padding()
+                
                 Form {
-					BikeDetailFormView(bikeVM: bikeVM)
-
-// MARK: - Front Setup -
-					ForkSetupFormView(forkVM: forkVM, frontServiceVM: frontServiceVM, isAdd: $isAdd)
-                    
-// MARK: - REAR SETUP -
-					RearSetupFormView(bikeVM: bikeVM, rearShockVM: rearShockVM, rearServiceVM: rearServiceVM, rearSetupIndex: $rearSetupIndex, isAdd: $isAdd)
-
-                } .navigationBarTitle("Bike Info", displayMode: .inline)
+                    if bikePickerIndex == 0 {
+                        BikeDetailFormView(bikeVM: bikeVM)
+                    } else if bikePickerIndex == 1{
+                        // MARK: - Front Setup -
+                        ForkSetupFormView(forkVM: forkVM, frontServiceVM: frontServiceVM, isAdd: $isAdd)
+                    } else if bikePickerIndex == 2 {
+                        // MARK: - REAR SETUP -
+                        RearSetupFormView(bikeVM: bikeVM, rearShockVM: rearShockVM, rearServiceVM: rearServiceVM, rearSetupIndex: $rearSetupIndex, isAdd: $isAdd)
+                    }
+                }
+                .navigationBarTitle("Enter New Bike Info", displayMode: .inline)
 				.alert(isPresented: $duplicateNameAlert) {
 					Alert(title: Text("Duplicate Bike Name"), message: Text("Duplicate Bike Names are not recommended - please change"), primaryButton: .destructive(Text("Clear")) {
 						bikeVM.bikeName = ""
 					}, secondaryButton: .cancel()
 					)
 				}
-				.animation(.spring())
+				.animation(.spring(), value: 1)
 				// Adds a Toolbar Cancel button in the red color that will dismisses the modal
 				.toolbar{
 					SheetToolBar{
@@ -79,7 +88,7 @@ struct AddBikeView: View {
 				}.buttonStyle(OrangeButtonStyle()).customSaveButton()
                     Spacer()
             }
-			.animation(.default)
+            .animation(.default, value: 1)
         }
     }
 	

@@ -28,10 +28,6 @@ struct ServiceWarningView: View {
 				if setupIndex < 2 { // used for RearSetupIndex
 					Text(service1text).fontWeight(.thin)
 					TextField("Days", value: $service1, formatter: NumberFormatter())
-					//					TextField("Days", text: Binding( // get the Binding value as a string and convert to an Integer
-					//						get: { String(frontServiceVM.elapsedLowersServiceDays) },
-					//						set: { frontServiceVM.elapsedLowersServiceDays = Int($0) ?? 90 }
-					//					))
 						.customTextField()
 						.textFieldStyle(PlainTextFieldStyle())
 						.keyboardType(.decimalPad)

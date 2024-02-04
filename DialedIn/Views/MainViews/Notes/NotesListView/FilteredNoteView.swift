@@ -26,7 +26,7 @@ struct FilteredNoteView: View {
 
 	func filterFavorites() -> [Bike] {
 		// this filters to only show bikes if they have a favorite prevents showing a section header when there is no favorite for that bike
-		let filteredBikes = try! moc.fetch(Bike.bikesFetchRequest())
+		let filteredBikes = try! moc.fetch(Bike.bikesDefaultFirstFetchRequest())
 		let foundBikes = filter ? filteredBikes.filter {$0.notesArray.contains {$0.isFavorite}} : filteredBikes
 		return foundBikes
 	}
@@ -54,30 +54,33 @@ struct FilteredNoteView: View {
 	
 	
     var body: some View {
-		ForEach(filterFavorites(), id: \.self) { bike in
-				let array = bike.notesArray
-			Section(header: HStack {
-				if array.count == 0 {
-					// dont show any Section if no notes exist for a bike TODO: Doesnt work though for Searching
-				} else {
-					 Text(bike.wrappedBikeName)
-						.font(.headline)
-						.foregroundColor(Color("TextColor"))
-						.padding()
-					Spacer()
-					}
-				}
-				.background(Color("TextEditBackgroundColor"))
-				)
-			{
-				ForEach(filterNotes(array: array), id: \.self) { note in
-					NavigationLink(destination: NotesDetailView(note: note)){
-						NotesStyleCardView(note: note)
-					}
-				}
-			}
-		}
-	}
+        ForEach(filterFavorites(), id: \.self) { bike in
+            let array = bike.notesArray
+            if array.count > 0 {
+                let filteredArray = filterNotes(array: array)
+                if filteredArray.count > 0 {
+                    Section(header: HStack {
+                        Text(bike.wrappedBikeName)
+                            .font(.headline)
+                            .foregroundColor(Color("TextColor"))
+                            .padding()
+                        Spacer()
+                        Text("\(filteredArray.count)")
+                            .font(.headline)
+                            .foregroundColor(Color("TextColor"))
+                            .padding(10)
+                    }
+                    .background(Color("TextEditBackgroundColor"))) {
+                        ForEach(filteredArray, id: \.self) { note in
+                            NavigationLink(destination: NotesDetailView(note: note)){
+                                NotesStyleCardView(note: note)
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 
 

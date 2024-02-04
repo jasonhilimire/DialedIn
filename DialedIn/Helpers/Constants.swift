@@ -30,8 +30,16 @@ var dateFormatter: DateFormatter {
 
 func calcSag(sag: Double, travel: Double) -> Double {
 	let calculatedTravel = (sag / travel) * 100.0
-	
 	return calculatedTravel
+}
+
+func calcSagString(sag: Double, travel: Double) -> String {
+    let sagCalc = calcSag(sag: sag, travel: travel)
+    if !(1...100).contains(sagCalc) {
+        return "Sag %: N/A"
+    } else {
+        return "Sag %: \(sagCalc.rounded())"
+    }
 }
 
 // haptic vibration for Save button
@@ -86,6 +94,8 @@ struct CardShadowModifier: ViewModifier {
 	}
 }
 
+
+
 struct FootnoteBoldTextModifier: ViewModifier {
 	// system font, size footnote and bold
 	let font = Font.system(.footnote).weight(.bold)
@@ -98,13 +108,20 @@ struct FootnoteBoldTextModifier: ViewModifier {
 
 struct SaveButtonModifier: ViewModifier {
 	// adds horizontal and bottom padding when button is shown above keyboard outside the form
-	
 	func body(content: Content) -> some View {
 		content
 			.padding(.horizontal)
 			.padding(.bottom, 8)
 			.animation(.default)
 	}
+}
+
+struct BackGroundGradientModifier: ViewModifier {
+    // adds horizontal and bottom padding when button is shown above keyboard outside the form
+    func body(content: Content) -> some View {
+        content
+            .background((LinearGradient(gradient: Gradient(colors: [Color.orange, Color.red]) , startPoint: .top, endPoint: .bottom)))
+    }
 }
 
 
@@ -132,6 +149,10 @@ extension View {
 	func customSaveButton() -> some View {
 		return self.modifier(SaveButtonModifier())
 	}
+    
+    func customBackgroundGradient() -> some View {
+        return self.modifier(BackGroundGradientModifier())
+    }
 }
 
 // Calculates Days between service
@@ -177,4 +198,9 @@ func ??<T>(lhs: Binding<Optional<T>>, rhs: T) -> Binding<T> {
 		get: { lhs.wrappedValue ?? rhs },
 		set: { lhs.wrappedValue = $0 }
 	)
+}
+
+extension Color {
+    static var customGradient = (LinearGradient(gradient: Gradient(colors: [Color.orange, Color.red
+                                                                           ]) , startPoint: .top, endPoint: .bottom))
 }

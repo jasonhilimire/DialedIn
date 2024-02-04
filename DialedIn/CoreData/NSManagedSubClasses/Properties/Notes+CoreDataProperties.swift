@@ -20,6 +20,7 @@ extension Notes {
 	@NSManaged public var id: UUID
 	@NSManaged public var date: Date?
 	@NSManaged public var fAirVolume: Double
+    @NSManaged public var fAirVolume2: Double
 	@NSManaged public var fCompression: Int16
 	@NSManaged public var fHSC: Int16
 	@NSManaged public var fHSR: Int16

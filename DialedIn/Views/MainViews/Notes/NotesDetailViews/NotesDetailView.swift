@@ -16,7 +16,7 @@ struct NotesDetailView: View {
 
 	@ObservedObject var noteVM = NoteViewModel()
 	@ObservedObject var front = NoteFrontSetupViewModel()
-	@ObservedObject var rear = NoteRearSetupModel()
+	@ObservedObject var rear = NoteRearSetupViewModel()
 	@ObservedObject var forkVM = ForkViewModel()
 	@ObservedObject var rearVM = RearShockViewModel()
 	
@@ -44,38 +44,33 @@ struct NotesDetailView: View {
 
 					// MARK: - FRONT -
 					
-					if noteVM.isFrontEdit == true {
-						NoteFrontSetupView(front: front, noteVM: noteVM, forkVM: forkVM, isDetailEdit: $isDetailEdit, note: note)
-						.transition(.move(edge: .leading))
-						.animation(Animation.linear(duration: 0.3))
-					}
-					
-					if noteVM.isFrontEdit == false {
-						FrontNoteDetailsView(noteVM: noteVM, note: note)
-							.transition(.move(edge: .trailing))
-							.animation(Animation.linear(duration: 0.3))
-							.onLongPressGesture {
-								self.noteVM.isFrontEdit.toggle()
-							}
-					}
-					
+                    if noteVM.isFrontEdit {
+                        NoteFrontSetupView(front: front, noteVM: noteVM, forkVM: forkVM, isDetailEdit: $isDetailEdit, note: note)
+                            .transition(.move(edge: .leading))
+                            .animation(.linear(duration: 0.3))
+                    } else {
+                        FrontNoteDetailsView(noteVM: noteVM, note: note)
+                            .transition(.move(edge: .trailing))
+                            .onLongPressGesture {
+                                self.noteVM.isFrontEdit.toggle()
+                        }
+                            .animation(.linear(duration: 0.3))
+                    }
 					Divider().padding(.bottom, 5)
 						
 					// MARK: - REAR -
 					
-					if noteVM.isRearEdit == true {
+					if noteVM.isRearEdit {
 						NoteRearSetupView(rear: rear, rearVM: rearVM, noteVM: noteVM, isDetailEdit: $isDetailEdit, note: note)
 							.transition(.move(edge: .leading))
 							.animation(Animation.linear(duration: 0.3))
-					}
-					
-					if noteVM.isRearEdit == false {
+					} else {
 						RearNoteDetailsView(noteModel: noteVM, note: note)
 							.transition(.move(edge: .trailing))
 							.animation(Animation.linear(duration: 0.3))
 							.onLongPressGesture {
 								self.noteVM.isRearEdit.toggle()
-							}
+                        }
 					}
 					
 					Divider().padding(.bottom, 5)

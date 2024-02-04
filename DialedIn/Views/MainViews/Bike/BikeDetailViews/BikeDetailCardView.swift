@@ -61,13 +61,21 @@ struct BikeDetailCardView: View {
 		.cornerRadius(20)
 		.padding(.horizontal, 20)
 		.customShadow()
-		
-
+        .background(EmptyView().sheet(isPresented: $showScreenBool.isShowingService) {
+            AddServiceView(isFromBikeCard: $isFromBikeCard, bike: fetchBike(for: showScreenBool.bikeName))
+                .environmentObject(self.showScreenBool)
+                .environment(\.managedObjectContext, self.moc)
+        }
+        
+        .background(EmptyView().sheet(isPresented: $showScreenBool.isShowingEdit) {
+            EditBikeDetailView(bike: fetchBike(for: showScreenBool.bikeName))
+                .environmentObject(self.showScreenBool)
+                .environment(\.managedObjectContext, self.moc)
+            }))
 	}
 	
 	func publishBikeName() {
 		self.showScreenBool.bikeName = bike.name ?? "Unknown"
-		
 	}
 	
 }

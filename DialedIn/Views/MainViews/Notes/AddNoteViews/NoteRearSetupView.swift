@@ -7,9 +7,10 @@
 //
 
 import SwiftUI
+import TextFieldStepper
 
 struct NoteRearSetupView: View {
-    @ObservedObject var rear = NoteRearSetupModel()
+    @ObservedObject var rear = NoteRearSetupViewModel()
 	@ObservedObject var rearVM = RearShockViewModel()
 	@ObservedObject var noteVM = NoteViewModel()
 	
@@ -32,15 +33,16 @@ struct NoteRearSetupView: View {
 									.scaledToFit()
 									.foregroundColor(.gray)
 							}
-						}
+						
 						Spacer()
 						Image("shock-absorber")
 							.resizable()
-							.frame(width: 50, height: 50)
+							.frame(width: 45, height: 45)
 							.scaledToFit()
 						Text("Rear Suspension Details")
 						Spacer()
 					}
+                }
 		) {
 			VStack {
 				if rear.hasRear == false {
@@ -48,53 +50,50 @@ struct NoteRearSetupView: View {
 				} else {
 					// Air - Coil
 					if rearVM.isCoil == false {
-						HStack{
-							Text("PSI: \(self.noteVM.rSpring, specifier: "%.0f")").fontWeight(.thin)
-							Slider(value: $noteVM.rSpring, in: 150...350, step: 1.0).accentColor(.orange)
-							Stepper(value: $noteVM.rSpring   , in: 150...350, step: 1.0, onEditingChanged: {_ in DispatchQueue.main.async {self.haptic.impactOccurred()}}, label: {Text("Spring: \(self.noteVM.rSpring)")}).labelsHidden()
-						   }
+                        TextFieldStepper(doubleValue:  $noteVM.rSpring, maximum: 600.0, config: frontAirConfig)
+                        
+                        Divider()
 						} else {
-							HStack{
-								Text("Spring: \(self.noteVM.rSpring, specifier: "%.0f")").fontWeight(.thin)
-								Slider(value: $noteVM.rSpring, in: 300...700, step: 25).accentColor(.orange)
-								Stepper(value: $noteVM.rSpring   , in: 300...700, step: 25, onEditingChanged: {_ in DispatchQueue.main.async {self.haptic.impactOccurred()}}, label: {Text("Spring: \(self.noteVM.rSpring)")}).labelsHidden()
-							}
+                            TextFieldStepper(doubleValue: $noteVM.rSpring, config: coilConfig)
+                            Divider()
 						}
 					//Sag
-					Stepper(value: $noteVM.rSagSetting  , in: 0...50, onEditingChanged: {_ in DispatchQueue.main.async {self.haptic.impactOccurred()}}, label: {Text("Sag (mm): \(self.noteVM.rSagSetting) -- Sag %: \(calcSag(sag: Double(self.noteVM.rSagSetting), travel: rearVM.strokeLength), specifier: "%.1f")").fontWeight(.thin)})
-					
-					
+                    TextFieldStepper(doubleValue: $noteVM.rSagSetting.dbl, label: calcSagString(sag: Double(self.noteVM.rSagSetting), travel: rearVM.travel), config: sagConfig)
+                    Divider()
+
 					//Tokens- only if NOT coil
 					if rearVM.isCoil == false {
-						Stepper(value: $noteVM.rTokenSetting, in: 0...6, onEditingChanged: {_ in DispatchQueue.main.async {self.haptic.impactOccurred()}}, label: {Text("Tokens: \(self.noteVM.rTokenSetting)").fontWeight(.thin)})
+                        TextFieldStepper(doubleValue: $noteVM.rTokenSetting.dbl, config: tokenConfig)
 					}
 					
+                    Divider()
+                    
 					//Compression
 					if rearVM.dualCompression == true {
-						Stepper(value: $noteVM.rHSCSetting, in: 0...25, onEditingChanged: {_ in DispatchQueue.main.async {self.haptic.impactOccurred()}}, label: {Text("High Sp Comp: \(self.noteVM.rHSCSetting)").fontWeight(.thin)})
-						Stepper(value: $noteVM.rLSCSetting, in: 0...25, onEditingChanged: {_ in DispatchQueue.main.async {self.haptic.impactOccurred()}}, label: {Text("Low Sp Comp: \(self.noteVM.rLSCSetting)").fontWeight(.thin)})
+                        TextFieldStepper(doubleValue: $noteVM.rHSCSetting.dbl, unit: " - HSC", label: "High Speed Compression", config: clickConfig)
+                        TextFieldStepper(doubleValue: $noteVM.rLSCSetting.dbl, unit: " - LSC", label: "Low Speed Compression", config: clickConfig2)
+                        Divider()
 						} else {
-							Stepper(value: $noteVM.rCompSetting, in: 0...25, onEditingChanged: {_ in DispatchQueue.main.async {self.haptic.impactOccurred()}}, label: {Text("Compression: \(self.noteVM.rCompSetting)").fontWeight(.thin)})
+                            TextFieldStepper(doubleValue: $noteVM.rCompSetting.dbl, label: "Compression", config: clickConfig)
+                            Divider()
 						}
 						
 					// Rebound
 					if rearVM.dualRebound == true {
-						Stepper(value: $noteVM.rHSRSetting, in: 0...25, onEditingChanged: {_ in DispatchQueue.main.async {self.haptic.impactOccurred()}}, label: {Text("High Sp Rebound: \(self.noteVM.rHSRSetting)").fontWeight(.thin)})
-						Stepper(value: $noteVM.rLSRSetting, in: 0...25, onEditingChanged: {_ in DispatchQueue.main.async {self.haptic.impactOccurred()}}, label: {Text("Low Sp Rebound: \(self.noteVM.rLSRSetting)").fontWeight(.thin)})
+                        TextFieldStepper(doubleValue: $noteVM.rHSRSetting.dbl, unit: " - HSR", label: "High Speed Rebound", config: clickConfig)
+                        TextFieldStepper(doubleValue: $noteVM.rLSRSetting.dbl, unit: " - LSR", label: "Low Speed Rebound", config: clickConfig2)
+                        Divider()
 						} else {
-							Stepper(value: $noteVM.rReboundSetting, in: 0...20, onEditingChanged: {_ in DispatchQueue.main.async {self.haptic.impactOccurred()}}, label: {Text("Rebound: \(self.noteVM.rReboundSetting)").fontWeight(.thin)})
+                            TextFieldStepper(doubleValue: $noteVM.rReboundSetting.dbl, label: "Rebound", config: clickConfig)
+                            Divider()
 						}
 					
 					//Tire Pressure
-					HStack {
-						Text("Tire PSI: \(noteVM.rTirePressure, specifier: "%.1f")").fontWeight(.thin)
-						Slider(value: $noteVM.rTirePressure, in: 0...40, step: 0.5).accentColor(.orange)
-						Stepper(value: $noteVM.rTirePressure, in: 0...40, step: 0.1, onEditingChanged: {_ in DispatchQueue.main.async {self.haptic.impactOccurred()}}, label: {Text("PSI: \(self.noteVM.rTirePressure)").fontWeight(.thin)}).labelsHidden()
-					}
-					
+                    TextFieldStepper(doubleValue: $noteVM.rTirePressure, config: tireConfig)
 				}
 			}
 		}
+
     }
 	
 }

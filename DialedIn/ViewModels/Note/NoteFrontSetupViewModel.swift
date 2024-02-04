@@ -24,6 +24,12 @@ class NoteFrontSetupViewModel: ObservableObject {
             didChange.send(self)
         }
     }
+    
+    @Published var lastFAirSetting2: Double = 0 {
+        didSet {
+            didChange.send(self)
+        }
+    }
 
     @Published var lastFCompSetting: Int16 = 0 {
         didSet {
@@ -97,7 +103,25 @@ class NoteFrontSetupViewModel: ObservableObject {
         let lastAirSetting = lastRecord.last?.fAirVolume
         return lastAirSetting ?? 65.0
     }
-	
+    
+    func getLastAir2() -> Double {
+        let lastRecord = filterBikes(for: bikeName)
+        let lastAirSetting = lastRecord.last?.fAirVolume2
+        return lastAirSetting ?? 65.0
+    }
+    
+    
+    func getAirforBikeCard(bike: String) -> Double {
+        let lastRecord = filterBikes(for: bike)
+        let lastAirSetting = lastRecord.last?.fAirVolume
+        return lastAirSetting ?? 00.0
+    }
+
+    func getAir2forBikeCard(bike: String) -> Double {
+        let lastRecord = filterBikes(for: bike)
+        let lastAirSetting = lastRecord.last?.fAirVolume2
+        return lastAirSetting ?? 00.0
+    }
     
     func getLastFHSC() -> Int16 {
         let lastRecord = FrontSettings.hsc
@@ -158,6 +182,7 @@ class NoteFrontSetupViewModel: ObservableObject {
     func getLastFrontSettings() {
         // Get all the settings and assign
         lastFAirSetting = getLastAir()
+        lastFAirSetting2 = getLastAir2()
         lastFHSCSetting = getLastFHSC()
         lastFLSCSetting = getLastFLSC()
         lastFCompSetting = getLastFComp()

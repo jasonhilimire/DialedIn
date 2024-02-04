@@ -21,8 +21,6 @@ struct NotesStyleCardView: View {
 					Text(note.bike?.name ?? "Unknown Bike")
 					Spacer()
 					Text(note.date != nil ? "\(note.date!, formatter: dateFormatter)" : "")
-
-					
 					// this basically hides the favorite icon and adequately spaces the date
 					if note.isFavorite == true {
 						FavoritesView(favorite: .constant(note.isFavorite))
@@ -51,16 +49,40 @@ struct NotesStyleCardView: View {
 				Divider()
 				
 				HStack {
-					VStack {
-						HStack {
-							Text("F")
-							Text("\(note.fAirVolume, specifier: "%.1f")")
-						}
-						.lineLimit(1)
-						.padding([.top, .bottom, .trailing])
-						.font(.body)
-						.customShadow()
-						
+					VStack(alignment: .leading) {
+                        if note.bike?.frontSetup?.dualAir == true {
+                            VStack {
+                                Spacer()
+                                HStack(alignment: .bottom) {
+                                    Text("F")
+                                    Text("\(note.fAirVolume, specifier: "%.1f")")
+                                }
+                                .lineLimit(1)
+                                .padding(.trailing)
+                                .font(.body)
+                                .customShadow()
+                                
+                                HStack(alignment: .bottom) {
+                                    Text("F2")
+                                    Text("\(note.fAirVolume2, specifier: "%.1f")")
+                                }
+                                .lineLimit(1)
+                                .padding(.trailing)
+                                .font(.body)
+                                .customShadow()
+                            }
+
+                        } else {
+                            HStack {
+                                Text("F")
+                                Text("\(note.fAirVolume, specifier: "%.1f")")
+                            }
+                            .lineLimit(1)
+                            .padding([.top, .bottom, .trailing])
+                            .font(.body)
+                            .customShadow()
+                        }
+                        
 						
 						HStack {
 							Text("R")
@@ -81,6 +103,7 @@ struct NotesStyleCardView: View {
 							Text("LSC: \(note.fLSC)").fontWeight(.thin)
 						} else {
 							Text("Comp: \(note.fCompression)").fontWeight(.thin)
+                            Text("")
 						}
 						Text("Tokens: \(note.fTokens)").fontWeight(.thin)
 						Divider()
@@ -89,6 +112,7 @@ struct NotesStyleCardView: View {
 							Text("LSC: \(note.rLSC)").fontWeight(.thin)
 						} else {
 							Text("Comp: \(note.rCompression)").fontWeight(.thin)
+                            Text("")
 						}
 						if note.bike?.rearSetup?.isCoil == false {
 							Text("Tokens: \(note.rTokens)").fontWeight(.thin)
@@ -104,6 +128,7 @@ struct NotesStyleCardView: View {
 							Text("LSR: \(note.fLSR)").fontWeight(.thin)
 						} else {
 							Text("Reb: \(note.fRebound)").fontWeight(.thin)
+                            Text("")
 							
 						}
 						Text("Sag %: \(calcSag(sag: Double(note.fSag), travel: note.bike?.frontSetup?.travel ?? 0.0), specifier: "%.1f")").fontWeight(.thin)
@@ -113,6 +138,7 @@ struct NotesStyleCardView: View {
 							Text("LSR: \(note.rLSR)").fontWeight(.thin)
 						} else {
 							Text("Reb: \(note.rRebound)").fontWeight(.thin)
+                            Text("")
 						}
 						Text("Sag %: \(calcSag(sag: Double(note.rSag), travel: note.bike?.rearSetup?.strokeLength ?? 0.0), specifier: "%.1f")").fontWeight(.thin)
 					}.font(.caption)
@@ -120,7 +146,7 @@ struct NotesStyleCardView: View {
 			}
 			.padding()
 			.foregroundColor(Color("TextColor"))
-			.background(Color("BackgroundColor"))
+			.background(Color("TextEditBackgroundColor"))
 			.cornerRadius(20)
 			// Shadow for left & Bottom
 			.customShadow()

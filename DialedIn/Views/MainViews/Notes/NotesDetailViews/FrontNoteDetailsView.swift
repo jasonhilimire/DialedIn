@@ -35,6 +35,9 @@ struct FrontNoteDetailsView: View {
 						Text("Fork PSI: \(noteVM.fAirVolume, specifier: "%.1f")").customNotesText()
 						Text("Tokens: \(self.note.fTokens)").customNotesText()
 						}
+                    if self.note.bike?.frontSetup?.dualAir == true {
+                        Text("Secondary PSI: \(noteVM.fAirVolume2, specifier: "%.1f")").customNotesText()
+                        }
 					}
 					Spacer()
 				VStack{
@@ -57,13 +60,13 @@ struct FrontNoteDetailsView: View {
 				Spacer()
 		
 				VStack {
-						if self.note.bike?.frontSetup?.dualCompression == true {
+						if self.note.bike?.frontSetup?.dualRebound == true {
 					HStack{
 						Text("HSR: \(noteVM.fHSRSetting)").customNotesText()
-						Text("LSR \(noteVM.fHSCSetting)").customNotesText()
+                        Text("LSR \(noteVM.fLSRSetting)").customNotesText()
 						}
 					} else {
-						Text("Rebound: \(noteVM.fReboundSetting)").customNotesText()
+                        Text("Rebound: \(noteVM.fReboundSetting)").customNotesText()
 					}
 				}
 			}

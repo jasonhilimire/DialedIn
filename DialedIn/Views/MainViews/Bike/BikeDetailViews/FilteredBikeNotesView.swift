@@ -32,7 +32,7 @@ struct FilteredBikeNotesView: View {
 						.fontWeight(.bold)
 						.customTextShadow()
 					ForEach(self.fetchRequest.wrappedValue, id: \.self) { note in
-						Button(action: {showingNoteScreen.toggle()}) {
+                        NavigationLink(destination: NotesDetailView(note: note)){
 							HStack{
 								VStack(alignment: .leading){
 									Text("\(note.date!, formatter: dateFormatter)")
@@ -49,10 +49,7 @@ struct FilteredBikeNotesView: View {
 							Spacer()
 							Image(systemName: "chevron.right")
 								.foregroundColor(Color("ImageColor"))
-						}
-						.sheet(isPresented: $showingNoteScreen) {
-							NotesDetailView(note: note)
-						} //: ForEach
+                        }
 					}
 				}
 				.frame(width: geometry.size.width, height: geometry.size.height, alignment: .topLeading)
