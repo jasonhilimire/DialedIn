@@ -118,7 +118,7 @@ struct HomePageMainView: View {
                             .buttonStyle(Nav_Button())
                         }
                     }//: END HSTACK
-                    .padding(.horizontal, 10)
+                    .padding(10)
                 }//: END VSTACK
             }//: END GeoREader
 //            .navigationBarTitle("Dialed In", displayMode: .inline)
