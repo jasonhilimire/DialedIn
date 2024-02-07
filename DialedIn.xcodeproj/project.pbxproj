@@ -134,6 +134,7 @@
 		A35642BF25787A5500A5A45B /* PersistentCloudKitContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistentCloudKitContainer.swift; sourceTree = "<group>"; };
 		A35642C025787A5500A5A45B /* DialedApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DialedApp.swift; sourceTree = "<group>"; };
 		A3655BAF2575E9F6009DACDE /* BoolModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoolModel.swift; sourceTree = "<group>"; };
+		A36759162B71ED2700B31125 /* DialedIn v3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "DialedIn v3.xcdatamodel"; sourceTree = "<group>"; };
 		A36DF5EE25C8E7BB00393FD7 /* DialedIn v2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "DialedIn v2.xcdatamodel"; sourceTree = "<group>"; };
 		A37A8952257304A900D301E1 /* NoteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteViewModel.swift; sourceTree = "<group>"; };
 		A37B1EBF252C0D8500147F94 /* GradientButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientButtonStyle.swift; sourceTree = "<group>"; };
@@ -968,7 +969,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = "DialedIn/Dialed In.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 19;
+				CURRENT_PROJECT_VERSION = 44;
 				DEVELOPMENT_ASSET_PATHS = "\"DialedIn/Preview Content\"";
 				DEVELOPMENT_TEAM = 55QD8ZCA9C;
 				ENABLE_PREVIEWS = YES;
@@ -999,7 +1000,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = "DialedIn/Dialed In.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 19;
+				CURRENT_PROJECT_VERSION = 44;
 				DEVELOPMENT_ASSET_PATHS = "\"DialedIn/Preview Content\"";
 				DEVELOPMENT_TEAM = 55QD8ZCA9C;
 				ENABLE_PREVIEWS = YES;
@@ -1174,10 +1175,11 @@
 		A3C16E6B23DE9EC4005BFA14 /* DialedIn.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				A36759162B71ED2700B31125 /* DialedIn v3.xcdatamodel */,
 				A36DF5EE25C8E7BB00393FD7 /* DialedIn v2.xcdatamodel */,
 				A3C16E6C23DE9EC4005BFA14 /* DialedIn.xcdatamodel */,
 			);
-			currentVersion = A36DF5EE25C8E7BB00393FD7 /* DialedIn v2.xcdatamodel */;
+			currentVersion = A36759162B71ED2700B31125 /* DialedIn v3.xcdatamodel */;
 			path = DialedIn.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
